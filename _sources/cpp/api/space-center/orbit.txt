@@ -1,0 +1,149 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+Orbit
+=====
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Orbit
+
+   Describes an orbit. For example, the orbit of a vessel, obtained by calling
+   :func:`Vessel::orbit`, or a celestial body, obtained by calling
+   :func:`CelestialBody::orbit`.
+
+   .. function:: CelestialBody body()
+
+      The celestial body (e.g. planet or moon) around which the object is orbiting.
+
+   .. function:: double apoapsis()
+
+      Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.
+
+
+      .. note::
+
+         For the apoapsis altitude reported on the in-game map view, use :func:`Orbit::apoapsis_altitude`.
+
+   .. function:: double periapsis()
+
+      The periapsis of the orbit, in meters, from the center of mass of the body being orbited.
+
+
+      .. note::
+
+         For the periapsis altitude reported on the in-game map view, use :func:`Orbit::periapsis_altitude`.
+
+   .. function:: double apoapsis_altitude()
+
+      The apoapsis of the orbit, in meters, above the sea level of the body being orbited.
+
+
+      .. note::
+
+         This is equal to :func:`Orbit::apoapsis` minus the equatorial radius of the body.
+
+   .. function:: double periapsis_altitude()
+
+      The periapsis of the orbit, in meters, above the sea level of the body being orbited.
+
+
+      .. note::
+
+         This is equal to :func:`Orbit::periapsis` minus the equatorial radius of the body.
+
+   .. function:: double semi_major_axis()
+
+      The semi-major axis of the orbit, in meters.
+
+   .. function:: double semi_minor_axis()
+
+      The semi-minor axis of the orbit, in meters.
+
+   .. function:: double radius()
+
+      The current radius of the orbit, in meters. This is the distance between the center
+      of mass of the object in orbit, and the center of mass of the body around which it is orbiting.
+
+
+      .. note::
+
+         This value will change over time if the orbit is elliptical.
+
+   .. function:: double speed()
+
+      The current orbital speed of the object in meters per second.
+
+
+      .. note::
+
+         This value will change over time if the orbit is elliptical.
+
+   .. function:: double period()
+
+      The orbital period, in seconds.
+
+   .. function:: double time_to_apoapsis()
+
+      The time until the object reaches apoapsis, in seconds.
+
+   .. function:: double time_to_periapsis()
+
+      The time until the object reaches periapsis, in seconds.
+
+   .. function:: double eccentricity()
+
+      The `eccentricity <http://en.wikipedia.org/wiki/Orbital_eccentricity>`_ of the orbit.
+
+   .. function:: double inclination()
+
+      The `inclination <http://en.wikipedia.org/wiki/Orbital_inclination>`_ of the orbit, in radians.
+
+   .. function:: double longitude_of_ascending_node()
+
+      The `longitude of the ascending node <http://en.wikipedia.org/wiki/Longitude_of_the_ascending_node>`_, in radians.
+
+   .. function:: double argument_of_periapsis()
+
+      The `argument of periapsis <http://en.wikipedia.org/wiki/Argument_of_periapsis>`_, in radians.
+
+   .. function:: double mean_anomaly_at_epoch()
+
+      The `mean anomaly at epoch <http://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+   .. function:: double epoch()
+
+      The time since the epoch (the point at which the
+      `mean anomaly at epoch <http://en.wikipedia.org/wiki/Mean_anomaly>`_ was measured, in seconds.
+
+   .. function:: double mean_anomaly()
+
+      The `mean anomaly <http://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+   .. function:: double eccentric_anomaly()
+
+      The `eccentric anomaly <http://en.wikipedia.org/wiki/Eccentric_anomaly>`_.
+
+   .. function:: static std::tuple<double, double, double> reference_plane_normal(ReferenceFrame reference_frame)
+
+      The unit direction vector that is normal to the orbits reference plane, in the given
+      reference frame. The reference plane is the plane from which the orbits inclination is measured.
+
+      :Parameters:
+
+   .. function:: static std::tuple<double, double, double> reference_plane_direction(ReferenceFrame reference_frame)
+
+      The unit direction vector from which the orbits longitude of ascending node is measured,
+      in the given reference frame.
+
+      :Parameters:
+
+   .. function:: double time_to_soi_change()
+
+      The time until the object changes sphere of influence, in seconds. Returns ``NaN`` if the
+      object is not going to change sphere of influence.
+
+   .. function:: Orbit next_orbit()
+
+      If the object is going to change sphere of influence in the future, returns the new orbit
+      after the change. Otherwise returns ``NULL``.

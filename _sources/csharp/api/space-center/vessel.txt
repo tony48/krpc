@@ -1,0 +1,326 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Vessel
+======
+
+.. class:: Vessel
+
+   These objects are used to interact with vessels in KSP. This includes getting
+   orbital and flight data, manipulating control inputs and managing resources.
+
+   .. property:: string Name { get; set; }
+
+      The name of the vessel.
+
+   .. property:: VesselType Type { get; set; }
+
+      The type of the vessel.
+
+   .. property:: VesselSituation Situation { get; }
+
+      The situation the vessel is in.
+
+   .. property:: double MET { get; }
+
+      The mission elapsed time in seconds.
+
+   .. method:: Flight Flight(ReferenceFrame referenceFrame = None)
+
+      Returns a :type:`Flight` object that can be used to get flight
+      telemetry for the vessel, in the specified reference frame.
+
+      :parameters:
+
+       * **referenceFrame** -- Reference frame. Defaults to the vessel's surface reference frame (:prop:`Vessel.SurfaceReferenceFrame`).
+
+   .. property:: Vessel Target { get; set; }
+
+      The target vessel. ``null`` if there is no target. When
+      setting the target, the target cannot be the current vessel.
+
+   .. property:: Orbit Orbit { get; }
+
+      The current orbit of the vessel.
+
+   .. property:: Control Control { get; }
+
+      Returns a :type:`Control` object that can be used to manipulate
+      the vessel's control inputs. For example, its pitch/yaw/roll controls,
+      RCS and thrust.
+
+   .. property:: AutoPilot AutoPilot { get; }
+
+      An :type:`AutoPilot` object, that can be used to perform
+      simple auto-piloting of the vessel.
+
+   .. property:: Resources Resources { get; }
+
+      A :type:`Resources` object, that can used to get information
+      about resources stored in the vessel.
+
+   .. method:: Resources ResourcesInDecoupleStage(int stage, bool cumulative = True)
+
+      Returns a :type:`Resources` object, that can used to get
+      information about resources stored in a given *stage*.
+
+      :parameters:
+
+       * **stage** -- Get resources for parts that are decoupled in this stage.
+       * **cumulative** -- When ``false``, returns the resources for parts decoupled in just the given stage. When ``true`` returns the resources decoupled in the given stage and all subsequent stages combined.
+
+
+      .. note:: For details on stage numbering, see the
+                discussion on :ref:`csharp-api-parts-staging`.
+
+   .. property:: Parts Parts { get; }
+
+      A :type:`Parts` object, that can used to interact with the parts that make up this vessel.
+
+   .. property:: Comms Comms { get; }
+
+      A :type:`Comms` object, that can used to interact with RemoteTech for this vessel.
+
+
+      .. note::
+
+         Requires `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ to be installed.
+
+   .. property:: float Mass { get; }
+
+      The total mass of the vessel, including resources, in kg.
+
+   .. property:: float DryMass { get; }
+
+      The total mass of the vessel, excluding resources, in kg.
+
+   .. property:: float Thrust { get; }
+
+      The total thrust currently being produced by the vessel's engines, in
+      Newtons. This is computed by summing :prop:`Engine.Thrust` for
+      every engine in the vessel.
+
+   .. property:: float AvailableThrust { get; }
+
+      Gets the total available thrust that can be produced by the vessel's
+      active engines, in Newtons. This is computed by summing
+      :prop:`Engine.AvailableThrust` for every active engine in the vessel.
+
+   .. property:: float MaxThrust { get; }
+
+      The total maximum thrust that can be produced by the vessel's active
+      engines, in Newtons. This is computed by summing
+      :prop:`Engine.MaxThrust` for every active engine.
+
+   .. property:: float MaxVacuumThrust { get; }
+
+      The total maximum thrust that can be produced by the vessel's active
+      engines when the vessel is in a vacuum, in Newtons. This is computed by
+      summing :prop:`Engine.MaxVacuumThrust` for every active engine.
+
+   .. property:: float SpecificImpulse { get; }
+
+      The combined specific impulse of all active engines, in seconds. This is computed using the formula
+      `described here <http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+   .. property:: float VacuumSpecificImpulse { get; }
+
+      The combined vacuum specific impulse of all active engines, in seconds. This is computed using the formula
+      `described here <http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+   .. property:: float KerbinSeaLevelSpecificImpulse { get; }
+
+      The combined specific impulse of all active engines at sea level on Kerbin, in seconds.
+      This is computed using the formula
+      `described here <http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+   .. property:: ReferenceFrame ReferenceFrame { get; }
+
+      The reference frame that is fixed relative to the vessel, and orientated with the vessel.
+
+      * The origin is at the center of mass of the vessel.
+      * The axes rotate with the vessel.
+      * The x-axis points out to the right of the vessel.
+      * The y-axis points in the forward direction of the vessel.
+      * The z-axis points out of the bottom off the vessel.
+
+
+      .. figure:: /images/reference-frames/vessel-aircraft.png
+         :align: center
+
+         Vessel reference frame origin and axes for the Aeris 3A aircraft
+
+      .. figure:: /images/reference-frames/vessel-rocket.png
+         :align: center
+
+         Vessel reference frame origin and axes for the Kerbal-X rocket
+
+   .. property:: ReferenceFrame OrbitalReferenceFrame { get; }
+
+      The reference frame that is fixed relative to the vessel, and orientated with the vessels
+      orbital prograde/normal/radial directions.
+
+      * The origin is at the center of mass of the vessel.
+      * The axes rotate with the orbital prograde/normal/radial directions.
+      * The x-axis points in the orbital anti-radial direction.
+      * The y-axis points in the orbital prograde direction.
+      * The z-axis points in the orbital normal direction.
+
+
+      .. note::
+
+         Be careful not to confuse this with 'orbit' mode on the navball.
+
+      .. figure:: /images/reference-frames/vessel-orbital.png
+         :align: center
+
+         Vessel orbital reference frame origin and axes
+
+   .. property:: ReferenceFrame SurfaceReferenceFrame { get; }
+
+      The reference frame that is fixed relative to the vessel, and orientated with the surface
+      of the body being orbited.
+
+      * The origin is at the center of mass of the vessel.
+      * The axes rotate with the north and up directions on the surface of the body.
+      * The x-axis points in the `zenith <http://en.wikipedia.org/wiki/Zenith>`_
+        direction (upwards, normal to the body being orbited, from the center of the body towards the center of
+        mass of the vessel).
+      * The y-axis points northwards towards the
+        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_ (north, and tangential to the
+        surface of the body -- the direction in which a compass would point when on the surface).
+      * The z-axis points eastwards towards the
+        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_ (east, and tangential to the
+        surface of the body -- east on a compass when on the surface).
+
+
+      .. note::
+
+         Be careful not to confuse this with 'surface' mode on the navball.
+
+      .. figure:: /images/reference-frames/vessel-surface.png
+         :align: center
+
+         Vessel surface reference frame origin and axes
+
+   .. property:: ReferenceFrame SurfaceVelocityReferenceFrame { get; }
+
+      The reference frame that is fixed relative to the vessel, and orientated with the velocity
+      vector of the vessel relative to the surface of the body being orbited.
+
+      * The origin is at the center of mass of the vessel.
+      * The axes rotate with the vessel's velocity vector.
+      * The y-axis points in the direction of the vessel's velocity vector,
+        relative to the surface of the body being orbited.
+      * The z-axis is in the plane of the
+        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_.
+      * The x-axis is orthogonal to the other two axes.
+
+
+      .. figure:: /images/reference-frames/vessel-surface-velocity.png
+         :align: center
+
+         Vessel surface velocity reference frame origin and axes
+
+   .. method:: System.Tuple<double,double,double> Position(ReferenceFrame referenceFrame)
+
+      Returns the position vector of the center of mass of the vessel in the given reference frame.
+
+      :parameters:
+
+   .. method:: System.Tuple<double,double,double> Velocity(ReferenceFrame referenceFrame)
+
+      Returns the velocity vector of the center of mass of the vessel in the given reference frame.
+
+      :parameters:
+
+   .. method:: System.Tuple<double,double,double,double> Rotation(ReferenceFrame referenceFrame)
+
+      Returns the rotation of the center of mass of the vessel in the given reference frame.
+
+      :parameters:
+
+   .. method:: System.Tuple<double,double,double> Direction(ReferenceFrame referenceFrame)
+
+      Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.
+
+      :parameters:
+
+   .. method:: System.Tuple<double,double,double> AngularVelocity(ReferenceFrame referenceFrame)
+
+      Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
+      vector is the rotational speed in radians per second, and the direction of the vector indicates the
+      axis of rotation (using the right hand rule).
+
+      :parameters:
+
+
+.. enum:: VesselType
+
+   See :prop:`Vessel.Type`.
+
+   .. value:: Ship
+
+      Ship.
+
+   .. value:: Station
+
+      Station.
+
+   .. value:: Lander
+
+      Lander.
+
+   .. value:: Probe
+
+      Probe.
+
+   .. value:: Rover
+
+      Rover.
+
+   .. value:: Base
+
+      Base.
+
+   .. value:: Debris
+
+      Debris.
+
+
+.. enum:: VesselSituation
+
+   See :prop:`Vessel.Situation`.
+
+   .. value:: Docked
+
+      Vessel is docked to another.
+
+   .. value:: Escaping
+
+      Escaping.
+
+   .. value:: Flying
+
+      Vessel is flying through an atmosphere.
+
+   .. value:: Landed
+
+      Vessel is landed on the surface of a body.
+
+   .. value:: Orbiting
+
+      Vessel is orbiting a body.
+
+   .. value:: PreLaunch
+
+      Vessel is awaiting launch.
+
+   .. value:: Splashed
+
+      Vessel has splashed down in an ocean.
+
+   .. value:: SubOrbital
+
+      Vessel is on a sub-orbital trajectory.

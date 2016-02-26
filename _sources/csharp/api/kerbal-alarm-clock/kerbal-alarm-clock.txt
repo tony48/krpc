@@ -1,0 +1,43 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+KerbalAlarmClock
+================
+
+.. class:: KerbalAlarmClock
+
+   This service provides functionality to interact with the
+   `Kerbal Alarm Clock <http://forum.kerbalspaceprogram.com/threads/24786>`_ mod.
+
+   .. property:: System.Collections.Generic.IList<Alarm> Alarms { get; }
+
+      A list of all the alarms.
+
+   .. method:: Alarm AlarmWithName(string name)
+
+      Get the alarm with the given *name*, or ``null``
+      if no alarms have that name. If more than one alarm has the name,
+      only returns one of them.
+
+      :parameters:
+
+       * **name** -- Name of the alarm to search for.
+
+   .. method:: System.Collections.Generic.IList<Alarm> AlarmsWithType(AlarmType type)
+
+      Get a list of alarms of the specified *type*.
+
+      :parameters:
+
+       * **type** -- Type of alarm to return.
+
+   .. method:: Alarm CreateAlarm(AlarmType type, string name, double ut)
+
+      Create a new alarm and return it.
+
+      :parameters:
+
+       * **type** -- Type of the new alarm.
+       * **name** -- Name of the new alarm.
+       * **ut** -- Time at which the new alarm should trigger.

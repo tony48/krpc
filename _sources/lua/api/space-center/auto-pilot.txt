@@ -1,0 +1,130 @@
+.. default-domain:: lua
+.. highlight:: lua
+.. currentmodule:: SpaceCenter
+
+AutoPilot
+=========
+
+.. class:: AutoPilot
+
+   Provides basic auto-piloting utilities for a vessel.
+   Created by calling :attr:`Vessel.auto_pilot`.
+
+   .. method:: engage()
+
+      Engage the auto-pilot.
+
+   .. method:: disengage()
+
+      Disengage the auto-pilot.
+
+   .. method:: wait()
+
+      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+
+   .. attribute:: error
+
+      The error, in degrees, between the direction the ship has been asked
+      to point in and the direction it is pointing in. Returns zero if the auto-pilot
+      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
+      or no target direction is set.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: roll_error
+
+      The error, in degrees, between the roll the ship has been asked to be
+      in and the actual roll. Returns zero if the auto-pilot has not been engaged
+      or no target roll is set.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: reference_frame
+
+      The reference frame for the target direction (:attr:`AutoPilot.target_direction`).
+
+      :Attribute: Can be read or written
+      :rtype: :class:`ReferenceFrame`
+
+   .. attribute:: target_direction
+
+      The target direction. ``nil`` if no target direction is set.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. method:: target_pitch_and_heading(pitch, heading)
+
+      Set (:attr:`AutoPilot.target_direction`) from a pitch and heading angle.
+
+      :param number pitch: Target pitch angle, in degrees between -90° and +90°.
+      :param number heading: Target heading angle, in degrees between 0° and 360°.
+
+   .. attribute:: target_roll
+
+      The target roll, in degrees. ``NaN`` if no target roll is set.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: sas
+
+      The state of SAS.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+      .. note::
+
+         Equivalent to :attr:`Control.sas`
+
+   .. attribute:: sas_mode
+
+      The current :class:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`SASMode`
+
+      .. note::
+
+         Equivalent to :attr:`Control.sas_mode`
+
+   .. attribute:: rotation_speed_multiplier
+
+      Target rotation speed multiplier. Defaults to 1.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: max_rotation_speed
+
+      Maximum target rotation speed. Defaults to 1.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: roll_speed_multiplier
+
+      Target roll speed multiplier. Defaults to 1.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: max_roll_speed
+
+      Maximum target roll speed. Defaults to 1.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. method:: set_pid_parameters([kp = 1.0], [ki = 0.0], [kd = 0.0])
+
+      Sets the gains for the rotation rate PID controller.
+
+      :param number kp: Proportional gain.
+      :param number ki: Integral gain.
+      :param number kd: Derivative gain.

@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lua Client &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../index.html"/>
+        <link rel="up" title="Lua" href="../lua.html"/>
+        <link rel="next" title="SpaceCenter API" href="api/space-center.html"/>
+        <link rel="prev" title="Lua" href="../lua.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../lua.html">Lua</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Lua Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-krpc">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../lua.html">Lua</a> &raquo;</li>
+      
+    <li>Lua Client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/lua/client.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lua-client">
+<h1>Lua Client<a class="headerlink" href="#lua-client" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">krpc</span></code> module provides functionality to interact with a kRPC server from
+lua. It can be installed
+<a class="reference external" href="https://luarocks.org/modules/djungelorm/krpc">using luarocks</a>.</p>
+<div class="section" id="connecting-to-the-server">
+<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function. This returns a
+connection object through which you can interact with the server. For example to
+connect to a server running on the local machine:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Example&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function also accepts arguments that specify what address and port numbers
+to connect to. For example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Remote example&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">my.domain.name&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interacting-with-the-server">
+<h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Interaction with the server is performed via the client object (of type
+<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a>) returned when connecting to the server using
+<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
+<p>Upon connecting, the client interrogates the server to find out what
+functionality it provides and dynamically adds all of the classes, methods,
+properties to the client object.</p>
+<p>For example, all of the functionality provided by the SpaceCenter service is
+accessible via <code class="docutils literal"><span class="pre">conn.space_center</span></code> and the functionality provided by the
+InfernalRobotics service is accessible via <code class="docutils literal"><span class="pre">conn.infernal_robotics</span></code>.</p>
+<p>Calling methods, getting or setting properties, etc. are mapped to remote
+procedure calls and passed to the server by the lua client.</p>
+</div>
+<div class="section" id="streaming-data-from-the-server">
+<h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Streams are not yet supported by the Lua client.</p>
+</div>
+</div>
+<div class="section" id="module-krpc">
+<span id="reference"></span><h2>Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="krpc.connect">
+<code class="descclassname">krpc.</code><code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a connection to a kRPC server. It returns a
+<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
+with.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; A descriptive name for the connection. This is passed to
+the server and appears, for example, in the client
+connection dialog on the in-game server window.</li>
+<li><strong>address</strong> (<em>string</em>) &#8211; The address of the server to connect to. Can either be
+a hostname or an IP address in dotted decimal
+notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
+<li><strong>rpc_port</strong> (<em>int</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>int</em>) &#8211; The port number of the Stream Server. Defaults
+to 50001.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="krpc.Client">
+<em class="property">class </em><code class="descclassname">krpc.</code><code class="descname">Client</code><a class="headerlink" href="#krpc.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides the interface for communicating with the server. It is
+dynamically populated with all the functionality provided by the
+server. Instances of this class should be obtained by calling
+<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.Client.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.Client.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the connection to the server.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="krpc.Client.krpc">
+<code class="descname">krpc</code><a class="headerlink" href="#krpc.Client.krpc" title="Permalink to this definition">¶</a></dt>
+<dd><p>The built-in KRPC class, providing basic interactions with the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#krpc.KRPC" title="krpc.KRPC"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.KRPC</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="krpc.KRPC">
+<em class="property">class </em><code class="descclassname">krpc.</code><code class="descname">KRPC</code><a class="headerlink" href="#krpc.KRPC" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides access to the basic server functionality provided by
+the <code class="docutils literal"><span class="pre">KRPC</span></code> service. An instance can be obtained by calling
+<a class="reference internal" href="#krpc.Client.krpc" title="krpc.Client.krpc"><code class="xref lua lua-attr docutils literal"><span class="pre">krpc.Client.krpc</span></code></a>. Most of this functionality is used internally by
+the lua client and therefore does not need to be used directly from
+application code. The only exception that may be useful is:</p>
+<dl class="method">
+<dt id="krpc.KRPC.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.KRPC.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a status message from the server containing information including
+the server&#8217;s version string and performance statistics.</p>
+<p>For example, the following prints out the version string for the
+server:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Server version = &#39;</span> <span class="o">..</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or to get the rate at which the server is sending and receiving data
+over the network:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Data in = &#39;</span> <span class="o">..</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span> <span class="o">..</span> <span class="s1">&#39;</span><span class="s"> KB/s&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Data out = &#39;</span> <span class="o">..</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">bytes_written_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span> <span class="o">..</span> <span class="s1">&#39;</span><span class="s"> KB/s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/space-center.html" class="btn btn-neutral float-right" title="SpaceCenter API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../lua.html" class="btn btn-neutral" title="Lua" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

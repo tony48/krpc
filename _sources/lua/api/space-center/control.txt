@@ -1,0 +1,286 @@
+.. default-domain:: lua
+.. highlight:: lua
+.. currentmodule:: SpaceCenter
+
+Control
+=======
+
+.. class:: Control
+
+   Used to manipulate the controls of a vessel. This includes adjusting the
+   throttle, enabling/disabling systems such as SAS and RCS, or altering the
+   direction in which the vessel is pointing.
+
+   .. note::
+
+      Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+      that have set one or more of these inputs are no longer connected.
+
+   .. attribute:: sas
+
+      The state of SAS.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+      .. note::
+
+         Equivalent to :attr:`AutoPilot.sas`
+
+   .. attribute:: sas_mode
+
+      The current :class:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`SASMode`
+
+      .. note::
+
+         Equivalent to :attr:`AutoPilot.sas_mode`
+
+   .. attribute:: speed_mode
+
+      The current :class:`SpeedMode` of the navball.
+      This is the mode displayed next to the speed at the top of the navball.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`SpeedMode`
+
+   .. attribute:: rcs
+
+      The state of RCS.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: gear
+
+      The state of the landing gear/legs.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: lights
+
+      The state of the lights.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: brakes
+
+      The state of the wheel brakes.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: abort
+
+      The state of the abort action group.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: throttle
+
+      The state of the throttle. A value between 0 and 1.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: pitch
+
+      The state of the pitch control.
+      A value between -1 and 1.
+      Equivalent to the w and s keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: yaw
+
+      The state of the yaw control.
+      A value between -1 and 1.
+      Equivalent to the a and d keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: roll
+
+      The state of the roll control.
+      A value between -1 and 1.
+      Equivalent to the q and e keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: forward
+
+      The state of the forward translational control.
+      A value between -1 and 1.
+      Equivalent to the h and n keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: up
+
+      The state of the up translational control.
+      A value between -1 and 1.
+      Equivalent to the i and k keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: right
+
+      The state of the right translational control.
+      A value between -1 and 1.
+      Equivalent to the j and l keys.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: wheel_throttle
+
+      The state of the wheel throttle.
+      A value between -1 and 1.
+      A value of 1 rotates the wheels forwards, a value of -1 rotates
+      the wheels backwards.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: wheel_steering
+
+      The state of the wheel steering.
+      A value between -1 and 1.
+      A value of 1 steers to the left, and a value of -1 steers to the right.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: current_stage
+
+      The current stage of the vessel. Corresponds to the stage number in
+      the in-game UI.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. method:: activate_next_stage()
+
+      Activates the next stage. Equivalent to pressing the space bar in-game.
+
+      :returns: A list of vessel objects that are jettisoned from the active vessel.
+      :rtype: List of :class:`Vessel`
+
+   .. method:: get_action_group(group)
+
+      Returns ``True`` if the given action group is enabled.
+
+      :param number group: A number between 0 and 9 inclusive.
+      :rtype: boolean
+
+   .. method:: set_action_group(group, state)
+
+      Sets the state of the given action group (a value between 0 and 9
+      inclusive).
+
+      :param number group: A number between 0 and 9 inclusive.
+      :param boolean state:
+
+   .. method:: toggle_action_group(group)
+
+      Toggles the state of the given action group.
+
+      :param number group: A number between 0 and 9 inclusive.
+
+   .. method:: add_node(ut, [prograde = 0.0], [normal = 0.0], [radial = 0.0])
+
+      Creates a maneuver node at the given universal time, and returns a
+      :class:`Node` object that can be used to modify it.
+      Optionally sets the magnitude of the delta-v for the maneuver node
+      in the prograde, normal and radial directions.
+
+      :param number ut: Universal time of the maneuver node.
+      :param number prograde: Delta-v in the prograde direction.
+      :param number normal: Delta-v in the normal direction.
+      :param number radial: Delta-v in the radial direction.
+      :rtype: :class:`Node`
+
+   .. attribute:: nodes
+
+      Returns a list of all existing maneuver nodes, ordered by time from first to last.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: List of :class:`Node`
+
+   .. method:: remove_nodes()
+
+      Remove all maneuver nodes.
+
+
+.. class:: SASMode
+
+   The behavior of the SAS auto-pilot. See :attr:`AutoPilot.sas_mode`.
+
+   .. data:: stability_assist
+
+      Stability assist mode. Dampen out any rotation.
+
+   .. data:: maneuver
+
+      Point in the burn direction of the next maneuver node.
+
+   .. data:: prograde
+
+      Point in the prograde direction.
+
+   .. data:: retrograde
+
+      Point in the retrograde direction.
+
+   .. data:: normal
+
+      Point in the orbit normal direction.
+
+   .. data:: anti_normal
+
+      Point in the orbit anti-normal direction.
+
+   .. data:: radial
+
+      Point in the orbit radial direction.
+
+   .. data:: anti_radial
+
+      Point in the orbit anti-radial direction.
+
+   .. data:: target
+
+      Point in the direction of the current target.
+
+   .. data:: anti_target
+
+      Point away from the current target.
+
+
+.. class:: SpeedMode
+
+   See :attr:`Control.speed_mode`.
+
+   .. data:: orbit
+
+      Speed is relative to the vessel's orbit.
+
+   .. data:: surface
+
+      Speed is relative to the surface of the body being orbited.
+
+   .. data:: target
+
+      Speed is relative to the current target.

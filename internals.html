@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>kRPC Documentation &mdash; kRPC  documentation</title>
+  <title>Internals of kRPC &mdash; kRPC  documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
 
   
-    <link rel="top" title="kRPC  documentation" href="#"/>
-        <link rel="next" title="Getting Started" href="getting-started.html"/> 
+    <link rel="top" title="kRPC  documentation" href="index.html"/>
+        <link rel="prev" title="Communication Protocol" href="communication-protocol.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -51,7 +51,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> kRPC
+            <a href="index.html" class="icon icon-home"> kRPC
           
 
           
@@ -82,7 +82,7 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="csharp.html">C#</a></li>
@@ -93,7 +93,10 @@
 <li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="communication-protocol.html">Communication Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="internals.html">Internals of kRPC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Internals of kRPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#server-performance-settings">Server Performance Settings</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -107,7 +110,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">kRPC</a>
+        <a href="index.html">kRPC</a>
       </nav>
 
 
@@ -122,13 +125,13 @@
 
 <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>kRPC Documentation</li>
+    <li>Internals of kRPC</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/internals.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -138,33 +141,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="krpc-documentation">
-<h1>kRPC Documentation<a class="headerlink" href="#krpc-documentation" title="Permalink to this headline">¶</a></h1>
-<p>kRPC allows you to control Kerbal Space Program from scripts running outside of
-the game.
-It has client libraries for many popular languages including
-<a class="reference internal" href="python/client.html"><em>Python</em></a>,
-<a class="reference internal" href="cpp/client.html"><em>C++</em></a>,
-<a class="reference internal" href="csharp/client.html"><em>C#</em></a>,
-<a class="reference internal" href="java/client.html"><em>Java</em></a>,
-<a class="reference internal" href="lua/client.html"><em>Lua</em></a>.
-A <a class="reference external" href="http://github.com/TeWu/krpc-rb">Ruby</a> client has also been implemented (by
-<a class="reference external" href="http://github.com/TeWu">TeWu</a>).</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference internal" href="getting-started.html"><em>Getting Started Guide</em></a></li>
-<li><a class="reference internal" href="tutorials.html"><em>Tutorials and Examples</em></a></li>
-</ul>
-</div></blockquote>
-<p>The mod exposes most of KSPs API and includes support for Kerbal Alarm Clock and
-Infernal Robotics. This functionality is provided to client programs via a
-Remote Procedure Call server, using protocol buffers for serialization. The
-server component sets up a TCP/IP server that remote scripts can connect
-to. This communication could be on the local machine only, over a local network,
-or even over the wider internet if configured correctly. The server is also
-extensible. Additional remote procedures (grouped into &#8220;services&#8221;) can be added
-to the server using the &#8220;Service API&#8221;.</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="internals-of-krpc">
+<span id="internals"></span><h1>Internals of kRPC<a class="headerlink" href="#internals-of-krpc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="server-performance-settings">
+<span id="id1"></span><h2>Server Performance Settings<a class="headerlink" href="#server-performance-settings" title="Permalink to this headline">¶</a></h2>
+<p>kRPC receives RPCs, execute them and returns results when the mod&#8217;s
+<code class="docutils literal"><span class="pre">FixedUpdate</span></code> method is invoked. kRPC may execute multiple RPCs within a
+single call to <code class="docutils literal"><span class="pre">FixedUpdate</span></code> and this behavior is controlled by several
+configurable settings:</p>
+<div class="figure align-right" id="id2">
+<img alt="_images/server-window-advanced.png" src="_images/server-window-advanced.png" />
+<p class="caption"><span class="caption-text">Server window showing the advanced settings.</span></p>
+</div>
+<ol class="arabic simple">
+<li><strong>Auto-start server</strong>: When enabled, the server will start automatically when
+the game loads.</li>
+<li><strong>Auto-accept new clients</strong>: When enabled, new client connections are
+automatically allowed. When disabled, a pop-up is displayed asking whether
+the new client connection should be allowed.</li>
+<li><strong>One RPC per update</strong>: When enabled, the server will execute at most one RPC
+per client per update.</li>
+<li><strong>Maximum time per update</strong>: This is the maximum number of nanoseconds that
+the server will spend processing RPCs in the call to FixedUpdte. This is used
+to limit the time taken by the server per frame. A high value, for example
+20000 ns, will allow the server to process many RPCs at the expense of the
+game&#8217;s framerate. A low value, for example 1000 ns, won&#8217;t allow the server to
+execute many RPCs per update, but will allow the game to run at a much higher
+framerate.</li>
+<li><strong>Adaptive rate control</strong>: If enabled, the server will automatically adjust
+the maximum time per update parameter, so that the game runs at a minimum of
+60 FPS.</li>
+<li><strong>Blocking receives</strong>: If enabled, when the server checks for new RPCs from
+clients, it will wait for a up to a fixed amount of time.</li>
+<li><strong>Receive timeout</strong>: When blocking receives are enabled, this is the maximum
+amount of time the server will wait for a new RPC from a client.</li>
+</ol>
 </div>
 </div>
 
@@ -175,8 +186,8 @@ to the server using the &#8220;Service API&#8221;.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="communication-protocol.html" class="btn btn-neutral" title="Communication Protocol" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

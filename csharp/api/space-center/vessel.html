@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vessel &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="CelestialBody" href="celestial-body.html"/>
+        <link rel="prev" title="SpaceCenter" href="space-center.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../csharp.html">C#</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Vessel</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/csharp/api/space-center/vessel.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vessel">
+<h1>Vessel<a class="headerlink" href="#vessel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="class-Vessel">
+<code class="descname">class Vessel</code><a class="headerlink" href="#class-Vessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>These objects are used to interact with vessels in KSP. This includes getting
+orbital and flight data, manipulating control inputs and managing resources.</p>
+<dl class="property">
+<dt id="property-Vessel.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Vessel.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Type">
+<a class="reference internal" href="#enum-VesselType" title="VesselType enum">VesselType</a> <code class="descname">Type</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Vessel.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Situation">
+<a class="reference internal" href="#enum-VesselSituation" title="VesselSituation enum">VesselSituation</a> <code class="descname">Situation</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Situation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The situation the vessel is in.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.MET">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">MET</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.MET" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mission elapsed time in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.Flight">
+<a class="reference internal" href="flight.html#class-Flight" title="Flight class">Flight</a> <code class="descname">Flight</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><em> = None</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.Flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="flight.html#class-Flight" title="Flight class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Flight</span></code></a> object that can be used to get flight
+telemetry for the vessel, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>referenceFrame</strong> &#8211; Reference frame. Defaults to the vessel&#8217;s surface reference frame (<a class="reference internal" href="#property-Vessel.SurfaceReferenceFrame" title="Vessel.SurfaceReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.SurfaceReferenceFrame</span></code></a>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Target">
+<a class="reference internal" href="#class-Vessel" title="Vessel class">Vessel</a> <code class="descname">Target</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Vessel.Target" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target vessel. <code class="docutils literal"><span class="pre">null</span></code> if there is no target. When
+setting the target, the target cannot be the current vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Orbit">
+<a class="reference internal" href="orbit.html#class-Orbit" title="Orbit class">Orbit</a> <code class="descname">Orbit</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current orbit of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Control">
+<a class="reference internal" href="control.html#class-Control" title="Control class">Control</a> <code class="descname">Control</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="control.html#class-Control" title="Control class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Control</span></code></a> object that can be used to manipulate
+the vessel&#8217;s control inputs. For example, its pitch/yaw/roll controls,
+RCS and thrust.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.AutoPilot">
+<a class="reference internal" href="auto-pilot.html#class-AutoPilot" title="AutoPilot class">AutoPilot</a> <code class="descname">AutoPilot</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.AutoPilot" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="auto-pilot.html#class-AutoPilot" title="AutoPilot class"><code class="xref csharp csharp-type docutils literal"><span class="pre">AutoPilot</span></code></a> object, that can be used to perform
+simple auto-piloting of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Resources">
+<a class="reference internal" href="resources.html#class-Resources" title="Resources class">Resources</a> <code class="descname">Resources</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="resources.html#class-Resources" title="Resources class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Resources</span></code></a> object, that can used to get information
+about resources stored in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.ResourcesInDecoupleStage">
+<a class="reference internal" href="resources.html#class-Resources" title="Resources class">Resources</a> <code class="descname">ResourcesInDecoupleStage</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>stage</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>cumulative</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.ResourcesInDecoupleStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="resources.html#class-Resources" title="Resources class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Resources</span></code></a> object, that can used to get
+information about resources stored in a given <em>stage</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stage</strong> &#8211; Get resources for parts that are decoupled in this stage.</li>
+<li><strong>cumulative</strong> &#8211; When <code class="docutils literal"><span class="pre">false</span></code>, returns the resources for parts decoupled in just the given stage. When <code class="docutils literal"><span class="pre">true</span></code> returns the resources decoupled in the given stage and all subsequent stages combined.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For details on stage numbering, see the
+discussion on <a class="reference internal" href="parts.html#csharp-api-parts-staging"><span>Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Parts">
+<a class="reference internal" href="parts.html#class-Parts" title="Parts class">Parts</a> <code class="descname">Parts</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="parts.html#class-Parts" title="Parts class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Parts</span></code></a> object, that can used to interact with the parts that make up this vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Comms">
+<a class="reference internal" href="comms.html#class-Comms" title="Comms class">Comms</a> <code class="descname">Comms</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Comms" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="comms.html#class-Comms" title="Comms class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Comms</span></code></a> object, that can used to interact with RemoteTech for this vessel.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> to be installed.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Mass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Mass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total mass of the vessel, including resources, in kg.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.DryMass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DryMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.DryMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total mass of the vessel, excluding resources, in kg.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.Thrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Thrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Thrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total thrust currently being produced by the vessel&#8217;s engines, in
+Newtons. This is computed by summing <a class="reference internal" href="parts.html#property-Engine.Thrust" title="Engine.Thrust property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.Thrust</span></code></a> for
+every engine in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.AvailableThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">AvailableThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.AvailableThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total available thrust that can be produced by the vessel&#8217;s
+active engines, in Newtons. This is computed by summing
+<a class="reference internal" href="parts.html#property-Engine.AvailableThrust" title="Engine.AvailableThrust property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.AvailableThrust</span></code></a> for every active engine in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.MaxThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">MaxThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.MaxThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total maximum thrust that can be produced by the vessel&#8217;s active
+engines, in Newtons. This is computed by summing
+<a class="reference internal" href="parts.html#property-Engine.MaxThrust" title="Engine.MaxThrust property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.MaxThrust</span></code></a> for every active engine.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.MaxVacuumThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">MaxVacuumThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.MaxVacuumThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total maximum thrust that can be produced by the vessel&#8217;s active
+engines when the vessel is in a vacuum, in Newtons. This is computed by
+summing <a class="reference internal" href="parts.html#property-Engine.MaxVacuumThrust" title="Engine.MaxVacuumThrust property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.MaxVacuumThrust</span></code></a> for every active engine.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.SpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.SpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined specific impulse of all active engines, in seconds. This is computed using the formula
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.VacuumSpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">VacuumSpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.VacuumSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined vacuum specific impulse of all active engines, in seconds. This is computed using the formula
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.KerbinSeaLevelSpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">KerbinSeaLevelSpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.KerbinSeaLevelSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined specific impulse of all active engines at sea level on Kerbin, in seconds.
+This is computed using the formula
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.ReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessel.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the vessel.</li>
+<li>The x-axis points out to the right of the vessel.</li>
+<li>The y-axis points in the forward direction of the vessel.</li>
+<li>The z-axis points out of the bottom off the vessel.</li>
+</ul>
+<div class="figure align-center" id="id5">
+<img alt="../../../_images/vessel-aircraft.png" src="../../../_images/vessel-aircraft.png" />
+<p class="caption"><span class="caption-text">Vessel reference frame origin and axes for the Aeris 3A aircraft</span></p>
+</div>
+<div class="figure align-center" id="id6">
+<img alt="../../../_images/vessel-rocket.png" src="../../../_images/vessel-rocket.png" />
+<p class="caption"><span class="caption-text">Vessel reference frame origin and axes for the Kerbal-X rocket</span></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.OrbitalReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">OrbitalReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.OrbitalReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessels
+orbital prograde/normal/radial directions.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the orbital prograde/normal/radial directions.</li>
+<li>The x-axis points in the orbital anti-radial direction.</li>
+<li>The y-axis points in the orbital prograde direction.</li>
+<li>The z-axis points in the orbital normal direction.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be careful not to confuse this with &#8216;orbit&#8217; mode on the navball.</p>
+</div>
+<div class="figure align-center" id="id7">
+<img alt="../../../_images/vessel-orbital.png" src="../../../_images/vessel-orbital.png" />
+<p class="caption"><span class="caption-text">Vessel orbital reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.SurfaceReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">SurfaceReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.SurfaceReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the surface
+of the body being orbited.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the north and up directions on the surface of the body.</li>
+<li>The x-axis points in the <a class="reference external" href="http://en.wikipedia.org/wiki/Zenith">zenith</a>
+direction (upwards, normal to the body being orbited, from the center of the body towards the center of
+mass of the vessel).</li>
+<li>The y-axis points northwards towards the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
+surface of the body &#8211; the direction in which a compass would point when on the surface).</li>
+<li>The z-axis points eastwards towards the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
+surface of the body &#8211; east on a compass when on the surface).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be careful not to confuse this with &#8216;surface&#8217; mode on the navball.</p>
+</div>
+<div class="figure align-center" id="id8">
+<img alt="../../../_images/vessel-surface.png" src="../../../_images/vessel-surface.png" />
+<p class="caption"><span class="caption-text">Vessel surface reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.SurfaceVelocityReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">SurfaceVelocityReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.SurfaceVelocityReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the velocity
+vector of the vessel relative to the surface of the body being orbited.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the vessel&#8217;s velocity vector.</li>
+<li>The y-axis points in the direction of the vessel&#8217;s velocity vector,
+relative to the surface of the body being orbited.</li>
+<li>The z-axis is in the plane of the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
+<li>The x-axis is orthogonal to the other two axes.</li>
+</ul>
+<div class="figure align-center" id="id9">
+<img alt="../../../_images/vessel-surface-velocity.png" src="../../../_images/vessel-surface-velocity.png" />
+<p class="caption"><span class="caption-text">Vessel surface velocity reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.Position">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Position</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the position vector of the center of mass of the vessel in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.Velocity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Velocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.Velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the velocity vector of the center of mass of the vessel in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.Rotation">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Rotation</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the rotation of the center of mass of the vessel in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.Direction">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Direction</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Vessel.AngularVelocity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AngularVelocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Vessel.AngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
+vector is the rotational speed in radians per second, and the direction of the vector indicates the
+axis of rotation (using the right hand rule).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-VesselType">
+<code class="descname">enum VesselType</code><a class="headerlink" href="#enum-VesselType" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-Vessel.Type" title="Vessel.Type property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.Type</span></code></a>.</p>
+<dl class="value">
+<dt id="value-VesselType.Ship">
+<code class="descname">Ship</code><a class="headerlink" href="#value-VesselType.Ship" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ship.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Station">
+<code class="descname">Station</code><a class="headerlink" href="#value-VesselType.Station" title="Permalink to this definition">¶</a></dt>
+<dd><p>Station.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Lander">
+<code class="descname">Lander</code><a class="headerlink" href="#value-VesselType.Lander" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lander.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Probe">
+<code class="descname">Probe</code><a class="headerlink" href="#value-VesselType.Probe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probe.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Rover">
+<code class="descname">Rover</code><a class="headerlink" href="#value-VesselType.Rover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rover.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Base">
+<code class="descname">Base</code><a class="headerlink" href="#value-VesselType.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselType.Debris">
+<code class="descname">Debris</code><a class="headerlink" href="#value-VesselType.Debris" title="Permalink to this definition">¶</a></dt>
+<dd><p>Debris.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-VesselSituation">
+<code class="descname">enum VesselSituation</code><a class="headerlink" href="#enum-VesselSituation" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-Vessel.Situation" title="Vessel.Situation property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.Situation</span></code></a>.</p>
+<dl class="value">
+<dt id="value-VesselSituation.Docked">
+<code class="descname">Docked</code><a class="headerlink" href="#value-VesselSituation.Docked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is docked to another.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.Escaping">
+<code class="descname">Escaping</code><a class="headerlink" href="#value-VesselSituation.Escaping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escaping.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.Flying">
+<code class="descname">Flying</code><a class="headerlink" href="#value-VesselSituation.Flying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is flying through an atmosphere.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.Landed">
+<code class="descname">Landed</code><a class="headerlink" href="#value-VesselSituation.Landed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is landed on the surface of a body.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.Orbiting">
+<code class="descname">Orbiting</code><a class="headerlink" href="#value-VesselSituation.Orbiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is orbiting a body.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.PreLaunch">
+<code class="descname">PreLaunch</code><a class="headerlink" href="#value-VesselSituation.PreLaunch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is awaiting launch.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.Splashed">
+<code class="descname">Splashed</code><a class="headerlink" href="#value-VesselSituation.Splashed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel has splashed down in an ocean.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-VesselSituation.SubOrbital">
+<code class="descname">SubOrbital</code><a class="headerlink" href="#value-VesselSituation.SubOrbital" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is on a sub-orbital trajectory.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="celestial-body.html" class="btn btn-neutral float-right" title="CelestialBody" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="space-center.html" class="btn btn-neutral" title="SpaceCenter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

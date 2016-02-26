@@ -1,0 +1,1541 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+.. _cpp-api-parts:
+
+Parts
+=====
+
+The following classes allow interaction with a vessels individual parts.
+
+.. contents::
+   :local:
+
+Parts
+-----
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Parts
+
+   Instances of this class are used to interact with the parts of a vessel.
+   An instance can be obtained by calling :func:`Vessel::parts`.
+
+   .. function:: std::vector<Part> all()
+
+      A list of all of the vessels parts.
+
+   .. function:: Part root()
+
+      The vessels root part.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+
+   .. function:: Part controlling()
+   .. function:: void set_controlling(Part value)
+
+      The part from which the vessel is controlled.
+
+   .. function:: std::vector<Part> with_name(std::string name)
+
+      A list of parts whose :func:`Part::name` is *name*.
+
+      :Parameters:
+
+   .. function:: std::vector<Part> with_title(std::string title)
+
+      A list of all parts whose :func:`Part::title` is *title*.
+
+      :Parameters:
+
+   .. function:: std::vector<Part> with_module(std::string module_name)
+
+      A list of all parts that contain a :class:`Module` whose
+      :func:`Module::name` is *module_name*.
+
+      :Parameters:
+
+   .. function:: std::vector<Part> in_stage(int32 stage)
+
+      A list of all parts that are activated in the given *stage*.
+
+      :Parameters:
+
+
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+
+   .. function:: std::vector<Part> in_decouple_stage(int32 stage)
+
+      A list of all parts that are decoupled in the given *stage*.
+
+      :Parameters:
+
+
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+
+   .. function:: std::vector<Module> modules_with_name(std::string module_name)
+
+      A list of modules (combined across all parts in the vessel) whose
+      :func:`Module::name` is *module_name*.
+
+      :Parameters:
+
+   .. function:: std::vector<Decoupler> decouplers()
+
+      A list of all decouplers in the vessel.
+
+   .. function:: std::vector<DockingPort> docking_ports()
+
+      A list of all docking ports in the vessel.
+
+   .. function:: DockingPort docking_port_with_name(std::string name)
+
+      The first docking port in the vessel with the given port name, as returned by :func:`DockingPort::name`.
+      Returns ``NULL`` if there are no such docking ports.
+
+      :Parameters:
+
+   .. function:: std::vector<Engine> engines()
+
+      A list of all engines in the vessel.
+
+   .. function:: std::vector<LandingGear> landing_gear()
+
+      A list of all landing gear attached to the vessel.
+
+   .. function:: std::vector<LandingLeg> landing_legs()
+
+      A list of all landing legs attached to the vessel.
+
+   .. function:: std::vector<LaunchClamp> launch_clamps()
+
+      A list of all launch clamps attached to the vessel.
+
+   .. function:: std::vector<Light> lights()
+
+      A list of all lights in the vessel.
+
+   .. function:: std::vector<Parachute> parachutes()
+
+      A list of all parachutes in the vessel.
+
+   .. function:: std::vector<Radiator> radiators()
+
+      A list of all radiators in the vessel.
+
+   .. function:: std::vector<ResourceConverter> resource_converters()
+
+      A list of all resource converters in the vessel.
+
+   .. function:: std::vector<ResourceHarvester> resource_harvesters()
+
+      A list of all resource harvesters in the vessel.
+
+   .. function:: std::vector<ReactionWheel> reaction_wheels()
+
+      A list of all reaction wheels in the vessel.
+
+   .. function:: std::vector<Sensor> sensors()
+
+      A list of all sensors in the vessel.
+
+   .. function:: std::vector<SolarPanel> solar_panels()
+
+      A list of all solar panels in the vessel.
+
+
+
+Part
+----
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Part
+
+   Instances of this class represents a part. A vessel is made of multiple parts.
+   Instances can be obtained by various methods in :class:`Parts`.
+
+   .. function:: std::string name()
+
+      Internal name of the part, as used in
+      `part cfg files <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation>`_.
+      For example "Mark1-2Pod".
+
+   .. function:: std::string title()
+
+      Title of the part, as shown when the part is right clicked in-game. For example "Mk1-2 Command Pod".
+
+   .. function:: double cost()
+
+      The cost of the part, in units of funds.
+
+   .. function:: Vessel vessel()
+
+      The vessel that contains this part.
+
+   .. function:: Part parent()
+
+      The parts parent. Returns ``NULL`` if the part does not have a parent.
+      This, in combination with :func:`Part::children`, can be used to traverse the vessels parts tree.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+
+   .. function:: std::vector<Part> children()
+
+      The parts children. Returns an empty list if the part has no children.
+      This, in combination with :func:`Part::parent`, can be used to traverse the vessels parts tree.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+
+   .. function:: bool axially_attached()
+
+      Whether the part is axially attached to its parent, i.e. on the top
+      or bottom of its parent. If the part has no parent, returns ``false``.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-attachment-modes`.
+
+   .. function:: bool radially_attached()
+
+      Whether the part is radially attached to its parent, i.e. on the side of its parent.
+      If the part has no parent, returns ``false``.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-attachment-modes`.
+
+   .. function:: int32 stage()
+
+      The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+
+   .. function:: int32 decouple_stage()
+
+      The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+
+   .. function:: bool massless()
+
+      Whether the part is `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
+
+   .. function:: double mass()
+
+      The current mass of the part, including resources it contains, in kilograms.
+      Returns zero if the part is massless.
+
+   .. function:: double dry_mass()
+
+      The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+
+   .. function:: double impact_tolerance()
+
+      The impact tolerance of the part, in meters per second.
+
+   .. function:: double temperature()
+
+      Temperature of the part, in Kelvin.
+
+   .. function:: double skin_temperature()
+
+      Temperature of the skin of the part, in Kelvin.
+
+   .. function:: double max_temperature()
+
+      Maximum temperature that the part can survive, in Kelvin.
+
+   .. function:: double max_skin_temperature()
+
+      Maximum temperature that the skin of the part can survive, in Kelvin.
+
+   .. function:: double external_temperature()
+
+      Temperature of the atmosphere/vacuum surrounding the part, in Kelvin.
+      This does not include heating from direct sunlight.
+
+   .. function:: double thermal_mass()
+
+      How much it takes to heat up the part.
+
+   .. function:: double thermal_skin_mass()
+
+      How much it takes to heat up the part's skin.
+
+   .. function:: double thermal_resource_mass()
+
+      How much it takes to heat up resources in the part.
+
+   .. function:: double thermal_conduction_flux()
+
+      The speed that heat is conducting into or out of the part
+      through contact with other parts. A positive number means
+      the part is gaining heat energy, negative means it is
+      losing heat energy.
+
+   .. function:: double thermal_convection_flux()
+
+      The speed that heat is convecting into or out of the part
+      from the surrounding atmosphere. A positive number means
+      the part is gaining heat energy, negative means it is losing
+      heat energy.
+
+   .. function:: double thermal_radiation_flux()
+
+      The speed that heat is radiating into or out of the part
+      from the surrounding vacuum. A positive number means the part
+      is gaining heat energy, negative means it is losing heat energy.
+
+   .. function:: double thermal_internal_flux()
+
+      The speed that heat is generated by the part. For example,
+      engines generate heat by burning fuel. A positive number means
+      the part is gaining heat energy, negative means it is losing
+      heat energy.
+
+   .. function:: double thermal_skin_to_internal_flux()
+
+      The speed that heat is conducting between the part's skin and its internals.
+
+   .. function:: Resources resources()
+
+      A :class:`Resources` object for the part.
+
+   .. function:: bool crossfeed()
+
+      Whether this part is crossfeed capable.
+
+   .. function:: bool is_fuel_line()
+
+      Whether this part is a fuel line.
+
+   .. function:: std::vector<Part> fuel_lines_from()
+
+      The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-fuel-lines`.
+
+   .. function:: std::vector<Part> fuel_lines_to()
+
+      The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
+
+
+      .. note:: See the discussion on :ref:`cpp-api-parts-fuel-lines`.
+
+   .. function:: std::vector<Module> modules()
+
+      The modules for this part.
+
+   .. function:: Decoupler decoupler()
+
+      A :class:`Decoupler` if the part is a decoupler, otherwise ``NULL``.
+
+   .. function:: DockingPort docking_port()
+
+      A :class:`DockingPort` if the part is a docking port, otherwise ``NULL``.
+
+   .. function:: Engine engine()
+
+      An :class:`Engine` if the part is an engine, otherwise ``NULL``.
+
+   .. function:: LandingGear landing_gear()
+
+      A :class:`LandingGear` if the part is a landing gear , otherwise ``NULL``.
+
+   .. function:: LandingLeg landing_leg()
+
+      A :class:`LandingLeg` if the part is a landing leg, otherwise ``NULL``.
+
+   .. function:: LaunchClamp launch_clamp()
+
+      A :class:`LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
+
+   .. function:: Light light()
+
+      A :class:`Light` if the part is a light, otherwise ``NULL``.
+
+   .. function:: Parachute parachute()
+
+      A :class:`Parachute` if the part is a parachute, otherwise ``NULL``.
+
+   .. function:: Radiator radiator()
+
+      A :class:`Radiator` if the part is a radiator, otherwise ``NULL``.
+
+   .. function:: ReactionWheel reaction_wheel()
+
+      A :class:`ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
+
+   .. function:: ResourceConverter resource_converter()
+
+      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
+
+   .. function:: ResourceHarvester resource_harvester()
+
+      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
+
+   .. function:: Sensor sensor()
+
+      A :class:`Sensor` if the part is a sensor, otherwise ``NULL``.
+
+   .. function:: SolarPanel solar_panel()
+
+      A :class:`SolarPanel` if the part is a solar panel, otherwise ``NULL``.
+
+   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+
+      The position of the part in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+
+      The direction of the part in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
+
+      The velocity of the part in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
+
+      The rotation of the part in the given reference frame.
+
+      :Parameters:
+
+   .. function:: ReferenceFrame reference_frame()
+
+      The reference frame that is fixed relative to this part.
+
+      * The origin is at the position of the part.
+      * The axes rotate with the part.
+      * The x, y and z axis directions depend on the design of the part.
+
+
+      .. note::
+
+         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+         for the docking port, returned by :func:`DockingPort::reference_frame`.
+
+      .. figure:: /images/reference-frames/part.png
+         :align: center
+
+         Mk1 Command Pod reference frame origin and axes
+
+
+
+Module
+------
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Module
+
+   In KSP, each part has zero or more
+   `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
+   associated with it. Each one contains some of the functionality of the part.
+   For example, an engine has a "ModuleEngines" PartModule that contains all the
+   functionality of an engine.
+   This class allows you to interact with KSPs PartModules, and any PartModules
+   that have been added by other mods.
+
+   .. function:: std::string name()
+
+      Name of the PartModule. For example, "ModuleEngines".
+
+   .. function:: Part part()
+
+      The part that contains this module.
+
+   .. function:: std::map<std::string,std::string> fields()
+
+      The modules field names and their associated values, as a dictionary.
+      These are the values visible in the right-click menu of the part.
+
+   .. function:: bool has_field(std::string name)
+
+      Returns ``true`` if the module has a field with the given name.
+
+      :Parameters:
+
+       * **name** -- Name of the field.
+
+   .. function:: std::string get_field(std::string name)
+
+      Returns the value of a field.
+
+      :Parameters:
+
+       * **name** -- Name of the field.
+
+   .. function:: std::vector<std::string> events()
+
+      A list of the names of all of the modules events. Events are the clickable buttons
+      visible in the right-click menu of the part.
+
+   .. function:: bool has_event(std::string name)
+
+      ``true`` if the module has an event with the given name.
+
+      :Parameters:
+
+   .. function:: void trigger_event(std::string name)
+
+      Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
+
+      :Parameters:
+
+   .. function:: std::vector<std::string> actions()
+
+      A list of all the names of the modules actions. These are the parts actions that can be assigned
+      to action groups in the in-game editor.
+
+   .. function:: bool has_action(std::string name)
+
+      ``true`` if the part has an action with the given name.
+
+      :Parameters:
+
+   .. function:: void set_action(std::string name, bool value = True)
+
+      Set the value of an action with the given name.
+
+      :Parameters:
+
+
+
+Specific Types of Part
+----------------------
+
+The following classes provide functionality for specific types of part.
+
+.. contents::
+   :local:
+
+Decoupler
+^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Decoupler
+
+   Obtained by calling :func:`Part::decoupler`
+
+   .. function:: Part part()
+
+      The part object for this decoupler.
+
+   .. function:: void decouple()
+
+      Fires the decoupler. Has no effect if the decoupler has already fired.
+
+   .. function:: bool decoupled()
+
+      Whether the decoupler has fired.
+
+   .. function:: float impulse()
+
+      The impulse that the decoupler imparts when it is fired, in Newton seconds.
+
+
+
+Docking Port
+^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: DockingPort
+
+   Obtained by calling :func:`Part::docking_port`
+
+   .. function:: Part part()
+
+      The part object for this docking port.
+
+   .. function:: std::string name()
+   .. function:: void set_name(std::string value)
+
+      The port name of the docking port. This is the name of the port that can be set
+      in the right click menu, when the
+      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
+      mod is installed. If this mod is not installed, returns the title of the part
+      (:func:`Part::title`).
+
+   .. function:: DockingPortState state()
+
+      The current state of the docking port.
+
+   .. function:: Part docked_part()
+
+      The part that this docking port is docked to. Returns ``NULL`` if this
+      docking port is not docked to anything.
+
+   .. function:: Vessel undock()
+
+      Undocks the docking port and returns the vessel that was undocked from.
+      After undocking, the active vessel may change (:func:`active_vessel`).
+      This method can be called for either docking port in a docked pair - both calls will have the same
+      effect. Returns ``NULL`` if the docking port is not docked to anything.
+
+   .. function:: float reengage_distance()
+
+      The distance a docking port must move away when it undocks before it
+      becomes ready to dock with another port, in meters.
+
+   .. function:: bool has_shield()
+
+      Whether the docking port has a shield.
+
+   .. function:: bool shielded()
+   .. function:: void set_shielded(bool value)
+
+      The state of the docking ports shield, if it has one.
+      Returns ``true`` if the docking port has a shield, and the shield is
+      closed. Otherwise returns ``false``. When set to ``true``, the shield is
+      closed, and when set to ``false`` the shield is opened. If the docking
+      port does not have a shield, setting this attribute has no effect.
+
+   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+
+      The position of the docking port in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+
+      The direction that docking port points in, in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
+
+      The rotation of the docking port, in the given reference frame.
+
+      :Parameters:
+
+   .. function:: ReferenceFrame reference_frame()
+
+      The reference frame that is fixed relative to this docking port, and
+      oriented with the port.
+
+      * The origin is at the position of the docking port.
+      * The axes rotate with the docking port.
+      * The x-axis points out to the right side of the docking port.
+      * The y-axis points in the direction the docking port is facing.
+      * The z-axis points out of the bottom off the docking port.
+
+
+      .. note::
+
+         This reference frame is not necessarily equivalent to the reference frame
+         for the part, returned by :func:`Part::reference_frame`.
+
+      .. figure:: /images/reference-frames/docking-port.png
+         :align: center
+
+         Docking port reference frame origin and axes
+
+      .. figure:: /images/reference-frames/docking-port-inline.png
+         :align: center
+
+         Inline docking port reference frame origin and axes
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: DockingPortState
+
+   See :func:`DockingPort::state`.
+
+   .. enumerator:: ready
+
+      The docking port is ready to dock to another docking port.
+
+   .. enumerator:: docked
+
+      The docking port is docked to another docking port, or docked to
+      another part (from the VAB/SPH).
+
+   .. enumerator:: docking
+
+      The docking port is very close to another docking port,
+      but has not docked. It is using magnetic force to acquire a solid dock.
+
+   .. enumerator:: undocking
+
+      The docking port has just been undocked from another docking port,
+      and is disabled until it moves away by a sufficient distance
+      (:func:`DockingPort::reengage_distance`).
+
+   .. enumerator:: shielded
+
+      The docking port has a shield, and the shield is closed.
+
+   .. enumerator:: moving
+
+      The docking ports shield is currently opening/closing.
+
+
+
+Engine
+^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Engine
+
+   Obtained by calling :func:`Part::engine`.
+
+   .. function:: Part part()
+
+      The part object for this engine.
+
+   .. function:: bool active()
+   .. function:: void set_active(bool value)
+
+      Whether the engine is active. Setting this attribute may have no effect,
+      depending on :func:`Engine::can_shutdown` and :func:`Engine::can_restart`.
+
+   .. function:: float thrust()
+
+      The current amount of thrust being produced by the engine, in
+      Newtons. Returns zero if the engine is not active or if it has no fuel.
+
+   .. function:: float available_thrust()
+
+      The maximum available amount of thrust that can be produced by the
+      engine, in Newtons. This takes :func:`Engine::thrust_limit` into account,
+      and is the amount of thrust produced by the engine when activated and the
+      main throttle is set to 100%. Returns zero if the engine does not have any fuel.
+
+   .. function:: float max_thrust()
+
+      Gets the maximum amount of thrust that can be produced by the engine, in
+      Newtons. This is the amount of thrust produced by the engine when
+      activated, :func:`Engine::thrust_limit` is set to 100% and the main vessel's
+      throttle is set to 100%.
+
+   .. function:: float max_vacuum_thrust()
+
+      The maximum amount of thrust that can be produced by the engine in a
+      vacuum, in Newtons. This is the amount of thrust produced by the engine
+      when activated, :func:`Engine::thrust_limit` is set to 100%, the main
+      vessel's throttle is set to 100% and the engine is in a vacuum.
+
+   .. function:: float thrust_limit()
+   .. function:: void set_thrust_limit(float value)
+
+      The thrust limiter of the engine. A value between 0 and 1. Setting this
+      attribute may have no effect, for example the thrust limit for a solid
+      rocket booster cannot be changed in flight.
+
+   .. function:: float specific_impulse()
+
+      The current specific impulse of the engine, in seconds. Returns zero
+      if the engine is not active.
+
+   .. function:: float vacuum_specific_impulse()
+
+      The vacuum specific impulse of the engine, in seconds.
+
+   .. function:: float kerbin_sea_level_specific_impulse()
+
+      The specific impulse of the engine at sea level on Kerbin, in seconds.
+
+   .. function:: std::vector<std::string> propellants()
+
+      The names of resources that the engine consumes.
+
+   .. function:: std::map<std::string,float> propellant_ratios()
+
+      The ratios of resources that the engine consumes. A dictionary mapping resource names
+      to the ratios at which they are consumed by the engine.
+
+   .. function:: bool has_fuel()
+
+      Whether the engine has run out of fuel (or flamed out).
+
+   .. function:: float throttle()
+
+      The current throttle setting for the engine. A value between 0 and 1.
+      This is not necessarily the same as the vessel's main throttle
+      setting, as some engines take time to adjust their throttle
+      (such as jet engines).
+
+   .. function:: bool throttle_locked()
+
+      Whether the :func:`Control::throttle` affects the engine. For example,
+      this is ``true`` for liquid fueled rockets, and ``false`` for solid rocket
+      boosters.
+
+   .. function:: bool can_restart()
+
+      Whether the engine can be restarted once shutdown. If the engine cannot be shutdown,
+      returns ``false``. For example, this is ``true`` for liquid fueled rockets
+      and ``false`` for solid rocket boosters.
+
+   .. function:: bool can_shutdown()
+
+      Gets whether the engine can be shutdown once activated. For example, this is
+      ``true`` for liquid fueled rockets and ``false`` for solid rocket boosters.
+
+   .. function:: bool gimballed()
+
+      Whether the engine nozzle is gimballed, i.e. can provide a turning force.
+
+   .. function:: float gimbal_range()
+
+      The range over which the gimbal can move, in degrees.
+
+   .. function:: bool gimbal_locked()
+   .. function:: void set_gimbal_locked(bool value)
+
+      Whether the engines gimbal is locked in place. Setting this attribute has
+      no effect if the engine is not gimballed.
+
+   .. function:: float gimbal_limit()
+   .. function:: void set_gimbal_limit(float value)
+
+      The gimbal limiter of the engine. A value between 0 and 1. Returns 0 if the
+      gimbal is locked or the engine is not gimballed. Setting this attribute has
+      no effect if the engine is not gimballed.
+
+
+
+Landing Gear
+^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: LandingGear
+
+   Obtained by calling :func:`Part::landing_gear`.
+
+   .. function:: Part part()
+
+      The part object for this landing gear.
+
+   .. function:: LandingGearState state()
+
+      Gets the current state of the landing gear.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the landing gear is deployed.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: LandingGearState
+
+   See :func:`LandingGear::state`.
+
+   .. enumerator:: deployed
+
+      Landing gear is fully deployed.
+
+   .. enumerator:: retracted
+
+      Landing gear is fully retracted.
+
+   .. enumerator:: deploying
+
+      Landing gear is being deployed.
+
+   .. enumerator:: retracting
+
+      Landing gear is being retracted.
+
+
+
+Landing Leg
+^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: LandingLeg
+
+   Obtained by calling :func:`Part::landing_leg`.
+
+   .. function:: Part part()
+
+      The part object for this landing leg.
+
+   .. function:: LandingLegState state()
+
+      The current state of the landing leg.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the landing leg is deployed.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: LandingLegState
+
+   See :func:`LandingLeg::state`.
+
+   .. enumerator:: deployed
+
+      Landing leg is fully deployed.
+
+   .. enumerator:: retracted
+
+      Landing leg is fully retracted.
+
+   .. enumerator:: deploying
+
+      Landing leg is being deployed.
+
+   .. enumerator:: retracting
+
+      Landing leg is being retracted.
+
+   .. enumerator:: broken
+
+      Landing leg is broken.
+
+   .. enumerator:: repairing
+
+      Landing leg is being repaired.
+
+
+
+Launch Clamp
+^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: LaunchClamp
+
+   Obtained by calling :func:`Part::launch_clamp`.
+
+   .. function:: Part part()
+
+      The part object for this launch clamp.
+
+   .. function:: void release()
+
+      Releases the docking clamp. Has no effect if the clamp has already been released.
+
+
+
+Light
+^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Light
+
+   Obtained by calling :func:`Part::light`.
+
+   .. function:: Part part()
+
+      The part object for this light.
+
+   .. function:: bool active()
+   .. function:: void set_active(bool value)
+
+      Whether the light is switched on.
+
+   .. function:: float power_usage()
+
+      The current power usage, in units of charge per second.
+
+
+
+Parachute
+^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Parachute
+
+   Obtained by calling :func:`Part::parachute`.
+
+   .. function:: Part part()
+
+      The part object for this parachute.
+
+   .. function:: void deploy()
+
+      Deploys the parachute. This has no effect if the parachute has already
+      been deployed.
+
+   .. function:: bool deployed()
+
+      Whether the parachute has been deployed.
+
+   .. function:: ParachuteState state()
+
+      The current state of the parachute.
+
+   .. function:: float deploy_altitude()
+   .. function:: void set_deploy_altitude(float value)
+
+      The altitude at which the parachute will full deploy, in meters.
+
+   .. function:: float deploy_min_pressure()
+   .. function:: void set_deploy_min_pressure(float value)
+
+      The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ParachuteState
+
+   See :func:`Parachute::state`.
+
+   .. enumerator:: stowed
+
+      The parachute is safely tucked away inside its housing.
+
+   .. enumerator:: active
+
+      The parachute is still stowed, but ready to semi-deploy.
+
+   .. enumerator:: semi_deployed
+
+      The parachute has been deployed and is providing some drag,
+      but is not fully deployed yet.
+
+   .. enumerator:: deployed
+
+      The parachute is fully deployed.
+
+   .. enumerator:: cut
+
+      The parachute has been cut.
+
+
+
+Radiator
+^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Radiator
+
+   Obtained by calling :func:`Part::radiator`.
+
+   .. function:: Part part()
+
+      The part object for this radiator.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the radiator is extended.
+
+   .. function:: RadiatorState state()
+
+      The current state of the radiator.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: RadiatorState
+
+   :enum:`RadiatorState`
+
+   .. enumerator:: extended
+
+      Radiator is fully extended.
+
+   .. enumerator:: retracted
+
+      Radiator is fully retracted.
+
+   .. enumerator:: extending
+
+      Radiator is being extended.
+
+   .. enumerator:: retracting
+
+      Radiator is being retracted.
+
+   .. enumerator:: broken
+
+      Radiator is being broken.
+
+
+
+Resource Converter
+^^^^^^^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: ResourceConverter
+
+   Obtained by calling :func:`Part::resource_converter`.
+
+   .. function:: Part part()
+
+      The part object for this converter.
+
+   .. function:: int32 count()
+
+      The number of converters in the part.
+
+   .. function:: std::string name(int32 index)
+
+      The name of the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: bool active(int32 index)
+
+      True if the specified converter is active.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: void start(int32 index)
+
+      Start the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: void stop(int32 index)
+
+      Stop the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: ResourceConverterState state(int32 index)
+
+      The state of the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: std::string status_info(int32 index)
+
+      Status information for the specified converter.
+      This is the full status message shown in the in-game UI.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: std::vector<std::string> inputs(int32 index)
+
+      List of the names of resources consumed by the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+   .. function:: std::vector<std::string> outputs(int32 index)
+
+      List of the names of resources produced by the specified converter.
+
+      :Parameters:
+
+       * **index** -- Index of the converter.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ResourceConverterState
+
+   See :func:`ResourceConverter::state`.
+
+   .. enumerator:: running
+
+      Converter is running.
+
+   .. enumerator:: idle
+
+      Converter is idle.
+
+   .. enumerator:: missing_resource
+
+      Converter is missing a required resource.
+
+   .. enumerator:: storage_full
+
+      No available storage for output resource.
+
+   .. enumerator:: capacity
+
+      At preset resource capacity.
+
+   .. enumerator:: unknown
+
+      Unknown state. Possible with modified resource converters.
+      In this case, check :func:`ResourceConverter::status_info` for more information.
+
+
+
+Resource Harvester
+^^^^^^^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: ResourceHarvester
+
+   Obtained by calling :func:`Part::resource_harvester`.
+
+   .. function:: Part part()
+
+      The part object for this harvester.
+
+   .. function:: ResourceHarvesterState state()
+
+      The state of the harvester.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the harvester is deployed.
+
+   .. function:: bool active()
+   .. function:: void set_active(bool value)
+
+      Whether the harvester is actively drilling.
+
+   .. function:: float extraction_rate()
+
+      The rate at which the drill is extracting ore, in units per second.
+
+   .. function:: float thermal_efficiency()
+
+      The thermal efficiency of the drill, as a percentage of its maximum.
+
+   .. function:: float core_temperature()
+
+      The core temperature of the drill, in Kelvin.
+
+   .. function:: float optimum_core_temperature()
+
+      The core temperature at which the drill will operate with peak efficiency, in Kelvin.
+
+
+
+Reaction Wheel
+^^^^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: ReactionWheel
+
+   Obtained by calling :func:`Part::reaction_wheel`.
+
+   .. function:: Part part()
+
+      The part object for this reaction wheel.
+
+   .. function:: bool active()
+   .. function:: void set_active(bool value)
+
+      Whether the reaction wheel is active.
+
+   .. function:: bool broken()
+
+      Whether the reaction wheel is broken.
+
+   .. function:: float pitch_torque()
+
+      The torque in the pitch axis, in Newton meters.
+
+   .. function:: float yaw_torque()
+
+      The torque in the yaw axis, in Newton meters.
+
+   .. function:: float roll_torque()
+
+      The torque in the roll axis, in Newton meters.
+
+
+
+Sensor
+^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Sensor
+
+   Obtained by calling :func:`Part::sensor`.
+
+   .. function:: Part part()
+
+      The part object for this sensor.
+
+   .. function:: bool active()
+   .. function:: void set_active(bool value)
+
+      Whether the sensor is active.
+
+   .. function:: std::string value()
+
+      The current value of the sensor.
+
+   .. function:: float power_usage()
+
+      The current power usage of the sensor, in units of charge per second.
+
+
+
+Solar Panel
+^^^^^^^^^^^
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: SolarPanel
+
+   Obtained by calling :func:`Part::solar_panel`.
+
+   .. function:: Part part()
+
+      The part object for this solar panel.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the solar panel is extended.
+
+   .. function:: SolarPanelState state()
+
+      The current state of the solar panel.
+
+   .. function:: float energy_flow()
+
+      The current amount of energy being generated by the solar panel, in
+      units of charge per second.
+
+   .. function:: float sun_exposure()
+
+      The current amount of sunlight that is incident on the solar panel,
+      as a percentage. A value between 0 and 1.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: SolarPanelState
+
+   See :func:`SolarPanel::state`.
+
+   .. enumerator:: extended
+
+      Solar panel is fully extended.
+
+   .. enumerator:: retracted
+
+      Solar panel is fully retracted.
+
+   .. enumerator:: extending
+
+      Solar panel is being extended.
+
+   .. enumerator:: retracting
+
+      Solar panel is being retracted.
+
+   .. enumerator:: broken
+
+      Solar panel is broken.
+
+
+
+.. _cpp-api-parts-trees-of-parts:
+
+Trees of Parts
+--------------
+
+Vessels in KSP are comprised of a number of parts, connected to one another in a
+*tree* structure. An example vessel is shown in Figure 1, and the corresponding
+tree of parts in Figure 2. The craft file for this example can also be
+:download:`downloaded here </crafts/PartsTree.craft>`.
+
+.. figure:: /images/api/parts.png
+   :align: left
+   :figwidth: 275
+
+   **Figure 1** -- Example parts making up a vessel.
+
+.. figure:: /images/api/parts-tree.png
+   :align: right
+   :figwidth: 275
+
+   **Figure 2** -- Tree of parts for the vessel in Figure 1. Arrows point from
+   the parent part to the child part.
+
+.. container:: clearer
+
+   ..
+
+Traversing the Tree
+^^^^^^^^^^^^^^^^^^^
+
+The tree of parts can be traversed using the attributes :func:`SpaceCenter::Parts::root`,
+:func:`SpaceCenter::Part::parent` and :func:`SpaceCenter::Part::children`.
+
+The root of the tree is the same as the vessels *root part* (part number 1 in
+the example above) and can be obtained by calling :func:`SpaceCenter::Parts::root`.
+A parts children can be obtained by calling :func:`SpaceCenter::Part::children`.
+If the part does not have any children, :func:`SpaceCenter::Part::children`
+returns an empty list. A parts parent can be obtained by calling
+:func:`SpaceCenter::Part::parent`. If the part does not have a parent
+(as is the case for the root part), :func:`SpaceCenter::Part::parent`
+returns ``NULL``.
+
+The following C++ example uses these attributes to perform a
+depth-first traversal over all of the parts in a vessel:
+
+.. literalinclude:: /scripts/TreeTraversal.cpp
+
+When this code is execute using the craft file for the example vessel pictured
+above, the following is printed out::
+
+    Command Pod Mk1
+     TR-18A Stack Decoupler
+      FL-T400 Fuel Tank
+       LV-909 Liquid Fuel Engine
+        TR-18A Stack Decoupler
+         FL-T800 Fuel Tank
+          LV-909 Liquid Fuel Engine
+          TT-70 Radial Decoupler
+           FL-T400 Fuel Tank
+            TT18-A Launch Stability Enhancer
+            FTX-2 External Fuel Duct
+            LV-909 Liquid Fuel Engine
+            Aerodynamic Nose Cone
+          TT-70 Radial Decoupler
+           FL-T400 Fuel Tank
+            TT18-A Launch Stability Enhancer
+            FTX-2 External Fuel Duct
+            LV-909 Liquid Fuel Engine
+            Aerodynamic Nose Cone
+       LT-1 Landing Struts
+       LT-1 Landing Struts
+     Mk16 Parachute
+
+.. _cpp-api-parts-attachment-modes:
+
+Attachment Modes
+^^^^^^^^^^^^^^^^
+
+Parts can be attached to other parts either *radially* (on the side of the
+parent part) or *axially* (on the end of the parent part, to form a stack).
+
+For example, in the vessel pictured above, the parachute (part 2) is *axially*
+connected to its parent (the command pod -- part 1), and the landing leg
+(part 5) is *radially* connected to its parent (the fuel tank -- part 4).
+
+The root part of a vessel (for example the command pod -- part 1) does not have
+a parent part, so does not have an attachment mode. However, the part is
+consider to be *axially* attached to nothing.
+
+The following C++ example does a depth-first traversal as before,
+but also prints out the attachment mode used by the part:
+
+.. literalinclude:: /scripts/AttachmentModes.cpp
+
+When this code is execute using the craft file for the example vessel pictured
+above, the following is printed out::
+
+ Command Pod Mk1 - axial
+  TR-18A Stack Decoupler - axial
+   FL-T400 Fuel Tank - axial
+    LV-909 Liquid Fuel Engine - axial
+     TR-18A Stack Decoupler - axial
+      FL-T800 Fuel Tank - axial
+       LV-909 Liquid Fuel Engine - axial
+       TT-70 Radial Decoupler - radial
+        FL-T400 Fuel Tank - radial
+         TT18-A Launch Stability Enhancer - radial
+         FTX-2 External Fuel Duct - radial
+         LV-909 Liquid Fuel Engine - axial
+         Aerodynamic Nose Cone - axial
+       TT-70 Radial Decoupler - radial
+        FL-T400 Fuel Tank - radial
+         TT18-A Launch Stability Enhancer - radial
+         FTX-2 External Fuel Duct - radial
+         LV-909 Liquid Fuel Engine - axial
+         Aerodynamic Nose Cone - axial
+    LT-1 Landing Struts - radial
+    LT-1 Landing Struts - radial
+  Mk16 Parachute - axial
+
+.. _cpp-api-parts-fuel-lines:
+
+Fuel Lines
+----------
+
+.. figure:: /images/api/parts-fuel-lines.png
+   :align: right
+   :figwidth: 200
+
+   **Figure 5** -- Fuel lines from the example in Figure 1. Fuel flows from the
+   parts highlighted in green, into the part highlighted in blue.
+
+.. figure:: /images/api/parts-fuel-lines-tree.png
+   :align: right
+   :figwidth: 200
+
+   **Figure 4** -- A subset of the parts tree from Figure 2 above.
+
+Fuel lines are considered parts, and are included in the parts tree (for
+example, as pictured in Figure 4). However, the parts tree does not contain
+information about which parts fuel lines connect to. The parent part of a fuel
+line is the part from which it will take fuel (as shown in Figure 4) however the
+part that it will send fuel to is not represented in the parts tree.
+
+Figure 5 shows the fuel lines from the example vessel pictured earlier. Fuel
+line part 15 (in red) takes fuel from a fuel tank (part 11 -- in green) and
+feeds it into another fuel tank (part 9 -- in blue). The fuel line is therefore
+a child of part 11, but its connection to part 9 is not represented in the tree.
+
+The attributes :func:`SpaceCenter::Part::fuel_lines_from` and
+:func:`SpaceCenter::Part::fuel_lines_to` can be used to discover these
+connections. In the example in Figure 5, when
+:func:`SpaceCenter::Part::fuel_lines_to` is called on fuel tank part
+11, it will return a list of parts containing just fuel tank part 9 (the blue
+part). When :func:`SpaceCenter::Part::fuel_lines_from` is called on
+fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
+(the parts colored green).
+
+.. _cpp-api-parts-staging:
+
+Staging
+-------
+
+.. figure:: /images/api/parts-staging.png
+   :align: right
+   :figwidth: 340
+
+   **Figure 6** -- Example vessel from Figure 1 with a staging sequence.
+
+Each part has two staging numbers associated with it: the stage in which the
+part is *activated* and the stage in which the part is *decoupled*. These values
+can be obtained using :func:`SpaceCenter::Part::stage` and
+:func:`SpaceCenter::Part::decouple_stage` respectively. For parts that
+are not activated by staging, :func:`SpaceCenter::Part::stage` returns
+-1. For parts that are never decoupled,
+:func:`SpaceCenter::Part::decouple_stage` returns a value of -1.
+
+Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
+stages in which each part of the vessel will be *activated*. Figure 8 shows the
+stages in which each part of the vessel will be *decoupled*.
+
+.. container:: clearer
+
+   ..
+
+.. figure:: /images/api/parts-staging-activate.png
+   :align: left
+   :figwidth: 250
+
+   **Figure 7** -- The stage in which each part is *activated*.
+
+.. figure:: /images/api/parts-staging-decouple.png
+   :align: right
+   :figwidth: 250
+
+   **Figure 8** -- The stage in which each part is *decoupled*.
+
+.. container:: clearer
+
+   ..

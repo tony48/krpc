@@ -1,0 +1,264 @@
+.. default-domain:: java
+.. highlight:: java
+
+
+Control
+=======
+
+.. type:: public class Control
+
+   Used to manipulate the controls of a vessel. This includes adjusting the
+   throttle, enabling/disabling systems such as SAS and RCS, or altering the
+   direction in which the vessel is pointing.
+
+   .. note::
+
+      Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+      that have set one or more of these inputs are no longer connected.
+
+   .. method:: boolean getSAS()
+
+   .. method:: void setSAS(boolean value)
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :meth:`AutoPilot.SAS`
+
+   .. method:: SASMode getSASMode()
+
+   .. method:: void setSASMode(SASMode value)
+
+      The current :type:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :meth:`AutoPilot.SASMode`
+
+   .. method:: SpeedMode getSpeedMode()
+
+   .. method:: void setSpeedMode(SpeedMode value)
+
+      The current :type:`SpeedMode` of the navball.
+      This is the mode displayed next to the speed at the top of the navball.
+
+   .. method:: boolean getRCS()
+
+   .. method:: void setRCS(boolean value)
+
+      The state of RCS.
+
+   .. method:: boolean getGear()
+
+   .. method:: void setGear(boolean value)
+
+      The state of the landing gear/legs.
+
+   .. method:: boolean getLights()
+
+   .. method:: void setLights(boolean value)
+
+      The state of the lights.
+
+   .. method:: boolean getBrakes()
+
+   .. method:: void setBrakes(boolean value)
+
+      The state of the wheel brakes.
+
+   .. method:: boolean getAbort()
+
+   .. method:: void setAbort(boolean value)
+
+      The state of the abort action group.
+
+   .. method:: float getThrottle()
+
+   .. method:: void setThrottle(float value)
+
+      The state of the throttle. A value between 0 and 1.
+
+   .. method:: float getPitch()
+
+   .. method:: void setPitch(float value)
+
+      The state of the pitch control.
+      A value between -1 and 1.
+      Equivalent to the w and s keys.
+
+   .. method:: float getYaw()
+
+   .. method:: void setYaw(float value)
+
+      The state of the yaw control.
+      A value between -1 and 1.
+      Equivalent to the a and d keys.
+
+   .. method:: float getRoll()
+
+   .. method:: void setRoll(float value)
+
+      The state of the roll control.
+      A value between -1 and 1.
+      Equivalent to the q and e keys.
+
+   .. method:: float getForward()
+
+   .. method:: void setForward(float value)
+
+      The state of the forward translational control.
+      A value between -1 and 1.
+      Equivalent to the h and n keys.
+
+   .. method:: float getUp()
+
+   .. method:: void setUp(float value)
+
+      The state of the up translational control.
+      A value between -1 and 1.
+      Equivalent to the i and k keys.
+
+   .. method:: float getRight()
+
+   .. method:: void setRight(float value)
+
+      The state of the right translational control.
+      A value between -1 and 1.
+      Equivalent to the j and l keys.
+
+   .. method:: float getWheelThrottle()
+
+   .. method:: void setWheelThrottle(float value)
+
+      The state of the wheel throttle.
+      A value between -1 and 1.
+      A value of 1 rotates the wheels forwards, a value of -1 rotates
+      the wheels backwards.
+
+   .. method:: float getWheelSteering()
+
+   .. method:: void setWheelSteering(float value)
+
+      The state of the wheel steering.
+      A value between -1 and 1.
+      A value of 1 steers to the left, and a value of -1 steers to the right.
+
+   .. method:: int getCurrentStage()
+
+
+      The current stage of the vessel. Corresponds to the stage number in
+      the in-game UI.
+
+   .. method:: java.util.List<Vessel> ActivateNextStage()
+
+      Activates the next stage. Equivalent to pressing the space bar in-game.
+
+      :returns: A list of vessel objects that are jettisoned from the active vessel.
+
+   .. method:: boolean GetActionGroup(int group)
+
+      Returns ``true`` if the given action group is enabled.
+
+      :param int group: A number between 0 and 9 inclusive.
+
+   .. method:: void SetActionGroup(int group, boolean state)
+
+      Sets the state of the given action group (a value between 0 and 9
+      inclusive).
+
+      :param int group: A number between 0 and 9 inclusive.
+      :param boolean state:
+
+   .. method:: void ToggleActionGroup(int group)
+
+      Toggles the state of the given action group.
+
+      :param int group: A number between 0 and 9 inclusive.
+
+   .. method:: Node AddNode(double UT, float prograde, float normal, float radial)
+
+      Creates a maneuver node at the given universal time, and returns a
+      :type:`Node` object that can be used to modify it.
+      Optionally sets the magnitude of the delta-v for the maneuver node
+      in the prograde, normal and radial directions.
+
+      :param double UT: Universal time of the maneuver node.
+      :param float prograde: Delta-v in the prograde direction.
+      :param float normal: Delta-v in the normal direction.
+      :param float radial: Delta-v in the radial direction.
+
+   .. method:: java.util.List<Node> getNodes()
+
+
+      Returns a list of all existing maneuver nodes, ordered by time from first to last.
+
+   .. method:: void RemoveNodes()
+
+      Remove all maneuver nodes.
+
+
+.. type:: public enum SASMode
+
+   The behavior of the SAS auto-pilot. See :meth:`AutoPilot.SASMode`.
+
+   .. field:: public SASMode StabilityAssist
+
+      Stability assist mode. Dampen out any rotation.
+
+   .. field:: public SASMode Maneuver
+
+      Point in the burn direction of the next maneuver node.
+
+   .. field:: public SASMode Prograde
+
+      Point in the prograde direction.
+
+   .. field:: public SASMode Retrograde
+
+      Point in the retrograde direction.
+
+   .. field:: public SASMode Normal
+
+      Point in the orbit normal direction.
+
+   .. field:: public SASMode AntiNormal
+
+      Point in the orbit anti-normal direction.
+
+   .. field:: public SASMode Radial
+
+      Point in the orbit radial direction.
+
+   .. field:: public SASMode AntiRadial
+
+      Point in the orbit anti-radial direction.
+
+   .. field:: public SASMode Target
+
+      Point in the direction of the current target.
+
+   .. field:: public SASMode AntiTarget
+
+      Point away from the current target.
+
+
+.. type:: public enum SpeedMode
+
+   See :meth:`Control.SpeedMode`.
+
+   .. field:: public SpeedMode Orbit
+
+      Speed is relative to the vessel's orbit.
+
+   .. field:: public SpeedMode Surface
+
+      Speed is relative to the surface of the body being orbited.
+
+   .. field:: public SpeedMode Target
+
+      Speed is relative to the current target.

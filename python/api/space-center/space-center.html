@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SpaceCenter &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Vessel" href="vessel.html"/>
+        <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Python Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../python.html">Python</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>SpaceCenter</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/python/api/space-center/space-center.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spacecenter">
+<h1>SpaceCenter<a class="headerlink" href="#spacecenter" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="SpaceCenter.SpaceCenter">
+<em class="property">class </em><code class="descclassname">SpaceCenter.</code><code class="descname">SpaceCenter</code><a class="headerlink" href="#SpaceCenter.SpaceCenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides functionality to interact with Kerbal Space Program. This includes controlling
+the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.active_vessel">
+<code class="descname">active_vessel</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.active_vessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently active vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><code class="xref py py-class docutils literal"><span class="pre">Vessel</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.vessels">
+<code class="descname">vessels</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.vessels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the vessels in the game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><code class="xref py py-class docutils literal"><span class="pre">Vessel</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.bodies">
+<code class="descname">bodies</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.bodies" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of all celestial bodies (planets, moons, etc.) in the game,
+keyed by the name of the body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict from str to <a class="reference internal" href="celestial-body.html#SpaceCenter.CelestialBody" title="SpaceCenter.CelestialBody"><code class="xref py py-class docutils literal"><span class="pre">CelestialBody</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.target_body">
+<code class="descname">target_body</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.target_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted celestial body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="celestial-body.html#SpaceCenter.CelestialBody" title="SpaceCenter.CelestialBody"><code class="xref py py-class docutils literal"><span class="pre">CelestialBody</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.target_vessel">
+<code class="descname">target_vessel</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.target_vessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><code class="xref py py-class docutils literal"><span class="pre">Vessel</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.target_docking_port">
+<code class="descname">target_docking_port</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.target_docking_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted docking port.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="parts.html#SpaceCenter.DockingPort" title="SpaceCenter.DockingPort"><code class="xref py py-class docutils literal"><span class="pre">DockingPort</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.clear_target">
+<em class="property">static </em><code class="descname">clear_target</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.clear_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the current target.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.launch_vessel_from_vab">
+<em class="property">static </em><code class="descname">launch_vessel_from_vab</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.launch_vessel_from_vab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name of the vessel&#8217;s craft file.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.launch_vessel_from_sph">
+<em class="property">static </em><code class="descname">launch_vessel_from_sph</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.launch_vessel_from_sph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a new vessel from the SPH onto the runway.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name of the vessel&#8217;s craft file.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.ut">
+<code class="descname">ut</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.ut" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current universal time in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.g">
+<code class="descname">g</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.g" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value of the <a class="reference external" href="http://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>
+G in <span class="math">\(N(m/kg)^2\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.warp_mode">
+<code class="descname">warp_mode</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.warp_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time warp mode. Returns <a class="reference internal" href="#SpaceCenter.WarpMode.none" title="SpaceCenter.WarpMode.none"><code class="xref py py-attr docutils literal"><span class="pre">WarpMode.none</span></code></a> if time
+warp is not active, <a class="reference internal" href="#SpaceCenter.WarpMode.rails" title="SpaceCenter.WarpMode.rails"><code class="xref py py-attr docutils literal"><span class="pre">WarpMode.rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
+is active, or <a class="reference internal" href="#SpaceCenter.WarpMode.physics" title="SpaceCenter.WarpMode.physics"><code class="xref py py-attr docutils literal"><span class="pre">WarpMode.physics</span></code></a> if physical time warp is active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.WarpMode" title="SpaceCenter.WarpMode"><code class="xref py py-class docutils literal"><span class="pre">WarpMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.warp_rate">
+<code class="descname">warp_rate</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.warp_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current warp rate. This is the rate at which time is passing for
+either on-rails or physical time warp. For example, a value of 10 means
+time is passing 10x faster than normal. Returns 1 if time warp is not
+active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.warp_factor">
+<code class="descname">warp_factor</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.warp_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current warp factor. This is the index of the rate at which time
+is passing for either regular &#8220;on-rails&#8221; or physical time warp. Returns 0
+if time warp is not active. When in on-rails time warp, this is equal to
+<a class="reference internal" href="#SpaceCenter.SpaceCenter.rails_warp_factor" title="SpaceCenter.SpaceCenter.rails_warp_factor"><code class="xref py py-attr docutils literal"><span class="pre">rails_warp_factor</span></code></a>, and in physics time warp, this is equal to
+<a class="reference internal" href="#SpaceCenter.SpaceCenter.physics_warp_factor" title="SpaceCenter.SpaceCenter.physics_warp_factor"><code class="xref py py-attr docutils literal"><span class="pre">physics_warp_factor</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.rails_warp_factor">
+<code class="descname">rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.rails_warp_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time warp rate, using regular &#8220;on-rails&#8221; time warp. A value between
+0 and 7 inclusive. 0 means no time warp. Returns 0 if physical time warp
+is active.
+If requested time warp factor cannot be set, it will be set to the next
+lowest possible value. For example, if the vessel is too close to a
+planet. See <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.physics_warp_factor">
+<code class="descname">physics_warp_factor</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.physics_warp_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The physical time warp rate. A value between 0 and 3 inclusive. 0 means
+no time warp. Returns 0 if regular &#8220;on-rails&#8221; time warp is active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.can_rails_warp_at">
+<em class="property">static </em><code class="descname">can_rails_warp_at</code><span class="sig-paren">(</span><span class="optional">[</span><em>factor = 1</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.can_rails_warp_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">True</span></code> if regular &#8220;on-rails&#8221; time warp can be used, at the specified warp
+<em>factor</em>. The maximum time warp rate is limited by various things,
+including how close the active vessel is to a planet. See
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>factor</strong> (<em>int</em>) &#8211; The warp factor to check.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.maximum_rails_warp_factor">
+<code class="descname">maximum_rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.maximum_rails_warp_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current maximum regular &#8220;on-rails&#8221; warp factor that can be set.
+A value between 0 and 7 inclusive.  See
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.warp_to">
+<em class="property">static </em><code class="descname">warp_to</code><span class="sig-paren">(</span><em>ut</em><span class="optional">[</span>, <em>max_rails_rate = 100000.0</em><span class="optional">]</span><span class="optional">[</span>, <em>max_physics_rate = 2.0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.warp_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses time acceleration to warp forward to a time in the future, specified
+by universal time <em>ut</em>. This call blocks until the desired
+time is reached. Uses regular &#8220;on-rails&#8221; or physical time warp as appropriate.
+For example, physical time warp is used when the active vessel is traveling
+through an atmosphere. When using regular &#8220;on-rails&#8221; time warp, the warp
+rate is limited by <em>max_rails_rate</em>, and when using physical
+time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ut</strong> (<em>float</em>) &#8211; The universal time to warp to, in seconds.</li>
+<li><strong>max_rails_rate</strong> (<em>float</em>) &#8211; The maximum warp rate in regular &#8220;on-rails&#8221; time warp.</li>
+<li><strong>max_physics_rate</strong> (<em>float</em>) &#8211; The maximum warp rate in physical time warp.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">When the time warp is complete.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.transform_position">
+<em class="property">static </em><code class="descname">transform_position</code><span class="sig-paren">(</span><em>position</em>, <em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.transform_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a position vector from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<em>tuple</em>) &#8211; Position vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame that the position vector is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame to covert the position vector to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The corresponding position vector in reference frame <em>to</em>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of (float, float, float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.transform_direction">
+<em class="property">static </em><code class="descname">transform_direction</code><span class="sig-paren">(</span><em>direction</em>, <em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.transform_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a direction vector from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>direction</strong> (<em>tuple</em>) &#8211; Direction vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame that the direction vector is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame to covert the direction vector to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The corresponding direction vector in reference frame <em>to</em>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of (float, float, float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.transform_rotation">
+<em class="property">static </em><code class="descname">transform_rotation</code><span class="sig-paren">(</span><em>rotation</em>, <em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.transform_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a rotation from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rotation</strong> (<em>tuple</em>) &#8211; Rotation in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame that the rotation is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The corresponding rotation in reference frame <em>to</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The corresponding rotation in reference frame <em>to</em>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of (float, float, float, float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.transform_velocity">
+<em class="property">static </em><code class="descname">transform_velocity</code><span class="sig-paren">(</span><em>position</em>, <em>velocity</em>, <em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.transform_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a velocity vector (acting at the specified position vector) from one
+reference frame to another. The position vector is required to take the
+relative angular velocity of the reference frames into account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<em>tuple</em>) &#8211; Position vector in reference frame <em>from</em>.</li>
+<li><strong>velocity</strong> (<em>tuple</em>) &#8211; Velocity vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame that the position and velocity vectors are in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; The reference frame to covert the velocity vector to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The corresponding velocity in reference frame <em>to</em>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of (float, float, float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.far_available">
+<code class="descname">far_available</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.far_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SpaceCenter.remote_tech_available">
+<code class="descname">remote_tech_available</code><a class="headerlink" href="#SpaceCenter.SpaceCenter.remote_tech_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> is installed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.draw_direction">
+<em class="property">static </em><code class="descname">draw_direction</code><span class="sig-paren">(</span><em>direction</em>, <em>reference_frame</em>, <em>color</em><span class="optional">[</span>, <em>length = 10.0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.draw_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a direction vector on the active vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>direction</strong> (<em>tuple</em>) &#8211; Direction to draw the line in.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; Reference frame that the direction is in.</li>
+<li><strong>color</strong> (<em>tuple</em>) &#8211; The color to use for the line, as an RGB color.</li>
+<li><strong>length</strong> (<em>float</em>) &#8211; The length of the line. Defaults to 10.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.draw_line">
+<em class="property">static </em><code class="descname">draw_line</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>reference_frame</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.draw_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>start</strong> (<em>tuple</em>) &#8211; Position of the start of the line.</li>
+<li><strong>end</strong> (<em>tuple</em>) &#8211; Position of the end of the line.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; Reference frame that the position are in.</li>
+<li><strong>color</strong> (<em>tuple</em>) &#8211; The color to use for the line, as an RGB color.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.SpaceCenter.clear_drawing">
+<em class="property">static </em><code class="descname">clear_drawing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.SpaceCenter.clear_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all directions and lines currently being drawn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.WarpMode">
+<em class="property">class </em><code class="descclassname">SpaceCenter.</code><code class="descname">WarpMode</code><a class="headerlink" href="#SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returned by <code class="xref py py-attr docutils literal"><span class="pre">warp_mode</span></code></p>
+<dl class="data">
+<dt id="SpaceCenter.WarpMode.rails">
+<code class="descname">rails</code><a class="headerlink" href="#SpaceCenter.WarpMode.rails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is active, and in regular &#8220;on-rails&#8221; mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WarpMode.physics">
+<code class="descname">physics</code><a class="headerlink" href="#SpaceCenter.WarpMode.physics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is active, and in physical time warp mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WarpMode.none">
+<code class="descname">none</code><a class="headerlink" href="#SpaceCenter.WarpMode.none" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is not active.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vessel.html" class="btn btn-neutral float-right" title="Vessel" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../space-center.html" class="btn btn-neutral" title="SpaceCenter API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

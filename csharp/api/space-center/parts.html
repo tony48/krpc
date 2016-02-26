@@ -1,0 +1,2419 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Resources" href="resources.html"/>
+        <link rel="prev" title="Control" href="control.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Parts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Parts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part">Part</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module">Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specific-types-of-part">Specific Types of Part</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trees-of-parts">Trees of Parts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fuel-lines">Fuel Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#staging">Staging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../csharp.html">C#</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Parts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/csharp/api/space-center/parts.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts">
+<span id="csharp-api-parts"></span><h1>Parts<a class="headerlink" href="#parts" title="Permalink to this headline">¶</a></h1>
+<p>The following classes allow interaction with a vessels individual parts.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id13">Parts</a></li>
+<li><a class="reference internal" href="#part" id="id14">Part</a></li>
+<li><a class="reference internal" href="#module" id="id15">Module</a></li>
+<li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
+<li><a class="reference internal" href="#decoupler" id="id17">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id18">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id19">Engine</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id20">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id21">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id22">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id23">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id24">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id25">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id26">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id27">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id28">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id29">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id30">Solar Panel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trees-of-parts" id="id31">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id32">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id33">Attachment Modes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fuel-lines" id="id34">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id35">Staging</a></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id13">Parts</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="class-Parts">
+<code class="descname">class Parts</code><a class="headerlink" href="#class-Parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instances of this class are used to interact with the parts of a vessel.
+An instance can be obtained by calling <a class="reference internal" href="vessel.html#property-Vessel.Parts" title="Vessel.Parts property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.Parts</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Parts.All">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">All</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.All" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all of the vessels parts.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Root">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Root</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Root" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vessels root part.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-trees-of-parts"><span>Trees of Parts</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Controlling">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Controlling</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Parts.Controlling" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part from which the vessel is controlled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.WithName">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">WithName</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.WithName" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of parts whose <a class="reference internal" href="#property-Part.Name" title="Part.Name property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Name</span></code></a> is <em>name</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.WithTitle">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">WithTitle</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.WithTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts whose <a class="reference internal" href="#property-Part.Title" title="Part.Title property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Title</span></code></a> is <em>title</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.WithModule">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">WithModule</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>moduleName</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.WithModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts that contain a <a class="reference internal" href="#class-Module" title="Module class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Module</span></code></a> whose
+<a class="reference internal" href="#property-Module.Name" title="Module.Name property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Module.Name</span></code></a> is <em>moduleName</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.InStage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">InStage</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>stage</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.InStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts that are activated in the given <em>stage</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-staging"><span>Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.InDecoupleStage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">InDecoupleStage</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>stage</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.InDecoupleStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts that are decoupled in the given <em>stage</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-staging"><span>Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.ModulesWithName">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Module" title="Module class">Module</a>&gt; <code class="descname">ModulesWithName</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>moduleName</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.ModulesWithName" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of modules (combined across all parts in the vessel) whose
+<a class="reference internal" href="#property-Module.Name" title="Module.Name property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Module.Name</span></code></a> is <em>moduleName</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Decouplers">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Decoupler" title="Decoupler class">Decoupler</a>&gt; <code class="descname">Decouplers</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Decouplers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all decouplers in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.DockingPorts">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-DockingPort" title="DockingPort class">DockingPort</a>&gt; <code class="descname">DockingPorts</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.DockingPorts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all docking ports in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parts.DockingPortWithName">
+<a class="reference internal" href="#class-DockingPort" title="DockingPort class">DockingPort</a> <code class="descname">DockingPortWithName</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Parts.DockingPortWithName" title="Permalink to this definition">¶</a></dt>
+<dd><p>The first docking port in the vessel with the given port name, as returned by <a class="reference internal" href="#property-DockingPort.Name" title="DockingPort.Name property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">DockingPort.Name</span></code></a>.
+Returns <code class="docutils literal"><span class="pre">null</span></code> if there are no such docking ports.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Engines">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Engine" title="Engine class">Engine</a>&gt; <code class="descname">Engines</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Engines" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all engines in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.LandingGear">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-LandingGear" title="LandingGear class">LandingGear</a>&gt; <code class="descname">LandingGear</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.LandingGear" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all landing gear attached to the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.LandingLegs">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-LandingLeg" title="LandingLeg class">LandingLeg</a>&gt; <code class="descname">LandingLegs</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.LandingLegs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all landing legs attached to the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.LaunchClamps">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-LaunchClamp" title="LaunchClamp class">LaunchClamp</a>&gt; <code class="descname">LaunchClamps</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.LaunchClamps" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all launch clamps attached to the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Lights">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Light" title="Light class">Light</a>&gt; <code class="descname">Lights</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Lights" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all lights in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Parachutes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Parachute" title="Parachute class">Parachute</a>&gt; <code class="descname">Parachutes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Parachutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parachutes in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Radiators">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Radiator" title="Radiator class">Radiator</a>&gt; <code class="descname">Radiators</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Radiators" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all radiators in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.ResourceConverters">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ResourceConverter" title="ResourceConverter class">ResourceConverter</a>&gt; <code class="descname">ResourceConverters</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ResourceConverters" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all resource converters in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.ResourceHarvesters">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ResourceHarvester" title="ResourceHarvester class">ResourceHarvester</a>&gt; <code class="descname">ResourceHarvesters</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ResourceHarvesters" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all resource harvesters in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.ReactionWheels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ReactionWheel" title="ReactionWheel class">ReactionWheel</a>&gt; <code class="descname">ReactionWheels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ReactionWheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all reaction wheels in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Sensors">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Sensor" title="Sensor class">Sensor</a>&gt; <code class="descname">Sensors</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Sensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all sensors in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.SolarPanels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-SolarPanel" title="SolarPanel class">SolarPanel</a>&gt; <code class="descname">SolarPanels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.SolarPanels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all solar panels in the vessel.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="part">
+<h2><a class="toc-backref" href="#id14">Part</a><a class="headerlink" href="#part" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="class-Part">
+<code class="descname">class Part</code><a class="headerlink" href="#class-Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instances of this class represents a part. A vessel is made of multiple parts.
+Instances can be obtained by various methods in <a class="reference internal" href="#class-Parts" title="Parts class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Parts</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Part.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal name of the part, as used in
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation">part cfg files</a>.
+For example &#8220;Mark1-2Pod&#8221;.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Title">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Title</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the part, as shown when the part is right clicked in-game. For example &#8220;Mk1-2 Command Pod&#8221;.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Cost">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Cost</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cost of the part, in units of funds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Vessel">
+<a class="reference internal" href="vessel.html#class-Vessel" title="Vessel class">Vessel</a> <code class="descname">Vessel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Vessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vessel that contains this part.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Parent">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Parent</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parts parent. Returns <code class="docutils literal"><span class="pre">null</span></code> if the part does not have a parent.
+This, in combination with <a class="reference internal" href="#property-Part.Children" title="Part.Children property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Children</span></code></a>, can be used to traverse the vessels parts tree.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-trees-of-parts"><span>Trees of Parts</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Children">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">Children</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Children" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parts children. Returns an empty list if the part has no children.
+This, in combination with <a class="reference internal" href="#property-Part.Parent" title="Part.Parent property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Parent</span></code></a>, can be used to traverse the vessels parts tree.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-trees-of-parts"><span>Trees of Parts</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.AxiallyAttached">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">AxiallyAttached</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.AxiallyAttached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is axially attached to its parent, i.e. on the top
+or bottom of its parent. If the part has no parent, returns <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-attachment-modes"><span>Attachment Modes</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.RadiallyAttached">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">RadiallyAttached</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.RadiallyAttached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is radially attached to its parent, i.e. on the side of its parent.
+If the part has no parent, returns <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-attachment-modes"><span>Attachment Modes</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Stage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <code class="descname">Stage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stage in which this part will be activated. Returns -1 if the part is not activated by staging.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-staging"><span>Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.DecoupleStage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <code class="descname">DecoupleStage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.DecoupleStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-staging"><span>Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Massless">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Massless</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Massless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Massless_part">massless</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Mass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Mass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mass of the part, including resources it contains, in kilograms.
+Returns zero if the part is massless.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.DryMass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">DryMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.DryMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ImpactTolerance">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ImpactTolerance</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ImpactTolerance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The impact tolerance of the part, in meters per second.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Temperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Temperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temperature of the part, in Kelvin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.SkinTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">SkinTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.SkinTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temperature of the skin of the part, in Kelvin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.MaxTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">MaxTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.MaxTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum temperature that the part can survive, in Kelvin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.MaxSkinTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">MaxSkinTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.MaxSkinTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum temperature that the skin of the part can survive, in Kelvin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ExternalTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ExternalTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ExternalTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temperature of the atmosphere/vacuum surrounding the part, in Kelvin.
+This does not include heating from direct sunlight.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalMass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>How much it takes to heat up the part.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalSkinMass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalSkinMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>How much it takes to heat up the part&#8217;s skin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalResourceMass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalResourceMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalResourceMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>How much it takes to heat up resources in the part.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalConductionFlux">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalConductionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConductionFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed that heat is conducting into or out of the part
+through contact with other parts. A positive number means
+the part is gaining heat energy, negative means it is
+losing heat energy.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalConvectionFlux">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalConvectionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConvectionFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed that heat is convecting into or out of the part
+from the surrounding atmosphere. A positive number means
+the part is gaining heat energy, negative means it is losing
+heat energy.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalRadiationFlux">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalRadiationFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalRadiationFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed that heat is radiating into or out of the part
+from the surrounding vacuum. A positive number means the part
+is gaining heat energy, negative means it is losing heat energy.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalInternalFlux">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalInternalFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed that heat is generated by the part. For example,
+engines generate heat by burning fuel. A positive number means
+the part is gaining heat energy, negative means it is losing
+heat energy.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ThermalSkinToInternalFlux">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalSkinToInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinToInternalFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed that heat is conducting between the part&#8217;s skin and its internals.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Resources">
+<a class="reference internal" href="resources.html#class-Resources" title="Resources class">Resources</a> <code class="descname">Resources</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="resources.html#class-Resources" title="Resources class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Resources</span></code></a> object for the part.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Crossfeed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Crossfeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Crossfeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this part is crossfeed capable.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.IsFuelLine">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsFuelLine</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.IsFuelLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this part is a fuel line.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.FuelLinesFrom">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">FuelLinesFrom</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.FuelLinesFrom" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-fuel-lines"><span>Fuel Lines</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.FuelLinesTo">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Part" title="Part class">Part</a>&gt; <code class="descname">FuelLinesTo</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.FuelLinesTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the discussion on <a class="reference internal" href="#csharp-api-parts-fuel-lines"><span>Fuel Lines</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Modules">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Module" title="Module class">Module</a>&gt; <code class="descname">Modules</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>The modules for this part.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Decoupler">
+<a class="reference internal" href="#class-Decoupler" title="Decoupler class">Decoupler</a> <code class="descname">Decoupler</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Decoupler" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Decoupler" title="Decoupler class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Decoupler</span></code></a> if the part is a decoupler, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.DockingPort">
+<a class="reference internal" href="#class-DockingPort" title="DockingPort class">DockingPort</a> <code class="descname">DockingPort</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.DockingPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-DockingPort" title="DockingPort class"><code class="xref csharp csharp-type docutils literal"><span class="pre">DockingPort</span></code></a> if the part is a docking port, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Engine">
+<a class="reference internal" href="#class-Engine" title="Engine class">Engine</a> <code class="descname">Engine</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="#class-Engine" title="Engine class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Engine</span></code></a> if the part is an engine, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.LandingGear">
+<a class="reference internal" href="#class-LandingGear" title="LandingGear class">LandingGear</a> <code class="descname">LandingGear</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.LandingGear" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-LandingGear" title="LandingGear class"><code class="xref csharp csharp-type docutils literal"><span class="pre">LandingGear</span></code></a> if the part is a landing gear , otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.LandingLeg">
+<a class="reference internal" href="#class-LandingLeg" title="LandingLeg class">LandingLeg</a> <code class="descname">LandingLeg</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.LandingLeg" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-LandingLeg" title="LandingLeg class"><code class="xref csharp csharp-type docutils literal"><span class="pre">LandingLeg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.LaunchClamp">
+<a class="reference internal" href="#class-LaunchClamp" title="LaunchClamp class">LaunchClamp</a> <code class="descname">LaunchClamp</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.LaunchClamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-LaunchClamp" title="LaunchClamp class"><code class="xref csharp csharp-type docutils literal"><span class="pre">LaunchClamp</span></code></a> if the part is a launch clamp, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Light">
+<a class="reference internal" href="#class-Light" title="Light class">Light</a> <code class="descname">Light</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Light" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Light" title="Light class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Light</span></code></a> if the part is a light, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Parachute">
+<a class="reference internal" href="#class-Parachute" title="Parachute class">Parachute</a> <code class="descname">Parachute</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Parachute" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Parachute" title="Parachute class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Parachute</span></code></a> if the part is a parachute, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Radiator">
+<a class="reference internal" href="#class-Radiator" title="Radiator class">Radiator</a> <code class="descname">Radiator</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Radiator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Radiator" title="Radiator class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Radiator</span></code></a> if the part is a radiator, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ReactionWheel">
+<a class="reference internal" href="#class-ReactionWheel" title="ReactionWheel class">ReactionWheel</a> <code class="descname">ReactionWheel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ReactionWheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-ReactionWheel" title="ReactionWheel class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReactionWheel</span></code></a> if the part is a reaction wheel, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ResourceConverter">
+<a class="reference internal" href="#class-ResourceConverter" title="ResourceConverter class">ResourceConverter</a> <code class="descname">ResourceConverter</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ResourceConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-ResourceConverter" title="ResourceConverter class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ResourceConverter</span></code></a> if the part is a resource converter, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ResourceHarvester">
+<a class="reference internal" href="#class-ResourceHarvester" title="ResourceHarvester class">ResourceHarvester</a> <code class="descname">ResourceHarvester</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ResourceHarvester" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-ResourceHarvester" title="ResourceHarvester class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ResourceHarvester</span></code></a> if the part is a resource harvester, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Sensor">
+<a class="reference internal" href="#class-Sensor" title="Sensor class">Sensor</a> <code class="descname">Sensor</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Sensor" title="Sensor class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Sensor</span></code></a> if the part is a sensor, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.SolarPanel">
+<a class="reference internal" href="#class-SolarPanel" title="SolarPanel class">SolarPanel</a> <code class="descname">SolarPanel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.SolarPanel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-SolarPanel" title="SolarPanel class"><code class="xref csharp csharp-type docutils literal"><span class="pre">SolarPanel</span></code></a> if the part is a solar panel, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Part.Position">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Position</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Part.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the part in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Part.Direction">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Direction</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Part.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction of the part in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Part.Velocity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Velocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Part.Velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The velocity of the part in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Part.Rotation">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Rotation</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Part.Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotation of the part in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.ReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to this part.</p>
+<ul class="simple">
+<li>The origin is at the position of the part.</li>
+<li>The axes rotate with the part.</li>
+<li>The x, y and z axis directions depend on the design of the part.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+for the docking port, returned by <a class="reference internal" href="#property-DockingPort.ReferenceFrame" title="DockingPort.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">DockingPort.ReferenceFrame</span></code></a>.</p>
+</div>
+<div class="figure align-center" id="id3">
+<img alt="../../../_images/part.png" src="../../../_images/part.png" />
+<p class="caption"><span class="caption-text">Mk1 Command Pod reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module">
+<h2><a class="toc-backref" href="#id15">Module</a><a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="class-Module">
+<code class="descname">class Module</code><a class="headerlink" href="#class-Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>In KSP, each part has zero or more
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES">PartModules</a>
+associated with it. Each one contains some of the functionality of the part.
+For example, an engine has a &#8220;ModuleEngines&#8221; PartModule that contains all the
+functionality of an engine.
+This class allows you to interact with KSPs PartModules, and any PartModules
+that have been added by other mods.</p>
+<dl class="property">
+<dt id="property-Module.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Module.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the PartModule. For example, &#8220;ModuleEngines&#8221;.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Module.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Module.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that contains this module.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Module.Fields">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/s4ys34ea.aspx" title="System.Collections.Generic.IDictionary">IDictionary</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Fields</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Module.Fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>The modules field names and their associated values, as a dictionary.
+These are the values visible in the right-click menu of the part.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.HasField">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasField</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.HasField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the module has a field with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; Name of the field.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.GetField">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">GetField</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.GetField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; Name of the field.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Module.Events">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Events</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Module.Events" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of the names of all of the modules events. Events are the clickable buttons
+visible in the right-click menu of the part.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.HasEvent">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasEvent</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.HasEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the module has an event with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.TriggerEvent">
+void <code class="descname">TriggerEvent</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.TriggerEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Module.Actions">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Actions</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Module.Actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the names of the modules actions. These are the parts actions that can be assigned
+to action groups in the in-game editor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.HasAction">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasAction</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.HasAction" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the part has an action with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Module.SetAction">
+void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>value</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Module.SetAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of an action with the given name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="specific-types-of-part">
+<h2><a class="toc-backref" href="#id16">Specific Types of Part</a><a class="headerlink" href="#specific-types-of-part" title="Permalink to this headline">¶</a></h2>
+<p>The following classes provide functionality for specific types of part.</p>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#decoupler" id="id36">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id37">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id38">Engine</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id39">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id40">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id41">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id42">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id43">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id44">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id45">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id46">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id47">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id48">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id49">Solar Panel</a></li>
+</ul>
+</div>
+<div class="section" id="decoupler">
+<h3><a class="toc-backref" href="#id36">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Decoupler">
+<code class="descname">class Decoupler</code><a class="headerlink" href="#class-Decoupler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Decoupler" title="Part.Decoupler property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Decoupler</span></code></a></p>
+<dl class="property">
+<dt id="property-Decoupler.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Decoupler.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this decoupler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Decoupler.Decouple">
+void <code class="descname">Decouple</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Decoupler.Decouple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fires the decoupler. Has no effect if the decoupler has already fired.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Decoupler.Decoupled">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Decoupled</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Decoupler.Decoupled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the decoupler has fired.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Decoupler.Impulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Impulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Decoupler.Impulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The impulse that the decoupler imparts when it is fired, in Newton seconds.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="docking-port">
+<h3><a class="toc-backref" href="#id37">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-DockingPort">
+<code class="descname">class DockingPort</code><a class="headerlink" href="#class-DockingPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.DockingPort" title="Part.DockingPort property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.DockingPort</span></code></a></p>
+<dl class="property">
+<dt id="property-DockingPort.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this docking port.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-DockingPort.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The port name of the docking port. This is the name of the port that can be set
+in the right click menu, when the
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/43901">Docking Port Alignment Indicator</a>
+mod is installed. If this mod is not installed, returns the title of the part
+(<a class="reference internal" href="#property-Part.Title" title="Part.Title property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Title</span></code></a>).</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.State">
+<a class="reference internal" href="#enum-DockingPortState" title="DockingPortState enum">DockingPortState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the docking port.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.DockedPart">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">DockedPart</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.DockedPart" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that this docking port is docked to. Returns <code class="docutils literal"><span class="pre">null</span></code> if this
+docking port is not docked to anything.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-DockingPort.Undock">
+<a class="reference internal" href="vessel.html#class-Vessel" title="Vessel class">Vessel</a> <code class="descname">Undock</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-DockingPort.Undock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undocks the docking port and returns the vessel that was undocked from.
+After undocking, the active vessel may change (<code class="xref csharp csharp-prop docutils literal"><span class="pre">ActiveVessel</span></code>).
+This method can be called for either docking port in a docked pair - both calls will have the same
+effect. Returns <code class="docutils literal"><span class="pre">null</span></code> if the docking port is not docked to anything.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.ReengageDistance">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ReengageDistance</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.ReengageDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distance a docking port must move away when it undocks before it
+becomes ready to dock with another port, in meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.HasShield">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasShield</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.HasShield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the docking port has a shield.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.Shielded">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Shielded</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-DockingPort.Shielded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the docking ports shield, if it has one.
+Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
+closed. Otherwise returns <code class="docutils literal"><span class="pre">false</span></code>. When set to <code class="docutils literal"><span class="pre">true</span></code>, the shield is
+closed, and when set to <code class="docutils literal"><span class="pre">false</span></code> the shield is opened. If the docking
+port does not have a shield, setting this attribute has no effect.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-DockingPort.Position">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Position</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-DockingPort.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the docking port in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-DockingPort.Direction">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Direction</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-DockingPort.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction that docking port points in, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-DockingPort.Rotation">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Rotation</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-DockingPort.Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotation of the docking port, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-DockingPort.ReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-DockingPort.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to this docking port, and
+oriented with the port.</p>
+<ul class="simple">
+<li>The origin is at the position of the docking port.</li>
+<li>The axes rotate with the docking port.</li>
+<li>The x-axis points out to the right side of the docking port.</li>
+<li>The y-axis points in the direction the docking port is facing.</li>
+<li>The z-axis points out of the bottom off the docking port.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This reference frame is not necessarily equivalent to the reference frame
+for the part, returned by <a class="reference internal" href="#property-Part.ReferenceFrame" title="Part.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.ReferenceFrame</span></code></a>.</p>
+</div>
+<div class="figure align-center" id="id4">
+<img alt="../../../_images/docking-port.png" src="../../../_images/docking-port.png" />
+<p class="caption"><span class="caption-text">Docking port reference frame origin and axes</span></p>
+</div>
+<div class="figure align-center" id="id5">
+<img alt="../../../_images/docking-port-inline.png" src="../../../_images/docking-port-inline.png" />
+<p class="caption"><span class="caption-text">Inline docking port reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-DockingPortState">
+<code class="descname">enum DockingPortState</code><a class="headerlink" href="#enum-DockingPortState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-DockingPort.State" title="DockingPort.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">DockingPort.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-DockingPortState.Ready">
+<code class="descname">Ready</code><a class="headerlink" href="#value-DockingPortState.Ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking port is ready to dock to another docking port.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-DockingPortState.Docked">
+<code class="descname">Docked</code><a class="headerlink" href="#value-DockingPortState.Docked" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking port is docked to another docking port, or docked to
+another part (from the VAB/SPH).</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-DockingPortState.Docking">
+<code class="descname">Docking</code><a class="headerlink" href="#value-DockingPortState.Docking" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking port is very close to another docking port,
+but has not docked. It is using magnetic force to acquire a solid dock.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-DockingPortState.Undocking">
+<code class="descname">Undocking</code><a class="headerlink" href="#value-DockingPortState.Undocking" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking port has just been undocked from another docking port,
+and is disabled until it moves away by a sufficient distance
+(<a class="reference internal" href="#property-DockingPort.ReengageDistance" title="DockingPort.ReengageDistance property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">DockingPort.ReengageDistance</span></code></a>).</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-DockingPortState.Shielded">
+<code class="descname">Shielded</code><a class="headerlink" href="#value-DockingPortState.Shielded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking port has a shield, and the shield is closed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-DockingPortState.Moving">
+<code class="descname">Moving</code><a class="headerlink" href="#value-DockingPortState.Moving" title="Permalink to this definition">¶</a></dt>
+<dd><p>The docking ports shield is currently opening/closing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="engine">
+<h3><a class="toc-backref" href="#id38">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Engine">
+<code class="descname">class Engine</code><a class="headerlink" href="#class-Engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Engine" title="Part.Engine property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Engine</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Engine.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this engine.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine is active. Setting this attribute may have no effect,
+depending on <a class="reference internal" href="#property-Engine.CanShutdown" title="Engine.CanShutdown property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.CanShutdown</span></code></a> and <a class="reference internal" href="#property-Engine.CanRestart" title="Engine.CanRestart property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.CanRestart</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Thrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Thrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Thrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of thrust being produced by the engine, in
+Newtons. Returns zero if the engine is not active or if it has no fuel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.AvailableThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">AvailableThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.AvailableThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum available amount of thrust that can be produced by the
+engine, in Newtons. This takes <a class="reference internal" href="#property-Engine.ThrustLimit" title="Engine.ThrustLimit property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.ThrustLimit</span></code></a> into account,
+and is the amount of thrust produced by the engine when activated and the
+main throttle is set to 100%. Returns zero if the engine does not have any fuel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.MaxThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">MaxThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.MaxThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the maximum amount of thrust that can be produced by the engine, in
+Newtons. This is the amount of thrust produced by the engine when
+activated, <a class="reference internal" href="#property-Engine.ThrustLimit" title="Engine.ThrustLimit property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.ThrustLimit</span></code></a> is set to 100% and the main vessel&#8217;s
+throttle is set to 100%.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.MaxVacuumThrust">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">MaxVacuumThrust</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.MaxVacuumThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum amount of thrust that can be produced by the engine in a
+vacuum, in Newtons. This is the amount of thrust produced by the engine
+when activated, <a class="reference internal" href="#property-Engine.ThrustLimit" title="Engine.ThrustLimit property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Engine.ThrustLimit</span></code></a> is set to 100%, the main
+vessel&#8217;s throttle is set to 100% and the engine is in a vacuum.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.ThrustLimit">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThrustLimit</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.ThrustLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The thrust limiter of the engine. A value between 0 and 1. Setting this
+attribute may have no effect, for example the thrust limit for a solid
+rocket booster cannot be changed in flight.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.SpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.SpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current specific impulse of the engine, in seconds. Returns zero
+if the engine is not active.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.VacuumSpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">VacuumSpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.VacuumSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vacuum specific impulse of the engine, in seconds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.KerbinSeaLevelSpecificImpulse">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">KerbinSeaLevelSpecificImpulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.KerbinSeaLevelSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The specific impulse of the engine at sea level on Kerbin, in seconds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Propellants">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Propellants</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Propellants" title="Permalink to this definition">¶</a></dt>
+<dd><p>The names of resources that the engine consumes.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.PropellantRatios">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/s4ys34ea.aspx" title="System.Collections.Generic.IDictionary">IDictionary</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a>&gt; <code class="descname">PropellantRatios</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.PropellantRatios" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ratios of resources that the engine consumes. A dictionary mapping resource names
+to the ratios at which they are consumed by the engine.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.HasFuel">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasFuel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.HasFuel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine has run out of fuel (or flamed out).</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Throttle">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Throttle</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Throttle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current throttle setting for the engine. A value between 0 and 1.
+This is not necessarily the same as the vessel&#8217;s main throttle
+setting, as some engines take time to adjust their throttle
+(such as jet engines).</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.ThrottleLocked">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">ThrottleLocked</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.ThrottleLocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the <a class="reference internal" href="control.html#property-Control.Throttle" title="Control.Throttle property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Control.Throttle</span></code></a> affects the engine. For example,
+this is <code class="docutils literal"><span class="pre">true</span></code> for liquid fueled rockets, and <code class="docutils literal"><span class="pre">false</span></code> for solid rocket
+boosters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.CanRestart">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">CanRestart</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.CanRestart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine can be restarted once shutdown. If the engine cannot be shutdown,
+returns <code class="docutils literal"><span class="pre">false</span></code>. For example, this is <code class="docutils literal"><span class="pre">true</span></code> for liquid fueled rockets
+and <code class="docutils literal"><span class="pre">false</span></code> for solid rocket boosters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.CanShutdown">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">CanShutdown</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.CanShutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets whether the engine can be shutdown once activated. For example, this is
+<code class="docutils literal"><span class="pre">true</span></code> for liquid fueled rockets and <code class="docutils literal"><span class="pre">false</span></code> for solid rocket boosters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Gimballed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Gimballed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Gimballed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine nozzle is gimballed, i.e. can provide a turning force.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.GimbalRange">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">GimbalRange</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.GimbalRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>The range over which the gimbal can move, in degrees.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.GimbalLocked">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">GimbalLocked</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.GimbalLocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engines gimbal is locked in place. Setting this attribute has
+no effect if the engine is not gimballed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.GimbalLimit">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">GimbalLimit</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.GimbalLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The gimbal limiter of the engine. A value between 0 and 1. Returns 0 if the
+gimbal is locked or the engine is not gimballed. Setting this attribute has
+no effect if the engine is not gimballed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="landing-gear">
+<h3><a class="toc-backref" href="#id39">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-LandingGear">
+<code class="descname">class LandingGear</code><a class="headerlink" href="#class-LandingGear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.LandingGear" title="Part.LandingGear property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.LandingGear</span></code></a>.</p>
+<dl class="property">
+<dt id="property-LandingGear.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingGear.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this landing gear.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-LandingGear.State">
+<a class="reference internal" href="#enum-LandingGearState" title="LandingGearState enum">LandingGearState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingGear.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current state of the landing gear.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-LandingGear.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-LandingGear.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the landing gear is deployed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-LandingGearState">
+<code class="descname">enum LandingGearState</code><a class="headerlink" href="#enum-LandingGearState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-LandingGear.State" title="LandingGear.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">LandingGear.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-LandingGearState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-LandingGearState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing gear is fully deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingGearState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-LandingGearState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing gear is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingGearState.Deploying">
+<code class="descname">Deploying</code><a class="headerlink" href="#value-LandingGearState.Deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing gear is being deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingGearState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-LandingGearState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing gear is being retracted.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="landing-leg">
+<h3><a class="toc-backref" href="#id40">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-LandingLeg">
+<code class="descname">class LandingLeg</code><a class="headerlink" href="#class-LandingLeg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.LandingLeg" title="Part.LandingLeg property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.LandingLeg</span></code></a>.</p>
+<dl class="property">
+<dt id="property-LandingLeg.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingLeg.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this landing leg.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-LandingLeg.State">
+<a class="reference internal" href="#enum-LandingLegState" title="LandingLegState enum">LandingLegState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingLeg.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the landing leg.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-LandingLeg.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-LandingLeg.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the landing leg is deployed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-LandingLegState">
+<code class="descname">enum LandingLegState</code><a class="headerlink" href="#enum-LandingLegState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-LandingLeg.State" title="LandingLeg.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">LandingLeg.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-LandingLegState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-LandingLegState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is fully deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingLegState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-LandingLegState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingLegState.Deploying">
+<code class="descname">Deploying</code><a class="headerlink" href="#value-LandingLegState.Deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is being deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingLegState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-LandingLegState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is being retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingLegState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-LandingLegState.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is broken.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-LandingLegState.Repairing">
+<code class="descname">Repairing</code><a class="headerlink" href="#value-LandingLegState.Repairing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Landing leg is being repaired.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="launch-clamp">
+<h3><a class="toc-backref" href="#id41">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-LaunchClamp">
+<code class="descname">class LaunchClamp</code><a class="headerlink" href="#class-LaunchClamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.LaunchClamp" title="Part.LaunchClamp property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.LaunchClamp</span></code></a>.</p>
+<dl class="property">
+<dt id="property-LaunchClamp.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LaunchClamp.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this launch clamp.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-LaunchClamp.Release">
+void <code class="descname">Release</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-LaunchClamp.Release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Releases the docking clamp. Has no effect if the clamp has already been released.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="light">
+<h3><a class="toc-backref" href="#id42">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Light">
+<code class="descname">class Light</code><a class="headerlink" href="#class-Light" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Light" title="Part.Light property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Light</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Light.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Light.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this light.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Light.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Light.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the light is switched on.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Light.PowerUsage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PowerUsage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Light.PowerUsage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current power usage, in units of charge per second.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="parachute">
+<h3><a class="toc-backref" href="#id43">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Parachute">
+<code class="descname">class Parachute</code><a class="headerlink" href="#class-Parachute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Parachute" title="Part.Parachute property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Parachute</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Parachute.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parachute.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this parachute.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Parachute.Deploy">
+void <code class="descname">Deploy</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Parachute.Deploy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deploys the parachute. This has no effect if the parachute has already
+been deployed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parachute.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parachute.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parachute has been deployed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parachute.State">
+<a class="reference internal" href="#enum-ParachuteState" title="ParachuteState enum">ParachuteState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parachute.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the parachute.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parachute.DeployAltitude">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DeployAltitude</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Parachute.DeployAltitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude at which the parachute will full deploy, in meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parachute.DeployMinPressure">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DeployMinPressure</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Parachute.DeployMinPressure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-ParachuteState">
+<code class="descname">enum ParachuteState</code><a class="headerlink" href="#enum-ParachuteState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-Parachute.State" title="Parachute.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Parachute.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-ParachuteState.Stowed">
+<code class="descname">Stowed</code><a class="headerlink" href="#value-ParachuteState.Stowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is safely tucked away inside its housing.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ParachuteState.Active">
+<code class="descname">Active</code><a class="headerlink" href="#value-ParachuteState.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is still stowed, but ready to semi-deploy.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ParachuteState.SemiDeployed">
+<code class="descname">SemiDeployed</code><a class="headerlink" href="#value-ParachuteState.SemiDeployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute has been deployed and is providing some drag,
+but is not fully deployed yet.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ParachuteState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-ParachuteState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is fully deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ParachuteState.Cut">
+<code class="descname">Cut</code><a class="headerlink" href="#value-ParachuteState.Cut" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute has been cut.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="radiator">
+<h3><a class="toc-backref" href="#id44">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Radiator">
+<code class="descname">class Radiator</code><a class="headerlink" href="#class-Radiator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Radiator" title="Part.Radiator property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Radiator</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Radiator.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Radiator.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this radiator.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Radiator.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Radiator.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the radiator is extended.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Radiator.State">
+<a class="reference internal" href="#enum-RadiatorState" title="RadiatorState enum">RadiatorState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Radiator.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the radiator.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-RadiatorState">
+<code class="descname">enum RadiatorState</code><a class="headerlink" href="#enum-RadiatorState" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#enum-RadiatorState" title="RadiatorState enum"><code class="xref csharp csharp-type docutils literal"><span class="pre">RadiatorState</span></code></a></p>
+<dl class="value">
+<dt id="value-RadiatorState.Extended">
+<code class="descname">Extended</code><a class="headerlink" href="#value-RadiatorState.Extended" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radiator is fully extended.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-RadiatorState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-RadiatorState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radiator is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-RadiatorState.Extending">
+<code class="descname">Extending</code><a class="headerlink" href="#value-RadiatorState.Extending" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radiator is being extended.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-RadiatorState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-RadiatorState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radiator is being retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-RadiatorState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-RadiatorState.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radiator is being broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="resource-converter">
+<h3><a class="toc-backref" href="#id45">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-ResourceConverter">
+<code class="descname">class ResourceConverter</code><a class="headerlink" href="#class-ResourceConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.ResourceConverter" title="Part.ResourceConverter property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.ResourceConverter</span></code></a>.</p>
+<dl class="property">
+<dt id="property-ResourceConverter.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceConverter.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this converter.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceConverter.Count">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <code class="descname">Count</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceConverter.Count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of converters in the part.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the specified converter is active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Start">
+void <code class="descname">Start</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Stop">
+void <code class="descname">Stop</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.State">
+<a class="reference internal" href="#enum-ResourceConverterState" title="ResourceConverterState enum">ResourceConverterState</a> <code class="descname">State</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.StatusInfo">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">StatusInfo</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.StatusInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status information for the specified converter.
+This is the full status message shown in the in-game UI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Inputs">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Inputs</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the names of resources consumed by the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-ResourceConverter.Outputs">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>&gt; <code class="descname">Outputs</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#method-ResourceConverter.Outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the names of resources produced by the specified converter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> &#8211; Index of the converter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-ResourceConverterState">
+<code class="descname">enum ResourceConverterState</code><a class="headerlink" href="#enum-ResourceConverterState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#method-ResourceConverter.State" title="ResourceConverter.State method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">ResourceConverter.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-ResourceConverterState.Running">
+<code class="descname">Running</code><a class="headerlink" href="#value-ResourceConverterState.Running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converter is running.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ResourceConverterState.Idle">
+<code class="descname">Idle</code><a class="headerlink" href="#value-ResourceConverterState.Idle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converter is idle.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ResourceConverterState.MissingResource">
+<code class="descname">MissingResource</code><a class="headerlink" href="#value-ResourceConverterState.MissingResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converter is missing a required resource.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ResourceConverterState.StorageFull">
+<code class="descname">StorageFull</code><a class="headerlink" href="#value-ResourceConverterState.StorageFull" title="Permalink to this definition">¶</a></dt>
+<dd><p>No available storage for output resource.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ResourceConverterState.Capacity">
+<code class="descname">Capacity</code><a class="headerlink" href="#value-ResourceConverterState.Capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>At preset resource capacity.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-ResourceConverterState.Unknown">
+<code class="descname">Unknown</code><a class="headerlink" href="#value-ResourceConverterState.Unknown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unknown state. Possible with modified resource converters.
+In this case, check <a class="reference internal" href="#method-ResourceConverter.StatusInfo" title="ResourceConverter.StatusInfo method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">ResourceConverter.StatusInfo</span></code></a> for more information.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="resource-harvester">
+<h3><a class="toc-backref" href="#id46">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-ResourceHarvester">
+<code class="descname">class ResourceHarvester</code><a class="headerlink" href="#class-ResourceHarvester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.ResourceHarvester" title="Part.ResourceHarvester property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.ResourceHarvester</span></code></a>.</p>
+<dl class="property">
+<dt id="property-ResourceHarvester.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this harvester.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.State">
+ResourceHarvesterState <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the harvester.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-ResourceHarvester.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the harvester is deployed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-ResourceHarvester.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the harvester is actively drilling.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.ExtractionRate">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ExtractionRate</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.ExtractionRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which the drill is extracting ore, in units per second.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.ThermalEfficiency">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalEfficiency</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.ThermalEfficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>The thermal efficiency of the drill, as a percentage of its maximum.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.CoreTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">CoreTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.CoreTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The core temperature of the drill, in Kelvin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ResourceHarvester.OptimumCoreTemperature">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">OptimumCoreTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ResourceHarvester.OptimumCoreTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The core temperature at which the drill will operate with peak efficiency, in Kelvin.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="reaction-wheel">
+<h3><a class="toc-backref" href="#id47">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-ReactionWheel">
+<code class="descname">class ReactionWheel</code><a class="headerlink" href="#class-ReactionWheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.ReactionWheel" title="Part.ReactionWheel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.ReactionWheel</span></code></a>.</p>
+<dl class="property">
+<dt id="property-ReactionWheel.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ReactionWheel.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this reaction wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ReactionWheel.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-ReactionWheel.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the reaction wheel is active.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ReactionWheel.Broken">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Broken</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ReactionWheel.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the reaction wheel is broken.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ReactionWheel.PitchTorque">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PitchTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ReactionWheel.PitchTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The torque in the pitch axis, in Newton meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ReactionWheel.YawTorque">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">YawTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ReactionWheel.YawTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The torque in the yaw axis, in Newton meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-ReactionWheel.RollTorque">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">RollTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-ReactionWheel.RollTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The torque in the roll axis, in Newton meters.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sensor">
+<h3><a class="toc-backref" href="#id48">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Sensor">
+<code class="descname">class Sensor</code><a class="headerlink" href="#class-Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Sensor" title="Part.Sensor property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Sensor</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Sensor.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Sensor.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this sensor.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Sensor.Active">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Active</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Sensor.Active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the sensor is active.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Sensor.Value">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Value</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Sensor.Value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current value of the sensor.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Sensor.PowerUsage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PowerUsage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Sensor.PowerUsage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current power usage of the sensor, in units of charge per second.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="solar-panel">
+<h3><a class="toc-backref" href="#id49">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-SolarPanel">
+<code class="descname">class SolarPanel</code><a class="headerlink" href="#class-SolarPanel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.SolarPanel" title="Part.SolarPanel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.SolarPanel</span></code></a>.</p>
+<dl class="property">
+<dt id="property-SolarPanel.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SolarPanel.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this solar panel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-SolarPanel.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-SolarPanel.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the solar panel is extended.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-SolarPanel.State">
+<a class="reference internal" href="#enum-SolarPanelState" title="SolarPanelState enum">SolarPanelState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SolarPanel.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the solar panel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-SolarPanel.EnergyFlow">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">EnergyFlow</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SolarPanel.EnergyFlow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of energy being generated by the solar panel, in
+units of charge per second.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-SolarPanel.SunExposure">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SunExposure</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SolarPanel.SunExposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of sunlight that is incident on the solar panel,
+as a percentage. A value between 0 and 1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-SolarPanelState">
+<code class="descname">enum SolarPanelState</code><a class="headerlink" href="#enum-SolarPanelState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-SolarPanel.State" title="SolarPanel.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SolarPanel.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-SolarPanelState.Extended">
+<code class="descname">Extended</code><a class="headerlink" href="#value-SolarPanelState.Extended" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solar panel is fully extended.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SolarPanelState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-SolarPanelState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solar panel is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SolarPanelState.Extending">
+<code class="descname">Extending</code><a class="headerlink" href="#value-SolarPanelState.Extending" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solar panel is being extended.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SolarPanelState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-SolarPanelState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solar panel is being retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SolarPanelState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-SolarPanelState.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solar panel is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="trees-of-parts">
+<span id="csharp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id31">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<p>Vessels in KSP are comprised of a number of parts, connected to one another in a
+<em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
+tree of parts in Figure 2. The craft file for this example can also be
+<a class="reference download internal" href="../../../_downloads/PartsTree.craft"><code class="xref download docutils literal"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
+<div class="figure align-left" id="id6" style="width: 275px">
+<img alt="../../../_images/parts.png" src="../../../_images/parts.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 1</strong> &#8211; Example parts making up a vessel.</span></p>
+</div>
+<div class="figure align-right" id="id7" style="width: 275px">
+<img alt="../../../_images/parts-tree.png" src="../../../_images/parts-tree.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 2</strong> &#8211; Tree of parts for the vessel in Figure 1. Arrows point from
+the parent part to the child part.</span></p>
+</div>
+<div class="clearer container">
+</div>
+<div class="section" id="traversing-the-tree">
+<h3><a class="toc-backref" href="#id32">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<p>The tree of parts can be traversed using the attributes <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Parts.Root</span></code>,
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Parent</span></code> and <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Children</span></code>.</p>
+<p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
+the example above) and can be obtained by calling <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Parts.Root</span></code>.
+A parts children can be obtained by calling <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Children</span></code>.
+If the part does not have any children, <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Children</span></code>
+returns an empty list. A parts parent can be obtained by calling
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Parent</span></code>. If the part does not have a parent
+(as is the case for the root part), <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Parent</span></code>
+returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
+<p>The following C# example uses these attributes to perform a
+depth-first traversal over all of the parts in a vessel:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AttachmentModes</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
+            <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span><span class="p">);</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When this code is execute using the craft file for the example vessel pictured
+above, the following is printed out:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span>
+ <span class="n">TR</span><span class="p">-</span><span class="m">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span>
+  <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span>
+   <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span>
+    <span class="n">TR</span><span class="p">-</span><span class="m">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span>
+     <span class="n">FL</span><span class="p">-</span><span class="n">T800</span> <span class="n">Fuel</span> <span class="n">Tank</span>
+      <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span>
+      <span class="n">TT</span><span class="p">-</span><span class="m">70</span> <span class="n">Radial</span> <span class="n">Decoupler</span>
+       <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span>
+        <span class="n">TT18</span><span class="p">-</span><span class="n">A</span> <span class="n">Launch</span> <span class="n">Stability</span> <span class="n">Enhancer</span>
+        <span class="n">FTX</span><span class="p">-</span><span class="m">2</span> <span class="n">External</span> <span class="n">Fuel</span> <span class="n">Duct</span>
+        <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span>
+        <span class="n">Aerodynamic</span> <span class="n">Nose</span> <span class="n">Cone</span>
+      <span class="n">TT</span><span class="p">-</span><span class="m">70</span> <span class="n">Radial</span> <span class="n">Decoupler</span>
+       <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span>
+        <span class="n">TT18</span><span class="p">-</span><span class="n">A</span> <span class="n">Launch</span> <span class="n">Stability</span> <span class="n">Enhancer</span>
+        <span class="n">FTX</span><span class="p">-</span><span class="m">2</span> <span class="n">External</span> <span class="n">Fuel</span> <span class="n">Duct</span>
+        <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span>
+        <span class="n">Aerodynamic</span> <span class="n">Nose</span> <span class="n">Cone</span>
+   <span class="n">LT</span><span class="p">-</span><span class="m">1</span> <span class="n">Landing</span> <span class="n">Struts</span>
+   <span class="n">LT</span><span class="p">-</span><span class="m">1</span> <span class="n">Landing</span> <span class="n">Struts</span>
+ <span class="n">Mk16</span> <span class="n">Parachute</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="attachment-modes">
+<span id="csharp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id33">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<p>Parts can be attached to other parts either <em>radially</em> (on the side of the
+parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
+<p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
+connected to its parent (the command pod &#8211; part 1), and the landing leg
+(part 5) is <em>radially</em> connected to its parent (the fuel tank &#8211; part 4).</p>
+<p>The root part of a vessel (for example the command pod &#8211; part 1) does not have
+a parent part, so does not have an attachment mode. However, the part is
+consider to be <em>axially</em> attached to nothing.</p>
+<p>The following C# example does a depth-first traversal as before,
+but also prints out the attachment mode used by the part:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AttachmentModes</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
+            <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
+            <span class="kt">string</span> <span class="n">attachMode</span> <span class="p">=</span> <span class="p">(</span><span class="n">part</span><span class="p">.</span><span class="n">AxiallyAttached</span> <span class="p">?</span> <span class="s">&quot;axial&quot;</span> <span class="p">:</span> <span class="s">&quot;radial&quot;</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span> <span class="p">+</span> <span class="s">&quot; - &quot;</span> <span class="p">+</span> <span class="n">attachMode</span><span class="p">);</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When this code is execute using the craft file for the example vessel pictured
+above, the following is printed out:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span> <span class="p">-</span> <span class="n">axial</span>
+ <span class="n">TR</span><span class="p">-</span><span class="m">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span> <span class="p">-</span> <span class="n">axial</span>
+  <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span> <span class="p">-</span> <span class="n">axial</span>
+   <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span> <span class="p">-</span> <span class="n">axial</span>
+    <span class="n">TR</span><span class="p">-</span><span class="m">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span> <span class="p">-</span> <span class="n">axial</span>
+     <span class="n">FL</span><span class="p">-</span><span class="n">T800</span> <span class="n">Fuel</span> <span class="n">Tank</span> <span class="p">-</span> <span class="n">axial</span>
+      <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span> <span class="p">-</span> <span class="n">axial</span>
+      <span class="n">TT</span><span class="p">-</span><span class="m">70</span> <span class="n">Radial</span> <span class="n">Decoupler</span> <span class="p">-</span> <span class="n">radial</span>
+       <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">TT18</span><span class="p">-</span><span class="n">A</span> <span class="n">Launch</span> <span class="n">Stability</span> <span class="n">Enhancer</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">FTX</span><span class="p">-</span><span class="m">2</span> <span class="n">External</span> <span class="n">Fuel</span> <span class="n">Duct</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span> <span class="p">-</span> <span class="n">axial</span>
+        <span class="n">Aerodynamic</span> <span class="n">Nose</span> <span class="n">Cone</span> <span class="p">-</span> <span class="n">axial</span>
+      <span class="n">TT</span><span class="p">-</span><span class="m">70</span> <span class="n">Radial</span> <span class="n">Decoupler</span> <span class="p">-</span> <span class="n">radial</span>
+       <span class="n">FL</span><span class="p">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">TT18</span><span class="p">-</span><span class="n">A</span> <span class="n">Launch</span> <span class="n">Stability</span> <span class="n">Enhancer</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">FTX</span><span class="p">-</span><span class="m">2</span> <span class="n">External</span> <span class="n">Fuel</span> <span class="n">Duct</span> <span class="p">-</span> <span class="n">radial</span>
+        <span class="n">LV</span><span class="p">-</span><span class="m">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span> <span class="p">-</span> <span class="n">axial</span>
+        <span class="n">Aerodynamic</span> <span class="n">Nose</span> <span class="n">Cone</span> <span class="p">-</span> <span class="n">axial</span>
+   <span class="n">LT</span><span class="p">-</span><span class="m">1</span> <span class="n">Landing</span> <span class="n">Struts</span> <span class="p">-</span> <span class="n">radial</span>
+   <span class="n">LT</span><span class="p">-</span><span class="m">1</span> <span class="n">Landing</span> <span class="n">Struts</span> <span class="p">-</span> <span class="n">radial</span>
+ <span class="n">Mk16</span> <span class="n">Parachute</span> <span class="p">-</span> <span class="n">axial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fuel-lines">
+<span id="csharp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id34">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id8" style="width: 200px">
+<img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
+parts highlighted in green, into the part highlighted in blue.</span></p>
+</div>
+<div class="figure align-right" id="id9" style="width: 200px">
+<img alt="../../../_images/parts-fuel-lines-tree.png" src="../../../_images/parts-fuel-lines-tree.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 4</strong> &#8211; A subset of the parts tree from Figure 2 above.</span></p>
+</div>
+<p>Fuel lines are considered parts, and are included in the parts tree (for
+example, as pictured in Figure 4). However, the parts tree does not contain
+information about which parts fuel lines connect to. The parent part of a fuel
+line is the part from which it will take fuel (as shown in Figure 4) however the
+part that it will send fuel to is not represented in the parts tree.</p>
+<p>Figure 5 shows the fuel lines from the example vessel pictured earlier. Fuel
+line part 15 (in red) takes fuel from a fuel tank (part 11 &#8211; in green) and
+feeds it into another fuel tank (part 9 &#8211; in blue). The fuel line is therefore
+a child of part 11, but its connection to part 9 is not represented in the tree.</p>
+<p>The attributes <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.FuelLinesFrom</span></code> and
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.FuelLinesTo</span></code> can be used to discover these
+connections. In the example in Figure 5, when
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.FuelLinesTo</span></code> is called on fuel tank part
+11, it will return a list of parts containing just fuel tank part 9 (the blue
+part). When <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.FuelLinesFrom</span></code> is called on
+fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
+(the parts colored green).</p>
+</div>
+<div class="section" id="staging">
+<span id="csharp-api-parts-staging"></span><h2><a class="toc-backref" href="#id35">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right" id="id10" style="width: 340px">
+<img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
+</div>
+<p>Each part has two staging numbers associated with it: the stage in which the
+part is <em>activated</em> and the stage in which the part is <em>decoupled</em>. These values
+can be obtained using <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Stage</span></code> and
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.DecoupleStage</span></code> respectively. For parts that
+are not activated by staging, <code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.Stage</span></code> returns
+-1. For parts that are never decoupled,
+<code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.Part.DecoupleStage</span></code> returns a value of -1.</p>
+<p>Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
+stages in which each part of the vessel will be <em>activated</em>. Figure 8 shows the
+stages in which each part of the vessel will be <em>decoupled</em>.</p>
+<div class="clearer container">
+</div>
+<div class="figure align-left" id="id11" style="width: 250px">
+<img alt="../../../_images/parts-staging-activate.png" src="../../../_images/parts-staging-activate.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 7</strong> &#8211; The stage in which each part is <em>activated</em>.</span></p>
+</div>
+<div class="figure align-right" id="id12" style="width: 250px">
+<img alt="../../../_images/parts-staging-decouple.png" src="../../../_images/parts-staging-decouple.png" />
+<p class="caption"><span class="caption-text"><strong>Figure 8</strong> &#8211; The stage in which each part is <em>decoupled</em>.</span></p>
+</div>
+<div class="clearer container">
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="control.html" class="btn btn-neutral" title="Control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

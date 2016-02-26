@@ -1,0 +1,256 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+Control
+=======
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Control
+
+   Used to manipulate the controls of a vessel. This includes adjusting the
+   throttle, enabling/disabling systems such as SAS and RCS, or altering the
+   direction in which the vessel is pointing.
+
+   .. note::
+
+      Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+      that have set one or more of these inputs are no longer connected.
+
+   .. function:: bool sas()
+   .. function:: void set_sas(bool value)
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :func:`AutoPilot::sas`
+
+   .. function:: SASMode sas_mode()
+   .. function:: void set_sas_mode(SASMode value)
+
+      The current :enum:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :func:`AutoPilot::sas_mode`
+
+   .. function:: SpeedMode speed_mode()
+   .. function:: void set_speed_mode(SpeedMode value)
+
+      The current :enum:`SpeedMode` of the navball.
+      This is the mode displayed next to the speed at the top of the navball.
+
+   .. function:: bool rcs()
+   .. function:: void set_rcs(bool value)
+
+      The state of RCS.
+
+   .. function:: bool gear()
+   .. function:: void set_gear(bool value)
+
+      The state of the landing gear/legs.
+
+   .. function:: bool lights()
+   .. function:: void set_lights(bool value)
+
+      The state of the lights.
+
+   .. function:: bool brakes()
+   .. function:: void set_brakes(bool value)
+
+      The state of the wheel brakes.
+
+   .. function:: bool abort()
+   .. function:: void set_abort(bool value)
+
+      The state of the abort action group.
+
+   .. function:: float throttle()
+   .. function:: void set_throttle(float value)
+
+      The state of the throttle. A value between 0 and 1.
+
+   .. function:: float pitch()
+   .. function:: void set_pitch(float value)
+
+      The state of the pitch control.
+      A value between -1 and 1.
+      Equivalent to the w and s keys.
+
+   .. function:: float yaw()
+   .. function:: void set_yaw(float value)
+
+      The state of the yaw control.
+      A value between -1 and 1.
+      Equivalent to the a and d keys.
+
+   .. function:: float roll()
+   .. function:: void set_roll(float value)
+
+      The state of the roll control.
+      A value between -1 and 1.
+      Equivalent to the q and e keys.
+
+   .. function:: float forward()
+   .. function:: void set_forward(float value)
+
+      The state of the forward translational control.
+      A value between -1 and 1.
+      Equivalent to the h and n keys.
+
+   .. function:: float up()
+   .. function:: void set_up(float value)
+
+      The state of the up translational control.
+      A value between -1 and 1.
+      Equivalent to the i and k keys.
+
+   .. function:: float right()
+   .. function:: void set_right(float value)
+
+      The state of the right translational control.
+      A value between -1 and 1.
+      Equivalent to the j and l keys.
+
+   .. function:: float wheel_throttle()
+   .. function:: void set_wheel_throttle(float value)
+
+      The state of the wheel throttle.
+      A value between -1 and 1.
+      A value of 1 rotates the wheels forwards, a value of -1 rotates
+      the wheels backwards.
+
+   .. function:: float wheel_steering()
+   .. function:: void set_wheel_steering(float value)
+
+      The state of the wheel steering.
+      A value between -1 and 1.
+      A value of 1 steers to the left, and a value of -1 steers to the right.
+
+   .. function:: int32 current_stage()
+
+      The current stage of the vessel. Corresponds to the stage number in
+      the in-game UI.
+
+   .. function:: std::vector<Vessel> activate_next_stage()
+
+      Activates the next stage. Equivalent to pressing the space bar in-game.
+
+
+      :returns: A list of vessel objects that are jettisoned from the active vessel.
+
+   .. function:: bool get_action_group(uint32 group)
+
+      Returns ``true`` if the given action group is enabled.
+
+      :Parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. function:: void set_action_group(uint32 group, bool state)
+
+      Sets the state of the given action group (a value between 0 and 9
+      inclusive).
+
+      :Parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. function:: void toggle_action_group(uint32 group)
+
+      Toggles the state of the given action group.
+
+      :Parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. function:: Node add_node(double ut, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
+
+      Creates a maneuver node at the given universal time, and returns a
+      :class:`Node` object that can be used to modify it.
+      Optionally sets the magnitude of the delta-v for the maneuver node
+      in the prograde, normal and radial directions.
+
+      :Parameters:
+
+       * **ut** -- Universal time of the maneuver node.
+       * **prograde** -- Delta-v in the prograde direction.
+       * **normal** -- Delta-v in the normal direction.
+       * **radial** -- Delta-v in the radial direction.
+
+   .. function:: std::vector<Node> nodes()
+
+      Returns a list of all existing maneuver nodes, ordered by time from first to last.
+
+   .. function:: void remove_nodes()
+
+      Remove all maneuver nodes.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: SASMode
+
+   The behavior of the SAS auto-pilot. See :func:`AutoPilot::sas_mode`.
+
+   .. enumerator:: stability_assist
+
+      Stability assist mode. Dampen out any rotation.
+
+   .. enumerator:: maneuver
+
+      Point in the burn direction of the next maneuver node.
+
+   .. enumerator:: prograde
+
+      Point in the prograde direction.
+
+   .. enumerator:: retrograde
+
+      Point in the retrograde direction.
+
+   .. enumerator:: normal
+
+      Point in the orbit normal direction.
+
+   .. enumerator:: anti_normal
+
+      Point in the orbit anti-normal direction.
+
+   .. enumerator:: radial
+
+      Point in the orbit radial direction.
+
+   .. enumerator:: anti_radial
+
+      Point in the orbit anti-radial direction.
+
+   .. enumerator:: target
+
+      Point in the direction of the current target.
+
+   .. enumerator:: anti_target
+
+      Point away from the current target.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: SpeedMode
+
+   See :func:`Control::speed_mode`.
+
+   .. enumerator:: orbit
+
+      Speed is relative to the vessel's orbit.
+
+   .. enumerator:: surface
+
+      Speed is relative to the surface of the body being orbited.
+
+   .. enumerator:: target
+
+      Speed is relative to the current target.

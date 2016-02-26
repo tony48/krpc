@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CelestialBody &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Flight" href="flight.html"/>
+        <link rel="prev" title="Vessel" href="vessel.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../csharp.html">C#</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>CelestialBody</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/csharp/api/space-center/celestial-body.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="celestialbody">
+<h1>CelestialBody<a class="headerlink" href="#celestialbody" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="class-CelestialBody">
+<code class="descname">class CelestialBody</code><a class="headerlink" href="#class-CelestialBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a celestial body (such as a planet or moon).</p>
+<dl class="property">
+<dt id="property-CelestialBody.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the body.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.Satellites">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-CelestialBody" title="CelestialBody class">CelestialBody</a>&gt; <code class="descname">Satellites</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.Satellites" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of celestial bodies that are in orbit around this celestial body.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.Orbit">
+<a class="reference internal" href="orbit.html#class-Orbit" title="Orbit class">Orbit</a> <code class="descname">Orbit</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbit of the body.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.Mass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Mass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.Mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass of the body, in kilograms.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.GravitationalParameter">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">GravitationalParameter</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.GravitationalParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Standard_gravitational_parameter">standard gravitational parameter</a> of the body in <span class="math">\(m^3s^{-2}\)</span>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.SurfaceGravity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SurfaceGravity</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.SurfaceGravity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The acceleration due to gravity at sea level (mean altitude) on the body, in <span class="math">\(m/s^2\)</span>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.RotationalPeriod">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">RotationalPeriod</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.RotationalPeriod" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sidereal rotational period of the body, in seconds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.RotationalSpeed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">RotationalSpeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.RotationalSpeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotational speed of the body, in radians per second.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.EquatorialRadius">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">EquatorialRadius</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.EquatorialRadius" title="Permalink to this definition">¶</a></dt>
+<dd><p>The equatorial radius of the body, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.SurfaceHeight">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">SurfaceHeight</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>latitude</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.SurfaceHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the surface relative to mean sea level at the given position,
+in meters. When over water this is equal to 0.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> &#8211; Latitude in degrees</li>
+<li><strong>longitude</strong> &#8211; Longitude in degrees</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.BedrockHeight">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">BedrockHeight</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>latitude</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.BedrockHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the surface relative to mean sea level at the given position,
+in meters. When over water, this is the height of the sea-bed and is therefore a
+negative value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> &#8211; Latitude in degrees</li>
+<li><strong>longitude</strong> &#8211; Longitude in degrees</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.MSLPosition">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">MSLPosition</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>latitude</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>longitude</em>, <a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.MSLPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at mean sea level at the given latitude and longitude, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> &#8211; Latitude in degrees</li>
+<li><strong>longitude</strong> &#8211; Longitude in degrees</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame for the returned position vector</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.SurfacePosition">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">SurfacePosition</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>latitude</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>longitude</em>, <a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.SurfacePosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the surface at the given latitude and longitude, in the given
+reference frame. When over water, this is the position of the surface of the water.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> &#8211; Latitude in degrees</li>
+<li><strong>longitude</strong> &#8211; Longitude in degrees</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame for the returned position vector</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.BedrockPosition">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">BedrockPosition</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>latitude</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>longitude</em>, <a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.BedrockPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the surface at the given latitude and longitude, in the given
+reference frame. When over water, this is the position at the bottom of the sea-bed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> &#8211; Latitude in degrees</li>
+<li><strong>longitude</strong> &#8211; Longitude in degrees</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame for the returned position vector</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.SphereOfInfluence">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SphereOfInfluence</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.SphereOfInfluence" title="Permalink to this definition">¶</a></dt>
+<dd><p>The radius of the sphere of influence of the body, in meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.HasAtmosphere">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasAtmosphere</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.HasAtmosphere" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the body has an atmosphere.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.AtmosphereDepth">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">AtmosphereDepth</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.AtmosphereDepth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The depth of the atmosphere, in meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.HasAtmosphericOxygen">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasAtmosphericOxygen</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.HasAtmosphericOxygen" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if there is oxygen in the atmosphere, required for air-breathing engines.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.ReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the celestial body.</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes rotate with the body.</li>
+<li>The x-axis points from the center of the body
+towards the intersection of the prime meridian and equator (the
+position at 0° longitude, 0° latitude).</li>
+<li>The y-axis points from the center of the body
+towards the north pole.</li>
+<li>The z-axis points from the center of the body
+towards the equator at 90°E longitude.</li>
+</ul>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/celestial-body.png" src="../../../_images/celestial-body.png" />
+<p class="caption"><span class="caption-text">Celestial body reference frame origin and axes. The equator is shown in
+blue, and the prime meridian in red.</span></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.NonRotatingReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">NonRotatingReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.NonRotatingReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to this celestial body, and
+orientated in a fixed direction (it does not rotate with the body).</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes do not rotate.</li>
+<li>The x-axis points in an arbitrary direction through the
+equator.</li>
+<li>The y-axis points from the center of the body towards
+the north pole.</li>
+<li>The z-axis points in an arbitrary direction through the
+equator.</li>
+</ul>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CelestialBody.OrbitalReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">OrbitalReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CelestialBody.OrbitalReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the reference frame that is fixed relative to this celestial body, but
+orientated with the body&#8217;s orbital prograde/normal/radial directions.</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes rotate with the orbital prograde/normal/radial
+directions.</li>
+<li>The x-axis points in the orbital anti-radial direction.</li>
+<li>The y-axis points in the orbital prograde direction.</li>
+<li>The z-axis points in the orbital normal direction.</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.Position">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Position</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the position vector of the center of the body in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.Velocity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Velocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.Velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the velocity vector of the body in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.Rotation">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Rotation</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the rotation of the body in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.Direction">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Direction</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the direction in which the north pole of the celestial body is
+pointing, as a unit vector, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-CelestialBody.AngularVelocity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AngularVelocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-CelestialBody.AngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the angular velocity of the body in the specified reference
+frame. The magnitude of the vector is the rotational speed of the body, in
+radians per second, and the direction of the vector indicates the axis of
+rotation, using the right-hand rule.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flight.html" class="btn btn-neutral float-right" title="Flight" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vessel.html" class="btn btn-neutral" title="Vessel" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+AutoPilot
+=========
+
+.. class:: AutoPilot
+
+   Provides basic auto-piloting utilities for a vessel.
+   Created by calling :prop:`Vessel.AutoPilot`.
+
+   .. method:: void Engage()
+
+      Engage the auto-pilot.
+
+   .. method:: void Disengage()
+
+      Disengage the auto-pilot.
+
+   .. method:: void Wait()
+
+      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+
+   .. property:: float Error { get; }
+
+      The error, in degrees, between the direction the ship has been asked
+      to point in and the direction it is pointing in. Returns zero if the auto-pilot
+      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
+      or no target direction is set.
+
+   .. property:: float RollError { get; }
+
+      The error, in degrees, between the roll the ship has been asked to be
+      in and the actual roll. Returns zero if the auto-pilot has not been engaged
+      or no target roll is set.
+
+   .. property:: ReferenceFrame ReferenceFrame { get; set; }
+
+      The reference frame for the target direction (:prop:`AutoPilot.TargetDirection`).
+
+   .. property:: System.Tuple<double,double,double> TargetDirection { get; set; }
+
+      The target direction. ``null`` if no target direction is set.
+
+   .. method:: void TargetPitchAndHeading(float pitch, float heading)
+
+      Set (:prop:`AutoPilot.TargetDirection`) from a pitch and heading angle.
+
+      :parameters:
+
+       * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
+       * **heading** -- Target heading angle, in degrees between 0° and 360°.
+
+   .. property:: float TargetRoll { get; set; }
+
+      The target roll, in degrees. ``NaN`` if no target roll is set.
+
+   .. property:: bool SAS { get; set; }
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :prop:`Control.SAS`
+
+   .. property:: SASMode SASMode { get; set; }
+
+      The current :type:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :prop:`Control.SASMode`
+
+   .. property:: float RotationSpeedMultiplier { get; set; }
+
+      Target rotation speed multiplier. Defaults to 1.
+
+   .. property:: float MaxRotationSpeed { get; set; }
+
+      Maximum target rotation speed. Defaults to 1.
+
+   .. property:: float RollSpeedMultiplier { get; set; }
+
+      Target roll speed multiplier. Defaults to 1.
+
+   .. property:: float MaxRollSpeed { get; set; }
+
+      Maximum target roll speed. Defaults to 1.
+
+   .. method:: void SetPIDParameters(float Kp = 1.0, float Ki = 0.0, float Kd = 0.0)
+
+      Sets the gains for the rotation rate PID controller.
+
+      :parameters:
+
+       * **Kp** -- Proportional gain.
+       * **Ki** -- Integral gain.
+       * **Kd** -- Derivative gain.

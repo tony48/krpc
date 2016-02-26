@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interacting with Parts &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
+        <link rel="next" title="Docking Guidance" href="docking-guidance.html"/>
+        <link rel="prev" title="Pitch, Heading and Roll" href="pitch-heading-roll.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="suborbital-flight.html">Sub-Orbital Flight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference-frames.html">Reference Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch-into-orbit.html">Launch into Orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pitch-heading-roll.html">Pitch, Heading and Roll</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Interacting with Parts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-all-parachutes">Deploying all Parachutes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-from-here-for-docking-ports">&#8216;Control From Here&#8217; for Docking Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combined-specific-impulse">Combined Specific Impulse</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docking-guidance.html">Docking Guidance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../tutorials.html">Tutorials and Examples</a> &raquo;</li>
+      
+    <li>Interacting with Parts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/parts.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interacting-with-parts">
+<h1>Interacting with Parts<a class="headerlink" href="#interacting-with-parts" title="Permalink to this headline">¶</a></h1>
+<p>The following examples demonstrate use of the <a class="reference internal" href="../python/api/space-center/parts.html#python-api-parts"><span>Parts</span></a> functionality to
+achieve various tasks. More details on specific topics can also be found in the
+API documentation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../python/api/space-center/parts.html#python-api-parts-trees-of-parts"><span>Trees of Parts</span></a></li>
+<li><a class="reference internal" href="../python/api/space-center/parts.html#python-api-parts-attachment-modes"><span>Attachment Modes</span></a></li>
+<li><a class="reference internal" href="../python/api/space-center/parts.html#python-api-parts-fuel-lines"><span>Fuel Lines</span></a></li>
+<li><a class="reference internal" href="../python/api/space-center/parts.html#python-api-parts-staging"><span>Staging</span></a></li>
+</ul>
+<div class="section" id="deploying-all-parachutes">
+<h2>Deploying all Parachutes<a class="headerlink" href="#deploying-all-parachutes" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes things go horribly wrong. The following script does its best to save
+your Kerbals by deploying all the parachutes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+
+<span class="k">for</span> <span class="n">parachute</span> <span class="ow">in</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">parachutes</span><span class="p">:</span>
+    <span class="n">parachute</span><span class="o">.</span><span class="n">deploy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="control-from-here-for-docking-ports">
+<h2>&#8216;Control From Here&#8217; for Docking Ports<a class="headerlink" href="#control-from-here-for-docking-ports" title="Permalink to this headline">¶</a></h2>
+<p>The following example will find a standard sized Clamp-O-Tron docking port, and
+control the vessel from it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+
+<span class="n">ports</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">docking_ports</span>
+<span class="n">port</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span> <span class="o">==</span> <span class="s1">&#39;Clamp-O-Tron Docking Port&#39;</span><span class="p">,</span> <span class="n">ports</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">part</span> <span class="o">=</span> <span class="n">port</span><span class="o">.</span><span class="n">part</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">controlling</span> <span class="o">=</span> <span class="n">part</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combined-specific-impulse">
+<h2>Combined Specific Impulse<a class="headerlink" href="#combined-specific-impulse" title="Permalink to this headline">¶</a></h2>
+<p>The following script calculates the combined specific impulse of all currently
+active and fueled engines on a rocket. See here for a description of the maths:
+<a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+
+<span class="n">active_engines</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">has_fuel</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">engines</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Active engines:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">active_engines</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;   </span><span class="si">%s</span><span class="s1"> in stage </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">engine</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">stage</span><span class="p">))</span>
+
+<span class="n">thrust</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">thrust</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">active_engines</span><span class="p">)</span>
+<span class="n">fuel_consumption</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">thrust</span> <span class="o">/</span> <span class="n">engine</span><span class="o">.</span><span class="n">specific_impulse</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">active_engines</span><span class="p">)</span>
+<span class="n">isp</span> <span class="o">=</span> <span class="n">thrust</span> <span class="o">/</span> <span class="n">fuel_consumption</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Combined vaccuum Isp = </span><span class="si">%d</span><span class="s1"> seconds&#39;</span> <span class="o">%</span> <span class="n">isp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="docking-guidance.html" class="btn btn-neutral float-right" title="Docking Guidance" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pitch-heading-roll.html" class="btn btn-neutral" title="Pitch, Heading and Roll" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

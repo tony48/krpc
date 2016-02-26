@@ -1,0 +1,119 @@
+.. default-domain:: java
+.. highlight:: java
+
+
+AutoPilot
+=========
+
+.. type:: public class AutoPilot
+
+   Provides basic auto-piloting utilities for a vessel.
+   Created by calling :meth:`Vessel.AutoPilot`.
+
+   .. method:: void Engage()
+
+      Engage the auto-pilot.
+
+   .. method:: void Disengage()
+
+      Disengage the auto-pilot.
+
+   .. method:: void Wait()
+
+      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+
+   .. method:: float getError()
+
+
+      The error, in degrees, between the direction the ship has been asked
+      to point in and the direction it is pointing in. Returns zero if the auto-pilot
+      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
+      or no target direction is set.
+
+   .. method:: float getRollError()
+
+
+      The error, in degrees, between the roll the ship has been asked to be
+      in and the actual roll. Returns zero if the auto-pilot has not been engaged
+      or no target roll is set.
+
+   .. method:: ReferenceFrame getReferenceFrame()
+
+   .. method:: void setReferenceFrame(ReferenceFrame value)
+
+      The reference frame for the target direction (:meth:`AutoPilot.TargetDirection`).
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getTargetDirection()
+
+   .. method:: void setTargetDirection(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The target direction. ``null`` if no target direction is set.
+
+   .. method:: void TargetPitchAndHeading(float pitch, float heading)
+
+      Set (:meth:`AutoPilot.TargetDirection`) from a pitch and heading angle.
+
+      :param float pitch: Target pitch angle, in degrees between -90° and +90°.
+      :param float heading: Target heading angle, in degrees between 0° and 360°.
+
+   .. method:: float getTargetRoll()
+
+   .. method:: void setTargetRoll(float value)
+
+      The target roll, in degrees. ``NaN`` if no target roll is set.
+
+   .. method:: boolean getSAS()
+
+   .. method:: void setSAS(boolean value)
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :meth:`Control.SAS`
+
+   .. method:: SASMode getSASMode()
+
+   .. method:: void setSASMode(SASMode value)
+
+      The current :type:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :meth:`Control.SASMode`
+
+   .. method:: float getRotationSpeedMultiplier()
+
+   .. method:: void setRotationSpeedMultiplier(float value)
+
+      Target rotation speed multiplier. Defaults to 1.
+
+   .. method:: float getMaxRotationSpeed()
+
+   .. method:: void setMaxRotationSpeed(float value)
+
+      Maximum target rotation speed. Defaults to 1.
+
+   .. method:: float getRollSpeedMultiplier()
+
+   .. method:: void setRollSpeedMultiplier(float value)
+
+      Target roll speed multiplier. Defaults to 1.
+
+   .. method:: float getMaxRollSpeed()
+
+   .. method:: void setMaxRollSpeed(float value)
+
+      Maximum target roll speed. Defaults to 1.
+
+   .. method:: void SetPIDParameters(float Kp, float Ki, float Kd)
+
+      Sets the gains for the rotation rate PID controller.
+
+      :param float Kp: Proportional gain.
+      :param float Ki: Integral gain.
+      :param float Kd: Derivative gain.

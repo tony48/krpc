@@ -1,0 +1,113 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+AutoPilot
+=========
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: AutoPilot
+
+   Provides basic auto-piloting utilities for a vessel.
+   Created by calling :func:`Vessel::auto_pilot`.
+
+   .. function:: void engage()
+
+      Engage the auto-pilot.
+
+   .. function:: void disengage()
+
+      Disengage the auto-pilot.
+
+   .. function:: void wait()
+
+      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+
+   .. function:: float error()
+
+      The error, in degrees, between the direction the ship has been asked
+      to point in and the direction it is pointing in. Returns zero if the auto-pilot
+      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
+      or no target direction is set.
+
+   .. function:: float roll_error()
+
+      The error, in degrees, between the roll the ship has been asked to be
+      in and the actual roll. Returns zero if the auto-pilot has not been engaged
+      or no target roll is set.
+
+   .. function:: ReferenceFrame reference_frame()
+   .. function:: void set_reference_frame(ReferenceFrame value)
+
+      The reference frame for the target direction (:func:`AutoPilot::target_direction`).
+
+   .. function:: std::tuple<double, double, double> target_direction()
+   .. function:: void set_target_direction(std::tuple<double, double, double> value)
+
+      The target direction. ``NULL`` if no target direction is set.
+
+   .. function:: void target_pitch_and_heading(float pitch, float heading)
+
+      Set (:func:`AutoPilot::target_direction`) from a pitch and heading angle.
+
+      :Parameters:
+
+       * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
+       * **heading** -- Target heading angle, in degrees between 0° and 360°.
+
+   .. function:: float target_roll()
+   .. function:: void set_target_roll(float value)
+
+      The target roll, in degrees. ``NaN`` if no target roll is set.
+
+   .. function:: bool sas()
+   .. function:: void set_sas(bool value)
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :func:`Control::sas`
+
+   .. function:: SASMode sas_mode()
+   .. function:: void set_sas_mode(SASMode value)
+
+      The current :enum:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :func:`Control::sas_mode`
+
+   .. function:: float rotation_speed_multiplier()
+   .. function:: void set_rotation_speed_multiplier(float value)
+
+      Target rotation speed multiplier. Defaults to 1.
+
+   .. function:: float max_rotation_speed()
+   .. function:: void set_max_rotation_speed(float value)
+
+      Maximum target rotation speed. Defaults to 1.
+
+   .. function:: float roll_speed_multiplier()
+   .. function:: void set_roll_speed_multiplier(float value)
+
+      Target roll speed multiplier. Defaults to 1.
+
+   .. function:: float max_roll_speed()
+   .. function:: void set_max_roll_speed(float value)
+
+      Maximum target roll speed. Defaults to 1.
+
+   .. function:: void set_pid_parameters(float kp = 1.0, float ki = 0.0, float kd = 0.0)
+
+      Sets the gains for the rotation rate PID controller.
+
+      :Parameters:
+
+       * **kp** -- Proportional gain.
+       * **ki** -- Integral gain.
+       * **kd** -- Derivative gain.

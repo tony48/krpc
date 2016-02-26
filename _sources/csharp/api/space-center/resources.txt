@@ -1,0 +1,79 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Resources
+=========
+
+.. class:: Resources
+
+   Created by calling :prop:`Vessel.Resources`,
+   :meth:`Vessel.ResourcesInDecoupleStage` or
+   :prop:`Part.Resources`.
+
+   .. property:: System.Collections.Generic.IList<string> Names { get; }
+
+      A list of resource names that can be stored.
+
+   .. method:: bool HasResource(string name)
+
+      Check whether the named resource can be stored.
+
+      :parameters:
+
+       * **name** -- The name of the resource.
+
+   .. method:: float Max(string name)
+
+      Returns the amount of a resource that can be stored.
+
+      :parameters:
+
+       * **name** -- The name of the resource.
+
+   .. method:: float Amount(string name)
+
+      Returns the amount of a resource that is currently stored.
+
+      :parameters:
+
+       * **name** -- The name of the resource.
+
+   .. method:: static float Density(string name)
+
+      Returns the density of a resource, in kg/l.
+
+      :parameters:
+
+       * **name** -- The name of the resource.
+
+   .. method:: static ResourceFlowMode FlowMode(string name)
+
+      Returns the flow mode of a resource.
+
+      :parameters:
+
+       * **name** -- The name of the resource.
+
+
+.. enum:: ResourceFlowMode
+
+   See :meth:`Resources.FlowMode`.
+
+   .. value:: Vessel
+
+      The resource flows to any part in the vessel. For example, electric charge.
+
+   .. value:: Stage
+
+      The resource flows from parts in the first stage, followed by the second,
+      and so on. For example, mono-propellant.
+
+   .. value:: Adjacent
+
+      The resource flows between adjacent parts within the vessel. For example,
+      liquid fuel or oxidizer.
+
+   .. value:: None
+
+      The resource does not flow. For example, solid fuel.

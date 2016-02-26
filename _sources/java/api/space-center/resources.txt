@@ -1,0 +1,70 @@
+.. default-domain:: java
+.. highlight:: java
+
+
+Resources
+=========
+
+.. type:: public class Resources
+
+   Created by calling :meth:`Vessel.Resources`,
+   :meth:`Vessel.ResourcesInDecoupleStage` or
+   :meth:`Part.Resources`.
+
+   .. method:: java.util.List<String> getNames()
+
+
+      A list of resource names that can be stored.
+
+   .. method:: boolean HasResource(String name)
+
+      Check whether the named resource can be stored.
+
+      :param String name: The name of the resource.
+
+   .. method:: float Max(String name)
+
+      Returns the amount of a resource that can be stored.
+
+      :param String name: The name of the resource.
+
+   .. method:: float Amount(String name)
+
+      Returns the amount of a resource that is currently stored.
+
+      :param String name: The name of the resource.
+
+   .. method:: float Density(String name)
+
+      Returns the density of a resource, in kg/l.
+
+      :param String name: The name of the resource.
+
+   .. method:: ResourceFlowMode FlowMode(String name)
+
+      Returns the flow mode of a resource.
+
+      :param String name: The name of the resource.
+
+
+.. type:: public enum ResourceFlowMode
+
+   See :meth:`Resources.FlowMode`.
+
+   .. field:: public ResourceFlowMode Vessel
+
+      The resource flows to any part in the vessel. For example, electric charge.
+
+   .. field:: public ResourceFlowMode Stage
+
+      The resource flows from parts in the first stage, followed by the second,
+      and so on. For example, mono-propellant.
+
+   .. field:: public ResourceFlowMode Adjacent
+
+      The resource flows between adjacent parts within the vessel. For example,
+      liquid fuel or oxidizer.
+
+   .. field:: public ResourceFlowMode None
+
+      The resource does not flow. For example, solid fuel.

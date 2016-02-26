@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Control &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Parts" href="parts.html"/>
+        <link rel="prev" title="Orbit" href="orbit.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../csharp.html">C#</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Control</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/csharp/api/space-center/control.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="control">
+<h1>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="class-Control">
+<code class="descname">class Control</code><a class="headerlink" href="#class-Control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to manipulate the controls of a vessel. This includes adjusting the
+throttle, enabling/disabling systems such as SAS and RCS, or altering the
+direction in which the vessel is pointing.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+that have set one or more of these inputs are no longer connected.</p>
+</div>
+<dl class="property">
+<dt id="property-Control.SAS">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">SAS</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.SAS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of SAS.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#property-AutoPilot.SAS" title="AutoPilot.SAS property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">AutoPilot.SAS</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.SASMode">
+<a class="reference internal" href="#enum-SASMode" title="SASMode enum">SASMode</a> <code class="descname">SASMode</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.SASMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current <a class="reference internal" href="#enum-SASMode" title="SASMode enum"><code class="xref csharp csharp-type docutils literal"><span class="pre">SASMode</span></code></a>.
+These modes are equivalent to the mode buttons to
+the left of the navball that appear when SAS is enabled.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#property-AutoPilot.SASMode" title="AutoPilot.SASMode property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">AutoPilot.SASMode</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.SpeedMode">
+<a class="reference internal" href="#enum-SpeedMode" title="SpeedMode enum">SpeedMode</a> <code class="descname">SpeedMode</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.SpeedMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current <a class="reference internal" href="#enum-SpeedMode" title="SpeedMode enum"><code class="xref csharp csharp-type docutils literal"><span class="pre">SpeedMode</span></code></a> of the navball.
+This is the mode displayed next to the speed at the top of the navball.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.RCS">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">RCS</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.RCS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of RCS.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Gear">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Gear</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Gear" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the landing gear/legs.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Lights">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Lights</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Lights" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the lights.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Brakes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Brakes</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Brakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel brakes.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Abort">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Abort</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Abort" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the abort action group.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Throttle">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Throttle</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Throttle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the throttle. A value between 0 and 1.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Pitch">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Pitch</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the pitch control.
+A value between -1 and 1.
+Equivalent to the w and s keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Yaw">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Yaw</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Yaw" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the yaw control.
+A value between -1 and 1.
+Equivalent to the a and d keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Roll">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Roll</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Roll" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the roll control.
+A value between -1 and 1.
+Equivalent to the q and e keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Forward">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Forward</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the forward translational control.
+A value between -1 and 1.
+Equivalent to the h and n keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Up">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Up</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Up" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the up translational control.
+A value between -1 and 1.
+Equivalent to the i and k keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Right">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Right</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.Right" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the right translational control.
+A value between -1 and 1.
+Equivalent to the j and l keys.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.WheelThrottle">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">WheelThrottle</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.WheelThrottle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel throttle.
+A value between -1 and 1.
+A value of 1 rotates the wheels forwards, a value of -1 rotates
+the wheels backwards.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.WheelSteering">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">WheelSteering</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Control.WheelSteering" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel steering.
+A value between -1 and 1.
+A value of 1 steers to the left, and a value of -1 steers to the right.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.CurrentStage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <code class="descname">CurrentStage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Control.CurrentStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current stage of the vessel. Corresponds to the stage number in
+the in-game UI.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.ActivateNextStage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="vessel.html#class-Vessel" title="Vessel class">Vessel</a>&gt; <code class="descname">ActivateNextStage</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.ActivateNextStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activates the next stage. Equivalent to pressing the space bar in-game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of vessel objects that are jettisoned from the active vessel.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.GetActionGroup">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">GetActionGroup</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.uint32.aspx" title="System.UInt32">uint</a> <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.GetActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the given action group is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> &#8211; A number between 0 and 9 inclusive.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.SetActionGroup">
+void <code class="descname">SetActionGroup</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.uint32.aspx" title="System.UInt32">uint</a> <em>group</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.SetActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the state of the given action group (a value between 0 and 9
+inclusive).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> &#8211; A number between 0 and 9 inclusive.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.ToggleActionGroup">
+void <code class="descname">ToggleActionGroup</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.uint32.aspx" title="System.UInt32">uint</a> <em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.ToggleActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles the state of the given action group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> &#8211; A number between 0 and 9 inclusive.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.AddNode">
+<a class="reference internal" href="node.html#class-Node" title="Node class">Node</a> <code class="descname">AddNode</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>UT</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>prograde</em><em> = 0.0</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>normal</em><em> = 0.0</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>radial</em><em> = 0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.AddNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a maneuver node at the given universal time, and returns a
+<a class="reference internal" href="node.html#class-Node" title="Node class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Node</span></code></a> object that can be used to modify it.
+Optionally sets the magnitude of the delta-v for the maneuver node
+in the prograde, normal and radial directions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>UT</strong> &#8211; Universal time of the maneuver node.</li>
+<li><strong>prograde</strong> &#8211; Delta-v in the prograde direction.</li>
+<li><strong>normal</strong> &#8211; Delta-v in the normal direction.</li>
+<li><strong>radial</strong> &#8211; Delta-v in the radial direction.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Control.Nodes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="node.html#class-Node" title="Node class">Node</a>&gt; <code class="descname">Nodes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Control.Nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all existing maneuver nodes, ordered by time from first to last.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Control.RemoveNodes">
+void <code class="descname">RemoveNodes</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Control.RemoveNodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all maneuver nodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-SASMode">
+<code class="descname">enum SASMode</code><a class="headerlink" href="#enum-SASMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The behavior of the SAS auto-pilot. See <a class="reference internal" href="auto-pilot.html#property-AutoPilot.SASMode" title="AutoPilot.SASMode property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">AutoPilot.SASMode</span></code></a>.</p>
+<dl class="value">
+<dt id="value-SASMode.StabilityAssist">
+<code class="descname">StabilityAssist</code><a class="headerlink" href="#value-SASMode.StabilityAssist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stability assist mode. Dampen out any rotation.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Maneuver">
+<code class="descname">Maneuver</code><a class="headerlink" href="#value-SASMode.Maneuver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the burn direction of the next maneuver node.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Prograde">
+<code class="descname">Prograde</code><a class="headerlink" href="#value-SASMode.Prograde" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the prograde direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Retrograde">
+<code class="descname">Retrograde</code><a class="headerlink" href="#value-SASMode.Retrograde" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the retrograde direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Normal">
+<code class="descname">Normal</code><a class="headerlink" href="#value-SASMode.Normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit normal direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.AntiNormal">
+<code class="descname">AntiNormal</code><a class="headerlink" href="#value-SASMode.AntiNormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit anti-normal direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Radial">
+<code class="descname">Radial</code><a class="headerlink" href="#value-SASMode.Radial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit radial direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.AntiRadial">
+<code class="descname">AntiRadial</code><a class="headerlink" href="#value-SASMode.AntiRadial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit anti-radial direction.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.Target">
+<code class="descname">Target</code><a class="headerlink" href="#value-SASMode.Target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the direction of the current target.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SASMode.AntiTarget">
+<code class="descname">AntiTarget</code><a class="headerlink" href="#value-SASMode.AntiTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point away from the current target.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-SpeedMode">
+<code class="descname">enum SpeedMode</code><a class="headerlink" href="#enum-SpeedMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-Control.SpeedMode" title="Control.SpeedMode property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Control.SpeedMode</span></code></a>.</p>
+<dl class="value">
+<dt id="value-SpeedMode.Orbit">
+<code class="descname">Orbit</code><a class="headerlink" href="#value-SpeedMode.Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the vessel&#8217;s orbit.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SpeedMode.Surface">
+<code class="descname">Surface</code><a class="headerlink" href="#value-SpeedMode.Surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the surface of the body being orbited.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-SpeedMode.Target">
+<code class="descname">Target</code><a class="headerlink" href="#value-SpeedMode.Target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the current target.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parts.html" class="btn btn-neutral float-right" title="Parts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="orbit.html" class="btn btn-neutral" title="Orbit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C++ Client &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../index.html"/>
+        <link rel="up" title="C++" href="../cpp.html"/>
+        <link rel="next" title="SpaceCenter API" href="api/space-center.html"/>
+        <link rel="prev" title="C++" href="../cpp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp.html">C++</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">C++ Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-and-installing-the-library">Compiling and Installing the Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-to-a-custom-location">Installing to a Custom Location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../cpp.html">C++</a> &raquo;</li>
+      
+    <li>C++ Client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/cpp/client.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-client">
+<h1>C++ Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">krpc</span></code> library provides functionality to interact with a kRPC server from
+C++.</p>
+<div class="section" id="compiling-and-installing-the-library">
+<h2>Compiling and Installing the Library<a class="headerlink" href="#compiling-and-installing-the-library" title="Permalink to this headline">¶</a></h2>
+<p>The source archive can be <a class="reference external" href="https://github.com/krpc/krpc/releases/latest">downloaded from github</a>.</p>
+<p>To compile and install the library using the configure script, extract the
+archive and execute the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
+make
+sudo make install
+</pre></div>
+</div>
+<p>Alternatively, you can use CMake:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
+make
+sudo make install
+</pre></div>
+</div>
+<div class="section" id="installing-to-a-custom-location">
+<h3>Installing to a Custom Location<a class="headerlink" href="#installing-to-a-custom-location" title="Permalink to this headline">¶</a></h3>
+<p>To install the library to a different location, pass the <code class="docutils literal"><span class="pre">--prefix</span></code> argument to
+the configure script. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure --prefix<span class="o">=</span>/install/path
+make
+make install
+</pre></div>
+</div>
+<p>Or set <code class="docutils literal"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> when using CMake:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake . -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/install/path
+make
+make install
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-library">
+<h3>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h3>
+<p>To use the library, simply include the main <code class="docutils literal"><span class="pre">krpc.hpp</span></code> header file, and the
+header files for the services that you would like to use. For example,
+<code class="docutils literal"><span class="pre">krpc/services/space_center.hpp</span></code>. Then link against <cite>libkrpc.so</cite> when
+compiling your application.</p>
+</div>
+</div>
+<div class="section" id="connecting-to-the-server">
+<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a server, use the <a class="reference internal" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="krpc::connect"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::connect()</span></code></a> function. This returns a
+connection object through which you can interact with the server. For example to
+connect to a server running on the local machine:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">KRPC</span> <span class="n">krpc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">krpc</span><span class="p">.</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This function also accepts arguments that specify what address and port numbers
+to connect to. For example:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;Remote example&quot;</span><span class="p">,</span> <span class="s">&quot;my.domain.name&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">KRPC</span> <span class="n">krpc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">krpc</span><span class="p">.</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interacting-with-the-server">
+<h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Interaction with the server is performed via a client object (of type
+<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a>) returned by calling <a class="reference internal" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="krpc::connect"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::connect()</span></code></a>.</p>
+<p>Functionality for services are defined in the header files in
+<code class="docutils literal"><span class="pre">krpc/services/...</span></code>. For example, all of the functionality provided by the
+SpaceCenter service is contained in the header file
+<code class="docutils literal"><span class="pre">krpc/services/space_center.hpp</span></code> and the functionality provided by the
+InfernalRobotics service is contained in
+<code class="docutils literal"><span class="pre">krpc/services/infernal_robotics.hpp</span></code>.</p>
+<p>Before a service can be used it must first be instantiated, and passed a copy of
+the <a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a> object. Calling methods on the service are mapped to
+remote procedure calls and passed to the server by the client.</p>
+<p>The following example connects to the server, instantiates the SpaceCenter
+service, and outputs the name of the active vessel:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;Vessel Name&quot;</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span> <span class="n">sc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vessel</span><span class="p">.</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streaming-data-from-the-server">
+<h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
+<p>A stream repeatedly executes a function on the server, with a fixed set of
+argument values. It provides a more efficient way of repeatedly getting the
+result of calling function on the server, without having to invoke it directly
+&#8211; which incurs communication overheads.</p>
+<p>For example, consider the following loop that continuously prints out the
+position of the active vessel. This loop incurs significant communication
+overheads, as the <code class="docutils literal"><span class="pre">vessel.position()</span></code> function is called repeatedly.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
+<span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">body</span><span class="p">().</span><span class="n">reference_frame</span><span class="p">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">position</span><span class="p">(</span><span class="n">refframe</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;</span> <span class="s">&quot;,&quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The following code achieves the same thing, but is far more efficient. It calls
+<code class="docutils literal"><span class="pre">vessel.position_stream</span></code> once at the start of the program to create a stream,
+and then repeatedly gets the position from the stream. This avoids the
+communication overhead in the previous example.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
+<span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">body</span><span class="p">().</span><span class="n">reference_frame</span><span class="p">();</span>
+<span class="n">krpc</span><span class="o">::</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">pos_stream</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">position_stream</span><span class="p">(</span><span class="n">refframe</span><span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">pos_stream</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;</span> <span class="s">&quot;,&quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A stream can be created for a function call by adding <code class="docutils literal"><span class="pre">_stream</span></code> to the end of
+the function&#8217;s name. This returns a stream object of type
+<code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Stream</span></code>, where <code class="docutils literal"><span class="pre">T</span></code> is the return type of the original
+function. The most recent value of the stream can be obtained by calling
+<code class="xref cpp cpp-class docutils literal"><span class="pre">Stream&lt;T&gt;::operator()</span></code>. A stream can be stopped by calling
+<code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::remove()</span></code> on the stream object. All streams are
+automatically stopped when the connection is terminated.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj">
+<span id="krpc::connect__ssCR.ssCR.unsigned-i.unsigned-i"></span>krpc::<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> <code class="descclassname"></code><code class="descname">connect</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em> = &quot;&quot;, <em class="property">const</em> std::string &amp;<em>address</em> = &quot;127.0.0.1&quot;, unsigned int <em>rpc_port</em> = 50000, unsigned int <em>stream_port</em> = 50001<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a connection to a kRPC server. It returns a
+<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a> object, through which the server can be communicated
+with.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>std::string</em>) &#8211; A descriptive name for the connection. This
+is passed to the server and appears, for example, in the client
+connection dialog on the in-game server window.</li>
+<li><strong>address</strong> (<em>std::string</em>) &#8211; The address of the server to connect
+to. Can either be a hostname or an IP address in dotted decimal
+notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
+<li><strong>rpc_port</strong> (<em>unsigned int</em>) &#8211; The port number of the RPC
+Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>unsigned int</em>) &#8211; The port number of the Stream
+Server. Defaults to 50001. Set it to 0 to disable connection to the
+stream server.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc6ClientE">
+<span id="krpc::Client"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Client</code><a class="headerlink" href="#_CPPv2N4krpc6ClientE" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides the interface for communicating with the server. It is
+used by service class instances to invoke remote procedure calls. Instances
+of this class can be obtained by calling <a class="reference internal" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="krpc::connect"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::connect()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services4KRPCE">
+<span id="krpc::services::KRPC"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">KRPC</code><a class="headerlink" href="#_CPPv2N4krpc8services4KRPCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides access to the basic server functionality provided by
+the <code class="docutils literal"><span class="pre">KRPC</span></code> service. Most of this functionality is used internally by the
+client (for example to create and remove streams) and therefore does not
+need to be used directly from application code. The only exception that
+may be useful is <a class="reference internal" href="#_CPPv2N4krpc8services4KRPC10get_statusEv" title="krpc::services::KRPC::get_status"><code class="xref cpp cpp-func docutils literal"><span class="pre">KRPC::get_status()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services4KRPC4KRPCEPN4krpc6ClientE">
+<span id="krpc::services::KRPC::KRPC__krpc::ClientP"></span><code class="descclassname"></code><code class="descname">KRPC</code><span class="sig-paren">(</span>krpc::<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> *<em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC4KRPCEPN4krpc6ClientE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an instance of this service from the given <a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a>
+object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services4KRPC10get_statusEv">
+<span id="krpc::services::KRPC::get_status"></span>krpc::schema::Status <code class="descclassname"></code><code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC10get_statusEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a status message from the server containing information including
+the server&#8217;s version string and performance statistics.</p>
+<p>For example, the following prints out the version string for the
+server:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">();</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">KRPC</span> <span class="n">krpc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Server version = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">krpc</span><span class="p">.</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or to get the rate at which the server is sending and receiving data
+over the network:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">();</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">KRPC</span> <span class="n">krpc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">schema</span><span class="o">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">get_status</span><span class="p">();</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Data in = &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="p">()</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; KB/s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Data out = &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">bytes_written_rate</span><span class="p">()</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; KB/s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services9AddStreamI1TEE">
+<span id="krpc::services::AddStream:T:"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AddStream</code>&lt;T&gt;<a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stream object. Streams are created by calling a function with <code class="docutils literal"><span class="pre">_stream</span></code>
+appended to its name.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services9AddStreamI1TEclEv">
+<span id="krpc::services::AddStream:T:::call-operator"></span>T <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TEclEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most recently received value from the stream.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services9AddStreamI1TE6removeEv">
+<span id="krpc::services::AddStream:T:::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TE6removeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the stream from the server.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/space-center.html" class="btn btn-neutral float-right" title="SpaceCenter API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../cpp.html" class="btn btn-neutral" title="C++" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

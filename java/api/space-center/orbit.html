@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Orbit &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Control" href="control.html"/>
+        <link rel="prev" title="Flight" href="flight.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Orbit</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/java/api/space-center/orbit.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="orbit">
+<h1>Orbit<a class="headerlink" href="#orbit" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="Orbit">
+public class <code class="descname">Orbit</code><a class="headerlink" href="#Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describes an orbit. For example, the orbit of a vessel, obtained by calling
+<code class="xref java java-meth docutils literal"><span class="pre">Vessel.Orbit</span></code>, or a celestial body, obtained by calling
+<code class="xref java java-meth docutils literal"><span class="pre">CelestialBody.Orbit</span></code>.</p>
+<dl class="method">
+<dt id="Orbit.getBody()">
+ <a class="reference internal" href="celestial-body.html#CelestialBody" title="CelestialBody">CelestialBody</a> <code class="descname">getBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getBody()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The celestial body (e.g. planet or moon) around which the object is orbiting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getApoapsis()">
+ double <code class="descname">getApoapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getApoapsis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For the apoapsis altitude reported on the in-game map view, use <code class="xref java java-meth docutils literal"><span class="pre">Orbit.ApoapsisAltitude</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getPeriapsis()">
+ double <code class="descname">getPeriapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getPeriapsis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The periapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For the periapsis altitude reported on the in-game map view, use <code class="xref java java-meth docutils literal"><span class="pre">Orbit.PeriapsisAltitude</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getApoapsisAltitude()">
+ double <code class="descname">getApoapsisAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getApoapsisAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The apoapsis of the orbit, in meters, above the sea level of the body being orbited.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equal to <code class="xref java java-meth docutils literal"><span class="pre">Orbit.Apoapsis</span></code> minus the equatorial radius of the body.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getPeriapsisAltitude()">
+ double <code class="descname">getPeriapsisAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getPeriapsisAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The periapsis of the orbit, in meters, above the sea level of the body being orbited.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equal to <code class="xref java java-meth docutils literal"><span class="pre">Orbit.Periapsis</span></code> minus the equatorial radius of the body.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getSemiMajorAxis()">
+ double <code class="descname">getSemiMajorAxis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getSemiMajorAxis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The semi-major axis of the orbit, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getSemiMinorAxis()">
+ double <code class="descname">getSemiMinorAxis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getSemiMinorAxis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The semi-minor axis of the orbit, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getRadius()">
+ double <code class="descname">getRadius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getRadius()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current radius of the orbit, in meters. This is the distance between the center
+of mass of the object in orbit, and the center of mass of the body around which it is orbiting.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This value will change over time if the orbit is elliptical.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getSpeed()">
+ double <code class="descname">getSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current orbital speed of the object in meters per second.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This value will change over time if the orbit is elliptical.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getPeriod()">
+ double <code class="descname">getPeriod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getPeriod()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbital period, in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getTimeToApoapsis()">
+ double <code class="descname">getTimeToApoapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getTimeToApoapsis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time until the object reaches apoapsis, in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getTimeToPeriapsis()">
+ double <code class="descname">getTimeToPeriapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getTimeToPeriapsis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time until the object reaches periapsis, in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getEccentricity()">
+ double <code class="descname">getEccentricity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getEccentricity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getInclination()">
+ double <code class="descname">getInclination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getInclination()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit, in radians.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getLongitudeOfAscendingNode()">
+ double <code class="descname">getLongitudeOfAscendingNode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getLongitudeOfAscendingNode()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Longitude_of_the_ascending_node">longitude of the ascending node</a>, in radians.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getArgumentOfPeriapsis()">
+ double <code class="descname">getArgumentOfPeriapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getArgumentOfPeriapsis()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Argument_of_periapsis">argument of periapsis</a>, in radians.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getMeanAnomalyAtEpoch()">
+ double <code class="descname">getMeanAnomalyAtEpoch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getMeanAnomalyAtEpoch()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getEpoch()">
+ double <code class="descname">getEpoch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getEpoch()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time since the epoch (the point at which the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getMeanAnomaly()">
+ double <code class="descname">getMeanAnomaly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getMeanAnomaly()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getEccentricAnomaly()">
+ double <code class="descname">getEccentricAnomaly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getEccentricAnomaly()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Eccentric_anomaly">eccentric anomaly</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.ReferencePlaneNormal(ReferenceFrame)">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">ReferencePlaneNormal</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#ReferenceFrame" title="ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.ReferencePlaneNormal(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector that is normal to the orbits reference plane, in the given
+reference frame. The reference plane is the plane from which the orbits inclination is measured.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#ReferenceFrame" title="ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.ReferencePlaneDirection(ReferenceFrame)">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">ReferencePlaneDirection</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#ReferenceFrame" title="ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.ReferencePlaneDirection(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector from which the orbits longitude of ascending node is measured,
+in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#ReferenceFrame" title="ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getTimeToSOIChange()">
+ double <code class="descname">getTimeToSOIChange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getTimeToSOIChange()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code> if the
+object is not going to change sphere of influence.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Orbit.getNextOrbit()">
+ <a class="reference internal" href="#Orbit" title="Orbit">Orbit</a> <code class="descname">getNextOrbit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Orbit.getNextOrbit()" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the object is going to change sphere of influence in the future, returns the new orbit
+after the change. Otherwise returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="control.html" class="btn btn-neutral float-right" title="Control" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="flight.html" class="btn btn-neutral" title="Flight" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

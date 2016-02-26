@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flight &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Orbit" href="orbit.html"/>
+        <link rel="prev" title="CelestialBody" href="celestial-body.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Flight</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/java/api/space-center/flight.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flight">
+<h1>Flight<a class="headerlink" href="#flight" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="Flight">
+public class <code class="descname">Flight</code><a class="headerlink" href="#Flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get flight telemetry for a vessel, by calling <code class="xref java java-meth docutils literal"><span class="pre">Vessel.Flight</span></code>.
+All of the information returned by this class is given in the reference frame
+passed to that method.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To get orbital information, such as the apoapsis or inclination, see <a class="reference internal" href="orbit.html#Orbit" title="Orbit"><code class="xref java java-type docutils literal"><span class="pre">Orbit</span></code></a>.</p>
+</div>
+<dl class="method">
+<dt id="Flight.getGForce()">
+ float <code class="descname">getGForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getGForce()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current G force acting on the vessel in <span class="math">\(m/s^2\)</span>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getMeanAltitude()">
+ double <code class="descname">getMeanAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getMeanAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude above sea level, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getSurfaceAltitude()">
+ double <code class="descname">getSurfaceAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getSurfaceAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude above the surface of the body or sea level, whichever is closer, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getBedrockAltitude()">
+ double <code class="descname">getBedrockAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getBedrockAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getElevation()">
+ double <code class="descname">getElevation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getElevation()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The elevation of the terrain under the vessel, in meters. This is the height of the terrain above sea level,
+and is negative when the vessel is over the sea.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getLatitude()">
+ double <code class="descname">getLatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLatitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Latitude">latitude</a> of the vessel for the body being orbited, in degrees.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getLongitude()">
+ double <code class="descname">getLongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLongitude()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Longitude">longitude</a> of the vessel for the body being orbited, in degrees.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getVelocity()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getVelocity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The velocity vector of the vessel. The magnitude of the vector is the speed of the vessel in meters per second.
+The direction of the vector is the direction of the vessels motion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getSpeed()">
+ double <code class="descname">getSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed of the vessel in meters per second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getHorizontalSpeed()">
+ double <code class="descname">getHorizontalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getHorizontalSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The horizontal speed of the vessel in meters per second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getVerticalSpeed()">
+ double <code class="descname">getVerticalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getVerticalSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vertical speed of the vessel in meters per second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getCenterOfMass()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getCenterOfMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getCenterOfMass()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the center of mass of the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getRotation()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Quartet.html" title="org.javatuples.Quartet">Quartet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getRotation()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotation of the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getDirection()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDirection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getDirection()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction vector that the vessel is pointing in.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getPitch()">
+ float <code class="descname">getPitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getPitch()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pitch angle of the vessel relative to the horizon, in degrees. A value between -90° and +90°.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getHeading()">
+ float <code class="descname">getHeading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getHeading()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The heading angle of the vessel relative to north, in degrees. A value between 0° and 360°.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getRoll()">
+ float <code class="descname">getRoll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getRoll()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The roll angle of the vessel relative to the horizon, in degrees. A value between -180° and +180°.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getPrograde()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getPrograde</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getPrograde()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the prograde direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getRetrograde()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRetrograde</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getRetrograde()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the retrograde direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getNormal()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getNormal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getNormal()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the normal direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getAntiNormal()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAntiNormal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getAntiNormal()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the anti-normal direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getRadial()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRadial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getRadial()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the radial direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getAntiRadial()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAntiRadial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getAntiRadial()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit direction vector pointing in the anti-radial direction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getAtmosphereDensity()">
+ float <code class="descname">getAtmosphereDensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getAtmosphereDensity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current density of the atmosphere around the vessel, in <span class="math">\(kg/m^3\)</span>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getDynamicPressure()">
+ float <code class="descname">getDynamicPressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getDynamicPressure()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
+aerodynamic forces. It is equal to <span class="math">\(\frac{1}{2} . \mbox{air density} .  \mbox{velocity}^2\)</span>.
+It is commonly denoted as <span class="math">\(Q\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> if it is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getStaticPressure()">
+ float <code class="descname">getStaticPressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getStaticPressure()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The static atmospheric pressure acting on the vessel, in Pascals.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getAerodynamicForce()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAerodynamicForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getAerodynamicForce()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total aerodynamic forces acting on the vessel, as a vector pointing in the direction of the force, with its
+magnitude equal to the strength of the force in Newtons.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getLift()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getLift</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLift()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
+as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getDrag()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDrag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getDrag()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
+as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getSpeedOfSound()">
+ float <code class="descname">getSpeedOfSound</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getSpeedOfSound()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed of sound, in the atmosphere around the vessel, in <span class="math">\(m/s\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getMach()">
+ float <code class="descname">getMach</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getMach()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The speed of the vessel, in multiples of the speed of sound.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getEquivalentAirSpeed()">
+ float <code class="descname">getEquivalentAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getEquivalentAirSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getTerminalVelocity()">
+ float <code class="descname">getTerminalVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getTerminalVelocity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>An estimate of the current terminal velocity of the vessel, in <span class="math">\(m/s\)</span>.
+This is the speed at which the drag forces cancel out the force of gravity.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> if it is installed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getAngleOfAttack()">
+ float <code class="descname">getAngleOfAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getAngleOfAttack()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the pitch angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getSideslipAngle()">
+ float <code class="descname">getSideslipAngle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getSideslipAngle()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the yaw angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getTotalAirTemperature()">
+ float <code class="descname">getTotalAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getTotalAirTemperature()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a> of the atmosphere
+around the vessel, in Kelvin. This temperature includes the <code class="xref java java-meth docutils literal"><span class="pre">Flight.StaticAirTemperature</span></code> and the vessel&#8217;s kinetic energy.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getStaticAirTemperature()">
+ float <code class="descname">getStaticAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getStaticAirTemperature()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the
+atmosphere around the vessel, in Kelvin.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getStallFraction()">
+ float <code class="descname">getStallFraction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getStallFraction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current amount of stall, between 0 and 1. A value greater than 0.005 indicates a minor stall
+and a value greater than 0.5 indicates a large-scale stall.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getDragCoefficient()">
+ float <code class="descname">getDragCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getDragCoefficient()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the coefficient of drag. This is the amount of drag produced by the vessel. It depends on air speed,
+air density and wing area.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getLiftCoefficient()">
+ float <code class="descname">getLiftCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLiftCoefficient()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the coefficient of lift. This is the amount of lift produced by the vessel, and depends on air speed, air density and wing area.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getBallisticCoefficient()">
+ float <code class="descname">getBallisticCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getBallisticCoefficient()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the <a class="reference external" href="http://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Flight.getThrustSpecificFuelConsumption()">
+ float <code class="descname">getThrustSpecificFuelConsumption</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getThrustSpecificFuelConsumption()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
+efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
+number of Newtons of fuel that are burned, per hour, to product one newton of thrust.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="orbit.html" class="btn btn-neutral float-right" title="Orbit" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="celestial-body.html" class="btn btn-neutral" title="CelestialBody" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+.. default-domain:: py
+.. highlight:: python
+.. currentmodule:: InfernalRobotics
+
+InfernalRobotics
+================
+
+.. class:: InfernalRobotics
+
+   This service provides functionality to interact with the
+   `InfernalRobotics <http://forum.kerbalspaceprogram.com/threads/116064>`_ mod.
+
+   .. attribute:: servo_groups
+
+      A list of all the servo groups in the active vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`ControlGroup`
+
+   .. staticmethod:: servo_group_with_name(name)
+
+      Returns the servo group with the given *name* or ``None`` if none
+      exists. If multiple servo groups have the same name, only one of them is returned.
+
+      :param str name: Name of servo group to find.
+      :rtype: :class:`ControlGroup`
+
+   .. staticmethod:: servo_with_name(name)
+
+      Returns the servo with the given *name*, from all servo groups, or
+      ``None`` if none exists. If multiple servos have the same name, only one of them is returned.
+
+      :param str name: Name of the servo to find.
+      :rtype: :class:`Servo`

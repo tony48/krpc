@@ -1,0 +1,81 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+Resources
+=========
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Resources
+
+   Created by calling :func:`Vessel::resources`,
+   :func:`Vessel::resources_in_decouple_stage` or
+   :func:`Part::resources`.
+
+   .. function:: std::vector<std::string> names()
+
+      A list of resource names that can be stored.
+
+   .. function:: bool has_resource(std::string name)
+
+      Check whether the named resource can be stored.
+
+      :Parameters:
+
+       * **name** -- The name of the resource.
+
+   .. function:: float max(std::string name)
+
+      Returns the amount of a resource that can be stored.
+
+      :Parameters:
+
+       * **name** -- The name of the resource.
+
+   .. function:: float amount(std::string name)
+
+      Returns the amount of a resource that is currently stored.
+
+      :Parameters:
+
+       * **name** -- The name of the resource.
+
+   .. function:: static float density(std::string name)
+
+      Returns the density of a resource, in kg/l.
+
+      :Parameters:
+
+       * **name** -- The name of the resource.
+
+   .. function:: static ResourceFlowMode flow_mode(std::string name)
+
+      Returns the flow mode of a resource.
+
+      :Parameters:
+
+       * **name** -- The name of the resource.
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ResourceFlowMode
+
+   See :func:`Resources::flow_mode`.
+
+   .. enumerator:: vessel
+
+      The resource flows to any part in the vessel. For example, electric charge.
+
+   .. enumerator:: stage
+
+      The resource flows from parts in the first stage, followed by the second,
+      and so on. For example, mono-propellant.
+
+   .. enumerator:: adjacent
+
+      The resource flows between adjacent parts within the vessel. For example,
+      liquid fuel or oxidizer.
+
+   .. enumerator:: none
+
+      The resource does not flow. For example, solid fuel.

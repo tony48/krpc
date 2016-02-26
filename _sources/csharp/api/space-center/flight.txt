@@ -1,0 +1,274 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Flight
+======
+
+.. class:: Flight
+
+   Used to get flight telemetry for a vessel, by calling :meth:`Vessel.Flight`.
+   All of the information returned by this class is given in the reference frame
+   passed to that method.
+
+   .. note::
+
+      To get orbital information, such as the apoapsis or inclination, see :type:`Orbit`.
+
+   .. property:: float GForce { get; }
+
+      The current G force acting on the vessel in :math:`m/s^2`.
+
+   .. property:: double MeanAltitude { get; }
+
+      The altitude above sea level, in meters.
+
+   .. property:: double SurfaceAltitude { get; }
+
+      The altitude above the surface of the body or sea level, whichever is closer, in meters.
+
+   .. property:: double BedrockAltitude { get; }
+
+      The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
+
+   .. property:: double Elevation { get; }
+
+      The elevation of the terrain under the vessel, in meters. This is the height of the terrain above sea level,
+      and is negative when the vessel is over the sea.
+
+   .. property:: double Latitude { get; }
+
+      The `latitude <http://en.wikipedia.org/wiki/Latitude>`_ of the vessel for the body being orbited, in degrees.
+
+   .. property:: double Longitude { get; }
+
+      The `longitude <http://en.wikipedia.org/wiki/Longitude>`_ of the vessel for the body being orbited, in degrees.
+
+   .. property:: System.Tuple<double,double,double> Velocity { get; }
+
+      The velocity vector of the vessel. The magnitude of the vector is the speed of the vessel in meters per second.
+      The direction of the vector is the direction of the vessels motion.
+
+   .. property:: double Speed { get; }
+
+      The speed of the vessel in meters per second.
+
+   .. property:: double HorizontalSpeed { get; }
+
+      The horizontal speed of the vessel in meters per second.
+
+   .. property:: double VerticalSpeed { get; }
+
+      The vertical speed of the vessel in meters per second.
+
+   .. property:: System.Tuple<double,double,double> CenterOfMass { get; }
+
+      The position of the center of mass of the vessel.
+
+   .. property:: System.Tuple<double,double,double,double> Rotation { get; }
+
+      The rotation of the vessel.
+
+   .. property:: System.Tuple<double,double,double> Direction { get; }
+
+      The direction vector that the vessel is pointing in.
+
+   .. property:: float Pitch { get; }
+
+      The pitch angle of the vessel relative to the horizon, in degrees. A value between -90° and +90°.
+
+   .. property:: float Heading { get; }
+
+      The heading angle of the vessel relative to north, in degrees. A value between 0° and 360°.
+
+   .. property:: float Roll { get; }
+
+      The roll angle of the vessel relative to the horizon, in degrees. A value between -180° and +180°.
+
+   .. property:: System.Tuple<double,double,double> Prograde { get; }
+
+      The unit direction vector pointing in the prograde direction.
+
+   .. property:: System.Tuple<double,double,double> Retrograde { get; }
+
+      The unit direction vector pointing in the retrograde direction.
+
+   .. property:: System.Tuple<double,double,double> Normal { get; }
+
+      The unit direction vector pointing in the normal direction.
+
+   .. property:: System.Tuple<double,double,double> AntiNormal { get; }
+
+      The unit direction vector pointing in the anti-normal direction.
+
+   .. property:: System.Tuple<double,double,double> Radial { get; }
+
+      The unit direction vector pointing in the radial direction.
+
+   .. property:: System.Tuple<double,double,double> AntiRadial { get; }
+
+      The unit direction vector pointing in the anti-radial direction.
+
+   .. property:: float AtmosphereDensity { get; }
+
+      The current density of the atmosphere around the vessel, in :math:`kg/m^3`.
+
+   .. property:: float DynamicPressure { get; }
+
+      The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
+      aerodynamic forces. It is equal to :math:`\frac{1}{2} . \mbox{air density} .  \mbox{velocity}^2`.
+      It is commonly denoted as :math:`Q`.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_, or
+         `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ if it is installed.
+
+   .. property:: float StaticPressure { get; }
+
+      The static atmospheric pressure acting on the vessel, in Pascals.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_.
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: System.Tuple<double,double,double> AerodynamicForce { get; }
+
+      The total aerodynamic forces acting on the vessel, as a vector pointing in the direction of the force, with its
+      magnitude equal to the strength of the force in Newtons.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_.
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: System.Tuple<double,double,double> Lift { get; }
+
+      The `aerodynamic lift <http://en.wikipedia.org/wiki/Aerodynamic_force>`_ currently acting on the vessel,
+      as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_.
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: System.Tuple<double,double,double> Drag { get; }
+
+      The `aerodynamic drag <http://en.wikipedia.org/wiki/Aerodynamic_force>`_ currently acting on the vessel,
+      as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_.
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: float SpeedOfSound { get; }
+
+      The speed of sound, in the atmosphere around the vessel, in :math:`m/s`.
+
+
+      .. note::
+
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: float Mach { get; }
+
+      The speed of the vessel, in multiples of the speed of sound.
+
+
+      .. note::
+
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: float EquivalentAirSpeed { get; }
+
+      The `equivalent air speed <http://en.wikipedia.org/wiki/Equivalent_airspeed>`_ of the vessel, in :math:`m/s`.
+
+
+      .. note::
+
+         Not available when `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+
+   .. property:: float TerminalVelocity { get; }
+
+      An estimate of the current terminal velocity of the vessel, in :math:`m/s`.
+      This is the speed at which the drag forces cancel out the force of gravity.
+
+
+      .. note::
+
+         Calculated using `KSPs stock aerodynamic model <http://wiki.kerbalspaceprogram.com/wiki/Atmosphere>`_, or
+         `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ if it is installed.
+
+   .. property:: float AngleOfAttack { get; }
+
+      Gets the pitch angle between the orientation of the vessel and its velocity vector, in degrees.
+
+   .. property:: float SideslipAngle { get; }
+
+      Gets the yaw angle between the orientation of the vessel and its velocity vector, in degrees.
+
+   .. property:: float TotalAirTemperature { get; }
+
+      The `total air temperature <http://en.wikipedia.org/wiki/Total_air_temperature>`_ of the atmosphere
+      around the vessel, in Kelvin. This temperature includes the :prop:`Flight.StaticAirTemperature` and the vessel's kinetic energy.
+
+   .. property:: float StaticAirTemperature { get; }
+
+      The `static (ambient) temperature <http://en.wikipedia.org/wiki/Total_air_temperature>`_ of the
+      atmosphere around the vessel, in Kelvin.
+
+   .. property:: float StallFraction { get; }
+
+      Gets the current amount of stall, between 0 and 1. A value greater than 0.005 indicates a minor stall
+      and a value greater than 0.5 indicates a large-scale stall.
+
+
+      .. note::
+
+         Requires `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_.
+
+   .. property:: float DragCoefficient { get; }
+
+      Gets the coefficient of drag. This is the amount of drag produced by the vessel. It depends on air speed,
+      air density and wing area.
+
+
+      .. note::
+
+         Requires `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_.
+
+   .. property:: float LiftCoefficient { get; }
+
+      Gets the coefficient of lift. This is the amount of lift produced by the vessel, and depends on air speed, air density and wing area.
+
+
+      .. note::
+
+         Requires `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_.
+
+   .. property:: float BallisticCoefficient { get; }
+
+      Gets the `ballistic coefficient <http://en.wikipedia.org/wiki/Ballistic_coefficient>`_.
+
+
+      .. note::
+
+         Requires `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_.
+
+   .. property:: float ThrustSpecificFuelConsumption { get; }
+
+      Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
+      efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
+      number of Newtons of fuel that are burned, per hour, to product one newton of thrust.
+
+
+      .. note::
+
+         Requires `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_.

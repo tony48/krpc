@@ -1,0 +1,107 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Servo
+=====
+
+.. class:: Servo
+
+   Represents a servo. Obtained using
+   :prop:`ControlGroup.Servos`,
+   :meth:`ControlGroup.ServoWithName`
+   or :meth:`ServoWithName`.
+
+   .. property:: string Name { get; set; }
+
+      The name of the servo.
+
+   .. property:: bool Highlight { set; }
+
+      Whether the servo should be highlighted in-game.
+
+   .. property:: float Position { get; }
+
+      The position of the servo.
+
+   .. property:: float MinConfigPosition { get; }
+
+      The minimum position of the servo, specified by the part configuration.
+
+   .. property:: float MaxConfigPosition { get; }
+
+      The maximum position of the servo, specified by the part configuration.
+
+   .. property:: float MinPosition { get; set; }
+
+      The minimum position of the servo, specified by the in-game tweak menu.
+
+   .. property:: float MaxPosition { get; set; }
+
+      The maximum position of the servo, specified by the in-game tweak menu.
+
+   .. property:: float ConfigSpeed { get; }
+
+      The speed multiplier of the servo, specified by the part configuration.
+
+   .. property:: float Speed { get; set; }
+
+      The speed multiplier of the servo, specified by the in-game tweak menu.
+
+   .. property:: float CurrentSpeed { get; set; }
+
+      The current speed at which the servo is moving.
+
+   .. property:: float Acceleration { get; set; }
+
+      The current speed multiplier set in the UI.
+
+   .. property:: bool IsMoving { get; }
+
+      Whether the servo is moving.
+
+   .. property:: bool IsFreeMoving { get; }
+
+      Whether the servo is freely moving.
+
+   .. property:: bool IsLocked { get; set; }
+
+      Whether the servo is locked.
+
+   .. property:: bool IsAxisInverted { get; set; }
+
+      Whether the servos axis is inverted.
+
+   .. method:: void MoveRight()
+
+      Moves the servo to the right.
+
+   .. method:: void MoveLeft()
+
+      Moves the servo to the left.
+
+   .. method:: void MoveCenter()
+
+      Moves the servo to the center.
+
+   .. method:: void MoveNextPreset()
+
+      Moves the servo to the next preset.
+
+   .. method:: void MovePrevPreset()
+
+      Moves the servo to the previous preset.
+
+   .. method:: void MoveTo(float position, float speed)
+
+      Moves the servo to *position* and sets the
+      speed multiplier to *speed*.
+
+      :parameters:
+
+       * **position** -- The position to move the servo to.
+       * **speed** -- Speed multiplier for the movement.
+
+   .. method:: void Stop()
+
+      Stops the servo.

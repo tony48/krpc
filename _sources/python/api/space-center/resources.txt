@@ -1,0 +1,77 @@
+.. default-domain:: py
+.. highlight:: python
+.. currentmodule:: SpaceCenter
+
+Resources
+=========
+
+.. class:: Resources
+
+   Created by calling :attr:`Vessel.resources`,
+   :meth:`Vessel.resources_in_decouple_stage` or
+   :attr:`Part.resources`.
+
+   .. attribute:: names
+
+      A list of resource names that can be stored.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of str
+
+   .. method:: has_resource(name)
+
+      Check whether the named resource can be stored.
+
+      :param str name: The name of the resource.
+      :rtype: bool
+
+   .. method:: max(name)
+
+      Returns the amount of a resource that can be stored.
+
+      :param str name: The name of the resource.
+      :rtype: float
+
+   .. method:: amount(name)
+
+      Returns the amount of a resource that is currently stored.
+
+      :param str name: The name of the resource.
+      :rtype: float
+
+   .. staticmethod:: density(name)
+
+      Returns the density of a resource, in kg/l.
+
+      :param str name: The name of the resource.
+      :rtype: float
+
+   .. staticmethod:: flow_mode(name)
+
+      Returns the flow mode of a resource.
+
+      :param str name: The name of the resource.
+      :rtype: :class:`ResourceFlowMode`
+
+
+.. class:: ResourceFlowMode
+
+   See :meth:`Resources.flow_mode`.
+
+   .. data:: vessel
+
+      The resource flows to any part in the vessel. For example, electric charge.
+
+   .. data:: stage
+
+      The resource flows from parts in the first stage, followed by the second,
+      and so on. For example, mono-propellant.
+
+   .. data:: adjacent
+
+      The resource flows between adjacent parts within the vessel. For example,
+      liquid fuel or oxidizer.
+
+   .. data:: none
+
+      The resource does not flow. For example, solid fuel.

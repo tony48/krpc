@@ -1,0 +1,236 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Control
+=======
+
+.. class:: Control
+
+   Used to manipulate the controls of a vessel. This includes adjusting the
+   throttle, enabling/disabling systems such as SAS and RCS, or altering the
+   direction in which the vessel is pointing.
+
+   .. note::
+
+      Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+      that have set one or more of these inputs are no longer connected.
+
+   .. property:: bool SAS { get; set; }
+
+      The state of SAS.
+
+
+      .. note::
+
+         Equivalent to :prop:`AutoPilot.SAS`
+
+   .. property:: SASMode SASMode { get; set; }
+
+      The current :type:`SASMode`.
+      These modes are equivalent to the mode buttons to
+      the left of the navball that appear when SAS is enabled.
+
+
+      .. note::
+
+         Equivalent to :prop:`AutoPilot.SASMode`
+
+   .. property:: SpeedMode SpeedMode { get; set; }
+
+      The current :type:`SpeedMode` of the navball.
+      This is the mode displayed next to the speed at the top of the navball.
+
+   .. property:: bool RCS { get; set; }
+
+      The state of RCS.
+
+   .. property:: bool Gear { get; set; }
+
+      The state of the landing gear/legs.
+
+   .. property:: bool Lights { get; set; }
+
+      The state of the lights.
+
+   .. property:: bool Brakes { get; set; }
+
+      The state of the wheel brakes.
+
+   .. property:: bool Abort { get; set; }
+
+      The state of the abort action group.
+
+   .. property:: float Throttle { get; set; }
+
+      The state of the throttle. A value between 0 and 1.
+
+   .. property:: float Pitch { get; set; }
+
+      The state of the pitch control.
+      A value between -1 and 1.
+      Equivalent to the w and s keys.
+
+   .. property:: float Yaw { get; set; }
+
+      The state of the yaw control.
+      A value between -1 and 1.
+      Equivalent to the a and d keys.
+
+   .. property:: float Roll { get; set; }
+
+      The state of the roll control.
+      A value between -1 and 1.
+      Equivalent to the q and e keys.
+
+   .. property:: float Forward { get; set; }
+
+      The state of the forward translational control.
+      A value between -1 and 1.
+      Equivalent to the h and n keys.
+
+   .. property:: float Up { get; set; }
+
+      The state of the up translational control.
+      A value between -1 and 1.
+      Equivalent to the i and k keys.
+
+   .. property:: float Right { get; set; }
+
+      The state of the right translational control.
+      A value between -1 and 1.
+      Equivalent to the j and l keys.
+
+   .. property:: float WheelThrottle { get; set; }
+
+      The state of the wheel throttle.
+      A value between -1 and 1.
+      A value of 1 rotates the wheels forwards, a value of -1 rotates
+      the wheels backwards.
+
+   .. property:: float WheelSteering { get; set; }
+
+      The state of the wheel steering.
+      A value between -1 and 1.
+      A value of 1 steers to the left, and a value of -1 steers to the right.
+
+   .. property:: int CurrentStage { get; }
+
+      The current stage of the vessel. Corresponds to the stage number in
+      the in-game UI.
+
+   .. method:: System.Collections.Generic.IList<Vessel> ActivateNextStage()
+
+      Activates the next stage. Equivalent to pressing the space bar in-game.
+
+
+      :returns: A list of vessel objects that are jettisoned from the active vessel.
+
+   .. method:: bool GetActionGroup(uint group)
+
+      Returns ``true`` if the given action group is enabled.
+
+      :parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. method:: void SetActionGroup(uint group, bool state)
+
+      Sets the state of the given action group (a value between 0 and 9
+      inclusive).
+
+      :parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. method:: void ToggleActionGroup(uint group)
+
+      Toggles the state of the given action group.
+
+      :parameters:
+
+       * **group** -- A number between 0 and 9 inclusive.
+
+   .. method:: Node AddNode(double UT, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
+
+      Creates a maneuver node at the given universal time, and returns a
+      :type:`Node` object that can be used to modify it.
+      Optionally sets the magnitude of the delta-v for the maneuver node
+      in the prograde, normal and radial directions.
+
+      :parameters:
+
+       * **UT** -- Universal time of the maneuver node.
+       * **prograde** -- Delta-v in the prograde direction.
+       * **normal** -- Delta-v in the normal direction.
+       * **radial** -- Delta-v in the radial direction.
+
+   .. property:: System.Collections.Generic.IList<Node> Nodes { get; }
+
+      Returns a list of all existing maneuver nodes, ordered by time from first to last.
+
+   .. method:: void RemoveNodes()
+
+      Remove all maneuver nodes.
+
+
+.. enum:: SASMode
+
+   The behavior of the SAS auto-pilot. See :prop:`AutoPilot.SASMode`.
+
+   .. value:: StabilityAssist
+
+      Stability assist mode. Dampen out any rotation.
+
+   .. value:: Maneuver
+
+      Point in the burn direction of the next maneuver node.
+
+   .. value:: Prograde
+
+      Point in the prograde direction.
+
+   .. value:: Retrograde
+
+      Point in the retrograde direction.
+
+   .. value:: Normal
+
+      Point in the orbit normal direction.
+
+   .. value:: AntiNormal
+
+      Point in the orbit anti-normal direction.
+
+   .. value:: Radial
+
+      Point in the orbit radial direction.
+
+   .. value:: AntiRadial
+
+      Point in the orbit anti-radial direction.
+
+   .. value:: Target
+
+      Point in the direction of the current target.
+
+   .. value:: AntiTarget
+
+      Point away from the current target.
+
+
+.. enum:: SpeedMode
+
+   See :prop:`Control.SpeedMode`.
+
+   .. value:: Orbit
+
+      Speed is relative to the vessel's orbit.
+
+   .. value:: Surface
+
+      Speed is relative to the surface of the body being orbited.
+
+   .. value:: Target
+
+      Speed is relative to the current target.

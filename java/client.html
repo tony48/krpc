@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Java Client &mdash; kRPC  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC  documentation" href="../index.html"/>
+        <link rel="up" title="Java" href="../java.html"/>
+        <link rel="next" title="SpaceCenter API" href="api/space-center.html"/>
+        <link rel="prev" title="Java" href="../java.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../java.html">Java</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Java Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-krpc.client">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../java.html">Java</a> &raquo;</li>
+      
+    <li>Java Client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/java/client.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="java-client">
+<h1>Java Client<a class="headerlink" href="#java-client" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">krpc.client</span></code> package provides functionality to interact with a kRPC server from
+Java.</p>
+<div class="section" id="connecting-to-the-server">
+<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a server, use the <a class="reference internal" href="#krpc.client.Connection.newInstance()" title="krpc.client.Connection.newInstance()"><code class="xref java java-meth docutils literal"><span class="pre">Connection.newInstance()</span></code></a> function. This returns a
+connection object through which you can interact with the server. For example to
+connect to a server running on the local machine:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Example&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">conn</span><span class="o">).</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+</pre></div>
+</div>
+<p>This function also accepts arguments that specify what address and port numbers
+to connect to. For example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Remote example&quot;</span><span class="o">,</span> <span class="s">&quot;my.domain.name&quot;</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">1001</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">conn</span><span class="o">).</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interacting-with-the-server">
+<h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Interaction with the server is performed via a connection object. Functionality
+for services are defined in the package <code class="docutils literal"><span class="pre">krpc.client.services.*</span></code>.</p>
+<p>Before a service can be used it must first be instantiated. The following
+example connects to the server, instantiates the SpaceCenter service, and
+outputs the name of the active vessel:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Vessel</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Program</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span>
+    <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Vessel Name&quot;</span><span class="o">);</span>
+        <span class="n">SpaceCenter</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+        <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streaming-data-from-the-server">
+<h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
+<p>A stream repeatedly executes a function on the server, with a fixed set of
+argument values. It provides a more efficient way of repeatedly getting the
+result of calling function on the server, without having to invoke it directly
+&#8211; which incurs communication overheads.</p>
+<p>For example, consider the following loop that continuously prints out the
+position of the active vessel. This loop incurs significant communication
+overheads, as the <code class="docutils literal"><span class="pre">vessel.position()</span></code> function is called repeatedly.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+<span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">refframe</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>The following code achieves the same thing, but is far more efficient. It makes
+a single call to <a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> to create the stream, which avoids
+the communication overhead in the previous example.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+<span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Triplet</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">vessel_stream</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">vessel</span><span class="o">,</span> <span class="s">&quot;position&quot;</span><span class="o">,</span> <span class="n">refframe</span><span class="o">);</span>
+<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel_stream</span><span class="o">.</span><span class="na">get</span><span class="o">());;</span>
+</pre></div>
+</div>
+<p>Streams are created by calling <a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> and passing it
+information about which method to stream. The example above passes a remote
+object, the name of the method to call, followed by the arguments to pass to the
+method (if any). The most recent value for the stream can be obtained by calling
+<a class="reference internal" href="#krpc.client.Stream.get()" title="krpc.client.Stream.get()"><code class="xref java java-meth docutils literal"><span class="pre">Stream.get</span></code></a>.</p>
+<p>Streams can also be added for static methods as follows:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">time_stream</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">SpaceCenter</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;getUt&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>A stream can be removed by calling <a class="reference internal" href="#krpc.client.Stream.remove()" title="krpc.client.Stream.remove()"><code class="xref java java-meth docutils literal"><span class="pre">Stream.remove()</span></code></a>.</p>
+</div>
+<div class="section" id="package-krpc.client">
+<span id="reference"></span><h2>Reference<a class="headerlink" href="#package-krpc.client" title="Permalink to this headline">¶</a></h2>
+<dl class="type">
+<dt id="krpc.client.Connection">
+ class <code class="descname">Connection</code><a class="headerlink" href="#krpc.client.Connection" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>This class provides the interface for communicating with the server.</p>
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance()">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance(String)">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance(String, String)">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> address</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance(String, String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance(String, String, int, int)">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> address</em>, int<em> rpcPort</em>, int<em> streamPort</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance(String, String, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance(String, InetAddress)">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, InetAddress<em> address</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance(String, InetAddress)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.newInstance(String, InetAddress, int, int)">
+static <a class="reference internal" href="#krpc.client.Connection" title="krpc.client.Connection">Connection</a> <code class="descname">newInstance</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, InetAddress<em> address</em>, int<em> rpcPort</em>, int<em> streamPort</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.newInstance(String, InetAddress, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a connection to the server, using the given connection details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; A descriptive name for the connection. This is passed to
+the server and appears, for example, in the client
+connection dialog on the in-game server window.</li>
+<li><strong>address</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; The address of the server to connect to. Can either be
+a hostname, an IP address as a string or an
+InetAddress object. Defaults to &#8216;127.0.0.1&#8217;.</li>
+<li><strong>rpc_port</strong> (<em>int</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>int</em>) &#8211; The port number of the Stream Server. Defaults
+to 50001.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+<dl class="method">
+<dt id="krpc.client.Connection.close()">
+ void <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.close()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.addStream(Class, String, Object)">
+ <a class="reference internal" href="#krpc.client.Stream" title="krpc.client.Stream">Stream</a>&lt;T&gt; <code class="descname">addStream</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html" title="java.lang.Class">Class</a>&lt;?&gt;<em> clazz</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> method</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>...<em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.addStream(Class, String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a stream for a static method call to the given class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Connection.addStream(RemoteObject, String, Object)">
+ <a class="reference internal" href="#krpc.client.Stream" title="krpc.client.Stream">Stream</a>&lt;T&gt; <code class="descname">addStream</code><span class="sig-paren">(</span><a class="reference internal" href="#krpc.client.RemoteObject" title="krpc.client.RemoteObject">RemoteObject</a><em> instance</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> method</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>...<em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a stream for a method call to the given remote object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.Stream">
+ class <code class="descname">Stream</code>&lt;T&gt;<a class="headerlink" href="#krpc.client.Stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stream object.</p>
+<dl class="method">
+<dt id="krpc.client.Stream.get()">
+ T <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Stream.get()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most recent value for the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Stream.remove()">
+ void <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Stream.remove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the stream from the server.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.RemoteObject">
+abstract class <code class="descname">RemoteObject</code><a class="headerlink" href="#krpc.client.RemoteObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>The abstract base class for all remote objects.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/space-center.html" class="btn btn-neutral float-right" title="SpaceCenter API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../java.html" class="btn btn-neutral" title="Java" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+Comms
+=====
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Comms
+
+   Used to interact with RemoteTech.
+   Created using a call to :func:`Vessel::comms`.
+
+   .. note::
+
+      This class requires `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ to be installed.
+
+   .. function:: bool has_local_control()
+
+      Whether the vessel can be controlled locally.
+
+   .. function:: bool has_flight_computer()
+
+      Whether the vessel has a RemoteTech flight computer on board.
+
+   .. function:: bool has_connection()
+
+      Whether the vessel can receive commands from the KSC or a command station.
+
+   .. function:: bool has_connection_to_ground_station()
+
+      Whether the vessel can transmit science data to a ground station.
+
+   .. function:: double signal_delay()
+
+      The signal delay when sending commands to the vessel, in seconds.
+
+   .. function:: double signal_delay_to_ground_station()
+
+      The signal delay between the vessel and the closest ground station, in seconds.
+
+   .. function:: double signal_delay_to_vessel(Vessel other)
+
+      Returns the signal delay between the current vessel and another vessel, in seconds.
+
+      :Parameters:
