@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Java Client &mdash; kRPC  documentation</title>
+  <title>Java Client &mdash; kRPC 0.2.2 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC  documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.2.2 documentation" href="../index.html"/>
         <link rel="up" title="Java" href="../java.html"/>
         <link rel="next" title="SpaceCenter API" href="api/space-center.html"/>
         <link rel="prev" title="Java" href="../java.html"/> 
@@ -91,10 +91,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../java.html">Java</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Java Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#package-krpc.client">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-krpc.client">Client API Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
@@ -156,44 +157,76 @@
             
   <div class="section" id="java-client">
 <h1>Java Client<a class="headerlink" href="#java-client" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">krpc.client</span></code> package provides functionality to interact with a kRPC server from
-Java.</p>
-<div class="section" id="connecting-to-the-server">
-<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
-<p>To connect to a server, use the <a class="reference internal" href="#krpc.client.Connection.newInstance()" title="krpc.client.Connection.newInstance()"><code class="xref java java-meth docutils literal"><span class="pre">Connection.newInstance()</span></code></a> function. This returns a
-connection object through which you can interact with the server. For example to
-connect to a server running on the local machine:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Example&quot;</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">conn</span><span class="o">).</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+<p>This client provides functionality to interact with a kRPC server from programs
+written in Java. A Java Archive containing the <code class="docutils literal"><span class="pre">krpc.client</span></code> package can be
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.2.2/libkrpc-0.2.2.jar">downloaded from GitHub</a>.</p>
+<div class="section" id="using-the-library">
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
+<p>The kRPC client library depends on the <a class="reference external" href="https://github.com/google/protobuf/tree/master/java">protobuf</a> and <a class="reference external" href="http://www.javatuples.org">javatuples</a> libraries. A pre-built jar for protobuf is
+available via <a class="reference external" href="http://search.maven.org/#search|ga|1|g%3A%22com.google.protobuf%22%20a%3A%22protobuf-java%22">Maven</a>. Note
+that you need protobuf version 3. Version 2 is not compatible with kRPC.</p>
+<p>The following example program connects to the server, queries it for its version
+and prints it out:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.KRPC</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Basic</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+        <span class="n">KRPC</span> <span class="n">krpc</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Connected to kRPC version &quot;</span> <span class="o">+</span> <span class="n">krpc</span><span class="o">.</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
-<p>This function also accepts arguments that specify what address and port numbers
-to connect to. For example:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Remote example&quot;</span><span class="o">,</span> <span class="s">&quot;my.domain.name&quot;</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">1001</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">conn</span><span class="o">).</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+<p>To compile this program using javac on the command line, save the source as
+<code class="docutils literal"><span class="pre">Example.java</span></code> and run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>javac -cp libkrpc-0.2.2.jar:protobuf-java-3.0.0-beta-2.jar:javatuples-1.2.jar Example.java
+</pre></div>
+</div>
+<p>You may need to change the paths to the JAR files.</p>
+</div>
+<div class="section" id="connecting-to-the-server">
+<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a server, use the <a class="reference internal" href="#krpc.client.Connection.newInstance()" title="krpc.client.Connection.newInstance()"><code class="xref java java-meth docutils literal"><span class="pre">Connection.newInstance()</span></code></a> function. This
+returns a connection object through which you can interact with the server. When
+called without any arguments, it will connect to the local machine on the
+default port numbers. You can specify different connection settings, including a
+descriptive name for the client, as follows:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.KRPC</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Connecting</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Remote example&quot;</span><span class="o">,</span> <span class="s">&quot;my.domain.name&quot;</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">1001</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">KRPC</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">).</span><span class="na">getStatus</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="interacting-with-the-server">
 <h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
 <p>Interaction with the server is performed via a connection object. Functionality
-for services are defined in the package <code class="docutils literal"><span class="pre">krpc.client.services.*</span></code>.</p>
-<p>Before a service can be used it must first be instantiated. The following
-example connects to the server, instantiates the SpaceCenter service, and
-outputs the name of the active vessel:</p>
+for services are defined in the packages <code class="docutils literal"><span class="pre">krpc.client.services.*</span></code>. Before a
+service can be used it must first be instantiated. The following example
+connects to the server, instantiates the SpaceCenter service, and outputs the
+name of the active vessel:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Vessel</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Program</span>
-<span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span>
-    <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Interacting</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
         <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Vessel Name&quot;</span><span class="o">);</span>
-        <span class="n">SpaceCenter</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
-        <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+        <span class="n">SpaceCenter</span> <span class="n">spaceCenter</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+        <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -204,25 +237,56 @@ outputs the name of the active vessel:</p>
 <h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
 <p>A stream repeatedly executes a function on the server, with a fixed set of
 argument values. It provides a more efficient way of repeatedly getting the
-result of calling function on the server, without having to invoke it directly
-&#8211; which incurs communication overheads.</p>
+result of a function, avoiding the network overhead of having to invoke it
+directly.</p>
 <p>For example, consider the following loop that continuously prints out the
 position of the active vessel. This loop incurs significant communication
 overheads, as the <code class="docutils literal"><span class="pre">vessel.position()</span></code> function is called repeatedly.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
-<span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
-<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">refframe</span><span class="o">));</span>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.KRPC</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Vessel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.ReferenceFrame</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Streaming</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+        <span class="n">SpaceCenter</span> <span class="n">spaceCenter</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+        <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+        <span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">refframe</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
-<p>The following code achieves the same thing, but is far more efficient. It makes
-a single call to <a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> to create the stream, which avoids
-the communication overhead in the previous example.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
-<span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
-<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Triplet</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">vessel_stream</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">vessel</span><span class="o">,</span> <span class="s">&quot;position&quot;</span><span class="o">,</span> <span class="n">refframe</span><span class="o">);</span>
-<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel_stream</span><span class="o">.</span><span class="na">get</span><span class="o">());;</span>
+<p>The following code achieves the same thing, but is far more efficient. It
+calls:meth:<cite>Connection.addStream</cite> once at the start of the program to create a
+stream, and then repeatedly gets the position from the stream.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.javatuples.Triplet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.Stream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.StreamException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.KRPC</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Vessel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.ReferenceFrame</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Streaming2</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span><span class="o">,</span> <span class="n">StreamException</span> <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+        <span class="n">SpaceCenter</span> <span class="n">spaceCenter</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+        <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+        <span class="n">ReferenceFrame</span> <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">();</span>
+        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Triplet</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">,</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">vessel_stream</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">vessel</span><span class="o">,</span> <span class="s">&quot;position&quot;</span><span class="o">,</span> <span class="n">refframe</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vessel_stream</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 <p>Streams are created by calling <a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> and passing it
@@ -234,10 +298,11 @@ method (if any). The most recent value for the stream can be obtained by calling
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">time_stream</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">SpaceCenter</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;getUt&quot;</span><span class="o">);</span>
 </pre></div>
 </div>
-<p>A stream can be removed by calling <a class="reference internal" href="#krpc.client.Stream.remove()" title="krpc.client.Stream.remove()"><code class="xref java java-meth docutils literal"><span class="pre">Stream.remove()</span></code></a>.</p>
+<p>A stream can be removed by calling <a class="reference internal" href="#krpc.client.Stream.remove()" title="krpc.client.Stream.remove()"><code class="xref java java-meth docutils literal"><span class="pre">Stream.remove()</span></code></a>. All of a clients
+streams are automatically stopped when it disconnects.</p>
 </div>
 <div class="section" id="package-krpc.client">
-<span id="reference"></span><h2>Reference<a class="headerlink" href="#package-krpc.client" title="Permalink to this headline">¶</a></h2>
+<span id="client-api-reference"></span><h2>Client API Reference<a class="headerlink" href="#package-krpc.client" title="Permalink to this headline">¶</a></h2>
 <dl class="type">
 <dt id="krpc.client.Connection">
  class <code class="descname">Connection</code><a class="headerlink" href="#krpc.client.Connection" title="Permalink to this definition">¶</a></dt>
@@ -382,7 +447,7 @@ abstract class <code class="descname">RemoteObject</code><a class="headerlink" h
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'',
+            VERSION:'0.2.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
