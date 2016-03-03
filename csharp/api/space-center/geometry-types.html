@@ -177,11 +177,9 @@
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">VectorExample</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
+<span class="k">class</span> <span class="nc">VectorExample</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">&gt;</span> <span class="n">v</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">().</span><span class="n">Prograde</span><span class="p">;</span>
         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">Item1</span> <span class="p">+</span> <span class="s">&quot;,&quot;</span> <span class="p">+</span> <span class="n">v</span><span class="p">.</span><span class="n">Item2</span> <span class="p">+</span> <span class="s">&quot;,&quot;</span> <span class="p">+</span> <span class="n">v</span><span class="p">.</span><span class="n">Item3</span><span class="p">);</span>
@@ -201,12 +199,11 @@ containing the x, y, z and w components. For example:</p>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">QuaternionExample</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">QuaternionExample</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">spaceCenter</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">spaceCenter</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="p">&gt;</span> <span class="n">q</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">().</span><span class="n">Rotation</span><span class="p">;</span>
         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">Item1</span> <span class="p">+</span> <span class="s">&quot;,&quot;</span> <span class="p">+</span> <span class="n">q</span><span class="p">.</span><span class="n">Item2</span> <span class="p">+</span> <span class="s">&quot;,&quot;</span> <span class="p">+</span> <span class="n">q</span><span class="p">.</span><span class="n">Item3</span> <span class="p">+</span> <span class="s">&quot;,&quot;</span> <span class="p">+</span> <span class="n">q</span><span class="p">.</span><span class="n">Item4</span><span class="p">);</span>
     <span class="p">}</span>

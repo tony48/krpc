@@ -92,6 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../lua.html">Lua</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Lua Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
@@ -157,9 +159,21 @@
             
   <div class="section" id="lua-client">
 <h1>Lua Client<a class="headerlink" href="#lua-client" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">krpc</span></code> module provides functionality to interact with a kRPC server from
-lua. It can be installed
-<a class="reference external" href="https://luarocks.org/modules/djungelorm/krpc">using luarocks</a>.</p>
+<p>This client provides functionality to interact with a kRPC server from programs
+written in Lua. It can be <a class="reference external" href="https://luarocks.org/modules/djungelorm/krpc">installed using LuaRocks</a> or
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.2.2/krpc-lua-0.2.2.zip">downloaded from GitHub</a>.</p>
+<div class="section" id="installing-the-library">
+<h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
+<p>The Lua client and all of its dependencies can be installed using luarocks with
+a single command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>luarocks install krpc
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-library">
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
+<p>Once it&#8217;s installed, simply <code class="docutils literal"><span class="pre">require</span> <span class="pre">'krpc'</span></code> and you are good to go!</p>
+</div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
 <p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function. This returns a
@@ -194,10 +208,7 @@ procedure calls and passed to the server by the lua client.</p>
 </div>
 <div class="section" id="streaming-data-from-the-server">
 <h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Streams are not yet supported by the Lua client.</p>
-</div>
+<p>Streams are not yet supported by the Lua client.</p>
 </div>
 <div class="section" id="module-krpc">
 <span id="reference"></span><h2>Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>

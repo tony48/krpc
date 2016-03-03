@@ -2162,11 +2162,9 @@ depth-first traversal over all of the parts in a vessel:</p>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">AttachmentModes</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
+<span class="k">class</span> <span class="nc">AttachmentModes</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
         <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
@@ -2232,7 +2230,7 @@ but also prints out the attachment mode used by the part:</p>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
         <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>

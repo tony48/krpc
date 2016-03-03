@@ -89,10 +89,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../csharp.html">C#</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">C# Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-the-client">Installing the Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-api-reference">Client API Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
@@ -157,45 +158,51 @@
             
   <div class="section" id="c-client">
 <h1>C# Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code> library provides functionality to interact with a kRPC
-server from C#.</p>
-<div class="section" id="installing-the-client">
-<h2>Installing the Client<a class="headerlink" href="#installing-the-client" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code> is <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client/">available on NuGet</a>. You also need to get
-<code class="docutils literal"><span class="pre">Google.Protobuf.dll</span></code>, which is <a class="reference external" href="https://www.nuget.org/packages/Google.Protobuf/">also available on NuGet</a>.</p>
+<p>This client provides functionality to interact with a kRPC server from programs
+written in C#. The <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code> assembly can be <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">installed using NuGet</a> or
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.2.2/krpc-csharp-0.2.2.zip">downloaded from GitHub</a>.</p>
+<div class="section" id="installing-the-library">
+<h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
+<p>Install the client <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">using NuGet</a>
+or download the assembly <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.2.2/krpc-csharp-0.2.2.zip">from GitHub</a> and
+reference it in your project. You also need to <a class="reference external" href="https://www.nuget.org/packages/Google.Protobuf">install Google.Protobuf using
+NuGet</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The copy of <code class="docutils literal"><span class="pre">Google.Protobuf.dll</span></code> in the GameData folder shipped with kRPC
-should be <em>avoided</em>. It is a modified version to work within KSP.
-<a class="reference external" href="https://github.com/djungelorm/protobuf/releases/tag/v3.0.0-beta-2-net35">See here for more details.</a></p>
+<p class="last">The copy of <code class="docutils literal"><span class="pre">Google.Protobuf.dll</span></code> in the GameData folder shipped with the
+kRPC server plugin should be <em>avoided</em>. It is a modified version to work
+within KSP. <a class="reference external" href="https://github.com/djungelorm/protobuf/releases/tag/v3.0.0-beta-2-net35">See here for more
+details.</a></p>
 </div>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
 <p>To connect to a server, create a <code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Connection</span></code> object. For
 example to connect to a server running on the local machine:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">(</span><span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Example&quot;</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="n">KRPC</span> <span class="p">().</span><span class="n">GetStatus</span> <span class="p">().</span><span class="n">Version</span><span class="p">);</span>
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Example&quot;</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">krpc</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">KRPC</span> <span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">krpc</span><span class="p">.</span><span class="n">GetStatus</span> <span class="p">().</span><span class="n">Version</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>The class constructor also accepts arguments that specify what address and port
 numbers to connect to. For example:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">(</span><span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Example&quot;</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="s">&quot;my.domain.name&quot;</span><span class="p">,</span> <span class="n">rpcPort</span><span class="p">:</span> <span class="m">1000</span><span class="p">,</span> <span class="n">streamPort</span><span class="p">:</span> <span class="m">1001</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="n">KRPC</span> <span class="p">().</span><span class="n">GetStatus</span> <span class="p">().</span><span class="n">Version</span><span class="p">);</span>
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span>
+            <span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Example&quot;</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">IPAddress</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&quot;10.0.2.2&quot;</span><span class="p">),</span> <span class="n">rpcPort</span><span class="p">:</span> <span class="m">1000</span><span class="p">,</span> <span class="n">streamPort</span><span class="p">:</span> <span class="m">1001</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">krpc</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">KRPC</span> <span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">krpc</span><span class="p">.</span><span class="n">GetStatus</span> <span class="p">().</span><span class="n">Version</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -203,20 +210,19 @@ numbers to connect to. For example:</p>
 </div>
 <div class="section" id="interacting-with-the-server">
 <h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
-<p>Interaction with the server is performed via a connection object. Functionality
-for services are defined in the namespaces <code class="docutils literal"><span class="pre">KRPC.Client.Services.*</span></code>.</p>
-<p>Before a service can be used it must first be instantiated. The following
-example connects to the server, instantiates the SpaceCenter service, and
-outputs the name of the active vessel:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+<p>kRPC groups remote procedures into services. The functionality for the services
+are defined in namespace <code class="docutils literal"><span class="pre">KRPC.Client.Services.*</span></code>.</p>
+<p>To interact with a service, you must first instantiate it. The following example
+connects to the server, instantiates the SpaceCenter service, and outputs the
+name of the active vessel:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">(</span><span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Vessel Name&quot;</span><span class="p">);</span>
-        <span class="kt">var</span> <span class="n">sc</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="n">name</span> <span class="p">:</span> <span class="s">&quot;Vessel Name&quot;</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">spaceCenter</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">spaceCenter</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -227,33 +233,99 @@ outputs the name of the active vessel:</p>
 <h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
 <p>A stream repeatedly executes a function on the server, with a fixed set of
 argument values. It provides a more efficient way of repeatedly getting the
-result of calling function on the server, without having to invoke it directly
-&#8211; which incurs communication overheads.</p>
+result of a function, avoiding the network overhead of having to invoke it
+directly.</p>
 <p>For example, consider the following loop that continuously prints out the
 position of the active vessel. This loop incurs significant communication
 overheads, as the <a class="reference internal" href="api/space-center/vessel.html#method-Vessel.Position" title="Vessel.Position method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Vessel.Position</span></code></a> method is called repeatedly.</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span><span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
-<span class="kt">var</span> <span class="n">refframe</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">ReferenceFrame</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">True</span><span class="p">)</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Position</span><span class="p">(</span><span class="n">refframe</span><span class="p">));</span>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">spaceCenter</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">spaceCenter</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">refframe</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">ReferenceFrame</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Position</span><span class="p">(</span><span class="n">refframe</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>The following code achieves the same thing, but is far more efficient. It makes
-a single call to <code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code> to create the stream, which avoids
-the communication overhead in the previous example.</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span><span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
-<span class="kt">var</span> <span class="n">refframe</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">ReferenceFrame</span><span class="p">;</span>
-<span class="kt">var</span> <span class="n">position</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">AddStream</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Position</span><span class="p">(</span><span class="n">refframe</span><span class="p">));</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">True</span><span class="p">)</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span>
+<p>The following code achieves the same thing, but is far more efficient. It calls
+<code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code> once at the start of the program to create a
+stream, and then repeatedly gets the position from the stream.</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">spaceCenter</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
+        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">spaceCenter</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">refframe</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">ReferenceFrame</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">position</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">AddStream</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Position</span><span class="p">(</span><span class="n">refframe</span><span class="p">));</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">Get</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Streams are created by calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code> and passing it a
-lambda expression. It returns an instance of the <code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Stream</span></code>
-class from which the latest value can be obtained by calling
-<code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Stream.Get</span></code>.</p>
-<p>The lambda expression passed to <code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code> must take zero
-arguments and be either a method call expression or a parameter call expression.</p>
+<p>Streams are created for any method call by calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code>
+and passing it a lambda expression calling the desired method. This lambda
+expression must take zero arguments and be either a method call expression or a
+parameter call expression. It returns an instance of the
+<code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Stream</span></code> class from which the latest value can be obtained by
+calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Stream.Get</span></code>. A stream can be stopped and removed from
+the server by calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Stream.Remove</span></code> on the stream
+object. All of a clients streams are automatically stopped when it disconnects.</p>
+</div>
+<div class="section" id="client-api-reference">
+<h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="class-Connection">
+<code class="descname">class Connection</code><a class="headerlink" href="#class-Connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A connection to the kRPC server. All interaction with kRPC is performed via
+an instance of this class.</p>
+<dl class="method">
+<dt>
+<code class="descname">Connection (string name = &quot;&quot;, IPAddress address = null, int rpcPort = 50000, int streamPort = 50001)</code></dt>
+<dd><p>Connect to a kRPC server on the specified IP address and port numbers. If
+streamPort is 0, does not connect to the stream server. Passes an optional
+name to the server to identify the client (up to 32 bytes of UTF-8 encoded
+text).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Connection.AddStream&lt;TResult&gt;">
+Stream&lt;TResult&gt; <code class="descname">AddStream&lt;TResult&gt;</code> <span class="sig-paren">(</span>LambdaExpression <em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Connection.AddStream<TResult>" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stream from the given lambda expression.  Returns a stream
+object that can be used to obtain the latest value of the stream.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-Stream&lt;ReturnType&gt;">
+<code class="descname">class Stream&lt;ReturnType&gt;</code><a class="headerlink" href="#class-Stream<ReturnType>" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object representing a stream.</p>
+<dl class="method">
+<dt id="method-Stream&lt;ReturnType&gt;.Get">
+ReturnType <code class="descname">Get</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream<ReturnType>.Get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most recent value of the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Stream&lt;ReturnType&gt;.Remove">
+void <code class="descname">Remove</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream<ReturnType>.Remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the stream from the server.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

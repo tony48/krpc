@@ -178,11 +178,9 @@ set to trigger after 10 seconds have passed, and display a message.</p>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">KerbalAlarmClockExample</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Client</span><span class="p">.</span><span class="n">Connection</span> <span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Kerbal Alarm Clock Example&quot;</span><span class="p">);</span>
+<span class="k">class</span> <span class="nc">KAC</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Kerbal Alarm Clock Example&quot;</span><span class="p">);</span>
         <span class="kt">var</span> <span class="n">kac</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">KerbalAlarmClock</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">alarm</span> <span class="p">=</span> <span class="n">kac</span><span class="p">.</span><span class="n">CreateAlarm</span> <span class="p">(</span><span class="n">AlarmType</span><span class="p">.</span><span class="n">Raw</span><span class="p">,</span> <span class="s">&quot;My New Alarm&quot;</span><span class="p">,</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">UT</span> <span class="p">+</span> <span class="m">10</span><span class="p">);</span>
         <span class="n">alarm</span><span class="p">.</span><span class="n">Notes</span> <span class="p">=</span> <span class="s">&quot;10 seconds have now passed since the alarm was created.&quot;</span><span class="p">;</span>
