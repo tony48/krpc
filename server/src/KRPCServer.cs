@@ -13,7 +13,6 @@ using KRPC.Continuations;
 using KRPC.Utils;
 using KRPC.Schema.KRPC;
 
-
 namespace KRPC
 {
     /// <summary>
@@ -46,6 +45,16 @@ namespace KRPC
         public event EventHandler OnStopped;
 
         /// <summary>
+        /// Event triggered when the server starts an update.
+        /// </summary>
+        public event EventHandler OnUpdateStarted;
+
+        /// <summary>
+        /// Event triggered when the server finishes an update.
+        /// </summary>
+        public event EventHandler OnUpdateFinished;
+
+        /// <summary>
         /// Event triggered when a client is requesting a connection
         /// </summary>
         public event EventHandler<ClientRequestingConnectionArgs> OnClientRequestingConnection;
@@ -66,7 +75,7 @@ namespace KRPC
         public event EventHandler<ClientDisconnectedArgs> OnClientDisconnected;
 
         /// <summary>
-        /// Stores the context in which a continuation is executed.
+        /// Stores the context in which a continuation, or a service's init method is executed.
         /// For example, used by a continuation to find out which client made the request.
         /// </summary>
         public static class Context
@@ -77,30 +86,33 @@ namespace KRPC
             public static KRPCServer Server { get; private set; }
 
             /// <summary>
-            /// The current client
-            /// </summary>
-            public static IClient RPCClient { get; private set; }
-
-            /// <summary>
             /// The current game scene
             /// </summary>
             public static GameScene GameScene { get; private set; }
 
-            internal static void Set (KRPCServer server, IClient rpcClient)
+            /// <summary>
+            /// The current client
+            /// </summary>
+            public static IClient RPCClient { get; private set; }
+
+            internal static void SetServer (KRPCServer server)
             {
                 Server = server;
-                RPCClient = rpcClient;
-            }
-
-            internal static void Clear ()
-            {
-                Server = null;
-                RPCClient = null;
             }
 
             internal static void SetGameScene (GameScene gameScene)
             {
                 GameScene = gameScene;
+            }
+
+            internal static void SetClient (IClient rpcClient)
+            {
+                RPCClient = rpcClient;
+            }
+
+            internal static void ClearClient ()
+            {
+                RPCClient = null;
             }
         }
 
@@ -380,8 +392,12 @@ namespace KRPC
             ulong startBytesRead = BytesRead;
             ulong startBytesWritten = BytesWritten;
 
+            if (OnUpdateStarted != null)
+                OnUpdateStarted (this, EventArgs.Empty);
             RPCServerUpdate ();
             StreamServerUpdate ();
+            if (OnUpdateFinished != null)
+                OnUpdateFinished (this, EventArgs.Empty);
 
             var timeElapsed = updateTimer.ElapsedSeconds ();
             var ticksElapsed = updateTimer.ElapsedTicks;
@@ -621,7 +637,7 @@ namespace KRPC
             // or throw a YieldException if the continuation has not completed
             Response response;
             try {
-                Context.Set (this, client);
+                Context.SetClient (client);
                 response = continuation.Run ();
             } catch (YieldException) {
                 throw;
@@ -632,7 +648,7 @@ namespace KRPC
                 if (Logger.ShouldLog (Logger.Severity.Debug))
                     Logger.WriteLine (e.Message, Logger.Severity.Debug);
             } finally {
-                Context.Clear ();
+                Context.ClearClient ();
             }
 
             // Send response to the client

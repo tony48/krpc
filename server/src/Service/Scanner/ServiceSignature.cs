@@ -39,6 +39,12 @@ namespace KRPC.Service.Scanner
         public GameScene GameScene { get; private set; }
 
         /// <summary>
+        /// Delegate that is called when the kRPC addon is initialized
+        /// </summary>
+        public delegate void InitDelegate();
+        public InitDelegate Init { get; private set; }
+
+        /// <summary>
         /// Create a service signature from a C# type annotated with the KRPCService attribute
         /// </summary>
         /// <param name="type">Type.</param>
@@ -51,6 +57,7 @@ namespace KRPC.Service.Scanner
             Enumerations = new Dictionary<string, EnumerationSignature> ();
             Procedures = new Dictionary<string, ProcedureSignature> ();
             GameScene = TypeUtils.GetServiceGameScene (type);
+            Init = (InitDelegate) TypeUtils.GetServiceInit (typeof(InitDelegate), type);
         }
 
         /// <summary>

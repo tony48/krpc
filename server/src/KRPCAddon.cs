@@ -1,4 +1,5 @@
 using KRPC.Server;
+using KRPC.Service.Scanner;
 using KRPC.UI;
 using KRPC.Utils;
 using UnityEngine;
@@ -27,12 +28,20 @@ namespace KRPC
             if (server != null)
                 return;
 
+            // Init server
             config = new KRPCConfiguration ("settings.cfg");
             config.Load ();
             server = new KRPCServer (
                 config.Address, config.RPCPort, config.StreamPort,
                 config.OneRPCPerUpdate, config.MaxTimePerUpdate, config.AdaptiveRateControl,
                 config.BlockingRecv, config.RecvTimeout);
+            KRPCServer.Context.SetServer (server);
+
+            // Init services
+            foreach (var service in Scanner.GetServices ()) {
+                if (service.Value.Init != null)
+                    service.Value.Init();
+            }
 
             // Auto-start the server, if required
             if (config.AutoStartServer)

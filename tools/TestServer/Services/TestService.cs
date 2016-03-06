@@ -12,6 +12,18 @@ namespace TestServer.Services
     [KRPCService]
     public static class TestService
     {
+        static bool initCalled = false;
+
+        public static void Init ()
+        {
+            initCalled = true;
+        }
+
+        [KRPCProperty]
+        public static bool HasInitBeenCalled {
+            get { return initCalled; }
+        }
+
         /// <summary>
         /// Procedure documentation string.
         /// </summary>

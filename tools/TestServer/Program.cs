@@ -89,13 +89,21 @@ namespace TestServer
                 return;
             }
 
-            KRPC.Service.Scanner.Scanner.GetServices ();
+            var services = KRPC.Service.Scanner.Scanner.GetServices ();
             server = new KRPCServer (IPAddress.Loopback, rpcPort, streamPort);
+            KRPCServer.Context.SetServer (server);
+            foreach (var service in services) {
+                if (service.Value.Init != null)
+                    service.Value.Init();
+            }
             KRPCServer.Context.SetGameScene (GameScene.SpaceCenter);
             var timeSpan = new TimeSpan ();
             server.GetUniversalTime = () => timeSpan.TotalSeconds;
             server.OnClientRequestingConnection += (s, e) => e.Request.Allow ();
             server.Start ();
+
+            if (!Services.TestService.HasInitBeenCalled)
+                throw new InvalidOperationException ("TestService has not been initialized");
 
             if (writePortsPath != null)
                 System.IO.File.WriteAllText (writePortsPath, server.RPCPort.ToString () + "\n" + server.StreamPort.ToString () + "\n");

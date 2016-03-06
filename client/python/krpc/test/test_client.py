@@ -193,6 +193,8 @@ class TestClient(ServerTestCase, unittest.TestCase):
     def test_test_service_service_members(self):
         self.assertSetEqual(
             set([
+                'has_init_been_called',
+
                 'float_to_string',
                 'double_to_string',
                 'int32_to_string',

@@ -205,6 +205,19 @@ namespace KRPC.Service
         }
 
         /// <summary>
+        /// Get the delegate that initializes the service for the given KRPCService annotated type.
+        /// Looks for a public static method called Init. Returns null no such method exists.
+        /// </summary>
+        public static Delegate GetServiceInit (Type delegateType, Type type)
+        {
+            ValidateKRPCService (type);
+            MethodInfo method = type.GetMethod("Init", BindingFlags.Public | BindingFlags.Static);
+            if (method == null)
+                return null;
+            return Delegate.CreateDelegate(delegateType, null, method);
+        }
+
+        /// <summary>
         /// Get the name of the service for the given KRPCClass annotated type
         /// </summary>
         public static string GetClassServiceName (Type type)
