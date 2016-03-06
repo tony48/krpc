@@ -44,7 +44,7 @@ namespace KRPC.SpaceCenter.Services.Parts
         /// The KSP part.
         /// </summary>
         public global::Part InternalPart {
-            get { return FlightGlobals.FindPartByID (partFlightId); }
+            get { return FlightGlobalsExtensions.GetPartById (partFlightId); }
         }
 
         /// <summary>

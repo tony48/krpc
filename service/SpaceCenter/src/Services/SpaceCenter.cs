@@ -39,6 +39,14 @@ namespace KRPC.SpaceCenter.Services
     public static class SpaceCenter
     {
         /// <summary>
+        /// Initializer for the service.
+        /// </summary>
+        public static void Init ()
+        {
+            ValueCache.Init ();
+        }
+
+        /// <summary>
         /// The currently active vessel.
         /// </summary>
         [KRPCProperty]
