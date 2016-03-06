@@ -53,6 +53,7 @@ namespace KRPC.SpaceCenter.Services.Parts
         public void Release ()
         {
             launchClamp.Release ();
+            ValueCache.Clear ();
         }
     }
 }

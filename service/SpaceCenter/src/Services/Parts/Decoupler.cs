@@ -63,6 +63,7 @@ namespace KRPC.SpaceCenter.Services.Parts
                 decoupler.Decouple ();
             else
                 anchoredDecoupler.Decouple ();
+            ValueCache.Clear ();
         }
 
         /// <summary>

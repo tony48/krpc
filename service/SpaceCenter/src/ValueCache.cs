@@ -18,10 +18,13 @@ namespace KRPC.SpaceCenter
         {
             VesselById = new Dictionary<Guid, global::Vessel> ();
             PartById = new Dictionary<uint, global::Part> ();
-            KRPCServer.Context.Server.OnUpdateStarted += (s, e) => {
-                VesselById.Clear ();
-                PartById.Clear ();
-            };
+            KRPCServer.Context.Server.OnUpdateStarted += (s, e) => Clear ();
+        }
+
+        internal static void Clear ()
+        {
+            VesselById.Clear ();
+            PartById.Clear ();
         }
     }
 }

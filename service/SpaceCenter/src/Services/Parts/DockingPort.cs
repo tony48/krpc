@@ -198,6 +198,7 @@ namespace KRPC.SpaceCenter.Services.Parts
 
         Vessel PostUndock (global::Vessel preActiveVessel, global::Vessel[] preVessels, int wait = 0)
         {
+            ValueCache.Clear ();
             //FIXME: sometimes after undocking, KSP changes it's mind as to what the active vessel is, so we wait for 10 frames before getting the active vessel
             // Wait while the port is docked
             if (wait < 10 || State == DockingPortState.Docked)

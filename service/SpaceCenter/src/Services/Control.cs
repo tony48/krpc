@@ -275,6 +275,7 @@ namespace KRPC.SpaceCenter.Services
                 throw new InvalidOperationException ("Cannot activate stage; vessel is not the active vessel");
             if (!Staging.separate_ready)
                 throw new YieldException (new ParameterizedContinuation<IList<Vessel>> (ActivateNextStage));
+            ValueCache.Clear ();
             var preVessels = FlightGlobals.Vessels.ToArray ();
             Staging.ActivateNextStage ();
             return PostActivateStage (preVessels);
@@ -284,6 +285,7 @@ namespace KRPC.SpaceCenter.Services
         {
             if (!Staging.separate_ready)
                 throw new YieldException (new ParameterizedContinuation<IList<Vessel>, global::Vessel[]> (PostActivateStage, preVessels));
+            ValueCache.Clear ();
             var postVessels = FlightGlobals.Vessels;
             return postVessels.Except (preVessels).Select (vessel => new Vessel (vessel)).ToList ();
         }

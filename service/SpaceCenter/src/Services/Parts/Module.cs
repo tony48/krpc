@@ -132,6 +132,7 @@ namespace KRPC.SpaceCenter.Services.Parts
         public void TriggerEvent (string name)
         {
             AllEvents.First (x => x.guiName == name).Invoke ();
+            ValueCache.Clear ();
         }
 
         /// <summary>
@@ -163,6 +164,7 @@ namespace KRPC.SpaceCenter.Services.Parts
         {
             var action = AllActions.First (a => a.guiName == name);
             action.Invoke (new KSPActionParam (action.actionGroup, (value ? KSPActionType.Activate : KSPActionType.Deactivate)));
+            ValueCache.Clear ();
         }
     }
 }
