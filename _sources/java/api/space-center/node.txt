@@ -5,9 +5,10 @@
 Node
 ====
 
+
 .. type:: public class Node
 
-   Represents a maneuver node. Can be created using :meth:`Control.AddNode`.
+   Represents a maneuver node. Can be created using :meth:`Control.addNode(double, float, float, float)`.
 
    .. method:: float getPrograde()
 
@@ -36,7 +37,7 @@ Node
 
       .. note::
 
-         Does not change when executing the maneuver node. See :meth:`Node.RemainingDeltaV`.
+         Does not change when executing the maneuver node. See :meth:`Node.getRemainingDeltaV()`.
 
    .. method:: float getRemainingDeltaV()
 
@@ -44,7 +45,7 @@ Node
       Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the node
       is executed. This is equivalent to the delta-v reported in-game.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> BurnVector(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> burnVector(ReferenceFrame referenceFrame)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s.
@@ -53,9 +54,9 @@ Node
 
       .. note::
 
-         Does not change when executing the maneuver node. See :meth:`Node.RemainingBurnVector`.
+         Does not change when executing the maneuver node. See :meth:`Node.remainingBurnVector(ReferenceFrame)`.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> RemainingBurnVector(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> remainingBurnVector(ReferenceFrame referenceFrame)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.
@@ -78,7 +79,7 @@ Node
 
       The orbit that results from executing the maneuver node.
 
-   .. method:: void Remove()
+   .. method:: void remove()
 
       Removes the maneuver node.
 
@@ -106,13 +107,13 @@ Node
       * The z-axis points in the orbital normal direction of the original orbit,
         at the position of the maneuver node.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Position(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       Returns the position vector of the maneuver node in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Direction(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       Returns the unit direction vector of the maneuver nodes burn in the given reference frame.
 

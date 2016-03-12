@@ -5,6 +5,7 @@
 Vessel
 ======
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Vessel
 
@@ -16,12 +17,12 @@ Vessel
 
       The name of the vessel.
 
-   .. function:: VesselType type()
-   .. function:: void set_type(VesselType value)
+   .. function:: SpaceCenter::VesselType type()
+   .. function:: void set_type(SpaceCenter::VesselType value)
 
       The type of the vessel.
 
-   .. function:: VesselSituation situation()
+   .. function:: SpaceCenter::VesselSituation situation()
 
       The situation the vessel is in.
 
@@ -29,53 +30,53 @@ Vessel
 
       The mission elapsed time in seconds.
 
-   .. function:: Flight flight(ReferenceFrame reference_frame = None)
+   .. function:: SpaceCenter::Flight flight(SpaceCenter::ReferenceFrame reference_frame = None)
 
-      Returns a :class:`Flight` object that can be used to get flight
+      Returns a :class:`SpaceCenter::Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
 
       :Parameters:
 
-       * **reference_frame** -- Reference frame. Defaults to the vessel's surface reference frame (:func:`Vessel::surface_reference_frame`).
+       * **reference_frame** -- Reference frame. Defaults to the vessel's surface reference frame (:func:`SpaceCenter::Vessel::surface_reference_frame`).
 
 
       .. note:: When this is called with no arguments, the vessel's surface reference
                 frame is used. This reference frame moves with the vessel, therefore
                 velocities and speeds returned by the flight object will be zero. See
-                the :ref:`reference frames tutorial <tutorial-reference-frames>` for
-                examples of getting the :ref:`orbital speed
-                <tutorial-reference-frames-orbital-speed>` and :ref:`surface speed
+                the :rst:ref:`reference frames tutorial <tutorial-reference-frames>` for
+                examples of getting the :rst:ref:`orbital speed
+                <tutorial-reference-frames-orbital-speed>` and :rst:ref:`surface speed
                 <tutorial-reference-frames-surface-speed>` of a vessel.
 
-   .. function:: Vessel target()
-   .. function:: void set_target(Vessel value)
+   .. function:: SpaceCenter::Vessel target()
+   .. function:: void set_target(SpaceCenter::Vessel value)
 
       The target vessel. ``NULL`` if there is no target. When
       setting the target, the target cannot be the current vessel.
 
-   .. function:: Orbit orbit()
+   .. function:: SpaceCenter::Orbit orbit()
 
       The current orbit of the vessel.
 
-   .. function:: Control control()
+   .. function:: SpaceCenter::Control control()
 
-      Returns a :class:`Control` object that can be used to manipulate
+      Returns a :class:`SpaceCenter::Control` object that can be used to manipulate
       the vessel's control inputs. For example, its pitch/yaw/roll controls,
       RCS and thrust.
 
-   .. function:: AutoPilot auto_pilot()
+   .. function:: SpaceCenter::AutoPilot auto_pilot()
 
-      An :class:`AutoPilot` object, that can be used to perform
+      An :class:`SpaceCenter::AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
-   .. function:: Resources resources()
+   .. function:: SpaceCenter::Resources resources()
 
-      A :class:`Resources` object, that can used to get information
+      A :class:`SpaceCenter::Resources` object, that can used to get information
       about resources stored in the vessel.
 
-   .. function:: Resources resources_in_decouple_stage(int32 stage, bool cumulative = True)
+   .. function:: SpaceCenter::Resources resources_in_decouple_stage(int32_t stage, bool cumulative = True)
 
-      Returns a :class:`Resources` object, that can used to get
+      Returns a :class:`SpaceCenter::Resources` object, that can used to get
       information about resources stored in a given *stage*.
 
       :Parameters:
@@ -85,15 +86,15 @@ Vessel
 
 
       .. note:: For details on stage numbering, see the
-                discussion on :ref:`cpp-api-parts-staging`.
+                discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: Parts parts()
+   .. function:: SpaceCenter::Parts parts()
 
-      A :class:`Parts` object, that can used to interact with the parts that make up this vessel.
+      A :class:`SpaceCenter::Parts` object, that can used to interact with the parts that make up this vessel.
 
-   .. function:: Comms comms()
+   .. function:: SpaceCenter::Comms comms()
 
-      A :class:`Comms` object, that can used to interact with RemoteTech for this vessel.
+      A :class:`SpaceCenter::Comms` object, that can used to interact with RemoteTech for this vessel.
 
 
       .. note::
@@ -111,26 +112,26 @@ Vessel
    .. function:: float thrust()
 
       The total thrust currently being produced by the vessel's engines, in
-      Newtons. This is computed by summing :func:`Engine::thrust` for
+      Newtons. This is computed by summing :func:`SpaceCenter::Engine::thrust` for
       every engine in the vessel.
 
    .. function:: float available_thrust()
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
-      :func:`Engine::available_thrust` for every active engine in the vessel.
+      :func:`SpaceCenter::Engine::available_thrust` for every active engine in the vessel.
 
    .. function:: float max_thrust()
 
       The total maximum thrust that can be produced by the vessel's active
       engines, in Newtons. This is computed by summing
-      :func:`Engine::max_thrust` for every active engine.
+      :func:`SpaceCenter::Engine::max_thrust` for every active engine.
 
    .. function:: float max_vacuum_thrust()
 
       The total maximum thrust that can be produced by the vessel's active
       engines when the vessel is in a vacuum, in Newtons. This is computed by
-      summing :func:`Engine::max_vacuum_thrust` for every active engine.
+      summing :func:`SpaceCenter::Engine::max_vacuum_thrust` for every active engine.
 
    .. function:: float specific_impulse()
 
@@ -148,7 +149,7 @@ Vessel
       This is computed using the formula
       `described here <http://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
 
-   .. function:: ReferenceFrame reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the vessel.
 
@@ -169,7 +170,7 @@ Vessel
 
          Vessel reference frame origin and axes for the Kerbal-X rocket
 
-   .. function:: ReferenceFrame orbital_reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame orbital_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the vessels
       orbital prograde/normal/radial directions.
@@ -190,7 +191,7 @@ Vessel
 
          Vessel orbital reference frame origin and axes
 
-   .. function:: ReferenceFrame surface_reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame surface_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the surface
       of the body being orbited.
@@ -217,7 +218,7 @@ Vessel
 
          Vessel surface reference frame origin and axes
 
-   .. function:: ReferenceFrame surface_velocity_reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame surface_velocity_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the velocity
       vector of the vessel relative to the surface of the body being orbited.
@@ -236,31 +237,31 @@ Vessel
 
          Vessel surface velocity reference frame origin and axes
 
-   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> velocity(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the velocity vector of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the rotation of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> angular_velocity(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> angular_velocity(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
       vector is the rotational speed in radians per second, and the direction of the vector indicates the
@@ -269,72 +270,89 @@ Vessel
       :Parameters:
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselType
 
-   See :func:`Vessel::type`.
+   See :func:`SpaceCenter::Vessel::type`.
+
 
    .. enumerator:: ship
 
       Ship.
 
+
    .. enumerator:: station
 
       Station.
+
 
    .. enumerator:: lander
 
       Lander.
 
+
    .. enumerator:: probe
 
       Probe.
+
 
    .. enumerator:: rover
 
       Rover.
 
+
    .. enumerator:: base
 
       Base.
+
 
    .. enumerator:: debris
 
       Debris.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselSituation
 
-   See :func:`Vessel::situation`.
+   See :func:`SpaceCenter::Vessel::situation`.
+
 
    .. enumerator:: docked
 
       Vessel is docked to another.
 
+
    .. enumerator:: escaping
 
       Escaping.
+
 
    .. enumerator:: flying
 
       Vessel is flying through an atmosphere.
 
+
    .. enumerator:: landed
 
       Vessel is landed on the surface of a body.
+
 
    .. enumerator:: orbiting
 
       Vessel is orbiting a body.
 
+
    .. enumerator:: pre_launch
 
       Vessel is awaiting launch.
 
+
    .. enumerator:: splashed
 
       Vessel has splashed down in an ocean.
+
 
    .. enumerator:: sub_orbital
 

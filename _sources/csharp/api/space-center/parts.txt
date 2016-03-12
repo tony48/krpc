@@ -15,6 +15,7 @@ The following classes allow interaction with a vessels individual parts.
 Parts
 -----
 
+
 .. class:: Parts
 
    Instances of this class are used to interact with the parts of a vessel.
@@ -29,7 +30,7 @@ Parts
       The vessels root part.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-trees-of-parts`.
 
    .. property:: Part Controlling { get; set; }
 
@@ -63,7 +64,7 @@ Parts
 
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. method:: System.Collections.Generic.IList<Part> InDecoupleStage(int stage)
 
@@ -74,7 +75,7 @@ Parts
 
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. method:: System.Collections.Generic.IList<Module> ModulesWithName(string moduleName)
 
@@ -151,6 +152,7 @@ Parts
 Part
 ----
 
+
 .. class:: Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
@@ -180,7 +182,7 @@ Part
       This, in combination with :prop:`Part.Children`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-trees-of-parts`.
 
    .. property:: System.Collections.Generic.IList<Part> Children { get; }
 
@@ -188,7 +190,7 @@ Part
       This, in combination with :prop:`Part.Parent`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-trees-of-parts`.
 
    .. property:: bool AxiallyAttached { get; }
 
@@ -196,7 +198,7 @@ Part
       or bottom of its parent. If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-attachment-modes`.
 
    .. property:: bool RadiallyAttached { get; }
 
@@ -204,21 +206,21 @@ Part
       If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-attachment-modes`.
 
    .. property:: int Stage { get; }
 
       The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. property:: int DecoupleStage { get; }
 
       The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. property:: bool Massless { get; }
 
@@ -318,14 +320,14 @@ Part
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-fuel-lines`.
 
    .. property:: System.Collections.Generic.IList<Part> FuelLinesTo { get; }
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
 
 
-      .. note:: See the discussion on :ref:`csharp-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`csharp-api-parts-fuel-lines`.
 
    .. property:: System.Collections.Generic.IList<Module> Modules { get; }
 
@@ -435,6 +437,7 @@ Part
 Module
 ------
 
+
 .. class:: Module
 
    In KSP, each part has zero or more
@@ -521,6 +524,7 @@ The following classes provide functionality for specific types of part.
 Decoupler
 ^^^^^^^^^
 
+
 .. class:: Decoupler
 
    Obtained by calling :prop:`Part.Decoupler`
@@ -545,6 +549,7 @@ Decoupler
 
 Docking Port
 ^^^^^^^^^^^^
+
 
 .. class:: DockingPort
 
@@ -574,7 +579,7 @@ Docking Port
    .. method:: Vessel Undock()
 
       Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:prop:`ActiveVessel`).
+      After undocking, the active vessel may change (:prop:`SpaceCenter.ActiveVessel`).
       This method can be called for either docking port in a docked pair - both calls will have the same
       effect. Returns ``null`` if the docking port is not docked to anything.
 
@@ -641,23 +646,28 @@ Docking Port
          Inline docking port reference frame origin and axes
 
 
+
 .. enum:: DockingPortState
 
    See :prop:`DockingPort.State`.
 
+
    .. value:: Ready
 
       The docking port is ready to dock to another docking port.
+
 
    .. value:: Docked
 
       The docking port is docked to another docking port, or docked to
       another part (from the VAB/SPH).
 
+
    .. value:: Docking
 
       The docking port is very close to another docking port,
       but has not docked. It is using magnetic force to acquire a solid dock.
+
 
    .. value:: Undocking
 
@@ -665,9 +675,11 @@ Docking Port
       and is disabled until it moves away by a sufficient distance
       (:prop:`DockingPort.ReengageDistance`).
 
+
    .. value:: Shielded
 
       The docking port has a shield, and the shield is closed.
+
 
    .. value:: Moving
 
@@ -677,6 +689,7 @@ Docking Port
 
 Engine
 ^^^^^^
+
 
 .. class:: Engine
 
@@ -797,6 +810,7 @@ Engine
 Landing Gear
 ^^^^^^^^^^^^
 
+
 .. class:: LandingGear
 
    Obtained by calling :prop:`Part.LandingGear`.
@@ -814,21 +828,26 @@ Landing Gear
       Whether the landing gear is deployed.
 
 
+
 .. enum:: LandingGearState
 
    See :prop:`LandingGear.State`.
+
 
    .. value:: Deployed
 
       Landing gear is fully deployed.
 
+
    .. value:: Retracted
 
       Landing gear is fully retracted.
 
+
    .. value:: Deploying
 
       Landing gear is being deployed.
+
 
    .. value:: Retracting
 
@@ -838,6 +857,7 @@ Landing Gear
 
 Landing Leg
 ^^^^^^^^^^^
+
 
 .. class:: LandingLeg
 
@@ -856,29 +876,36 @@ Landing Leg
       Whether the landing leg is deployed.
 
 
+
 .. enum:: LandingLegState
 
    See :prop:`LandingLeg.State`.
+
 
    .. value:: Deployed
 
       Landing leg is fully deployed.
 
+
    .. value:: Retracted
 
       Landing leg is fully retracted.
+
 
    .. value:: Deploying
 
       Landing leg is being deployed.
 
+
    .. value:: Retracting
 
       Landing leg is being retracted.
 
+
    .. value:: Broken
 
       Landing leg is broken.
+
 
    .. value:: Repairing
 
@@ -888,6 +915,7 @@ Landing Leg
 
 Launch Clamp
 ^^^^^^^^^^^^
+
 
 .. class:: LaunchClamp
 
@@ -905,6 +933,7 @@ Launch Clamp
 
 Light
 ^^^^^
+
 
 .. class:: Light
 
@@ -926,6 +955,7 @@ Light
 
 Parachute
 ^^^^^^^^^
+
 
 .. class:: Parachute
 
@@ -957,26 +987,32 @@ Parachute
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
 
 
+
 .. enum:: ParachuteState
 
    See :prop:`Parachute.State`.
+
 
    .. value:: Stowed
 
       The parachute is safely tucked away inside its housing.
 
+
    .. value:: Active
 
       The parachute is still stowed, but ready to semi-deploy.
+
 
    .. value:: SemiDeployed
 
       The parachute has been deployed and is providing some drag,
       but is not fully deployed yet.
 
+
    .. value:: Deployed
 
       The parachute is fully deployed.
+
 
    .. value:: Cut
 
@@ -986,6 +1022,7 @@ Parachute
 
 Radiator
 ^^^^^^^^
+
 
 .. class:: Radiator
 
@@ -1004,25 +1041,31 @@ Radiator
       The current state of the radiator.
 
 
+
 .. enum:: RadiatorState
 
    :type:`RadiatorState`
+
 
    .. value:: Extended
 
       Radiator is fully extended.
 
+
    .. value:: Retracted
 
       Radiator is fully retracted.
+
 
    .. value:: Extending
 
       Radiator is being extended.
 
+
    .. value:: Retracting
 
       Radiator is being retracted.
+
 
    .. value:: Broken
 
@@ -1032,6 +1075,7 @@ Radiator
 
 Resource Converter
 ^^^^^^^^^^^^^^^^^^
+
 
 .. class:: ResourceConverter
 
@@ -1111,29 +1155,36 @@ Resource Converter
        * **index** -- Index of the converter.
 
 
+
 .. enum:: ResourceConverterState
 
    See :meth:`ResourceConverter.State`.
+
 
    .. value:: Running
 
       Converter is running.
 
+
    .. value:: Idle
 
       Converter is idle.
+
 
    .. value:: MissingResource
 
       Converter is missing a required resource.
 
+
    .. value:: StorageFull
 
       No available storage for output resource.
 
+
    .. value:: Capacity
 
       At preset resource capacity.
+
 
    .. value:: Unknown
 
@@ -1144,6 +1195,7 @@ Resource Converter
 
 Resource Harvester
 ^^^^^^^^^^^^^^^^^^
+
 
 .. class:: ResourceHarvester
 
@@ -1183,8 +1235,40 @@ Resource Harvester
 
 
 
+.. enum:: ResourceHarvesterState
+
+   See :prop:`ResourceHarvester.State`.
+
+
+   .. value:: Deploying
+
+      The drill is deploying.
+
+
+   .. value:: Deployed
+
+      The drill is deployed and ready.
+
+
+   .. value:: Retracting
+
+      The drill is retracting.
+
+
+   .. value:: Retracted
+
+      The drill is retracted.
+
+
+   .. value:: Active
+
+      The drill is running.
+
+
+
 Reaction Wheel
 ^^^^^^^^^^^^^^
+
 
 .. class:: ReactionWheel
 
@@ -1219,6 +1303,7 @@ Reaction Wheel
 Sensor
 ^^^^^^
 
+
 .. class:: Sensor
 
    Obtained by calling :prop:`Part.Sensor`.
@@ -1243,6 +1328,7 @@ Sensor
 
 Solar Panel
 ^^^^^^^^^^^
+
 
 .. class:: SolarPanel
 
@@ -1271,25 +1357,31 @@ Solar Panel
       as a percentage. A value between 0 and 1.
 
 
+
 .. enum:: SolarPanelState
 
    See :prop:`SolarPanel.State`.
+
 
    .. value:: Extended
 
       Solar panel is fully extended.
 
+
    .. value:: Retracted
 
       Solar panel is fully retracted.
+
 
    .. value:: Extending
 
       Solar panel is being extended.
 
+
    .. value:: Retracting
 
       Solar panel is being retracted.
+
 
    .. value:: Broken
 
@@ -1327,16 +1419,16 @@ tree of parts in Figure 2. The craft file for this example can also be
 Traversing the Tree
 ^^^^^^^^^^^^^^^^^^^
 
-The tree of parts can be traversed using the attributes :prop:`SpaceCenter.Parts.Root`,
-:prop:`SpaceCenter.Part.Parent` and :prop:`SpaceCenter.Part.Children`.
+The tree of parts can be traversed using the attributes :prop:`Parts.Root`,
+:prop:`Part.Parent` and :prop:`Part.Children`.
 
 The root of the tree is the same as the vessels *root part* (part number 1 in
-the example above) and can be obtained by calling :prop:`SpaceCenter.Parts.Root`.
-A parts children can be obtained by calling :prop:`SpaceCenter.Part.Children`.
-If the part does not have any children, :prop:`SpaceCenter.Part.Children`
+the example above) and can be obtained by calling :prop:`Parts.Root`.
+A parts children can be obtained by calling :prop:`Part.Children`.
+If the part does not have any children, :prop:`Part.Children`
 returns an empty list. A parts parent can be obtained by calling
-:prop:`SpaceCenter.Part.Parent`. If the part does not have a parent
-(as is the case for the root part), :prop:`SpaceCenter.Part.Parent`
+:prop:`Part.Parent`. If the part does not have a parent
+(as is the case for the root part), :prop:`Part.Parent`
 returns ``null``.
 
 The following C# example uses these attributes to perform a
@@ -1446,12 +1538,12 @@ line part 15 (in red) takes fuel from a fuel tank (part 11 -- in green) and
 feeds it into another fuel tank (part 9 -- in blue). The fuel line is therefore
 a child of part 11, but its connection to part 9 is not represented in the tree.
 
-The attributes :prop:`SpaceCenter.Part.FuelLinesFrom` and
-:prop:`SpaceCenter.Part.FuelLinesTo` can be used to discover these
+The attributes :prop:`Part.FuelLinesFrom` and
+:prop:`Part.FuelLinesTo` can be used to discover these
 connections. In the example in Figure 5, when
-:prop:`SpaceCenter.Part.FuelLinesTo` is called on fuel tank part
+:prop:`Part.FuelLinesTo` is called on fuel tank part
 11, it will return a list of parts containing just fuel tank part 9 (the blue
-part). When :prop:`SpaceCenter.Part.FuelLinesFrom` is called on
+part). When :prop:`Part.FuelLinesFrom` is called on
 fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).
 
@@ -1468,11 +1560,11 @@ Staging
 
 Each part has two staging numbers associated with it: the stage in which the
 part is *activated* and the stage in which the part is *decoupled*. These values
-can be obtained using :prop:`SpaceCenter.Part.Stage` and
-:prop:`SpaceCenter.Part.DecoupleStage` respectively. For parts that
-are not activated by staging, :prop:`SpaceCenter.Part.Stage` returns
+can be obtained using :prop:`Part.Stage` and
+:prop:`Part.DecoupleStage` respectively. For parts that
+are not activated by staging, :prop:`Part.Stage` returns
 -1. For parts that are never decoupled,
-:prop:`SpaceCenter.Part.DecoupleStage` returns a value of -1.
+:prop:`Part.DecoupleStage` returns a value of -1.
 
 Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
 stages in which each part of the vessel will be *activated*. Figure 8 shows the

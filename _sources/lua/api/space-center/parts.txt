@@ -15,197 +15,199 @@ The following classes allow interaction with a vessels individual parts.
 Parts
 -----
 
+
 .. class:: Parts
 
    Instances of this class are used to interact with the parts of a vessel.
-   An instance can be obtained by calling :attr:`Vessel.parts`.
+   An instance can be obtained by calling :attr:`SpaceCenter.Vessel.parts`.
 
    .. attribute:: all
 
       A list of all of the vessels parts.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
    .. attribute:: root
 
       The vessels root part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-trees-of-parts`.
 
    .. attribute:: controlling
 
       The part from which the vessel is controlled.
 
       :Attribute: Can be read or written
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. method:: with_name(name)
 
-      A list of parts whose :attr:`Part.name` is *name*.
+      A list of parts whose :attr:`SpaceCenter.Part.name` is *name*.
 
       :param string name:
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
    .. method:: with_title(title)
 
-      A list of all parts whose :attr:`Part.title` is *title*.
+      A list of all parts whose :attr:`SpaceCenter.Part.title` is *title*.
 
       :param string title:
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
    .. method:: with_module(module_name)
 
-      A list of all parts that contain a :class:`Module` whose
-      :attr:`Module.name` is *module_name*.
+      A list of all parts that contain a :class:`SpaceCenter.Module` whose
+      :attr:`SpaceCenter.Module.name` is *module_name*.
 
       :param string module_name:
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
    .. method:: in_stage(stage)
 
       A list of all parts that are activated in the given *stage*.
 
       :param number stage:
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-staging`.
 
    .. method:: in_decouple_stage(stage)
 
       A list of all parts that are decoupled in the given *stage*.
 
       :param number stage:
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-staging`.
 
    .. method:: modules_with_name(module_name)
 
       A list of modules (combined across all parts in the vessel) whose
-      :attr:`Module.name` is *module_name*.
+      :attr:`SpaceCenter.Module.name` is *module_name*.
 
       :param string module_name:
-      :rtype: List of :class:`Module`
+      :rtype: List of :class:`SpaceCenter.Module`
 
    .. attribute:: decouplers
 
       A list of all decouplers in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Decoupler`
+      :rtype: List of :class:`SpaceCenter.Decoupler`
 
    .. attribute:: docking_ports
 
       A list of all docking ports in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`DockingPort`
+      :rtype: List of :class:`SpaceCenter.DockingPort`
 
    .. method:: docking_port_with_name(name)
 
-      The first docking port in the vessel with the given port name, as returned by :attr:`DockingPort.name`.
+      The first docking port in the vessel with the given port name, as returned by :attr:`SpaceCenter.DockingPort.name`.
       Returns ``nil`` if there are no such docking ports.
 
       :param string name:
-      :rtype: :class:`DockingPort`
+      :rtype: :class:`SpaceCenter.DockingPort`
 
    .. attribute:: engines
 
       A list of all engines in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Engine`
+      :rtype: List of :class:`SpaceCenter.Engine`
 
    .. attribute:: landing_gear
 
       A list of all landing gear attached to the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`LandingGear`
+      :rtype: List of :class:`SpaceCenter.LandingGear`
 
    .. attribute:: landing_legs
 
       A list of all landing legs attached to the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`LandingLeg`
+      :rtype: List of :class:`SpaceCenter.LandingLeg`
 
    .. attribute:: launch_clamps
 
       A list of all launch clamps attached to the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`LaunchClamp`
+      :rtype: List of :class:`SpaceCenter.LaunchClamp`
 
    .. attribute:: lights
 
       A list of all lights in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Light`
+      :rtype: List of :class:`SpaceCenter.Light`
 
    .. attribute:: parachutes
 
       A list of all parachutes in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Parachute`
+      :rtype: List of :class:`SpaceCenter.Parachute`
 
    .. attribute:: radiators
 
       A list of all radiators in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Radiator`
+      :rtype: List of :class:`SpaceCenter.Radiator`
 
    .. attribute:: resource_converters
 
       A list of all resource converters in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`ResourceConverter`
+      :rtype: List of :class:`SpaceCenter.ResourceConverter`
 
    .. attribute:: resource_harvesters
 
       A list of all resource harvesters in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`ResourceHarvester`
+      :rtype: List of :class:`SpaceCenter.ResourceHarvester`
 
    .. attribute:: reaction_wheels
 
       A list of all reaction wheels in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`ReactionWheel`
+      :rtype: List of :class:`SpaceCenter.ReactionWheel`
 
    .. attribute:: sensors
 
       A list of all sensors in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Sensor`
+      :rtype: List of :class:`SpaceCenter.Sensor`
 
    .. attribute:: solar_panels
 
       A list of all solar panels in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`SolarPanel`
+      :rtype: List of :class:`SpaceCenter.SolarPanel`
 
 
 
 Part
 ----
 
+
 .. class:: Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :class:`Parts`.
+   Instances can be obtained by various methods in :class:`SpaceCenter.Parts`.
 
    .. attribute:: name
 
@@ -235,27 +237,27 @@ Part
       The vessel that contains this part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Vessel`
+      :rtype: :class:`SpaceCenter.Vessel`
 
    .. attribute:: parent
 
       The parts parent. Returns ``nil`` if the part does not have a parent.
-      This, in combination with :attr:`Part.children`, can be used to traverse the vessels parts tree.
+      This, in combination with :attr:`SpaceCenter.Part.children`, can be used to traverse the vessels parts tree.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-trees-of-parts`.
 
    .. attribute:: children
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :attr:`Part.parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :attr:`SpaceCenter.Part.parent`, can be used to traverse the vessels parts tree.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-trees-of-parts`.
 
    .. attribute:: axially_attached
 
@@ -265,7 +267,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: boolean
 
-      .. note:: See the discussion on :ref:`lua-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-attachment-modes`.
 
    .. attribute:: radially_attached
 
@@ -275,7 +277,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: boolean
 
-      .. note:: See the discussion on :ref:`lua-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-attachment-modes`.
 
    .. attribute:: stage
 
@@ -284,7 +286,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: number
 
-      .. note:: See the discussion on :ref:`lua-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-staging`.
 
    .. attribute:: decouple_stage
 
@@ -293,7 +295,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: number
 
-      .. note:: See the discussion on :ref:`lua-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-staging`.
 
    .. attribute:: massless
 
@@ -429,10 +431,10 @@ Part
 
    .. attribute:: resources
 
-      A :class:`Resources` object for the part.
+      A :class:`SpaceCenter.Resources` object for the part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Resources`
+      :rtype: :class:`SpaceCenter.Resources`
 
    .. attribute:: crossfeed
 
@@ -453,150 +455,150 @@ Part
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-fuel-lines`.
 
    .. attribute:: fuel_lines_to
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Part`
+      :rtype: List of :class:`SpaceCenter.Part`
 
-      .. note:: See the discussion on :ref:`lua-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`lua-api-parts-fuel-lines`.
 
    .. attribute:: modules
 
       The modules for this part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Module`
+      :rtype: List of :class:`SpaceCenter.Module`
 
    .. attribute:: decoupler
 
-      A :class:`Decoupler` if the part is a decoupler, otherwise ``nil``.
+      A :class:`SpaceCenter.Decoupler` if the part is a decoupler, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Decoupler`
+      :rtype: :class:`SpaceCenter.Decoupler`
 
    .. attribute:: docking_port
 
-      A :class:`DockingPort` if the part is a docking port, otherwise ``nil``.
+      A :class:`SpaceCenter.DockingPort` if the part is a docking port, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`DockingPort`
+      :rtype: :class:`SpaceCenter.DockingPort`
 
    .. attribute:: engine
 
-      An :class:`Engine` if the part is an engine, otherwise ``nil``.
+      An :class:`SpaceCenter.Engine` if the part is an engine, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Engine`
+      :rtype: :class:`SpaceCenter.Engine`
 
    .. attribute:: landing_gear
 
-      A :class:`LandingGear` if the part is a landing gear , otherwise ``nil``.
+      A :class:`SpaceCenter.LandingGear` if the part is a landing gear , otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingGear`
+      :rtype: :class:`SpaceCenter.LandingGear`
 
    .. attribute:: landing_leg
 
-      A :class:`LandingLeg` if the part is a landing leg, otherwise ``nil``.
+      A :class:`SpaceCenter.LandingLeg` if the part is a landing leg, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingLeg`
+      :rtype: :class:`SpaceCenter.LandingLeg`
 
    .. attribute:: launch_clamp
 
-      A :class:`LaunchClamp` if the part is a launch clamp, otherwise ``nil``.
+      A :class:`SpaceCenter.LaunchClamp` if the part is a launch clamp, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LaunchClamp`
+      :rtype: :class:`SpaceCenter.LaunchClamp`
 
    .. attribute:: light
 
-      A :class:`Light` if the part is a light, otherwise ``nil``.
+      A :class:`SpaceCenter.Light` if the part is a light, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Light`
+      :rtype: :class:`SpaceCenter.Light`
 
    .. attribute:: parachute
 
-      A :class:`Parachute` if the part is a parachute, otherwise ``nil``.
+      A :class:`SpaceCenter.Parachute` if the part is a parachute, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Parachute`
+      :rtype: :class:`SpaceCenter.Parachute`
 
    .. attribute:: radiator
 
-      A :class:`Radiator` if the part is a radiator, otherwise ``nil``.
+      A :class:`SpaceCenter.Radiator` if the part is a radiator, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Radiator`
+      :rtype: :class:`SpaceCenter.Radiator`
 
    .. attribute:: reaction_wheel
 
-      A :class:`ReactionWheel` if the part is a reaction wheel, otherwise ``nil``.
+      A :class:`SpaceCenter.ReactionWheel` if the part is a reaction wheel, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReactionWheel`
+      :rtype: :class:`SpaceCenter.ReactionWheel`
 
    .. attribute:: resource_converter
 
-      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``nil``.
+      A :class:`SpaceCenter.ResourceConverter` if the part is a resource converter, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ResourceConverter`
+      :rtype: :class:`SpaceCenter.ResourceConverter`
 
    .. attribute:: resource_harvester
 
-      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``nil``.
+      A :class:`SpaceCenter.ResourceHarvester` if the part is a resource harvester, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ResourceHarvester`
+      :rtype: :class:`SpaceCenter.ResourceHarvester`
 
    .. attribute:: sensor
 
-      A :class:`Sensor` if the part is a sensor, otherwise ``nil``.
+      A :class:`SpaceCenter.Sensor` if the part is a sensor, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Sensor`
+      :rtype: :class:`SpaceCenter.Sensor`
 
    .. attribute:: solar_panel
 
-      A :class:`SolarPanel` if the part is a solar panel, otherwise ``nil``.
+      A :class:`SpaceCenter.SolarPanel` if the part is a solar panel, otherwise ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`SolarPanel`
+      :rtype: :class:`SpaceCenter.SolarPanel`
 
    .. method:: position(reference_frame)
 
       The position of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: direction(reference_frame)
 
       The direction of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: velocity(reference_frame)
 
       The velocity of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: rotation(reference_frame)
 
       The rotation of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number, number)
 
    .. attribute:: reference_frame
@@ -608,12 +610,12 @@ Part
       * The x, y and z axis directions depend on the design of the part.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. note::
 
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :attr:`DockingPort.reference_frame`.
+         for the docking port, returned by :attr:`SpaceCenter.DockingPort.reference_frame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -624,6 +626,7 @@ Part
 
 Module
 ------
+
 
 .. class:: Module
 
@@ -647,7 +650,7 @@ Module
       The part that contains this module.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: fields
 
@@ -727,16 +730,17 @@ The following classes provide functionality for specific types of part.
 Decoupler
 ^^^^^^^^^
 
+
 .. class:: Decoupler
 
-   Obtained by calling :attr:`Part.decoupler`
+   Obtained by calling :attr:`SpaceCenter.Part.decoupler`
 
    .. attribute:: part
 
       The part object for this decoupler.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. method:: decouple()
 
@@ -761,16 +765,17 @@ Decoupler
 Docking Port
 ^^^^^^^^^^^^
 
+
 .. class:: DockingPort
 
-   Obtained by calling :attr:`Part.docking_port`
+   Obtained by calling :attr:`SpaceCenter.Part.docking_port`
 
    .. attribute:: part
 
       The part object for this docking port.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: name
 
@@ -778,7 +783,7 @@ Docking Port
       in the right click menu, when the
       `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
       mod is installed. If this mod is not installed, returns the title of the part
-      (:attr:`Part.title`).
+      (:attr:`SpaceCenter.Part.title`).
 
       :Attribute: Can be read or written
       :rtype: string
@@ -788,7 +793,7 @@ Docking Port
       The current state of the docking port.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`DockingPortState`
+      :rtype: :class:`SpaceCenter.DockingPortState`
 
    .. attribute:: docked_part
 
@@ -796,16 +801,16 @@ Docking Port
       docking port is not docked to anything.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. method:: undock()
 
       Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:attr:`active_vessel`).
+      After undocking, the active vessel may change (:attr:`SpaceCenter.active_vessel`).
       This method can be called for either docking port in a docked pair - both calls will have the same
       effect. Returns ``nil`` if the docking port is not docked to anything.
 
-      :rtype: :class:`Vessel`
+      :rtype: :class:`SpaceCenter.Vessel`
 
    .. attribute:: reengage_distance
 
@@ -837,21 +842,21 @@ Docking Port
 
       The position of the docking port in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: direction(reference_frame)
 
       The direction that docking port points in, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: rotation(reference_frame)
 
       The rotation of the docking port, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number, number)
 
    .. attribute:: reference_frame
@@ -866,12 +871,12 @@ Docking Port
       * The z-axis points out of the bottom off the docking port.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. note::
 
          This reference frame is not necessarily equivalent to the reference frame
-         for the part, returned by :attr:`Part.reference_frame`.
+         for the part, returned by :attr:`SpaceCenter.Part.reference_frame`.
 
       .. figure:: /images/reference-frames/docking-port.png
          :align: center
@@ -884,33 +889,40 @@ Docking Port
          Inline docking port reference frame origin and axes
 
 
+
 .. class:: DockingPortState
 
-   See :attr:`DockingPort.state`.
+   See :attr:`SpaceCenter.DockingPort.state`.
+
 
    .. data:: ready
 
       The docking port is ready to dock to another docking port.
+
 
    .. data:: docked
 
       The docking port is docked to another docking port, or docked to
       another part (from the VAB/SPH).
 
+
    .. data:: docking
 
       The docking port is very close to another docking port,
       but has not docked. It is using magnetic force to acquire a solid dock.
 
+
    .. data:: undocking
 
       The docking port has just been undocked from another docking port,
       and is disabled until it moves away by a sufficient distance
-      (:attr:`DockingPort.reengage_distance`).
+      (:attr:`SpaceCenter.DockingPort.reengage_distance`).
+
 
    .. data:: shielded
 
       The docking port has a shield, and the shield is closed.
+
 
    .. data:: moving
 
@@ -921,21 +933,22 @@ Docking Port
 Engine
 ^^^^^^
 
+
 .. class:: Engine
 
-   Obtained by calling :attr:`Part.engine`.
+   Obtained by calling :attr:`SpaceCenter.Part.engine`.
 
    .. attribute:: part
 
       The part object for this engine.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: active
 
       Whether the engine is active. Setting this attribute may have no effect,
-      depending on :attr:`Engine.can_shutdown` and :attr:`Engine.can_restart`.
+      depending on :attr:`SpaceCenter.Engine.can_shutdown` and :attr:`SpaceCenter.Engine.can_restart`.
 
       :Attribute: Can be read or written
       :rtype: boolean
@@ -951,7 +964,7 @@ Engine
    .. attribute:: available_thrust
 
       The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :attr:`Engine.thrust_limit` into account,
+      engine, in Newtons. This takes :attr:`SpaceCenter.Engine.thrust_limit` into account,
       and is the amount of thrust produced by the engine when activated and the
       main throttle is set to 100%. Returns zero if the engine does not have any fuel.
 
@@ -962,7 +975,7 @@ Engine
 
       Gets the maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
-      activated, :attr:`Engine.thrust_limit` is set to 100% and the main vessel's
+      activated, :attr:`SpaceCenter.Engine.thrust_limit` is set to 100% and the main vessel's
       throttle is set to 100%.
 
       :Attribute: Read-only, cannot be set
@@ -972,7 +985,7 @@ Engine
 
       The maximum amount of thrust that can be produced by the engine in a
       vacuum, in Newtons. This is the amount of thrust produced by the engine
-      when activated, :attr:`Engine.thrust_limit` is set to 100%, the main
+      when activated, :attr:`SpaceCenter.Engine.thrust_limit` is set to 100%, the main
       vessel's throttle is set to 100% and the engine is in a vacuum.
 
       :Attribute: Read-only, cannot be set
@@ -1043,7 +1056,7 @@ Engine
 
    .. attribute:: throttle_locked
 
-      Whether the :attr:`Control.throttle` affects the engine. For example,
+      Whether the :attr:`SpaceCenter.Control.throttle` affects the engine. For example,
       this is ``True`` for liquid fueled rockets, and ``False`` for solid rocket
       boosters.
 
@@ -1103,23 +1116,24 @@ Engine
 Landing Gear
 ^^^^^^^^^^^^
 
+
 .. class:: LandingGear
 
-   Obtained by calling :attr:`Part.landing_gear`.
+   Obtained by calling :attr:`SpaceCenter.Part.landing_gear`.
 
    .. attribute:: part
 
       The part object for this landing gear.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: state
 
       Gets the current state of the landing gear.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingGearState`
+      :rtype: :class:`SpaceCenter.LandingGearState`
 
    .. attribute:: deployed
 
@@ -1129,21 +1143,26 @@ Landing Gear
       :rtype: boolean
 
 
+
 .. class:: LandingGearState
 
-   See :attr:`LandingGear.state`.
+   See :attr:`SpaceCenter.LandingGear.state`.
+
 
    .. data:: deployed
 
       Landing gear is fully deployed.
 
+
    .. data:: retracted
 
       Landing gear is fully retracted.
 
+
    .. data:: deploying
 
       Landing gear is being deployed.
+
 
    .. data:: retracting
 
@@ -1154,23 +1173,24 @@ Landing Gear
 Landing Leg
 ^^^^^^^^^^^
 
+
 .. class:: LandingLeg
 
-   Obtained by calling :attr:`Part.landing_leg`.
+   Obtained by calling :attr:`SpaceCenter.Part.landing_leg`.
 
    .. attribute:: part
 
       The part object for this landing leg.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: state
 
       The current state of the landing leg.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingLegState`
+      :rtype: :class:`SpaceCenter.LandingLegState`
 
    .. attribute:: deployed
 
@@ -1180,29 +1200,36 @@ Landing Leg
       :rtype: boolean
 
 
+
 .. class:: LandingLegState
 
-   See :attr:`LandingLeg.state`.
+   See :attr:`SpaceCenter.LandingLeg.state`.
+
 
    .. data:: deployed
 
       Landing leg is fully deployed.
 
+
    .. data:: retracted
 
       Landing leg is fully retracted.
+
 
    .. data:: deploying
 
       Landing leg is being deployed.
 
+
    .. data:: retracting
 
       Landing leg is being retracted.
 
+
    .. data:: broken
 
       Landing leg is broken.
+
 
    .. data:: repairing
 
@@ -1213,16 +1240,17 @@ Landing Leg
 Launch Clamp
 ^^^^^^^^^^^^
 
+
 .. class:: LaunchClamp
 
-   Obtained by calling :attr:`Part.launch_clamp`.
+   Obtained by calling :attr:`SpaceCenter.Part.launch_clamp`.
 
    .. attribute:: part
 
       The part object for this launch clamp.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. method:: release()
 
@@ -1233,16 +1261,17 @@ Launch Clamp
 Light
 ^^^^^
 
+
 .. class:: Light
 
-   Obtained by calling :attr:`Part.light`.
+   Obtained by calling :attr:`SpaceCenter.Part.light`.
 
    .. attribute:: part
 
       The part object for this light.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: active
 
@@ -1263,16 +1292,17 @@ Light
 Parachute
 ^^^^^^^^^
 
+
 .. class:: Parachute
 
-   Obtained by calling :attr:`Part.parachute`.
+   Obtained by calling :attr:`SpaceCenter.Part.parachute`.
 
    .. attribute:: part
 
       The part object for this parachute.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. method:: deploy()
 
@@ -1291,7 +1321,7 @@ Parachute
       The current state of the parachute.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ParachuteState`
+      :rtype: :class:`SpaceCenter.ParachuteState`
 
    .. attribute:: deploy_altitude
 
@@ -1308,26 +1338,32 @@ Parachute
       :rtype: number
 
 
+
 .. class:: ParachuteState
 
-   See :attr:`Parachute.state`.
+   See :attr:`SpaceCenter.Parachute.state`.
+
 
    .. data:: stowed
 
       The parachute is safely tucked away inside its housing.
 
+
    .. data:: active
 
       The parachute is still stowed, but ready to semi-deploy.
+
 
    .. data:: semi_deployed
 
       The parachute has been deployed and is providing some drag,
       but is not fully deployed yet.
 
+
    .. data:: deployed
 
       The parachute is fully deployed.
+
 
    .. data:: cut
 
@@ -1338,16 +1374,17 @@ Parachute
 Radiator
 ^^^^^^^^
 
+
 .. class:: Radiator
 
-   Obtained by calling :attr:`Part.radiator`.
+   Obtained by calling :attr:`SpaceCenter.Part.radiator`.
 
    .. attribute:: part
 
       The part object for this radiator.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: deployed
 
@@ -1361,28 +1398,34 @@ Radiator
       The current state of the radiator.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`RadiatorState`
+      :rtype: :class:`SpaceCenter.RadiatorState`
+
 
 
 .. class:: RadiatorState
 
-   :class:`RadiatorState`
+   :class:`SpaceCenter.RadiatorState`
+
 
    .. data:: extended
 
       Radiator is fully extended.
 
+
    .. data:: retracted
 
       Radiator is fully retracted.
+
 
    .. data:: extending
 
       Radiator is being extended.
 
+
    .. data:: retracting
 
       Radiator is being retracted.
+
 
    .. data:: broken
 
@@ -1393,16 +1436,17 @@ Radiator
 Resource Converter
 ^^^^^^^^^^^^^^^^^^
 
+
 .. class:: ResourceConverter
 
-   Obtained by calling :attr:`Part.resource_converter`.
+   Obtained by calling :attr:`SpaceCenter.Part.resource_converter`.
 
    .. attribute:: part
 
       The part object for this converter.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: count
 
@@ -1442,7 +1486,7 @@ Resource Converter
       The state of the specified converter.
 
       :param number index: Index of the converter.
-      :rtype: :class:`ResourceConverterState`
+      :rtype: :class:`SpaceCenter.ResourceConverterState`
 
    .. method:: status_info(index)
 
@@ -1467,57 +1511,65 @@ Resource Converter
       :rtype: List of string
 
 
+
 .. class:: ResourceConverterState
 
-   See :meth:`ResourceConverter.state`.
+   See :meth:`SpaceCenter.ResourceConverter.state`.
+
 
    .. data:: running
 
       Converter is running.
 
+
    .. data:: idle
 
       Converter is idle.
+
 
    .. data:: missing_resource
 
       Converter is missing a required resource.
 
+
    .. data:: storage_full
 
       No available storage for output resource.
+
 
    .. data:: capacity
 
       At preset resource capacity.
 
+
    .. data:: unknown
 
       Unknown state. Possible with modified resource converters.
-      In this case, check :meth:`ResourceConverter.status_info` for more information.
+      In this case, check :meth:`SpaceCenter.ResourceConverter.status_info` for more information.
 
 
 
 Resource Harvester
 ^^^^^^^^^^^^^^^^^^
 
+
 .. class:: ResourceHarvester
 
-   Obtained by calling :attr:`Part.resource_harvester`.
+   Obtained by calling :attr:`SpaceCenter.Part.resource_harvester`.
 
    .. attribute:: part
 
       The part object for this harvester.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: state
 
       The state of the harvester.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ResourceHarvesterState`
+      :rtype: :class:`SpaceCenter.ResourceHarvesterState`
 
    .. attribute:: deployed
 
@@ -1563,19 +1615,51 @@ Resource Harvester
 
 
 
+.. class:: ResourceHarvesterState
+
+   See :attr:`SpaceCenter.ResourceHarvester.state`.
+
+
+   .. data:: deploying
+
+      The drill is deploying.
+
+
+   .. data:: deployed
+
+      The drill is deployed and ready.
+
+
+   .. data:: retracting
+
+      The drill is retracting.
+
+
+   .. data:: retracted
+
+      The drill is retracted.
+
+
+   .. data:: active
+
+      The drill is running.
+
+
+
 Reaction Wheel
 ^^^^^^^^^^^^^^
 
+
 .. class:: ReactionWheel
 
-   Obtained by calling :attr:`Part.reaction_wheel`.
+   Obtained by calling :attr:`SpaceCenter.Part.reaction_wheel`.
 
    .. attribute:: part
 
       The part object for this reaction wheel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: active
 
@@ -1617,16 +1701,17 @@ Reaction Wheel
 Sensor
 ^^^^^^
 
+
 .. class:: Sensor
 
-   Obtained by calling :attr:`Part.sensor`.
+   Obtained by calling :attr:`SpaceCenter.Part.sensor`.
 
    .. attribute:: part
 
       The part object for this sensor.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: active
 
@@ -1654,16 +1739,17 @@ Sensor
 Solar Panel
 ^^^^^^^^^^^
 
+
 .. class:: SolarPanel
 
-   Obtained by calling :attr:`Part.solar_panel`.
+   Obtained by calling :attr:`SpaceCenter.Part.solar_panel`.
 
    .. attribute:: part
 
       The part object for this solar panel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
+      :rtype: :class:`SpaceCenter.Part`
 
    .. attribute:: deployed
 
@@ -1677,7 +1763,7 @@ Solar Panel
       The current state of the solar panel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`SolarPanelState`
+      :rtype: :class:`SpaceCenter.SolarPanelState`
 
    .. attribute:: energy_flow
 
@@ -1696,25 +1782,31 @@ Solar Panel
       :rtype: number
 
 
+
 .. class:: SolarPanelState
 
-   See :attr:`SolarPanel.state`.
+   See :attr:`SpaceCenter.SolarPanel.state`.
+
 
    .. data:: extended
 
       Solar panel is fully extended.
 
+
    .. data:: retracted
 
       Solar panel is fully retracted.
+
 
    .. data:: extending
 
       Solar panel is being extended.
 
+
    .. data:: retracting
 
       Solar panel is being retracted.
+
 
    .. data:: broken
 

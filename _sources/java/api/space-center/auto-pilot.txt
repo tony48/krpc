@@ -5,20 +5,21 @@
 AutoPilot
 =========
 
+
 .. type:: public class AutoPilot
 
    Provides basic auto-piloting utilities for a vessel.
-   Created by calling :meth:`Vessel.AutoPilot`.
+   Created by calling :meth:`Vessel.getAutoPilot()`.
 
-   .. method:: void Engage()
+   .. method:: void engage()
 
       Engage the auto-pilot.
 
-   .. method:: void Disengage()
+   .. method:: void disengage()
 
       Disengage the auto-pilot.
 
-   .. method:: void Wait()
+   .. method:: void wait()
 
       Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
 
@@ -41,7 +42,7 @@ AutoPilot
 
    .. method:: void setReferenceFrame(ReferenceFrame value)
 
-      The reference frame for the target direction (:meth:`AutoPilot.TargetDirection`).
+      The reference frame for the target direction (:meth:`AutoPilot.getTargetDirection()`).
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getTargetDirection()
 
@@ -49,9 +50,9 @@ AutoPilot
 
       The target direction. ``null`` if no target direction is set.
 
-   .. method:: void TargetPitchAndHeading(float pitch, float heading)
+   .. method:: void targetPitchAndHeading(float pitch, float heading)
 
-      Set (:meth:`AutoPilot.TargetDirection`) from a pitch and heading angle.
+      Set (:meth:`AutoPilot.getTargetDirection()`) from a pitch and heading angle.
 
       :param float pitch: Target pitch angle, in degrees between -90° and +90°.
       :param float heading: Target heading angle, in degrees between 0° and 360°.
@@ -71,7 +72,7 @@ AutoPilot
 
       .. note::
 
-         Equivalent to :meth:`Control.SAS`
+         Equivalent to :meth:`Control.getSAS()`
 
    .. method:: SASMode getSASMode()
 
@@ -84,7 +85,7 @@ AutoPilot
 
       .. note::
 
-         Equivalent to :meth:`Control.SASMode`
+         Equivalent to :meth:`Control.getSASMode()`
 
    .. method:: float getRotationSpeedMultiplier()
 
@@ -110,7 +111,7 @@ AutoPilot
 
       Maximum target roll speed. Defaults to 1.
 
-   .. method:: void SetPIDParameters(float Kp, float Ki, float Kd)
+   .. method:: void setPIDParameters(float Kp, float Ki, float Kd)
 
       Sets the gains for the rotation rate PID controller.
 

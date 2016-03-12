@@ -5,6 +5,7 @@
 Control
 =======
 
+
 .. class:: Control
 
    Used to manipulate the controls of a vessel. This includes adjusting the
@@ -25,28 +26,28 @@ Control
 
       .. note::
 
-         Equivalent to :attr:`AutoPilot.sas`
+         Equivalent to :attr:`SpaceCenter.AutoPilot.sas`
 
    .. attribute:: sas_mode
 
-      The current :class:`SASMode`.
+      The current :class:`SpaceCenter.SASMode`.
       These modes are equivalent to the mode buttons to
       the left of the navball that appear when SAS is enabled.
 
       :Attribute: Can be read or written
-      :rtype: :class:`SASMode`
+      :rtype: :class:`SpaceCenter.SASMode`
 
       .. note::
 
-         Equivalent to :attr:`AutoPilot.sas_mode`
+         Equivalent to :attr:`SpaceCenter.AutoPilot.sas_mode`
 
    .. attribute:: speed_mode
 
-      The current :class:`SpeedMode` of the navball.
+      The current :class:`SpaceCenter.SpeedMode` of the navball.
       This is the mode displayed next to the speed at the top of the navball.
 
       :Attribute: Can be read or written
-      :rtype: :class:`SpeedMode`
+      :rtype: :class:`SpaceCenter.SpeedMode`
 
    .. attribute:: rcs
 
@@ -176,7 +177,7 @@ Control
       Activates the next stage. Equivalent to pressing the space bar in-game.
 
       :returns: A list of vessel objects that are jettisoned from the active vessel.
-      :rtype: List of :class:`Vessel`
+      :rtype: List of :class:`SpaceCenter.Vessel`
 
    .. method:: get_action_group(group)
 
@@ -202,7 +203,7 @@ Control
    .. method:: add_node(ut, [prograde = 0.0], [normal = 0.0], [radial = 0.0])
 
       Creates a maneuver node at the given universal time, and returns a
-      :class:`Node` object that can be used to modify it.
+      :class:`SpaceCenter.Node` object that can be used to modify it.
       Optionally sets the magnitude of the delta-v for the maneuver node
       in the prograde, normal and radial directions.
 
@@ -210,76 +211,91 @@ Control
       :param number prograde: Delta-v in the prograde direction.
       :param number normal: Delta-v in the normal direction.
       :param number radial: Delta-v in the radial direction.
-      :rtype: :class:`Node`
+      :rtype: :class:`SpaceCenter.Node`
 
    .. attribute:: nodes
 
       Returns a list of all existing maneuver nodes, ordered by time from first to last.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`Node`
+      :rtype: List of :class:`SpaceCenter.Node`
 
    .. method:: remove_nodes()
 
       Remove all maneuver nodes.
 
 
+
 .. class:: SASMode
 
-   The behavior of the SAS auto-pilot. See :attr:`AutoPilot.sas_mode`.
+   The behavior of the SAS auto-pilot. See :attr:`SpaceCenter.AutoPilot.sas_mode`.
+
 
    .. data:: stability_assist
 
       Stability assist mode. Dampen out any rotation.
 
+
    .. data:: maneuver
 
       Point in the burn direction of the next maneuver node.
+
 
    .. data:: prograde
 
       Point in the prograde direction.
 
+
    .. data:: retrograde
 
       Point in the retrograde direction.
+
 
    .. data:: normal
 
       Point in the orbit normal direction.
 
+
    .. data:: anti_normal
 
       Point in the orbit anti-normal direction.
+
 
    .. data:: radial
 
       Point in the orbit radial direction.
 
+
    .. data:: anti_radial
 
       Point in the orbit anti-radial direction.
 
+
    .. data:: target
 
       Point in the direction of the current target.
+
 
    .. data:: anti_target
 
       Point away from the current target.
 
 
+
 .. class:: SpeedMode
 
-   See :attr:`Control.speed_mode`.
+   See :attr:`SpaceCenter.Control.speed_mode`.
+
 
    .. data:: orbit
 
       Speed is relative to the vessel's orbit.
 
+
    .. data:: surface
 
       Speed is relative to the surface of the body being orbited.
+
 
    .. data:: target
 

@@ -179,21 +179,24 @@
   <div class="section" id="communication-protocol">
 <span id="id1"></span><h1>Communication Protocol<a class="headerlink" href="#communication-protocol" title="Permalink to this headline">¶</a></h1>
 <p>Clients invoke Remote Procedure Calls (RPCs) by communicating with the server
-using <a class="reference external" href="https://developers.google.com/protocol-buffers/docs/proto">Protocol Buffer v3 messages</a> sent over a TCP/IP
-connection.</p>
-<p>The kRPC <a class="reference external" href="https://github.com/krpc/krpc/releases/latest">download</a> comes with a
-protocol buffer message definitions file (<a class="reference external" href="https://github.com/krpc/krpc/blob/latest-version/protobuf/krpc.proto">KRPC.proto</a>)
-that defines the structure of these messages. It also includes versions of this
-file compiled for Python, Java and C++ using <a class="reference external" href="https://github.com/google/protobuf">Google&#8217;s protocol buffers compiler</a>.</p>
+using <a class="reference external" href="https://developers.google.com/protocol-buffers/docs/proto3">Protocol Buffer v3 messages</a> sent over a
+TCP/IP connection. The kRPC <a class="reference external" href="https://github.com/krpc/krpc/releases/latest">download</a> comes with a protocol buffer
+message definitions file (<a class="reference external" href="https://github.com/krpc/krpc/blob/latest-version/protobuf/krpc.proto">schema/krpc.proto</a>) that
+defines the structure of these messages. It also contains versions of this file
+for C#, C++, Java, Lua and Python, compiled using <a class="reference external" href="https://github.com/google/protobuf">Google&#8217;s protocol buffers
+compiler</a>.</p>
+<p>The following sections describe how to communicate with kRPC using snippets of
+Python code. A complete example script made from these snippets can be
+<a class="reference download internal" href="_downloads/communication-protocol.py"><code class="xref download docutils literal"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
 <div class="section" id="establishing-a-connection">
 <h2>Establishing a Connection<a class="headerlink" href="#establishing-a-connection" title="Permalink to this headline">¶</a></h2>
-<p>kRPC consists of two servers: an <em>RPC Server</em> (over which clients send and
-receive RPCs) and a <em>Stream Server</em> (over which clients receive
+<p>kRPC consists of two servers: an <em>RPC server</em> (over which clients send and
+receive RPCs) and a <em>stream server</em> (over which clients receive
 <a class="reference internal" href="#communication-protocol-streams"><span>Streams</span></a>). A client first connects to the <em>RPC
 Server</em>, then (optionally) to the <em>Stream Server</em>.</p>
 <div class="section" id="connecting-to-the-rpc-server">
 <span id="communication-protocol-rpc-connect"></span><h3>Connecting to the RPC Server<a class="headerlink" href="#connecting-to-the-rpc-server" title="Permalink to this headline">¶</a></h3>
-<p>To establish a connection to the <em>RPC Server</em>, a client must do the following:</p>
+<p>To establish a connection to the RPC server, a client must do the following:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Open a TCP socket to the server on its RPC port (which defaults to 50000).</li>
@@ -208,7 +211,7 @@ the connection is granted, for example after the user has clicked accept on
 the in-game UI.</li>
 </ol>
 </div></blockquote>
-<p>For example, this python code will connect to the <em>RPC Server</em> at address
+<p>For example, this python code will connect to the RPC server at address
 <code class="docutils literal"><span class="pre">127.0.0.1:50000</span></code> using the identifier <code class="docutils literal"><span class="pre">Jeb</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
 <span class="n">rpc_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
@@ -224,23 +227,24 @@ the in-game UI.</li>
 <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
     <span class="n">identifier</span> <span class="o">+=</span> <span class="n">rpc_conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">identifier</span><span class="p">))</span>
 <span class="c1"># Connection successful. Print out a message along with the client identifier.</span>
-<span class="n">printable_identifier</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%02s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">identifier</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">binascii</span>
+<span class="n">printable_identifier</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">identifier</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected to RPC server, client idenfitier = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">printable_identifier</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="connecting-to-the-stream-server">
 <h3>Connecting to the Stream Server<a class="headerlink" href="#connecting-to-the-stream-server" title="Permalink to this headline">¶</a></h3>
-<p>To establish a connection to the <em>Stream Server</em>, a client must first
+<p>To establish a connection to the stream server, a client must first
 <a class="reference internal" href="#communication-protocol-rpc-connect"><span>connect to the RPC Server</span></a> then do
 the following:</p>
 <ol class="arabic simple">
-<li>Open a TCP socket to the server on its Stream port (which defaults to 50001).</li>
+<li>Open a TCP socket to the server on its stream port (which defaults to 50001).</li>
 <li>Send this 12 byte hello message:
 <code class="docutils literal"><span class="pre">0x48</span> <span class="pre">0x45</span> <span class="pre">0x4C</span> <span class="pre">0x4C</span> <span class="pre">0x4F</span> <span class="pre">0x2D</span> <span class="pre">0x53</span> <span class="pre">0x54</span> <span class="pre">0x52</span> <span class="pre">0x45</span> <span class="pre">0x41</span> <span class="pre">0x4D</span></code></li>
 <li>Send a 16 byte message containing the client&#8217;s unique identifier. This
-identifier is given to the client after it successfully connects to the <em>RPC
-Server</em>.</li>
+identifier is given to the client after it successfully connects to the RPC
+server.</li>
 <li>Receive a 2 byte OK message: <code class="docutils literal"><span class="pre">0x4F</span> <span class="pre">0x4B</span></code> This indicates a successful
 connection.</li>
 </ol>
@@ -249,11 +253,10 @@ connection.</li>
 <p class="last">Connecting to the Stream Server is optional. If the client doesn&#8217;t
 require stream functionality, there is no need to connect.</p>
 </div>
-<p>For example, this python code will connect to the <em>Stream Server</em> at address
+<p>For example, this python code will connect to the stream server at address
 <code class="docutils literal"><span class="pre">127.0.0.1:50001</span></code>. Note that <code class="docutils literal"><span class="pre">identifier</span></code> is the unique client identifier
 received when <a class="reference internal" href="#communication-protocol-rpc-connect"><span>connecting to the RPC server</span></a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
-<span class="n">stream_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">stream_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
 <span class="n">stream_conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">))</span>
 <span class="c1"># Send the 12 byte hello message</span>
 <span class="n">stream_conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;</span><span class="se">\x48\x45\x4C\x4C\x4F\x2D\x53\x54\x52\x45\x41\x4D</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -271,7 +274,7 @@ received when <a class="reference internal" href="#communication-protocol-rpc-co
 </div>
 <div class="section" id="remote-procedures">
 <h2>Remote Procedures<a class="headerlink" href="#remote-procedures" title="Permalink to this headline">¶</a></h2>
-<p>Remote procedures are arranged into groups called services. These act as a
+<p>Remote procedures are arranged into groups called <em>services</em>. These act as a
 single-level namespacing to keep things organized. Each service has a unique
 name used to identify it, and within a service each procedure has a unique name.</p>
 <div class="section" id="invoking-remote-procedures">
@@ -282,10 +285,10 @@ Buffer messages.</p>
 <p>The request message contains the name of the procedure to invoke, and the values
 of any arguments to pass it. The response message contains the value returned by
 the procedure (if any) and any errors that were encountered.</p>
-<p>Requests are processed in order of receipt. The next request will not be
-processed until the previous one completes and it&#8217;s response has been received
-by the client. When there are multiple client connections, the requests are
-processed in round-robin order.</p>
+<p>Requests are processed in order of receipt. The next request from a client will
+not be processed until the previous one completes execution and it&#8217;s response
+has been received by the client. When there are multiple client connections,
+requests are processed in round-robin order.</p>
 </div>
 <div class="section" id="anatomy-of-a-request">
 <span id="communication-protocol-anatomy-of-a-request"></span><h3>Anatomy of a Request<a class="headerlink" href="#anatomy-of-a-request" title="Permalink to this headline">¶</a></h3>
@@ -373,10 +376,21 @@ established connection to the server (the <code class="docutils literal"><span c
 Protocol Buffer compiler. The <code class="docutils literal"><span class="pre">EncodeVarint</span></code> and <code class="docutils literal"><span class="pre">DecodeVarint</span></code> functions
 are used to encode/decode integers to/from the Protocol Buffer varint
 format.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">EncodeVarint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-  <span class="k">return</span> <span class="n">krpc</span><span class="o">.</span><span class="n">Encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="n">krpc</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">ValueType</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">DecodeVarint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">:</span>
-  <span class="k">return</span> <span class="n">krpc</span><span class="o">.</span><span class="n">Decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">krpc</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">ValueType</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># import the krpc.proto schema</span>
+<span class="kn">import</span> <span class="nn">krpc.schema</span>
+
+<span class="c1"># Utility functions to encode and decode integers to protobuf format</span>
+<span class="kn">import</span> <span class="nn">google.protobuf</span>
+
+<span class="k">def</span> <span class="nf">EncodeVarint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">google</span><span class="o">.</span><span class="n">protobuf</span><span class="o">.</span><span class="n">internal</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">_SignedVarintEncoder</span><span class="p">()(</span><span class="n">write</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">DecodeVarint</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">google</span><span class="o">.</span><span class="n">protobuf</span><span class="o">.</span><span class="n">internal</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">_DecodeSignedVarint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># Create Request message</span>
 <span class="n">request</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">KRPC</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
@@ -426,34 +440,31 @@ format.</p>
 <div class="section" id="protocol-buffer-encoding">
 <span id="communication-protocol-protobuf-encoding"></span><h2>Protocol Buffer Encoding<a class="headerlink" href="#protocol-buffer-encoding" title="Permalink to this headline">¶</a></h2>
 <p>Values passed as arguments or received as return values are encoded using the
-Protocol Buffer serialization format:</p>
+Protocol Buffer version 3 serialization format:</p>
 <ul class="simple">
 <li>Documentation for this encoding can be found here:
 <a class="reference external" href="https://developers.google.com/protocol-buffers/docs/encoding">https://developers.google.com/protocol-buffers/docs/encoding</a></li>
-<li>Protocol Buffer serialization libraries are available for C++/Java/Python here:
-<a class="reference external" href="http://code.google.com/p/protobuf/downloads/list">http://code.google.com/p/protobuf/downloads/list</a></li>
-<li>There are implementations available for most popular languages here:
-<a class="reference external" href="http://code.google.com/p/protobuf/wiki/ThirdPartyAddOns">http://code.google.com/p/protobuf/wiki/ThirdPartyAddOns</a></li>
+<li>Protocol Buffer libraries in many languages are available here:
+<a class="reference external" href="https://github.com/google/protobuf/releases">https://github.com/google/protobuf/releases</a></li>
 </ul>
 </div>
 <div class="section" id="streams">
 <span id="communication-protocol-streams"></span><h2>Streams<a class="headerlink" href="#streams" title="Permalink to this headline">¶</a></h2>
-<p>Streams allow the client to repeatedly execute a Remote Procedure Call on the
-server and receive its results, without needing to repeatedly call the Remote
-Procedure Call directly, avoiding the communication overhead that this would
-involve.</p>
-<p>A stream is created on the server by calling
-<a class="reference internal" href="#communication-protocol-add-stream"><span>AddStream</span></a> which returns a unique identifier for
-the stream. Once a client is finished with a stream, it can remove it from the
-server by calling <a class="reference internal" href="#communication-protocol-remove-stream"><span>RemoveStream</span></a> with the stream&#8217;s
-identifier. Streams are automatically removed when the client that created it
-disconnects from the server. Streams are local to each client. There is no way
-to share a stream between clients.</p>
-<p>The results of the RPCs for each stream are sent to the client over the Stream
-Server&#8217;s TCP/IP connection, as repeated <em>stream messages</em>. The RPC for each
-stream is invoked every <a class="reference external" href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">fixed update</a>. Updates
-are sent to clients when the value returned by the RPC changes to minimize
-network traffic.</p>
+<p>Streams allow the client to repeatedly execute an RPC on the server and receive
+its results, without needing to repeatedly call the RPC directly, avoiding the
+communication overhead that this would involve.</p>
+<p>A client can create a stream on the server by calling
+<a class="reference internal" href="#communication-protocol-add-stream"><span>AddStream</span></a>. Once the client is finished with the
+stream, it can remove it from the server by calling
+<a class="reference internal" href="#communication-protocol-remove-stream"><span>RemoveStream</span></a>. Streams are automatically removed
+when the client that created it disconnects from the server. Streams are local
+to each client and there is no way to share a stream between clients.</p>
+<p>The RPC for each stream is invoked every <a class="reference external" href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">fixed update</a> and
+the return values for all of these RPCs are collected together into a <em>stream
+message</em>. This is then sent to the client over the stream server&#8217;s TCP/IP
+connection. If the value returned by a stream&#8217;s RPC does not change since the
+last update that was sent, its value is omitted from the update message in order
+to minimize network traffic.</p>
 <div class="section" id="anatomy-of-a-stream-message">
 <h3>Anatomy of a Stream Message<a class="headerlink" href="#anatomy-of-a-stream-message" title="Permalink to this headline">¶</a></h3>
 <p>A stream message is sent to the client using a <code class="docutils literal"><span class="pre">StreamMessage</span></code> Protocol Buffer
@@ -463,8 +474,9 @@ message with the following format:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This message contains a list of <code class="docutils literal"><span class="pre">StreamResponse</span></code> messages, one for each stream
-that exists on the server for that client, with the following format:</p>
+<p>This contains a list of <code class="docutils literal"><span class="pre">StreamResponse</span></code> messages, one for each stream that
+exists on the server for that client, and whose return value changed since the
+last update was sent. It has the following format:</p>
 <div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">StreamResponse</span> <span class="p">{</span>
   <span class="kt">uint32</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="n">Response</span> <span class="na">response</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -485,7 +497,7 @@ details on the format and contents of this message.</li>
 <div class="section" id="krpc-service">
 <span id="communication-protocol-krpc-service"></span><h2>KRPC Service<a class="headerlink" href="#krpc-service" title="Permalink to this headline">¶</a></h2>
 <p>The server provides a service called <code class="docutils literal"><span class="pre">KRPC</span></code> containing procedures that are
-used to retrieve information about the server and add/remove streams.</p>
+used to retrieve information about the server and to manage streams.</p>
 <div class="section" id="getstatus">
 <h3>GetStatus<a class="headerlink" href="#getstatus" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal"><span class="pre">GetStatus</span></code> procedure returns status information about the server. It
@@ -569,16 +581,16 @@ service are given by a <code class="docutils literal"><span class="pre">Service<
 <li><code class="docutils literal"><span class="pre">name</span></code> - The name of the service.</li>
 <li><code class="docutils literal"><span class="pre">procedures</span></code> - A list of <code class="docutils literal"><span class="pre">Procedure</span></code> messages, one for each procedure
 defined by the service.</li>
-<li><code class="docutils literal"><span class="pre">classes</span></code> - A list of <code class="docutils literal"><span class="pre">Class</span></code> messages, one for each <a class="reference internal" href="extending.html#KRPCClass" title="KRPCClass"><code class="xref py py-class docutils literal"><span class="pre">KRPCClass</span></code></a>
+<li><code class="docutils literal"><span class="pre">classes</span></code> - A list of <code class="docutils literal"><span class="pre">Class</span></code> messages, one for each <a class="reference internal" href="extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>
 defined by the service.</li>
 <li><code class="docutils literal"><span class="pre">enumerations</span></code> - A list of <code class="docutils literal"><span class="pre">Enumeration</span></code> messages, one for each
-<a class="reference internal" href="extending.html#KRPCEnum" title="KRPCEnum"><code class="xref py py-class docutils literal"><span class="pre">KRPCEnum</span></code></a> defined by the service.</li>
+<a class="reference internal" href="extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> defined by the service.</li>
 <li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the service, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">See the <a class="reference internal" href="extending.html#extending"><span>Extending kRPC</span></a> documentation for more details about
-<a class="reference internal" href="extending.html#KRPCClass" title="KRPCClass"><code class="xref py py-class docutils literal"><span class="pre">KRPCClass</span></code></a> and <a class="reference internal" href="extending.html#KRPCEnum" title="KRPCEnum"><code class="xref py py-class docutils literal"><span class="pre">KRPCEnum</span></code></a>.</p>
+<a class="reference internal" href="extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> and <a class="reference internal" href="extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a>.</p>
 </div>
 <div class="section" id="procedures">
 <h3>Procedures<a class="headerlink" href="#procedures" title="Permalink to this headline">¶</a></h3>
@@ -631,8 +643,8 @@ type</span></a> of the procedure.</p>
 </div>
 <div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
-<p>Details about each <a class="reference internal" href="extending.html#KRPCClass" title="KRPCClass"><code class="xref py py-class docutils literal"><span class="pre">KRPCClass</span></code></a> are specified in a <code class="docutils literal"><span class="pre">Class</span></code> message, with the
-format:</p>
+<p>Details about each <a class="reference internal" href="extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> are specified in a <code class="docutils literal"><span class="pre">Class</span></code>
+message, with the format:</p>
 <div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Class</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">documentation</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -647,8 +659,8 @@ format:</p>
 </div>
 <div class="section" id="enumerations">
 <h3>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h3>
-<p>Details about each <a class="reference internal" href="extending.html#KRPCEnum" title="KRPCEnum"><code class="xref py py-class docutils literal"><span class="pre">KRPCEnum</span></code></a> are specified in an <code class="docutils literal"><span class="pre">Enumeration</span></code> message,
-with the format:</p>
+<p>Details about each <a class="reference internal" href="extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> are specified in an <code class="docutils literal"><span class="pre">Enumeration</span></code>
+message, with the format:</p>
 <div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Enumeration</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">EnumerationValue</span> <span class="na">values</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -732,10 +744,10 @@ message. For example, this is used with <a class="reference internal" href="#com
 return values as strings. Type names can be any of the following:</p>
 <blockquote>
 <div><ul class="simple">
-<li>A Protocol Buffer value type. One of <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">int32</span></code>,
-<code class="docutils literal"><span class="pre">int64</span></code>, <code class="docutils literal"><span class="pre">uint32</span></code>, <code class="docutils literal"><span class="pre">uint64</span></code>, <code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">string</span></code> or <code class="docutils literal"><span class="pre">bytes</span></code></li>
-<li>A KRPCClass, in the format <code class="docutils literal"><span class="pre">Class(ClassName)</span></code></li>
-<li>A KRPCEnum, in the format <code class="docutils literal"><span class="pre">Enum(ClassName)</span></code></li>
+<li>A Protocol Buffer value type. One of <code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">int32</span></code>,
+<code class="docutils literal"><span class="pre">int64</span></code>, <code class="docutils literal"><span class="pre">uint32</span></code>, <code class="docutils literal"><span class="pre">uint64</span></code>, <code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">string</span></code> or <code class="docutils literal"><span class="pre">bytes</span></code>.</li>
+<li>A <a class="reference internal" href="extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> in the format <code class="docutils literal"><span class="pre">Class(ClassName)</span></code></li>
+<li>A <a class="reference internal" href="extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> in the format <code class="docutils literal"><span class="pre">Enum(ClassName)</span></code></li>
 <li>A Protocol Buffer message type, in the format <code class="docutils literal"><span class="pre">KRPC.MessageType</span></code>. Only
 message types defined in <code class="docutils literal"><span class="pre">krpc.proto</span></code> are permitted.</li>
 </ul>
@@ -743,8 +755,8 @@ message types defined in <code class="docutils literal"><span class="pre">krpc.p
 </div>
 <div class="section" id="proxy-objects">
 <span id="communication-protocol-proxy-objects"></span><h3>Proxy Objects<a class="headerlink" href="#proxy-objects" title="Permalink to this headline">¶</a></h3>
-<p>kRPC allows procedures to create objects on the server, and passes unique
-identifiers for them to the client. This allows the client to create a <em>proxy</em>
+<p>kRPC allows procedures to create objects on the server, and pass a unique
+identifier for them to the client. This allows the client to create a <em>proxy</em>
 object for the actual object, whose methods and properties make remote procedure
 calls to the server. Object identifiers have type <code class="docutils literal"><span class="pre">uint64</span></code>.</p>
 <p>When a procedure returns a proxy object, the procedure will have the attribute

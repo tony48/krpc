@@ -177,8 +177,8 @@ details.</a></p>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
-<p>To connect to a server, create a <code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Connection</span></code> object. For
-example to connect to a server running on the local machine:</p>
+<p>To connect to a server, create a <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Connection</span></code></a> object. For example to
+connect to a server running on the local machine:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
 
@@ -255,7 +255,7 @@ overheads, as the <a class="reference internal" href="api/space-center/vessel.ht
 </pre></div>
 </div>
 <p>The following code achieves the same thing, but is far more efficient. It calls
-<code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code> once at the start of the program to create a
+<a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code></a> once at the start of the program to create a
 stream, and then repeatedly gets the position from the stream.</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -274,14 +274,14 @@ stream, and then repeatedly gets the position from the stream.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Streams are created for any method call by calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code>
+<p>Streams are created for any method call by calling <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code></a>
 and passing it a lambda expression calling the desired method. This lambda
 expression must take zero arguments and be either a method call expression or a
-parameter call expression. It returns an instance of the
-<code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Stream</span></code> class from which the latest value can be obtained by
-calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Stream.Get</span></code>. A stream can be stopped and removed from
-the server by calling <code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Stream.Remove</span></code> on the stream
-object. All of a clients streams are automatically stopped when it disconnects.</p>
+parameter call expression. It returns an instance of the <a class="reference internal" href="#class-Stream" title="Stream class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Stream</span></code></a> class
+from which the latest value can be obtained by calling <a class="reference internal" href="#method-Stream.Get" title="Stream.Get method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Stream.Get</span></code></a>. A
+stream can be stopped and removed from the server by calling
+<a class="reference internal" href="#method-Stream.Remove" title="Stream.Remove method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Stream.Remove</span></code></a> on the stream object. All of a clients streams are
+automatically stopped when it disconnects.</p>
 </div>
 <div class="section" id="client-api-reference">
 <h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
@@ -300,27 +300,27 @@ text).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="method-Connection.AddStream&lt;TResult&gt;">
-Stream&lt;TResult&gt; <code class="descname">AddStream&lt;TResult&gt;</code> <span class="sig-paren">(</span>LambdaExpression <em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Connection.AddStream<TResult>" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new stream from the given lambda expression.  Returns a stream
+<dt id="method-Connection.AddStream">
+<a class="reference internal" href="#class-Stream" title="Stream class">Stream</a>&lt;ReturnType&gt; <code class="descname">AddStream</code>&lt;ReturnType&gt; <span class="sig-paren">(</span>LambdaExpression <em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Connection.AddStream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stream from the given lambda expression. Returns a stream
 object that can be used to obtain the latest value of the stream.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="class-Stream&lt;ReturnType&gt;">
-<code class="descname">class Stream&lt;ReturnType&gt;</code><a class="headerlink" href="#class-Stream<ReturnType>" title="Permalink to this definition">¶</a></dt>
+<dt id="class-Stream">
+<code class="descname">class Stream&lt;ReturnType&gt;</code><a class="headerlink" href="#class-Stream" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object representing a stream.</p>
 <dl class="method">
-<dt id="method-Stream&lt;ReturnType&gt;.Get">
-ReturnType <code class="descname">Get</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream<ReturnType>.Get" title="Permalink to this definition">¶</a></dt>
+<dt id="method-Stream.Get">
+ReturnType <code class="descname">Get</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.Get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the most recent value of the stream.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="method-Stream&lt;ReturnType&gt;.Remove">
-void <code class="descname">Remove</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream<ReturnType>.Remove" title="Permalink to this definition">¶</a></dt>
+<dt id="method-Stream.Remove">
+void <code class="descname">Remove</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.Remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove the stream from the server.</p>
 </dd></dl>
 

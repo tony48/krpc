@@ -5,6 +5,7 @@
 KerbalAlarmClock
 ================
 
+
 .. namespace:: krpc::services
 .. class:: KerbalAlarmClock : public krpc::Service
 
@@ -15,11 +16,11 @@ KerbalAlarmClock
 
       Construct an instance of this service.
 
-   .. function:: std::vector<Alarm> alarms()
+   .. function:: std::vector<KerbalAlarmClock::Alarm> alarms()
 
       A list of all the alarms.
 
-   .. function:: Alarm alarm_with_name(std::string name)
+   .. function:: KerbalAlarmClock::Alarm alarm_with_name(std::string name)
 
       Get the alarm with the given *name*, or ``NULL``
       if no alarms have that name. If more than one alarm has the name,
@@ -29,7 +30,7 @@ KerbalAlarmClock
 
        * **name** -- Name of the alarm to search for.
 
-   .. function:: std::vector<Alarm> alarms_with_type(AlarmType type)
+   .. function:: std::vector<KerbalAlarmClock::Alarm> alarms_with_type(KerbalAlarmClock::AlarmType type)
 
       Get a list of alarms of the specified *type*.
 
@@ -37,7 +38,7 @@ KerbalAlarmClock
 
        * **type** -- Type of alarm to return.
 
-   .. function:: Alarm create_alarm(AlarmType type, std::string name, double ut)
+   .. function:: KerbalAlarmClock::Alarm create_alarm(KerbalAlarmClock::AlarmType type, std::string name, double ut)
 
       Create a new alarm and return it.
 

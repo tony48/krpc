@@ -238,9 +238,9 @@ rotational/angular velocity as Kerbin.</li>
 </ul>
 <p>This means that the reference frame is <em>fixed</em> relative to Kerbin &#8211; it moves
 with the center of the planet, and also rotates with the planet. Therefore,
-positions in this reference frame are relative to the center of the
-planet. Consider the following code prints out the position of the active vessel
-in Kerbin&#8217;s reference frame:</p>
+positions in this reference frame are relative to the center of the planet. The
+following code prints out the position of the active vessel in Kerbin&#8217;s
+reference frame:</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -263,8 +263,8 @@ and the reference frame also rotates with Kerbin.</p>
 </div>
 <p>Another example is the orbital reference frame for a vessel, obtained by calling
 <a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.orbital_reference_frame" title="SpaceCenter.Vessel.orbital_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.orbital_reference_frame</span></code></a>. This is fixed to the vessel (the origin
-moves with the vessel) and it is orientated so that the axes point in the
-orbital prograde/normal/radial directions.</p>
+moves with the vessel) and is orientated so that the axes point in the orbital
+prograde/normal/radial directions.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel,</li>
 <li>the y-axis points in the prograde direction of the vessels orbit,</li>
@@ -327,13 +327,13 @@ matches the current orbital velocity of Kerbin.</p>
 </div>
 <div class="section" id="converting-between-reference-frames">
 <h2><a class="toc-backref" href="#id11">Converting Between Reference Frames</a><a class="headerlink" href="#converting-between-reference-frames" title="Permalink to this headline">¶</a></h2>
-<p>kRPC provides a utility methods to convert positions, directions, rotations and
+<p>kRPC provides utility methods to convert positions, directions, rotations and
 velocities between the different reference frames:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.SpaceCenter.transform_position" title="SpaceCenter.SpaceCenter.transform_position"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_position()</span></code></a></li>
-<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.SpaceCenter.transform_direction" title="SpaceCenter.SpaceCenter.transform_direction"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_direction()</span></code></a></li>
-<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.SpaceCenter.transform_rotation" title="SpaceCenter.SpaceCenter.transform_rotation"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_rotation()</span></code></a></li>
-<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.SpaceCenter.transform_velocity" title="SpaceCenter.SpaceCenter.transform_velocity"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_velocity()</span></code></a></li>
+<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_position" title="SpaceCenter.transform_position"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_position()</span></code></a></li>
+<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_direction" title="SpaceCenter.transform_direction"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_direction()</span></code></a></li>
+<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_rotation" title="SpaceCenter.transform_rotation"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_rotation()</span></code></a></li>
+<li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_velocity" title="SpaceCenter.transform_velocity"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_velocity()</span></code></a></li>
 </ul>
 </div>
 <div class="section" id="visual-debugging">
@@ -341,9 +341,9 @@ velocities between the different reference frames:</p>
 <p>References frames can be confusing, and choosing the correct one is a challenge
 in itself. To aid debugging, kRPC provides some methods with which you can draw
 direction vectors in-game.</p>
-<p><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.SpaceCenter.draw_direction" title="SpaceCenter.SpaceCenter.draw_direction"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.draw_direction()</span></code></a> will draw a direction vector, starting from
-the center of the active vessel. For example, the following code draws the
-direction of the current vessels velocity relative to the surface:</p>
+<p><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.draw_direction" title="SpaceCenter.draw_direction"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.draw_direction()</span></code></a> will draw a direction vector, starting from
+the center of mass of the active vessel. For example, the following code draws
+the direction of the current vessels velocity relative to the surface:</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

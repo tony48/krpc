@@ -5,11 +5,12 @@
 Orbit
 =====
 
+
 .. type:: public class Orbit
 
    Describes an orbit. For example, the orbit of a vessel, obtained by calling
-   :meth:`Vessel.Orbit`, or a celestial body, obtained by calling
-   :meth:`CelestialBody.Orbit`.
+   :meth:`Vessel.getOrbit()`, or a celestial body, obtained by calling
+   :meth:`CelestialBody.getOrbit()`.
 
    .. method:: CelestialBody getBody()
 
@@ -24,7 +25,7 @@ Orbit
 
       .. note::
 
-         For the apoapsis altitude reported on the in-game map view, use :meth:`Orbit.ApoapsisAltitude`.
+         For the apoapsis altitude reported on the in-game map view, use :meth:`Orbit.getApoapsisAltitude()`.
 
    .. method:: double getPeriapsis()
 
@@ -34,7 +35,7 @@ Orbit
 
       .. note::
 
-         For the periapsis altitude reported on the in-game map view, use :meth:`Orbit.PeriapsisAltitude`.
+         For the periapsis altitude reported on the in-game map view, use :meth:`Orbit.getPeriapsisAltitude()`.
 
    .. method:: double getApoapsisAltitude()
 
@@ -44,7 +45,7 @@ Orbit
 
       .. note::
 
-         This is equal to :meth:`Orbit.Apoapsis` minus the equatorial radius of the body.
+         This is equal to :meth:`Orbit.getApoapsis()` minus the equatorial radius of the body.
 
    .. method:: double getPeriapsisAltitude()
 
@@ -54,7 +55,7 @@ Orbit
 
       .. note::
 
-         This is equal to :meth:`Orbit.Periapsis` minus the equatorial radius of the body.
+         This is equal to :meth:`Orbit.getPeriapsis()` minus the equatorial radius of the body.
 
    .. method:: double getSemiMajorAxis()
 
@@ -143,14 +144,14 @@ Orbit
 
       The `eccentric anomaly <http://en.wikipedia.org/wiki/Eccentric_anomaly>`_.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> ReferencePlaneNormal(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> referencePlaneNormal(ReferenceFrame referenceFrame)
 
       The unit direction vector that is normal to the orbits reference plane, in the given
       reference frame. The reference plane is the plane from which the orbits inclination is measured.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> ReferencePlaneDirection(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> referencePlaneDirection(ReferenceFrame referenceFrame)
 
       The unit direction vector from which the orbits longitude of ascending node is measured,
       in the given reference frame.

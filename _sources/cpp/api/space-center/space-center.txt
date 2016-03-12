@@ -5,6 +5,7 @@
 SpaceCenter
 ===========
 
+
 .. namespace:: krpc::services
 .. class:: SpaceCenter : public krpc::Service
 
@@ -15,32 +16,32 @@ SpaceCenter
 
       Construct an instance of this service.
 
-   .. function:: Vessel active_vessel()
-   .. function:: void set_active_vessel(Vessel value)
+   .. function:: SpaceCenter::Vessel active_vessel()
+   .. function:: void set_active_vessel(SpaceCenter::Vessel value)
 
       The currently active vessel.
 
-   .. function:: std::vector<Vessel> vessels()
+   .. function:: std::vector<SpaceCenter::Vessel> vessels()
 
       A list of all the vessels in the game.
 
-   .. function:: std::map<std::string,CelestialBody> bodies()
+   .. function:: std::map<std::string,SpaceCenter::CelestialBody> bodies()
 
       A dictionary of all celestial bodies (planets, moons, etc.) in the game,
       keyed by the name of the body.
 
-   .. function:: CelestialBody target_body()
-   .. function:: void set_target_body(CelestialBody value)
+   .. function:: SpaceCenter::CelestialBody target_body()
+   .. function:: void set_target_body(SpaceCenter::CelestialBody value)
 
       The currently targeted celestial body.
 
-   .. function:: Vessel target_vessel()
-   .. function:: void set_target_vessel(Vessel value)
+   .. function:: SpaceCenter::Vessel target_vessel()
+   .. function:: void set_target_vessel(SpaceCenter::Vessel value)
 
       The currently targeted vessel.
 
-   .. function:: DockingPort target_docking_port()
-   .. function:: void set_target_docking_port(DockingPort value)
+   .. function:: SpaceCenter::DockingPort target_docking_port()
+   .. function:: void set_target_docking_port(SpaceCenter::DockingPort value)
 
       The currently targeted docking port.
 
@@ -73,11 +74,11 @@ SpaceCenter
       The value of the `gravitational constant <http://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
 
-   .. function:: WarpMode warp_mode()
+   .. function:: SpaceCenter::WarpMode warp_mode()
 
-      The current time warp mode. Returns :enumerator:`WarpMode::none` if time
-      warp is not active, :enumerator:`WarpMode::rails` if regular "on-rails" time warp
-      is active, or :enumerator:`WarpMode::physics` if physical time warp is active.
+      The current time warp mode. Returns :enumerator:`SpaceCenter::WarpMode::none` if time
+      warp is not active, :enumerator:`SpaceCenter::WarpMode::rails` if regular "on-rails" time warp
+      is active, or :enumerator:`SpaceCenter::WarpMode::physics` if physical time warp is active.
 
    .. function:: float warp_rate()
 
@@ -91,11 +92,11 @@ SpaceCenter
       The current warp factor. This is the index of the rate at which time
       is passing for either regular "on-rails" or physical time warp. Returns 0
       if time warp is not active. When in on-rails time warp, this is equal to
-      :func:`rails_warp_factor`, and in physics time warp, this is equal to
-      :func:`physics_warp_factor`.
+      :func:`SpaceCenter::rails_warp_factor`, and in physics time warp, this is equal to
+      :func:`SpaceCenter::physics_warp_factor`.
 
-   .. function:: int32 rails_warp_factor()
-   .. function:: void set_rails_warp_factor(int32 value)
+   .. function:: int32_t rails_warp_factor()
+   .. function:: void set_rails_warp_factor(int32_t value)
 
       The time warp rate, using regular "on-rails" time warp. A value between
       0 and 7 inclusive. 0 means no time warp. Returns 0 if physical time warp
@@ -104,13 +105,13 @@ SpaceCenter
       lowest possible value. For example, if the vessel is too close to a
       planet. See `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
-   .. function:: int32 physics_warp_factor()
-   .. function:: void set_physics_warp_factor(int32 value)
+   .. function:: int32_t physics_warp_factor()
+   .. function:: void set_physics_warp_factor(int32_t value)
 
       The physical time warp rate. A value between 0 and 3 inclusive. 0 means
       no time warp. Returns 0 if regular "on-rails" time warp is active.
 
-   .. function:: bool can_rails_warp_at(int32 factor = 1)
+   .. function:: bool can_rails_warp_at(int32_t factor = 1)
 
       Returns ``true`` if regular "on-rails" time warp can be used, at the specified warp
       *factor*. The maximum time warp rate is limited by various things,
@@ -121,7 +122,7 @@ SpaceCenter
 
        * **factor** -- The warp factor to check.
 
-   .. function:: int32 maximum_rails_warp_factor()
+   .. function:: int32_t maximum_rails_warp_factor()
 
       The current maximum regular "on-rails" warp factor that can be set.
       A value between 0 and 7 inclusive.  See
@@ -145,7 +146,7 @@ SpaceCenter
 
       :returns: When the time warp is complete.
 
-   .. function:: std::tuple<double, double, double> transform_position(std::tuple<double, double, double> position, ReferenceFrame from, ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_position(std::tuple<double, double, double> position, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
 
       Converts a position vector from one reference frame to another.
 
@@ -157,7 +158,7 @@ SpaceCenter
 
       :returns: The corresponding position vector in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double> transform_direction(std::tuple<double, double, double> direction, ReferenceFrame from, ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_direction(std::tuple<double, double, double> direction, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
 
       Converts a direction vector from one reference frame to another.
 
@@ -169,7 +170,7 @@ SpaceCenter
 
       :returns: The corresponding direction vector in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double, double> transform_rotation(std::tuple<double, double, double, double> rotation, ReferenceFrame from, ReferenceFrame to)
+   .. function:: std::tuple<double, double, double, double> transform_rotation(std::tuple<double, double, double, double> rotation, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
 
       Converts a rotation from one reference frame to another.
 
@@ -181,7 +182,7 @@ SpaceCenter
 
       :returns: The corresponding rotation in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double> transform_velocity(std::tuple<double, double, double> position, std::tuple<double, double, double> velocity, ReferenceFrame from, ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_velocity(std::tuple<double, double, double> position, std::tuple<double, double, double> velocity, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
 
       Converts a velocity vector (acting at the specified position vector) from one
       reference frame to another. The position vector is required to take the
@@ -204,7 +205,7 @@ SpaceCenter
 
       Whether `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ is installed.
 
-   .. function:: void draw_direction(std::tuple<double, double, double> direction, ReferenceFrame reference_frame, std::tuple<double, double, double> color, float length = 10.0)
+   .. function:: void draw_direction(std::tuple<double, double, double> direction, SpaceCenter::ReferenceFrame reference_frame, std::tuple<double, double, double> color, float length = 10.0)
 
       Draw a direction vector on the active vessel.
 
@@ -215,7 +216,7 @@ SpaceCenter
        * **color** -- The color to use for the line, as an RGB color.
        * **length** -- The length of the line. Defaults to 10.
 
-   .. function:: void draw_line(std::tuple<double, double, double> start, std::tuple<double, double, double> end, ReferenceFrame reference_frame, std::tuple<double, double, double> color)
+   .. function:: void draw_line(std::tuple<double, double, double> start, std::tuple<double, double, double> end, SpaceCenter::ReferenceFrame reference_frame, std::tuple<double, double, double> color)
 
       Draw a line.
 
@@ -231,18 +232,22 @@ SpaceCenter
       Remove all directions and lines currently being drawn.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: WarpMode
 
-   Returned by :func:`warp_mode`
+   Returned by :func:`SpaceCenter::warp_mode`
+
 
    .. enumerator:: rails
 
       Time warp is active, and in regular "on-rails" mode.
 
+
    .. enumerator:: physics
 
       Time warp is active, and in physical time warp mode.
+
 
    .. enumerator:: none
 

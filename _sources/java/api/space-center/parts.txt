@@ -15,10 +15,11 @@ The following classes allow interaction with a vessels individual parts.
 Parts
 -----
 
+
 .. type:: public class Parts
 
    Instances of this class are used to interact with the parts of a vessel.
-   An instance can be obtained by calling :meth:`Vessel.Parts`.
+   An instance can be obtained by calling :meth:`Vessel.getParts()`.
 
    .. method:: java.util.List<Part> getAll()
 
@@ -31,7 +32,7 @@ Parts
       The vessels root part.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-trees-of-parts`.
 
    .. method:: Part getControlling()
 
@@ -39,45 +40,45 @@ Parts
 
       The part from which the vessel is controlled.
 
-   .. method:: java.util.List<Part> WithName(String name)
+   .. method:: java.util.List<Part> withName(String name)
 
-      A list of parts whose :meth:`Part.Name` is *name*.
+      A list of parts whose :meth:`Part.getName()` is *name*.
 
       :param String name:
 
-   .. method:: java.util.List<Part> WithTitle(String title)
+   .. method:: java.util.List<Part> withTitle(String title)
 
-      A list of all parts whose :meth:`Part.Title` is *title*.
+      A list of all parts whose :meth:`Part.getTitle()` is *title*.
 
       :param String title:
 
-   .. method:: java.util.List<Part> WithModule(String moduleName)
+   .. method:: java.util.List<Part> withModule(String moduleName)
 
       A list of all parts that contain a :type:`Module` whose
-      :meth:`Module.Name` is *moduleName*.
+      :meth:`Module.getName()` is *moduleName*.
 
       :param String moduleName:
 
-   .. method:: java.util.List<Part> InStage(int stage)
+   .. method:: java.util.List<Part> inStage(int stage)
 
       A list of all parts that are activated in the given *stage*.
 
       :param int stage:
 
-      .. note:: See the discussion on :ref:`java-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
 
-   .. method:: java.util.List<Part> InDecoupleStage(int stage)
+   .. method:: java.util.List<Part> inDecoupleStage(int stage)
 
       A list of all parts that are decoupled in the given *stage*.
 
       :param int stage:
 
-      .. note:: See the discussion on :ref:`java-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
 
-   .. method:: java.util.List<Module> ModulesWithName(String moduleName)
+   .. method:: java.util.List<Module> modulesWithName(String moduleName)
 
       A list of modules (combined across all parts in the vessel) whose
-      :meth:`Module.Name` is *moduleName*.
+      :meth:`Module.getName()` is *moduleName*.
 
       :param String moduleName:
 
@@ -91,9 +92,9 @@ Parts
 
       A list of all docking ports in the vessel.
 
-   .. method:: DockingPort DockingPortWithName(String name)
+   .. method:: DockingPort dockingPortWithName(String name)
 
-      The first docking port in the vessel with the given port name, as returned by :meth:`DockingPort.Name`.
+      The first docking port in the vessel with the given port name, as returned by :meth:`DockingPort.getName()`.
       Returns ``null`` if there are no such docking ports.
 
       :param String name:
@@ -163,6 +164,7 @@ Parts
 Part
 ----
 
+
 .. type:: public class Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
@@ -194,19 +196,19 @@ Part
 
 
       The parts parent. Returns ``null`` if the part does not have a parent.
-      This, in combination with :meth:`Part.Children`, can be used to traverse the vessels parts tree.
+      This, in combination with :meth:`Part.getChildren()`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-trees-of-parts`.
 
    .. method:: java.util.List<Part> getChildren()
 
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :meth:`Part.Parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :meth:`Part.getParent()`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-trees-of-parts`.
 
    .. method:: boolean getAxiallyAttached()
 
@@ -215,7 +217,7 @@ Part
       or bottom of its parent. If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-attachment-modes`.
 
    .. method:: boolean getRadiallyAttached()
 
@@ -224,7 +226,7 @@ Part
       If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-attachment-modes`.
 
    .. method:: int getStage()
 
@@ -232,7 +234,7 @@ Part
       The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
 
    .. method:: int getDecoupleStage()
 
@@ -240,7 +242,7 @@ Part
       The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
 
    .. method:: boolean getMassless()
 
@@ -361,7 +363,7 @@ Part
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-fuel-lines`.
 
    .. method:: java.util.List<Part> getFuelLinesTo()
 
@@ -369,7 +371,7 @@ Part
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
 
 
-      .. note:: See the discussion on :ref:`java-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`java-api-parts-fuel-lines`.
 
    .. method:: java.util.List<Module> getModules()
 
@@ -446,25 +448,25 @@ Part
 
       A :type:`SolarPanel` if the part is a solar panel, otherwise ``null``.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Position(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       The position of the part in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Direction(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       The direction of the part in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Velocity(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
       The velocity of the part in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> Rotation(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
       The rotation of the part in the given reference frame.
 
@@ -483,7 +485,7 @@ Part
       .. note::
 
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :meth:`DockingPort.ReferenceFrame`.
+         for the docking port, returned by :meth:`DockingPort.getReferenceFrame()`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -494,6 +496,7 @@ Part
 
 Module
 ------
+
 
 .. type:: public class Module
 
@@ -521,13 +524,13 @@ Module
       The modules field names and their associated values, as a dictionary.
       These are the values visible in the right-click menu of the part.
 
-   .. method:: boolean HasField(String name)
+   .. method:: boolean hasField(String name)
 
       Returns ``true`` if the module has a field with the given name.
 
       :param String name: Name of the field.
 
-   .. method:: String GetField(String name)
+   .. method:: String getField(String name)
 
       Returns the value of a field.
 
@@ -539,13 +542,13 @@ Module
       A list of the names of all of the modules events. Events are the clickable buttons
       visible in the right-click menu of the part.
 
-   .. method:: boolean HasEvent(String name)
+   .. method:: boolean hasEvent(String name)
 
       ``true`` if the module has an event with the given name.
 
       :param String name:
 
-   .. method:: void TriggerEvent(String name)
+   .. method:: void triggerEvent(String name)
 
       Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
 
@@ -557,13 +560,13 @@ Module
       A list of all the names of the modules actions. These are the parts actions that can be assigned
       to action groups in the in-game editor.
 
-   .. method:: boolean HasAction(String name)
+   .. method:: boolean hasAction(String name)
 
       ``true`` if the part has an action with the given name.
 
       :param String name:
 
-   .. method:: void SetAction(String name, boolean value)
+   .. method:: void setAction(String name, boolean value)
 
       Set the value of an action with the given name.
 
@@ -583,16 +586,17 @@ The following classes provide functionality for specific types of part.
 Decoupler
 ^^^^^^^^^
 
+
 .. type:: public class Decoupler
 
-   Obtained by calling :meth:`Part.Decoupler`
+   Obtained by calling :meth:`Part.getDecoupler()`
 
    .. method:: Part getPart()
 
 
       The part object for this decoupler.
 
-   .. method:: void Decouple()
+   .. method:: void decouple()
 
       Fires the decoupler. Has no effect if the decoupler has already fired.
 
@@ -611,9 +615,10 @@ Decoupler
 Docking Port
 ^^^^^^^^^^^^
 
+
 .. type:: public class DockingPort
 
-   Obtained by calling :meth:`Part.DockingPort`
+   Obtained by calling :meth:`Part.getDockingPort()`
 
    .. method:: Part getPart()
 
@@ -628,7 +633,7 @@ Docking Port
       in the right click menu, when the
       `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
       mod is installed. If this mod is not installed, returns the title of the part
-      (:meth:`Part.Title`).
+      (:meth:`Part.getTitle()`).
 
    .. method:: DockingPortState getState()
 
@@ -641,10 +646,10 @@ Docking Port
       The part that this docking port is docked to. Returns ``null`` if this
       docking port is not docked to anything.
 
-   .. method:: Vessel Undock()
+   .. method:: Vessel undock()
 
       Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:meth:`ActiveVessel`).
+      After undocking, the active vessel may change (:meth:`getActiveVessel()`).
       This method can be called for either docking port in a docked pair - both calls will have the same
       effect. Returns ``null`` if the docking port is not docked to anything.
 
@@ -669,19 +674,19 @@ Docking Port
       closed, and when set to ``false`` the shield is opened. If the docking
       port does not have a shield, setting this attribute has no effect.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Position(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       The position of the docking port in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Direction(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       The direction that docking port points in, in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> Rotation(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
       The rotation of the docking port, in the given reference frame.
 
@@ -703,7 +708,7 @@ Docking Port
       .. note::
 
          This reference frame is not necessarily equivalent to the reference frame
-         for the part, returned by :meth:`Part.ReferenceFrame`.
+         for the part, returned by :meth:`Part.getReferenceFrame()`.
 
       .. figure:: /images/reference-frames/docking-port.png
          :align: center
@@ -716,35 +721,42 @@ Docking Port
          Inline docking port reference frame origin and axes
 
 
+
 .. type:: public enum DockingPortState
 
-   See :meth:`DockingPort.State`.
+   See :meth:`DockingPort.getState()`.
 
-   .. field:: public DockingPortState Ready
+
+   .. field:: public DockingPortState READY
 
       The docking port is ready to dock to another docking port.
 
-   .. field:: public DockingPortState Docked
+
+   .. field:: public DockingPortState DOCKED
 
       The docking port is docked to another docking port, or docked to
       another part (from the VAB/SPH).
 
-   .. field:: public DockingPortState Docking
+
+   .. field:: public DockingPortState DOCKING
 
       The docking port is very close to another docking port,
       but has not docked. It is using magnetic force to acquire a solid dock.
 
-   .. field:: public DockingPortState Undocking
+
+   .. field:: public DockingPortState UNDOCKING
 
       The docking port has just been undocked from another docking port,
       and is disabled until it moves away by a sufficient distance
-      (:meth:`DockingPort.ReengageDistance`).
+      (:meth:`DockingPort.getReengageDistance()`).
 
-   .. field:: public DockingPortState Shielded
+
+   .. field:: public DockingPortState SHIELDED
 
       The docking port has a shield, and the shield is closed.
 
-   .. field:: public DockingPortState Moving
+
+   .. field:: public DockingPortState MOVING
 
       The docking ports shield is currently opening/closing.
 
@@ -753,9 +765,10 @@ Docking Port
 Engine
 ^^^^^^
 
+
 .. type:: public class Engine
 
-   Obtained by calling :meth:`Part.Engine`.
+   Obtained by calling :meth:`Part.getEngine()`.
 
    .. method:: Part getPart()
 
@@ -767,7 +780,7 @@ Engine
    .. method:: void setActive(boolean value)
 
       Whether the engine is active. Setting this attribute may have no effect,
-      depending on :meth:`Engine.CanShutdown` and :meth:`Engine.CanRestart`.
+      depending on :meth:`Engine.getCanShutdown()` and :meth:`Engine.getCanRestart()`.
 
    .. method:: float getThrust()
 
@@ -779,7 +792,7 @@ Engine
 
 
       The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :meth:`Engine.ThrustLimit` into account,
+      engine, in Newtons. This takes :meth:`Engine.getThrustLimit()` into account,
       and is the amount of thrust produced by the engine when activated and the
       main throttle is set to 100%. Returns zero if the engine does not have any fuel.
 
@@ -788,7 +801,7 @@ Engine
 
       Gets the maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
-      activated, :meth:`Engine.ThrustLimit` is set to 100% and the main vessel's
+      activated, :meth:`Engine.getThrustLimit()` is set to 100% and the main vessel's
       throttle is set to 100%.
 
    .. method:: float getMaxVacuumThrust()
@@ -796,7 +809,7 @@ Engine
 
       The maximum amount of thrust that can be produced by the engine in a
       vacuum, in Newtons. This is the amount of thrust produced by the engine
-      when activated, :meth:`Engine.ThrustLimit` is set to 100%, the main
+      when activated, :meth:`Engine.getThrustLimit()` is set to 100%, the main
       vessel's throttle is set to 100% and the engine is in a vacuum.
 
    .. method:: float getThrustLimit()
@@ -850,7 +863,7 @@ Engine
    .. method:: boolean getThrottleLocked()
 
 
-      Whether the :meth:`Control.Throttle` affects the engine. For example,
+      Whether the :meth:`Control.getThrottle()` affects the engine. For example,
       this is ``true`` for liquid fueled rockets, and ``false`` for solid rocket
       boosters.
 
@@ -897,9 +910,10 @@ Engine
 Landing Gear
 ^^^^^^^^^^^^
 
+
 .. type:: public class LandingGear
 
-   Obtained by calling :meth:`Part.LandingGear`.
+   Obtained by calling :meth:`Part.getLandingGear()`.
 
    .. method:: Part getPart()
 
@@ -918,23 +932,28 @@ Landing Gear
       Whether the landing gear is deployed.
 
 
+
 .. type:: public enum LandingGearState
 
-   See :meth:`LandingGear.State`.
+   See :meth:`LandingGear.getState()`.
 
-   .. field:: public LandingGearState Deployed
+
+   .. field:: public LandingGearState DEPLOYED
 
       Landing gear is fully deployed.
 
-   .. field:: public LandingGearState Retracted
+
+   .. field:: public LandingGearState RETRACTED
 
       Landing gear is fully retracted.
 
-   .. field:: public LandingGearState Deploying
+
+   .. field:: public LandingGearState DEPLOYING
 
       Landing gear is being deployed.
 
-   .. field:: public LandingGearState Retracting
+
+   .. field:: public LandingGearState RETRACTING
 
       Landing gear is being retracted.
 
@@ -943,9 +962,10 @@ Landing Gear
 Landing Leg
 ^^^^^^^^^^^
 
+
 .. type:: public class LandingLeg
 
-   Obtained by calling :meth:`Part.LandingLeg`.
+   Obtained by calling :meth:`Part.getLandingLeg()`.
 
    .. method:: Part getPart()
 
@@ -964,31 +984,38 @@ Landing Leg
       Whether the landing leg is deployed.
 
 
+
 .. type:: public enum LandingLegState
 
-   See :meth:`LandingLeg.State`.
+   See :meth:`LandingLeg.getState()`.
 
-   .. field:: public LandingLegState Deployed
+
+   .. field:: public LandingLegState DEPLOYED
 
       Landing leg is fully deployed.
 
-   .. field:: public LandingLegState Retracted
+
+   .. field:: public LandingLegState RETRACTED
 
       Landing leg is fully retracted.
 
-   .. field:: public LandingLegState Deploying
+
+   .. field:: public LandingLegState DEPLOYING
 
       Landing leg is being deployed.
 
-   .. field:: public LandingLegState Retracting
+
+   .. field:: public LandingLegState RETRACTING
 
       Landing leg is being retracted.
 
-   .. field:: public LandingLegState Broken
+
+   .. field:: public LandingLegState BROKEN
 
       Landing leg is broken.
 
-   .. field:: public LandingLegState Repairing
+
+   .. field:: public LandingLegState REPAIRING
 
       Landing leg is being repaired.
 
@@ -997,16 +1024,17 @@ Landing Leg
 Launch Clamp
 ^^^^^^^^^^^^
 
+
 .. type:: public class LaunchClamp
 
-   Obtained by calling :meth:`Part.LaunchClamp`.
+   Obtained by calling :meth:`Part.getLaunchClamp()`.
 
    .. method:: Part getPart()
 
 
       The part object for this launch clamp.
 
-   .. method:: void Release()
+   .. method:: void release()
 
       Releases the docking clamp. Has no effect if the clamp has already been released.
 
@@ -1015,9 +1043,10 @@ Launch Clamp
 Light
 ^^^^^
 
+
 .. type:: public class Light
 
-   Obtained by calling :meth:`Part.Light`.
+   Obtained by calling :meth:`Part.getLight()`.
 
    .. method:: Part getPart()
 
@@ -1040,16 +1069,17 @@ Light
 Parachute
 ^^^^^^^^^
 
+
 .. type:: public class Parachute
 
-   Obtained by calling :meth:`Part.Parachute`.
+   Obtained by calling :meth:`Part.getParachute()`.
 
    .. method:: Part getPart()
 
 
       The part object for this parachute.
 
-   .. method:: void Deploy()
+   .. method:: void deploy()
 
       Deploys the parachute. This has no effect if the parachute has already
       been deployed.
@@ -1077,28 +1107,34 @@ Parachute
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
 
 
+
 .. type:: public enum ParachuteState
 
-   See :meth:`Parachute.State`.
+   See :meth:`Parachute.getState()`.
 
-   .. field:: public ParachuteState Stowed
+
+   .. field:: public ParachuteState STOWED
 
       The parachute is safely tucked away inside its housing.
 
-   .. field:: public ParachuteState Active
+
+   .. field:: public ParachuteState ACTIVE
 
       The parachute is still stowed, but ready to semi-deploy.
 
-   .. field:: public ParachuteState SemiDeployed
+
+   .. field:: public ParachuteState SEMI_DEPLOYED
 
       The parachute has been deployed and is providing some drag,
       but is not fully deployed yet.
 
-   .. field:: public ParachuteState Deployed
+
+   .. field:: public ParachuteState DEPLOYED
 
       The parachute is fully deployed.
 
-   .. field:: public ParachuteState Cut
+
+   .. field:: public ParachuteState CUT
 
       The parachute has been cut.
 
@@ -1107,9 +1143,10 @@ Parachute
 Radiator
 ^^^^^^^^
 
+
 .. type:: public class Radiator
 
-   Obtained by calling :meth:`Part.Radiator`.
+   Obtained by calling :meth:`Part.getRadiator()`.
 
    .. method:: Part getPart()
 
@@ -1128,27 +1165,33 @@ Radiator
       The current state of the radiator.
 
 
+
 .. type:: public enum RadiatorState
 
    :type:`RadiatorState`
 
-   .. field:: public RadiatorState Extended
+
+   .. field:: public RadiatorState EXTENDED
 
       Radiator is fully extended.
 
-   .. field:: public RadiatorState Retracted
+
+   .. field:: public RadiatorState RETRACTED
 
       Radiator is fully retracted.
 
-   .. field:: public RadiatorState Extending
+
+   .. field:: public RadiatorState EXTENDING
 
       Radiator is being extended.
 
-   .. field:: public RadiatorState Retracting
+
+   .. field:: public RadiatorState RETRACTING
 
       Radiator is being retracted.
 
-   .. field:: public RadiatorState Broken
+
+   .. field:: public RadiatorState BROKEN
 
       Radiator is being broken.
 
@@ -1157,9 +1200,10 @@ Radiator
 Resource Converter
 ^^^^^^^^^^^^^^^^^^
 
+
 .. type:: public class ResourceConverter
 
-   Obtained by calling :meth:`Part.ResourceConverter`.
+   Obtained by calling :meth:`Part.getResourceConverter()`.
 
    .. method:: Part getPart()
 
@@ -1171,93 +1215,101 @@ Resource Converter
 
       The number of converters in the part.
 
-   .. method:: String Name(int index)
+   .. method:: String name(int index)
 
       The name of the specified converter.
 
       :param int index: Index of the converter.
 
-   .. method:: boolean Active(int index)
+   .. method:: boolean active(int index)
 
       True if the specified converter is active.
 
       :param int index: Index of the converter.
 
-   .. method:: void Start(int index)
+   .. method:: void start(int index)
 
       Start the specified converter.
 
       :param int index: Index of the converter.
 
-   .. method:: void Stop(int index)
+   .. method:: void stop(int index)
 
       Stop the specified converter.
 
       :param int index: Index of the converter.
 
-   .. method:: ResourceConverterState State(int index)
+   .. method:: ResourceConverterState state(int index)
 
       The state of the specified converter.
 
       :param int index: Index of the converter.
 
-   .. method:: String StatusInfo(int index)
+   .. method:: String statusInfo(int index)
 
       Status information for the specified converter.
       This is the full status message shown in the in-game UI.
 
       :param int index: Index of the converter.
 
-   .. method:: java.util.List<String> Inputs(int index)
+   .. method:: java.util.List<String> inputs(int index)
 
       List of the names of resources consumed by the specified converter.
 
       :param int index: Index of the converter.
 
-   .. method:: java.util.List<String> Outputs(int index)
+   .. method:: java.util.List<String> outputs(int index)
 
       List of the names of resources produced by the specified converter.
 
       :param int index: Index of the converter.
 
 
+
 .. type:: public enum ResourceConverterState
 
-   See :meth:`ResourceConverter.State`.
+   See :meth:`ResourceConverter.state(int)`.
 
-   .. field:: public ResourceConverterState Running
+
+   .. field:: public ResourceConverterState RUNNING
 
       Converter is running.
 
-   .. field:: public ResourceConverterState Idle
+
+   .. field:: public ResourceConverterState IDLE
 
       Converter is idle.
 
-   .. field:: public ResourceConverterState MissingResource
+
+   .. field:: public ResourceConverterState MISSING_RESOURCE
 
       Converter is missing a required resource.
 
-   .. field:: public ResourceConverterState StorageFull
+
+   .. field:: public ResourceConverterState STORAGE_FULL
 
       No available storage for output resource.
 
-   .. field:: public ResourceConverterState Capacity
+
+   .. field:: public ResourceConverterState CAPACITY
 
       At preset resource capacity.
 
-   .. field:: public ResourceConverterState Unknown
+
+   .. field:: public ResourceConverterState UNKNOWN
 
       Unknown state. Possible with modified resource converters.
-      In this case, check :meth:`ResourceConverter.StatusInfo` for more information.
+      In this case, check :meth:`ResourceConverter.statusInfo(int)` for more information.
 
 
 
 Resource Harvester
 ^^^^^^^^^^^^^^^^^^
 
+
 .. type:: public class ResourceHarvester
 
-   Obtained by calling :meth:`Part.ResourceHarvester`.
+   Obtained by calling :meth:`Part.getResourceHarvester()`.
 
    .. method:: Part getPart()
 
@@ -1303,12 +1355,44 @@ Resource Harvester
 
 
 
+.. type:: public enum ResourceHarvesterState
+
+   See :meth:`ResourceHarvester.getState()`.
+
+
+   .. field:: public ResourceHarvesterState DEPLOYING
+
+      The drill is deploying.
+
+
+   .. field:: public ResourceHarvesterState DEPLOYED
+
+      The drill is deployed and ready.
+
+
+   .. field:: public ResourceHarvesterState RETRACTING
+
+      The drill is retracting.
+
+
+   .. field:: public ResourceHarvesterState RETRACTED
+
+      The drill is retracted.
+
+
+   .. field:: public ResourceHarvesterState ACTIVE
+
+      The drill is running.
+
+
+
 Reaction Wheel
 ^^^^^^^^^^^^^^
 
+
 .. type:: public class ReactionWheel
 
-   Obtained by calling :meth:`Part.ReactionWheel`.
+   Obtained by calling :meth:`Part.getReactionWheel()`.
 
    .. method:: Part getPart()
 
@@ -1346,9 +1430,10 @@ Reaction Wheel
 Sensor
 ^^^^^^
 
+
 .. type:: public class Sensor
 
-   Obtained by calling :meth:`Part.Sensor`.
+   Obtained by calling :meth:`Part.getSensor()`.
 
    .. method:: Part getPart()
 
@@ -1376,9 +1461,10 @@ Sensor
 Solar Panel
 ^^^^^^^^^^^
 
+
 .. type:: public class SolarPanel
 
-   Obtained by calling :meth:`Part.SolarPanel`.
+   Obtained by calling :meth:`Part.getSolarPanel()`.
 
    .. method:: Part getPart()
 
@@ -1409,27 +1495,33 @@ Solar Panel
       as a percentage. A value between 0 and 1.
 
 
+
 .. type:: public enum SolarPanelState
 
-   See :meth:`SolarPanel.State`.
+   See :meth:`SolarPanel.getState()`.
 
-   .. field:: public SolarPanelState Extended
+
+   .. field:: public SolarPanelState EXTENDED
 
       Solar panel is fully extended.
 
-   .. field:: public SolarPanelState Retracted
+
+   .. field:: public SolarPanelState RETRACTED
 
       Solar panel is fully retracted.
 
-   .. field:: public SolarPanelState Extending
+
+   .. field:: public SolarPanelState EXTENDING
 
       Solar panel is being extended.
 
-   .. field:: public SolarPanelState Retracting
+
+   .. field:: public SolarPanelState RETRACTING
 
       Solar panel is being retracted.
 
-   .. field:: public SolarPanelState Broken
+
+   .. field:: public SolarPanelState BROKEN
 
       Solar panel is broken.
 
@@ -1465,16 +1557,16 @@ tree of parts in Figure 2. The craft file for this example can also be
 Traversing the Tree
 ^^^^^^^^^^^^^^^^^^^
 
-The tree of parts can be traversed using the attributes :meth:`SpaceCenter.Parts.Root`,
-:meth:`SpaceCenter.Part.Parent` and :meth:`SpaceCenter.Part.Children`.
+The tree of parts can be traversed using the attributes :meth:`Parts.getRoot()`,
+:meth:`Part.getParent()` and :meth:`Part.getChildren()`.
 
 The root of the tree is the same as the vessels *root part* (part number 1 in
-the example above) and can be obtained by calling :meth:`SpaceCenter.Parts.Root`.
-A parts children can be obtained by calling :meth:`SpaceCenter.Part.Children`.
-If the part does not have any children, :meth:`SpaceCenter.Part.Children`
+the example above) and can be obtained by calling :meth:`Parts.getRoot()`.
+A parts children can be obtained by calling :meth:`Part.getChildren()`.
+If the part does not have any children, :meth:`Part.getChildren()`
 returns an empty list. A parts parent can be obtained by calling
-:meth:`SpaceCenter.Part.Parent`. If the part does not have a parent
-(as is the case for the root part), :meth:`SpaceCenter.Part.Parent`
+:meth:`Part.getParent()`. If the part does not have a parent
+(as is the case for the root part), :meth:`Part.getParent()`
 returns ``null``.
 
 The following Java example uses these attributes to perform a
@@ -1584,12 +1676,12 @@ line part 15 (in red) takes fuel from a fuel tank (part 11 -- in green) and
 feeds it into another fuel tank (part 9 -- in blue). The fuel line is therefore
 a child of part 11, but its connection to part 9 is not represented in the tree.
 
-The attributes :meth:`SpaceCenter.Part.FuelLinesFrom` and
-:meth:`SpaceCenter.Part.FuelLinesTo` can be used to discover these
+The attributes :meth:`Part.getFuelLinesFrom()` and
+:meth:`Part.getFuelLinesTo()` can be used to discover these
 connections. In the example in Figure 5, when
-:meth:`SpaceCenter.Part.FuelLinesTo` is called on fuel tank part
+:meth:`Part.getFuelLinesTo()` is called on fuel tank part
 11, it will return a list of parts containing just fuel tank part 9 (the blue
-part). When :meth:`SpaceCenter.Part.FuelLinesFrom` is called on
+part). When :meth:`Part.getFuelLinesFrom()` is called on
 fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).
 
@@ -1606,11 +1698,11 @@ Staging
 
 Each part has two staging numbers associated with it: the stage in which the
 part is *activated* and the stage in which the part is *decoupled*. These values
-can be obtained using :meth:`SpaceCenter.Part.Stage` and
-:meth:`SpaceCenter.Part.DecoupleStage` respectively. For parts that
-are not activated by staging, :meth:`SpaceCenter.Part.Stage` returns
+can be obtained using :meth:`Part.getStage()` and
+:meth:`Part.getDecoupleStage()` respectively. For parts that
+are not activated by staging, :meth:`Part.getStage()` returns
 -1. For parts that are never decoupled,
-:meth:`SpaceCenter.Part.DecoupleStage` returns a value of -1.
+:meth:`Part.getDecoupleStage()` returns a value of -1.
 
 Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
 stages in which each part of the vessel will be *activated*. Figure 8 shows the

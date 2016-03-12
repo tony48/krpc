@@ -5,6 +5,7 @@
 Control
 =======
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Control
 
@@ -25,24 +26,24 @@ Control
 
       .. note::
 
-         Equivalent to :func:`AutoPilot::sas`
+         Equivalent to :func:`SpaceCenter::AutoPilot::sas`
 
-   .. function:: SASMode sas_mode()
-   .. function:: void set_sas_mode(SASMode value)
+   .. function:: SpaceCenter::SASMode sas_mode()
+   .. function:: void set_sas_mode(SpaceCenter::SASMode value)
 
-      The current :enum:`SASMode`.
+      The current :enum:`SpaceCenter::SASMode`.
       These modes are equivalent to the mode buttons to
       the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
-         Equivalent to :func:`AutoPilot::sas_mode`
+         Equivalent to :func:`SpaceCenter::AutoPilot::sas_mode`
 
-   .. function:: SpeedMode speed_mode()
-   .. function:: void set_speed_mode(SpeedMode value)
+   .. function:: SpaceCenter::SpeedMode speed_mode()
+   .. function:: void set_speed_mode(SpaceCenter::SpeedMode value)
 
-      The current :enum:`SpeedMode` of the navball.
+      The current :enum:`SpaceCenter::SpeedMode` of the navball.
       This is the mode displayed next to the speed at the top of the navball.
 
    .. function:: bool rcs()
@@ -132,19 +133,19 @@ Control
       A value between -1 and 1.
       A value of 1 steers to the left, and a value of -1 steers to the right.
 
-   .. function:: int32 current_stage()
+   .. function:: int32_t current_stage()
 
       The current stage of the vessel. Corresponds to the stage number in
       the in-game UI.
 
-   .. function:: std::vector<Vessel> activate_next_stage()
+   .. function:: std::vector<SpaceCenter::Vessel> activate_next_stage()
 
       Activates the next stage. Equivalent to pressing the space bar in-game.
 
 
       :returns: A list of vessel objects that are jettisoned from the active vessel.
 
-   .. function:: bool get_action_group(uint32 group)
+   .. function:: bool get_action_group(uint32_t group)
 
       Returns ``true`` if the given action group is enabled.
 
@@ -152,7 +153,7 @@ Control
 
        * **group** -- A number between 0 and 9 inclusive.
 
-   .. function:: void set_action_group(uint32 group, bool state)
+   .. function:: void set_action_group(uint32_t group, bool state)
 
       Sets the state of the given action group (a value between 0 and 9
       inclusive).
@@ -161,7 +162,7 @@ Control
 
        * **group** -- A number between 0 and 9 inclusive.
 
-   .. function:: void toggle_action_group(uint32 group)
+   .. function:: void toggle_action_group(uint32_t group)
 
       Toggles the state of the given action group.
 
@@ -169,10 +170,10 @@ Control
 
        * **group** -- A number between 0 and 9 inclusive.
 
-   .. function:: Node add_node(double ut, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
+   .. function:: SpaceCenter::Node add_node(double ut, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
 
       Creates a maneuver node at the given universal time, and returns a
-      :class:`Node` object that can be used to modify it.
+      :class:`SpaceCenter::Node` object that can be used to modify it.
       Optionally sets the magnitude of the delta-v for the maneuver node
       in the prograde, normal and radial directions.
 
@@ -183,7 +184,7 @@ Control
        * **normal** -- Delta-v in the normal direction.
        * **radial** -- Delta-v in the radial direction.
 
-   .. function:: std::vector<Node> nodes()
+   .. function:: std::vector<SpaceCenter::Node> nodes()
 
       Returns a list of all existing maneuver nodes, ordered by time from first to last.
 
@@ -192,64 +193,79 @@ Control
       Remove all maneuver nodes.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SASMode
 
-   The behavior of the SAS auto-pilot. See :func:`AutoPilot::sas_mode`.
+   The behavior of the SAS auto-pilot. See :func:`SpaceCenter::AutoPilot::sas_mode`.
+
 
    .. enumerator:: stability_assist
 
       Stability assist mode. Dampen out any rotation.
 
+
    .. enumerator:: maneuver
 
       Point in the burn direction of the next maneuver node.
+
 
    .. enumerator:: prograde
 
       Point in the prograde direction.
 
+
    .. enumerator:: retrograde
 
       Point in the retrograde direction.
+
 
    .. enumerator:: normal
 
       Point in the orbit normal direction.
 
+
    .. enumerator:: anti_normal
 
       Point in the orbit anti-normal direction.
+
 
    .. enumerator:: radial
 
       Point in the orbit radial direction.
 
+
    .. enumerator:: anti_radial
 
       Point in the orbit anti-radial direction.
 
+
    .. enumerator:: target
 
       Point in the direction of the current target.
+
 
    .. enumerator:: anti_target
 
       Point away from the current target.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SpeedMode
 
-   See :func:`Control::speed_mode`.
+   See :func:`SpaceCenter::Control::speed_mode`.
+
 
    .. enumerator:: orbit
 
       Speed is relative to the vessel's orbit.
 
+
    .. enumerator:: surface
 
       Speed is relative to the surface of the body being orbited.
+
 
    .. enumerator:: target
 

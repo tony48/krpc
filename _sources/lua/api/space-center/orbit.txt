@@ -5,18 +5,19 @@
 Orbit
 =====
 
+
 .. class:: Orbit
 
    Describes an orbit. For example, the orbit of a vessel, obtained by calling
-   :attr:`Vessel.orbit`, or a celestial body, obtained by calling
-   :attr:`CelestialBody.orbit`.
+   :attr:`SpaceCenter.Vessel.orbit`, or a celestial body, obtained by calling
+   :attr:`SpaceCenter.CelestialBody.orbit`.
 
    .. attribute:: body
 
       The celestial body (e.g. planet or moon) around which the object is orbiting.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`CelestialBody`
+      :rtype: :class:`SpaceCenter.CelestialBody`
 
    .. attribute:: apoapsis
 
@@ -27,7 +28,7 @@ Orbit
 
       .. note::
 
-         For the apoapsis altitude reported on the in-game map view, use :attr:`Orbit.apoapsis_altitude`.
+         For the apoapsis altitude reported on the in-game map view, use :attr:`SpaceCenter.Orbit.apoapsis_altitude`.
 
    .. attribute:: periapsis
 
@@ -38,7 +39,7 @@ Orbit
 
       .. note::
 
-         For the periapsis altitude reported on the in-game map view, use :attr:`Orbit.periapsis_altitude`.
+         For the periapsis altitude reported on the in-game map view, use :attr:`SpaceCenter.Orbit.periapsis_altitude`.
 
    .. attribute:: apoapsis_altitude
 
@@ -49,7 +50,7 @@ Orbit
 
       .. note::
 
-         This is equal to :attr:`Orbit.apoapsis` minus the equatorial radius of the body.
+         This is equal to :attr:`SpaceCenter.Orbit.apoapsis` minus the equatorial radius of the body.
 
    .. attribute:: periapsis_altitude
 
@@ -60,7 +61,7 @@ Orbit
 
       .. note::
 
-         This is equal to :attr:`Orbit.periapsis` minus the equatorial radius of the body.
+         This is equal to :attr:`SpaceCenter.Orbit.periapsis` minus the equatorial radius of the body.
 
    .. attribute:: semi_major_axis
 
@@ -182,7 +183,7 @@ Orbit
       The unit direction vector that is normal to the orbits reference plane, in the given
       reference frame. The reference plane is the plane from which the orbits inclination is measured.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. staticmethod:: reference_plane_direction(reference_frame)
@@ -190,7 +191,7 @@ Orbit
       The unit direction vector from which the orbits longitude of ascending node is measured,
       in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. attribute:: time_to_soi_change
@@ -207,4 +208,4 @@ Orbit
       after the change. Otherwise returns ``nil``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Orbit`
+      :rtype: :class:`SpaceCenter.Orbit`

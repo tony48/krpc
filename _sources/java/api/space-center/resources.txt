@@ -5,66 +5,72 @@
 Resources
 =========
 
+
 .. type:: public class Resources
 
-   Created by calling :meth:`Vessel.Resources`,
-   :meth:`Vessel.ResourcesInDecoupleStage` or
-   :meth:`Part.Resources`.
+   Created by calling :meth:`Vessel.getResources()`,
+   :meth:`Vessel.resourcesInDecoupleStage(int, boolean)` or
+   :meth:`Part.getResources()`.
 
    .. method:: java.util.List<String> getNames()
 
 
       A list of resource names that can be stored.
 
-   .. method:: boolean HasResource(String name)
+   .. method:: boolean hasResource(String name)
 
       Check whether the named resource can be stored.
 
       :param String name: The name of the resource.
 
-   .. method:: float Max(String name)
+   .. method:: float max(String name)
 
       Returns the amount of a resource that can be stored.
 
       :param String name: The name of the resource.
 
-   .. method:: float Amount(String name)
+   .. method:: float amount(String name)
 
       Returns the amount of a resource that is currently stored.
 
       :param String name: The name of the resource.
 
-   .. method:: float Density(String name)
+   .. method:: float density(String name)
 
       Returns the density of a resource, in kg/l.
 
       :param String name: The name of the resource.
 
-   .. method:: ResourceFlowMode FlowMode(String name)
+   .. method:: ResourceFlowMode flowMode(String name)
 
       Returns the flow mode of a resource.
 
       :param String name: The name of the resource.
 
 
+
 .. type:: public enum ResourceFlowMode
 
-   See :meth:`Resources.FlowMode`.
+   See :meth:`Resources.flowMode(String)`.
 
-   .. field:: public ResourceFlowMode Vessel
+
+   .. field:: public ResourceFlowMode VESSEL
 
       The resource flows to any part in the vessel. For example, electric charge.
 
-   .. field:: public ResourceFlowMode Stage
+
+   .. field:: public ResourceFlowMode STAGE
 
       The resource flows from parts in the first stage, followed by the second,
       and so on. For example, mono-propellant.
 
-   .. field:: public ResourceFlowMode Adjacent
+
+   .. field:: public ResourceFlowMode ADJACENT
 
       The resource flows between adjacent parts within the vessel. For example,
       liquid fuel or oxidizer.
 
-   .. field:: public ResourceFlowMode None
+
+   .. field:: public ResourceFlowMode NONE
 
       The resource does not flow. For example, solid fuel.

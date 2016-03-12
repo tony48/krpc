@@ -5,10 +5,11 @@
 Node
 ====
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Node
 
-   Represents a maneuver node. Can be created using :func:`Control::add_node`.
+   Represents a maneuver node. Can be created using :func:`SpaceCenter::Control::add_node`.
 
    .. function:: float prograde()
    .. function:: void set_prograde(float value)
@@ -33,14 +34,14 @@ Node
 
       .. note::
 
-         Does not change when executing the maneuver node. See :func:`Node::remaining_delta_v`.
+         Does not change when executing the maneuver node. See :func:`SpaceCenter::Node::remaining_delta_v`.
 
    .. function:: float remaining_delta_v()
 
       Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the node
       is executed. This is equivalent to the delta-v reported in-game.
 
-   .. function:: std::tuple<double, double, double> burn_vector(ReferenceFrame reference_frame = None)
+   .. function:: std::tuple<double, double, double> burn_vector(SpaceCenter::ReferenceFrame reference_frame = None)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s.
@@ -52,9 +53,9 @@ Node
 
       .. note::
 
-         Does not change when executing the maneuver node. See :func:`Node::remaining_burn_vector`.
+         Does not change when executing the maneuver node. See :func:`SpaceCenter::Node::remaining_burn_vector`.
 
-   .. function:: std::tuple<double, double, double> remaining_burn_vector(ReferenceFrame reference_frame = None)
+   .. function:: std::tuple<double, double, double> remaining_burn_vector(SpaceCenter::ReferenceFrame reference_frame = None)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.
@@ -70,7 +71,7 @@ Node
 
       The time until the maneuver node will be encountered, in seconds.
 
-   .. function:: Orbit orbit()
+   .. function:: SpaceCenter::Orbit orbit()
 
       The orbit that results from executing the maneuver node.
 
@@ -78,7 +79,7 @@ Node
 
       Removes the maneuver node.
 
-   .. function:: ReferenceFrame reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame reference_frame()
 
       Gets the reference frame that is fixed relative to the maneuver node's burn.
 
@@ -86,7 +87,7 @@ Node
       * The y-axis points in the direction of the burn.
       * The x-axis and z-axis point in arbitrary but fixed directions.
 
-   .. function:: ReferenceFrame orbital_reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame orbital_reference_frame()
 
       Gets the reference frame that is fixed relative to the maneuver node, and
       orientated with the orbital prograde/normal/radial directions of the
@@ -100,13 +101,13 @@ Node
       * The z-axis points in the orbital normal direction of the original orbit,
         at the position of the maneuver node.
 
-   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the position vector of the maneuver node in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
 
       Returns the unit direction vector of the maneuver nodes burn in the given reference frame.
 

@@ -5,6 +5,7 @@
 Control
 =======
 
+
 .. type:: public class Control
 
    Used to manipulate the controls of a vessel. This includes adjusting the
@@ -25,7 +26,7 @@ Control
 
       .. note::
 
-         Equivalent to :meth:`AutoPilot.SAS`
+         Equivalent to :meth:`AutoPilot.getSAS()`
 
    .. method:: SASMode getSASMode()
 
@@ -38,7 +39,7 @@ Control
 
       .. note::
 
-         Equivalent to :meth:`AutoPilot.SASMode`
+         Equivalent to :meth:`AutoPilot.getSASMode()`
 
    .. method:: SpeedMode getSpeedMode()
 
@@ -154,19 +155,19 @@ Control
       The current stage of the vessel. Corresponds to the stage number in
       the in-game UI.
 
-   .. method:: java.util.List<Vessel> ActivateNextStage()
+   .. method:: java.util.List<Vessel> activateNextStage()
 
       Activates the next stage. Equivalent to pressing the space bar in-game.
 
       :returns: A list of vessel objects that are jettisoned from the active vessel.
 
-   .. method:: boolean GetActionGroup(int group)
+   .. method:: boolean getActionGroup(int group)
 
       Returns ``true`` if the given action group is enabled.
 
       :param int group: A number between 0 and 9 inclusive.
 
-   .. method:: void SetActionGroup(int group, boolean state)
+   .. method:: void setActionGroup(int group, boolean state)
 
       Sets the state of the given action group (a value between 0 and 9
       inclusive).
@@ -174,13 +175,13 @@ Control
       :param int group: A number between 0 and 9 inclusive.
       :param boolean state:
 
-   .. method:: void ToggleActionGroup(int group)
+   .. method:: void toggleActionGroup(int group)
 
       Toggles the state of the given action group.
 
       :param int group: A number between 0 and 9 inclusive.
 
-   .. method:: Node AddNode(double UT, float prograde, float normal, float radial)
+   .. method:: Node addNode(double UT, float prograde, float normal, float radial)
 
       Creates a maneuver node at the given universal time, and returns a
       :type:`Node` object that can be used to modify it.
@@ -197,68 +198,83 @@ Control
 
       Returns a list of all existing maneuver nodes, ordered by time from first to last.
 
-   .. method:: void RemoveNodes()
+   .. method:: void removeNodes()
 
       Remove all maneuver nodes.
 
 
+
 .. type:: public enum SASMode
 
-   The behavior of the SAS auto-pilot. See :meth:`AutoPilot.SASMode`.
+   The behavior of the SAS auto-pilot. See :meth:`AutoPilot.getSASMode()`.
 
-   .. field:: public SASMode StabilityAssist
+
+   .. field:: public SASMode STABILITY_ASSIST
 
       Stability assist mode. Dampen out any rotation.
 
-   .. field:: public SASMode Maneuver
+
+   .. field:: public SASMode MANEUVER
 
       Point in the burn direction of the next maneuver node.
 
-   .. field:: public SASMode Prograde
+
+   .. field:: public SASMode PROGRADE
 
       Point in the prograde direction.
 
-   .. field:: public SASMode Retrograde
+
+   .. field:: public SASMode RETROGRADE
 
       Point in the retrograde direction.
 
-   .. field:: public SASMode Normal
+
+   .. field:: public SASMode NORMAL
 
       Point in the orbit normal direction.
 
-   .. field:: public SASMode AntiNormal
+
+   .. field:: public SASMode ANTI_NORMAL
 
       Point in the orbit anti-normal direction.
 
-   .. field:: public SASMode Radial
+
+   .. field:: public SASMode RADIAL
 
       Point in the orbit radial direction.
 
-   .. field:: public SASMode AntiRadial
+
+   .. field:: public SASMode ANTI_RADIAL
 
       Point in the orbit anti-radial direction.
 
-   .. field:: public SASMode Target
+
+   .. field:: public SASMode TARGET
 
       Point in the direction of the current target.
 
-   .. field:: public SASMode AntiTarget
+
+   .. field:: public SASMode ANTI_TARGET
 
       Point away from the current target.
 
 
+
 .. type:: public enum SpeedMode
 
-   See :meth:`Control.SpeedMode`.
+   See :meth:`Control.getSpeedMode()`.
 
-   .. field:: public SpeedMode Orbit
+
+   .. field:: public SpeedMode ORBIT
 
       Speed is relative to the vessel's orbit.
 
-   .. field:: public SpeedMode Surface
+
+   .. field:: public SpeedMode SURFACE
 
       Speed is relative to the surface of the body being orbited.
 
-   .. field:: public SpeedMode Target
+
+   .. field:: public SpeedMode TARGET
 
       Speed is relative to the current target.

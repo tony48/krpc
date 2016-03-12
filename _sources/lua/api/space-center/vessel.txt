@@ -5,6 +5,7 @@
 Vessel
 ======
 
+
 .. class:: Vessel
 
    These objects are used to interact with vessels in KSP. This includes getting
@@ -22,14 +23,14 @@ Vessel
       The type of the vessel.
 
       :Attribute: Can be read or written
-      :rtype: :class:`VesselType`
+      :rtype: :class:`SpaceCenter.VesselType`
 
    .. attribute:: situation
 
       The situation the vessel is in.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`VesselSituation`
+      :rtype: :class:`SpaceCenter.VesselSituation`
 
    .. attribute:: met
 
@@ -40,18 +41,18 @@ Vessel
 
    .. method:: flight([reference_frame = None])
 
-      Returns a :class:`Flight` object that can be used to get flight
+      Returns a :class:`SpaceCenter.Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
 
-      :param ReferenceFrame reference_frame: Reference frame. Defaults to the vessel's surface reference frame (:attr:`Vessel.surface_reference_frame`).
-      :rtype: :class:`Flight`
+      :param SpaceCenter.ReferenceFrame reference_frame: Reference frame. Defaults to the vessel's surface reference frame (:attr:`SpaceCenter.Vessel.surface_reference_frame`).
+      :rtype: :class:`SpaceCenter.Flight`
 
       .. note:: When this is called with no arguments, the vessel's surface reference
                 frame is used. This reference frame moves with the vessel, therefore
                 velocities and speeds returned by the flight object will be zero. See
-                the :ref:`reference frames tutorial <tutorial-reference-frames>` for
-                examples of getting the :ref:`orbital speed
-                <tutorial-reference-frames-orbital-speed>` and :ref:`surface speed
+                the :rst:ref:`reference frames tutorial <tutorial-reference-frames>` for
+                examples of getting the :rst:ref:`orbital speed
+                <tutorial-reference-frames-orbital-speed>` and :rst:ref:`surface speed
                 <tutorial-reference-frames-surface-speed>` of a vessel.
 
    .. attribute:: target
@@ -60,65 +61,65 @@ Vessel
       setting the target, the target cannot be the current vessel.
 
       :Attribute: Can be read or written
-      :rtype: :class:`Vessel`
+      :rtype: :class:`SpaceCenter.Vessel`
 
    .. attribute:: orbit
 
       The current orbit of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Orbit`
+      :rtype: :class:`SpaceCenter.Orbit`
 
    .. attribute:: control
 
-      Returns a :class:`Control` object that can be used to manipulate
+      Returns a :class:`SpaceCenter.Control` object that can be used to manipulate
       the vessel's control inputs. For example, its pitch/yaw/roll controls,
       RCS and thrust.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Control`
+      :rtype: :class:`SpaceCenter.Control`
 
    .. attribute:: auto_pilot
 
-      An :class:`AutoPilot` object, that can be used to perform
+      An :class:`SpaceCenter.AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`AutoPilot`
+      :rtype: :class:`SpaceCenter.AutoPilot`
 
    .. attribute:: resources
 
-      A :class:`Resources` object, that can used to get information
+      A :class:`SpaceCenter.Resources` object, that can used to get information
       about resources stored in the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Resources`
+      :rtype: :class:`SpaceCenter.Resources`
 
    .. method:: resources_in_decouple_stage(stage, [cumulative = True])
 
-      Returns a :class:`Resources` object, that can used to get
+      Returns a :class:`SpaceCenter.Resources` object, that can used to get
       information about resources stored in a given *stage*.
 
       :param number stage: Get resources for parts that are decoupled in this stage.
       :param boolean cumulative: When ``False``, returns the resources for parts decoupled in just the given stage. When ``True`` returns the resources decoupled in the given stage and all subsequent stages combined.
-      :rtype: :class:`Resources`
+      :rtype: :class:`SpaceCenter.Resources`
 
       .. note:: For details on stage numbering, see the
-                discussion on :ref:`lua-api-parts-staging`.
+                discussion on :rst:ref:`lua-api-parts-staging`.
 
    .. attribute:: parts
 
-      A :class:`Parts` object, that can used to interact with the parts that make up this vessel.
+      A :class:`SpaceCenter.Parts` object, that can used to interact with the parts that make up this vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Parts`
+      :rtype: :class:`SpaceCenter.Parts`
 
    .. attribute:: comms
 
-      A :class:`Comms` object, that can used to interact with RemoteTech for this vessel.
+      A :class:`SpaceCenter.Comms` object, that can used to interact with RemoteTech for this vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Comms`
+      :rtype: :class:`SpaceCenter.Comms`
 
       .. note::
 
@@ -141,7 +142,7 @@ Vessel
    .. attribute:: thrust
 
       The total thrust currently being produced by the vessel's engines, in
-      Newtons. This is computed by summing :attr:`Engine.thrust` for
+      Newtons. This is computed by summing :attr:`SpaceCenter.Engine.thrust` for
       every engine in the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -151,7 +152,7 @@ Vessel
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
-      :attr:`Engine.available_thrust` for every active engine in the vessel.
+      :attr:`SpaceCenter.Engine.available_thrust` for every active engine in the vessel.
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -160,7 +161,7 @@ Vessel
 
       The total maximum thrust that can be produced by the vessel's active
       engines, in Newtons. This is computed by summing
-      :attr:`Engine.max_thrust` for every active engine.
+      :attr:`SpaceCenter.Engine.max_thrust` for every active engine.
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -169,7 +170,7 @@ Vessel
 
       The total maximum thrust that can be produced by the vessel's active
       engines when the vessel is in a vacuum, in Newtons. This is computed by
-      summing :attr:`Engine.max_vacuum_thrust` for every active engine.
+      summing :attr:`SpaceCenter.Engine.max_vacuum_thrust` for every active engine.
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -210,7 +211,7 @@ Vessel
       * The z-axis points out of the bottom off the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. figure:: /images/reference-frames/vessel-aircraft.png
          :align: center
@@ -234,7 +235,7 @@ Vessel
       * The z-axis points in the orbital normal direction.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. note::
 
@@ -263,7 +264,7 @@ Vessel
         surface of the body -- east on a compass when on the surface).
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. note::
 
@@ -288,7 +289,7 @@ Vessel
       * The x-axis is orthogonal to the other two axes.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. figure:: /images/reference-frames/vessel-surface-velocity.png
          :align: center
@@ -299,28 +300,28 @@ Vessel
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: velocity(reference_frame)
 
       Returns the velocity vector of the center of mass of the vessel in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: rotation(reference_frame)
 
       Returns the rotation of the center of mass of the vessel in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number, number)
 
    .. method:: direction(reference_frame)
 
       Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: angular_velocity(reference_frame)
@@ -329,74 +330,91 @@ Vessel
       vector is the rotational speed in radians per second, and the direction of the vector indicates the
       axis of rotation (using the right hand rule).
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
+
 
 
 .. class:: VesselType
 
-   See :attr:`Vessel.type`.
+   See :attr:`SpaceCenter.Vessel.type`.
+
 
    .. data:: ship
 
       Ship.
 
+
    .. data:: station
 
       Station.
+
 
    .. data:: lander
 
       Lander.
 
+
    .. data:: probe
 
       Probe.
+
 
    .. data:: rover
 
       Rover.
 
+
    .. data:: base
 
       Base.
+
 
    .. data:: debris
 
       Debris.
 
 
+
 .. class:: VesselSituation
 
-   See :attr:`Vessel.situation`.
+   See :attr:`SpaceCenter.Vessel.situation`.
+
 
    .. data:: docked
 
       Vessel is docked to another.
 
+
    .. data:: escaping
 
       Escaping.
+
 
    .. data:: flying
 
       Vessel is flying through an atmosphere.
 
+
    .. data:: landed
 
       Vessel is landed on the surface of a body.
+
 
    .. data:: orbiting
 
       Vessel is orbiting a body.
 
+
    .. data:: pre_launch
 
       Vessel is awaiting launch.
 
+
    .. data:: splashed
 
       Vessel has splashed down in an ocean.
+
 
    .. data:: sub_orbital
 

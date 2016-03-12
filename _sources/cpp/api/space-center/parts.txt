@@ -15,48 +15,49 @@ The following classes allow interaction with a vessels individual parts.
 Parts
 -----
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Parts
 
    Instances of this class are used to interact with the parts of a vessel.
-   An instance can be obtained by calling :func:`Vessel::parts`.
+   An instance can be obtained by calling :func:`SpaceCenter::Vessel::parts`.
 
-   .. function:: std::vector<Part> all()
+   .. function:: std::vector<SpaceCenter::Part> all()
 
       A list of all of the vessels parts.
 
-   .. function:: Part root()
+   .. function:: SpaceCenter::Part root()
 
       The vessels root part.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
-   .. function:: Part controlling()
-   .. function:: void set_controlling(Part value)
+   .. function:: SpaceCenter::Part controlling()
+   .. function:: void set_controlling(SpaceCenter::Part value)
 
       The part from which the vessel is controlled.
 
-   .. function:: std::vector<Part> with_name(std::string name)
+   .. function:: std::vector<SpaceCenter::Part> with_name(std::string name)
 
-      A list of parts whose :func:`Part::name` is *name*.
-
-      :Parameters:
-
-   .. function:: std::vector<Part> with_title(std::string title)
-
-      A list of all parts whose :func:`Part::title` is *title*.
+      A list of parts whose :func:`SpaceCenter::Part::name` is *name*.
 
       :Parameters:
 
-   .. function:: std::vector<Part> with_module(std::string module_name)
+   .. function:: std::vector<SpaceCenter::Part> with_title(std::string title)
 
-      A list of all parts that contain a :class:`Module` whose
-      :func:`Module::name` is *module_name*.
+      A list of all parts whose :func:`SpaceCenter::Part::title` is *title*.
 
       :Parameters:
 
-   .. function:: std::vector<Part> in_stage(int32 stage)
+   .. function:: std::vector<SpaceCenter::Part> with_module(std::string module_name)
+
+      A list of all parts that contain a :class:`SpaceCenter::Module` whose
+      :func:`SpaceCenter::Module::name` is *module_name*.
+
+      :Parameters:
+
+   .. function:: std::vector<SpaceCenter::Part> in_stage(int32_t stage)
 
       A list of all parts that are activated in the given *stage*.
 
@@ -65,9 +66,9 @@ Parts
 
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: std::vector<Part> in_decouple_stage(int32 stage)
+   .. function:: std::vector<SpaceCenter::Part> in_decouple_stage(int32_t stage)
 
       A list of all parts that are decoupled in the given *stage*.
 
@@ -76,75 +77,75 @@ Parts
 
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: std::vector<Module> modules_with_name(std::string module_name)
+   .. function:: std::vector<SpaceCenter::Module> modules_with_name(std::string module_name)
 
       A list of modules (combined across all parts in the vessel) whose
-      :func:`Module::name` is *module_name*.
+      :func:`SpaceCenter::Module::name` is *module_name*.
 
       :Parameters:
 
-   .. function:: std::vector<Decoupler> decouplers()
+   .. function:: std::vector<SpaceCenter::Decoupler> decouplers()
 
       A list of all decouplers in the vessel.
 
-   .. function:: std::vector<DockingPort> docking_ports()
+   .. function:: std::vector<SpaceCenter::DockingPort> docking_ports()
 
       A list of all docking ports in the vessel.
 
-   .. function:: DockingPort docking_port_with_name(std::string name)
+   .. function:: SpaceCenter::DockingPort docking_port_with_name(std::string name)
 
-      The first docking port in the vessel with the given port name, as returned by :func:`DockingPort::name`.
+      The first docking port in the vessel with the given port name, as returned by :func:`SpaceCenter::DockingPort::name`.
       Returns ``NULL`` if there are no such docking ports.
 
       :Parameters:
 
-   .. function:: std::vector<Engine> engines()
+   .. function:: std::vector<SpaceCenter::Engine> engines()
 
       A list of all engines in the vessel.
 
-   .. function:: std::vector<LandingGear> landing_gear()
+   .. function:: std::vector<SpaceCenter::LandingGear> landing_gear()
 
       A list of all landing gear attached to the vessel.
 
-   .. function:: std::vector<LandingLeg> landing_legs()
+   .. function:: std::vector<SpaceCenter::LandingLeg> landing_legs()
 
       A list of all landing legs attached to the vessel.
 
-   .. function:: std::vector<LaunchClamp> launch_clamps()
+   .. function:: std::vector<SpaceCenter::LaunchClamp> launch_clamps()
 
       A list of all launch clamps attached to the vessel.
 
-   .. function:: std::vector<Light> lights()
+   .. function:: std::vector<SpaceCenter::Light> lights()
 
       A list of all lights in the vessel.
 
-   .. function:: std::vector<Parachute> parachutes()
+   .. function:: std::vector<SpaceCenter::Parachute> parachutes()
 
       A list of all parachutes in the vessel.
 
-   .. function:: std::vector<Radiator> radiators()
+   .. function:: std::vector<SpaceCenter::Radiator> radiators()
 
       A list of all radiators in the vessel.
 
-   .. function:: std::vector<ResourceConverter> resource_converters()
+   .. function:: std::vector<SpaceCenter::ResourceConverter> resource_converters()
 
       A list of all resource converters in the vessel.
 
-   .. function:: std::vector<ResourceHarvester> resource_harvesters()
+   .. function:: std::vector<SpaceCenter::ResourceHarvester> resource_harvesters()
 
       A list of all resource harvesters in the vessel.
 
-   .. function:: std::vector<ReactionWheel> reaction_wheels()
+   .. function:: std::vector<SpaceCenter::ReactionWheel> reaction_wheels()
 
       A list of all reaction wheels in the vessel.
 
-   .. function:: std::vector<Sensor> sensors()
+   .. function:: std::vector<SpaceCenter::Sensor> sensors()
 
       A list of all sensors in the vessel.
 
-   .. function:: std::vector<SolarPanel> solar_panels()
+   .. function:: std::vector<SpaceCenter::SolarPanel> solar_panels()
 
       A list of all solar panels in the vessel.
 
@@ -153,11 +154,12 @@ Parts
 Part
 ----
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :class:`Parts`.
+   Instances can be obtained by various methods in :class:`SpaceCenter::Parts`.
 
    .. function:: std::string name()
 
@@ -173,25 +175,25 @@ Part
 
       The cost of the part, in units of funds.
 
-   .. function:: Vessel vessel()
+   .. function:: SpaceCenter::Vessel vessel()
 
       The vessel that contains this part.
 
-   .. function:: Part parent()
+   .. function:: SpaceCenter::Part parent()
 
       The parts parent. Returns ``NULL`` if the part does not have a parent.
-      This, in combination with :func:`Part::children`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`SpaceCenter::Part::children`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
-   .. function:: std::vector<Part> children()
+   .. function:: std::vector<SpaceCenter::Part> children()
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :func:`Part::parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`SpaceCenter::Part::parent`, can be used to traverse the vessels parts tree.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
    .. function:: bool axially_attached()
 
@@ -199,7 +201,7 @@ Part
       or bottom of its parent. If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-attachment-modes`.
 
    .. function:: bool radially_attached()
 
@@ -207,21 +209,21 @@ Part
       If the part has no parent, returns ``false``.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-attachment-modes`.
 
-   .. function:: int32 stage()
+   .. function:: int32_t stage()
 
       The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: int32 decouple_stage()
+   .. function:: int32_t decouple_stage()
 
       The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
    .. function:: bool massless()
 
@@ -304,9 +306,9 @@ Part
 
       The speed that heat is conducting between the part's skin and its internals.
 
-   .. function:: Resources resources()
+   .. function:: SpaceCenter::Resources resources()
 
-      A :class:`Resources` object for the part.
+      A :class:`SpaceCenter::Resources` object for the part.
 
    .. function:: bool crossfeed()
 
@@ -316,105 +318,105 @@ Part
 
       Whether this part is a fuel line.
 
-   .. function:: std::vector<Part> fuel_lines_from()
+   .. function:: std::vector<SpaceCenter::Part> fuel_lines_from()
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
-   .. function:: std::vector<Part> fuel_lines_to()
+   .. function:: std::vector<SpaceCenter::Part> fuel_lines_to()
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
 
 
-      .. note:: See the discussion on :ref:`cpp-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
-   .. function:: std::vector<Module> modules()
+   .. function:: std::vector<SpaceCenter::Module> modules()
 
       The modules for this part.
 
-   .. function:: Decoupler decoupler()
+   .. function:: SpaceCenter::Decoupler decoupler()
 
-      A :class:`Decoupler` if the part is a decoupler, otherwise ``NULL``.
+      A :class:`SpaceCenter::Decoupler` if the part is a decoupler, otherwise ``NULL``.
 
-   .. function:: DockingPort docking_port()
+   .. function:: SpaceCenter::DockingPort docking_port()
 
-      A :class:`DockingPort` if the part is a docking port, otherwise ``NULL``.
+      A :class:`SpaceCenter::DockingPort` if the part is a docking port, otherwise ``NULL``.
 
-   .. function:: Engine engine()
+   .. function:: SpaceCenter::Engine engine()
 
-      An :class:`Engine` if the part is an engine, otherwise ``NULL``.
+      An :class:`SpaceCenter::Engine` if the part is an engine, otherwise ``NULL``.
 
-   .. function:: LandingGear landing_gear()
+   .. function:: SpaceCenter::LandingGear landing_gear()
 
-      A :class:`LandingGear` if the part is a landing gear , otherwise ``NULL``.
+      A :class:`SpaceCenter::LandingGear` if the part is a landing gear , otherwise ``NULL``.
 
-   .. function:: LandingLeg landing_leg()
+   .. function:: SpaceCenter::LandingLeg landing_leg()
 
-      A :class:`LandingLeg` if the part is a landing leg, otherwise ``NULL``.
+      A :class:`SpaceCenter::LandingLeg` if the part is a landing leg, otherwise ``NULL``.
 
-   .. function:: LaunchClamp launch_clamp()
+   .. function:: SpaceCenter::LaunchClamp launch_clamp()
 
-      A :class:`LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
+      A :class:`SpaceCenter::LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
 
-   .. function:: Light light()
+   .. function:: SpaceCenter::Light light()
 
-      A :class:`Light` if the part is a light, otherwise ``NULL``.
+      A :class:`SpaceCenter::Light` if the part is a light, otherwise ``NULL``.
 
-   .. function:: Parachute parachute()
+   .. function:: SpaceCenter::Parachute parachute()
 
-      A :class:`Parachute` if the part is a parachute, otherwise ``NULL``.
+      A :class:`SpaceCenter::Parachute` if the part is a parachute, otherwise ``NULL``.
 
-   .. function:: Radiator radiator()
+   .. function:: SpaceCenter::Radiator radiator()
 
-      A :class:`Radiator` if the part is a radiator, otherwise ``NULL``.
+      A :class:`SpaceCenter::Radiator` if the part is a radiator, otherwise ``NULL``.
 
-   .. function:: ReactionWheel reaction_wheel()
+   .. function:: SpaceCenter::ReactionWheel reaction_wheel()
 
-      A :class:`ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
+      A :class:`SpaceCenter::ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
 
-   .. function:: ResourceConverter resource_converter()
+   .. function:: SpaceCenter::ResourceConverter resource_converter()
 
-      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
+      A :class:`SpaceCenter::ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
 
-   .. function:: ResourceHarvester resource_harvester()
+   .. function:: SpaceCenter::ResourceHarvester resource_harvester()
 
-      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
+      A :class:`SpaceCenter::ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
 
-   .. function:: Sensor sensor()
+   .. function:: SpaceCenter::Sensor sensor()
 
-      A :class:`Sensor` if the part is a sensor, otherwise ``NULL``.
+      A :class:`SpaceCenter::Sensor` if the part is a sensor, otherwise ``NULL``.
 
-   .. function:: SolarPanel solar_panel()
+   .. function:: SpaceCenter::SolarPanel solar_panel()
 
-      A :class:`SolarPanel` if the part is a solar panel, otherwise ``NULL``.
+      A :class:`SpaceCenter::SolarPanel` if the part is a solar panel, otherwise ``NULL``.
 
-   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
 
       The position of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
 
       The direction of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> velocity(SpaceCenter::ReferenceFrame reference_frame)
 
       The velocity of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
 
       The rotation of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: ReferenceFrame reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to this part.
 
@@ -426,7 +428,7 @@ Part
       .. note::
 
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :func:`DockingPort::reference_frame`.
+         for the docking port, returned by :func:`SpaceCenter::DockingPort::reference_frame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -437,6 +439,7 @@ Part
 
 Module
 ------
+
 
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Module
@@ -453,7 +456,7 @@ Module
 
       Name of the PartModule. For example, "ModuleEngines".
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part that contains this module.
 
@@ -525,12 +528,13 @@ The following classes provide functionality for specific types of part.
 Decoupler
 ^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Decoupler
 
-   Obtained by calling :func:`Part::decoupler`
+   Obtained by calling :func:`SpaceCenter::Part::decoupler`
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this decoupler.
 
@@ -551,12 +555,13 @@ Decoupler
 Docking Port
 ^^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: DockingPort
 
-   Obtained by calling :func:`Part::docking_port`
+   Obtained by calling :func:`SpaceCenter::Part::docking_port`
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this docking port.
 
@@ -567,21 +572,21 @@ Docking Port
       in the right click menu, when the
       `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
       mod is installed. If this mod is not installed, returns the title of the part
-      (:func:`Part::title`).
+      (:func:`SpaceCenter::Part::title`).
 
-   .. function:: DockingPortState state()
+   .. function:: SpaceCenter::DockingPortState state()
 
       The current state of the docking port.
 
-   .. function:: Part docked_part()
+   .. function:: SpaceCenter::Part docked_part()
 
       The part that this docking port is docked to. Returns ``NULL`` if this
       docking port is not docked to anything.
 
-   .. function:: Vessel undock()
+   .. function:: SpaceCenter::Vessel undock()
 
       Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:func:`active_vessel`).
+      After undocking, the active vessel may change (:func:`SpaceCenter::active_vessel`).
       This method can be called for either docking port in a docked pair - both calls will have the same
       effect. Returns ``NULL`` if the docking port is not docked to anything.
 
@@ -603,25 +608,25 @@ Docking Port
       closed, and when set to ``false`` the shield is opened. If the docking
       port does not have a shield, setting this attribute has no effect.
 
-   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
 
       The position of the docking port in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
 
       The direction that docking port points in, in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
 
       The rotation of the docking port, in the given reference frame.
 
       :Parameters:
 
-   .. function:: ReferenceFrame reference_frame()
+   .. function:: SpaceCenter::ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to this docking port, and
       oriented with the port.
@@ -636,7 +641,7 @@ Docking Port
       .. note::
 
          This reference frame is not necessarily equivalent to the reference frame
-         for the part, returned by :func:`Part::reference_frame`.
+         for the part, returned by :func:`SpaceCenter::Part::reference_frame`.
 
       .. figure:: /images/reference-frames/docking-port.png
          :align: center
@@ -649,34 +654,41 @@ Docking Port
          Inline docking port reference frame origin and axes
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: DockingPortState
 
-   See :func:`DockingPort::state`.
+   See :func:`SpaceCenter::DockingPort::state`.
+
 
    .. enumerator:: ready
 
       The docking port is ready to dock to another docking port.
+
 
    .. enumerator:: docked
 
       The docking port is docked to another docking port, or docked to
       another part (from the VAB/SPH).
 
+
    .. enumerator:: docking
 
       The docking port is very close to another docking port,
       but has not docked. It is using magnetic force to acquire a solid dock.
 
+
    .. enumerator:: undocking
 
       The docking port has just been undocked from another docking port,
       and is disabled until it moves away by a sufficient distance
-      (:func:`DockingPort::reengage_distance`).
+      (:func:`SpaceCenter::DockingPort::reengage_distance`).
+
 
    .. enumerator:: shielded
 
       The docking port has a shield, and the shield is closed.
+
 
    .. enumerator:: moving
 
@@ -687,12 +699,13 @@ Docking Port
 Engine
 ^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Engine
 
-   Obtained by calling :func:`Part::engine`.
+   Obtained by calling :func:`SpaceCenter::Part::engine`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this engine.
 
@@ -700,7 +713,7 @@ Engine
    .. function:: void set_active(bool value)
 
       Whether the engine is active. Setting this attribute may have no effect,
-      depending on :func:`Engine::can_shutdown` and :func:`Engine::can_restart`.
+      depending on :func:`SpaceCenter::Engine::can_shutdown` and :func:`SpaceCenter::Engine::can_restart`.
 
    .. function:: float thrust()
 
@@ -710,7 +723,7 @@ Engine
    .. function:: float available_thrust()
 
       The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :func:`Engine::thrust_limit` into account,
+      engine, in Newtons. This takes :func:`SpaceCenter::Engine::thrust_limit` into account,
       and is the amount of thrust produced by the engine when activated and the
       main throttle is set to 100%. Returns zero if the engine does not have any fuel.
 
@@ -718,14 +731,14 @@ Engine
 
       Gets the maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
-      activated, :func:`Engine::thrust_limit` is set to 100% and the main vessel's
+      activated, :func:`SpaceCenter::Engine::thrust_limit` is set to 100% and the main vessel's
       throttle is set to 100%.
 
    .. function:: float max_vacuum_thrust()
 
       The maximum amount of thrust that can be produced by the engine in a
       vacuum, in Newtons. This is the amount of thrust produced by the engine
-      when activated, :func:`Engine::thrust_limit` is set to 100%, the main
+      when activated, :func:`SpaceCenter::Engine::thrust_limit` is set to 100%, the main
       vessel's throttle is set to 100% and the engine is in a vacuum.
 
    .. function:: float thrust_limit()
@@ -770,7 +783,7 @@ Engine
 
    .. function:: bool throttle_locked()
 
-      Whether the :func:`Control::throttle` affects the engine. For example,
+      Whether the :func:`SpaceCenter::Control::throttle` affects the engine. For example,
       this is ``true`` for liquid fueled rockets, and ``false`` for solid rocket
       boosters.
 
@@ -811,16 +824,17 @@ Engine
 Landing Gear
 ^^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: LandingGear
 
-   Obtained by calling :func:`Part::landing_gear`.
+   Obtained by calling :func:`SpaceCenter::Part::landing_gear`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this landing gear.
 
-   .. function:: LandingGearState state()
+   .. function:: SpaceCenter::LandingGearState state()
 
       Gets the current state of the landing gear.
 
@@ -830,22 +844,27 @@ Landing Gear
       Whether the landing gear is deployed.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingGearState
 
-   See :func:`LandingGear::state`.
+   See :func:`SpaceCenter::LandingGear::state`.
+
 
    .. enumerator:: deployed
 
       Landing gear is fully deployed.
 
+
    .. enumerator:: retracted
 
       Landing gear is fully retracted.
 
+
    .. enumerator:: deploying
 
       Landing gear is being deployed.
+
 
    .. enumerator:: retracting
 
@@ -856,16 +875,17 @@ Landing Gear
 Landing Leg
 ^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: LandingLeg
 
-   Obtained by calling :func:`Part::landing_leg`.
+   Obtained by calling :func:`SpaceCenter::Part::landing_leg`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this landing leg.
 
-   .. function:: LandingLegState state()
+   .. function:: SpaceCenter::LandingLegState state()
 
       The current state of the landing leg.
 
@@ -875,30 +895,37 @@ Landing Leg
       Whether the landing leg is deployed.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingLegState
 
-   See :func:`LandingLeg::state`.
+   See :func:`SpaceCenter::LandingLeg::state`.
+
 
    .. enumerator:: deployed
 
       Landing leg is fully deployed.
 
+
    .. enumerator:: retracted
 
       Landing leg is fully retracted.
+
 
    .. enumerator:: deploying
 
       Landing leg is being deployed.
 
+
    .. enumerator:: retracting
 
       Landing leg is being retracted.
 
+
    .. enumerator:: broken
 
       Landing leg is broken.
+
 
    .. enumerator:: repairing
 
@@ -909,12 +936,13 @@ Landing Leg
 Launch Clamp
 ^^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: LaunchClamp
 
-   Obtained by calling :func:`Part::launch_clamp`.
+   Obtained by calling :func:`SpaceCenter::Part::launch_clamp`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this launch clamp.
 
@@ -927,12 +955,13 @@ Launch Clamp
 Light
 ^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Light
 
-   Obtained by calling :func:`Part::light`.
+   Obtained by calling :func:`SpaceCenter::Part::light`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this light.
 
@@ -950,12 +979,13 @@ Light
 Parachute
 ^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Parachute
 
-   Obtained by calling :func:`Part::parachute`.
+   Obtained by calling :func:`SpaceCenter::Part::parachute`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this parachute.
 
@@ -968,7 +998,7 @@ Parachute
 
       Whether the parachute has been deployed.
 
-   .. function:: ParachuteState state()
+   .. function:: SpaceCenter::ParachuteState state()
 
       The current state of the parachute.
 
@@ -983,27 +1013,33 @@ Parachute
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ParachuteState
 
-   See :func:`Parachute::state`.
+   See :func:`SpaceCenter::Parachute::state`.
+
 
    .. enumerator:: stowed
 
       The parachute is safely tucked away inside its housing.
 
+
    .. enumerator:: active
 
       The parachute is still stowed, but ready to semi-deploy.
+
 
    .. enumerator:: semi_deployed
 
       The parachute has been deployed and is providing some drag,
       but is not fully deployed yet.
 
+
    .. enumerator:: deployed
 
       The parachute is fully deployed.
+
 
    .. enumerator:: cut
 
@@ -1014,12 +1050,13 @@ Parachute
 Radiator
 ^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Radiator
 
-   Obtained by calling :func:`Part::radiator`.
+   Obtained by calling :func:`SpaceCenter::Part::radiator`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this radiator.
 
@@ -1028,31 +1065,37 @@ Radiator
 
       Whether the radiator is extended.
 
-   .. function:: RadiatorState state()
+   .. function:: SpaceCenter::RadiatorState state()
 
       The current state of the radiator.
+
 
 
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: RadiatorState
 
-   :enum:`RadiatorState`
+   :enum:`SpaceCenter::RadiatorState`
+
 
    .. enumerator:: extended
 
       Radiator is fully extended.
 
+
    .. enumerator:: retracted
 
       Radiator is fully retracted.
+
 
    .. enumerator:: extending
 
       Radiator is being extended.
 
+
    .. enumerator:: retracting
 
       Radiator is being retracted.
+
 
    .. enumerator:: broken
 
@@ -1063,20 +1106,21 @@ Radiator
 Resource Converter
 ^^^^^^^^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: ResourceConverter
 
-   Obtained by calling :func:`Part::resource_converter`.
+   Obtained by calling :func:`SpaceCenter::Part::resource_converter`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this converter.
 
-   .. function:: int32 count()
+   .. function:: int32_t count()
 
       The number of converters in the part.
 
-   .. function:: std::string name(int32 index)
+   .. function:: std::string name(int32_t index)
 
       The name of the specified converter.
 
@@ -1084,7 +1128,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: bool active(int32 index)
+   .. function:: bool active(int32_t index)
 
       True if the specified converter is active.
 
@@ -1092,7 +1136,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: void start(int32 index)
+   .. function:: void start(int32_t index)
 
       Start the specified converter.
 
@@ -1100,7 +1144,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: void stop(int32 index)
+   .. function:: void stop(int32_t index)
 
       Stop the specified converter.
 
@@ -1108,7 +1152,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: ResourceConverterState state(int32 index)
+   .. function:: SpaceCenter::ResourceConverterState state(int32_t index)
 
       The state of the specified converter.
 
@@ -1116,7 +1160,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: std::string status_info(int32 index)
+   .. function:: std::string status_info(int32_t index)
 
       Status information for the specified converter.
       This is the full status message shown in the in-game UI.
@@ -1125,7 +1169,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: std::vector<std::string> inputs(int32 index)
+   .. function:: std::vector<std::string> inputs(int32_t index)
 
       List of the names of resources consumed by the specified converter.
 
@@ -1133,7 +1177,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: std::vector<std::string> outputs(int32 index)
+   .. function:: std::vector<std::string> outputs(int32_t index)
 
       List of the names of resources produced by the specified converter.
 
@@ -1142,51 +1186,59 @@ Resource Converter
        * **index** -- Index of the converter.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceConverterState
 
-   See :func:`ResourceConverter::state`.
+   See :func:`SpaceCenter::ResourceConverter::state`.
+
 
    .. enumerator:: running
 
       Converter is running.
 
+
    .. enumerator:: idle
 
       Converter is idle.
+
 
    .. enumerator:: missing_resource
 
       Converter is missing a required resource.
 
+
    .. enumerator:: storage_full
 
       No available storage for output resource.
+
 
    .. enumerator:: capacity
 
       At preset resource capacity.
 
+
    .. enumerator:: unknown
 
       Unknown state. Possible with modified resource converters.
-      In this case, check :func:`ResourceConverter::status_info` for more information.
+      In this case, check :func:`SpaceCenter::ResourceConverter::status_info` for more information.
 
 
 
 Resource Harvester
 ^^^^^^^^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: ResourceHarvester
 
-   Obtained by calling :func:`Part::resource_harvester`.
+   Obtained by calling :func:`SpaceCenter::Part::resource_harvester`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this harvester.
 
-   .. function:: ResourceHarvesterState state()
+   .. function:: SpaceCenter::ResourceHarvesterState state()
 
       The state of the harvester.
 
@@ -1218,15 +1270,48 @@ Resource Harvester
 
 
 
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ResourceHarvesterState
+
+   See :func:`SpaceCenter::ResourceHarvester::state`.
+
+
+   .. enumerator:: deploying
+
+      The drill is deploying.
+
+
+   .. enumerator:: deployed
+
+      The drill is deployed and ready.
+
+
+   .. enumerator:: retracting
+
+      The drill is retracting.
+
+
+   .. enumerator:: retracted
+
+      The drill is retracted.
+
+
+   .. enumerator:: active
+
+      The drill is running.
+
+
+
 Reaction Wheel
 ^^^^^^^^^^^^^^
+
 
 .. namespace:: krpc::services::SpaceCenter
 .. class:: ReactionWheel
 
-   Obtained by calling :func:`Part::reaction_wheel`.
+   Obtained by calling :func:`SpaceCenter::Part::reaction_wheel`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this reaction wheel.
 
@@ -1256,12 +1341,13 @@ Reaction Wheel
 Sensor
 ^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Sensor
 
-   Obtained by calling :func:`Part::sensor`.
+   Obtained by calling :func:`SpaceCenter::Part::sensor`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this sensor.
 
@@ -1283,12 +1369,13 @@ Sensor
 Solar Panel
 ^^^^^^^^^^^
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: SolarPanel
 
-   Obtained by calling :func:`Part::solar_panel`.
+   Obtained by calling :func:`SpaceCenter::Part::solar_panel`.
 
-   .. function:: Part part()
+   .. function:: SpaceCenter::Part part()
 
       The part object for this solar panel.
 
@@ -1297,7 +1384,7 @@ Solar Panel
 
       Whether the solar panel is extended.
 
-   .. function:: SolarPanelState state()
+   .. function:: SpaceCenter::SolarPanelState state()
 
       The current state of the solar panel.
 
@@ -1312,26 +1399,32 @@ Solar Panel
       as a percentage. A value between 0 and 1.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SolarPanelState
 
-   See :func:`SolarPanel::state`.
+   See :func:`SpaceCenter::SolarPanel::state`.
+
 
    .. enumerator:: extended
 
       Solar panel is fully extended.
 
+
    .. enumerator:: retracted
 
       Solar panel is fully retracted.
+
 
    .. enumerator:: extending
 
       Solar panel is being extended.
 
+
    .. enumerator:: retracting
 
       Solar panel is being retracted.
+
 
    .. enumerator:: broken
 

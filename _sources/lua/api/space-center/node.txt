@@ -5,9 +5,10 @@
 Node
 ====
 
+
 .. class:: Node
 
-   Represents a maneuver node. Can be created using :meth:`Control.add_node`.
+   Represents a maneuver node. Can be created using :meth:`SpaceCenter.Control.add_node`.
 
    .. attribute:: prograde
 
@@ -39,7 +40,7 @@ Node
 
       .. note::
 
-         Does not change when executing the maneuver node. See :attr:`Node.remaining_delta_v`.
+         Does not change when executing the maneuver node. See :attr:`SpaceCenter.Node.remaining_delta_v`.
 
    .. attribute:: remaining_delta_v
 
@@ -54,19 +55,19 @@ Node
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
       .. note::
 
-         Does not change when executing the maneuver node. See :meth:`Node.remaining_burn_vector`.
+         Does not change when executing the maneuver node. See :meth:`SpaceCenter.Node.remaining_burn_vector`.
 
    .. method:: remaining_burn_vector([reference_frame = None])
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. attribute:: ut
@@ -88,7 +89,7 @@ Node
       The orbit that results from executing the maneuver node.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Orbit`
+      :rtype: :class:`SpaceCenter.Orbit`
 
    .. method:: remove()
 
@@ -103,7 +104,7 @@ Node
       * The x-axis and z-axis point in arbitrary but fixed directions.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
    .. attribute:: orbital_reference_frame
 
@@ -120,18 +121,18 @@ Node
         at the position of the maneuver node.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
    .. method:: position(reference_frame)
 
       Returns the position vector of the maneuver node in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: direction(reference_frame)
 
       Returns the unit direction vector of the maneuver nodes burn in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)

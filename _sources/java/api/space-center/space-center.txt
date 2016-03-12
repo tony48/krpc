@@ -5,6 +5,7 @@
 SpaceCenter
 ===========
 
+
 .. type:: public class SpaceCenter
 
    Provides functionality to interact with Kerbal Space Program. This includes controlling
@@ -45,17 +46,17 @@ SpaceCenter
 
       The currently targeted docking port.
 
-   .. method:: void ClearTarget()
+   .. method:: void clearTarget()
 
       Clears the current target.
 
-   .. method:: void LaunchVesselFromVAB(String name)
+   .. method:: void launchVesselFromVAB(String name)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :param String name: Name of the vessel's craft file.
 
-   .. method:: void LaunchVesselFromSPH(String name)
+   .. method:: void launchVesselFromSPH(String name)
 
       Launch a new vessel from the SPH onto the runway.
 
@@ -75,9 +76,9 @@ SpaceCenter
    .. method:: WarpMode getWarpMode()
 
 
-      The current time warp mode. Returns :meth:`WarpMode.None` if time
-      warp is not active, :meth:`WarpMode.Rails` if regular "on-rails" time warp
-      is active, or :meth:`WarpMode.Physics` if physical time warp is active.
+      The current time warp mode. Returns :meth:`WarpMode.NONE` if time
+      warp is not active, :meth:`WarpMode.RAILS` if regular "on-rails" time warp
+      is active, or :meth:`WarpMode.PHYSICS` if physical time warp is active.
 
    .. method:: float getWarpRate()
 
@@ -93,8 +94,8 @@ SpaceCenter
       The current warp factor. This is the index of the rate at which time
       is passing for either regular "on-rails" or physical time warp. Returns 0
       if time warp is not active. When in on-rails time warp, this is equal to
-      :meth:`RailsWarpFactor`, and in physics time warp, this is equal to
-      :meth:`PhysicsWarpFactor`.
+      :meth:`getRailsWarpFactor()`, and in physics time warp, this is equal to
+      :meth:`getPhysicsWarpFactor()`.
 
    .. method:: int getRailsWarpFactor()
 
@@ -114,7 +115,7 @@ SpaceCenter
       The physical time warp rate. A value between 0 and 3 inclusive. 0 means
       no time warp. Returns 0 if regular "on-rails" time warp is active.
 
-   .. method:: boolean CanRailsWarpAt(int factor)
+   .. method:: boolean canRailsWarpAt(int factor)
 
       Returns ``true`` if regular "on-rails" time warp can be used, at the specified warp
       *factor*. The maximum time warp rate is limited by various things,
@@ -130,7 +131,7 @@ SpaceCenter
       A value between 0 and 7 inclusive.  See
       `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
-   .. method:: void WarpTo(double UT, float maxRailsRate, float maxPhysicsRate)
+   .. method:: void warpTo(double UT, float maxRailsRate, float maxPhysicsRate)
 
       Uses time acceleration to warp forward to a time in the future, specified
       by universal time *UT*. This call blocks until the desired
@@ -145,7 +146,7 @@ SpaceCenter
       :param float maxPhysicsRate: The maximum warp rate in physical time warp.
       :returns: When the time warp is complete.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> TransformPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame from, ReferenceFrame to)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> transformPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame from, ReferenceFrame to)
 
       Converts a position vector from one reference frame to another.
 
@@ -154,7 +155,7 @@ SpaceCenter
       :param ReferenceFrame to: The reference frame to covert the position vector to.
       :returns: The corresponding position vector in reference frame *to*.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> TransformDirection(org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame from, ReferenceFrame to)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> transformDirection(org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame from, ReferenceFrame to)
 
       Converts a direction vector from one reference frame to another.
 
@@ -163,7 +164,7 @@ SpaceCenter
       :param ReferenceFrame to: The reference frame to covert the direction vector to.
       :returns: The corresponding direction vector in reference frame *to*.
 
-   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> TransformRotation(org.javatuples.Quartet<Double,Double,Double,Double> rotation, ReferenceFrame from, ReferenceFrame to)
+   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> transformRotation(org.javatuples.Quartet<Double,Double,Double,Double> rotation, ReferenceFrame from, ReferenceFrame to)
 
       Converts a rotation from one reference frame to another.
 
@@ -172,7 +173,7 @@ SpaceCenter
       :param ReferenceFrame to: The corresponding rotation in reference frame *to*.
       :returns: The corresponding rotation in reference frame *to*.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> TransformVelocity(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> velocity, ReferenceFrame from, ReferenceFrame to)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> transformVelocity(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> velocity, ReferenceFrame from, ReferenceFrame to)
 
       Converts a velocity vector (acting at the specified position vector) from one
       reference frame to another. The position vector is required to take the
@@ -194,7 +195,7 @@ SpaceCenter
 
       Whether `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ is installed.
 
-   .. method:: void DrawDirection(org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame, org.javatuples.Triplet<Double,Double,Double> color, float length)
+   .. method:: void drawDirection(org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame, org.javatuples.Triplet<Double,Double,Double> color, float length)
 
       Draw a direction vector on the active vessel.
 
@@ -203,7 +204,7 @@ SpaceCenter
       :param org.javatuples.Triplet<Double,Double,Double> color: The color to use for the line, as an RGB color.
       :param float length: The length of the line. Defaults to 10.
 
-   .. method:: void DrawLine(org.javatuples.Triplet<Double,Double,Double> start, org.javatuples.Triplet<Double,Double,Double> end, ReferenceFrame referenceFrame, org.javatuples.Triplet<Double,Double,Double> color)
+   .. method:: void drawLine(org.javatuples.Triplet<Double,Double,Double> start, org.javatuples.Triplet<Double,Double,Double> end, ReferenceFrame referenceFrame, org.javatuples.Triplet<Double,Double,Double> color)
 
       Draw a line.
 
@@ -212,23 +213,27 @@ SpaceCenter
       :param ReferenceFrame referenceFrame: Reference frame that the position are in.
       :param org.javatuples.Triplet<Double,Double,Double> color: The color to use for the line, as an RGB color.
 
-   .. method:: void ClearDrawing()
+   .. method:: void clearDrawing()
 
       Remove all directions and lines currently being drawn.
 
 
+
 .. type:: public enum WarpMode
 
-   Returned by :meth:`WarpMode`
+   Returned by :meth:`getWarpMode()`
 
-   .. field:: public WarpMode Rails
+
+   .. field:: public WarpMode RAILS
 
       Time warp is active, and in regular "on-rails" mode.
 
-   .. field:: public WarpMode Physics
+
+   .. field:: public WarpMode PHYSICS
 
       Time warp is active, and in physical time warp mode.
 
-   .. field:: public WarpMode None
+
+   .. field:: public WarpMode NONE
 
       Time warp is not active.

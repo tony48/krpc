@@ -355,16 +355,17 @@ stream, and then repeatedly gets the position from the stream.</p>
 adding <code class="docutils literal"><span class="pre">_stream</span></code> to the end of the function&#8217;s name. This returns a stream
 object of type <code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Stream</span></code>, where <code class="docutils literal"><span class="pre">T</span></code> is the return type of the
 original function. The most recent value of the stream can be obtained by
-calling <code class="xref cpp cpp-class docutils literal"><span class="pre">Stream&lt;T&gt;::operator()</span></code>. A stream can be stopped and removed from
-the server by calling <code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::remove()</span></code> on the stream object. All
-of a clients streams are automatically stopped when it disconnects.</p>
+calling <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TEclEv" title="krpc::Stream&lt;T&gt;::operator()"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::operator()()</span></code></a>. A stream can be stopped and
+removed from the server by calling <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TE6removeEv" title="krpc::Stream&lt;T&gt;::remove"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::remove()</span></code></a> on the
+stream object. All of a clients streams are automatically stopped when it
+disconnects.</p>
 </div>
 </div>
 <div class="section" id="client-api-reference">
 <h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj">
-<span id="krpc::connect__ssCR.ssCR.unsigned-i.unsigned-i"></span>krpc::<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> <code class="descclassname"></code><code class="descname">connect</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em> = &quot;&quot;, <em class="property">const</em> std::string &amp;<em>address</em> = &quot;127.0.0.1&quot;, unsigned int <em>rpc_port</em> = 50000, unsigned int <em>stream_port</em> = 50001<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::connect__ssCR.ssCR.unsigned-i.unsigned-i"></span><a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> <code class="descclassname"></code><code class="descname">connect</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em> = &quot;&quot;, <em class="property">const</em> std::string &amp;<em>address</em> = &quot;127.0.0.1&quot;, unsigned int <em>rpc_port</em> = 50000, unsigned int <em>stream_port</em> = 50001<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a> object, through which the server can be communicated
 with.</p>
@@ -452,19 +453,19 @@ over the network:</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="_CPPv2N4krpc8services9AddStreamI1TEE">
-<span id="krpc::services::AddStream:T:"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AddStream</code>&lt;T&gt;<a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TEE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamI1TEE">
+<span id="krpc::Stream:T:"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Stream</code>&lt;T&gt;<a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEE" title="Permalink to this definition">¶</a></dt>
 <dd><p>A stream object. Streams are created by calling a function with <code class="docutils literal"><span class="pre">_stream</span></code>
 appended to its name.</p>
 <dl class="function">
-<dt id="_CPPv2N4krpc8services9AddStreamI1TEclEv">
-<span id="krpc::services::AddStream:T:::call-operator"></span>T <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TEclEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamI1TEclEv">
+<span id="krpc::Stream:T:::call-operator"></span>T <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEclEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the most recently received value from the stream.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services9AddStreamI1TE6removeEv">
-<span id="krpc::services::AddStream:T:::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services9AddStreamI1TE6removeEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamI1TE6removeEv">
+<span id="krpc::Stream:T:::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TE6removeEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove the stream from the server.</p>
 </dd></dl>
 

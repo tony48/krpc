@@ -5,6 +5,7 @@
 CelestialBody
 =============
 
+
 .. class:: CelestialBody
 
    Represents a celestial body (such as a planet or moon).
@@ -21,14 +22,14 @@ CelestialBody
       A list of celestial bodies that are in orbit around this celestial body.
 
       :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`CelestialBody`
+      :rtype: List of :class:`SpaceCenter.CelestialBody`
 
    .. attribute:: orbit
 
       The orbit of the body.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`Orbit`
+      :rtype: :class:`SpaceCenter.Orbit`
 
    .. attribute:: mass
 
@@ -97,7 +98,7 @@ CelestialBody
 
       :param number latitude: Latitude in degrees
       :param number longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param SpaceCenter.ReferenceFrame reference_frame: Reference frame for the returned position vector
       :rtype: Tuple of (number, number, number)
 
    .. method:: surface_position(latitude, longitude, reference_frame)
@@ -107,7 +108,7 @@ CelestialBody
 
       :param number latitude: Latitude in degrees
       :param number longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param SpaceCenter.ReferenceFrame reference_frame: Reference frame for the returned position vector
       :rtype: Tuple of (number, number, number)
 
    .. method:: bedrock_position(latitude, longitude, reference_frame)
@@ -117,7 +118,7 @@ CelestialBody
 
       :param number latitude: Latitude in degrees
       :param number longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param SpaceCenter.ReferenceFrame reference_frame: Reference frame for the returned position vector
       :rtype: Tuple of (number, number, number)
 
    .. attribute:: sphere_of_influence
@@ -163,7 +164,7 @@ CelestialBody
         towards the equator at 90°E longitude.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
       .. figure:: /images/reference-frames/celestial-body.png
          :align: center
@@ -186,7 +187,7 @@ CelestialBody
         equator.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
    .. attribute:: orbital_reference_frame
 
@@ -201,27 +202,27 @@ CelestialBody
       * The z-axis points in the orbital normal direction.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`ReferenceFrame`
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
 
    .. method:: position(reference_frame)
 
       Returns the position vector of the center of the body in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: velocity(reference_frame)
 
       Returns the velocity vector of the body in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: rotation(reference_frame)
 
       Returns the rotation of the body in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number, number)
 
    .. method:: direction(reference_frame)
@@ -229,7 +230,7 @@ CelestialBody
       Returns the direction in which the north pole of the celestial body is
       pointing, as a unit vector, in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
    .. method:: angular_velocity(reference_frame)
@@ -239,5 +240,5 @@ CelestialBody
       radians per second, and the direction of the vector indicates the axis of
       rotation, using the right-hand rule.
 
-      :param ReferenceFrame reference_frame:
+      :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)

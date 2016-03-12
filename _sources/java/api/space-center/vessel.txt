@@ -5,6 +5,7 @@
 Vessel
 ======
 
+
 .. type:: public class Vessel
 
    These objects are used to interact with vessels in KSP. This includes getting
@@ -32,19 +33,19 @@ Vessel
 
       The mission elapsed time in seconds.
 
-   .. method:: Flight Flight(ReferenceFrame referenceFrame)
+   .. method:: Flight flight(ReferenceFrame referenceFrame)
 
       Returns a :type:`Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame: Reference frame. Defaults to the vessel's surface reference frame (:meth:`Vessel.SurfaceReferenceFrame`).
+      :param ReferenceFrame referenceFrame: Reference frame. Defaults to the vessel's surface reference frame (:meth:`Vessel.getSurfaceReferenceFrame()`).
 
       .. note:: When this is called with no arguments, the vessel's surface reference
                 frame is used. This reference frame moves with the vessel, therefore
                 velocities and speeds returned by the flight object will be zero. See
-                the :ref:`reference frames tutorial <tutorial-reference-frames>` for
-                examples of getting the :ref:`orbital speed
-                <tutorial-reference-frames-orbital-speed>` and :ref:`surface speed
+                the :rst:ref:`reference frames tutorial <tutorial-reference-frames>` for
+                examples of getting the :rst:ref:`orbital speed
+                <tutorial-reference-frames-orbital-speed>` and :rst:ref:`surface speed
                 <tutorial-reference-frames-surface-speed>` of a vessel.
 
    .. method:: Vessel getTarget()
@@ -78,7 +79,7 @@ Vessel
       A :type:`Resources` object, that can used to get information
       about resources stored in the vessel.
 
-   .. method:: Resources ResourcesInDecoupleStage(int stage, boolean cumulative)
+   .. method:: Resources resourcesInDecoupleStage(int stage, boolean cumulative)
 
       Returns a :type:`Resources` object, that can used to get
       information about resources stored in a given *stage*.
@@ -87,7 +88,7 @@ Vessel
       :param boolean cumulative: When ``false``, returns the resources for parts decoupled in just the given stage. When ``true`` returns the resources decoupled in the given stage and all subsequent stages combined.
 
       .. note:: For details on stage numbering, see the
-                discussion on :ref:`java-api-parts-staging`.
+                discussion on :rst:ref:`java-api-parts-staging`.
 
    .. method:: Parts getParts()
 
@@ -118,7 +119,7 @@ Vessel
 
 
       The total thrust currently being produced by the vessel's engines, in
-      Newtons. This is computed by summing :meth:`Engine.Thrust` for
+      Newtons. This is computed by summing :meth:`Engine.getThrust()` for
       every engine in the vessel.
 
    .. method:: float getAvailableThrust()
@@ -126,21 +127,21 @@ Vessel
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
-      :meth:`Engine.AvailableThrust` for every active engine in the vessel.
+      :meth:`Engine.getAvailableThrust()` for every active engine in the vessel.
 
    .. method:: float getMaxThrust()
 
 
       The total maximum thrust that can be produced by the vessel's active
       engines, in Newtons. This is computed by summing
-      :meth:`Engine.MaxThrust` for every active engine.
+      :meth:`Engine.getMaxThrust()` for every active engine.
 
    .. method:: float getMaxVacuumThrust()
 
 
       The total maximum thrust that can be produced by the vessel's active
       engines when the vessel is in a vacuum, in Newtons. This is computed by
-      summing :meth:`Engine.MaxVacuumThrust` for every active engine.
+      summing :meth:`Engine.getMaxVacuumThrust()` for every active engine.
 
    .. method:: float getSpecificImpulse()
 
@@ -253,31 +254,31 @@ Vessel
 
          Vessel surface velocity reference frame origin and axes
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Position(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Velocity(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
       Returns the velocity vector of the center of mass of the vessel in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> Rotation(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
       Returns the rotation of the center of mass of the vessel in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Direction(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> AngularVelocity(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> angularVelocity(ReferenceFrame referenceFrame)
 
       Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
       vector is the rotational speed in radians per second, and the direction of the vector indicates the
@@ -286,71 +287,88 @@ Vessel
       :param ReferenceFrame referenceFrame:
 
 
+
 .. type:: public enum VesselType
 
-   See :meth:`Vessel.Type`.
+   See :meth:`Vessel.getType()`.
 
-   .. field:: public VesselType Ship
+
+   .. field:: public VesselType SHIP
 
       Ship.
 
-   .. field:: public VesselType Station
+
+   .. field:: public VesselType STATION
 
       Station.
 
-   .. field:: public VesselType Lander
+
+   .. field:: public VesselType LANDER
 
       Lander.
 
-   .. field:: public VesselType Probe
+
+   .. field:: public VesselType PROBE
 
       Probe.
 
-   .. field:: public VesselType Rover
+
+   .. field:: public VesselType ROVER
 
       Rover.
 
-   .. field:: public VesselType Base
+
+   .. field:: public VesselType BASE
 
       Base.
 
-   .. field:: public VesselType Debris
+
+   .. field:: public VesselType DEBRIS
 
       Debris.
 
 
+
 .. type:: public enum VesselSituation
 
-   See :meth:`Vessel.Situation`.
+   See :meth:`Vessel.getSituation()`.
 
-   .. field:: public VesselSituation Docked
+
+   .. field:: public VesselSituation DOCKED
 
       Vessel is docked to another.
 
-   .. field:: public VesselSituation Escaping
+
+   .. field:: public VesselSituation ESCAPING
 
       Escaping.
 
-   .. field:: public VesselSituation Flying
+
+   .. field:: public VesselSituation FLYING
 
       Vessel is flying through an atmosphere.
 
-   .. field:: public VesselSituation Landed
+
+   .. field:: public VesselSituation LANDED
 
       Vessel is landed on the surface of a body.
 
-   .. field:: public VesselSituation Orbiting
+
+   .. field:: public VesselSituation ORBITING
 
       Vessel is orbiting a body.
 
-   .. field:: public VesselSituation PreLaunch
+
+   .. field:: public VesselSituation PRE_LAUNCH
 
       Vessel is awaiting launch.
 
-   .. field:: public VesselSituation Splashed
+
+   .. field:: public VesselSituation SPLASHED
 
       Vessel has splashed down in an ocean.
 
-   .. field:: public VesselSituation SubOrbital
+
+   .. field:: public VesselSituation SUB_ORBITAL
 
       Vessel is on a sub-orbital trajectory.

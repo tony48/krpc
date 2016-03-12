@@ -15,6 +15,7 @@ The following classes allow interaction with a vessels individual parts.
 Parts
 -----
 
+
 .. class:: Parts
 
    Instances of this class are used to interact with the parts of a vessel.
@@ -34,7 +35,7 @@ Parts
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-trees-of-parts`.
 
    .. attribute:: controlling
 
@@ -72,7 +73,7 @@ Parts
       :param int stage:
       :rtype: list of :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-staging`.
 
    .. method:: in_decouple_stage(stage)
 
@@ -81,7 +82,7 @@ Parts
       :param int stage:
       :rtype: list of :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-staging`.
 
    .. method:: modules_with_name(module_name)
 
@@ -202,6 +203,7 @@ Parts
 Part
 ----
 
+
 .. class:: Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
@@ -245,7 +247,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-trees-of-parts`.
 
    .. attribute:: children
 
@@ -255,7 +257,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-trees-of-parts`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-trees-of-parts`.
 
    .. attribute:: axially_attached
 
@@ -265,7 +267,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: bool
 
-      .. note:: See the discussion on :ref:`python-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-attachment-modes`.
 
    .. attribute:: radially_attached
 
@@ -275,7 +277,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: bool
 
-      .. note:: See the discussion on :ref:`python-api-parts-attachment-modes`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-attachment-modes`.
 
    .. attribute:: stage
 
@@ -284,7 +286,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: int
 
-      .. note:: See the discussion on :ref:`python-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-staging`.
 
    .. attribute:: decouple_stage
 
@@ -293,7 +295,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: int
 
-      .. note:: See the discussion on :ref:`python-api-parts-staging`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-staging`.
 
    .. attribute:: massless
 
@@ -455,7 +457,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-fuel-lines`.
 
    .. attribute:: fuel_lines_to
 
@@ -464,7 +466,7 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Part`
 
-      .. note:: See the discussion on :ref:`python-api-parts-fuel-lines`.
+      .. note:: See the discussion on :rst:ref:`python-api-parts-fuel-lines`.
 
    .. attribute:: modules
 
@@ -625,6 +627,7 @@ Part
 Module
 ------
 
+
 .. class:: Module
 
    In KSP, each part has zero or more
@@ -727,6 +730,7 @@ The following classes provide functionality for specific types of part.
 Decoupler
 ^^^^^^^^^
 
+
 .. class:: Decoupler
 
    Obtained by calling :attr:`Part.decoupler`
@@ -760,6 +764,7 @@ Decoupler
 
 Docking Port
 ^^^^^^^^^^^^
+
 
 .. class:: DockingPort
 
@@ -884,23 +889,28 @@ Docking Port
          Inline docking port reference frame origin and axes
 
 
+
 .. class:: DockingPortState
 
    See :attr:`DockingPort.state`.
 
+
    .. data:: ready
 
       The docking port is ready to dock to another docking port.
+
 
    .. data:: docked
 
       The docking port is docked to another docking port, or docked to
       another part (from the VAB/SPH).
 
+
    .. data:: docking
 
       The docking port is very close to another docking port,
       but has not docked. It is using magnetic force to acquire a solid dock.
+
 
    .. data:: undocking
 
@@ -908,9 +918,11 @@ Docking Port
       and is disabled until it moves away by a sufficient distance
       (:attr:`DockingPort.reengage_distance`).
 
+
    .. data:: shielded
 
       The docking port has a shield, and the shield is closed.
+
 
    .. data:: moving
 
@@ -920,6 +932,7 @@ Docking Port
 
 Engine
 ^^^^^^
+
 
 .. class:: Engine
 
@@ -1103,6 +1116,7 @@ Engine
 Landing Gear
 ^^^^^^^^^^^^
 
+
 .. class:: LandingGear
 
    Obtained by calling :attr:`Part.landing_gear`.
@@ -1129,21 +1143,26 @@ Landing Gear
       :rtype: bool
 
 
+
 .. class:: LandingGearState
 
    See :attr:`LandingGear.state`.
+
 
    .. data:: deployed
 
       Landing gear is fully deployed.
 
+
    .. data:: retracted
 
       Landing gear is fully retracted.
 
+
    .. data:: deploying
 
       Landing gear is being deployed.
+
 
    .. data:: retracting
 
@@ -1153,6 +1172,7 @@ Landing Gear
 
 Landing Leg
 ^^^^^^^^^^^
+
 
 .. class:: LandingLeg
 
@@ -1180,29 +1200,36 @@ Landing Leg
       :rtype: bool
 
 
+
 .. class:: LandingLegState
 
    See :attr:`LandingLeg.state`.
+
 
    .. data:: deployed
 
       Landing leg is fully deployed.
 
+
    .. data:: retracted
 
       Landing leg is fully retracted.
+
 
    .. data:: deploying
 
       Landing leg is being deployed.
 
+
    .. data:: retracting
 
       Landing leg is being retracted.
 
+
    .. data:: broken
 
       Landing leg is broken.
+
 
    .. data:: repairing
 
@@ -1212,6 +1239,7 @@ Landing Leg
 
 Launch Clamp
 ^^^^^^^^^^^^
+
 
 .. class:: LaunchClamp
 
@@ -1232,6 +1260,7 @@ Launch Clamp
 
 Light
 ^^^^^
+
 
 .. class:: Light
 
@@ -1262,6 +1291,7 @@ Light
 
 Parachute
 ^^^^^^^^^
+
 
 .. class:: Parachute
 
@@ -1308,26 +1338,32 @@ Parachute
       :rtype: float
 
 
+
 .. class:: ParachuteState
 
    See :attr:`Parachute.state`.
+
 
    .. data:: stowed
 
       The parachute is safely tucked away inside its housing.
 
+
    .. data:: active
 
       The parachute is still stowed, but ready to semi-deploy.
+
 
    .. data:: semi_deployed
 
       The parachute has been deployed and is providing some drag,
       but is not fully deployed yet.
 
+
    .. data:: deployed
 
       The parachute is fully deployed.
+
 
    .. data:: cut
 
@@ -1337,6 +1373,7 @@ Parachute
 
 Radiator
 ^^^^^^^^
+
 
 .. class:: Radiator
 
@@ -1364,25 +1401,31 @@ Radiator
       :rtype: :class:`RadiatorState`
 
 
+
 .. class:: RadiatorState
 
    :class:`RadiatorState`
+
 
    .. data:: extended
 
       Radiator is fully extended.
 
+
    .. data:: retracted
 
       Radiator is fully retracted.
+
 
    .. data:: extending
 
       Radiator is being extended.
 
+
    .. data:: retracting
 
       Radiator is being retracted.
+
 
    .. data:: broken
 
@@ -1392,6 +1435,7 @@ Radiator
 
 Resource Converter
 ^^^^^^^^^^^^^^^^^^
+
 
 .. class:: ResourceConverter
 
@@ -1467,29 +1511,36 @@ Resource Converter
       :rtype: list of str
 
 
+
 .. class:: ResourceConverterState
 
    See :meth:`ResourceConverter.state`.
+
 
    .. data:: running
 
       Converter is running.
 
+
    .. data:: idle
 
       Converter is idle.
+
 
    .. data:: missing_resource
 
       Converter is missing a required resource.
 
+
    .. data:: storage_full
 
       No available storage for output resource.
 
+
    .. data:: capacity
 
       At preset resource capacity.
+
 
    .. data:: unknown
 
@@ -1500,6 +1551,7 @@ Resource Converter
 
 Resource Harvester
 ^^^^^^^^^^^^^^^^^^
+
 
 .. class:: ResourceHarvester
 
@@ -1563,8 +1615,40 @@ Resource Harvester
 
 
 
+.. class:: ResourceHarvesterState
+
+   See :attr:`ResourceHarvester.state`.
+
+
+   .. data:: deploying
+
+      The drill is deploying.
+
+
+   .. data:: deployed
+
+      The drill is deployed and ready.
+
+
+   .. data:: retracting
+
+      The drill is retracting.
+
+
+   .. data:: retracted
+
+      The drill is retracted.
+
+
+   .. data:: active
+
+      The drill is running.
+
+
+
 Reaction Wheel
 ^^^^^^^^^^^^^^
+
 
 .. class:: ReactionWheel
 
@@ -1617,6 +1701,7 @@ Reaction Wheel
 Sensor
 ^^^^^^
 
+
 .. class:: Sensor
 
    Obtained by calling :attr:`Part.sensor`.
@@ -1653,6 +1738,7 @@ Sensor
 
 Solar Panel
 ^^^^^^^^^^^
+
 
 .. class:: SolarPanel
 
@@ -1696,25 +1782,31 @@ Solar Panel
       :rtype: float
 
 
+
 .. class:: SolarPanelState
 
    See :attr:`SolarPanel.state`.
+
 
    .. data:: extended
 
       Solar panel is fully extended.
 
+
    .. data:: retracted
 
       Solar panel is fully retracted.
+
 
    .. data:: extending
 
       Solar panel is being extended.
 
+
    .. data:: retracting
 
       Solar panel is being retracted.
+
 
    .. data:: broken
 

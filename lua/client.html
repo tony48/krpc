@@ -214,7 +214,7 @@ procedure calls and passed to the server by the lua client.</p>
 <span id="reference"></span><h2>Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="krpc.connect">
-<code class="descclassname">krpc.</code><code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
 with.</p>
@@ -229,8 +229,8 @@ connection dialog on the in-game server window.</li>
 <li><strong>address</strong> (<em>string</em>) &#8211; The address of the server to connect to. Can either be
 a hostname or an IP address in dotted decimal
 notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
-<li><strong>rpc_port</strong> (<em>int</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
-<li><strong>stream_port</strong> (<em>int</em>) &#8211; The port number of the Stream Server. Defaults
+<li><strong>rpc_port</strong> (<em>number</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>number</em>) &#8211; The port number of the Stream Server. Defaults
 to 50001.</li>
 </ul>
 </td>
@@ -241,7 +241,7 @@ to 50001.</li>
 
 <dl class="class">
 <dt id="krpc.Client">
-<em class="property">class </em><code class="descclassname">krpc.</code><code class="descname">Client</code><a class="headerlink" href="#krpc.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Client</code><a class="headerlink" href="#krpc.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class provides the interface for communicating with the server. It is
 dynamically populated with all the functionality provided by the
 server. Instances of this class should be obtained by calling
@@ -270,7 +270,7 @@ server. Instances of this class should be obtained by calling
 
 <dl class="class">
 <dt id="krpc.KRPC">
-<em class="property">class </em><code class="descclassname">krpc.</code><code class="descname">KRPC</code><a class="headerlink" href="#krpc.KRPC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">KRPC</code><a class="headerlink" href="#krpc.KRPC" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class provides access to the basic server functionality provided by
 the <code class="docutils literal"><span class="pre">KRPC</span></code> service. An instance can be obtained by calling
 <a class="reference internal" href="#krpc.Client.krpc" title="krpc.Client.krpc"><code class="xref lua lua-attr docutils literal"><span class="pre">krpc.Client.krpc</span></code></a>. Most of this functionality is used internally by

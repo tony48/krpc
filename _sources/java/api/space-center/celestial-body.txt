@@ -5,6 +5,7 @@
 CelestialBody
 =============
 
+
 .. type:: public class CelestialBody
 
    Represents a celestial body (such as a planet or moon).
@@ -54,7 +55,7 @@ CelestialBody
 
       The equatorial radius of the body, in meters.
 
-   .. method:: double SurfaceHeight(double latitude, double longitude)
+   .. method:: double surfaceHeight(double latitude, double longitude)
 
       The height of the surface relative to mean sea level at the given position,
       in meters. When over water this is equal to 0.
@@ -62,7 +63,7 @@ CelestialBody
       :param double latitude: Latitude in degrees
       :param double longitude: Longitude in degrees
 
-   .. method:: double BedrockHeight(double latitude, double longitude)
+   .. method:: double bedrockHeight(double latitude, double longitude)
 
       The height of the surface relative to mean sea level at the given position,
       in meters. When over water, this is the height of the sea-bed and is therefore a
@@ -71,7 +72,7 @@ CelestialBody
       :param double latitude: Latitude in degrees
       :param double longitude: Longitude in degrees
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> MSLPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> mSLPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
       The position at mean sea level at the given latitude and longitude, in the given reference frame.
 
@@ -79,7 +80,7 @@ CelestialBody
       :param double longitude: Longitude in degrees
       :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> SurfacePosition(double latitude, double longitude, ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> surfacePosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position of the surface of the water.
@@ -88,7 +89,7 @@ CelestialBody
       :param double longitude: Longitude in degrees
       :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> BedrockPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> bedrockPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position at the bottom of the sea-bed.
@@ -167,32 +168,32 @@ CelestialBody
       * The y-axis points in the orbital prograde direction.
       * The z-axis points in the orbital normal direction.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Position(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       Returns the position vector of the center of the body in the specified reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Velocity(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
       Returns the velocity vector of the body in the specified reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> Rotation(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
       Returns the rotation of the body in the specified reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> Direction(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       Returns the direction in which the north pole of the celestial body is
       pointing, as a unit vector, in the specified reference frame.
 
       :param ReferenceFrame referenceFrame:
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> AngularVelocity(ReferenceFrame referenceFrame)
+   .. method:: org.javatuples.Triplet<Double,Double,Double> angularVelocity(ReferenceFrame referenceFrame)
 
       Returns the angular velocity of the body in the specified reference
       frame. The magnitude of the vector is the rotational speed of the body, in

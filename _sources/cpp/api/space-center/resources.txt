@@ -5,12 +5,13 @@
 Resources
 =========
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. class:: Resources
 
-   Created by calling :func:`Vessel::resources`,
-   :func:`Vessel::resources_in_decouple_stage` or
-   :func:`Part::resources`.
+   Created by calling :func:`SpaceCenter::Vessel::resources`,
+   :func:`SpaceCenter::Vessel::resources_in_decouple_stage` or
+   :func:`SpaceCenter::Part::resources`.
 
    .. function:: std::vector<std::string> names()
 
@@ -48,7 +49,7 @@ Resources
 
        * **name** -- The name of the resource.
 
-   .. function:: static ResourceFlowMode flow_mode(std::string name)
+   .. function:: static SpaceCenter::ResourceFlowMode flow_mode(std::string name)
 
       Returns the flow mode of a resource.
 
@@ -57,24 +58,29 @@ Resources
        * **name** -- The name of the resource.
 
 
+
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceFlowMode
 
-   See :func:`Resources::flow_mode`.
+   See :func:`SpaceCenter::Resources::flow_mode`.
+
 
    .. enumerator:: vessel
 
       The resource flows to any part in the vessel. For example, electric charge.
+
 
    .. enumerator:: stage
 
       The resource flows from parts in the first stage, followed by the second,
       and so on. For example, mono-propellant.
 
+
    .. enumerator:: adjacent
 
       The resource flows between adjacent parts within the vessel. For example,
       liquid fuel or oxidizer.
+
 
    .. enumerator:: none
 
