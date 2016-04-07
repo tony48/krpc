@@ -1,0 +1,83 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+
+
+KRPC API
+========
+
+
+.. namespace:: krpc::services
+.. class:: KRPC : public krpc::Service
+
+   Main kRPC service, used by clients to interact with basic server functionality.
+
+   .. function:: KRPC(krpc::Client* client)
+
+      Construct an instance of this service.
+
+   .. function:: krpc::schema::Status get_status()
+
+      Returns some information about the server, such as the version.
+
+   .. function:: krpc::schema::Services get_services()
+
+      Returns information on all services, procedures, classes, properties etc. provided by the server.
+      Can be used by client libraries to automatically create functionality such as stubs.
+
+   .. function:: KRPC::GameScene current_game_scene()
+
+      Get the current game scene.
+
+   .. function:: uint32_t add_stream(krpc::schema::Request request)
+
+      Add a streaming request and return its identifier.
+
+      :Parameters:
+
+
+
+
+      .. note:: Do not call this method from client code. Use :rst:ref:`streams <cpp-client-streams>` provided by the C++ client library.
+
+   .. function:: void remove_stream(uint32_t id)
+
+      Remove a streaming request.
+
+      :Parameters:
+
+
+
+
+      .. note:: Do not call this method from client code. Use :rst:ref:`streams <cpp-client-streams>` provided by the C++ client library.
+
+
+
+.. namespace:: krpc::services::KRPC
+.. enum-struct:: GameScene
+
+   The game scene. See :func:`KRPC::current_game_scene`.
+
+
+   .. enumerator:: space_center
+
+      The game scene showing the Kerbal Space Center buildings.
+
+
+   .. enumerator:: flight
+
+      The game scene showing a vessel in flight (or on the launchpad/runway).
+
+
+   .. enumerator:: tracking_station
+
+      The tracking station.
+
+
+   .. enumerator:: editor_vab
+
+      The Vehicle Assembly Building.
+
+
+   .. enumerator:: editor_sph
+
+      The Space Plane Hangar.

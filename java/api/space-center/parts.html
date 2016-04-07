@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.2.2 documentation</title>
+  <title>Parts &mdash; kRPC 0.2.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.2.3
               </div>
             
           
@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
@@ -184,29 +185,32 @@
 <li><a class="reference internal" href="#part" id="id14">Part</a></li>
 <li><a class="reference internal" href="#module" id="id15">Module</a></li>
 <li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
-<li><a class="reference internal" href="#decoupler" id="id17">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id18">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id19">Engine</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id20">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id21">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id22">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id23">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id24">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id25">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id26">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id27">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id28">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#sensor" id="id29">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id30">Solar Panel</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id17">Cargo Bay</a></li>
+<li><a class="reference internal" href="#decoupler" id="id18">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id19">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id20">Engine</a></li>
+<li><a class="reference internal" href="#fairing" id="id21">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id22">Intake</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id23">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id24">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id25">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id26">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id27">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id28">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id29">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id30">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id31">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id32">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id33">Solar Panel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#trees-of-parts" id="id31">Trees of Parts</a><ul>
-<li><a class="reference internal" href="#traversing-the-tree" id="id32">Traversing the Tree</a></li>
-<li><a class="reference internal" href="#attachment-modes" id="id33">Attachment Modes</a></li>
+<li><a class="reference internal" href="#trees-of-parts" id="id34">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id35">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id36">Attachment Modes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fuel-lines" id="id34">Fuel Lines</a></li>
-<li><a class="reference internal" href="#staging" id="id35">Staging</a></li>
+<li><a class="reference internal" href="#fuel-lines" id="id37">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id38">Staging</a></li>
 </ul>
 </div>
 <div class="section" id="id1">
@@ -356,6 +360,12 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="method">
+<dt id="Parts.getCargoBays()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#CargoBay" title="CargoBay">CargoBay</a>&gt; <code class="descname">getCargoBays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getCargoBays()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all cargo bays in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Parts.getDecouplers()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#Decoupler" title="Decoupler">Decoupler</a>&gt; <code class="descname">getDecouplers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getDecouplers()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all decouplers in the vessel.</p>
@@ -389,6 +399,18 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 <dt id="Parts.getEngines()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#Engine" title="Engine">Engine</a>&gt; <code class="descname">getEngines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getEngines()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all engines in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parts.getFairings()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#Fairing" title="Fairing">Fairing</a>&gt; <code class="descname">getFairings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getFairings()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all fairings in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parts.getIntakes()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#Intake" title="Intake">Intake</a>&gt; <code class="descname">getIntakes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getIntakes()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all intakes in the vessel.</p>
 </dd></dl>
 
 <dl class="method">
@@ -428,6 +450,12 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 </dd></dl>
 
 <dl class="method">
+<dt id="Parts.getReactionWheels()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#ReactionWheel" title="ReactionWheel">ReactionWheel</a>&gt; <code class="descname">getReactionWheels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getReactionWheels()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all reaction wheels in the vessel.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Parts.getResourceConverters()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#ResourceConverter" title="ResourceConverter">ResourceConverter</a>&gt; <code class="descname">getResourceConverters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getResourceConverters()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all resource converters in the vessel.</p>
@@ -437,12 +465,6 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 <dt id="Parts.getResourceHarvesters()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#ResourceHarvester" title="ResourceHarvester">ResourceHarvester</a>&gt; <code class="descname">getResourceHarvesters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getResourceHarvesters()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all resource harvesters in the vessel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="Parts.getReactionWheels()">
- java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#ReactionWheel" title="ReactionWheel">ReactionWheel</a>&gt; <code class="descname">getReactionWheels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parts.getReactionWheels()" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all reaction wheels in the vessel.</p>
 </dd></dl>
 
 <dl class="method">
@@ -607,69 +629,63 @@ Returns zero if the part is massless.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Part.getExternalTemperature()">
- double <code class="descname">getExternalTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getExternalTemperature()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Temperature of the atmosphere/vacuum surrounding the part, in Kelvin.
-This does not include heating from direct sunlight.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="Part.getThermalMass()">
- double <code class="descname">getThermalMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalMass()" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up the part.</p>
+ float <code class="descname">getThermalMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalMass()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalSkinMass()">
- double <code class="descname">getThermalSkinMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalSkinMass()" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up the part&#8217;s skin.</p>
+ float <code class="descname">getThermalSkinMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalSkinMass()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalResourceMass()">
- double <code class="descname">getThermalResourceMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalResourceMass()" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up resources in the part.</p>
+ float <code class="descname">getThermalResourceMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalResourceMass()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalConductionFlux()">
- double <code class="descname">getThermalConductionFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalConductionFlux()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is conducting into or out of the part
-through contact with other parts. A positive number means
-the part is gaining heat energy, negative means it is
-losing heat energy.</p>
+ float <code class="descname">getThermalConductionFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalConductionFlux()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is conducting into or out of the part via contact with other parts.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalConvectionFlux()">
- double <code class="descname">getThermalConvectionFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalConvectionFlux()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is convecting into or out of the part
-from the surrounding atmosphere. A positive number means
-the part is gaining heat energy, negative means it is losing
-heat energy.</p>
+ float <code class="descname">getThermalConvectionFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalConvectionFlux()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalRadiationFlux()">
- double <code class="descname">getThermalRadiationFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalRadiationFlux()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is radiating into or out of the part
-from the surrounding vacuum. A positive number means the part
-is gaining heat energy, negative means it is losing heat energy.</p>
+ float <code class="descname">getThermalRadiationFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalRadiationFlux()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is radiating into or out of the part from the surrounding environment.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalInternalFlux()">
- double <code class="descname">getThermalInternalFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalInternalFlux()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is generated by the part. For example,
-engines generate heat by burning fuel. A positive number means
-the part is gaining heat energy, negative means it is losing
-heat energy.</p>
+ float <code class="descname">getThermalInternalFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalInternalFlux()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is begin generated by the part.
+For example, some engines generate heat by combusting fuel.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Part.getThermalSkinToInternalFlux()">
- double <code class="descname">getThermalSkinToInternalFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalSkinToInternalFlux()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is conducting between the part&#8217;s skin and its internals.</p>
+ float <code class="descname">getThermalSkinToInternalFlux</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getThermalSkinToInternalFlux()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is transferring between the part&#8217;s skin and its internals.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part&#8217;s internals are gaining heat energy,
+and negative means its skin is gaining heat energy.</p>
 </dd></dl>
 
 <dl class="method">
@@ -717,6 +733,12 @@ heat energy.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="Part.getCargoBay()">
+ <a class="reference internal" href="#CargoBay" title="CargoBay">CargoBay</a> <code class="descname">getCargoBay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getCargoBay()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#CargoBay" title="CargoBay"><code class="xref java java-type docutils literal"><span class="pre">CargoBay</span></code></a> if the part is a cargo bay, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Part.getDecoupler()">
  <a class="reference internal" href="#Decoupler" title="Decoupler">Decoupler</a> <code class="descname">getDecoupler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getDecoupler()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#Decoupler" title="Decoupler"><code class="xref java java-type docutils literal"><span class="pre">Decoupler</span></code></a> if the part is a decoupler, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
@@ -732,6 +754,18 @@ heat energy.</p>
 <dt id="Part.getEngine()">
  <a class="reference internal" href="#Engine" title="Engine">Engine</a> <code class="descname">getEngine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getEngine()" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#Engine" title="Engine"><code class="xref java java-type docutils literal"><span class="pre">Engine</span></code></a> if the part is an engine, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Part.getFairing()">
+ <a class="reference internal" href="#Fairing" title="Fairing">Fairing</a> <code class="descname">getFairing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getFairing()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#Fairing" title="Fairing"><code class="xref java java-type docutils literal"><span class="pre">Fairing</span></code></a> if the part is a fairing, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Part.getIntake()">
+ <a class="reference internal" href="#Intake" title="Intake">Intake</a> <code class="descname">getIntake</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Part.getIntake()" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="#Intake" title="Intake"><code class="xref java java-type docutils literal"><span class="pre">Intake</span></code></a> if the part is an intake, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1047,24 +1081,89 @@ to action groups in the in-game editor.</p>
 <p>The following classes provide functionality for specific types of part.</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#decoupler" id="id36">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id37">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id38">Engine</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id39">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id40">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id41">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id42">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id43">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id44">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id45">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id46">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id47">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#sensor" id="id48">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id49">Solar Panel</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id39">Cargo Bay</a></li>
+<li><a class="reference internal" href="#decoupler" id="id40">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id41">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id42">Engine</a></li>
+<li><a class="reference internal" href="#fairing" id="id43">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id44">Intake</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id45">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id46">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id47">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id48">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id49">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id50">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id51">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id52">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id53">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id54">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id55">Solar Panel</a></li>
 </ul>
 </div>
+<div class="section" id="cargo-bay">
+<h3><a class="toc-backref" href="#id39">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
+<dl class="type">
+<dt id="CargoBay">
+public class <code class="descname">CargoBay</code><a class="headerlink" href="#CargoBay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#Part.getCargoBay()" title="Part.getCargoBay()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getCargoBay()</span></code></a>.</p>
+<dl class="method">
+<dt id="CargoBay.getPart()">
+ <a class="reference internal" href="#Part" title="Part">Part</a> <code class="descname">getPart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CargoBay.getPart()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this cargo bay.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CargoBay.getState()">
+ <a class="reference internal" href="#CargoBayState" title="CargoBayState">CargoBayState</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CargoBay.getState()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the cargo bay.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CargoBay.getOpen()">
+ boolean <code class="descname">getOpen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CargoBay.getOpen()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CargoBay.setOpen(boolean)">
+ void <code class="descname">setOpen</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#CargoBay.setOpen(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the cargo bay is open.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="CargoBayState">
+public enum <code class="descname">CargoBayState</code><a class="headerlink" href="#CargoBayState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#CargoBay.getState()" title="CargoBay.getState()"><code class="xref java java-meth docutils literal"><span class="pre">CargoBay.getState()</span></code></a>.</p>
+<dl class="field">
+<dt id="CargoBayState.OPEN">
+public <a class="reference internal" href="#CargoBayState" title="CargoBayState">CargoBayState</a> <code class="descname">OPEN</code><a class="headerlink" href="#CargoBayState.OPEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is fully open.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="CargoBayState.CLOSED">
+public <a class="reference internal" href="#CargoBayState" title="CargoBayState">CargoBayState</a> <code class="descname">CLOSED</code><a class="headerlink" href="#CargoBayState.CLOSED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay closed and locked.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="CargoBayState.OPENING">
+public <a class="reference internal" href="#CargoBayState" title="CargoBayState">CargoBayState</a> <code class="descname">OPENING</code><a class="headerlink" href="#CargoBayState.OPENING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is opening.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="CargoBayState.CLOSING">
+public <a class="reference internal" href="#CargoBayState" title="CargoBayState">CargoBayState</a> <code class="descname">CLOSING</code><a class="headerlink" href="#CargoBayState.CLOSING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is closing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="decoupler">
-<h3><a class="toc-backref" href="#id36">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Decoupler">
 public class <code class="descname">Decoupler</code><a class="headerlink" href="#Decoupler" title="Permalink to this definition">¶</a></dt>
@@ -1097,7 +1196,7 @@ public class <code class="descname">Decoupler</code><a class="headerlink" href="
 
 </div>
 <div class="section" id="docking-port">
-<h3><a class="toc-backref" href="#id37">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id41">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="DockingPort">
 public class <code class="descname">DockingPort</code><a class="headerlink" href="#DockingPort" title="Permalink to this definition">¶</a></dt>
@@ -1301,7 +1400,7 @@ public <a class="reference internal" href="#DockingPortState" title="DockingPort
 
 </div>
 <div class="section" id="engine">
-<h3><a class="toc-backref" href="#id38">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id42">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Engine">
 public class <code class="descname">Engine</code><a class="headerlink" href="#Engine" title="Permalink to this definition">¶</a></dt>
@@ -1442,6 +1541,47 @@ and <code class="docutils literal"><span class="pre">false</span></code> for sol
 </dd></dl>
 
 <dl class="method">
+<dt id="Engine.getHasModes()">
+ boolean <code class="descname">getHasModes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getHasModes()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine has multiple modes of operation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Engine.getMode()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getMode()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Engine.setMode(String)">
+ void <code class="descname">setMode</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Engine.setMode(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the current engine mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Engine.getModes()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference internal" href="#Engine" title="Engine">Engine</a>&gt; <code class="descname">getModes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getModes()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available modes for the engine.
+A dictionary mapping mode names to <a class="reference internal" href="#Engine" title="Engine"><code class="xref java java-type docutils literal"><span class="pre">Engine</span></code></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Engine.toggleMode()">
+ void <code class="descname">toggleMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.toggleMode()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle the current engine mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Engine.getAutoModeSwitch()">
+ boolean <code class="descname">getAutoModeSwitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getAutoModeSwitch()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Engine.setAutoModeSwitch(boolean)">
+ void <code class="descname">setAutoModeSwitch</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Engine.setAutoModeSwitch(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine will automatically switch modes.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Engine.getGimballed()">
  boolean <code class="descname">getGimballed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getGimballed()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the engine nozzle is gimballed, i.e. can provide a turning force.</p>
@@ -1450,7 +1590,8 @@ and <code class="docutils literal"><span class="pre">false</span></code> for sol
 <dl class="method">
 <dt id="Engine.getGimbalRange()">
  float <code class="descname">getGimbalRange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getGimbalRange()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The range over which the gimbal can move, in degrees.</p>
+<dd><p>The range over which the gimbal can move, in degrees.
+Returns 0 if the engine is not gimballed.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1473,16 +1614,86 @@ no effect if the engine is not gimballed.</p>
 <dl class="method">
 <dt id="Engine.setGimbalLimit(float)">
  void <code class="descname">setGimbalLimit</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Engine.setGimbalLimit(float)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The gimbal limiter of the engine. A value between 0 and 1. Returns 0 if the
-gimbal is locked or the engine is not gimballed. Setting this attribute has
-no effect if the engine is not gimballed.</p>
+<dd><p>The gimbal limiter of the engine. A value between 0 and 1.
+Returns 0 if the gimbal is locked.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fairing">
+<h3><a class="toc-backref" href="#id43">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
+<dl class="type">
+<dt id="Fairing">
+public class <code class="descname">Fairing</code><a class="headerlink" href="#Fairing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#Part.getFairing()" title="Part.getFairing()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getFairing()</span></code></a>.</p>
+<dl class="method">
+<dt id="Fairing.getPart()">
+ <a class="reference internal" href="#Part" title="Part">Part</a> <code class="descname">getPart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Fairing.getPart()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this fairing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Fairing.jettison()">
+ void <code class="descname">jettison</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Fairing.jettison()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Jettison the fairing. Has no effect if it has already been jettisoned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Fairing.getJettisoned()">
+ boolean <code class="descname">getJettisoned</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Fairing.getJettisoned()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the fairing has been jettisoned.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="intake">
+<h3><a class="toc-backref" href="#id44">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
+<dl class="type">
+<dt id="Intake">
+public class <code class="descname">Intake</code><a class="headerlink" href="#Intake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#Part.getIntake()" title="Part.getIntake()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getIntake()</span></code></a>.</p>
+<dl class="method">
+<dt id="Intake.getPart()">
+ <a class="reference internal" href="#Part" title="Part">Part</a> <code class="descname">getPart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Intake.getPart()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this intake.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Intake.getOpen()">
+ boolean <code class="descname">getOpen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Intake.getOpen()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Intake.setOpen(boolean)">
+ void <code class="descname">setOpen</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Intake.setOpen(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the intake is open.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Intake.getSpeed()">
+ float <code class="descname">getSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Intake.getSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed of the flow into the intake, in <span class="math">\(m/s\)</span>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Intake.getFlow()">
+ float <code class="descname">getFlow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Intake.getFlow()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate of flow into the intake, in units of resource per second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Intake.getArea()">
+ float <code class="descname">getArea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Intake.getArea()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The area of the intake&#8217;s opening, in square meters.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="landing-gear">
-<h3><a class="toc-backref" href="#id39">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="LandingGear">
 public class <code class="descname">LandingGear</code><a class="headerlink" href="#LandingGear" title="Permalink to this definition">¶</a></dt>
@@ -1497,6 +1708,16 @@ public class <code class="descname">LandingGear</code><a class="headerlink" href
 <dt id="LandingGear.getState()">
  <a class="reference internal" href="#LandingGearState" title="LandingGearState">LandingGearState</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LandingGear.getState()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the current state of the landing gear.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed landing gear are always deployed.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="LandingGear.getDeployable()">
+ boolean <code class="descname">getDeployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LandingGear.getDeployable()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the landing gear is deployable.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1508,6 +1729,11 @@ public class <code class="descname">LandingGear</code><a class="headerlink" href
 <dt id="LandingGear.setDeployed(boolean)">
  void <code class="descname">setDeployed</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#LandingGear.setDeployed(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the landing gear is deployed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed landing gear are always deployed.
+Returns an error if you try to deploy fixed landing gear.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1544,7 +1770,7 @@ public <a class="reference internal" href="#LandingGearState" title="LandingGear
 
 </div>
 <div class="section" id="landing-leg">
-<h3><a class="toc-backref" href="#id40">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="LandingLeg">
 public class <code class="descname">LandingLeg</code><a class="headerlink" href="#LandingLeg" title="Permalink to this definition">¶</a></dt>
@@ -1618,7 +1844,7 @@ public <a class="reference internal" href="#LandingLegState" title="LandingLegSt
 
 </div>
 <div class="section" id="launch-clamp">
-<h3><a class="toc-backref" href="#id41">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="LaunchClamp">
 public class <code class="descname">LaunchClamp</code><a class="headerlink" href="#LaunchClamp" title="Permalink to this definition">¶</a></dt>
@@ -1639,7 +1865,7 @@ public class <code class="descname">LaunchClamp</code><a class="headerlink" href
 
 </div>
 <div class="section" id="light">
-<h3><a class="toc-backref" href="#id42">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Light">
 public class <code class="descname">Light</code><a class="headerlink" href="#Light" title="Permalink to this definition">¶</a></dt>
@@ -1671,7 +1897,7 @@ public class <code class="descname">Light</code><a class="headerlink" href="#Lig
 
 </div>
 <div class="section" id="parachute">
-<h3><a class="toc-backref" href="#id43">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Parachute">
 public class <code class="descname">Parachute</code><a class="headerlink" href="#Parachute" title="Permalink to this definition">¶</a></dt>
@@ -1764,7 +1990,7 @@ public <a class="reference internal" href="#ParachuteState" title="ParachuteStat
 
 </div>
 <div class="section" id="radiator">
-<h3><a class="toc-backref" href="#id44">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Radiator">
 public class <code class="descname">Radiator</code><a class="headerlink" href="#Radiator" title="Permalink to this definition">¶</a></dt>
@@ -1776,6 +2002,12 @@ public class <code class="descname">Radiator</code><a class="headerlink" href="#
 </dd></dl>
 
 <dl class="method">
+<dt id="Radiator.getDeployable()">
+ boolean <code class="descname">getDeployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Radiator.getDeployable()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the radiator is deployable.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Radiator.getDeployed()">
  boolean <code class="descname">getDeployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Radiator.getDeployed()" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1783,13 +2015,18 @@ public class <code class="descname">Radiator</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="Radiator.setDeployed(boolean)">
  void <code class="descname">setDeployed</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Radiator.setDeployed(boolean)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the radiator is extended.</p>
+<dd><p>For a deployable radiator, <code class="docutils literal"><span class="pre">true</span></code> if the radiator is extended.
+If the radiator is not deployable, this is always <code class="docutils literal"><span class="pre">true</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Radiator.getState()">
  <a class="reference internal" href="#RadiatorState" title="RadiatorState">RadiatorState</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Radiator.getState()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the radiator.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A fixed radiator is always <a class="reference internal" href="#RadiatorState.EXTENDED" title="RadiatorState.EXTENDED"><code class="xref java java-meth docutils literal"><span class="pre">RadiatorState.EXTENDED</span></code></a>.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1832,7 +2069,7 @@ public <a class="reference internal" href="#RadiatorState" title="RadiatorState"
 
 </div>
 <div class="section" id="resource-converter">
-<h3><a class="toc-backref" href="#id45">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="ResourceConverter">
 public class <code class="descname">ResourceConverter</code><a class="headerlink" href="#ResourceConverter" title="Permalink to this definition">¶</a></dt>
@@ -2033,7 +2270,7 @@ In this case, check <a class="reference internal" href="#ResourceConverter.statu
 
 </div>
 <div class="section" id="resource-harvester">
-<h3><a class="toc-backref" href="#id46">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id52">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="ResourceHarvester">
 public class <code class="descname">ResourceHarvester</code><a class="headerlink" href="#ResourceHarvester" title="Permalink to this definition">¶</a></dt>
@@ -2136,7 +2373,7 @@ public <a class="reference internal" href="#ResourceHarvesterState" title="Resou
 
 </div>
 <div class="section" id="reaction-wheel">
-<h3><a class="toc-backref" href="#id47">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id53">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="ReactionWheel">
 public class <code class="descname">ReactionWheel</code><a class="headerlink" href="#ReactionWheel" title="Permalink to this definition">¶</a></dt>
@@ -2186,7 +2423,7 @@ public class <code class="descname">ReactionWheel</code><a class="headerlink" hr
 
 </div>
 <div class="section" id="sensor">
-<h3><a class="toc-backref" href="#id48">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="Sensor">
 public class <code class="descname">Sensor</code><a class="headerlink" href="#Sensor" title="Permalink to this definition">¶</a></dt>
@@ -2224,7 +2461,7 @@ public class <code class="descname">Sensor</code><a class="headerlink" href="#Se
 
 </div>
 <div class="section" id="solar-panel">
-<h3><a class="toc-backref" href="#id49">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id55">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
 <dl class="type">
 <dt id="SolarPanel">
 public class <code class="descname">SolarPanel</code><a class="headerlink" href="#SolarPanel" title="Permalink to this definition">¶</a></dt>
@@ -2307,7 +2544,7 @@ public <a class="reference internal" href="#SolarPanelState" title="SolarPanelSt
 </div>
 </div>
 <div class="section" id="trees-of-parts">
-<span id="java-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id31">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<span id="java-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id34">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
 <p>Vessels in KSP are comprised of a number of parts, connected to one another in a
 <em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
 tree of parts in Figure 2. The craft file for this example can also be
@@ -2324,7 +2561,7 @@ the parent part to the child part.</span></p>
 <div class="clearer container">
 </div>
 <div class="section" id="traversing-the-tree">
-<h3><a class="toc-backref" href="#id32">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
 <p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#Parts.getRoot()" title="Parts.getRoot()"><code class="xref java java-meth docutils literal"><span class="pre">Parts.getRoot()</span></code></a>,
 <a class="reference internal" href="#Part.getParent()" title="Part.getParent()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getParent()</span></code></a> and <a class="reference internal" href="#Part.getChildren()" title="Part.getChildren()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getChildren()</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
@@ -2397,7 +2634,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="attachment-modes">
-<span id="java-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id33">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<span id="java-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id36">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
 <p>Parts can be attached to other parts either <em>radially</em> (on the side of the
 parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
 <p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
@@ -2470,7 +2707,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="fuel-lines">
-<span id="java-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id34">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<span id="java-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id37">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8" style="width: 200px">
 <img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
@@ -2499,7 +2736,7 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
 <div class="section" id="staging">
-<span id="java-api-parts-staging"></span><h2><a class="toc-backref" href="#id35">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="java-api-parts-staging"></span><h2><a class="toc-backref" href="#id38">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id10" style="width: 340px">
 <img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
@@ -2570,7 +2807,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.2',
+            VERSION:'0.2.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

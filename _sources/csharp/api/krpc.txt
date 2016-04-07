@@ -1,0 +1,77 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+KRPC API
+========
+
+
+.. class:: KRPC
+
+   Main kRPC service, used by clients to interact with basic server functionality.
+
+   .. method:: KRPC.Schema.KRPC.Status GetStatus()
+
+      Returns some information about the server, such as the version.
+
+   .. method:: KRPC.Schema.KRPC.Services GetServices()
+
+      Returns information on all services, procedures, classes, properties etc. provided by the server.
+      Can be used by client libraries to automatically create functionality such as stubs.
+
+   .. property:: GameScene CurrentGameScene { get; }
+
+      Get the current game scene.
+
+   .. method:: uint AddStream(KRPC.Schema.KRPC.Request request)
+
+      Add a streaming request and return its identifier.
+
+      :parameters:
+
+
+
+
+      .. note:: Do not call this method from client code. Use :rst:ref:`streams <csharp-client-streams>` provided by the C# client library.
+
+   .. method:: void RemoveStream(uint id)
+
+      Remove a streaming request.
+
+      :parameters:
+
+
+
+
+      .. note:: Do not call this method from client code. Use :rst:ref:`streams <csharp-client-streams>` provided by the C# client library.
+
+
+
+.. enum:: GameScene
+
+   The game scene. See :prop:`KRPC.CurrentGameScene`.
+
+
+   .. value:: SpaceCenter
+
+      The game scene showing the Kerbal Space Center buildings.
+
+
+   .. value:: Flight
+
+      The game scene showing a vessel in flight (or on the launchpad/runway).
+
+
+   .. value:: TrackingStation
+
+      The tracking station.
+
+
+   .. value:: EditorVAB
+
+      The Vehicle Assembly Building.
+
+
+   .. value:: EditorSPH
+
+      The Space Plane Hangar.

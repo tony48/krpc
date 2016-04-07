@@ -1,0 +1,92 @@
+.. default-domain:: lua
+.. highlight:: lua
+.. currentmodule:: KRPC
+
+KRPC API
+========
+
+
+.. module:: KRPC
+
+Main kRPC service, used by clients to interact with basic server functionality.
+
+
+.. staticmethod:: get_status()
+
+   Returns some information about the server, such as the version.
+
+   :rtype: :class:`krpc.schema.KRPC.Status`
+
+
+
+
+.. staticmethod:: get_services()
+
+   Returns information on all services, procedures, classes, properties etc. provided by the server.
+   Can be used by client libraries to automatically create functionality such as stubs.
+
+   :rtype: :class:`krpc.schema.KRPC.Services`
+
+
+
+
+.. attribute:: current_game_scene
+
+   Get the current game scene.
+
+   :Attribute: Read-only, cannot be set
+   :rtype: :class:`KRPC.GameScene`
+
+
+
+
+.. staticmethod:: add_stream(request)
+
+   Add a streaming request and return its identifier.
+
+   :param krpc.schema.KRPC.Request request:
+   :rtype: number
+
+   .. note:: Streams are not supported by the Lua client.
+
+
+
+.. staticmethod:: remove_stream(id)
+
+   Remove a streaming request.
+
+   :param number id:
+
+   .. note:: Streams are not supported by the Lua client.
+
+
+
+
+.. class:: GameScene
+
+   The game scene. See :attr:`KRPC.current_game_scene`.
+
+
+   .. data:: space_center
+
+      The game scene showing the Kerbal Space Center buildings.
+
+
+   .. data:: flight
+
+      The game scene showing a vessel in flight (or on the launchpad/runway).
+
+
+   .. data:: tracking_station
+
+      The tracking station.
+
+
+   .. data:: editor_vab
+
+      The Vehicle Assembly Building.
+
+
+   .. data:: editor_sph
+
+      The Space Plane Hangar.

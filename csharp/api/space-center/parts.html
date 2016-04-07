@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.2.2 documentation</title>
+  <title>Parts &mdash; kRPC 0.2.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.2.3
               </div>
             
           
@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
@@ -184,29 +185,32 @@
 <li><a class="reference internal" href="#part" id="id14">Part</a></li>
 <li><a class="reference internal" href="#module" id="id15">Module</a></li>
 <li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
-<li><a class="reference internal" href="#decoupler" id="id17">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id18">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id19">Engine</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id20">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id21">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id22">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id23">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id24">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id25">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id26">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id27">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id28">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#sensor" id="id29">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id30">Solar Panel</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id17">Cargo Bay</a></li>
+<li><a class="reference internal" href="#decoupler" id="id18">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id19">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id20">Engine</a></li>
+<li><a class="reference internal" href="#fairing" id="id21">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id22">Intake</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id23">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id24">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id25">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id26">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id27">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id28">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id29">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id30">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id31">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id32">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id33">Solar Panel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#trees-of-parts" id="id31">Trees of Parts</a><ul>
-<li><a class="reference internal" href="#traversing-the-tree" id="id32">Traversing the Tree</a></li>
-<li><a class="reference internal" href="#attachment-modes" id="id33">Attachment Modes</a></li>
+<li><a class="reference internal" href="#trees-of-parts" id="id34">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id35">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id36">Attachment Modes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fuel-lines" id="id34">Fuel Lines</a></li>
-<li><a class="reference internal" href="#staging" id="id35">Staging</a></li>
+<li><a class="reference internal" href="#fuel-lines" id="id37">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id38">Staging</a></li>
 </ul>
 </div>
 <div class="section" id="id1">
@@ -333,6 +337,12 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Parts.CargoBays">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-CargoBay" title="CargoBay class">CargoBay</a>&gt; <code class="descname">CargoBays</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.CargoBays" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all cargo bays in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Parts.Decouplers">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Decoupler" title="Decoupler class">Decoupler</a>&gt; <code class="descname">Decouplers</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Decouplers" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all decouplers in the vessel.</p>
@@ -363,6 +373,18 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 <dt id="property-Parts.Engines">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Engine" title="Engine class">Engine</a>&gt; <code class="descname">Engines</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Engines" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all engines in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Fairings">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Fairing" title="Fairing class">Fairing</a>&gt; <code class="descname">Fairings</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Fairings" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all fairings in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Parts.Intakes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-Intake" title="Intake class">Intake</a>&gt; <code class="descname">Intakes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.Intakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all intakes in the vessel.</p>
 </dd></dl>
 
 <dl class="property">
@@ -402,6 +424,12 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Parts.ReactionWheels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ReactionWheel" title="ReactionWheel class">ReactionWheel</a>&gt; <code class="descname">ReactionWheels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ReactionWheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all reaction wheels in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Parts.ResourceConverters">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ResourceConverter" title="ResourceConverter class">ResourceConverter</a>&gt; <code class="descname">ResourceConverters</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ResourceConverters" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all resource converters in the vessel.</p>
@@ -411,12 +439,6 @@ Returns <code class="docutils literal"><span class="pre">null</span></code> if t
 <dt id="property-Parts.ResourceHarvesters">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ResourceHarvester" title="ResourceHarvester class">ResourceHarvester</a>&gt; <code class="descname">ResourceHarvesters</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ResourceHarvesters" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all resource harvesters in the vessel.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-Parts.ReactionWheels">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-ReactionWheel" title="ReactionWheel class">ReactionWheel</a>&gt; <code class="descname">ReactionWheels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Parts.ReactionWheels" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all reaction wheels in the vessel.</p>
 </dd></dl>
 
 <dl class="property">
@@ -581,69 +603,63 @@ Returns zero if the part is massless.</p>
 </dd></dl>
 
 <dl class="property">
-<dt id="property-Part.ExternalTemperature">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ExternalTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ExternalTemperature" title="Permalink to this definition">¶</a></dt>
-<dd><p>Temperature of the atmosphere/vacuum surrounding the part, in Kelvin.
-This does not include heating from direct sunlight.</p>
-</dd></dl>
-
-<dl class="property">
 <dt id="property-Part.ThermalMass">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalMass" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up the part.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalSkinMass">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalSkinMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinMass" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up the part&#8217;s skin.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalSkinMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalResourceMass">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalResourceMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalResourceMass" title="Permalink to this definition">¶</a></dt>
-<dd><p>How much it takes to heat up resources in the part.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalResourceMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalResourceMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalConductionFlux">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalConductionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConductionFlux" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is conducting into or out of the part
-through contact with other parts. A positive number means
-the part is gaining heat energy, negative means it is
-losing heat energy.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalConductionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConductionFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is conducting into or out of the part via contact with other parts.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalConvectionFlux">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalConvectionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConvectionFlux" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is convecting into or out of the part
-from the surrounding atmosphere. A positive number means
-the part is gaining heat energy, negative means it is losing
-heat energy.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalConvectionFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalConvectionFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalRadiationFlux">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalRadiationFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalRadiationFlux" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is radiating into or out of the part
-from the surrounding vacuum. A positive number means the part
-is gaining heat energy, negative means it is losing heat energy.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalRadiationFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalRadiationFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is radiating into or out of the part from the surrounding environment.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalInternalFlux">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalInternalFlux" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is generated by the part. For example,
-engines generate heat by burning fuel. A positive number means
-the part is gaining heat energy, negative means it is losing
-heat energy.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalInternalFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is begin generated by the part.
+For example, some engines generate heat by combusting fuel.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part is gaining heat energy, and negative means it is losing heat energy.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Part.ThermalSkinToInternalFlux">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ThermalSkinToInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinToInternalFlux" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed that heat is conducting between the part&#8217;s skin and its internals.</p>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ThermalSkinToInternalFlux</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.ThermalSkinToInternalFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate at which heat energy is transferring between the part&#8217;s skin and its internals.
+Measured in energy per unit time, or power, in Watts.
+A positive value means the part&#8217;s internals are gaining heat energy,
+and negative means its skin is gaining heat energy.</p>
 </dd></dl>
 
 <dl class="property">
@@ -691,6 +707,12 @@ heat energy.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Part.CargoBay">
+<a class="reference internal" href="#class-CargoBay" title="CargoBay class">CargoBay</a> <code class="descname">CargoBay</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.CargoBay" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-CargoBay" title="CargoBay class"><code class="xref csharp csharp-type docutils literal"><span class="pre">CargoBay</span></code></a> if the part is a cargo bay, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Part.Decoupler">
 <a class="reference internal" href="#class-Decoupler" title="Decoupler class">Decoupler</a> <code class="descname">Decoupler</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Decoupler" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#class-Decoupler" title="Decoupler class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Decoupler</span></code></a> if the part is a decoupler, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
@@ -706,6 +728,18 @@ heat energy.</p>
 <dt id="property-Part.Engine">
 <a class="reference internal" href="#class-Engine" title="Engine class">Engine</a> <code class="descname">Engine</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Engine" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#class-Engine" title="Engine class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Engine</span></code></a> if the part is an engine, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Fairing">
+<a class="reference internal" href="#class-Fairing" title="Fairing class">Fairing</a> <code class="descname">Fairing</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Fairing" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-Fairing" title="Fairing class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Fairing</span></code></a> if the part is a fairing, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Part.Intake">
+<a class="reference internal" href="#class-Intake" title="Intake class">Intake</a> <code class="descname">Intake</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Part.Intake" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="#class-Intake" title="Intake class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Intake</span></code></a> if the part is an intake, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </dd></dl>
 
 <dl class="property">
@@ -996,24 +1030,84 @@ void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a 
 <p>The following classes provide functionality for specific types of part.</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#decoupler" id="id36">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id37">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id38">Engine</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id39">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id40">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id41">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id42">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id43">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id44">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id45">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id46">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id47">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#sensor" id="id48">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id49">Solar Panel</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id39">Cargo Bay</a></li>
+<li><a class="reference internal" href="#decoupler" id="id40">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id41">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id42">Engine</a></li>
+<li><a class="reference internal" href="#fairing" id="id43">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id44">Intake</a></li>
+<li><a class="reference internal" href="#landing-gear" id="id45">Landing Gear</a></li>
+<li><a class="reference internal" href="#landing-leg" id="id46">Landing Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id47">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id48">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id49">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id50">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id51">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id52">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id53">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#sensor" id="id54">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id55">Solar Panel</a></li>
 </ul>
 </div>
+<div class="section" id="cargo-bay">
+<h3><a class="toc-backref" href="#id39">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-CargoBay">
+<code class="descname">class CargoBay</code><a class="headerlink" href="#class-CargoBay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.CargoBay" title="Part.CargoBay property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.CargoBay</span></code></a>.</p>
+<dl class="property">
+<dt id="property-CargoBay.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CargoBay.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this cargo bay.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CargoBay.State">
+<a class="reference internal" href="#enum-CargoBayState" title="CargoBayState enum">CargoBayState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-CargoBay.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the cargo bay.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-CargoBay.Open">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Open</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-CargoBay.Open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the cargo bay is open.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-CargoBayState">
+<code class="descname">enum CargoBayState</code><a class="headerlink" href="#enum-CargoBayState" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-CargoBay.State" title="CargoBay.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">CargoBay.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-CargoBayState.Open">
+<code class="descname">Open</code><a class="headerlink" href="#value-CargoBayState.Open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is fully open.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-CargoBayState.Closed">
+<code class="descname">Closed</code><a class="headerlink" href="#value-CargoBayState.Closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay closed and locked.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-CargoBayState.Opening">
+<code class="descname">Opening</code><a class="headerlink" href="#value-CargoBayState.Opening" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is opening.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-CargoBayState.Closing">
+<code class="descname">Closing</code><a class="headerlink" href="#value-CargoBayState.Closing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cargo bay is closing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="decoupler">
-<h3><a class="toc-backref" href="#id36">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Decoupler">
 <code class="descname">class Decoupler</code><a class="headerlink" href="#class-Decoupler" title="Permalink to this definition">¶</a></dt>
@@ -1046,7 +1140,7 @@ void <code class="descname">Decouple</code> <span class="sig-paren">(</span><spa
 
 </div>
 <div class="section" id="docking-port">
-<h3><a class="toc-backref" href="#id37">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id41">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-DockingPort">
 <code class="descname">class DockingPort</code><a class="headerlink" href="#class-DockingPort" title="Permalink to this definition">¶</a></dt>
@@ -1231,7 +1325,7 @@ and is disabled until it moves away by a sufficient distance
 
 </div>
 <div class="section" id="engine">
-<h3><a class="toc-backref" href="#id38">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id42">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Engine">
 <code class="descname">class Engine</code><a class="headerlink" href="#class-Engine" title="Permalink to this definition">¶</a></dt>
@@ -1362,6 +1456,37 @@ and <code class="docutils literal"><span class="pre">false</span></code> for sol
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Engine.HasModes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasModes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.HasModes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine has multiple modes of operation.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Mode">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Mode</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.Mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the current engine mode.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.Modes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/s4ys34ea.aspx" title="System.Collections.Generic.IDictionary">IDictionary</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a>, <a class="reference internal" href="#class-Engine" title="Engine class">Engine</a>&gt; <code class="descname">Modes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Modes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available modes for the engine.
+A dictionary mapping mode names to <a class="reference internal" href="#class-Engine" title="Engine class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Engine</span></code></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Engine.ToggleMode">
+void <code class="descname">ToggleMode</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Engine.ToggleMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle the current engine mode.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Engine.AutoModeSwitch">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">AutoModeSwitch</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.AutoModeSwitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the engine will automatically switch modes.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Engine.Gimballed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Gimballed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.Gimballed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the engine nozzle is gimballed, i.e. can provide a turning force.</p>
@@ -1370,7 +1495,8 @@ and <code class="docutils literal"><span class="pre">false</span></code> for sol
 <dl class="property">
 <dt id="property-Engine.GimbalRange">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">GimbalRange</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Engine.GimbalRange" title="Permalink to this definition">¶</a></dt>
-<dd><p>The range over which the gimbal can move, in degrees.</p>
+<dd><p>The range over which the gimbal can move, in degrees.
+Returns 0 if the engine is not gimballed.</p>
 </dd></dl>
 
 <dl class="property">
@@ -1383,16 +1509,81 @@ no effect if the engine is not gimballed.</p>
 <dl class="property">
 <dt id="property-Engine.GimbalLimit">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">GimbalLimit</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Engine.GimbalLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>The gimbal limiter of the engine. A value between 0 and 1. Returns 0 if the
-gimbal is locked or the engine is not gimballed. Setting this attribute has
-no effect if the engine is not gimballed.</p>
+<dd><p>The gimbal limiter of the engine. A value between 0 and 1.
+Returns 0 if the gimbal is locked.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fairing">
+<h3><a class="toc-backref" href="#id43">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Fairing">
+<code class="descname">class Fairing</code><a class="headerlink" href="#class-Fairing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Fairing" title="Part.Fairing property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Fairing</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Fairing.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Fairing.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this fairing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Fairing.Jettison">
+void <code class="descname">Jettison</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Fairing.Jettison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Jettison the fairing. Has no effect if it has already been jettisoned.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Fairing.Jettisoned">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Jettisoned</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Fairing.Jettisoned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the fairing has been jettisoned.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="intake">
+<h3><a class="toc-backref" href="#id44">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-Intake">
+<code class="descname">class Intake</code><a class="headerlink" href="#class-Intake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-Part.Intake" title="Part.Intake property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Intake</span></code></a>.</p>
+<dl class="property">
+<dt id="property-Intake.Part">
+<a class="reference internal" href="#class-Part" title="Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Intake.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this intake.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Intake.Open">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Open</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Intake.Open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the intake is open.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Intake.Speed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Speed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Intake.Speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed of the flow into the intake, in <span class="math">\(m/s\)</span>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Intake.Flow">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Flow</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Intake.Flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rate of flow into the intake, in units of resource per second.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Intake.Area">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Area</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Intake.Area" title="Permalink to this definition">¶</a></dt>
+<dd><p>The area of the intake&#8217;s opening, in square meters.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="landing-gear">
-<h3><a class="toc-backref" href="#id39">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-LandingGear">
 <code class="descname">class LandingGear</code><a class="headerlink" href="#class-LandingGear" title="Permalink to this definition">¶</a></dt>
@@ -1407,12 +1598,27 @@ no effect if the engine is not gimballed.</p>
 <dt id="property-LandingGear.State">
 <a class="reference internal" href="#enum-LandingGearState" title="LandingGearState enum">LandingGearState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingGear.State" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the current state of the landing gear.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed landing gear are always deployed.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-LandingGear.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-LandingGear.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the landing gear is deployable.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-LandingGear.Deployed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-LandingGear.Deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the landing gear is deployed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed landing gear are always deployed.
+Returns an error if you try to deploy fixed landing gear.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1449,7 +1655,7 @@ no effect if the engine is not gimballed.</p>
 
 </div>
 <div class="section" id="landing-leg">
-<h3><a class="toc-backref" href="#id40">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-LandingLeg">
 <code class="descname">class LandingLeg</code><a class="headerlink" href="#class-LandingLeg" title="Permalink to this definition">¶</a></dt>
@@ -1518,7 +1724,7 @@ no effect if the engine is not gimballed.</p>
 
 </div>
 <div class="section" id="launch-clamp">
-<h3><a class="toc-backref" href="#id41">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-LaunchClamp">
 <code class="descname">class LaunchClamp</code><a class="headerlink" href="#class-LaunchClamp" title="Permalink to this definition">¶</a></dt>
@@ -1539,7 +1745,7 @@ void <code class="descname">Release</code> <span class="sig-paren">(</span><span
 
 </div>
 <div class="section" id="light">
-<h3><a class="toc-backref" href="#id42">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Light">
 <code class="descname">class Light</code><a class="headerlink" href="#class-Light" title="Permalink to this definition">¶</a></dt>
@@ -1566,7 +1772,7 @@ void <code class="descname">Release</code> <span class="sig-paren">(</span><span
 
 </div>
 <div class="section" id="parachute">
-<h3><a class="toc-backref" href="#id43">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Parachute">
 <code class="descname">class Parachute</code><a class="headerlink" href="#class-Parachute" title="Permalink to this definition">¶</a></dt>
@@ -1649,7 +1855,7 @@ but is not fully deployed yet.</p>
 
 </div>
 <div class="section" id="radiator">
-<h3><a class="toc-backref" href="#id44">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Radiator">
 <code class="descname">class Radiator</code><a class="headerlink" href="#class-Radiator" title="Permalink to this definition">¶</a></dt>
@@ -1661,15 +1867,26 @@ but is not fully deployed yet.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Radiator.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Radiator.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the radiator is deployable.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Radiator.Deployed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Radiator.Deployed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the radiator is extended.</p>
+<dd><p>For a deployable radiator, <code class="docutils literal"><span class="pre">true</span></code> if the radiator is extended.
+If the radiator is not deployable, this is always <code class="docutils literal"><span class="pre">true</span></code>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Radiator.State">
 <a class="reference internal" href="#enum-RadiatorState" title="RadiatorState enum">RadiatorState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Radiator.State" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the radiator.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A fixed radiator is always <a class="reference internal" href="#value-RadiatorState.Extended" title="RadiatorState.Extended value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">RadiatorState.Extended</span></code></a>.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1712,7 +1929,7 @@ but is not fully deployed yet.</p>
 
 </div>
 <div class="section" id="resource-converter">
-<h3><a class="toc-backref" href="#id45">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-ResourceConverter">
 <code class="descname">class ResourceConverter</code><a class="headerlink" href="#class-ResourceConverter" title="Permalink to this definition">¶</a></dt>
@@ -1913,7 +2130,7 @@ In this case, check <a class="reference internal" href="#method-ResourceConverte
 
 </div>
 <div class="section" id="resource-harvester">
-<h3><a class="toc-backref" href="#id46">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id52">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-ResourceHarvester">
 <code class="descname">class ResourceHarvester</code><a class="headerlink" href="#class-ResourceHarvester" title="Permalink to this definition">¶</a></dt>
@@ -2006,7 +2223,7 @@ In this case, check <a class="reference internal" href="#method-ResourceConverte
 
 </div>
 <div class="section" id="reaction-wheel">
-<h3><a class="toc-backref" href="#id47">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id53">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-ReactionWheel">
 <code class="descname">class ReactionWheel</code><a class="headerlink" href="#class-ReactionWheel" title="Permalink to this definition">¶</a></dt>
@@ -2051,7 +2268,7 @@ In this case, check <a class="reference internal" href="#method-ResourceConverte
 
 </div>
 <div class="section" id="sensor">
-<h3><a class="toc-backref" href="#id48">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-Sensor">
 <code class="descname">class Sensor</code><a class="headerlink" href="#class-Sensor" title="Permalink to this definition">¶</a></dt>
@@ -2084,7 +2301,7 @@ In this case, check <a class="reference internal" href="#method-ResourceConverte
 
 </div>
 <div class="section" id="solar-panel">
-<h3><a class="toc-backref" href="#id49">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id55">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-SolarPanel">
 <code class="descname">class SolarPanel</code><a class="headerlink" href="#class-SolarPanel" title="Permalink to this definition">¶</a></dt>
@@ -2162,7 +2379,7 @@ as a percentage. A value between 0 and 1.</p>
 </div>
 </div>
 <div class="section" id="trees-of-parts">
-<span id="csharp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id31">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id34">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
 <p>Vessels in KSP are comprised of a number of parts, connected to one another in a
 <em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
 tree of parts in Figure 2. The craft file for this example can also be
@@ -2179,7 +2396,7 @@ the parent part to the child part.</span></p>
 <div class="clearer container">
 </div>
 <div class="section" id="traversing-the-tree">
-<h3><a class="toc-backref" href="#id32">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
 <p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#property-Parts.Root" title="Parts.Root property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Parts.Root</span></code></a>,
 <a class="reference internal" href="#property-Part.Parent" title="Part.Parent property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Parent</span></code></a> and <a class="reference internal" href="#property-Part.Children" title="Part.Children property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Children</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
@@ -2245,7 +2462,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="attachment-modes">
-<span id="csharp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id33">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<span id="csharp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id36">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
 <p>Parts can be attached to other parts either <em>radially</em> (on the side of the
 parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
 <p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
@@ -2313,7 +2530,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="fuel-lines">
-<span id="csharp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id34">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id37">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8" style="width: 200px">
 <img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
@@ -2342,7 +2559,7 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
 <div class="section" id="staging">
-<span id="csharp-api-parts-staging"></span><h2><a class="toc-backref" href="#id35">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-staging"></span><h2><a class="toc-backref" href="#id38">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id10" style="width: 340px">
 <img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
@@ -2413,7 +2630,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.2',
+            VERSION:'0.2.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
