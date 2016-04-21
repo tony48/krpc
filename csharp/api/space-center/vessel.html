@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.2.3 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -104,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -225,13 +226,6 @@ examples of getting the <a class="reference internal" href="../../../tutorials/r
 </dd></dl>
 
 <dl class="property">
-<dt id="property-Vessel.Target">
-<a class="reference internal" href="#class-Vessel" title="Vessel class">Vessel</a> <code class="descname">Target</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-Vessel.Target" title="Permalink to this definition">¶</a></dt>
-<dd><p>The target vessel. <code class="docutils literal"><span class="pre">null</span></code> if there is no target. When
-setting the target, the target cannot be the current vessel.</p>
-</dd></dl>
-
-<dl class="property">
 <dt id="property-Vessel.Orbit">
 <a class="reference internal" href="orbit.html#class-Orbit" title="Orbit class">Orbit</a> <code class="descname">Orbit</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.Orbit" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current orbit of the vessel.</p>
@@ -295,7 +289,7 @@ discussion on <a class="reference internal" href="parts.html#csharp-api-parts-st
 <dd><p>A <a class="reference internal" href="comms.html#class-Comms" title="Comms class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Comms</span></code></a> object, that can used to interact with RemoteTech for this vessel.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> to be installed.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> to be installed.</p>
 </div>
 </dd></dl>
 
@@ -366,6 +360,29 @@ This is computed using the formula
 </dd></dl>
 
 <dl class="property">
+<dt id="property-Vessel.MomentOfInertia">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">MomentOfInertia</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.MomentOfInertia" title="Permalink to this definition">¶</a></dt>
+<dd><p>The moment of inertia of the vessel in <span class="math">\(kg.m^2\)</span> around its center of mass
+in vessels reference frame (<a class="reference internal" href="#property-Vessel.ReferenceFrame" title="Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>).</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.InertiaTensor">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">InertiaTensor</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.InertiaTensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inertia tensor of the vessel in the vessels reference frame (<a class="reference internal" href="#property-Vessel.ReferenceFrame" title="Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>).
+Returns the 3x3 matrix as a list of elements, in row-major order.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-Vessel.ReactionWheelTorque">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">ReactionWheelTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.ReactionWheelTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active and powered reaction wheels can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="#property-Vessel.ReferenceFrame" title="Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-Vessel.ReferenceFrame">
 <a class="reference internal" href="reference-frame.html#class-ReferenceFrame" title="ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Vessel.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessel.</p>
@@ -416,14 +433,14 @@ of the body being orbited.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the north and up directions on the surface of the body.</li>
-<li>The x-axis points in the <a class="reference external" href="http://en.wikipedia.org/wiki/Zenith">zenith</a>
+<li>The x-axis points in the <a class="reference external" href="https://en.wikipedia.org/wiki/Zenith">zenith</a>
 direction (upwards, normal to the body being orbited, from the center of the body towards the center of
 mass of the vessel).</li>
 <li>The y-axis points northwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
 surface of the body &#8211; the direction in which a compass would point when on the surface).</li>
 <li>The z-axis points eastwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
 surface of the body &#8211; east on a compass when on the surface).</li>
 </ul>
 <div class="admonition note">
@@ -447,7 +464,7 @@ vector of the vessel relative to the surface of the body being orbited.</p>
 <li>The y-axis points in the direction of the vessel&#8217;s velocity vector,
 relative to the surface of the body being orbited.</li>
 <li>The z-axis is in the plane of the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
 <li>The x-axis is orthogonal to the other two axes.</li>
 </ul>
 <div class="figure align-center" id="id9">
@@ -675,7 +692,7 @@ axis of rotation (using the right hand rule).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

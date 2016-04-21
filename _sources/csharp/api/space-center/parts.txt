@@ -88,6 +88,10 @@ Parts
 
       A list of all cargo bays in the vessel.
 
+   .. property:: System.Collections.Generic.IList<ControlSurface> ControlSurfaces { get; }
+
+      A list of all control surfaces in the vessel.
+
    .. property:: System.Collections.Generic.IList<Decoupler> Decouplers { get; }
 
       A list of all decouplers in the vessel.
@@ -106,6 +110,12 @@ Parts
    .. property:: System.Collections.Generic.IList<Engine> Engines { get; }
 
       A list of all engines in the vessel.
+
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
    .. property:: System.Collections.Generic.IList<Fairing> Fairings { get; }
 
@@ -138,6 +148,10 @@ Parts
    .. property:: System.Collections.Generic.IList<Radiator> Radiators { get; }
 
       A list of all radiators in the vessel.
+
+   .. property:: System.Collections.Generic.IList<RCS> RCS { get; }
+
+      A list of all RCS blocks/thrusters in the vessel.
 
    .. property:: System.Collections.Generic.IList<ReactionWheel> ReactionWheels { get; }
 
@@ -247,6 +261,14 @@ Part
 
       The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
 
+   .. property:: bool Shielded { get; }
+
+      Whether the part is shielded from the exterior of the vessel, for example by a fairing.
+
+   .. property:: float DynamicPressure { get; }
+
+      The dynamic pressure acting on the part, in Pascals.
+
    .. property:: double ImpactTolerance { get; }
 
       The impact tolerance of the part, in meters per second.
@@ -345,6 +367,10 @@ Part
 
       A :type:`CargoBay` if the part is a cargo bay, otherwise ``null``.
 
+   .. property:: ControlSurface ControlSurface { get; }
+
+      A :type:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``null``.
+
    .. property:: Decoupler Decoupler { get; }
 
       A :type:`Decoupler` if the part is a decoupler, otherwise ``null``.
@@ -365,9 +391,16 @@ Part
 
       An :type:`Intake` if the part is an intake, otherwise ``null``.
 
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters and jet engines.
+         For RCS thrusters see :type:`RCS`.
+
    .. property:: LandingGear LandingGear { get; }
 
-      A :type:`LandingGear` if the part is a landing gear , otherwise ``null``.
+      A :type:`LandingGear` if the part is a landing gear, otherwise ``null``.
 
    .. property:: LandingLeg LandingLeg { get; }
 
@@ -388,6 +421,10 @@ Part
    .. property:: Radiator Radiator { get; }
 
       A :type:`Radiator` if the part is a radiator, otherwise ``null``.
+
+   .. property:: RCS RCS { get; }
+
+      A :type:`RCS` if the part is an RCS block/thruster, otherwise ``null``.
 
    .. property:: ReactionWheel ReactionWheel { get; }
 
@@ -415,6 +452,22 @@ Part
 
       :parameters:
 
+
+
+
+      .. note::
+
+         This is a fixed position in the part, defined by the parts model.
+         It s not necessarily the same as the parts center of mass.
+         Use :meth:`Part.CenterOfMass` to get the parts center of mass.
+
+   .. method:: System.Tuple<double,double,double> CenterOfMass(ReferenceFrame referenceFrame)
+
+      The position of the parts center of mass in the given reference frame.
+      If the part is physicsless, this is equivalent to :meth:`Part.Position`.
+
+      :parameters:
+
    .. method:: System.Tuple<double,double,double> Direction(ReferenceFrame referenceFrame)
 
       The direction of the part in the given reference frame.
@@ -433,11 +486,21 @@ Part
 
       :parameters:
 
+   .. property:: System.Tuple<double,double,double> MomentOfInertia { get; }
+
+      The moment of inertia of the part in :math:`kg.m^2` around its center of mass
+      in the parts reference frame (:type:`ReferenceFrame`).
+
+   .. property:: System.Collections.Generic.IList<double> InertiaTensor { get; }
+
+      The inertia tensor of the part in the parts reference frame (:type:`ReferenceFrame`).
+      Returns the 3x3 matrix as a list of elements, in row-major order.
+
    .. property:: ReferenceFrame ReferenceFrame { get; }
 
-      The reference frame that is fixed relative to this part.
+      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
 
-      * The origin is at the position of the part.
+      * The origin is at the position of the part, as returned by :meth:`Part.Position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -451,6 +514,20 @@ Part
          :align: center
 
          Mk1 Command Pod reference frame origin and axes
+
+   .. property:: ReferenceFrame CenterOfMassReferenceFrame { get; }
+
+      The reference frame that is fixed relative to this part, and centered on its center of mass.
+
+      * The origin is at the center of mass of the part, as returned by :meth:`Part.CenterOfMass`.
+      * The axes rotate with the part.
+      * The x, y and z axis directions depend on the design of the part.
+
+
+      .. note::
+
+         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+         for the docking port, returned by :prop:`DockingPort.ReferenceFrame`.
 
 
 
@@ -589,6 +666,45 @@ Cargo Bay
 
 
 
+Control Surface
+^^^^^^^^^^^^^^^
+
+
+.. class:: ControlSurface
+
+   Obtained by calling :prop:`Part.ControlSurface`.
+   Provides functionality to interact with aerodynamic control surfaces.
+
+   .. property:: Part Part { get; }
+
+      The part object for this control surface.
+
+   .. property:: bool PitchEnabled { get; set; }
+
+      Whether the control surface has pitch control enabled.
+
+   .. property:: bool YawEnabled { get; set; }
+
+      Whether the control surface has yaw control enabled.
+
+   .. property:: bool RollEnabled { get; set; }
+
+      Whether the control surface has roll control enabled.
+
+   .. property:: bool Inverted { get; set; }
+
+      Whether the control surface movement is inverted.
+
+   .. property:: bool Deployed { get; set; }
+
+      Whether the control surface has been fully deployed.
+
+   .. property:: float SurfaceArea { get; }
+
+      Surface area of the control surface in :math:`m^2`.
+
+
+
 Decoupler
 ^^^^^^^^^
 
@@ -601,9 +717,10 @@ Decoupler
 
       The part object for this decoupler.
 
-   .. method:: void Decouple()
+   .. method:: Vessel Decouple()
 
-      Fires the decoupler. Has no effect if the decoupler has already fired.
+      Fires the decoupler. Returns the new vessel created when the decoupler fires.
+      Throws an exception if the decoupler has already fired.
 
    .. property:: bool Decoupled { get; }
 
@@ -631,7 +748,7 @@ Docking Port
 
       The port name of the docking port. This is the name of the port that can be set
       in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
+      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
       mod is installed. If this mod is not installed, returns the title of the part
       (:prop:`Part.Title`).
 
@@ -646,10 +763,15 @@ Docking Port
 
    .. method:: Vessel Undock()
 
-      Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:prop:`SpaceCenter.ActiveVessel`).
-      This method can be called for either docking port in a docked pair - both calls will have the same
-      effect. Returns ``null`` if the docking port is not docked to anything.
+      Undocks the docking port and returns the new :type:`Vessel` that is created.
+      This method can be called for either docking port in a docked pair.
+      Throws an exception if the docking port is not docked to anything.
+
+
+
+      .. note::
+
+         After undocking, the active vessel may change. See :prop:`SpaceCenter.ActiveVessel`.
 
    .. property:: float ReengageDistance { get; }
 
@@ -763,6 +885,12 @@ Engine
 
    Obtained by calling :prop:`Part.Engine`.
 
+   .. note::
+
+      Provides functionality to interact with engines of various types,
+      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
+      For RCS thrusters :prop:`Part.RCS`.
+
    .. property:: Part Part { get; }
 
       The part object for this engine.
@@ -786,7 +914,7 @@ Engine
 
    .. property:: float MaxThrust { get; }
 
-      Gets the maximum amount of thrust that can be produced by the engine, in
+      The maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
       activated, :prop:`Engine.ThrustLimit` is set to 100% and the main vessel's
       throttle is set to 100%.
@@ -803,6 +931,18 @@ Engine
       The thrust limiter of the engine. A value between 0 and 1. Setting this
       attribute may have no effect, for example the thrust limit for a solid
       rocket booster cannot be changed in flight.
+
+   .. property:: System.Collections.Generic.IList<Thruster> Thrusters { get; }
+
+      The components of the engine that generate thrust.
+
+
+      .. note::
+
+         For example, this corresponds to the rocket nozzel on a solid rocket booster,
+         or the individual nozzels on a RAPIER engine.
+         The overall thrust produced by the engine, as reported by :prop:`Engine.AvailableThrust`,
+         :prop:`Engine.MaxThrust` and others, is the sum of the thrust generated by each thruster.
 
    .. property:: float SpecificImpulse { get; }
 
@@ -828,7 +968,12 @@ Engine
 
    .. property:: bool HasFuel { get; }
 
-      Whether the engine has run out of fuel (or flamed out).
+      Whether the engine has any fuel available.
+
+
+      .. note::
+
+         The engine must be activated for this property to update correctly.
 
    .. property:: float Throttle { get; }
 
@@ -851,7 +996,7 @@ Engine
 
    .. property:: bool CanShutdown { get; }
 
-      Gets whether the engine can be shutdown once activated. For example, this is
+      Whether the engine can be shutdown once activated. For example, this is
       ``true`` for liquid fueled rockets and ``false`` for solid rocket boosters.
 
    .. property:: bool HasModes { get; }
@@ -877,7 +1022,7 @@ Engine
 
    .. property:: bool Gimballed { get; }
 
-      Whether the engine nozzle is gimballed, i.e. can provide a turning force.
+      Whether the engine is gimballed.
 
    .. property:: float GimbalRange { get; }
 
@@ -1010,6 +1155,11 @@ Landing Gear
       Landing gear is being retracted.
 
 
+   .. value:: Broken
+
+      Landing gear is broken.
+
+
 
 Landing Leg
 ^^^^^^^^^^^
@@ -1030,6 +1180,12 @@ Landing Leg
    .. property:: bool Deployed { get; set; }
 
       Whether the landing leg is deployed.
+
+
+      .. note::
+
+         Fixed landing legs are always deployed.
+         Returns an error if you try to deploy fixed landing gear.
 
 
 
@@ -1061,11 +1217,6 @@ Landing Leg
    .. value:: Broken
 
       Landing leg is broken.
-
-
-   .. value:: Repairing
-
-      Landing leg is being repaired.
 
 
 
@@ -1452,17 +1603,104 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. property:: float PitchTorque { get; }
+   .. property:: System.Tuple<double,double,double> Torque { get; }
 
-      The torque in the pitch axis, in Newton meters.
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
+      Returns zero if the reaction wheel is inactive or broken.
 
-   .. property:: float YawTorque { get; }
 
-      The torque in the yaw axis, in Newton meters.
 
-   .. property:: float RollTorque { get; }
+RCS
+^^^
 
-      The torque in the roll axis, in Newton meters.
+
+.. class:: RCS
+
+   Obtained by calling :prop:`Part.RCS`.
+   Provides functionality to interact with RCS blocks and thrusters.
+
+   .. property:: Part Part { get; }
+
+      The part object for this RCS.
+
+   .. property:: bool Active { get; }
+
+      Whether the RCS thrusters are active.
+      An RCS thruster is inactive if the RCS action group is disabled (:prop:`Control.RCS`),
+      the RCS thruster itself is not enabled (:prop:`RCS.Enabled`) or
+      it is covered by a fairing (:prop:`Part.Shielded`).
+
+   .. property:: bool Enabled { get; set; }
+
+      Whether the RCS thrusters are enabled.
+
+   .. property:: bool PitchEnabled { get; set; }
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. property:: bool YawEnabled { get; set; }
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. property:: bool RollEnabled { get; set; }
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. property:: bool ForwardEnabled { get; set; }
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. property:: bool UpEnabled { get; set; }
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. property:: bool RightEnabled { get; set; }
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. property:: float MaxThrust { get; }
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+
+   .. property:: float MaxVacuumThrust { get; }
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+
+   .. property:: System.Collections.Generic.IList<Thruster> Thrusters { get; }
+
+      A list of thrusters, one of each nozzel in the RCS part.
+
+   .. property:: float SpecificImpulse { get; }
+
+      The current specific impulse of the RCS, in seconds. Returns zero
+      if the RCS is not active.
+
+   .. property:: float VacuumSpecificImpulse { get; }
+
+      The vacuum specific impulse of the RCS, in seconds.
+
+   .. property:: float KerbinSeaLevelSpecificImpulse { get; }
+
+      The specific impulse of the RCS at sea level on Kerbin, in seconds.
+
+   .. property:: System.Collections.Generic.IList<string> Propellants { get; }
+
+      The names of resources that the RCS consumes.
+
+   .. property:: System.Collections.Generic.IDictionary<string,float> PropellantRatios { get; }
+
+      The ratios of resources that the RCS consumes. A dictionary mapping resource names
+      to the ratios at which they are consumed by the RCS.
+
+   .. property:: bool HasFuel { get; }
+
+      Whether the RCS has fuel available.
+
+
+      .. note::
+
+         The RCS thruster must be activated for this property to update correctly.
 
 
 
@@ -1556,6 +1794,90 @@ Solar Panel
 
 
 .. _csharp-api-parts-trees-of-parts:
+
+Thruster
+^^^^^^^^
+
+
+.. class:: Thruster
+
+   The component of an :type:`Engine` or :type:`RCS` part that generates thrust.
+   Can obtained by calling :prop:`Engine.Thrusters` or :prop:`RCS.Thrusters`.
+
+   .. note::
+
+      Engines can consist of multiple thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+
+   .. property:: Part Part { get; }
+
+      The :type:`Part` that contains this thruster.
+
+   .. method:: System.Tuple<double,double,double> ThrustPosition(ReferenceFrame referenceFrame)
+
+      The position at which the thruster generates thrust, in the given reference frame.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :parameters:
+
+   .. method:: System.Tuple<double,double,double> ThrustDirection(ReferenceFrame referenceFrame)
+
+      The direction of the force generated by the thruster, in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :parameters:
+
+   .. property:: ReferenceFrame ThrustReferenceFrame { get; }
+
+      A reference frame that is fixed relative to the thruster and orientated with
+      its thrust direction (:meth:`Thruster.ThrustDirection`).
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      * The origin is at the position of thrust for this thruster (:meth:`Thruster.ThrustPosition`).
+      * The axes rotate with the thrust direction.
+        This is the direction in which the thruster expels propellant, including any gimballing.
+      * The y-axis points along the thrust direction.
+      * The x-axis and z-axis are perpendicular to the thrust direction.
+
+   .. property:: bool Gimballed { get; }
+
+      Whether the thruster is gimballed.
+
+   .. method:: System.Tuple<double,double,double> GimbalPosition(ReferenceFrame referenceFrame)
+
+      Position around which the gimbal pivots.
+
+      :parameters:
+
+   .. property:: System.Tuple<double,double,double> GimbalAngle { get; }
+
+      The current gimbal angle in the pitch, roll and yaw axes.
+
+   .. method:: System.Tuple<double,double,double> InitialThrustPosition(ReferenceFrame referenceFrame)
+
+      The position at which the thruster generates thrust, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+
+      :parameters:
+
+
+
+
+      .. note::
+
+         This position can move when the gimbal rotates. This is because the thrust position and
+         gimbal position are not necessarily the same.
+
+   .. method:: System.Tuple<double,double,double> InitialThrustDirection(ReferenceFrame referenceFrame)
+
+      The direction of the force generated by the thruster, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+
+      :parameters:
+
+
 
 Trees of Parts
 --------------

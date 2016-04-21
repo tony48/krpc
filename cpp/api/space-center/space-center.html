@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.2.3 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -278,6 +279,62 @@ keyed by the name of the body.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4saveENSt6stringE">
+<span id="krpc::services::SpaceCenter::save__ss"></span>void <code class="descclassname"></code><code class="descname">save</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4saveENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the game with a given name.
+This will create a save file called <code class="docutils literal"><span class="pre">name.sfs</span></code> in the folder of the current save game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4loadENSt6stringE">
+<span id="krpc::services::SpaceCenter::load__ss"></span>void <code class="descclassname"></code><code class="descname">load</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4loadENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the game with the given name.
+This will create a load a save file called <code class="docutils literal"><span class="pre">name.sfs</span></code> from the folder of the current save game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9quicksaveEv">
+<span id="krpc::services::SpaceCenter::quicksave"></span>void <code class="descclassname"></code><code class="descname">quicksave</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9quicksaveEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a quicksave.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4saveENSt6stringE" title="krpc::services::SpaceCenter::save"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::save()</span></code></a> with the name &#8220;quicksave&#8221;.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9quickloadEv">
+<span id="krpc::services::SpaceCenter::quickload"></span>void <code class="descclassname"></code><code class="descname">quickload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9quickloadEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a quicksave.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4loadENSt6stringE" title="krpc::services::SpaceCenter::load"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::load()</span></code></a> with the name &#8220;quicksave&#8221;.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6cameraEv">
+<span id="krpc::services::SpaceCenter::camera"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="camera.html#_CPPv2N4krpc8services11SpaceCenter6CameraE" title="krpc::services::SpaceCenter::Camera">Camera</a> <code class="descclassname"></code><code class="descname">camera</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6cameraEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that can be used to control the camera.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter2utEv">
 <span id="krpc::services::SpaceCenter::ut"></span>double <code class="descclassname"></code><code class="descname">ut</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter2utEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current universal time in seconds.</p>
@@ -286,7 +343,7 @@ keyed by the name of the body.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter1gEv">
 <span id="krpc::services::SpaceCenter::g"></span>float <code class="descclassname"></code><code class="descname">g</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter1gEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The value of the <a class="reference external" href="http://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>
+<dd><p>The value of the <a class="reference external" href="https://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>
 G in <span class="math">\(N(m/kg)^2\)</span>.</p>
 </dd></dl>
 
@@ -495,13 +552,13 @@ relative angular velocity of the reference frames into account.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter13far_availableEv">
 <span id="krpc::services::SpaceCenter::far_available"></span>bool <code class="descclassname"></code><code class="descname">far_available</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13far_availableEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter21remote_tech_availableEv">
 <span id="krpc::services::SpaceCenter::remote_tech_available"></span>bool <code class="descclassname"></code><code class="descname">remote_tech_available</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter21remote_tech_availableEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> is installed.</p>
+<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> is installed.</p>
 </dd></dl>
 
 <dl class="function">
@@ -619,7 +676,7 @@ relative angular velocity of the reference frames into account.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

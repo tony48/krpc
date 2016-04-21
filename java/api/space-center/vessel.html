@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.2.3 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -235,18 +236,6 @@ examples of getting the <a class="reference internal" href="../../../tutorials/r
 </dd></dl>
 
 <dl class="method">
-<dt id="Vessel.getTarget()">
- <a class="reference internal" href="#Vessel" title="Vessel">Vessel</a> <code class="descname">getTarget</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getTarget()" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="Vessel.setTarget(Vessel)">
- void <code class="descname">setTarget</code><span class="sig-paren">(</span><a class="reference internal" href="#Vessel" title="Vessel">Vessel</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.setTarget(Vessel)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The target vessel. <code class="docutils literal"><span class="pre">null</span></code> if there is no target. When
-setting the target, the target cannot be the current vessel.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="Vessel.getOrbit()">
  <a class="reference internal" href="orbit.html#Orbit" title="Orbit">Orbit</a> <code class="descname">getOrbit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getOrbit()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current orbit of the vessel.</p>
@@ -310,7 +299,7 @@ discussion on <a class="reference internal" href="parts.html#java-api-parts-stag
 <dd><p>A <a class="reference internal" href="comms.html#Comms" title="Comms"><code class="xref java java-type docutils literal"><span class="pre">Comms</span></code></a> object, that can used to interact with RemoteTech for this vessel.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> to be installed.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> to be installed.</p>
 </div>
 </dd></dl>
 
@@ -381,6 +370,29 @@ This is computed using the formula
 </dd></dl>
 
 <dl class="method">
+<dt id="Vessel.getMomentOfInertia()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getMomentOfInertia</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getMomentOfInertia()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The moment of inertia of the vessel in <span class="math">\(kg.m^2\)</span> around its center of mass
+in vessels reference frame (<a class="reference internal" href="#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Vessel.getInertiaTensor()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getInertiaTensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getInertiaTensor()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inertia tensor of the vessel in the vessels reference frame (<a class="reference internal" href="#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>).
+Returns the 3x3 matrix as a list of elements, in row-major order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Vessel.getReactionWheelTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getReactionWheelTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getReactionWheelTorque()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active and powered reaction wheels can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="Vessel.getReferenceFrame()">
  <a class="reference internal" href="reference-frame.html#ReferenceFrame" title="ReferenceFrame">ReferenceFrame</a> <code class="descname">getReferenceFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Vessel.getReferenceFrame()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessel.</p>
@@ -431,14 +443,14 @@ of the body being orbited.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the north and up directions on the surface of the body.</li>
-<li>The x-axis points in the <a class="reference external" href="http://en.wikipedia.org/wiki/Zenith">zenith</a>
+<li>The x-axis points in the <a class="reference external" href="https://en.wikipedia.org/wiki/Zenith">zenith</a>
 direction (upwards, normal to the body being orbited, from the center of the body towards the center of
 mass of the vessel).</li>
 <li>The y-axis points northwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
 surface of the body &#8211; the direction in which a compass would point when on the surface).</li>
 <li>The z-axis points eastwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
 surface of the body &#8211; east on a compass when on the surface).</li>
 </ul>
 <div class="admonition note">
@@ -462,7 +474,7 @@ vector of the vessel relative to the surface of the body being orbited.</p>
 <li>The y-axis points in the direction of the vessel&#8217;s velocity vector,
 relative to the surface of the body being orbited.</li>
 <li>The z-axis is in the plane of the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
 <li>The x-axis is orthogonal to the other two axes.</li>
 </ul>
 <div class="figure align-center" id="id9">
@@ -705,7 +717,7 @@ public <a class="reference internal" href="#VesselSituation" title="VesselSituat
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

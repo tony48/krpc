@@ -12,6 +12,17 @@ Resources
    :meth:`Vessel.resourcesInDecoupleStage(int, boolean)` or
    :meth:`Part.getResources()`.
 
+   .. method:: java.util.List<Resource> getAll()
+
+
+      All the individual resources that can be stored.
+
+   .. method:: java.util.List<Resource> withResource(String name)
+
+      All the individual resources with the given name that can be stored.
+
+      :param String name:
+
    .. method:: java.util.List<String> getNames()
 
 
@@ -23,15 +34,15 @@ Resources
 
       :param String name: The name of the resource.
 
-   .. method:: float max(String name)
-
-      Returns the amount of a resource that can be stored.
-
-      :param String name: The name of the resource.
-
    .. method:: float amount(String name)
 
       Returns the amount of a resource that is currently stored.
+
+      :param String name: The name of the resource.
+
+   .. method:: float max(String name)
+
+      Returns the amount of a resource that can be stored.
 
       :param String name: The name of the resource.
 
@@ -46,6 +57,77 @@ Resources
       Returns the flow mode of a resource.
 
       :param String name: The name of the resource.
+
+
+
+.. type:: public class Resource
+
+   A resource stored within a part.
+
+   .. method:: String getName()
+
+
+      The name of the resource.
+
+   .. method:: Part getPart()
+
+
+      The part containing the resource.
+
+   .. method:: float getAmount()
+
+
+      The amount of the resource that is currently stored in the part.
+
+   .. method:: float getMax()
+
+
+      The total amount of the resource that can be stored in the part.
+
+   .. method:: float getDensity()
+
+
+      The density of the resource, in :math:`kg/l`.
+
+   .. method:: ResourceFlowMode getFlowMode()
+
+
+      The flow mode of the resource.
+
+   .. method:: boolean getEnabled()
+
+   .. method:: void setEnabled(boolean value)
+
+      Whether use of this resource is enabled.
+
+
+
+.. type:: public class ResourceTransfer
+
+   Transfer resources between parts.
+
+   .. method:: ResourceTransfer start(Part fromPart, Part toPart, String resource, float maxAmount)
+
+      Start transferring a resource transfer between a pair of parts. The transfer will move at most
+      *maxAmount* units of the resource, depending on how much of the resource is
+      available in the source part and how much storage is available in the destination part.
+      Use :meth:`ResourceTransfer.getComplete()` to check if the transfer is complete.
+      Use :meth:`ResourceTransfer.getAmount()` to see how much of the resource has been transferred.
+
+      :param Part fromPart: The part to transfer to.
+      :param Part toPart: The part to transfer from.
+      :param String resource: The name of the resource to transfer.
+      :param float maxAmount: The maximum amount of resource to transfer.
+
+   .. method:: float getAmount()
+
+
+      The amount of the resource that has been transferred.
+
+   .. method:: boolean getComplete()
+
+
+      Whether the transfer has completed.
 
 
 

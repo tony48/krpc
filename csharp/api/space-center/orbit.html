@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Orbit &mdash; kRPC 0.2.3 documentation</title>
+  <title>Orbit &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Control" href="control.html"/>
         <link rel="prev" title="Flight" href="flight.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -104,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -275,50 +276,51 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <dl class="property">
 <dt id="property-Orbit.Eccentricity">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Eccentricity</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.Eccentricity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.Inclination">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Inclination</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.Inclination" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit, in radians.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit,
+in radians.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.LongitudeOfAscendingNode">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">LongitudeOfAscendingNode</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.LongitudeOfAscendingNode" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Longitude_of_the_ascending_node">longitude of the ascending node</a>, in radians.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Longitude_of_the_ascending_node">longitude of the ascending node</a>, in radians.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.ArgumentOfPeriapsis">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">ArgumentOfPeriapsis</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.ArgumentOfPeriapsis" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Argument_of_periapsis">argument of periapsis</a>, in radians.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Argument_of_periapsis">argument of periapsis</a>, in radians.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.MeanAnomalyAtEpoch">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">MeanAnomalyAtEpoch</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.MeanAnomalyAtEpoch" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.Epoch">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Epoch</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.Epoch" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time since the epoch (the point at which the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.MeanAnomaly">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">MeanAnomaly</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.MeanAnomaly" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Orbit.EccentricAnomaly">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">EccentricAnomaly</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Orbit.EccentricAnomaly" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Eccentric_anomaly">eccentric anomaly</a>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Eccentric_anomaly">eccentric anomaly</a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -410,7 +412,7 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

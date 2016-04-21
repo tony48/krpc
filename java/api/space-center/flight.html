@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flight &mdash; kRPC 0.2.3 documentation</title>
+  <title>Flight &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Orbit" href="orbit.html"/>
         <link rel="prev" title="CelestialBody" href="celestial-body.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -188,19 +189,22 @@ passed to that method.</p>
 <dl class="method">
 <dt id="Flight.getMeanAltitude()">
  double <code class="descname">getMeanAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getMeanAltitude()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude above sea level, in meters.</p>
+<dd><p>The altitude above sea level, in meters.
+Measured from the center of mass of the vessel.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getSurfaceAltitude()">
  double <code class="descname">getSurfaceAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getSurfaceAltitude()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude above the surface of the body or sea level, whichever is closer, in meters.</p>
+<dd><p>The altitude above the surface of the body or sea level, whichever is closer, in meters.
+Measured from the center of mass of the vessel.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getBedrockAltitude()">
  double <code class="descname">getBedrockAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getBedrockAltitude()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.</p>
+<dd><p>The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
+Measured from the center of mass of the vessel.</p>
 </dd></dl>
 
 <dl class="method">
@@ -213,13 +217,13 @@ and is negative when the vessel is over the sea.</p>
 <dl class="method">
 <dt id="Flight.getLatitude()">
  double <code class="descname">getLatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLatitude()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Latitude">latitude</a> of the vessel for the body being orbited, in degrees.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Latitude">latitude</a> of the vessel for the body being orbited, in degrees.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getLongitude()">
  double <code class="descname">getLongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLongitude()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Longitude">longitude</a> of the vessel for the body being orbited, in degrees.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Longitude">longitude</a> of the vessel for the body being orbited, in degrees.</p>
 </dd></dl>
 
 <dl class="method">
@@ -334,7 +338,7 @@ It is commonly denoted as <span class="math">\(Q\)</span>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> if it is installed.</p>
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
 </div>
 </dd></dl>
 
@@ -345,7 +349,7 @@ It is commonly denoted as <span class="math">\(Q\)</span>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
@@ -357,31 +361,31 @@ magnitude equal to the strength of the force in Newtons.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getLift()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getLift</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getLift()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
 as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getDrag()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDrag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getDrag()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
 as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
@@ -391,7 +395,7 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
 <dd><p>The speed of sound, in the atmosphere around the vessel, in <span class="math">\(m/s\)</span>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
@@ -401,17 +405,17 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
 <dd><p>The speed of the vessel, in multiples of the speed of sound.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getEquivalentAirSpeed()">
  float <code class="descname">getEquivalentAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getEquivalentAirSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> is installed.</p>
+<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
 </div>
 </dd></dl>
 
@@ -423,7 +427,7 @@ This is the speed at which the drag forces cancel out the force of gravity.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a> if it is installed.</p>
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
 </div>
 </dd></dl>
 
@@ -442,14 +446,14 @@ This is the speed at which the drag forces cancel out the force of gravity.</p>
 <dl class="method">
 <dt id="Flight.getTotalAirTemperature()">
  float <code class="descname">getTotalAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getTotalAirTemperature()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a> of the atmosphere
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a> of the atmosphere
 around the vessel, in Kelvin. This temperature includes the <a class="reference internal" href="#Flight.getStaticAirTemperature()" title="Flight.getStaticAirTemperature()"><code class="xref java java-meth docutils literal"><span class="pre">Flight.getStaticAirTemperature()</span></code></a> and the vessel&#8217;s kinetic energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getStaticAirTemperature()">
  float <code class="descname">getStaticAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getStaticAirTemperature()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the
 atmosphere around the vessel, in Kelvin.</p>
 </dd></dl>
 
@@ -460,7 +464,7 @@ atmosphere around the vessel, in Kelvin.</p>
 and a value greater than 0.5 indicates a large-scale stall.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
 </dd></dl>
 
@@ -471,7 +475,7 @@ and a value greater than 0.5 indicates a large-scale stall.</p>
 air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
 </dd></dl>
 
@@ -481,17 +485,17 @@ air density and wing area.</p>
 <dd><p>Gets the coefficient of lift. This is the amount of lift produced by the vessel, and depends on air speed, air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="Flight.getBallisticCoefficient()">
  float <code class="descname">getBallisticCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Flight.getBallisticCoefficient()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the <a class="reference external" href="http://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
+<dd><p>Gets the <a class="reference external" href="https://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
 </dd></dl>
 
@@ -503,7 +507,7 @@ efficiency of the engines, with a lower value indicating a more efficient vessel
 number of Newtons of fuel that are burned, per hour, to product one newton of thrust.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/20451">Ferram Aerospace Research</a>.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
 </dd></dl>
 
@@ -552,7 +556,7 @@ number of Newtons of fuel that are burned, per hour, to product one newton of th
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

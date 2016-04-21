@@ -65,13 +65,51 @@ SpaceCenter
 
        * **name** -- Name of the vessel's craft file.
 
+   .. function:: void save(std::string name)
+
+      Save the game with a given name.
+      This will create a save file called ``name.sfs`` in the folder of the current save game.
+
+      :Parameters:
+
+   .. function:: void load(std::string name)
+
+      Load the game with the given name.
+      This will create a load a save file called ``name.sfs`` from the folder of the current save game.
+
+      :Parameters:
+
+   .. function:: void quicksave()
+
+      Save a quicksave.
+
+
+
+      .. note::
+
+         This is the same as calling :func:`SpaceCenter::save` with the name "quicksave".
+
+   .. function:: void quickload()
+
+      Load a quicksave.
+
+
+
+      .. note::
+
+         This is the same as calling :func:`SpaceCenter::load` with the name "quicksave".
+
+   .. function:: SpaceCenter::Camera camera()
+
+      An object that can be used to control the camera.
+
    .. function:: double ut()
 
       The current universal time in seconds.
 
    .. function:: float g()
 
-      The value of the `gravitational constant <http://en.wikipedia.org/wiki/Gravitational_constant>`_
+      The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
 
    .. function:: SpaceCenter::WarpMode warp_mode()
@@ -199,11 +237,11 @@ SpaceCenter
 
    .. function:: bool far_available()
 
-      Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/threads/20451>`_ is installed.
+      Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
 
    .. function:: bool remote_tech_available()
 
-      Whether `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ is installed.
+      Whether `RemoteTech <http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/>`_ is installed.
 
    .. function:: void draw_direction(std::tuple<double, double, double> direction, SpaceCenter::ReferenceFrame reference_frame, std::tuple<double, double, double> color, float length = 10.0)
 

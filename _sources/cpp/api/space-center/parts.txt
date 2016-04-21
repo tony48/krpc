@@ -90,6 +90,10 @@ Parts
 
       A list of all cargo bays in the vessel.
 
+   .. function:: std::vector<SpaceCenter::ControlSurface> control_surfaces()
+
+      A list of all control surfaces in the vessel.
+
    .. function:: std::vector<SpaceCenter::Decoupler> decouplers()
 
       A list of all decouplers in the vessel.
@@ -108,6 +112,12 @@ Parts
    .. function:: std::vector<SpaceCenter::Engine> engines()
 
       A list of all engines in the vessel.
+
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
    .. function:: std::vector<SpaceCenter::Fairing> fairings()
 
@@ -140,6 +150,10 @@ Parts
    .. function:: std::vector<SpaceCenter::Radiator> radiators()
 
       A list of all radiators in the vessel.
+
+   .. function:: std::vector<SpaceCenter::RCS> rcs()
+
+      A list of all RCS blocks/thrusters in the vessel.
 
    .. function:: std::vector<SpaceCenter::ReactionWheel> reaction_wheels()
 
@@ -250,6 +264,14 @@ Part
 
       The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
 
+   .. function:: bool shielded()
+
+      Whether the part is shielded from the exterior of the vessel, for example by a fairing.
+
+   .. function:: float dynamic_pressure()
+
+      The dynamic pressure acting on the part, in Pascals.
+
    .. function:: double impact_tolerance()
 
       The impact tolerance of the part, in meters per second.
@@ -348,6 +370,10 @@ Part
 
       A :class:`SpaceCenter::CargoBay` if the part is a cargo bay, otherwise ``NULL``.
 
+   .. function:: SpaceCenter::ControlSurface control_surface()
+
+      A :class:`SpaceCenter::ControlSurface` if the part is an aerodynamic control surface, otherwise ``NULL``.
+
    .. function:: SpaceCenter::Decoupler decoupler()
 
       A :class:`SpaceCenter::Decoupler` if the part is a decoupler, otherwise ``NULL``.
@@ -368,9 +394,16 @@ Part
 
       An :class:`SpaceCenter::Intake` if the part is an intake, otherwise ``NULL``.
 
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters and jet engines.
+         For RCS thrusters see :class:`SpaceCenter::RCS`.
+
    .. function:: SpaceCenter::LandingGear landing_gear()
 
-      A :class:`SpaceCenter::LandingGear` if the part is a landing gear , otherwise ``NULL``.
+      A :class:`SpaceCenter::LandingGear` if the part is a landing gear, otherwise ``NULL``.
 
    .. function:: SpaceCenter::LandingLeg landing_leg()
 
@@ -391,6 +424,10 @@ Part
    .. function:: SpaceCenter::Radiator radiator()
 
       A :class:`SpaceCenter::Radiator` if the part is a radiator, otherwise ``NULL``.
+
+   .. function:: SpaceCenter::RCS rcs()
+
+      A :class:`SpaceCenter::RCS` if the part is an RCS block/thruster, otherwise ``NULL``.
 
    .. function:: SpaceCenter::ReactionWheel reaction_wheel()
 
@@ -418,6 +455,22 @@ Part
 
       :Parameters:
 
+
+
+
+      .. note::
+
+         This is a fixed position in the part, defined by the parts model.
+         It s not necessarily the same as the parts center of mass.
+         Use :func:`SpaceCenter::Part::center_of_mass` to get the parts center of mass.
+
+   .. function:: std::tuple<double, double, double> center_of_mass(SpaceCenter::ReferenceFrame reference_frame)
+
+      The position of the parts center of mass in the given reference frame.
+      If the part is physicsless, this is equivalent to :func:`SpaceCenter::Part::position`.
+
+      :Parameters:
+
    .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
 
       The direction of the part in the given reference frame.
@@ -436,11 +489,21 @@ Part
 
       :Parameters:
 
+   .. function:: std::tuple<double, double, double> moment_of_inertia()
+
+      The moment of inertia of the part in :math:`kg.m^2` around its center of mass
+      in the parts reference frame (:class:`SpaceCenter::ReferenceFrame`).
+
+   .. function:: std::vector<double> inertia_tensor()
+
+      The inertia tensor of the part in the parts reference frame (:class:`SpaceCenter::ReferenceFrame`).
+      Returns the 3x3 matrix as a list of elements, in row-major order.
+
    .. function:: SpaceCenter::ReferenceFrame reference_frame()
 
-      The reference frame that is fixed relative to this part.
+      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
 
-      * The origin is at the position of the part.
+      * The origin is at the position of the part, as returned by :func:`SpaceCenter::Part::position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -454,6 +517,20 @@ Part
          :align: center
 
          Mk1 Command Pod reference frame origin and axes
+
+   .. function:: SpaceCenter::ReferenceFrame center_of_mass_reference_frame()
+
+      The reference frame that is fixed relative to this part, and centered on its center of mass.
+
+      * The origin is at the center of mass of the part, as returned by :func:`SpaceCenter::Part::center_of_mass`.
+      * The axes rotate with the part.
+      * The x, y and z axis directions depend on the design of the part.
+
+
+      .. note::
+
+         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+         for the docking port, returned by :func:`SpaceCenter::DockingPort::reference_frame`.
 
 
 
@@ -596,6 +673,51 @@ Cargo Bay
 
 
 
+Control Surface
+^^^^^^^^^^^^^^^
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: ControlSurface
+
+   Obtained by calling :func:`SpaceCenter::Part::control_surface`.
+   Provides functionality to interact with aerodynamic control surfaces.
+
+   .. function:: SpaceCenter::Part part()
+
+      The part object for this control surface.
+
+   .. function:: bool pitch_enabled()
+   .. function:: void set_pitch_enabled(bool value)
+
+      Whether the control surface has pitch control enabled.
+
+   .. function:: bool yaw_enabled()
+   .. function:: void set_yaw_enabled(bool value)
+
+      Whether the control surface has yaw control enabled.
+
+   .. function:: bool roll_enabled()
+   .. function:: void set_roll_enabled(bool value)
+
+      Whether the control surface has roll control enabled.
+
+   .. function:: bool inverted()
+   .. function:: void set_inverted(bool value)
+
+      Whether the control surface movement is inverted.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the control surface has been fully deployed.
+
+   .. function:: float surface_area()
+
+      Surface area of the control surface in :math:`m^2`.
+
+
+
 Decoupler
 ^^^^^^^^^
 
@@ -609,9 +731,10 @@ Decoupler
 
       The part object for this decoupler.
 
-   .. function:: void decouple()
+   .. function:: SpaceCenter::Vessel decouple()
 
-      Fires the decoupler. Has no effect if the decoupler has already fired.
+      Fires the decoupler. Returns the new vessel created when the decoupler fires.
+      Throws an exception if the decoupler has already fired.
 
    .. function:: bool decoupled()
 
@@ -641,7 +764,7 @@ Docking Port
 
       The port name of the docking port. This is the name of the port that can be set
       in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
+      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
       mod is installed. If this mod is not installed, returns the title of the part
       (:func:`SpaceCenter::Part::title`).
 
@@ -656,10 +779,15 @@ Docking Port
 
    .. function:: SpaceCenter::Vessel undock()
 
-      Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:func:`SpaceCenter::active_vessel`).
-      This method can be called for either docking port in a docked pair - both calls will have the same
-      effect. Returns ``NULL`` if the docking port is not docked to anything.
+      Undocks the docking port and returns the new :class:`SpaceCenter::Vessel` that is created.
+      This method can be called for either docking port in a docked pair.
+      Throws an exception if the docking port is not docked to anything.
+
+
+
+      .. note::
+
+         After undocking, the active vessel may change. See :func:`SpaceCenter::active_vessel`.
 
    .. function:: float reengage_distance()
 
@@ -776,6 +904,12 @@ Engine
 
    Obtained by calling :func:`SpaceCenter::Part::engine`.
 
+   .. note::
+
+      Provides functionality to interact with engines of various types,
+      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
+      For RCS thrusters :func:`SpaceCenter::Part::rcs`.
+
    .. function:: SpaceCenter::Part part()
 
       The part object for this engine.
@@ -800,7 +934,7 @@ Engine
 
    .. function:: float max_thrust()
 
-      Gets the maximum amount of thrust that can be produced by the engine, in
+      The maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
       activated, :func:`SpaceCenter::Engine::thrust_limit` is set to 100% and the main vessel's
       throttle is set to 100%.
@@ -818,6 +952,18 @@ Engine
       The thrust limiter of the engine. A value between 0 and 1. Setting this
       attribute may have no effect, for example the thrust limit for a solid
       rocket booster cannot be changed in flight.
+
+   .. function:: std::vector<SpaceCenter::Thruster> thrusters()
+
+      The components of the engine that generate thrust.
+
+
+      .. note::
+
+         For example, this corresponds to the rocket nozzel on a solid rocket booster,
+         or the individual nozzels on a RAPIER engine.
+         The overall thrust produced by the engine, as reported by :func:`SpaceCenter::Engine::available_thrust`,
+         :func:`SpaceCenter::Engine::max_thrust` and others, is the sum of the thrust generated by each thruster.
 
    .. function:: float specific_impulse()
 
@@ -843,7 +989,12 @@ Engine
 
    .. function:: bool has_fuel()
 
-      Whether the engine has run out of fuel (or flamed out).
+      Whether the engine has any fuel available.
+
+
+      .. note::
+
+         The engine must be activated for this property to update correctly.
 
    .. function:: float throttle()
 
@@ -866,7 +1017,7 @@ Engine
 
    .. function:: bool can_shutdown()
 
-      Gets whether the engine can be shutdown once activated. For example, this is
+      Whether the engine can be shutdown once activated. For example, this is
       ``true`` for liquid fueled rockets and ``false`` for solid rocket boosters.
 
    .. function:: bool has_modes()
@@ -894,7 +1045,7 @@ Engine
 
    .. function:: bool gimballed()
 
-      Whether the engine nozzle is gimballed, i.e. can provide a turning force.
+      Whether the engine is gimballed.
 
    .. function:: float gimbal_range()
 
@@ -1035,6 +1186,11 @@ Landing Gear
       Landing gear is being retracted.
 
 
+   .. enumerator:: broken
+
+      Landing gear is broken.
+
+
 
 Landing Leg
 ^^^^^^^^^^^
@@ -1057,6 +1213,12 @@ Landing Leg
    .. function:: void set_deployed(bool value)
 
       Whether the landing leg is deployed.
+
+
+      .. note::
+
+         Fixed landing legs are always deployed.
+         Returns an error if you try to deploy fixed landing gear.
 
 
 
@@ -1089,11 +1251,6 @@ Landing Leg
    .. enumerator:: broken
 
       Landing leg is broken.
-
-
-   .. enumerator:: repairing
-
-      Landing leg is being repaired.
 
 
 
@@ -1498,17 +1655,112 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. function:: float pitch_torque()
+   .. function:: std::tuple<double, double, double> torque()
 
-      The torque in the pitch axis, in Newton meters.
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      Returns zero if the reaction wheel is inactive or broken.
 
-   .. function:: float yaw_torque()
 
-      The torque in the yaw axis, in Newton meters.
 
-   .. function:: float roll_torque()
+RCS
+^^^
 
-      The torque in the roll axis, in Newton meters.
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: RCS
+
+   Obtained by calling :func:`SpaceCenter::Part::rcs`.
+   Provides functionality to interact with RCS blocks and thrusters.
+
+   .. function:: SpaceCenter::Part part()
+
+      The part object for this RCS.
+
+   .. function:: bool active()
+
+      Whether the RCS thrusters are active.
+      An RCS thruster is inactive if the RCS action group is disabled (:func:`SpaceCenter::Control::rcs`),
+      the RCS thruster itself is not enabled (:func:`SpaceCenter::RCS::enabled`) or
+      it is covered by a fairing (:func:`SpaceCenter::Part::shielded`).
+
+   .. function:: bool enabled()
+   .. function:: void set_enabled(bool value)
+
+      Whether the RCS thrusters are enabled.
+
+   .. function:: bool pitch_enabled()
+   .. function:: void set_pitch_enabled(bool value)
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. function:: bool yaw_enabled()
+   .. function:: void set_yaw_enabled(bool value)
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. function:: bool roll_enabled()
+   .. function:: void set_roll_enabled(bool value)
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. function:: bool forward_enabled()
+   .. function:: void set_forward_enabled(bool value)
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. function:: bool up_enabled()
+   .. function:: void set_up_enabled(bool value)
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. function:: bool right_enabled()
+   .. function:: void set_right_enabled(bool value)
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. function:: float max_thrust()
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+
+   .. function:: float max_vacuum_thrust()
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+
+   .. function:: std::vector<SpaceCenter::Thruster> thrusters()
+
+      A list of thrusters, one of each nozzel in the RCS part.
+
+   .. function:: float specific_impulse()
+
+      The current specific impulse of the RCS, in seconds. Returns zero
+      if the RCS is not active.
+
+   .. function:: float vacuum_specific_impulse()
+
+      The vacuum specific impulse of the RCS, in seconds.
+
+   .. function:: float kerbin_sea_level_specific_impulse()
+
+      The specific impulse of the RCS at sea level on Kerbin, in seconds.
+
+   .. function:: std::vector<std::string> propellants()
+
+      The names of resources that the RCS consumes.
+
+   .. function:: std::map<std::string,float> propellant_ratios()
+
+      The ratios of resources that the RCS consumes. A dictionary mapping resource names
+      to the ratios at which they are consumed by the RCS.
+
+   .. function:: bool has_fuel()
+
+      Whether the RCS has fuel available.
+
+
+      .. note::
+
+         The RCS thruster must be activated for this property to update correctly.
 
 
 
@@ -1607,6 +1859,91 @@ Solar Panel
 
 
 .. _cpp-api-parts-trees-of-parts:
+
+Thruster
+^^^^^^^^
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. class:: Thruster
+
+   The component of an :class:`SpaceCenter::Engine` or :class:`SpaceCenter::RCS` part that generates thrust.
+   Can obtained by calling :func:`SpaceCenter::Engine::thrusters` or :func:`SpaceCenter::RCS::thrusters`.
+
+   .. note::
+
+      Engines can consist of multiple thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+
+   .. function:: SpaceCenter::Part part()
+
+      The :class:`SpaceCenter::Part` that contains this thruster.
+
+   .. function:: std::tuple<double, double, double> thrust_position(SpaceCenter::ReferenceFrame reference_frame)
+
+      The position at which the thruster generates thrust, in the given reference frame.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double> thrust_direction(SpaceCenter::ReferenceFrame reference_frame)
+
+      The direction of the force generated by the thruster, in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :Parameters:
+
+   .. function:: SpaceCenter::ReferenceFrame thrust_reference_frame()
+
+      A reference frame that is fixed relative to the thruster and orientated with
+      its thrust direction (:func:`SpaceCenter::Thruster::thrust_direction`).
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      * The origin is at the position of thrust for this thruster (:func:`SpaceCenter::Thruster::thrust_position`).
+      * The axes rotate with the thrust direction.
+        This is the direction in which the thruster expels propellant, including any gimballing.
+      * The y-axis points along the thrust direction.
+      * The x-axis and z-axis are perpendicular to the thrust direction.
+
+   .. function:: bool gimballed()
+
+      Whether the thruster is gimballed.
+
+   .. function:: std::tuple<double, double, double> gimbal_position(SpaceCenter::ReferenceFrame reference_frame)
+
+      Position around which the gimbal pivots.
+
+      :Parameters:
+
+   .. function:: std::tuple<double, double, double> gimbal_angle()
+
+      The current gimbal angle in the pitch, roll and yaw axes.
+
+   .. function:: std::tuple<double, double, double> initial_thrust_position(SpaceCenter::ReferenceFrame reference_frame)
+
+      The position at which the thruster generates thrust, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+
+      :Parameters:
+
+
+
+
+      .. note::
+
+         This position can move when the gimbal rotates. This is because the thrust position and
+         gimbal position are not necessarily the same.
+
+   .. function:: std::tuple<double, double, double> initial_thrust_direction(SpaceCenter::ReferenceFrame reference_frame)
+
+      The direction of the force generated by the thruster, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+
+      :Parameters:
+
+
 
 Trees of Parts
 --------------

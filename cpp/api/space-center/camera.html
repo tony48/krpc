@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Camera &mdash; kRPC 0.3.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="InfernalRobotics API" href="../infernal-robotics.html"/>
+        <link rel="prev" title="Geometry Types" href="geometry-types.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cpp.html">C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C++ Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../cpp.html">C++</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Camera</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/cpp/api/space-center/camera.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="camera">
+<h1>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6CameraE">
+<span id="krpc::services::SpaceCenter::Camera"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Camera</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6CameraE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls the game&#8217;s camera.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera4modeEv">
+<span id="krpc::services::SpaceCenter::Camera::mode"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10CameraModeE" title="krpc::services::SpaceCenter::CameraMode">CameraMode</a> <code class="descclassname"></code><code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera4modeEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera8set_modeEN11SpaceCenter10CameraModeE">
+<span id="krpc::services::SpaceCenter::Camera::set_mode__SpaceCenter::CameraMode"></span>void <code class="descclassname"></code><code class="descname">set_mode</code><span class="sig-paren">(</span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10CameraModeE" title="krpc::services::SpaceCenter::CameraMode">CameraMode</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera8set_modeEN11SpaceCenter10CameraModeE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode of the camera.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera5pitchEv">
+<span id="krpc::services::SpaceCenter::Camera::pitch"></span>float <code class="descclassname"></code><code class="descname">pitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera5pitchEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera9set_pitchEf">
+<span id="krpc::services::SpaceCenter::Camera::set_pitch__float"></span>void <code class="descclassname"></code><code class="descname">set_pitch</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera9set_pitchEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pitch of the camera, in degrees.
+A value between <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Camera9min_pitchEv" title="krpc::services::SpaceCenter::Camera::min_pitch"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Camera::min_pitch()</span></code></a> and <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Camera9max_pitchEv" title="krpc::services::SpaceCenter::Camera::max_pitch"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Camera::max_pitch()</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera7headingEv">
+<span id="krpc::services::SpaceCenter::Camera::heading"></span>float <code class="descclassname"></code><code class="descname">heading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera7headingEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera11set_headingEf">
+<span id="krpc::services::SpaceCenter::Camera::set_heading__float"></span>void <code class="descclassname"></code><code class="descname">set_heading</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera11set_headingEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>The heading of the camera, in degrees.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera8distanceEv">
+<span id="krpc::services::SpaceCenter::Camera::distance"></span>float <code class="descclassname"></code><code class="descname">distance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera8distanceEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera12set_distanceEf">
+<span id="krpc::services::SpaceCenter::Camera::set_distance__float"></span>void <code class="descclassname"></code><code class="descname">set_distance</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera12set_distanceEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distance from the camera to the subject.
+A value between <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Camera12min_distanceEv" title="krpc::services::SpaceCenter::Camera::min_distance"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Camera::min_distance()</span></code></a> and <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Camera12max_distanceEv" title="krpc::services::SpaceCenter::Camera::max_distance"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Camera::max_distance()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera9min_pitchEv">
+<span id="krpc::services::SpaceCenter::Camera::min_pitch"></span>float <code class="descclassname"></code><code class="descname">min_pitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera9min_pitchEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum pitch of the camera.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera9max_pitchEv">
+<span id="krpc::services::SpaceCenter::Camera::max_pitch"></span>float <code class="descclassname"></code><code class="descname">max_pitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera9max_pitchEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum pitch of the camera.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera12min_distanceEv">
+<span id="krpc::services::SpaceCenter::Camera::min_distance"></span>float <code class="descclassname"></code><code class="descname">min_distance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera12min_distanceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum distance from the camera to the subject.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera12max_distanceEv">
+<span id="krpc::services::SpaceCenter::Camera::max_distance"></span>float <code class="descclassname"></code><code class="descname">max_distance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera12max_distanceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum distance from the camera to the subject.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera16default_distanceEv">
+<span id="krpc::services::SpaceCenter::Camera::default_distance"></span>float <code class="descclassname"></code><code class="descname">default_distance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera16default_distanceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default distance from the camera to the subject.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera13focussed_bodyEv">
+<span id="krpc::services::SpaceCenter::Camera::focussed_body"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="celestial-body.html#_CPPv2N4krpc8services11SpaceCenter13CelestialBodyE" title="krpc::services::SpaceCenter::CelestialBody">CelestialBody</a> <code class="descclassname"></code><code class="descname">focussed_body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera13focussed_bodyEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera17set_focussed_bodyEN11SpaceCenter13CelestialBodyE">
+<span id="krpc::services::SpaceCenter::Camera::set_focussed_body__SpaceCenter::CelestialBody"></span>void <code class="descclassname"></code><code class="descname">set_focussed_body</code><span class="sig-paren">(</span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="celestial-body.html#_CPPv2N4krpc8services11SpaceCenter13CelestialBodyE" title="krpc::services::SpaceCenter::CelestialBody">CelestialBody</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera17set_focussed_bodyEN11SpaceCenter13CelestialBodyE" title="Permalink to this definition">¶</a></dt>
+<dd><p>In map mode, the celestial body that the camera is focussed on.
+Returns <code class="docutils literal"><span class="pre">NULL</span></code> if the camera is not focussed on a celestial body.
+Returns an error is the camera is not in map mode.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera15focussed_vesselEv">
+<span id="krpc::services::SpaceCenter::Camera::focussed_vessel"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <code class="descclassname"></code><code class="descname">focussed_vessel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera15focussed_vesselEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera19set_focussed_vesselEN11SpaceCenter6VesselE">
+<span id="krpc::services::SpaceCenter::Camera::set_focussed_vessel__SpaceCenter::Vessel"></span>void <code class="descclassname"></code><code class="descname">set_focussed_vessel</code><span class="sig-paren">(</span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera19set_focussed_vesselEN11SpaceCenter6VesselE" title="Permalink to this definition">¶</a></dt>
+<dd><p>In map mode, the vessel that the camera is focussed on.
+Returns <code class="docutils literal"><span class="pre">NULL</span></code> if the camera is not focussed on a vessel.
+Returns an error is the camera is not in map mode.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera13focussed_nodeEv">
+<span id="krpc::services::SpaceCenter::Camera::focussed_node"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="node.html#_CPPv2N4krpc8services11SpaceCenter4NodeE" title="krpc::services::SpaceCenter::Node">Node</a> <code class="descclassname"></code><code class="descname">focussed_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera13focussed_nodeEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Camera17set_focussed_nodeEN11SpaceCenter4NodeE">
+<span id="krpc::services::SpaceCenter::Camera::set_focussed_node__SpaceCenter::Node"></span>void <code class="descclassname"></code><code class="descname">set_focussed_node</code><span class="sig-paren">(</span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="node.html#_CPPv2N4krpc8services11SpaceCenter4NodeE" title="krpc::services::SpaceCenter::Node">Node</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Camera17set_focussed_nodeEN11SpaceCenter4NodeE" title="Permalink to this definition">¶</a></dt>
+<dd><p>In map mode, the maneuver node that the camera is focussed on.
+Returns <code class="docutils literal"><span class="pre">NULL</span></code> if the camera is not focussed on a maneuver node.
+Returns an error is the camera is not in map mode.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraModeE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">CameraMode</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraModeE" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Camera4modeEv" title="krpc::services::SpaceCenter::Camera::mode"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Camera::mode()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode9automaticE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">automatic</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode9automaticE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The camera is showing the active vessel, in &#8220;auto&#8221; mode.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode4freeE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">free</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode4freeE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The camera is showing the active vessel, in &#8220;free&#8221; mode.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode5chaseE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">chase</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode5chaseE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The camera is showing the active vessel, in &#8220;chase&#8221; mode.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode6lockedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">locked</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode6lockedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The camera is showing the active vessel, in &#8220;locked&#8221; mode.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode7orbitalE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">orbital</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode7orbitalE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The camera is showing the active vessel, in &#8220;orbital&#8221; mode.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode3ivaE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">iva</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode3ivaE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Intra-Vehicular Activity view is being shown.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CameraMode3mapE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">map</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CameraMode3mapE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The map view is being shown.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../infernal-robotics.html" class="btn btn-neutral float-right" title="InfernalRobotics API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="geometry-types.html" class="btn btn-neutral" title="Geometry Types" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

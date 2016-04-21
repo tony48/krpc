@@ -99,6 +99,13 @@ Parts
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`CargoBay`
 
+   .. attribute:: control_surfaces
+
+      A list of all control surfaces in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`ControlSurface`
+
    .. attribute:: decouplers
 
       A list of all decouplers in the vessel.
@@ -127,6 +134,11 @@ Parts
 
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Engine`
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
    .. attribute:: fairings
 
@@ -183,6 +195,13 @@ Parts
 
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Radiator`
+
+   .. attribute:: rcs
+
+      A list of all RCS blocks/thrusters in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`RCS`
 
    .. attribute:: reaction_wheels
 
@@ -336,6 +355,20 @@ Part
    .. attribute:: dry_mass
 
       The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: shielded
+
+      Whether the part is shielded from the exterior of the vessel, for example by a fairing.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: dynamic_pressure
+
+      The dynamic pressure acting on the part, in Pascals.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -496,6 +529,13 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: :class:`CargoBay`
 
+   .. attribute:: control_surface
+
+      A :class:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``None``.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`ControlSurface`
+
    .. attribute:: decoupler
 
       A :class:`Decoupler` if the part is a decoupler, otherwise ``None``.
@@ -531,9 +571,15 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Intake`
 
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters and jet engines.
+         For RCS thrusters see :class:`RCS`.
+
    .. attribute:: landing_gear
 
-      A :class:`LandingGear` if the part is a landing gear , otherwise ``None``.
+      A :class:`LandingGear` if the part is a landing gear, otherwise ``None``.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`LandingGear`
@@ -572,6 +618,13 @@ Part
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Radiator`
+
+   .. attribute:: rcs
+
+      A :class:`RCS` if the part is an RCS block/thruster, otherwise ``None``.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`RCS`
 
    .. attribute:: reaction_wheel
 
@@ -615,6 +668,20 @@ Part
       :param ReferenceFrame reference_frame:
       :rtype: tuple of (float, float, float)
 
+      .. note::
+
+         This is a fixed position in the part, defined by the parts model.
+         It s not necessarily the same as the parts center of mass.
+         Use :meth:`Part.center_of_mass` to get the parts center of mass.
+
+   .. method:: center_of_mass(reference_frame)
+
+      The position of the parts center of mass in the given reference frame.
+      If the part is physicsless, this is equivalent to :meth:`Part.position`.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
    .. method:: direction(reference_frame)
 
       The direction of the part in the given reference frame.
@@ -636,11 +703,27 @@ Part
       :param ReferenceFrame reference_frame:
       :rtype: tuple of (float, float, float, float)
 
+   .. attribute:: moment_of_inertia
+
+      The moment of inertia of the part in :math:`kg.m^2` around its center of mass
+      in the parts reference frame (:class:`ReferenceFrame`).
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: inertia_tensor
+
+      The inertia tensor of the part in the parts reference frame (:class:`ReferenceFrame`).
+      Returns the 3x3 matrix as a list of elements, in row-major order.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of float
+
    .. attribute:: reference_frame
 
-      The reference frame that is fixed relative to this part.
+      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
 
-      * The origin is at the position of the part.
+      * The origin is at the position of the part, as returned by :meth:`Part.position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -656,6 +739,22 @@ Part
          :align: center
 
          Mk1 Command Pod reference frame origin and axes
+
+   .. attribute:: center_of_mass_reference_frame
+
+      The reference frame that is fixed relative to this part, and centered on its center of mass.
+
+      * The origin is at the center of mass of the part, as returned by :meth:`Part.center_of_mass`.
+      * The axes rotate with the part.
+      * The x, y and z axis directions depend on the design of the part.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`ReferenceFrame`
+
+      .. note::
+
+         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+         for the docking port, returned by :attr:`DockingPort.reference_frame`.
 
 
 
@@ -819,6 +918,66 @@ Cargo Bay
 
 
 
+Control Surface
+^^^^^^^^^^^^^^^
+
+
+.. class:: ControlSurface
+
+   Obtained by calling :attr:`Part.control_surface`.
+   Provides functionality to interact with aerodynamic control surfaces.
+
+   .. attribute:: part
+
+      The part object for this control surface.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. attribute:: pitch_enabled
+
+      Whether the control surface has pitch control enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: yaw_enabled
+
+      Whether the control surface has yaw control enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: roll_enabled
+
+      Whether the control surface has roll control enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: inverted
+
+      Whether the control surface movement is inverted.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: deployed
+
+      Whether the control surface has been fully deployed.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: surface_area
+
+      Surface area of the control surface in :math:`m^2`.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+
+
 Decoupler
 ^^^^^^^^^
 
@@ -836,7 +995,10 @@ Decoupler
 
    .. method:: decouple()
 
-      Fires the decoupler. Has no effect if the decoupler has already fired.
+      Fires the decoupler. Returns the new vessel created when the decoupler fires.
+      Throws an exception if the decoupler has already fired.
+
+      :rtype: :class:`Vessel`
 
    .. attribute:: decoupled
 
@@ -873,7 +1035,7 @@ Docking Port
 
       The port name of the docking port. This is the name of the port that can be set
       in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
+      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
       mod is installed. If this mod is not installed, returns the title of the part
       (:attr:`Part.title`).
 
@@ -897,12 +1059,15 @@ Docking Port
 
    .. method:: undock()
 
-      Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:attr:`active_vessel`).
-      This method can be called for either docking port in a docked pair - both calls will have the same
-      effect. Returns ``None`` if the docking port is not docked to anything.
+      Undocks the docking port and returns the new :class:`Vessel` that is created.
+      This method can be called for either docking port in a docked pair.
+      Throws an exception if the docking port is not docked to anything.
 
       :rtype: :class:`Vessel`
+
+      .. note::
+
+         After undocking, the active vessel may change. See :attr:`active_vessel`.
 
    .. attribute:: reengage_distance
 
@@ -1030,6 +1195,12 @@ Engine
 
    Obtained by calling :attr:`Part.engine`.
 
+   .. note::
+
+      Provides functionality to interact with engines of various types,
+      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
+      For RCS thrusters :attr:`Part.rcs`.
+
    .. attribute:: part
 
       The part object for this engine.
@@ -1065,7 +1236,7 @@ Engine
 
    .. attribute:: max_thrust
 
-      Gets the maximum amount of thrust that can be produced by the engine, in
+      The maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
       activated, :attr:`Engine.thrust_limit` is set to 100% and the main vessel's
       throttle is set to 100%.
@@ -1091,6 +1262,20 @@ Engine
 
       :Attribute: Can be read or written
       :rtype: float
+
+   .. attribute:: thrusters
+
+      The components of the engine that generate thrust.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Thruster`
+
+      .. note::
+
+         For example, this corresponds to the rocket nozzel on a solid rocket booster,
+         or the individual nozzels on a RAPIER engine.
+         The overall thrust produced by the engine, as reported by :attr:`Engine.available_thrust`,
+         :attr:`Engine.max_thrust` and others, is the sum of the thrust generated by each thruster.
 
    .. attribute:: specific_impulse
 
@@ -1131,10 +1316,14 @@ Engine
 
    .. attribute:: has_fuel
 
-      Whether the engine has run out of fuel (or flamed out).
+      Whether the engine has any fuel available.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
+
+      .. note::
+
+         The engine must be activated for this property to update correctly.
 
    .. attribute:: throttle
 
@@ -1166,7 +1355,7 @@ Engine
 
    .. attribute:: can_shutdown
 
-      Gets whether the engine can be shutdown once activated. For example, this is
+      Whether the engine can be shutdown once activated. For example, this is
       ``True`` for liquid fueled rockets and ``False`` for solid rocket boosters.
 
       :Attribute: Read-only, cannot be set
@@ -1207,7 +1396,7 @@ Engine
 
    .. attribute:: gimballed
 
-      Whether the engine nozzle is gimballed, i.e. can provide a turning force.
+      Whether the engine is gimballed.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -1383,6 +1572,11 @@ Landing Gear
       Landing gear is being retracted.
 
 
+   .. data:: broken
+
+      Landing gear is broken.
+
+
 
 Landing Leg
 ^^^^^^^^^^^
@@ -1412,6 +1606,11 @@ Landing Leg
 
       :Attribute: Can be read or written
       :rtype: bool
+
+      .. note::
+
+         Fixed landing legs are always deployed.
+         Returns an error if you try to deploy fixed landing gear.
 
 
 
@@ -1443,11 +1642,6 @@ Landing Leg
    .. data:: broken
 
       Landing leg is broken.
-
-
-   .. data:: repairing
-
-      Landing leg is being repaired.
 
 
 
@@ -1901,26 +2095,160 @@ Reaction Wheel
       :Attribute: Read-only, cannot be set
       :rtype: bool
 
-   .. attribute:: pitch_torque
+   .. attribute:: torque
 
-      The torque in the pitch axis, in Newton meters.
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      Returns zero if the reaction wheel is inactive or broken.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+
+
+RCS
+^^^
+
+
+.. class:: RCS
+
+   Obtained by calling :attr:`Part.rcs`.
+   Provides functionality to interact with RCS blocks and thrusters.
+
+   .. attribute:: part
+
+      The part object for this RCS.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. attribute:: active
+
+      Whether the RCS thrusters are active.
+      An RCS thruster is inactive if the RCS action group is disabled (:attr:`Control.rcs`),
+      the RCS thruster itself is not enabled (:attr:`RCS.enabled`) or
+      it is covered by a fairing (:attr:`Part.shielded`).
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: enabled
+
+      Whether the RCS thrusters are enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: pitch_enabled
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: yaw_enabled
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: roll_enabled
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: forward_enabled
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: up_enabled
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: right_enabled
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: max_thrust
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
-   .. attribute:: yaw_torque
+   .. attribute:: max_vacuum_thrust
 
-      The torque in the yaw axis, in Newton meters.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: thrusters
+
+      A list of thrusters, one of each nozzel in the RCS part.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Thruster`
+
+   .. attribute:: specific_impulse
+
+      The current specific impulse of the RCS, in seconds. Returns zero
+      if the RCS is not active.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
-   .. attribute:: roll_torque
+   .. attribute:: vacuum_specific_impulse
 
-      The torque in the roll axis, in Newton meters.
+      The vacuum specific impulse of the RCS, in seconds.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+
+   .. attribute:: kerbin_sea_level_specific_impulse
+
+      The specific impulse of the RCS at sea level on Kerbin, in seconds.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: propellants
+
+      The names of resources that the RCS consumes.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of str
+
+   .. attribute:: propellant_ratios
+
+      The ratios of resources that the RCS consumes. A dictionary mapping resource names
+      to the ratios at which they are consumed by the RCS.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: dict from str to float
+
+   .. attribute:: has_fuel
+
+      Whether the RCS has fuel available.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+      .. note::
+
+         The RCS thruster must be activated for this property to update correctly.
 
 
 
@@ -2041,6 +2369,104 @@ Solar Panel
 
 
 .. _python-api-parts-trees-of-parts:
+
+Thruster
+^^^^^^^^
+
+
+.. class:: Thruster
+
+   The component of an :class:`Engine` or :class:`RCS` part that generates thrust.
+   Can obtained by calling :attr:`Engine.thrusters` or :attr:`RCS.thrusters`.
+
+   .. note::
+
+      Engines can consist of multiple thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+
+   .. attribute:: part
+
+      The :class:`Part` that contains this thruster.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. method:: thrust_position(reference_frame)
+
+      The position at which the thruster generates thrust, in the given reference frame.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
+   .. method:: thrust_direction(reference_frame)
+
+      The direction of the force generated by the thruster, in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: thrust_reference_frame
+
+      A reference frame that is fixed relative to the thruster and orientated with
+      its thrust direction (:meth:`Thruster.thrust_direction`).
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      * The origin is at the position of thrust for this thruster (:meth:`Thruster.thrust_position`).
+      * The axes rotate with the thrust direction.
+        This is the direction in which the thruster expels propellant, including any gimballing.
+      * The y-axis points along the thrust direction.
+      * The x-axis and z-axis are perpendicular to the thrust direction.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`ReferenceFrame`
+
+   .. attribute:: gimballed
+
+      Whether the thruster is gimballed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. method:: gimbal_position(reference_frame)
+
+      Position around which the gimbal pivots.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: gimbal_angle
+
+      The current gimbal angle in the pitch, roll and yaw axes.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. method:: initial_thrust_position(reference_frame)
+
+      The position at which the thruster generates thrust, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
+      .. note::
+
+         This position can move when the gimbal rotates. This is because the thrust position and
+         gimbal position are not necessarily the same.
+
+   .. method:: initial_thrust_direction(reference_frame)
+
+      The direction of the force generated by the thruster, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (float, float, float)
+
+
 
 Trees of Parts
 --------------

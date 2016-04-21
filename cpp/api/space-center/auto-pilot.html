@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AutoPilot &mdash; kRPC 0.2.3 documentation</title>
+  <title>AutoPilot &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Geometry Types" href="geometry-types.html"/>
         <link rel="prev" title="ReferenceFrame" href="reference-frame.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -174,6 +175,11 @@
 <span id="krpc::services::SpaceCenter::AutoPilot"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AutoPilot</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilotE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides basic auto-piloting utilities for a vessel.
 Created by calling <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel10auto_pilotEv" title="krpc::services::SpaceCenter::Vessel::auto_pilot"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::auto_pilot()</span></code></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a client engages the auto-pilot and then closes its connection to the server,
+the auto-pilot will be disengaged and its target reference frame, direction and roll reset to default.</p>
+</div>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot6engageEv">
 <span id="krpc::services::SpaceCenter::AutoPilot::engage"></span>void <code class="descclassname"></code><code class="descname">engage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot6engageEv" title="Permalink to this definition">¶</a></dt>
@@ -400,7 +406,7 @@ the left of the navball that appear when SAS is enabled.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

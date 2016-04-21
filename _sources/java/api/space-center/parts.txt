@@ -87,6 +87,11 @@ Parts
 
       A list of all cargo bays in the vessel.
 
+   .. method:: java.util.List<ControlSurface> getControlSurfaces()
+
+
+      A list of all control surfaces in the vessel.
+
    .. method:: java.util.List<Decoupler> getDecouplers()
 
 
@@ -108,6 +113,12 @@ Parts
 
 
       A list of all engines in the vessel.
+
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
    .. method:: java.util.List<Fairing> getFairings()
 
@@ -148,6 +159,11 @@ Parts
 
 
       A list of all radiators in the vessel.
+
+   .. method:: java.util.List<RCS> getRCS()
+
+
+      A list of all RCS blocks/thrusters in the vessel.
 
    .. method:: java.util.List<ReactionWheel> getReactionWheels()
 
@@ -275,6 +291,16 @@ Part
 
       The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
 
+   .. method:: boolean getShielded()
+
+
+      Whether the part is shielded from the exterior of the vessel, for example by a fairing.
+
+   .. method:: float getDynamicPressure()
+
+
+      The dynamic pressure acting on the part, in Pascals.
+
    .. method:: double getImpactTolerance()
 
 
@@ -393,6 +419,11 @@ Part
 
       A :type:`CargoBay` if the part is a cargo bay, otherwise ``null``.
 
+   .. method:: ControlSurface getControlSurface()
+
+
+      A :type:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``null``.
+
    .. method:: Decoupler getDecoupler()
 
 
@@ -418,10 +449,17 @@ Part
 
       An :type:`Intake` if the part is an intake, otherwise ``null``.
 
+
+      .. note::
+
+         This includes any part that generates thrust. This covers many different types of engine,
+         including liquid fuel rockets, solid rocket boosters and jet engines.
+         For RCS thrusters see :type:`RCS`.
+
    .. method:: LandingGear getLandingGear()
 
 
-      A :type:`LandingGear` if the part is a landing gear , otherwise ``null``.
+      A :type:`LandingGear` if the part is a landing gear, otherwise ``null``.
 
    .. method:: LandingLeg getLandingLeg()
 
@@ -447,6 +485,11 @@ Part
 
 
       A :type:`Radiator` if the part is a radiator, otherwise ``null``.
+
+   .. method:: RCS getRCS()
+
+
+      A :type:`RCS` if the part is an RCS block/thruster, otherwise ``null``.
 
    .. method:: ReactionWheel getReactionWheel()
 
@@ -479,6 +522,19 @@ Part
 
       :param ReferenceFrame referenceFrame:
 
+      .. note::
+
+         This is a fixed position in the part, defined by the parts model.
+         It s not necessarily the same as the parts center of mass.
+         Use :meth:`Part.centerOfMass(ReferenceFrame)` to get the parts center of mass.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> centerOfMass(ReferenceFrame referenceFrame)
+
+      The position of the parts center of mass in the given reference frame.
+      If the part is physicsless, this is equivalent to :meth:`Part.position(ReferenceFrame)`.
+
+      :param ReferenceFrame referenceFrame:
+
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       The direction of the part in the given reference frame.
@@ -497,12 +553,24 @@ Part
 
       :param ReferenceFrame referenceFrame:
 
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getMomentOfInertia()
+
+
+      The moment of inertia of the part in :math:`kg.m^2` around its center of mass
+      in the parts reference frame (:type:`ReferenceFrame`).
+
+   .. method:: java.util.List<Double> getInertiaTensor()
+
+
+      The inertia tensor of the part in the parts reference frame (:type:`ReferenceFrame`).
+      Returns the 3x3 matrix as a list of elements, in row-major order.
+
    .. method:: ReferenceFrame getReferenceFrame()
 
 
-      The reference frame that is fixed relative to this part.
+      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
 
-      * The origin is at the position of the part.
+      * The origin is at the position of the part, as returned by :meth:`Part.position(ReferenceFrame)`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -516,6 +584,21 @@ Part
          :align: center
 
          Mk1 Command Pod reference frame origin and axes
+
+   .. method:: ReferenceFrame getCenterOfMassReferenceFrame()
+
+
+      The reference frame that is fixed relative to this part, and centered on its center of mass.
+
+      * The origin is at the center of mass of the part, as returned by :meth:`Part.centerOfMass(ReferenceFrame)`.
+      * The axes rotate with the part.
+      * The x, y and z axis directions depend on the design of the part.
+
+
+      .. note::
+
+         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
+         for the docking port, returned by :meth:`DockingPort.getReferenceFrame()`.
 
 
 
@@ -660,6 +743,57 @@ Cargo Bay
 
 
 
+Control Surface
+^^^^^^^^^^^^^^^
+
+
+.. type:: public class ControlSurface
+
+   Obtained by calling :meth:`Part.getControlSurface()`.
+   Provides functionality to interact with aerodynamic control surfaces.
+
+   .. method:: Part getPart()
+
+
+      The part object for this control surface.
+
+   .. method:: boolean getPitchEnabled()
+
+   .. method:: void setPitchEnabled(boolean value)
+
+      Whether the control surface has pitch control enabled.
+
+   .. method:: boolean getYawEnabled()
+
+   .. method:: void setYawEnabled(boolean value)
+
+      Whether the control surface has yaw control enabled.
+
+   .. method:: boolean getRollEnabled()
+
+   .. method:: void setRollEnabled(boolean value)
+
+      Whether the control surface has roll control enabled.
+
+   .. method:: boolean getInverted()
+
+   .. method:: void setInverted(boolean value)
+
+      Whether the control surface movement is inverted.
+
+   .. method:: boolean getDeployed()
+
+   .. method:: void setDeployed(boolean value)
+
+      Whether the control surface has been fully deployed.
+
+   .. method:: float getSurfaceArea()
+
+
+      Surface area of the control surface in :math:`m^2`.
+
+
+
 Decoupler
 ^^^^^^^^^
 
@@ -673,9 +807,10 @@ Decoupler
 
       The part object for this decoupler.
 
-   .. method:: void decouple()
+   .. method:: Vessel decouple()
 
-      Fires the decoupler. Has no effect if the decoupler has already fired.
+      Fires the decoupler. Returns the new vessel created when the decoupler fires.
+      Throws an exception if the decoupler has already fired.
 
    .. method:: boolean getDecoupled()
 
@@ -708,7 +843,7 @@ Docking Port
 
       The port name of the docking port. This is the name of the port that can be set
       in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/threads/43901>`_
+      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
       mod is installed. If this mod is not installed, returns the title of the part
       (:meth:`Part.getTitle()`).
 
@@ -725,10 +860,14 @@ Docking Port
 
    .. method:: Vessel undock()
 
-      Undocks the docking port and returns the vessel that was undocked from.
-      After undocking, the active vessel may change (:meth:`getActiveVessel()`).
-      This method can be called for either docking port in a docked pair - both calls will have the same
-      effect. Returns ``null`` if the docking port is not docked to anything.
+      Undocks the docking port and returns the new :type:`Vessel` that is created.
+      This method can be called for either docking port in a docked pair.
+      Throws an exception if the docking port is not docked to anything.
+
+
+      .. note::
+
+         After undocking, the active vessel may change. See :meth:`getActiveVessel()`.
 
    .. method:: float getReengageDistance()
 
@@ -847,6 +986,12 @@ Engine
 
    Obtained by calling :meth:`Part.getEngine()`.
 
+   .. note::
+
+      Provides functionality to interact with engines of various types,
+      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
+      For RCS thrusters :meth:`Part.getRCS()`.
+
    .. method:: Part getPart()
 
 
@@ -876,7 +1021,7 @@ Engine
    .. method:: float getMaxThrust()
 
 
-      Gets the maximum amount of thrust that can be produced by the engine, in
+      The maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
       activated, :meth:`Engine.getThrustLimit()` is set to 100% and the main vessel's
       throttle is set to 100%.
@@ -896,6 +1041,19 @@ Engine
       The thrust limiter of the engine. A value between 0 and 1. Setting this
       attribute may have no effect, for example the thrust limit for a solid
       rocket booster cannot be changed in flight.
+
+   .. method:: java.util.List<Thruster> getThrusters()
+
+
+      The components of the engine that generate thrust.
+
+
+      .. note::
+
+         For example, this corresponds to the rocket nozzel on a solid rocket booster,
+         or the individual nozzels on a RAPIER engine.
+         The overall thrust produced by the engine, as reported by :meth:`Engine.getAvailableThrust()`,
+         :meth:`Engine.getMaxThrust()` and others, is the sum of the thrust generated by each thruster.
 
    .. method:: float getSpecificImpulse()
 
@@ -927,7 +1085,12 @@ Engine
    .. method:: boolean getHasFuel()
 
 
-      Whether the engine has run out of fuel (or flamed out).
+      Whether the engine has any fuel available.
+
+
+      .. note::
+
+         The engine must be activated for this property to update correctly.
 
    .. method:: float getThrottle()
 
@@ -954,7 +1117,7 @@ Engine
    .. method:: boolean getCanShutdown()
 
 
-      Gets whether the engine can be shutdown once activated. For example, this is
+      Whether the engine can be shutdown once activated. For example, this is
       ``true`` for liquid fueled rockets and ``false`` for solid rocket boosters.
 
    .. method:: boolean getHasModes()
@@ -987,7 +1150,7 @@ Engine
    .. method:: boolean getGimballed()
 
 
-      Whether the engine nozzle is gimballed, i.e. can provide a turning force.
+      Whether the engine is gimballed.
 
    .. method:: float getGimbalRange()
 
@@ -1138,6 +1301,11 @@ Landing Gear
       Landing gear is being retracted.
 
 
+   .. field:: public LandingGearState BROKEN
+
+      Landing gear is broken.
+
+
 
 Landing Leg
 ^^^^^^^^^^^
@@ -1162,6 +1330,12 @@ Landing Leg
    .. method:: void setDeployed(boolean value)
 
       Whether the landing leg is deployed.
+
+
+      .. note::
+
+         Fixed landing legs are always deployed.
+         Returns an error if you try to deploy fixed landing gear.
 
 
 
@@ -1193,11 +1367,6 @@ Landing Leg
    .. field:: public LandingLegState BROKEN
 
       Landing leg is broken.
-
-
-   .. field:: public LandingLegState REPAIRING
-
-      Landing leg is being repaired.
 
 
 
@@ -1601,20 +1770,130 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. method:: float getPitchTorque()
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getTorque()
 
 
-      The torque in the pitch axis, in Newton meters.
-
-   .. method:: float getYawTorque()
-
-
-      The torque in the yaw axis, in Newton meters.
-
-   .. method:: float getRollTorque()
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      Returns zero if the reaction wheel is inactive or broken.
 
 
-      The torque in the roll axis, in Newton meters.
+
+RCS
+^^^
+
+
+.. type:: public class RCS
+
+   Obtained by calling :meth:`Part.getRCS()`.
+   Provides functionality to interact with RCS blocks and thrusters.
+
+   .. method:: Part getPart()
+
+
+      The part object for this RCS.
+
+   .. method:: boolean getActive()
+
+
+      Whether the RCS thrusters are active.
+      An RCS thruster is inactive if the RCS action group is disabled (:meth:`Control.getRCS()`),
+      the RCS thruster itself is not enabled (:meth:`RCS.getEnabled()`) or
+      it is covered by a fairing (:meth:`Part.getShielded()`).
+
+   .. method:: boolean getEnabled()
+
+   .. method:: void setEnabled(boolean value)
+
+      Whether the RCS thrusters are enabled.
+
+   .. method:: boolean getPitchEnabled()
+
+   .. method:: void setPitchEnabled(boolean value)
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. method:: boolean getYawEnabled()
+
+   .. method:: void setYawEnabled(boolean value)
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. method:: boolean getRollEnabled()
+
+   .. method:: void setRollEnabled(boolean value)
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. method:: boolean getForwardEnabled()
+
+   .. method:: void setForwardEnabled(boolean value)
+
+      Whether the RCS thruster will fire when pitch control input is given.
+
+   .. method:: boolean getUpEnabled()
+
+   .. method:: void setUpEnabled(boolean value)
+
+      Whether the RCS thruster will fire when yaw control input is given.
+
+   .. method:: boolean getRightEnabled()
+
+   .. method:: void setRightEnabled(boolean value)
+
+      Whether the RCS thruster will fire when roll control input is given.
+
+   .. method:: float getMaxThrust()
+
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+
+   .. method:: float getMaxVacuumThrust()
+
+
+      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+
+   .. method:: java.util.List<Thruster> getThrusters()
+
+
+      A list of thrusters, one of each nozzel in the RCS part.
+
+   .. method:: float getSpecificImpulse()
+
+
+      The current specific impulse of the RCS, in seconds. Returns zero
+      if the RCS is not active.
+
+   .. method:: float getVacuumSpecificImpulse()
+
+
+      The vacuum specific impulse of the RCS, in seconds.
+
+   .. method:: float getKerbinSeaLevelSpecificImpulse()
+
+
+      The specific impulse of the RCS at sea level on Kerbin, in seconds.
+
+   .. method:: java.util.List<String> getPropellants()
+
+
+      The names of resources that the RCS consumes.
+
+   .. method:: java.util.Map<String,Single> getPropellantRatios()
+
+
+      The ratios of resources that the RCS consumes. A dictionary mapping resource names
+      to the ratios at which they are consumed by the RCS.
+
+   .. method:: boolean getHasFuel()
+
+
+      Whether the RCS has fuel available.
+
+
+      .. note::
+
+         The RCS thruster must be activated for this property to update correctly.
 
 
 
@@ -1719,6 +1998,91 @@ Solar Panel
 
 
 .. _java-api-parts-trees-of-parts:
+
+Thruster
+^^^^^^^^
+
+
+.. type:: public class Thruster
+
+   The component of an :type:`Engine` or :type:`RCS` part that generates thrust.
+   Can obtained by calling :meth:`Engine.getThrusters()` or :meth:`RCS.getThrusters()`.
+
+   .. note::
+
+      Engines can consist of multiple thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+
+   .. method:: Part getPart()
+
+
+      The :type:`Part` that contains this thruster.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> thrustPosition(ReferenceFrame referenceFrame)
+
+      The position at which the thruster generates thrust, in the given reference frame.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :param ReferenceFrame referenceFrame:
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> thrustDirection(ReferenceFrame referenceFrame)
+
+      The direction of the force generated by the thruster, in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      :param ReferenceFrame referenceFrame:
+
+   .. method:: ReferenceFrame getThrustReferenceFrame()
+
+
+      A reference frame that is fixed relative to the thruster and orientated with
+      its thrust direction (:meth:`Thruster.thrustDirection(ReferenceFrame)`).
+      For gimballed engines, this takes into account the current rotation of the gimbal.
+
+      * The origin is at the position of thrust for this thruster (:meth:`Thruster.thrustPosition(ReferenceFrame)`).
+      * The axes rotate with the thrust direction.
+        This is the direction in which the thruster expels propellant, including any gimballing.
+      * The y-axis points along the thrust direction.
+      * The x-axis and z-axis are perpendicular to the thrust direction.
+
+   .. method:: boolean getGimballed()
+
+
+      Whether the thruster is gimballed.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> gimbalPosition(ReferenceFrame referenceFrame)
+
+      Position around which the gimbal pivots.
+
+      :param ReferenceFrame referenceFrame:
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getGimbalAngle()
+
+
+      The current gimbal angle in the pitch, roll and yaw axes.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> initialThrustPosition(ReferenceFrame referenceFrame)
+
+      The position at which the thruster generates thrust, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+
+      :param ReferenceFrame referenceFrame:
+
+      .. note::
+
+         This position can move when the gimbal rotates. This is because the thrust position and
+         gimbal position are not necessarily the same.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> initialThrustDirection(ReferenceFrame referenceFrame)
+
+      The direction of the force generated by the thruster, when the engine is in its
+      initial position (no gimballing), in the given reference frame.
+      This is opposite to the direction in which the thruster expels propellant.
+
+      :param ReferenceFrame referenceFrame:
+
+
 
 Trees of Parts
 --------------

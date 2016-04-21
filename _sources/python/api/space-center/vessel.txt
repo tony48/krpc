@@ -55,14 +55,6 @@ Vessel
                 <tutorial-reference-frames-orbital-speed>` and :rst:ref:`surface speed
                 <tutorial-reference-frames-surface-speed>` of a vessel.
 
-   .. attribute:: target
-
-      The target vessel. ``None`` if there is no target. When
-      setting the target, the target cannot be the current vessel.
-
-      :Attribute: Can be read or written
-      :rtype: :class:`Vessel`
-
    .. attribute:: orbit
 
       The current orbit of the vessel.
@@ -123,7 +115,7 @@ Vessel
 
       .. note::
 
-         Requires `RemoteTech <http://forum.kerbalspaceprogram.com/threads/83305>`_ to be installed.
+         Requires `RemoteTech <http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/>`_ to be installed.
 
    .. attribute:: mass
 
@@ -200,6 +192,32 @@ Vessel
       :Attribute: Read-only, cannot be set
       :rtype: float
 
+   .. attribute:: moment_of_inertia
+
+      The moment of inertia of the vessel in :math:`kg.m^2` around its center of mass
+      in vessels reference frame (:attr:`Vessel.reference_frame`).
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: inertia_tensor
+
+      The inertia tensor of the vessel in the vessels reference frame (:attr:`Vessel.reference_frame`).
+      Returns the 3x3 matrix as a list of elements, in row-major order.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of float
+
+   .. attribute:: reaction_wheel_torque
+
+      The maximum torque that the currently active and powered reaction wheels can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
    .. attribute:: reference_frame
 
       The reference frame that is fixed relative to the vessel, and orientated with the vessel.
@@ -253,14 +271,14 @@ Vessel
 
       * The origin is at the center of mass of the vessel.
       * The axes rotate with the north and up directions on the surface of the body.
-      * The x-axis points in the `zenith <http://en.wikipedia.org/wiki/Zenith>`_
+      * The x-axis points in the `zenith <https://en.wikipedia.org/wiki/Zenith>`_
         direction (upwards, normal to the body being orbited, from the center of the body towards the center of
         mass of the vessel).
       * The y-axis points northwards towards the
-        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_ (north, and tangential to the
+        `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_ (north, and tangential to the
         surface of the body -- the direction in which a compass would point when on the surface).
       * The z-axis points eastwards towards the
-        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_ (east, and tangential to the
+        `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_ (east, and tangential to the
         surface of the body -- east on a compass when on the surface).
 
       :Attribute: Read-only, cannot be set
@@ -285,7 +303,7 @@ Vessel
       * The y-axis points in the direction of the vessel's velocity vector,
         relative to the surface of the body being orbited.
       * The z-axis is in the plane of the
-        `astronomical horizon <http://en.wikipedia.org/wiki/Horizon>`_.
+        `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_.
       * The x-axis is orthogonal to the other two axes.
 
       :Attribute: Read-only, cannot be set

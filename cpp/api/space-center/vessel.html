@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.2.3 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.2.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.0 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.2.3
+                0.3.0
               </div>
             
           
@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
@@ -235,18 +236,6 @@ examples of getting the <a class="reference internal" href="../../../tutorials/r
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel6targetEv">
-<span id="krpc::services::SpaceCenter::Vessel::target"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <code class="descclassname"></code><code class="descname">target</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel6targetEv" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel10set_targetEN11SpaceCenter6VesselE">
-<span id="krpc::services::SpaceCenter::Vessel::set_target__SpaceCenter::Vessel"></span>void <code class="descclassname"></code><code class="descname">set_target</code><span class="sig-paren">(</span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel10set_targetEN11SpaceCenter6VesselE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The target vessel. <code class="docutils literal"><span class="pre">NULL</span></code> if there is no target. When
-setting the target, the target cannot be the current vessel.</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel5orbitEv">
 <span id="krpc::services::SpaceCenter::Vessel::orbit"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="orbit.html#_CPPv2N4krpc8services11SpaceCenter5OrbitE" title="krpc::services::SpaceCenter::Orbit">Orbit</a> <code class="descclassname"></code><code class="descname">orbit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel5orbitEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current orbit of the vessel.</p>
@@ -310,7 +299,7 @@ discussion on <a class="reference internal" href="parts.html#cpp-api-parts-stagi
 <dd><p>A <a class="reference internal" href="comms.html#_CPPv2N4krpc8services11SpaceCenter5CommsE" title="krpc::services::SpaceCenter::Comms"><code class="xref cpp cpp-class docutils literal"><span class="pre">SpaceCenter::Comms</span></code></a> object, that can used to interact with RemoteTech for this vessel.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/threads/83305">RemoteTech</a> to be installed.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> to be installed.</p>
 </div>
 </dd></dl>
 
@@ -381,6 +370,29 @@ This is computed using the formula
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel17moment_of_inertiaEv">
+<span id="krpc::services::SpaceCenter::Vessel::moment_of_inertia"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">moment_of_inertia</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel17moment_of_inertiaEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The moment of inertia of the vessel in <span class="math">\(kg.m^2\)</span> around its center of mass
+in vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel14inertia_tensorEv">
+<span id="krpc::services::SpaceCenter::Vessel::inertia_tensor"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">inertia_tensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel14inertia_tensorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inertia tensor of the vessel in the vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>).
+Returns the 3x3 matrix as a list of elements, in row-major order.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel21reaction_wheel_torqueEv">
+<span id="krpc::services::SpaceCenter::Vessel::reaction_wheel_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">reaction_wheel_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel21reaction_wheel_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active and powered reaction wheels can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv">
 <span id="krpc::services::SpaceCenter::Vessel::reference_frame"></span><a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter11SpaceCenterEPN4krpc6ClientE" title="krpc::services::SpaceCenter::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <code class="descclassname"></code><code class="descname">reference_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessel.</p>
@@ -431,14 +443,14 @@ of the body being orbited.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the north and up directions on the surface of the body.</li>
-<li>The x-axis points in the <a class="reference external" href="http://en.wikipedia.org/wiki/Zenith">zenith</a>
+<li>The x-axis points in the <a class="reference external" href="https://en.wikipedia.org/wiki/Zenith">zenith</a>
 direction (upwards, normal to the body being orbited, from the center of the body towards the center of
 mass of the vessel).</li>
 <li>The y-axis points northwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
 surface of the body &#8211; the direction in which a compass would point when on the surface).</li>
 <li>The z-axis points eastwards towards the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
 surface of the body &#8211; east on a compass when on the surface).</li>
 </ul>
 <div class="admonition note">
@@ -462,7 +474,7 @@ vector of the vessel relative to the surface of the body being orbited.</p>
 <li>The y-axis points in the direction of the vessel&#8217;s velocity vector,
 relative to the surface of the body being orbited.</li>
 <li>The z-axis is in the plane of the
-<a class="reference external" href="http://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
 <li>The x-axis is orthogonal to the other two axes.</li>
 </ul>
 <div class="figure align-center" id="id9">
@@ -690,7 +702,7 @@ axis of rotation (using the right hand rule).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.2.3',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
