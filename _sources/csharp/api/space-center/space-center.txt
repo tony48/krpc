@@ -155,10 +155,10 @@ SpaceCenter
       A value between 0 and 7 inclusive.  See
       `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
-   .. method:: void WarpTo(double UT, float maxRailsRate = 100000.0, float maxPhysicsRate = 2.0)
+   .. method:: void WarpTo(double ut, float maxRailsRate = 100000.0, float maxPhysicsRate = 2.0)
 
       Uses time acceleration to warp forward to a time in the future, specified
-      by universal time *UT*. This call blocks until the desired
+      by universal time *ut*. This call blocks until the desired
       time is reached. Uses regular "on-rails" or physical time warp as appropriate.
       For example, physical time warp is used when the active vessel is traveling
       through an atmosphere. When using regular "on-rails" time warp, the warp
@@ -167,7 +167,7 @@ SpaceCenter
 
       :parameters:
 
-       * **UT** -- The universal time to warp to, in seconds.
+       * **ut** -- The universal time to warp to, in seconds.
        * **maxRailsRate** -- The maximum warp rate in regular "on-rails" time warp.
        * **maxPhysicsRate** -- The maximum warp rate in physical time warp.
 
@@ -227,10 +227,6 @@ SpaceCenter
    .. property:: bool FARAvailable { get; }
 
       Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
-
-   .. property:: bool RemoteTechAvailable { get; }
-
-      Whether `RemoteTech <http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/>`_ is installed.
 
    .. method:: void DrawDirection(System.Tuple<double,double,double> direction, ReferenceFrame referenceFrame, System.Tuple<double,double,double> color, float length = 10.0)
 

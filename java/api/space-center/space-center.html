@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.2 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -102,7 +102,6 @@
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
@@ -111,6 +110,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
@@ -432,9 +432,9 @@ A value between 0 and 7 inclusive.  See
 
 <dl class="method">
 <dt id="SpaceCenter.warpTo(double, float, float)">
- void <code class="descname">warpTo</code><span class="sig-paren">(</span>double<em> UT</em>, float<em> maxRailsRate</em>, float<em> maxPhysicsRate</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.warpTo(double, float, float)" title="Permalink to this definition">¶</a></dt>
+ void <code class="descname">warpTo</code><span class="sig-paren">(</span>double<em> ut</em>, float<em> maxRailsRate</em>, float<em> maxPhysicsRate</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.warpTo(double, float, float)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses time acceleration to warp forward to a time in the future, specified
-by universal time <em>UT</em>. This call blocks until the desired
+by universal time <em>ut</em>. This call blocks until the desired
 time is reached. Uses regular &#8220;on-rails&#8221; or physical time warp as appropriate.
 For example, physical time warp is used when the active vessel is traveling
 through an atmosphere. When using regular &#8220;on-rails&#8221; time warp, the warp
@@ -445,7 +445,7 @@ time warp, the warp rate is limited by <em>maxPhysicsRate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>UT</strong> (<em>double</em>) &#8211; The universal time to warp to, in seconds.</li>
+<li><strong>ut</strong> (<em>double</em>) &#8211; The universal time to warp to, in seconds.</li>
 <li><strong>maxRailsRate</strong> (<em>float</em>) &#8211; The maximum warp rate in regular &#8220;on-rails&#8221; time warp.</li>
 <li><strong>maxPhysicsRate</strong> (<em>float</em>) &#8211; The maximum warp rate in physical time warp.</li>
 </ul>
@@ -553,12 +553,6 @@ relative angular velocity of the reference frames into account.</p>
 <dt id="SpaceCenter.getFARAvailable()">
  boolean <code class="descname">getFARAvailable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.getFARAvailable()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="SpaceCenter.getRemoteTechAvailable()">
- boolean <code class="descname">getRemoteTechAvailable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.getRemoteTechAvailable()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> is installed.</p>
 </dd></dl>
 
 <dl class="method">
@@ -676,7 +670,7 @@ public <a class="reference internal" href="#WarpMode" title="WarpMode">WarpMode<
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.2',
+            VERSION:'0.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

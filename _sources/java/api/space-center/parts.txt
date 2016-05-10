@@ -792,6 +792,12 @@ Control Surface
 
       Surface area of the control surface in :math:`m^2`.
 
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+
 
 
 Decoupler
@@ -1171,6 +1177,13 @@ Engine
 
       The gimbal limiter of the engine. A value between 0 and 1.
       Returns 0 if the gimbal is locked.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      Returns zero if the engine is inactive, or not gimballed.
 
 
 
@@ -1770,12 +1783,19 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getTorque()
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
 
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
       Returns zero if the reaction wheel is inactive or broken.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getMaxTorque()
+
+
+      The maximum torque the reaction wheel can provide, is it active,
+      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
 
 
 
@@ -1842,6 +1862,13 @@ RCS
    .. method:: void setRightEnabled(boolean value)
 
       Whether the RCS thruster will fire when roll control input is given.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      Returns zero if the RCS is inactive.
 
    .. method:: float getMaxThrust()
 

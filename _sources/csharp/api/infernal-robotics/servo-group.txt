@@ -1,0 +1,70 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+ServoGroup
+==========
+
+
+.. class:: ServoGroup
+
+   A group of servos, obtained by calling :prop:`InfernalRobotics.ServoGroups`
+   or :meth:`InfernalRobotics.ServoGroupWithName`. Represents the "Servo Groups"
+   in the InfernalRobotics UI.
+
+   .. property:: string Name { get; set; }
+
+      The name of the group.
+
+   .. property:: string ForwardKey { get; set; }
+
+      The key assigned to be the "forward" key for the group.
+
+   .. property:: string ReverseKey { get; set; }
+
+      The key assigned to be the "reverse" key for the group.
+
+   .. property:: float Speed { get; set; }
+
+      The speed multiplier for the group.
+
+   .. property:: bool Expanded { get; set; }
+
+      Whether the group is expanded in the InfernalRobotics UI.
+
+   .. property:: System.Collections.Generic.IList<Servo> Servos { get; }
+
+      The servos that are in the group.
+
+   .. method:: Servo ServoWithName(string name)
+
+      Returns the servo with the given *name* from this group,
+      or ``null`` if none exists.
+
+      :parameters:
+
+       * **name** -- Name of servo to find.
+
+   .. method:: void MoveRight()
+
+      Moves all of the servos in the group to the right.
+
+   .. method:: void MoveLeft()
+
+      Moves all of the servos in the group to the left.
+
+   .. method:: void MoveCenter()
+
+      Moves all of the servos in the group to the center.
+
+   .. method:: void MoveNextPreset()
+
+      Moves all of the servos in the group to the next preset.
+
+   .. method:: void MovePrevPreset()
+
+      Moves all of the servos in the group to the previous preset.
+
+   .. method:: void Stop()
+
+      Stops the servos in the group.

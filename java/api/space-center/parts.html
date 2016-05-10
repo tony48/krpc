@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.2 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -111,7 +111,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
@@ -120,6 +119,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
@@ -1344,6 +1344,13 @@ Provides functionality to interact with aerodynamic control surfaces.</p>
 <dd><p>Surface area of the control surface in <span class="math">\(m^2\)</span>.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="ControlSurface.getAvailableTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAvailableTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ControlSurface.getAvailableTorque()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1828,6 +1835,14 @@ no effect if the engine is not gimballed.</p>
  void <code class="descname">setGimbalLimit</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#Engine.setGimbalLimit(float)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The gimbal limiter of the engine. A value between 0 and 1.
 Returns 0 if the gimbal is locked.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Engine.getAvailableTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAvailableTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Engine.getAvailableTorque()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>.
+Returns zero if the engine is inactive, or not gimballed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2619,11 +2634,19 @@ public class <code class="descname">ReactionWheel</code><a class="headerlink" hr
 </dd></dl>
 
 <dl class="method">
-<dt id="ReactionWheel.getTorque()">
- org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ReactionWheel.getTorque()" title="Permalink to this definition">¶</a></dt>
+<dt id="ReactionWheel.getAvailableTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAvailableTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ReactionWheel.getAvailableTorque()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>.
 Returns zero if the reaction wheel is inactive or broken.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ReactionWheel.getMaxTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getMaxTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ReactionWheel.getMaxTorque()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque the reaction wheel can provide, is it active,
+in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2726,6 +2749,14 @@ it is covered by a fairing (<a class="reference internal" href="#Part.getShielde
 <dt id="RCS.setRightEnabled(boolean)">
  void <code class="descname">setRightEnabled</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#RCS.setRightEnabled(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the RCS thruster will fire when roll control input is given.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="RCS.getAvailableTorque()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAvailableTorque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#RCS.getAvailableTorque()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#Vessel.getReferenceFrame()" title="Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame()</span></code></a>.
+Returns zero if the RCS is inactive.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3320,7 +3351,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.2',
+            VERSION:'0.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

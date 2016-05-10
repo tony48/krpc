@@ -106,17 +106,6 @@ Vessel
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Parts`
 
-   .. attribute:: comms
-
-      A :class:`Comms` object, that can used to interact with RemoteTech for this vessel.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: :class:`Comms`
-
-      .. note::
-
-         Requires `RemoteTech <http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/>`_ to be installed.
-
    .. attribute:: mass
 
       The total mass of the vessel, including resources, in kg.
@@ -194,23 +183,65 @@ Vessel
 
    .. attribute:: moment_of_inertia
 
-      The moment of inertia of the vessel in :math:`kg.m^2` around its center of mass
-      in vessels reference frame (:attr:`Vessel.reference_frame`).
+      The moment of inertia of the vessel around its center of mass in :math:`kg.m^2`.
+      The inertia values are around the pitch, roll and yaw directions respectively.
+      This corresponds to the vessels reference frame (:attr:`Vessel.reference_frame`).
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple of (float, float, float)
 
    .. attribute:: inertia_tensor
 
-      The inertia tensor of the vessel in the vessels reference frame (:attr:`Vessel.reference_frame`).
+      The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:attr:`Vessel.reference_frame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
       :Attribute: Read-only, cannot be set
       :rtype: list of float
 
-   .. attribute:: reaction_wheel_torque
+   .. attribute:: available_torque
+
+      The maximum torque that the vessel generate. Includes contributions from reaction wheels,
+      RCS, gimballed engines and aerodynamic control surfaces.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: available_reaction_wheel_torque
 
       The maximum torque that the currently active and powered reaction wheels can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: available_rcs_torque
+
+      The maximum torque that the currently active RCS thrusters can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: available_engine_torque
+
+      The maximum torque that the currently active and gimballed engines can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: available_control_surface_torque
+
+      The maximum torque that the aerodynamic control surfaces can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:attr:`Vessel.reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.

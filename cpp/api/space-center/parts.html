@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.2 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -110,7 +110,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
@@ -119,6 +118,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
@@ -1295,6 +1295,13 @@ Provides functionality to interact with aerodynamic control surfaces.</p>
 <dd><p>Surface area of the control surface in <span class="math">\(m^2\)</span>.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurface16available_torqueEv">
+<span id="krpc::services::SpaceCenter::ControlSurface::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1770,6 +1777,14 @@ no effect if the engine is not gimballed.</p>
 <span id="krpc::services::SpaceCenter::Engine::set_gimbal_limit__float"></span>void <code class="descclassname"></code><code class="descname">set_gimbal_limit</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Engine16set_gimbal_limitEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>The gimbal limiter of the engine. A value between 0 and 1.
 Returns 0 if the gimbal is locked.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Engine16available_torqueEv">
+<span id="krpc::services::SpaceCenter::Engine::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Engine16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>.
+Returns zero if the engine is inactive, or not gimballed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2561,11 +2576,19 @@ In this case, check <a class="reference internal" href="#_CPPv2N4krpc8services11
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheel6torqueEv">
-<span id="krpc::services::SpaceCenter::ReactionWheel::torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel6torqueEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheel16available_torqueEv">
+<span id="krpc::services::SpaceCenter::ReactionWheel::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel16available_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>.
 Returns zero if the reaction wheel is inactive or broken.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheel10max_torqueEv">
+<span id="krpc::services::SpaceCenter::ReactionWheel::max_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">max_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel10max_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque the reaction wheel can provide, is it active,
+in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2668,6 +2691,14 @@ it is covered by a fairing (<a class="reference internal" href="#_CPPv2N4krpc8se
 <dt id="_CPPv2N4krpc8services11SpaceCenter3RCS17set_right_enabledEb">
 <span id="krpc::services::SpaceCenter::RCS::set_right_enabled__b"></span>void <code class="descclassname"></code><code class="descname">set_right_enabled</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3RCS17set_right_enabledEb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the RCS thruster will fire when roll control input is given.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter3RCS16available_torqueEv">
+<span id="krpc::services::SpaceCenter::RCS::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3RCS16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::Vessel::reference_frame()</span></code></a>.
+Returns zero if the RCS is inactive.</p>
 </dd></dl>
 
 <dl class="function">
@@ -3244,7 +3275,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.2',
+            VERSION:'0.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

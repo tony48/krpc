@@ -976,6 +976,14 @@ Control Surface
       :Attribute: Read-only, cannot be set
       :rtype: number
 
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: Tuple of (number, number, number)
+
 
 
 Decoupler
@@ -1424,6 +1432,15 @@ Engine
 
       :Attribute: Can be read or written
       :rtype: number
+
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
+      Returns zero if the engine is inactive, or not gimballed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: Tuple of (number, number, number)
 
 
 
@@ -2095,11 +2112,20 @@ Reaction Wheel
       :Attribute: Read-only, cannot be set
       :rtype: boolean
 
-   .. attribute:: torque
+   .. attribute:: available_torque
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: max_torque
+
+      The maximum torque the reaction wheel can provide, is it active,
+      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
       :rtype: Tuple of (number, number, number)
@@ -2180,6 +2206,15 @@ RCS
 
       :Attribute: Can be read or written
       :rtype: boolean
+
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
+      Returns zero if the RCS is inactive.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: Tuple of (number, number, number)
 
    .. attribute:: max_thrust
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.2 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -112,7 +112,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
@@ -121,6 +120,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
@@ -2230,6 +2230,23 @@ Provides functionality to interact with aerodynamic control surfaces.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="SpaceCenter.ControlSurface.available_torque">
+<code class="descname">available_torque</code><a class="headerlink" href="#SpaceCenter.ControlSurface.available_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -3054,6 +3071,24 @@ Returns 0 if the gimbal is locked.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Engine.available_torque">
+<code class="descname">available_torque</code><a class="headerlink" href="#SpaceCenter.Engine.available_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.
+Returns zero if the engine is inactive, or not gimballed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
 </tr>
 </tbody>
 </table>
@@ -4186,11 +4221,29 @@ In this case, check <a class="reference internal" href="#SpaceCenter.ResourceCon
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.ReactionWheel.torque">
-<code class="descname">torque</code><a class="headerlink" href="#SpaceCenter.ReactionWheel.torque" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.ReactionWheel.available_torque">
+<code class="descname">available_torque</code><a class="headerlink" href="#SpaceCenter.ReactionWheel.available_torque" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.
 Returns zero if the reaction wheel is inactive or broken.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ReactionWheel.max_torque">
+<code class="descname">max_torque</code><a class="headerlink" href="#SpaceCenter.ReactionWheel.max_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque the reaction wheel can provide, is it active,
+in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -4355,6 +4408,24 @@ it is covered by a fairing (<a class="reference internal" href="#SpaceCenter.Par
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.RCS.available_torque">
+<code class="descname">available_torque</code><a class="headerlink" href="#SpaceCenter.RCS.available_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.
+Returns zero if the RCS is inactive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
 </tr>
 </tbody>
 </table>
@@ -5120,7 +5191,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.2',
+            VERSION:'0.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

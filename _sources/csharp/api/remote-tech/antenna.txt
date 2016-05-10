@@ -1,0 +1,70 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+
+
+Antenna
+=======
+
+
+.. class:: Antenna
+
+   A RemoteTech antenna. Obtained by calling :prop:`Comms.Antennas` or  :meth:`RemoteTech.Antenna`.
+
+   .. property:: Part Part { get; }
+
+      Get the part containing this antenna.
+
+   .. property:: bool HasConnection { get; }
+
+      Whether the antenna has a connection.
+
+   .. property:: Target Target { get; set; }
+
+      The object that the antenna is targetting.
+      This property can be used to set the target to :enum:`Target.None` or :enum:`Target.ActiveVessel`.
+      To set the target to a celestial body, ground station or vessel see :prop:`Antenna.TargetBody`,
+      :prop:`Antenna.TargetGroundStation` and :prop:`Antenna.TargetVessel`.
+
+   .. property:: CelestialBody TargetBody { get; set; }
+
+      The celestial body the antenna is targetting.
+
+   .. property:: string TargetGroundStation { get; set; }
+
+      The ground station the antenna is targetting.
+
+   .. property:: Vessel TargetVessel { get; set; }
+
+      The vessel the antenna is targetting.
+
+
+
+.. enum:: Target
+
+   The type of object an antenna is targetting.
+   See :prop:`Antenna.Target`.
+
+
+   .. value:: ActiveVessel
+
+      The active vessel.
+
+
+   .. value:: CelestialBody
+
+      A celestial body.
+
+
+   .. value:: GroundStation
+
+      A ground station.
+
+
+   .. value:: Vessel
+
+      A specific vessel.
+
+
+   .. value:: None
+
+      No target.

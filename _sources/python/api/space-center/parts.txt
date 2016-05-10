@@ -976,6 +976,14 @@ Control Surface
       :Attribute: Read-only, cannot be set
       :rtype: float
 
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
 
 
 Decoupler
@@ -1424,6 +1432,15 @@ Engine
 
       :Attribute: Can be read or written
       :rtype: float
+
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      Returns zero if the engine is inactive, or not gimballed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
 
 
 
@@ -2095,11 +2112,20 @@ Reaction Wheel
       :Attribute: Read-only, cannot be set
       :rtype: bool
 
-   .. attribute:: torque
+   .. attribute:: available_torque
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
+
+   .. attribute:: max_torque
+
+      The maximum torque the reaction wheel can provide, is it active,
+      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple of (float, float, float)
@@ -2180,6 +2206,15 @@ RCS
 
       :Attribute: Can be read or written
       :rtype: bool
+
+   .. attribute:: available_torque
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      Returns zero if the RCS is inactive.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (float, float, float)
 
    .. attribute:: max_thrust
 

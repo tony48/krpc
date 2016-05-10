@@ -716,6 +716,11 @@ Control Surface
 
       Surface area of the control surface in :math:`m^2`.
 
+   .. function:: std::tuple<double, double, double> available_torque()
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+
 
 
 Decoupler
@@ -1063,6 +1068,12 @@ Engine
 
       The gimbal limiter of the engine. A value between 0 and 1.
       Returns 0 if the gimbal is locked.
+
+   .. function:: std::tuple<double, double, double> available_torque()
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      Returns zero if the engine is inactive, or not gimballed.
 
 
 
@@ -1655,11 +1666,17 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. function:: std::tuple<double, double, double> torque()
+   .. function:: std::tuple<double, double, double> available_torque()
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
+
+   .. function:: std::tuple<double, double, double> max_torque()
+
+      The maximum torque the reaction wheel can provide, is it active,
+      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
 
 
 
@@ -1718,6 +1735,12 @@ RCS
    .. function:: void set_right_enabled(bool value)
 
       Whether the RCS thruster will fire when roll control input is given.
+
+   .. function:: std::tuple<double, double, double> available_torque()
+
+      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      Returns zero if the RCS is inactive.
 
    .. function:: float max_thrust()
 

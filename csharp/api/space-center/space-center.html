@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.2 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.3 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
             
           
@@ -100,7 +100,6 @@
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
@@ -109,6 +108,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
@@ -396,9 +396,9 @@ A value between 0 and 7 inclusive.  See
 
 <dl class="method">
 <dt id="method-SpaceCenter.WarpTo">
-void <code class="descname">WarpTo</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>UT</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>maxRailsRate</em><em> = 100000.0</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>maxPhysicsRate</em><em> = 2.0</em><span class="sig-paren">)</span><a class="headerlink" href="#method-SpaceCenter.WarpTo" title="Permalink to this definition">¶</a></dt>
+void <code class="descname">WarpTo</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <em>ut</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>maxRailsRate</em><em> = 100000.0</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>maxPhysicsRate</em><em> = 2.0</em><span class="sig-paren">)</span><a class="headerlink" href="#method-SpaceCenter.WarpTo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses time acceleration to warp forward to a time in the future, specified
-by universal time <em>UT</em>. This call blocks until the desired
+by universal time <em>ut</em>. This call blocks until the desired
 time is reached. Uses regular &#8220;on-rails&#8221; or physical time warp as appropriate.
 For example, physical time warp is used when the active vessel is traveling
 through an atmosphere. When using regular &#8220;on-rails&#8221; time warp, the warp
@@ -409,7 +409,7 @@ time warp, the warp rate is limited by <em>maxPhysicsRate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>UT</strong> &#8211; The universal time to warp to, in seconds.</li>
+<li><strong>ut</strong> &#8211; The universal time to warp to, in seconds.</li>
 <li><strong>maxRailsRate</strong> &#8211; The maximum warp rate in regular &#8220;on-rails&#8221; time warp.</li>
 <li><strong>maxPhysicsRate</strong> &#8211; The maximum warp rate in physical time warp.</li>
 </ul>
@@ -517,12 +517,6 @@ relative angular velocity of the reference frames into account.</p>
 <dt id="property-SpaceCenter.FARAvailable">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">FARAvailable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SpaceCenter.FARAvailable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-SpaceCenter.RemoteTechAvailable">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">RemoteTechAvailable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-SpaceCenter.RemoteTechAvailable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/75245-11-remotetech-v1610-2016-04-12/">RemoteTech</a> is installed.</p>
 </dd></dl>
 
 <dl class="method">
@@ -640,7 +634,7 @@ void <code class="descname">ClearDrawing</code> <span class="sig-paren">(</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.2',
+            VERSION:'0.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
