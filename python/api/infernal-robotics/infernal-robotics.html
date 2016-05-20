@@ -292,6 +292,18 @@ exists. If multiple servo groups have the same name, only one of them is returne
   ga('send', 'pageview');
 </script>
 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>

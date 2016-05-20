@@ -1,18 +1,17 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 Camera
 ======
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Camera
 
    Controls the game's camera.
 
-   .. function:: SpaceCenter::CameraMode mode()
-   .. function:: void set_mode(SpaceCenter::CameraMode value)
+   .. function:: CameraMode mode()
+   .. function:: void set_mode(CameraMode value)
 
       The current mode of the camera.
 
@@ -20,7 +19,7 @@ Camera
    .. function:: void set_pitch(float value)
 
       The pitch of the camera, in degrees.
-      A value between :func:`SpaceCenter::Camera::min_pitch` and :func:`SpaceCenter::Camera::max_pitch`
+      A value between :func:`Camera::min_pitch` and :func:`Camera::max_pitch`
 
    .. function:: float heading()
    .. function:: void set_heading(float value)
@@ -31,7 +30,7 @@ Camera
    .. function:: void set_distance(float value)
 
       The distance from the camera to the subject.
-      A value between :func:`SpaceCenter::Camera::min_distance` and :func:`SpaceCenter::Camera::max_distance`.
+      A value between :func:`Camera::min_distance` and :func:`Camera::max_distance`.
 
    .. function:: float min_pitch()
 
@@ -53,22 +52,22 @@ Camera
 
       Default distance from the camera to the subject.
 
-   .. function:: SpaceCenter::CelestialBody focussed_body()
-   .. function:: void set_focussed_body(SpaceCenter::CelestialBody value)
+   .. function:: CelestialBody focussed_body()
+   .. function:: void set_focussed_body(CelestialBody value)
 
       In map mode, the celestial body that the camera is focussed on.
       Returns ``NULL`` if the camera is not focussed on a celestial body.
       Returns an error is the camera is not in map mode.
 
-   .. function:: SpaceCenter::Vessel focussed_vessel()
-   .. function:: void set_focussed_vessel(SpaceCenter::Vessel value)
+   .. function:: Vessel focussed_vessel()
+   .. function:: void set_focussed_vessel(Vessel value)
 
       In map mode, the vessel that the camera is focussed on.
       Returns ``NULL`` if the camera is not focussed on a vessel.
       Returns an error is the camera is not in map mode.
 
-   .. function:: SpaceCenter::Node focussed_node()
-   .. function:: void set_focussed_node(SpaceCenter::Node value)
+   .. function:: Node focussed_node()
+   .. function:: void set_focussed_node(Node value)
 
       In map mode, the maneuver node that the camera is focussed on.
       Returns ``NULL`` if the camera is not focussed on a maneuver node.
@@ -79,7 +78,7 @@ Camera
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: CameraMode
 
-   See :func:`SpaceCenter::Camera::mode`.
+   See :func:`Camera::mode`.
 
 
    .. enumerator:: automatic

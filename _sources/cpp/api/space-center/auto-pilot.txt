@@ -1,16 +1,15 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 AutoPilot
 =========
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: AutoPilot
 
    Provides basic auto-piloting utilities for a vessel.
-   Created by calling :func:`SpaceCenter::Vessel::auto_pilot`.
+   Created by calling :func:`Vessel::auto_pilot`.
 
    .. note::
 
@@ -42,10 +41,10 @@ AutoPilot
       in and the actual roll. Returns zero if the auto-pilot has not been engaged
       or no target roll is set.
 
-   .. function:: SpaceCenter::ReferenceFrame reference_frame()
-   .. function:: void set_reference_frame(SpaceCenter::ReferenceFrame value)
+   .. function:: ReferenceFrame reference_frame()
+   .. function:: void set_reference_frame(ReferenceFrame value)
 
-      The reference frame for the target direction (:func:`SpaceCenter::AutoPilot::target_direction`).
+      The reference frame for the target direction (:func:`AutoPilot::target_direction`).
 
    .. function:: std::tuple<double, double, double> target_direction()
    .. function:: void set_target_direction(std::tuple<double, double, double> value)
@@ -54,7 +53,7 @@ AutoPilot
 
    .. function:: void target_pitch_and_heading(float pitch, float heading)
 
-      Set (:func:`SpaceCenter::AutoPilot::target_direction`) from a pitch and heading angle.
+      Set (:func:`AutoPilot::target_direction`) from a pitch and heading angle.
 
       :Parameters:
 
@@ -74,19 +73,19 @@ AutoPilot
 
       .. note::
 
-         Equivalent to :func:`SpaceCenter::Control::sas`
+         Equivalent to :func:`Control::sas`
 
-   .. function:: SpaceCenter::SASMode sas_mode()
-   .. function:: void set_sas_mode(SpaceCenter::SASMode value)
+   .. function:: SASMode sas_mode()
+   .. function:: void set_sas_mode(SASMode value)
 
-      The current :enum:`SpaceCenter::SASMode`.
+      The current :enum:`SASMode`.
       These modes are equivalent to the mode buttons to
       the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
-         Equivalent to :func:`SpaceCenter::Control::sas_mode`
+         Equivalent to :func:`Control::sas_mode`
 
    .. function:: float rotation_speed_multiplier()
    .. function:: void set_rotation_speed_multiplier(float value)

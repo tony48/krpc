@@ -2531,16 +2531,16 @@ tree of parts in Figure 2. The craft file for this example can also be
 Traversing the Tree
 ^^^^^^^^^^^^^^^^^^^
 
-The tree of parts can be traversed using the attributes :attr:`SpaceCenter.Parts.root`,
-:attr:`SpaceCenter.Part.parent` and :attr:`SpaceCenter.Part.children`.
+The tree of parts can be traversed using the attributes :attr:`Parts.root`,
+:attr:`Part.parent` and :attr:`Part.children`.
 
 The root of the tree is the same as the vessels *root part* (part number 1 in
-the example above) and can be obtained by calling :attr:`SpaceCenter.Parts.root`.
-A parts children can be obtained by calling :attr:`SpaceCenter.Part.children`.
-If the part does not have any children, :attr:`SpaceCenter.Part.children`
+the example above) and can be obtained by calling :attr:`Parts.root`.
+A parts children can be obtained by calling :attr:`Part.children`.
+If the part does not have any children, :attr:`Part.children`
 returns an empty list. A parts parent can be obtained by calling
-:attr:`SpaceCenter.Part.parent`. If the part does not have a parent
-(as is the case for the root part), :attr:`SpaceCenter.Part.parent`
+:attr:`Part.parent`. If the part does not have a parent
+(as is the case for the root part), :attr:`Part.parent`
 returns ``None``.
 
 The following Python example uses these attributes to perform a
@@ -2650,12 +2650,12 @@ line part 15 (in red) takes fuel from a fuel tank (part 11 -- in green) and
 feeds it into another fuel tank (part 9 -- in blue). The fuel line is therefore
 a child of part 11, but its connection to part 9 is not represented in the tree.
 
-The attributes :attr:`SpaceCenter.Part.fuel_lines_from` and
-:attr:`SpaceCenter.Part.fuel_lines_to` can be used to discover these
+The attributes :attr:`Part.fuel_lines_from` and
+:attr:`Part.fuel_lines_to` can be used to discover these
 connections. In the example in Figure 5, when
-:attr:`SpaceCenter.Part.fuel_lines_to` is called on fuel tank part
+:attr:`Part.fuel_lines_to` is called on fuel tank part
 11, it will return a list of parts containing just fuel tank part 9 (the blue
-part). When :attr:`SpaceCenter.Part.fuel_lines_from` is called on
+part). When :attr:`Part.fuel_lines_from` is called on
 fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).
 
@@ -2672,11 +2672,11 @@ Staging
 
 Each part has two staging numbers associated with it: the stage in which the
 part is *activated* and the stage in which the part is *decoupled*. These values
-can be obtained using :attr:`SpaceCenter.Part.stage` and
-:attr:`SpaceCenter.Part.decouple_stage` respectively. For parts that
-are not activated by staging, :attr:`SpaceCenter.Part.stage` returns
+can be obtained using :attr:`Part.stage` and
+:attr:`Part.decouple_stage` respectively. For parts that
+are not activated by staging, :attr:`Part.stage` returns
 -1. For parts that are never decoupled,
-:attr:`SpaceCenter.Part.decouple_stage` returns a value of -1.
+:attr:`Part.decouple_stage` returns a value of -1.
 
 Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
 stages in which each part of the vessel will be *activated*. Figure 8 shows the

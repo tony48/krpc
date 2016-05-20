@@ -1,12 +1,11 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 Control
 =======
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Control
 
    Used to manipulate the controls of a vessel. This includes adjusting the
@@ -26,24 +25,24 @@ Control
 
       .. note::
 
-         Equivalent to :func:`SpaceCenter::AutoPilot::sas`
+         Equivalent to :func:`AutoPilot::sas`
 
-   .. function:: SpaceCenter::SASMode sas_mode()
-   .. function:: void set_sas_mode(SpaceCenter::SASMode value)
+   .. function:: SASMode sas_mode()
+   .. function:: void set_sas_mode(SASMode value)
 
-      The current :enum:`SpaceCenter::SASMode`.
+      The current :enum:`SASMode`.
       These modes are equivalent to the mode buttons to
       the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
-         Equivalent to :func:`SpaceCenter::AutoPilot::sas_mode`
+         Equivalent to :func:`AutoPilot::sas_mode`
 
-   .. function:: SpaceCenter::SpeedMode speed_mode()
-   .. function:: void set_speed_mode(SpaceCenter::SpeedMode value)
+   .. function:: SpeedMode speed_mode()
+   .. function:: void set_speed_mode(SpeedMode value)
 
-      The current :enum:`SpaceCenter::SpeedMode` of the navball.
+      The current :enum:`SpeedMode` of the navball.
       This is the mode displayed next to the speed at the top of the navball.
 
    .. function:: bool rcs()
@@ -138,7 +137,7 @@ Control
       The current stage of the vessel. Corresponds to the stage number in
       the in-game UI.
 
-   .. function:: std::vector<SpaceCenter::Vessel> activate_next_stage()
+   .. function:: std::vector<Vessel> activate_next_stage()
 
       Activates the next stage. Equivalent to pressing the space bar in-game.
 
@@ -170,10 +169,10 @@ Control
 
        * **group** -- A number between 0 and 9 inclusive.
 
-   .. function:: SpaceCenter::Node add_node(double ut, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
+   .. function:: Node add_node(double ut, float prograde = 0.0, float normal = 0.0, float radial = 0.0)
 
       Creates a maneuver node at the given universal time, and returns a
-      :class:`SpaceCenter::Node` object that can be used to modify it.
+      :class:`Node` object that can be used to modify it.
       Optionally sets the magnitude of the delta-v for the maneuver node
       in the prograde, normal and radial directions.
 
@@ -184,7 +183,7 @@ Control
        * **normal** -- Delta-v in the normal direction.
        * **radial** -- Delta-v in the radial direction.
 
-   .. function:: std::vector<SpaceCenter::Node> nodes()
+   .. function:: std::vector<Node> nodes()
 
       Returns a list of all existing maneuver nodes, ordered by time from first to last.
 
@@ -197,7 +196,7 @@ Control
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SASMode
 
-   The behavior of the SAS auto-pilot. See :func:`SpaceCenter::AutoPilot::sas_mode`.
+   The behavior of the SAS auto-pilot. See :func:`AutoPilot::sas_mode`.
 
 
    .. enumerator:: stability_assist
@@ -254,7 +253,7 @@ Control
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SpeedMode
 
-   See :func:`SpaceCenter::Control::speed_mode`.
+   See :func:`Control::speed_mode`.
 
 
    .. enumerator:: orbit

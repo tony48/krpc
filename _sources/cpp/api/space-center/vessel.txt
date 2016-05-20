@@ -1,12 +1,11 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 Vessel
 ======
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Vessel
 
    These objects are used to interact with vessels in KSP. This includes getting
@@ -17,12 +16,12 @@ Vessel
 
       The name of the vessel.
 
-   .. function:: SpaceCenter::VesselType type()
-   .. function:: void set_type(SpaceCenter::VesselType value)
+   .. function:: VesselType type()
+   .. function:: void set_type(VesselType value)
 
       The type of the vessel.
 
-   .. function:: SpaceCenter::VesselSituation situation()
+   .. function:: VesselSituation situation()
 
       The situation the vessel is in.
 
@@ -30,14 +29,14 @@ Vessel
 
       The mission elapsed time in seconds.
 
-   .. function:: SpaceCenter::Flight flight(SpaceCenter::ReferenceFrame reference_frame = None)
+   .. function:: Flight flight(ReferenceFrame reference_frame = None)
 
-      Returns a :class:`SpaceCenter::Flight` object that can be used to get flight
+      Returns a :class:`Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
 
       :Parameters:
 
-       * **reference_frame** -- Reference frame. Defaults to the vessel's surface reference frame (:func:`SpaceCenter::Vessel::surface_reference_frame`).
+       * **reference_frame** -- Reference frame. Defaults to the vessel's surface reference frame (:func:`Vessel::surface_reference_frame`).
 
 
       .. note:: When this is called with no arguments, the vessel's surface reference
@@ -48,29 +47,29 @@ Vessel
                 <tutorial-reference-frames-orbital-speed>` and :rst:ref:`surface speed
                 <tutorial-reference-frames-surface-speed>` of a vessel.
 
-   .. function:: SpaceCenter::Orbit orbit()
+   .. function:: Orbit orbit()
 
       The current orbit of the vessel.
 
-   .. function:: SpaceCenter::Control control()
+   .. function:: Control control()
 
-      Returns a :class:`SpaceCenter::Control` object that can be used to manipulate
+      Returns a :class:`Control` object that can be used to manipulate
       the vessel's control inputs. For example, its pitch/yaw/roll controls,
       RCS and thrust.
 
-   .. function:: SpaceCenter::AutoPilot auto_pilot()
+   .. function:: AutoPilot auto_pilot()
 
-      An :class:`SpaceCenter::AutoPilot` object, that can be used to perform
+      An :class:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
-   .. function:: SpaceCenter::Resources resources()
+   .. function:: Resources resources()
 
-      A :class:`SpaceCenter::Resources` object, that can used to get information
+      A :class:`Resources` object, that can used to get information
       about resources stored in the vessel.
 
-   .. function:: SpaceCenter::Resources resources_in_decouple_stage(int32_t stage, bool cumulative = True)
+   .. function:: Resources resources_in_decouple_stage(int32_t stage, bool cumulative = True)
 
-      Returns a :class:`SpaceCenter::Resources` object, that can used to get
+      Returns a :class:`Resources` object, that can used to get
       information about resources stored in a given *stage*.
 
       :Parameters:
@@ -82,9 +81,9 @@ Vessel
       .. note:: For details on stage numbering, see the
                 discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: SpaceCenter::Parts parts()
+   .. function:: Parts parts()
 
-      A :class:`SpaceCenter::Parts` object, that can used to interact with the parts that make up this vessel.
+      A :class:`Parts` object, that can used to interact with the parts that make up this vessel.
 
    .. function:: float mass()
 
@@ -97,26 +96,26 @@ Vessel
    .. function:: float thrust()
 
       The total thrust currently being produced by the vessel's engines, in
-      Newtons. This is computed by summing :func:`SpaceCenter::Engine::thrust` for
+      Newtons. This is computed by summing :func:`Engine::thrust` for
       every engine in the vessel.
 
    .. function:: float available_thrust()
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
-      :func:`SpaceCenter::Engine::available_thrust` for every active engine in the vessel.
+      :func:`Engine::available_thrust` for every active engine in the vessel.
 
    .. function:: float max_thrust()
 
       The total maximum thrust that can be produced by the vessel's active
       engines, in Newtons. This is computed by summing
-      :func:`SpaceCenter::Engine::max_thrust` for every active engine.
+      :func:`Engine::max_thrust` for every active engine.
 
    .. function:: float max_vacuum_thrust()
 
       The total maximum thrust that can be produced by the vessel's active
       engines when the vessel is in a vacuum, in Newtons. This is computed by
-      summing :func:`SpaceCenter::Engine::max_vacuum_thrust` for every active engine.
+      summing :func:`Engine::max_vacuum_thrust` for every active engine.
 
    .. function:: float specific_impulse()
 
@@ -138,11 +137,11 @@ Vessel
 
       The moment of inertia of the vessel around its center of mass in :math:`kg.m^2`.
       The inertia values are around the pitch, roll and yaw directions respectively.
-      This corresponds to the vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      This corresponds to the vessels reference frame (:func:`Vessel::reference_frame`).
 
    .. function:: std::vector<double> inertia_tensor()
 
-      The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:func:`Vessel::reference_frame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
    .. function:: std::tuple<double, double, double> available_torque()
@@ -150,38 +149,38 @@ Vessel
       The maximum torque that the vessel generate. Includes contributions from reaction wheels,
       RCS, gimballed engines and aerodynamic control surfaces.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
    .. function:: std::tuple<double, double, double> available_reaction_wheel_torque()
 
       The maximum torque that the currently active and powered reaction wheels can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
    .. function:: std::tuple<double, double, double> available_rcs_torque()
 
       The maximum torque that the currently active RCS thrusters can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
    .. function:: std::tuple<double, double, double> available_engine_torque()
 
       The maximum torque that the currently active and gimballed engines can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
    .. function:: std::tuple<double, double, double> available_control_surface_torque()
 
       The maximum torque that the aerodynamic control surfaces can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:func:`SpaceCenter::Vessel::reference_frame`).
+      vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. function:: SpaceCenter::ReferenceFrame reference_frame()
+   .. function:: ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the vessel.
 
@@ -202,7 +201,7 @@ Vessel
 
          Vessel reference frame origin and axes for the Kerbal-X rocket
 
-   .. function:: SpaceCenter::ReferenceFrame orbital_reference_frame()
+   .. function:: ReferenceFrame orbital_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the vessels
       orbital prograde/normal/radial directions.
@@ -223,7 +222,7 @@ Vessel
 
          Vessel orbital reference frame origin and axes
 
-   .. function:: SpaceCenter::ReferenceFrame surface_reference_frame()
+   .. function:: ReferenceFrame surface_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the surface
       of the body being orbited.
@@ -250,7 +249,7 @@ Vessel
 
          Vessel surface reference frame origin and axes
 
-   .. function:: SpaceCenter::ReferenceFrame surface_velocity_reference_frame()
+   .. function:: ReferenceFrame surface_velocity_reference_frame()
 
       The reference frame that is fixed relative to the vessel, and orientated with the velocity
       vector of the vessel relative to the surface of the body being orbited.
@@ -269,31 +268,31 @@ Vessel
 
          Vessel surface velocity reference frame origin and axes
 
-   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> velocity(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
 
       Returns the velocity vector of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
       Returns the rotation of the center of mass of the vessel in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
       Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> angular_velocity(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> angular_velocity(ReferenceFrame reference_frame)
 
       Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
       vector is the rotational speed in radians per second, and the direction of the vector indicates the
@@ -306,7 +305,7 @@ Vessel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselType
 
-   See :func:`SpaceCenter::Vessel::type`.
+   See :func:`Vessel::type`.
 
 
    .. enumerator:: ship
@@ -348,7 +347,7 @@ Vessel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselSituation
 
-   See :func:`SpaceCenter::Vessel::situation`.
+   See :func:`Vessel::situation`.
 
 
    .. enumerator:: docked

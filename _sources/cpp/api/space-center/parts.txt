@@ -1,6 +1,6 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 .. _cpp-api-parts:
 
@@ -16,48 +16,47 @@ Parts
 -----
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Parts
 
    Instances of this class are used to interact with the parts of a vessel.
-   An instance can be obtained by calling :func:`SpaceCenter::Vessel::parts`.
+   An instance can be obtained by calling :func:`Vessel::parts`.
 
-   .. function:: std::vector<SpaceCenter::Part> all()
+   .. function:: std::vector<Part> all()
 
       A list of all of the vessels parts.
 
-   .. function:: SpaceCenter::Part root()
+   .. function:: Part root()
 
       The vessels root part.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
-   .. function:: SpaceCenter::Part controlling()
-   .. function:: void set_controlling(SpaceCenter::Part value)
+   .. function:: Part controlling()
+   .. function:: void set_controlling(Part value)
 
       The part from which the vessel is controlled.
 
-   .. function:: std::vector<SpaceCenter::Part> with_name(std::string name)
+   .. function:: std::vector<Part> with_name(std::string name)
 
-      A list of parts whose :func:`SpaceCenter::Part::name` is *name*.
-
-      :Parameters:
-
-   .. function:: std::vector<SpaceCenter::Part> with_title(std::string title)
-
-      A list of all parts whose :func:`SpaceCenter::Part::title` is *title*.
+      A list of parts whose :func:`Part::name` is *name*.
 
       :Parameters:
 
-   .. function:: std::vector<SpaceCenter::Part> with_module(std::string module_name)
+   .. function:: std::vector<Part> with_title(std::string title)
 
-      A list of all parts that contain a :class:`SpaceCenter::Module` whose
-      :func:`SpaceCenter::Module::name` is *module_name*.
+      A list of all parts whose :func:`Part::title` is *title*.
 
       :Parameters:
 
-   .. function:: std::vector<SpaceCenter::Part> in_stage(int32_t stage)
+   .. function:: std::vector<Part> with_module(std::string module_name)
+
+      A list of all parts that contain a :class:`Module` whose
+      :func:`Module::name` is *module_name*.
+
+      :Parameters:
+
+   .. function:: std::vector<Part> in_stage(int32_t stage)
 
       A list of all parts that are activated in the given *stage*.
 
@@ -68,7 +67,7 @@ Parts
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: std::vector<SpaceCenter::Part> in_decouple_stage(int32_t stage)
+   .. function:: std::vector<Part> in_decouple_stage(int32_t stage)
 
       A list of all parts that are decoupled in the given *stage*.
 
@@ -79,37 +78,37 @@ Parts
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
-   .. function:: std::vector<SpaceCenter::Module> modules_with_name(std::string module_name)
+   .. function:: std::vector<Module> modules_with_name(std::string module_name)
 
       A list of modules (combined across all parts in the vessel) whose
-      :func:`SpaceCenter::Module::name` is *module_name*.
+      :func:`Module::name` is *module_name*.
 
       :Parameters:
 
-   .. function:: std::vector<SpaceCenter::CargoBay> cargo_bays()
+   .. function:: std::vector<CargoBay> cargo_bays()
 
       A list of all cargo bays in the vessel.
 
-   .. function:: std::vector<SpaceCenter::ControlSurface> control_surfaces()
+   .. function:: std::vector<ControlSurface> control_surfaces()
 
       A list of all control surfaces in the vessel.
 
-   .. function:: std::vector<SpaceCenter::Decoupler> decouplers()
+   .. function:: std::vector<Decoupler> decouplers()
 
       A list of all decouplers in the vessel.
 
-   .. function:: std::vector<SpaceCenter::DockingPort> docking_ports()
+   .. function:: std::vector<DockingPort> docking_ports()
 
       A list of all docking ports in the vessel.
 
-   .. function:: SpaceCenter::DockingPort docking_port_with_name(std::string name)
+   .. function:: DockingPort docking_port_with_name(std::string name)
 
-      The first docking port in the vessel with the given port name, as returned by :func:`SpaceCenter::DockingPort::name`.
+      The first docking port in the vessel with the given port name, as returned by :func:`DockingPort::name`.
       Returns ``NULL`` if there are no such docking ports.
 
       :Parameters:
 
-   .. function:: std::vector<SpaceCenter::Engine> engines()
+   .. function:: std::vector<Engine> engines()
 
       A list of all engines in the vessel.
 
@@ -119,59 +118,59 @@ Parts
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
-   .. function:: std::vector<SpaceCenter::Fairing> fairings()
+   .. function:: std::vector<Fairing> fairings()
 
       A list of all fairings in the vessel.
 
-   .. function:: std::vector<SpaceCenter::Intake> intakes()
+   .. function:: std::vector<Intake> intakes()
 
       A list of all intakes in the vessel.
 
-   .. function:: std::vector<SpaceCenter::LandingGear> landing_gear()
+   .. function:: std::vector<LandingGear> landing_gear()
 
       A list of all landing gear attached to the vessel.
 
-   .. function:: std::vector<SpaceCenter::LandingLeg> landing_legs()
+   .. function:: std::vector<LandingLeg> landing_legs()
 
       A list of all landing legs attached to the vessel.
 
-   .. function:: std::vector<SpaceCenter::LaunchClamp> launch_clamps()
+   .. function:: std::vector<LaunchClamp> launch_clamps()
 
       A list of all launch clamps attached to the vessel.
 
-   .. function:: std::vector<SpaceCenter::Light> lights()
+   .. function:: std::vector<Light> lights()
 
       A list of all lights in the vessel.
 
-   .. function:: std::vector<SpaceCenter::Parachute> parachutes()
+   .. function:: std::vector<Parachute> parachutes()
 
       A list of all parachutes in the vessel.
 
-   .. function:: std::vector<SpaceCenter::Radiator> radiators()
+   .. function:: std::vector<Radiator> radiators()
 
       A list of all radiators in the vessel.
 
-   .. function:: std::vector<SpaceCenter::RCS> rcs()
+   .. function:: std::vector<RCS> rcs()
 
       A list of all RCS blocks/thrusters in the vessel.
 
-   .. function:: std::vector<SpaceCenter::ReactionWheel> reaction_wheels()
+   .. function:: std::vector<ReactionWheel> reaction_wheels()
 
       A list of all reaction wheels in the vessel.
 
-   .. function:: std::vector<SpaceCenter::ResourceConverter> resource_converters()
+   .. function:: std::vector<ResourceConverter> resource_converters()
 
       A list of all resource converters in the vessel.
 
-   .. function:: std::vector<SpaceCenter::ResourceHarvester> resource_harvesters()
+   .. function:: std::vector<ResourceHarvester> resource_harvesters()
 
       A list of all resource harvesters in the vessel.
 
-   .. function:: std::vector<SpaceCenter::Sensor> sensors()
+   .. function:: std::vector<Sensor> sensors()
 
       A list of all sensors in the vessel.
 
-   .. function:: std::vector<SpaceCenter::SolarPanel> solar_panels()
+   .. function:: std::vector<SolarPanel> solar_panels()
 
       A list of all solar panels in the vessel.
 
@@ -181,11 +180,10 @@ Part
 ----
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Part
 
    Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :class:`SpaceCenter::Parts`.
+   Instances can be obtained by various methods in :class:`Parts`.
 
    .. function:: std::string name()
 
@@ -201,22 +199,22 @@ Part
 
       The cost of the part, in units of funds.
 
-   .. function:: SpaceCenter::Vessel vessel()
+   .. function:: Vessel vessel()
 
       The vessel that contains this part.
 
-   .. function:: SpaceCenter::Part parent()
+   .. function:: Part parent()
 
       The parts parent. Returns ``NULL`` if the part does not have a parent.
-      This, in combination with :func:`SpaceCenter::Part::children`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`Part::children`, can be used to traverse the vessels parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
-   .. function:: std::vector<SpaceCenter::Part> children()
+   .. function:: std::vector<Part> children()
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :func:`SpaceCenter::Part::parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`Part::parent`, can be used to traverse the vessels parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
@@ -336,9 +334,9 @@ Part
       A positive value means the part's internals are gaining heat energy,
       and negative means its skin is gaining heat energy.
 
-   .. function:: SpaceCenter::Resources resources()
+   .. function:: Resources resources()
 
-      A :class:`SpaceCenter::Resources` object for the part.
+      A :class:`Resources` object for the part.
 
    .. function:: bool crossfeed()
 
@@ -348,108 +346,108 @@ Part
 
       Whether this part is a fuel line.
 
-   .. function:: std::vector<SpaceCenter::Part> fuel_lines_from()
+   .. function:: std::vector<Part> fuel_lines_from()
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
-   .. function:: std::vector<SpaceCenter::Part> fuel_lines_to()
+   .. function:: std::vector<Part> fuel_lines_to()
 
       The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
-   .. function:: std::vector<SpaceCenter::Module> modules()
+   .. function:: std::vector<Module> modules()
 
       The modules for this part.
 
-   .. function:: SpaceCenter::CargoBay cargo_bay()
+   .. function:: CargoBay cargo_bay()
 
-      A :class:`SpaceCenter::CargoBay` if the part is a cargo bay, otherwise ``NULL``.
+      A :class:`CargoBay` if the part is a cargo bay, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::ControlSurface control_surface()
+   .. function:: ControlSurface control_surface()
 
-      A :class:`SpaceCenter::ControlSurface` if the part is an aerodynamic control surface, otherwise ``NULL``.
+      A :class:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Decoupler decoupler()
+   .. function:: Decoupler decoupler()
 
-      A :class:`SpaceCenter::Decoupler` if the part is a decoupler, otherwise ``NULL``.
+      A :class:`Decoupler` if the part is a decoupler, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::DockingPort docking_port()
+   .. function:: DockingPort docking_port()
 
-      A :class:`SpaceCenter::DockingPort` if the part is a docking port, otherwise ``NULL``.
+      A :class:`DockingPort` if the part is a docking port, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Engine engine()
+   .. function:: Engine engine()
 
-      An :class:`SpaceCenter::Engine` if the part is an engine, otherwise ``NULL``.
+      An :class:`Engine` if the part is an engine, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Fairing fairing()
+   .. function:: Fairing fairing()
 
-      A :class:`SpaceCenter::Fairing` if the part is a fairing, otherwise ``NULL``.
+      A :class:`Fairing` if the part is a fairing, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Intake intake()
+   .. function:: Intake intake()
 
-      An :class:`SpaceCenter::Intake` if the part is an intake, otherwise ``NULL``.
+      An :class:`Intake` if the part is an intake, otherwise ``NULL``.
 
 
       .. note::
 
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters and jet engines.
-         For RCS thrusters see :class:`SpaceCenter::RCS`.
+         For RCS thrusters see :class:`RCS`.
 
-   .. function:: SpaceCenter::LandingGear landing_gear()
+   .. function:: LandingGear landing_gear()
 
-      A :class:`SpaceCenter::LandingGear` if the part is a landing gear, otherwise ``NULL``.
+      A :class:`LandingGear` if the part is a landing gear, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::LandingLeg landing_leg()
+   .. function:: LandingLeg landing_leg()
 
-      A :class:`SpaceCenter::LandingLeg` if the part is a landing leg, otherwise ``NULL``.
+      A :class:`LandingLeg` if the part is a landing leg, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::LaunchClamp launch_clamp()
+   .. function:: LaunchClamp launch_clamp()
 
-      A :class:`SpaceCenter::LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
+      A :class:`LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Light light()
+   .. function:: Light light()
 
-      A :class:`SpaceCenter::Light` if the part is a light, otherwise ``NULL``.
+      A :class:`Light` if the part is a light, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Parachute parachute()
+   .. function:: Parachute parachute()
 
-      A :class:`SpaceCenter::Parachute` if the part is a parachute, otherwise ``NULL``.
+      A :class:`Parachute` if the part is a parachute, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Radiator radiator()
+   .. function:: Radiator radiator()
 
-      A :class:`SpaceCenter::Radiator` if the part is a radiator, otherwise ``NULL``.
+      A :class:`Radiator` if the part is a radiator, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::RCS rcs()
+   .. function:: RCS rcs()
 
-      A :class:`SpaceCenter::RCS` if the part is an RCS block/thruster, otherwise ``NULL``.
+      A :class:`RCS` if the part is an RCS block/thruster, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::ReactionWheel reaction_wheel()
+   .. function:: ReactionWheel reaction_wheel()
 
-      A :class:`SpaceCenter::ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
+      A :class:`ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::ResourceConverter resource_converter()
+   .. function:: ResourceConverter resource_converter()
 
-      A :class:`SpaceCenter::ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
+      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::ResourceHarvester resource_harvester()
+   .. function:: ResourceHarvester resource_harvester()
 
-      A :class:`SpaceCenter::ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
+      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::Sensor sensor()
+   .. function:: Sensor sensor()
 
-      A :class:`SpaceCenter::Sensor` if the part is a sensor, otherwise ``NULL``.
+      A :class:`Sensor` if the part is a sensor, otherwise ``NULL``.
 
-   .. function:: SpaceCenter::SolarPanel solar_panel()
+   .. function:: SolarPanel solar_panel()
 
-      A :class:`SpaceCenter::SolarPanel` if the part is a solar panel, otherwise ``NULL``.
+      A :class:`SolarPanel` if the part is a solar panel, otherwise ``NULL``.
 
-   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
       The position of the part in the given reference frame.
 
@@ -462,28 +460,28 @@ Part
 
          This is a fixed position in the part, defined by the parts model.
          It s not necessarily the same as the parts center of mass.
-         Use :func:`SpaceCenter::Part::center_of_mass` to get the parts center of mass.
+         Use :func:`Part::center_of_mass` to get the parts center of mass.
 
-   .. function:: std::tuple<double, double, double> center_of_mass(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> center_of_mass(ReferenceFrame reference_frame)
 
       The position of the parts center of mass in the given reference frame.
-      If the part is physicsless, this is equivalent to :func:`SpaceCenter::Part::position`.
+      If the part is physicsless, this is equivalent to :func:`Part::position`.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
       The direction of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> velocity(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
 
       The velocity of the part in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
       The rotation of the part in the given reference frame.
 
@@ -492,18 +490,18 @@ Part
    .. function:: std::tuple<double, double, double> moment_of_inertia()
 
       The moment of inertia of the part in :math:`kg.m^2` around its center of mass
-      in the parts reference frame (:class:`SpaceCenter::ReferenceFrame`).
+      in the parts reference frame (:class:`ReferenceFrame`).
 
    .. function:: std::vector<double> inertia_tensor()
 
-      The inertia tensor of the part in the parts reference frame (:class:`SpaceCenter::ReferenceFrame`).
+      The inertia tensor of the part in the parts reference frame (:class:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
-   .. function:: SpaceCenter::ReferenceFrame reference_frame()
+   .. function:: ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
 
-      * The origin is at the position of the part, as returned by :func:`SpaceCenter::Part::position`.
+      * The origin is at the position of the part, as returned by :func:`Part::position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -511,18 +509,18 @@ Part
       .. note::
 
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :func:`SpaceCenter::DockingPort::reference_frame`.
+         for the docking port, returned by :func:`DockingPort::reference_frame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
 
          Mk1 Command Pod reference frame origin and axes
 
-   .. function:: SpaceCenter::ReferenceFrame center_of_mass_reference_frame()
+   .. function:: ReferenceFrame center_of_mass_reference_frame()
 
       The reference frame that is fixed relative to this part, and centered on its center of mass.
 
-      * The origin is at the center of mass of the part, as returned by :func:`SpaceCenter::Part::center_of_mass`.
+      * The origin is at the center of mass of the part, as returned by :func:`Part::center_of_mass`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -530,7 +528,7 @@ Part
       .. note::
 
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :func:`SpaceCenter::DockingPort::reference_frame`.
+         for the docking port, returned by :func:`DockingPort::reference_frame`.
 
 
 
@@ -538,7 +536,6 @@ Module
 ------
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Module
 
    In KSP, each part has zero or more
@@ -553,7 +550,7 @@ Module
 
       Name of the PartModule. For example, "ModuleEngines".
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part that contains this module.
 
@@ -626,16 +623,15 @@ Cargo Bay
 ^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: CargoBay
 
-   Obtained by calling :func:`SpaceCenter::Part::cargo_bay`.
+   Obtained by calling :func:`Part::cargo_bay`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this cargo bay.
 
-   .. function:: SpaceCenter::CargoBayState state()
+   .. function:: CargoBayState state()
 
       The state of the cargo bay.
 
@@ -649,7 +645,7 @@ Cargo Bay
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: CargoBayState
 
-   See :func:`SpaceCenter::CargoBay::state`.
+   See :func:`CargoBay::state`.
 
 
    .. enumerator:: open
@@ -677,13 +673,12 @@ Control Surface
 ^^^^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: ControlSurface
 
-   Obtained by calling :func:`SpaceCenter::Part::control_surface`.
+   Obtained by calling :func:`Part::control_surface`.
    Provides functionality to interact with aerodynamic control surfaces.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this control surface.
 
@@ -719,7 +714,7 @@ Control Surface
    .. function:: std::tuple<double, double, double> available_torque()
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
 
 
 
@@ -727,16 +722,15 @@ Decoupler
 ^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Decoupler
 
-   Obtained by calling :func:`SpaceCenter::Part::decoupler`
+   Obtained by calling :func:`Part::decoupler`
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this decoupler.
 
-   .. function:: SpaceCenter::Vessel decouple()
+   .. function:: Vessel decouple()
 
       Fires the decoupler. Returns the new vessel created when the decoupler fires.
       Throws an exception if the decoupler has already fired.
@@ -755,12 +749,11 @@ Docking Port
 ^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: DockingPort
 
-   Obtained by calling :func:`SpaceCenter::Part::docking_port`
+   Obtained by calling :func:`Part::docking_port`
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this docking port.
 
@@ -771,20 +764,20 @@ Docking Port
       in the right click menu, when the
       `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
       mod is installed. If this mod is not installed, returns the title of the part
-      (:func:`SpaceCenter::Part::title`).
+      (:func:`Part::title`).
 
-   .. function:: SpaceCenter::DockingPortState state()
+   .. function:: DockingPortState state()
 
       The current state of the docking port.
 
-   .. function:: SpaceCenter::Part docked_part()
+   .. function:: Part docked_part()
 
       The part that this docking port is docked to. Returns ``NULL`` if this
       docking port is not docked to anything.
 
-   .. function:: SpaceCenter::Vessel undock()
+   .. function:: Vessel undock()
 
-      Undocks the docking port and returns the new :class:`SpaceCenter::Vessel` that is created.
+      Undocks the docking port and returns the new :class:`Vessel` that is created.
       This method can be called for either docking port in a docked pair.
       Throws an exception if the docking port is not docked to anything.
 
@@ -792,7 +785,7 @@ Docking Port
 
       .. note::
 
-         After undocking, the active vessel may change. See :func:`SpaceCenter::active_vessel`.
+         After undocking, the active vessel may change. See :func:`active_vessel`.
 
    .. function:: float reengage_distance()
 
@@ -812,25 +805,25 @@ Docking Port
       closed, and when set to ``false`` the shield is opened. If the docking
       port does not have a shield, setting this attribute has no effect.
 
-   .. function:: std::tuple<double, double, double> position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
       The position of the docking port in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> direction(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
       The direction that docking port points in, in the given reference frame.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double, double> rotation(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
       The rotation of the docking port, in the given reference frame.
 
       :Parameters:
 
-   .. function:: SpaceCenter::ReferenceFrame reference_frame()
+   .. function:: ReferenceFrame reference_frame()
 
       The reference frame that is fixed relative to this docking port, and
       oriented with the port.
@@ -845,7 +838,7 @@ Docking Port
       .. note::
 
          This reference frame is not necessarily equivalent to the reference frame
-         for the part, returned by :func:`SpaceCenter::Part::reference_frame`.
+         for the part, returned by :func:`Part::reference_frame`.
 
       .. figure:: /images/reference-frames/docking-port.png
          :align: center
@@ -862,7 +855,7 @@ Docking Port
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: DockingPortState
 
-   See :func:`SpaceCenter::DockingPort::state`.
+   See :func:`DockingPort::state`.
 
 
    .. enumerator:: ready
@@ -886,7 +879,7 @@ Docking Port
 
       The docking port has just been undocked from another docking port,
       and is disabled until it moves away by a sufficient distance
-      (:func:`SpaceCenter::DockingPort::reengage_distance`).
+      (:func:`DockingPort::reengage_distance`).
 
 
    .. enumerator:: shielded
@@ -904,18 +897,17 @@ Engine
 ^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Engine
 
-   Obtained by calling :func:`SpaceCenter::Part::engine`.
+   Obtained by calling :func:`Part::engine`.
 
    .. note::
 
       Provides functionality to interact with engines of various types,
       for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
-      For RCS thrusters :func:`SpaceCenter::Part::rcs`.
+      For RCS thrusters :func:`Part::rcs`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this engine.
 
@@ -923,7 +915,7 @@ Engine
    .. function:: void set_active(bool value)
 
       Whether the engine is active. Setting this attribute may have no effect,
-      depending on :func:`SpaceCenter::Engine::can_shutdown` and :func:`SpaceCenter::Engine::can_restart`.
+      depending on :func:`Engine::can_shutdown` and :func:`Engine::can_restart`.
 
    .. function:: float thrust()
 
@@ -933,7 +925,7 @@ Engine
    .. function:: float available_thrust()
 
       The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :func:`SpaceCenter::Engine::thrust_limit` into account,
+      engine, in Newtons. This takes :func:`Engine::thrust_limit` into account,
       and is the amount of thrust produced by the engine when activated and the
       main throttle is set to 100%. Returns zero if the engine does not have any fuel.
 
@@ -941,14 +933,14 @@ Engine
 
       The maximum amount of thrust that can be produced by the engine, in
       Newtons. This is the amount of thrust produced by the engine when
-      activated, :func:`SpaceCenter::Engine::thrust_limit` is set to 100% and the main vessel's
+      activated, :func:`Engine::thrust_limit` is set to 100% and the main vessel's
       throttle is set to 100%.
 
    .. function:: float max_vacuum_thrust()
 
       The maximum amount of thrust that can be produced by the engine in a
       vacuum, in Newtons. This is the amount of thrust produced by the engine
-      when activated, :func:`SpaceCenter::Engine::thrust_limit` is set to 100%, the main
+      when activated, :func:`Engine::thrust_limit` is set to 100%, the main
       vessel's throttle is set to 100% and the engine is in a vacuum.
 
    .. function:: float thrust_limit()
@@ -958,7 +950,7 @@ Engine
       attribute may have no effect, for example the thrust limit for a solid
       rocket booster cannot be changed in flight.
 
-   .. function:: std::vector<SpaceCenter::Thruster> thrusters()
+   .. function:: std::vector<Thruster> thrusters()
 
       The components of the engine that generate thrust.
 
@@ -967,8 +959,8 @@ Engine
 
          For example, this corresponds to the rocket nozzel on a solid rocket booster,
          or the individual nozzels on a RAPIER engine.
-         The overall thrust produced by the engine, as reported by :func:`SpaceCenter::Engine::available_thrust`,
-         :func:`SpaceCenter::Engine::max_thrust` and others, is the sum of the thrust generated by each thruster.
+         The overall thrust produced by the engine, as reported by :func:`Engine::available_thrust`,
+         :func:`Engine::max_thrust` and others, is the sum of the thrust generated by each thruster.
 
    .. function:: float specific_impulse()
 
@@ -1010,7 +1002,7 @@ Engine
 
    .. function:: bool throttle_locked()
 
-      Whether the :func:`SpaceCenter::Control::throttle` affects the engine. For example,
+      Whether the :func:`Control::throttle` affects the engine. For example,
       this is ``true`` for liquid fueled rockets, and ``false`` for solid rocket
       boosters.
 
@@ -1034,10 +1026,10 @@ Engine
 
       The name of the current engine mode.
 
-   .. function:: std::map<std::string,SpaceCenter::Engine> modes()
+   .. function:: std::map<std::string,Engine> modes()
 
       The available modes for the engine.
-      A dictionary mapping mode names to :class:`SpaceCenter::Engine` objects.
+      A dictionary mapping mode names to :class:`Engine` objects.
 
    .. function:: void toggle_mode()
 
@@ -1072,7 +1064,7 @@ Engine
    .. function:: std::tuple<double, double, double> available_torque()
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the engine is inactive, or not gimballed.
 
 
@@ -1081,12 +1073,11 @@ Fairing
 ^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Fairing
 
-   Obtained by calling :func:`SpaceCenter::Part::fairing`.
+   Obtained by calling :func:`Part::fairing`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this fairing.
 
@@ -1104,12 +1095,11 @@ Intake
 ^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Intake
 
-   Obtained by calling :func:`SpaceCenter::Part::intake`.
+   Obtained by calling :func:`Part::intake`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this intake.
 
@@ -1136,16 +1126,15 @@ Landing Gear
 ^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: LandingGear
 
-   Obtained by calling :func:`SpaceCenter::Part::landing_gear`.
+   Obtained by calling :func:`Part::landing_gear`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this landing gear.
 
-   .. function:: SpaceCenter::LandingGearState state()
+   .. function:: LandingGearState state()
 
       Gets the current state of the landing gear.
 
@@ -1174,7 +1163,7 @@ Landing Gear
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingGearState
 
-   See :func:`SpaceCenter::LandingGear::state`.
+   See :func:`LandingGear::state`.
 
 
    .. enumerator:: deployed
@@ -1207,16 +1196,15 @@ Landing Leg
 ^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: LandingLeg
 
-   Obtained by calling :func:`SpaceCenter::Part::landing_leg`.
+   Obtained by calling :func:`Part::landing_leg`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this landing leg.
 
-   .. function:: SpaceCenter::LandingLegState state()
+   .. function:: LandingLegState state()
 
       The current state of the landing leg.
 
@@ -1236,7 +1224,7 @@ Landing Leg
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingLegState
 
-   See :func:`SpaceCenter::LandingLeg::state`.
+   See :func:`LandingLeg::state`.
 
 
    .. enumerator:: deployed
@@ -1269,12 +1257,11 @@ Launch Clamp
 ^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: LaunchClamp
 
-   Obtained by calling :func:`SpaceCenter::Part::launch_clamp`.
+   Obtained by calling :func:`Part::launch_clamp`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this launch clamp.
 
@@ -1288,12 +1275,11 @@ Light
 ^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Light
 
-   Obtained by calling :func:`SpaceCenter::Part::light`.
+   Obtained by calling :func:`Part::light`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this light.
 
@@ -1312,12 +1298,11 @@ Parachute
 ^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Parachute
 
-   Obtained by calling :func:`SpaceCenter::Part::parachute`.
+   Obtained by calling :func:`Part::parachute`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this parachute.
 
@@ -1330,7 +1315,7 @@ Parachute
 
       Whether the parachute has been deployed.
 
-   .. function:: SpaceCenter::ParachuteState state()
+   .. function:: ParachuteState state()
 
       The current state of the parachute.
 
@@ -1349,7 +1334,7 @@ Parachute
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ParachuteState
 
-   See :func:`SpaceCenter::Parachute::state`.
+   See :func:`Parachute::state`.
 
 
    .. enumerator:: stowed
@@ -1383,12 +1368,11 @@ Radiator
 ^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Radiator
 
-   Obtained by calling :func:`SpaceCenter::Part::radiator`.
+   Obtained by calling :func:`Part::radiator`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this radiator.
 
@@ -1402,21 +1386,21 @@ Radiator
       For a deployable radiator, ``true`` if the radiator is extended.
       If the radiator is not deployable, this is always ``true``.
 
-   .. function:: SpaceCenter::RadiatorState state()
+   .. function:: RadiatorState state()
 
       The current state of the radiator.
 
 
       .. note::
 
-         A fixed radiator is always :enumerator:`SpaceCenter::RadiatorState::extended`.
+         A fixed radiator is always :enumerator:`RadiatorState::extended`.
 
 
 
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: RadiatorState
 
-   :enum:`SpaceCenter::RadiatorState`
+   :enum:`RadiatorState`
 
 
    .. enumerator:: extended
@@ -1449,12 +1433,11 @@ Resource Converter
 ^^^^^^^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: ResourceConverter
 
-   Obtained by calling :func:`SpaceCenter::Part::resource_converter`.
+   Obtained by calling :func:`Part::resource_converter`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this converter.
 
@@ -1494,7 +1477,7 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
-   .. function:: SpaceCenter::ResourceConverterState state(int32_t index)
+   .. function:: ResourceConverterState state(int32_t index)
 
       The state of the specified converter.
 
@@ -1532,7 +1515,7 @@ Resource Converter
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceConverterState
 
-   See :func:`SpaceCenter::ResourceConverter::state`.
+   See :func:`ResourceConverter::state`.
 
 
    .. enumerator:: running
@@ -1563,7 +1546,7 @@ Resource Converter
    .. enumerator:: unknown
 
       Unknown state. Possible with modified resource converters.
-      In this case, check :func:`SpaceCenter::ResourceConverter::status_info` for more information.
+      In this case, check :func:`ResourceConverter::status_info` for more information.
 
 
 
@@ -1571,16 +1554,15 @@ Resource Harvester
 ^^^^^^^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: ResourceHarvester
 
-   Obtained by calling :func:`SpaceCenter::Part::resource_harvester`.
+   Obtained by calling :func:`Part::resource_harvester`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this harvester.
 
-   .. function:: SpaceCenter::ResourceHarvesterState state()
+   .. function:: ResourceHarvesterState state()
 
       The state of the harvester.
 
@@ -1615,7 +1597,7 @@ Resource Harvester
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceHarvesterState
 
-   See :func:`SpaceCenter::ResourceHarvester::state`.
+   See :func:`ResourceHarvester::state`.
 
 
    .. enumerator:: deploying
@@ -1648,12 +1630,11 @@ Reaction Wheel
 ^^^^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: ReactionWheel
 
-   Obtained by calling :func:`SpaceCenter::Part::reaction_wheel`.
+   Obtained by calling :func:`Part::reaction_wheel`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this reaction wheel.
 
@@ -1669,14 +1650,14 @@ Reaction Wheel
    .. function:: std::tuple<double, double, double> available_torque()
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
 
    .. function:: std::tuple<double, double, double> max_torque()
 
       The maximum torque the reaction wheel can provide, is it active,
       in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
 
 
 
@@ -1684,22 +1665,21 @@ RCS
 ^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: RCS
 
-   Obtained by calling :func:`SpaceCenter::Part::rcs`.
+   Obtained by calling :func:`Part::rcs`.
    Provides functionality to interact with RCS blocks and thrusters.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this RCS.
 
    .. function:: bool active()
 
       Whether the RCS thrusters are active.
-      An RCS thruster is inactive if the RCS action group is disabled (:func:`SpaceCenter::Control::rcs`),
-      the RCS thruster itself is not enabled (:func:`SpaceCenter::RCS::enabled`) or
-      it is covered by a fairing (:func:`SpaceCenter::Part::shielded`).
+      An RCS thruster is inactive if the RCS action group is disabled (:func:`Control::rcs`),
+      the RCS thruster itself is not enabled (:func:`RCS::enabled`) or
+      it is covered by a fairing (:func:`Part::shielded`).
 
    .. function:: bool enabled()
    .. function:: void set_enabled(bool value)
@@ -1739,7 +1719,7 @@ RCS
    .. function:: std::tuple<double, double, double> available_torque()
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`SpaceCenter::Vessel::reference_frame`.
+      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the RCS is inactive.
 
    .. function:: float max_thrust()
@@ -1750,7 +1730,7 @@ RCS
 
       The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
 
-   .. function:: std::vector<SpaceCenter::Thruster> thrusters()
+   .. function:: std::vector<Thruster> thrusters()
 
       A list of thrusters, one of each nozzel in the RCS part.
 
@@ -1791,12 +1771,11 @@ Sensor
 ^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Sensor
 
-   Obtained by calling :func:`SpaceCenter::Part::sensor`.
+   Obtained by calling :func:`Part::sensor`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this sensor.
 
@@ -1819,12 +1798,11 @@ Solar Panel
 ^^^^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: SolarPanel
 
-   Obtained by calling :func:`SpaceCenter::Part::solar_panel`.
+   Obtained by calling :func:`Part::solar_panel`.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
       The part object for this solar panel.
 
@@ -1833,7 +1811,7 @@ Solar Panel
 
       Whether the solar panel is extended.
 
-   .. function:: SpaceCenter::SolarPanelState state()
+   .. function:: SolarPanelState state()
 
       The current state of the solar panel.
 
@@ -1852,7 +1830,7 @@ Solar Panel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SolarPanelState
 
-   See :func:`SpaceCenter::SolarPanel::state`.
+   See :func:`SolarPanel::state`.
 
 
    .. enumerator:: extended
@@ -1887,29 +1865,28 @@ Thruster
 ^^^^^^^^
 
 
-.. namespace:: krpc::services::SpaceCenter
 .. class:: Thruster
 
-   The component of an :class:`SpaceCenter::Engine` or :class:`SpaceCenter::RCS` part that generates thrust.
-   Can obtained by calling :func:`SpaceCenter::Engine::thrusters` or :func:`SpaceCenter::RCS::thrusters`.
+   The component of an :class:`Engine` or :class:`RCS` part that generates thrust.
+   Can obtained by calling :func:`Engine::thrusters` or :func:`RCS::thrusters`.
 
    .. note::
 
       Engines can consist of multiple thrusters.
       For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
 
-   .. function:: SpaceCenter::Part part()
+   .. function:: Part part()
 
-      The :class:`SpaceCenter::Part` that contains this thruster.
+      The :class:`Part` that contains this thruster.
 
-   .. function:: std::tuple<double, double, double> thrust_position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> thrust_position(ReferenceFrame reference_frame)
 
       The position at which the thruster generates thrust, in the given reference frame.
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
       :Parameters:
 
-   .. function:: std::tuple<double, double, double> thrust_direction(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> thrust_direction(ReferenceFrame reference_frame)
 
       The direction of the force generated by the thruster, in the given reference frame.
       This is opposite to the direction in which the thruster expels propellant.
@@ -1917,13 +1894,13 @@ Thruster
 
       :Parameters:
 
-   .. function:: SpaceCenter::ReferenceFrame thrust_reference_frame()
+   .. function:: ReferenceFrame thrust_reference_frame()
 
       A reference frame that is fixed relative to the thruster and orientated with
-      its thrust direction (:func:`SpaceCenter::Thruster::thrust_direction`).
+      its thrust direction (:func:`Thruster::thrust_direction`).
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      * The origin is at the position of thrust for this thruster (:func:`SpaceCenter::Thruster::thrust_position`).
+      * The origin is at the position of thrust for this thruster (:func:`Thruster::thrust_position`).
       * The axes rotate with the thrust direction.
         This is the direction in which the thruster expels propellant, including any gimballing.
       * The y-axis points along the thrust direction.
@@ -1933,7 +1910,7 @@ Thruster
 
       Whether the thruster is gimballed.
 
-   .. function:: std::tuple<double, double, double> gimbal_position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> gimbal_position(ReferenceFrame reference_frame)
 
       Position around which the gimbal pivots.
 
@@ -1943,7 +1920,7 @@ Thruster
 
       The current gimbal angle in the pitch, roll and yaw axes.
 
-   .. function:: std::tuple<double, double, double> initial_thrust_position(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> initial_thrust_position(ReferenceFrame reference_frame)
 
       The position at which the thruster generates thrust, when the engine is in its
       initial position (no gimballing), in the given reference frame.
@@ -1958,7 +1935,7 @@ Thruster
          This position can move when the gimbal rotates. This is because the thrust position and
          gimbal position are not necessarily the same.
 
-   .. function:: std::tuple<double, double, double> initial_thrust_direction(SpaceCenter::ReferenceFrame reference_frame)
+   .. function:: std::tuple<double, double, double> initial_thrust_direction(ReferenceFrame reference_frame)
 
       The direction of the force generated by the thruster, when the engine is in its
       initial position (no gimballing), in the given reference frame.
@@ -1996,16 +1973,16 @@ tree of parts in Figure 2. The craft file for this example can also be
 Traversing the Tree
 ^^^^^^^^^^^^^^^^^^^
 
-The tree of parts can be traversed using the attributes :func:`SpaceCenter::Parts::root`,
-:func:`SpaceCenter::Part::parent` and :func:`SpaceCenter::Part::children`.
+The tree of parts can be traversed using the attributes :func:`Parts::root`,
+:func:`Part::parent` and :func:`Part::children`.
 
 The root of the tree is the same as the vessels *root part* (part number 1 in
-the example above) and can be obtained by calling :func:`SpaceCenter::Parts::root`.
-A parts children can be obtained by calling :func:`SpaceCenter::Part::children`.
-If the part does not have any children, :func:`SpaceCenter::Part::children`
+the example above) and can be obtained by calling :func:`Parts::root`.
+A parts children can be obtained by calling :func:`Part::children`.
+If the part does not have any children, :func:`Part::children`
 returns an empty list. A parts parent can be obtained by calling
-:func:`SpaceCenter::Part::parent`. If the part does not have a parent
-(as is the case for the root part), :func:`SpaceCenter::Part::parent`
+:func:`Part::parent`. If the part does not have a parent
+(as is the case for the root part), :func:`Part::parent`
 returns ``NULL``.
 
 The following C++ example uses these attributes to perform a
@@ -2115,12 +2092,12 @@ line part 15 (in red) takes fuel from a fuel tank (part 11 -- in green) and
 feeds it into another fuel tank (part 9 -- in blue). The fuel line is therefore
 a child of part 11, but its connection to part 9 is not represented in the tree.
 
-The attributes :func:`SpaceCenter::Part::fuel_lines_from` and
-:func:`SpaceCenter::Part::fuel_lines_to` can be used to discover these
+The attributes :func:`Part::fuel_lines_from` and
+:func:`Part::fuel_lines_to` can be used to discover these
 connections. In the example in Figure 5, when
-:func:`SpaceCenter::Part::fuel_lines_to` is called on fuel tank part
+:func:`Part::fuel_lines_to` is called on fuel tank part
 11, it will return a list of parts containing just fuel tank part 9 (the blue
-part). When :func:`SpaceCenter::Part::fuel_lines_from` is called on
+part). When :func:`Part::fuel_lines_from` is called on
 fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).
 
@@ -2137,11 +2114,11 @@ Staging
 
 Each part has two staging numbers associated with it: the stage in which the
 part is *activated* and the stage in which the part is *decoupled*. These values
-can be obtained using :func:`SpaceCenter::Part::stage` and
-:func:`SpaceCenter::Part::decouple_stage` respectively. For parts that
-are not activated by staging, :func:`SpaceCenter::Part::stage` returns
+can be obtained using :func:`Part::stage` and
+:func:`Part::decouple_stage` respectively. For parts that
+are not activated by staging, :func:`Part::stage` returns
 -1. For parts that are never decoupled,
-:func:`SpaceCenter::Part::decouple_stage` returns a value of -1.
+:func:`Part::decouple_stage` returns a value of -1.
 
 Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
 stages in which each part of the vessel will be *activated*. Figure 8 shows the

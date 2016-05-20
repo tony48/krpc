@@ -1,6 +1,6 @@
 .. default-domain:: cpp
 .. highlight:: cpp
-
+.. namespace:: krpc::services::SpaceCenter
 
 SpaceCenter
 ===========
@@ -16,32 +16,32 @@ SpaceCenter
 
       Construct an instance of this service.
 
-   .. function:: SpaceCenter::Vessel active_vessel()
-   .. function:: void set_active_vessel(SpaceCenter::Vessel value)
+   .. function:: Vessel active_vessel()
+   .. function:: void set_active_vessel(Vessel value)
 
       The currently active vessel.
 
-   .. function:: std::vector<SpaceCenter::Vessel> vessels()
+   .. function:: std::vector<Vessel> vessels()
 
       A list of all the vessels in the game.
 
-   .. function:: std::map<std::string,SpaceCenter::CelestialBody> bodies()
+   .. function:: std::map<std::string,CelestialBody> bodies()
 
       A dictionary of all celestial bodies (planets, moons, etc.) in the game,
       keyed by the name of the body.
 
-   .. function:: SpaceCenter::CelestialBody target_body()
-   .. function:: void set_target_body(SpaceCenter::CelestialBody value)
+   .. function:: CelestialBody target_body()
+   .. function:: void set_target_body(CelestialBody value)
 
       The currently targeted celestial body.
 
-   .. function:: SpaceCenter::Vessel target_vessel()
-   .. function:: void set_target_vessel(SpaceCenter::Vessel value)
+   .. function:: Vessel target_vessel()
+   .. function:: void set_target_vessel(Vessel value)
 
       The currently targeted vessel.
 
-   .. function:: SpaceCenter::DockingPort target_docking_port()
-   .. function:: void set_target_docking_port(SpaceCenter::DockingPort value)
+   .. function:: DockingPort target_docking_port()
+   .. function:: void set_target_docking_port(DockingPort value)
 
       The currently targeted docking port.
 
@@ -87,7 +87,7 @@ SpaceCenter
 
       .. note::
 
-         This is the same as calling :func:`SpaceCenter::save` with the name "quicksave".
+         This is the same as calling :func:`save` with the name "quicksave".
 
    .. function:: void quickload()
 
@@ -97,9 +97,9 @@ SpaceCenter
 
       .. note::
 
-         This is the same as calling :func:`SpaceCenter::load` with the name "quicksave".
+         This is the same as calling :func:`load` with the name "quicksave".
 
-   .. function:: SpaceCenter::Camera camera()
+   .. function:: Camera camera()
 
       An object that can be used to control the camera.
 
@@ -112,11 +112,11 @@ SpaceCenter
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
 
-   .. function:: SpaceCenter::WarpMode warp_mode()
+   .. function:: WarpMode warp_mode()
 
-      The current time warp mode. Returns :enumerator:`SpaceCenter::WarpMode::none` if time
-      warp is not active, :enumerator:`SpaceCenter::WarpMode::rails` if regular "on-rails" time warp
-      is active, or :enumerator:`SpaceCenter::WarpMode::physics` if physical time warp is active.
+      The current time warp mode. Returns :enumerator:`WarpMode::none` if time
+      warp is not active, :enumerator:`WarpMode::rails` if regular "on-rails" time warp
+      is active, or :enumerator:`WarpMode::physics` if physical time warp is active.
 
    .. function:: float warp_rate()
 
@@ -130,8 +130,8 @@ SpaceCenter
       The current warp factor. This is the index of the rate at which time
       is passing for either regular "on-rails" or physical time warp. Returns 0
       if time warp is not active. When in on-rails time warp, this is equal to
-      :func:`SpaceCenter::rails_warp_factor`, and in physics time warp, this is equal to
-      :func:`SpaceCenter::physics_warp_factor`.
+      :func:`rails_warp_factor`, and in physics time warp, this is equal to
+      :func:`physics_warp_factor`.
 
    .. function:: int32_t rails_warp_factor()
    .. function:: void set_rails_warp_factor(int32_t value)
@@ -184,7 +184,7 @@ SpaceCenter
 
       :returns: When the time warp is complete.
 
-   .. function:: std::tuple<double, double, double> transform_position(std::tuple<double, double, double> position, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_position(std::tuple<double, double, double> position, ReferenceFrame from, ReferenceFrame to)
 
       Converts a position vector from one reference frame to another.
 
@@ -196,7 +196,7 @@ SpaceCenter
 
       :returns: The corresponding position vector in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double> transform_direction(std::tuple<double, double, double> direction, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_direction(std::tuple<double, double, double> direction, ReferenceFrame from, ReferenceFrame to)
 
       Converts a direction vector from one reference frame to another.
 
@@ -208,7 +208,7 @@ SpaceCenter
 
       :returns: The corresponding direction vector in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double, double> transform_rotation(std::tuple<double, double, double, double> rotation, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
+   .. function:: std::tuple<double, double, double, double> transform_rotation(std::tuple<double, double, double, double> rotation, ReferenceFrame from, ReferenceFrame to)
 
       Converts a rotation from one reference frame to another.
 
@@ -220,7 +220,7 @@ SpaceCenter
 
       :returns: The corresponding rotation in reference frame *to*.
 
-   .. function:: std::tuple<double, double, double> transform_velocity(std::tuple<double, double, double> position, std::tuple<double, double, double> velocity, SpaceCenter::ReferenceFrame from, SpaceCenter::ReferenceFrame to)
+   .. function:: std::tuple<double, double, double> transform_velocity(std::tuple<double, double, double> position, std::tuple<double, double, double> velocity, ReferenceFrame from, ReferenceFrame to)
 
       Converts a velocity vector (acting at the specified position vector) from one
       reference frame to another. The position vector is required to take the
@@ -239,7 +239,7 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
 
-   .. function:: void draw_direction(std::tuple<double, double, double> direction, SpaceCenter::ReferenceFrame reference_frame, std::tuple<double, double, double> color, float length = 10.0)
+   .. function:: void draw_direction(std::tuple<double, double, double> direction, ReferenceFrame reference_frame, std::tuple<double, double, double> color, float length = 10.0)
 
       Draw a direction vector on the active vessel.
 
@@ -250,7 +250,7 @@ SpaceCenter
        * **color** -- The color to use for the line, as an RGB color.
        * **length** -- The length of the line. Defaults to 10.
 
-   .. function:: void draw_line(std::tuple<double, double, double> start, std::tuple<double, double, double> end, SpaceCenter::ReferenceFrame reference_frame, std::tuple<double, double, double> color)
+   .. function:: void draw_line(std::tuple<double, double, double> start, std::tuple<double, double, double> end, ReferenceFrame reference_frame, std::tuple<double, double, double> color)
 
       Draw a line.
 
@@ -270,7 +270,7 @@ SpaceCenter
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: WarpMode
 
-   Returned by :enum:`SpaceCenter::WarpMode`
+   Returned by :enum:`WarpMode`
 
 
    .. enumerator:: rails

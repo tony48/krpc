@@ -161,13 +161,13 @@
   <div class="section" id="c-client">
 <h1>C# Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides functionality to interact with a kRPC server from programs
-written in C#. The <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code> assembly can be <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">installed using NuGet</a> or
+written in C#. The <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code> assembly can be <a class="reference external" href="http://www.nuget.com/packages/KRPC.Client">installed using NuGet</a> or
 <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.3/krpc-csharp-0.3.3.zip">downloaded from GitHub</a>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
-<p>Install the client <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">using NuGet</a>
+<p>Install the client <a class="reference external" href="http://www.nuget.com/packages/KRPC.Client">using NuGet</a>
 or download the assembly <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.3/krpc-csharp-0.3.3.zip">from GitHub</a> and
-reference it in your project. You also need to <a class="reference external" href="https://www.nuget.org/packages/Google.Protobuf">install Google.Protobuf using
+reference it in your project. You also need to <a class="reference external" href="http://www.nuget.org/packages/Google.Protobuf">install Google.Protobuf using
 NuGet</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -239,7 +239,8 @@ result of a function, avoiding the network overhead of having to invoke it
 directly.</p>
 <p>For example, consider the following loop that continuously prints out the
 position of the active vessel. This loop incurs significant communication
-overheads, as the <a class="reference internal" href="api/space-center/vessel.html#method-Vessel.Position" title="Vessel.Position method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Vessel.Position</span></code></a> method is called repeatedly.</p>
+overheads, as the <a class="reference internal" href="api/space-center/vessel.html#method-KRPC.Client.Services.SpaceCenter.Vessel.Position" title="KRPC.Client.Services.SpaceCenter.Vessel.Position method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter.Vessel.Position</span></code></a>
+method is called repeatedly.</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
@@ -406,6 +407,18 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-61341323-1', 'auto');
   ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
 </script>
 
 

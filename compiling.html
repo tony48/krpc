@@ -341,6 +341,18 @@ save game called <code class="docutils literal"><span class="pre">test</span></c
   ga('send', 'pageview');
 </script>
 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>

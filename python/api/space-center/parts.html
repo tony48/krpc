@@ -4983,15 +4983,15 @@ the parent part to the child part.</span></p>
 </div>
 <div class="section" id="traversing-the-tree">
 <h3><a class="toc-backref" href="#id38">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
-<p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#SpaceCenter.Parts.root" title="SpaceCenter.Parts.root"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Parts.root</span></code></a>,
-<a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.parent</span></code></a> and <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.children</span></code></a>.</p>
+<p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#SpaceCenter.Parts.root" title="SpaceCenter.Parts.root"><code class="xref py py-attr docutils literal"><span class="pre">Parts.root</span></code></a>,
+<a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">Part.parent</span></code></a> and <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">Part.children</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
-the example above) and can be obtained by calling <a class="reference internal" href="#SpaceCenter.Parts.root" title="SpaceCenter.Parts.root"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Parts.root</span></code></a>.
-A parts children can be obtained by calling <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.children</span></code></a>.
-If the part does not have any children, <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.children</span></code></a>
+the example above) and can be obtained by calling <a class="reference internal" href="#SpaceCenter.Parts.root" title="SpaceCenter.Parts.root"><code class="xref py py-attr docutils literal"><span class="pre">Parts.root</span></code></a>.
+A parts children can be obtained by calling <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">Part.children</span></code></a>.
+If the part does not have any children, <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">Part.children</span></code></a>
 returns an empty list. A parts parent can be obtained by calling
-<a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.parent</span></code></a>. If the part does not have a parent
-(as is the case for the root part), <a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.parent</span></code></a>
+<a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">Part.parent</span></code></a>. If the part does not have a parent
+(as is the case for the root part), <a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">Part.parent</span></code></a>
 returns <code class="docutils literal"><span class="pre">None</span></code>.</p>
 <p>The following Python example uses these attributes to perform a
 depth-first traversal over all of the parts in a vessel:</p>
@@ -5104,12 +5104,12 @@ part that it will send fuel to is not represented in the parts tree.</p>
 line part 15 (in red) takes fuel from a fuel tank (part 11 &#8211; in green) and
 feeds it into another fuel tank (part 9 &#8211; in blue). The fuel line is therefore
 a child of part 11, but its connection to part 9 is not represented in the tree.</p>
-<p>The attributes <a class="reference internal" href="#SpaceCenter.Part.fuel_lines_from" title="SpaceCenter.Part.fuel_lines_from"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.fuel_lines_from</span></code></a> and
-<a class="reference internal" href="#SpaceCenter.Part.fuel_lines_to" title="SpaceCenter.Part.fuel_lines_to"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.fuel_lines_to</span></code></a> can be used to discover these
+<p>The attributes <a class="reference internal" href="#SpaceCenter.Part.fuel_lines_from" title="SpaceCenter.Part.fuel_lines_from"><code class="xref py py-attr docutils literal"><span class="pre">Part.fuel_lines_from</span></code></a> and
+<a class="reference internal" href="#SpaceCenter.Part.fuel_lines_to" title="SpaceCenter.Part.fuel_lines_to"><code class="xref py py-attr docutils literal"><span class="pre">Part.fuel_lines_to</span></code></a> can be used to discover these
 connections. In the example in Figure 5, when
-<a class="reference internal" href="#SpaceCenter.Part.fuel_lines_to" title="SpaceCenter.Part.fuel_lines_to"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.fuel_lines_to</span></code></a> is called on fuel tank part
+<a class="reference internal" href="#SpaceCenter.Part.fuel_lines_to" title="SpaceCenter.Part.fuel_lines_to"><code class="xref py py-attr docutils literal"><span class="pre">Part.fuel_lines_to</span></code></a> is called on fuel tank part
 11, it will return a list of parts containing just fuel tank part 9 (the blue
-part). When <a class="reference internal" href="#SpaceCenter.Part.fuel_lines_from" title="SpaceCenter.Part.fuel_lines_from"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.fuel_lines_from</span></code></a> is called on
+part). When <a class="reference internal" href="#SpaceCenter.Part.fuel_lines_from" title="SpaceCenter.Part.fuel_lines_from"><code class="xref py py-attr docutils literal"><span class="pre">Part.fuel_lines_from</span></code></a> is called on
 fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
@@ -5121,11 +5121,11 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 </div>
 <p>Each part has two staging numbers associated with it: the stage in which the
 part is <em>activated</em> and the stage in which the part is <em>decoupled</em>. These values
-can be obtained using <a class="reference internal" href="#SpaceCenter.Part.stage" title="SpaceCenter.Part.stage"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.stage</span></code></a> and
-<a class="reference internal" href="#SpaceCenter.Part.decouple_stage" title="SpaceCenter.Part.decouple_stage"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.decouple_stage</span></code></a> respectively. For parts that
-are not activated by staging, <a class="reference internal" href="#SpaceCenter.Part.stage" title="SpaceCenter.Part.stage"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.stage</span></code></a> returns
+can be obtained using <a class="reference internal" href="#SpaceCenter.Part.stage" title="SpaceCenter.Part.stage"><code class="xref py py-attr docutils literal"><span class="pre">Part.stage</span></code></a> and
+<a class="reference internal" href="#SpaceCenter.Part.decouple_stage" title="SpaceCenter.Part.decouple_stage"><code class="xref py py-attr docutils literal"><span class="pre">Part.decouple_stage</span></code></a> respectively. For parts that
+are not activated by staging, <a class="reference internal" href="#SpaceCenter.Part.stage" title="SpaceCenter.Part.stage"><code class="xref py py-attr docutils literal"><span class="pre">Part.stage</span></code></a> returns
 -1. For parts that are never decoupled,
-<a class="reference internal" href="#SpaceCenter.Part.decouple_stage" title="SpaceCenter.Part.decouple_stage"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.Part.decouple_stage</span></code></a> returns a value of -1.</p>
+<a class="reference internal" href="#SpaceCenter.Part.decouple_stage" title="SpaceCenter.Part.decouple_stage"><code class="xref py py-attr docutils literal"><span class="pre">Part.decouple_stage</span></code></a> returns a value of -1.</p>
 <p>Figure 6 shows an example staging sequence for a vessel. Figure 7 shows the
 stages in which each part of the vessel will be <em>activated</em>. Figure 8 shows the
 stages in which each part of the vessel will be <em>decoupled</em>.</p>
@@ -5219,6 +5219,18 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-61341323-1', 'auto');
   ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
 </script>
 
 

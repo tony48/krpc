@@ -267,7 +267,7 @@ overheads, as the <code class="docutils literal"><span class="pre">vessel.positi
 </pre></div>
 </div>
 <p>The following code achieves the same thing, but is far more efficient. It calls
-<a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> once at the start of the program to create a
+<a class="reference internal" href="#krpc.client.Connection.addStream(Class, String, Object)" title="krpc.client.Connection.addStream(Class, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> once at the start of the program to create a
 stream, and then repeatedly gets the position from the stream.</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.javatuples.Triplet</span><span class="o">;</span>
@@ -293,7 +293,7 @@ stream, and then repeatedly gets the position from the stream.</p>
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>Streams are created by calling <a class="reference internal" href="#krpc.client.Connection.addStream(RemoteObject, String, Object)" title="krpc.client.Connection.addStream(RemoteObject, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> and passing it
+<p>Streams are created by calling <a class="reference internal" href="#krpc.client.Connection.addStream(Class, String, Object)" title="krpc.client.Connection.addStream(Class, String, Object)"><code class="xref java java-meth docutils literal"><span class="pre">Connection.addStream</span></code></a> and passing it
 information about which method to stream. The example above passes a remote
 object, the name of the method to call, followed by the arguments to pass to the
 method (if any). The most recent value for the stream can be obtained by calling
@@ -485,6 +485,18 @@ abstract class <code class="descname">RemoteObject</code><a class="headerlink" h
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-61341323-1', 'auto');
   ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
 </script>
 
 
