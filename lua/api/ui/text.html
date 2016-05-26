@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Text &mdash; kRPC 0.3.4 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+        <link rel="up" title="User Interface API" href="../ui.html"/>
+        <link rel="next" title="Button" href="button.html"/>
+        <link rel="prev" title="Panel" href="panel.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../lua.html">Lua</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Lua Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ui.html">User Interface API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ui.html">UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="panel.html">Panel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input-field.html">InputField</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rect-transform.html">Rect Transform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../lua.html">Lua</a> &raquo;</li>
+      
+          <li><a href="../ui.html">User Interface API</a> &raquo;</li>
+      
+    <li>Text</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/lua/api/ui/text.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="text">
+<h1>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="UI.Text">
+<em class="property">class </em><code class="descname">Text</code><a class="headerlink" href="#UI.Text" title="Permalink to this definition">¶</a></dt>
+<dd><p>A text label. See <a class="reference internal" href="panel.html#UI.Panel.add_text" title="UI.Panel.add_text"><code class="xref lua lua-meth docutils literal"><span class="pre">UI.Panel.add_text()</span></code></a>.</p>
+<dl class="attribute">
+<dt id="UI.Text.rect_transform">
+<code class="descname">rect_transform</code><a class="headerlink" href="#UI.Text.rect_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rect transform for the text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="rect-transform.html#UI.RectTransform" title="UI.RectTransform"><code class="xref lua lua-class docutils literal"><span class="pre">UI.RectTransform</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.visible">
+<code class="descname">visible</code><a class="headerlink" href="#UI.Text.visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI object is visible.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.content">
+<code class="descname">content</code><a class="headerlink" href="#UI.Text.content" title="Permalink to this definition">¶</a></dt>
+<dd><p>The text string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.font">
+<code class="descname">font</code><a class="headerlink" href="#UI.Text.font" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the font</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.available_fonts">
+<code class="descname">available_fonts</code><a class="headerlink" href="#UI.Text.available_fonts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all available fonts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.size">
+<code class="descname">size</code><a class="headerlink" href="#UI.Text.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Font size.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.style">
+<code class="descname">style</code><a class="headerlink" href="#UI.Text.style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Font style.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#UI.FontStyle" title="UI.FontStyle"><code class="xref lua lua-class docutils literal"><span class="pre">UI.FontStyle</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.color">
+<code class="descname">color</code><a class="headerlink" href="#UI.Text.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the color</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.alignment">
+<code class="descname">alignment</code><a class="headerlink" href="#UI.Text.alignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alignment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#UI.TextAnchor" title="UI.TextAnchor"><code class="xref lua lua-class docutils literal"><span class="pre">UI.TextAnchor</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="UI.Text.line_spacing">
+<code class="descname">line_spacing</code><a class="headerlink" href="#UI.Text.line_spacing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Line spacing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="UI.Text.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UI.Text.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the UI object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="UI.FontStyle">
+<em class="property">class </em><code class="descname">FontStyle</code><a class="headerlink" href="#UI.FontStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Font style.</p>
+<dl class="data">
+<dt id="UI.FontStyle.normal">
+<code class="descname">normal</code><a class="headerlink" href="#UI.FontStyle.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normal.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.FontStyle.bold">
+<code class="descname">bold</code><a class="headerlink" href="#UI.FontStyle.bold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bold.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.FontStyle.italic">
+<code class="descname">italic</code><a class="headerlink" href="#UI.FontStyle.italic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Italic.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.FontStyle.bold_and_italic">
+<code class="descname">bold_and_italic</code><a class="headerlink" href="#UI.FontStyle.bold_and_italic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bold and italic.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="UI.TextAlignment">
+<em class="property">class </em><code class="descname">TextAlignment</code><a class="headerlink" href="#UI.TextAlignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text alignment.</p>
+<dl class="data">
+<dt id="UI.TextAlignment.left">
+<code class="descname">left</code><a class="headerlink" href="#UI.TextAlignment.left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Left aligned.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAlignment.right">
+<code class="descname">right</code><a class="headerlink" href="#UI.TextAlignment.right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right aligned.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAlignment.center">
+<code class="descname">center</code><a class="headerlink" href="#UI.TextAlignment.center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Center aligned.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="UI.TextAnchor">
+<em class="property">class </em><code class="descname">TextAnchor</code><a class="headerlink" href="#UI.TextAnchor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text alignment.</p>
+<dl class="data">
+<dt id="UI.TextAnchor.lower_center">
+<code class="descname">lower_center</code><a class="headerlink" href="#UI.TextAnchor.lower_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower center.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.lower_left">
+<code class="descname">lower_left</code><a class="headerlink" href="#UI.TextAnchor.lower_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower left.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.lower_right">
+<code class="descname">lower_right</code><a class="headerlink" href="#UI.TextAnchor.lower_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower right.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.middle_center">
+<code class="descname">middle_center</code><a class="headerlink" href="#UI.TextAnchor.middle_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Middle center.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.middle_left">
+<code class="descname">middle_left</code><a class="headerlink" href="#UI.TextAnchor.middle_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Middle left.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.middle_right">
+<code class="descname">middle_right</code><a class="headerlink" href="#UI.TextAnchor.middle_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Middle right.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.upper_center">
+<code class="descname">upper_center</code><a class="headerlink" href="#UI.TextAnchor.upper_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upper center.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.upper_left">
+<code class="descname">upper_left</code><a class="headerlink" href="#UI.TextAnchor.upper_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upper left.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UI.TextAnchor.upper_right">
+<code class="descname">upper_right</code><a class="headerlink" href="#UI.TextAnchor.upper_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upper right.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="button.html" class="btn btn-neutral float-right" title="Button" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="panel.html" class="btn btn-neutral" title="Panel" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Drawing &mdash; kRPC 0.3.4 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+        <link rel="up" title="Drawing API" href="../drawing.html"/>
+        <link rel="next" title="Line" href="line.html"/>
+        <link rel="prev" title="Drawing API" href="../drawing.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../drawing.html">Drawing API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">Drawing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polygon.html">Polygon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="text.html">Text</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../csharp.html">C#</a> &raquo;</li>
+      
+          <li><a href="../drawing.html">Drawing API</a> &raquo;</li>
+      
+    <li>Drawing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/csharp/api/drawing/drawing.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="drawing">
+<h1>Drawing<a class="headerlink" href="#drawing" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="class-KRPC.Client.Services.Drawing.Drawing">
+<code class="descname">class Drawing</code><a class="headerlink" href="#class-KRPC.Client.Services.Drawing.Drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides functionality for drawing objects in the flight scene.</p>
+<dl class="method">
+<dt id="method-KRPC.Client.Services.Drawing.Drawing.AddLine">
+<a class="reference internal" href="line.html#class-KRPC.Client.Services.Drawing.Line" title="KRPC.Client.Services.Drawing.Line class">Line</a> <code class="descname">AddLine</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>start</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>end</em>, <a class="reference internal" href="../space-center/reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">SpaceCenter.ReferenceFrame</a> <em>referenceFrame</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>visible</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.Drawing.Drawing.AddLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a line in the scene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>start</strong> &#8211; Position of the start of the line.</li>
+<li><strong>end</strong> &#8211; Position of the end of the line.</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame that the positions are in.</li>
+<li><strong>visible</strong> &#8211; Whether the line is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.Drawing.Drawing.AddDirection">
+<a class="reference internal" href="line.html#class-KRPC.Client.Services.Drawing.Line" title="KRPC.Client.Services.Drawing.Line class">Line</a> <code class="descname">AddDirection</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>direction</em>, <a class="reference internal" href="../space-center/reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">SpaceCenter.ReferenceFrame</a> <em>referenceFrame</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <em>length</em><em> = 10.0</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>visible</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.Drawing.Drawing.AddDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a direction vector in the scene, from the center of mass of the active vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>direction</strong> &#8211; Direction to draw the line in.</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame that the direction is in.</li>
+<li><strong>length</strong> &#8211; The length of the line.</li>
+<li><strong>visible</strong> &#8211; Whether the line is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.Drawing.Drawing.AddPolygon">
+<a class="reference internal" href="polygon.html#class-KRPC.Client.Services.Drawing.Polygon" title="KRPC.Client.Services.Drawing.Polygon class">Polygon</a> <code class="descname">AddPolygon</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <em>vertices</em>, <a class="reference internal" href="../space-center/reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">SpaceCenter.ReferenceFrame</a> <em>referenceFrame</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>visible</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.Drawing.Drawing.AddPolygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a polygon in the scene, defined by a list of vertices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vertices</strong> &#8211; Vertices of the polygon.</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame that the vertices are in.</li>
+<li><strong>visible</strong> &#8211; Whether the polygon is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.Drawing.Drawing.AddText">
+<a class="reference internal" href="text.html#class-KRPC.Client.Services.Drawing.Text" title="KRPC.Client.Services.Drawing.Text class">Text</a> <code class="descname">AddText</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>text</em>, <a class="reference internal" href="../space-center/reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">SpaceCenter.ReferenceFrame</a> <em>referenceFrame</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>position</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>rotation</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>visible</em><em> = True</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.Drawing.Drawing.AddText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw text in the scene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> &#8211; The string to draw.</li>
+<li><strong>referenceFrame</strong> &#8211; Reference frame that the text position is in.</li>
+<li><strong>position</strong> &#8211; Position of the text.</li>
+<li><strong>rotation</strong> &#8211; Rotation of the text, as a quaternion.</li>
+<li><strong>visible</strong> &#8211; Whether the text is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.Drawing.Drawing.Clear">
+void <code class="descname">Clear</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <em>clientOnly</em><em> = False</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.Drawing.Drawing.Clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all objects being drawn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clientOnly</strong> &#8211; If true, only remove objects created by the calling client.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="line.html" class="btn btn-neutral float-right" title="Line" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../drawing.html" class="btn btn-neutral" title="Drawing API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

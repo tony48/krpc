@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.3 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.4 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
               </div>
             
           
@@ -119,9 +119,11 @@
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
@@ -1896,6 +1898,74 @@ These are the values visible in the right-click menu of the part.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="SpaceCenter.Module.set_field_int">
+<code class="descname">set_field_int</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Module.set_field_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a field to the given integer number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; Name of the field.</li>
+<li><strong>value</strong> (<em>int</em>) &#8211; Value to set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Module.set_field_float">
+<code class="descname">set_field_float</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Module.set_field_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a field to the given floating point number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; Name of the field.</li>
+<li><strong>value</strong> (<em>float</em>) &#8211; Value to set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Module.set_field_string">
+<code class="descname">set_field_string</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Module.set_field_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a field to the given string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; Name of the field.</li>
+<li><strong>value</strong> (<em>str</em>) &#8211; Value to set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Module.reset_field">
+<code class="descname">reset_field</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Module.reset_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a field to its original value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name of the field.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="SpaceCenter.Module.events">
 <code class="descname">events</code><a class="headerlink" href="#SpaceCenter.Module.events" title="Permalink to this definition">¶</a></dt>
@@ -3513,6 +3583,22 @@ Returns an error if you try to deploy fixed landing gear.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Light.color">
+<code class="descname">color</code><a class="headerlink" href="#SpaceCenter.Light.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color of the light, as an RGB triple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
 </tr>
 </tbody>
 </table>
@@ -5185,7 +5271,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.3',
+            VERSION:'0.3.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

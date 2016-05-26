@@ -1,0 +1,78 @@
+.. default-domain:: cpp
+.. highlight:: cpp
+.. namespace:: krpc::services::UI
+
+UI
+==
+
+
+.. namespace:: krpc::services
+.. class:: UI : public krpc::Service
+
+   Provides functionality for drawing and interacting with in-game user interface elements.
+
+   .. function:: UI(krpc::Client* client)
+
+      Construct an instance of this service.
+
+   .. function:: void message(std::string content, float duration = 1.0, MessagePosition position = 1)
+
+      Display a message on the screen.
+
+      :Parameters:
+
+       * **content** -- Message content.
+       * **duration** -- Duration before the message disappears, in seconds.
+       * **position** -- Position to display the message.
+
+
+      .. note::
+
+         The message appears just like a stock message, for example quicksave or quickload messages.
+
+   .. function:: Panel add_panel(bool visible = True)
+
+      Create a new container for user interface elements.
+
+      :Parameters:
+
+       * **visible** -- Whether the panel is visible.
+
+   .. function:: void clear(bool client_only = False)
+
+      Remove all user interface elements.
+
+      :Parameters:
+
+       * **client_only** -- If true, only remove objects created by the calling client.
+
+   .. function:: RectTransform rect_transform()
+
+      The rect transform for the canvas.
+
+
+
+.. namespace:: krpc::services::UI
+.. enum-struct:: MessagePosition
+
+   Message position.
+
+
+   .. enumerator:: top_left
+
+      Top left.
+
+
+   .. enumerator:: top_center
+
+      Top center.
+
+
+   .. enumerator:: top_right
+
+      Top right.
+
+
+   .. enumerator:: bottom_center
+
+      Bottom center.
