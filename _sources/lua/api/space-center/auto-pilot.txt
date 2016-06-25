@@ -26,23 +26,37 @@ AutoPilot
 
    .. method:: wait()
 
-      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
 
    .. attribute:: error
 
       The error, in degrees, between the direction the ship has been asked
       to point in and the direction it is pointing in. Returns zero if the auto-pilot
-      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
-      or no target direction is set.
+      has not been engaged and SAS is not enabled or is in stability assist mode.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: pitch_error
+
+      The error, in degrees, between the vessels current and target pitch.
+      Returns zero if the auto-pilot has not been engaged.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: heading_error
+
+      The error, in degrees, between the vessels current and target heading.
+      Returns zero if the auto-pilot has not been engaged.
 
       :Attribute: Read-only, cannot be set
       :rtype: number
 
    .. attribute:: roll_error
 
-      The error, in degrees, between the roll the ship has been asked to be
-      in and the actual roll. Returns zero if the auto-pilot has not been engaged
-      or no target roll is set.
+      The error, in degrees, between the vessels current and target roll.
+      Returns zero if the auto-pilot has not been engaged or no target roll is set.
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -54,19 +68,19 @@ AutoPilot
       :Attribute: Can be read or written
       :rtype: :class:`SpaceCenter.ReferenceFrame`
 
-   .. attribute:: target_direction
+   .. attribute:: target_pitch
 
-      The target direction. ``nil`` if no target direction is set.
+      The target pitch, in degrees, between -90° and +90°.
 
       :Attribute: Can be read or written
-      :rtype: Tuple of (number, number, number)
+      :rtype: number
 
-   .. method:: target_pitch_and_heading(pitch, heading)
+   .. attribute:: target_heading
 
-      Set (:attr:`SpaceCenter.AutoPilot.target_direction`) from a pitch and heading angle.
+      The target heading, in degrees, between 0° and 360°.
 
-      :param number pitch: Target pitch angle, in degrees between -90° and +90°.
-      :param number heading: Target heading angle, in degrees between 0° and 360°.
+      :Attribute: Can be read or written
+      :rtype: number
 
    .. attribute:: target_roll
 
@@ -74,6 +88,20 @@ AutoPilot
 
       :Attribute: Can be read or written
       :rtype: number
+
+   .. attribute:: target_direction
+
+      Direction vector corresponding to the target pitch and heading.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. method:: target_pitch_and_heading(pitch, heading)
+
+      Set target pitch and heading angles.
+
+      :param number pitch: Target pitch angle, in degrees between -90° and +90°.
+      :param number heading: Target heading angle, in degrees between 0° and 360°.
 
    .. attribute:: sas
 
@@ -89,8 +117,7 @@ AutoPilot
    .. attribute:: sas_mode
 
       The current :class:`SpaceCenter.SASMode`.
-      These modes are equivalent to the mode buttons to
-      the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
 
       :Attribute: Can be read or written
       :rtype: :class:`SpaceCenter.SASMode`
@@ -99,38 +126,100 @@ AutoPilot
 
          Equivalent to :attr:`SpaceCenter.Control.sas_mode`
 
-   .. attribute:: rotation_speed_multiplier
+   .. attribute:: roll_threshold
 
-      Target rotation speed multiplier. Defaults to 1.
-
-      :Attribute: Can be read or written
-      :rtype: number
-
-   .. attribute:: max_rotation_speed
-
-      Maximum target rotation speed. Defaults to 1.
+      The threshold at which the autopilot will try to match the target roll angle, if any.
+      Defaults to 5 degrees.
 
       :Attribute: Can be read or written
       :rtype: number
 
-   .. attribute:: roll_speed_multiplier
+   .. attribute:: stopping_time
 
-      Target roll speed multiplier. Defaults to 1.
-
-      :Attribute: Can be read or written
-      :rtype: number
-
-   .. attribute:: max_roll_speed
-
-      Maximum target roll speed. Defaults to 1.
+      The maximum amount of time that the vessel should need to come to a complete stop.
+      This determines the maximum angular velocity of the vessel.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 0.5 seconds for each axis.
 
       :Attribute: Can be read or written
-      :rtype: number
+      :rtype: Tuple of (number, number, number)
 
-   .. method:: set_pid_parameters([kp = 1.0], [ki = 0.0], [kd = 0.0])
+   .. attribute:: deceleration_time
 
-      Sets the gains for the rotation rate PID controller.
+      The time the vessel should take to come to a stop pointing in the target direction.
+      This determines the angular acceleration used to decelerate the vessel.
+      A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 5 seconds for each axis.
 
-      :param number kp: Proportional gain.
-      :param number ki: Integral gain.
-      :param number kd: Derivative gain.
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: attenuation_angle
+
+      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      This determines the midpoint of the target velocity attenuation function.
+      A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
+      Defaults to 1° for each axis.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: auto_tune
+
+      Whether the rotation rate controllers PID parameters should be automatically tuned using the
+      vessels moment of inertia and available torque. Defaults to ``True``.
+      See :attr:`SpaceCenter.AutoPilot.time_to_peak` and  :attr:`SpaceCenter.AutoPilot.overshoot`.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: time_to_peak
+
+      The target time to peak used to autotune the PID controllers.
+      A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
+      Defaults to 3 seconds for each axis.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: overshoot
+
+      The target overshoot percentage used to autotune the PID controllers.
+      A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
+      Defaults to 0.01 for each axis.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: pitch_pid_gains
+
+      Gains for the pitch PID controller.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+      .. note::
+
+         When :attr:`SpaceCenter.AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. attribute:: roll_pid_gains
+
+      Gains for the roll PID controller.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+      .. note::
+
+         When :attr:`SpaceCenter.AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. attribute:: yaw_pid_gains
+
+      Gains for the yaw PID controller.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+      .. note::
+
+         When :attr:`SpaceCenter.AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>InfernalRobotics &mdash; kRPC 0.3.4 documentation</title>
+  <title>InfernalRobotics &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="InfernalRobotics API" href="../infernal-robotics.html"/>
         <link rel="next" title="ServoGroup" href="servo-group.html"/>
         <link rel="prev" title="InfernalRobotics API" href="../infernal-robotics.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -175,21 +175,30 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services16InfernalRobotics12servo_groupsEv">
-<span id="krpc::services::InfernalRobotics::servo_groups"></span>std::vector&lt;<a class="reference internal" href="servo-group.html#_CPPv2N4krpc8services16InfernalRobotics10ServoGroupE" title="krpc::services::InfernalRobotics::ServoGroup">ServoGroup</a>&gt; <code class="descclassname"></code><code class="descname">servo_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics12servo_groupsEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all the servo groups in the active vessel.</p>
+<dt id="_CPPv2N4krpc8services16InfernalRobotics12servo_groupsEN11SpaceCenter6VesselE">
+<span id="krpc::services::InfernalRobotics::servo_groups__SpaceCenter::Vessel"></span>std::vector&lt;<a class="reference internal" href="servo-group.html#_CPPv2N4krpc8services16InfernalRobotics10ServoGroupE" title="krpc::services::InfernalRobotics::ServoGroup">ServoGroup</a>&gt; <code class="descclassname"></code><code class="descname">servo_groups</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenterE" title="krpc::services::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="../space-center/vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>vessel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics12servo_groupsEN11SpaceCenter6VesselE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the servo groups in the given <em>vessel</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services16InfernalRobotics21servo_group_with_nameENSt6stringE">
-<span id="krpc::services::InfernalRobotics::servo_group_with_name__ss"></span><a class="reference internal" href="servo-group.html#_CPPv2N4krpc8services16InfernalRobotics10ServoGroupE" title="krpc::services::InfernalRobotics::ServoGroup">ServoGroup</a> <code class="descclassname"></code><code class="descname">servo_group_with_name</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics21servo_group_with_nameENSt6stringE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the servo group with the given <em>name</em> or <code class="docutils literal"><span class="pre">NULL</span></code> if none
-exists. If multiple servo groups have the same name, only one of them is returned.</p>
+<dt id="_CPPv2N4krpc8services16InfernalRobotics21servo_group_with_nameEN11SpaceCenter6VesselENSt6stringE">
+<span id="krpc::services::InfernalRobotics::servo_group_with_name__SpaceCenter::Vessel.ss"></span><a class="reference internal" href="servo-group.html#_CPPv2N4krpc8services16InfernalRobotics10ServoGroupE" title="krpc::services::InfernalRobotics::ServoGroup">ServoGroup</a> <code class="descclassname"></code><code class="descname">servo_group_with_name</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenterE" title="krpc::services::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="../space-center/vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>vessel</em>, std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics21servo_group_with_nameEN11SpaceCenter6VesselENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the servo group in the given <em>vessel</em> with the given <em>name</em>,
+or <code class="docutils literal"><span class="pre">NULL</span></code> if none exists. If multiple servo groups have the same name, only one of them is returned.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vessel</strong> &#8211; Vessel to check.</li>
 <li><strong>name</strong> &#8211; Name of servo group to find.</li>
 </ul>
 </td>
@@ -199,15 +208,16 @@ exists. If multiple servo groups have the same name, only one of them is returne
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services16InfernalRobotics15servo_with_nameENSt6stringE">
-<span id="krpc::services::InfernalRobotics::servo_with_name__ss"></span><a class="reference internal" href="servo.html#_CPPv2N4krpc8services16InfernalRobotics5ServoE" title="krpc::services::InfernalRobotics::Servo">Servo</a> <code class="descclassname"></code><code class="descname">servo_with_name</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics15servo_with_nameENSt6stringE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the servo with the given <em>name</em>, from all servo groups, or
+<dt id="_CPPv2N4krpc8services16InfernalRobotics15servo_with_nameEN11SpaceCenter6VesselENSt6stringE">
+<span id="krpc::services::InfernalRobotics::servo_with_name__SpaceCenter::Vessel.ss"></span><a class="reference internal" href="servo.html#_CPPv2N4krpc8services16InfernalRobotics5ServoE" title="krpc::services::InfernalRobotics::Servo">Servo</a> <code class="descclassname"></code><code class="descname">servo_with_name</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenterE" title="krpc::services::SpaceCenter">SpaceCenter</a>::<a class="reference internal" href="../space-center/vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>vessel</em>, std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services16InfernalRobotics15servo_with_nameEN11SpaceCenter6VesselENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the servo in the given <em>vessel</em> with the given <em>name</em> or
 <code class="docutils literal"><span class="pre">NULL</span></code> if none exists. If multiple servos have the same name, only one of them is returned.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vessel</strong> &#8211; Vessel to check.</li>
 <li><strong>name</strong> &#8211; Name of the servo to find.</li>
 </ul>
 </td>
@@ -261,7 +271,7 @@ exists. If multiple servo groups have the same name, only one of them is returne
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

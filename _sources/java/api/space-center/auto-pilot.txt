@@ -26,22 +26,32 @@ AutoPilot
 
    .. method:: void wait()
 
-      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
 
    .. method:: float getError()
 
 
       The error, in degrees, between the direction the ship has been asked
       to point in and the direction it is pointing in. Returns zero if the auto-pilot
-      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
-      or no target direction is set.
+      has not been engaged and SAS is not enabled or is in stability assist mode.
+
+   .. method:: float getPitchError()
+
+
+      The error, in degrees, between the vessels current and target pitch.
+      Returns zero if the auto-pilot has not been engaged.
+
+   .. method:: float getHeadingError()
+
+
+      The error, in degrees, between the vessels current and target heading.
+      Returns zero if the auto-pilot has not been engaged.
 
    .. method:: float getRollError()
 
 
-      The error, in degrees, between the roll the ship has been asked to be
-      in and the actual roll. Returns zero if the auto-pilot has not been engaged
-      or no target roll is set.
+      The error, in degrees, between the vessels current and target roll.
+      Returns zero if the auto-pilot has not been engaged or no target roll is set.
 
    .. method:: ReferenceFrame getReferenceFrame()
 
@@ -49,24 +59,36 @@ AutoPilot
 
       The reference frame for the target direction (:meth:`AutoPilot.getTargetDirection()`).
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getTargetDirection()
+   .. method:: float getTargetPitch()
 
-   .. method:: void setTargetDirection(org.javatuples.Triplet<Double,Double,Double> value)
+   .. method:: void setTargetPitch(float value)
 
-      The target direction. ``null`` if no target direction is set.
+      The target pitch, in degrees, between -90° and +90°.
 
-   .. method:: void targetPitchAndHeading(float pitch, float heading)
+   .. method:: float getTargetHeading()
 
-      Set (:meth:`AutoPilot.getTargetDirection()`) from a pitch and heading angle.
+   .. method:: void setTargetHeading(float value)
 
-      :param float pitch: Target pitch angle, in degrees between -90° and +90°.
-      :param float heading: Target heading angle, in degrees between 0° and 360°.
+      The target heading, in degrees, between 0° and 360°.
 
    .. method:: float getTargetRoll()
 
    .. method:: void setTargetRoll(float value)
 
       The target roll, in degrees. ``NaN`` if no target roll is set.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getTargetDirection()
+
+   .. method:: void setTargetDirection(org.javatuples.Triplet<Double,Double,Double> value)
+
+      Direction vector corresponding to the target pitch and heading.
+
+   .. method:: void targetPitchAndHeading(float pitch, float heading)
+
+      Set target pitch and heading angles.
+
+      :param float pitch: Target pitch angle, in degrees between -90° and +90°.
+      :param float heading: Target heading angle, in degrees between 0° and 360°.
 
    .. method:: boolean getSAS()
 
@@ -84,42 +106,100 @@ AutoPilot
    .. method:: void setSASMode(SASMode value)
 
       The current :type:`SASMode`.
-      These modes are equivalent to the mode buttons to
-      the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
          Equivalent to :meth:`Control.getSASMode()`
 
-   .. method:: float getRotationSpeedMultiplier()
+   .. method:: double getRollThreshold()
 
-   .. method:: void setRotationSpeedMultiplier(float value)
+   .. method:: void setRollThreshold(double value)
 
-      Target rotation speed multiplier. Defaults to 1.
+      The threshold at which the autopilot will try to match the target roll angle, if any.
+      Defaults to 5 degrees.
 
-   .. method:: float getMaxRotationSpeed()
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getStoppingTime()
 
-   .. method:: void setMaxRotationSpeed(float value)
+   .. method:: void setStoppingTime(org.javatuples.Triplet<Double,Double,Double> value)
 
-      Maximum target rotation speed. Defaults to 1.
+      The maximum amount of time that the vessel should need to come to a complete stop.
+      This determines the maximum angular velocity of the vessel.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 0.5 seconds for each axis.
 
-   .. method:: float getRollSpeedMultiplier()
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getDecelerationTime()
 
-   .. method:: void setRollSpeedMultiplier(float value)
+   .. method:: void setDecelerationTime(org.javatuples.Triplet<Double,Double,Double> value)
 
-      Target roll speed multiplier. Defaults to 1.
+      The time the vessel should take to come to a stop pointing in the target direction.
+      This determines the angular acceleration used to decelerate the vessel.
+      A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 5 seconds for each axis.
 
-   .. method:: float getMaxRollSpeed()
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getAttenuationAngle()
 
-   .. method:: void setMaxRollSpeed(float value)
+   .. method:: void setAttenuationAngle(org.javatuples.Triplet<Double,Double,Double> value)
 
-      Maximum target roll speed. Defaults to 1.
+      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      This determines the midpoint of the target velocity attenuation function.
+      A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
+      Defaults to 1° for each axis.
 
-   .. method:: void setPIDParameters(float kp, float ki, float kd)
+   .. method:: boolean getAutoTune()
 
-      Sets the gains for the rotation rate PID controller.
+   .. method:: void setAutoTune(boolean value)
 
-      :param float kp: Proportional gain.
-      :param float ki: Integral gain.
-      :param float kd: Derivative gain.
+      Whether the rotation rate controllers PID parameters should be automatically tuned using the
+      vessels moment of inertia and available torque. Defaults to ``true``.
+      See :meth:`AutoPilot.getTimeToPeak()` and  :meth:`AutoPilot.getOvershoot()`.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getTimeToPeak()
+
+   .. method:: void setTimeToPeak(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The target time to peak used to autotune the PID controllers.
+      A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
+      Defaults to 3 seconds for each axis.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getOvershoot()
+
+   .. method:: void setOvershoot(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The target overshoot percentage used to autotune the PID controllers.
+      A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
+      Defaults to 0.01 for each axis.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getPitchPIDGains()
+
+   .. method:: void setPitchPIDGains(org.javatuples.Triplet<Double,Double,Double> value)
+
+      Gains for the pitch PID controller.
+
+
+      .. note::
+
+         When :meth:`AutoPilot.getAutoTune()` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getRollPIDGains()
+
+   .. method:: void setRollPIDGains(org.javatuples.Triplet<Double,Double,Double> value)
+
+      Gains for the roll PID controller.
+
+
+      .. note::
+
+         When :meth:`AutoPilot.getAutoTune()` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getYawPIDGains()
+
+   .. method:: void setYawPIDGains(org.javatuples.Triplet<Double,Double,Double> value)
+
+      Gains for the yaw PID controller.
+
+
+      .. note::
+
+         When :meth:`AutoPilot.getAutoTune()` is true, these values are updated automatically, which will overwrite any manual changes.

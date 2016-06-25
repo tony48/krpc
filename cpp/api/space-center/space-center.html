@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.4 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -247,6 +247,42 @@ keyed by the name of the body.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter18launchable_vesselsENSt6stringE">
+<span id="krpc::services::SpaceCenter::launchable_vessels__ss"></span>std::vector&lt;std::string&gt; <code class="descclassname"></code><code class="descname">launchable_vessels</code><span class="sig-paren">(</span>std::string <em>craft_directory</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter18launchable_vesselsENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of vessels from the given <em>craft_directory</em> that can be launched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>craft_directory</strong> &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13launch_vesselENSt6stringENSt6stringENSt6stringE">
+<span id="krpc::services::SpaceCenter::launch_vessel__ss.ss.ss"></span>void <code class="descclassname"></code><code class="descname">launch_vessel</code><span class="sig-paren">(</span>std::string <em>craft_directory</em>, std::string <em>name</em>, std::string <em>launch_site</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13launch_vesselENSt6stringENSt6stringENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>craft_directory</strong> &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+<li><strong>name</strong> &#8211; Name of the vessel to launch. This is the name of the &#8221;.craft&#8221; file in the save directory, without the &#8221;.craft&#8221; file extension.</li>
+<li><strong>launch_site</strong> &#8211; Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter22launch_vessel_from_vabENSt6stringE">
 <span id="krpc::services::SpaceCenter::launch_vessel_from_vab__ss"></span>void <code class="descclassname"></code><code class="descname">launch_vessel_from_vab</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter22launch_vessel_from_vabENSt6stringE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
@@ -255,12 +291,16 @@ keyed by the name of the body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; Name of the vessel&#8217;s craft file.</li>
+<li><strong>name</strong> &#8211; Name of the vessel to launch.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter13launch_vesselENSt6stringENSt6stringENSt6stringE" title="krpc::services::SpaceCenter::launch_vessel"><code class="xref cpp cpp-func docutils literal"><span class="pre">launch_vessel()</span></code></a> with the craft directory set to &#8220;VAB&#8221; and the launch site set to &#8220;LaunchPad&#8221;.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -272,12 +312,16 @@ keyed by the name of the body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; Name of the vessel&#8217;s craft file.</li>
+<li><strong>name</strong> &#8211; Name of the vessel to launch.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter13launch_vesselENSt6stringENSt6stringENSt6stringE" title="krpc::services::SpaceCenter::launch_vessel"><code class="xref cpp cpp-func docutils literal"><span class="pre">launch_vessel()</span></code></a> with the craft directory set to &#8220;SPH&#8221; and the launch site set to &#8220;Runway&#8221;.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -562,7 +606,8 @@ relative angular velocity of the reference frames into account.</p>
 <dl class="enum-struct">
 <dt id="_CPPv2N4krpc8services11SpaceCenter8WarpModeE">
 <em class="property">enum struct </em><code class="descclassname"></code><code class="descname">WarpMode</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8WarpModeE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpModeE" title="krpc::services::SpaceCenter::WarpMode"><code class="xref cpp cpp-enum docutils literal"><span class="pre">WarpMode</span></code></a></p>
+<dd><p>The time warp mode.
+Returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpModeE" title="krpc::services::SpaceCenter::WarpMode"><code class="xref cpp cpp-enum docutils literal"><span class="pre">WarpMode</span></code></a></p>
 <dl class="enumerator">
 <dt id="_CPPv2N4krpc8services11SpaceCenter8WarpMode5railsE">
 <em class="property">enumerator </em><code class="descclassname"></code><code class="descname">rails</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode5railsE" title="Permalink to this definition">¶</a></dt>
@@ -626,7 +671,7 @@ relative angular velocity of the reference frames into account.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -117,6 +117,10 @@ Parts
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
+   .. property:: System.Collections.Generic.IList<Experiment> Experiments { get; }
+
+      A list of all science experiments in the vessel.
+
    .. property:: System.Collections.Generic.IList<Fairing> Fairings { get; }
 
       A list of all fairings in the vessel.
@@ -181,8 +185,8 @@ Part
 
 .. class:: Part
 
-   Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :type:`Parts`.
+   Represents an individual part. Vessels are made up of multiple parts.
+   Instances of this class can be obtained by several methods in :type:`Parts`.
 
    .. property:: string Name { get; }
 
@@ -383,6 +387,10 @@ Part
 
       An :type:`Engine` if the part is an engine, otherwise ``null``.
 
+   .. property:: Experiment Experiment { get; }
+
+      An :type:`Experiment` if the part is a science experiment, otherwise ``null``.
+
    .. property:: Fairing Fairing { get; }
 
       A :type:`Fairing` if the part is a fairing, otherwise ``null``.
@@ -537,13 +545,13 @@ Module
 
 .. class:: Module
 
+   This can be used to interact with a specific part module. This includes part modules in stock KSP,
+   and those added by mods.
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
-   For example, an engine has a "ModuleEngines" PartModule that contains all the
+   For example, an engine has a "ModuleEngines" part module that contains all the
    functionality of an engine.
-   This class allows you to interact with KSPs PartModules, and any PartModules
-   that have been added by other mods.
 
    .. property:: string Name { get; }
 
@@ -659,7 +667,7 @@ Cargo Bay
 
 .. class:: CargoBay
 
-   Obtained by calling :prop:`Part.CargoBay`.
+   A cargo bay. Obtained by calling :prop:`Part.CargoBay`.
 
    .. property:: Part Part { get; }
 
@@ -677,7 +685,7 @@ Cargo Bay
 
 .. enum:: CargoBayState
 
-   See :prop:`CargoBay.State`.
+   The state of a cargo bay. See :prop:`CargoBay.State`.
 
 
    .. value:: Open
@@ -707,8 +715,7 @@ Control Surface
 
 .. class:: ControlSurface
 
-   Obtained by calling :prop:`Part.ControlSurface`.
-   Provides functionality to interact with aerodynamic control surfaces.
+   An aerodynamic control surface. Obtained by calling :prop:`Part.ControlSurface`.
 
    .. property:: Part Part { get; }
 
@@ -751,7 +758,7 @@ Decoupler
 
 .. class:: Decoupler
 
-   Obtained by calling :prop:`Part.Decoupler`
+   A decoupler. Obtained by calling :prop:`Part.Decoupler`
 
    .. property:: Part Part { get; }
 
@@ -778,7 +785,7 @@ Docking Port
 
 .. class:: DockingPort
 
-   Obtained by calling :prop:`Part.DockingPort`
+   A docking port. Obtained by calling :prop:`Part.DockingPort`
 
    .. property:: Part Part { get; }
 
@@ -879,7 +886,7 @@ Docking Port
 
 .. enum:: DockingPortState
 
-   See :prop:`DockingPort.State`.
+   The state of a docking port. See :prop:`DockingPort.State`.
 
 
    .. value:: Ready
@@ -923,12 +930,12 @@ Engine
 
 .. class:: Engine
 
+   An engine, including ones of various types.
+   For example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
    Obtained by calling :prop:`Part.Engine`.
 
    .. note::
 
-      Provides functionality to interact with engines of various types,
-      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
       For RCS thrusters :prop:`Part.RCS`.
 
    .. property:: Part Part { get; }
@@ -942,22 +949,19 @@ Engine
 
    .. property:: float Thrust { get; }
 
-      The current amount of thrust being produced by the engine, in
-      Newtons. Returns zero if the engine is not active or if it has no fuel.
+      The current amount of thrust being produced by the engine, in Newtons.
 
    .. property:: float AvailableThrust { get; }
 
-      The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :prop:`Engine.ThrustLimit` into account,
-      and is the amount of thrust produced by the engine when activated and the
-      main throttle is set to 100%. Returns zero if the engine does not have any fuel.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and with its throttle set to 100%.
+      Returns zero if the engine does not have any fuel.
+      Takes the engine's current :prop:`Engine.ThrustLimit` and atmospheric conditions into account.
 
    .. property:: float MaxThrust { get; }
 
-      The maximum amount of thrust that can be produced by the engine, in
-      Newtons. This is the amount of thrust produced by the engine when
-      activated, :prop:`Engine.ThrustLimit` is set to 100% and the main vessel's
-      throttle is set to 100%.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and fueled, with its throttle and throttle limiter set to 100%.
 
    .. property:: float MaxVacuumThrust { get; }
 
@@ -997,14 +1001,24 @@ Engine
 
       The specific impulse of the engine at sea level on Kerbin, in seconds.
 
-   .. property:: System.Collections.Generic.IList<string> Propellants { get; }
+   .. property:: System.Collections.Generic.IList<string> PropellantNames { get; }
 
-      The names of resources that the engine consumes.
+      The names of the propellants that the engine consumes.
 
    .. property:: System.Collections.Generic.IDictionary<string,float> PropellantRatios { get; }
 
-      The ratios of resources that the engine consumes. A dictionary mapping resource names
-      to the ratios at which they are consumed by the engine.
+      The ratio of resources that the engine consumes. A dictionary mapping resource names
+      to the ratio at which they are consumed by the engine.
+
+
+      .. note::
+
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
+         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+
+   .. property:: System.Collections.Generic.IList<Propellant> Propellants { get; }
+
+      The propellants that the engine consumes.
 
    .. property:: bool HasFuel { get; }
 
@@ -1087,13 +1101,131 @@ Engine
 
 
 
+.. class:: Propellant
+
+   A propellant for an engine. Obtains by calling :prop:`Engine.Propellants`.
+
+   .. property:: string Name { get; }
+
+      The name of the propellant.
+
+   .. property:: double CurrentAmount { get; }
+
+      The current amount of propellant.
+
+   .. property:: double CurrentRequirement { get; }
+
+      The required amount of propellant.
+
+   .. property:: double TotalResourceAvailable { get; }
+
+      The total amount of the underlying resource currently reachable given resource flow rules.
+
+   .. property:: double TotalResourceCapacity { get; }
+
+      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+
+   .. property:: bool IgnoreForIsp { get; }
+
+      If this propellant should be ignored when calculating required mass flow given specific impulse.
+
+   .. property:: bool IgnoreForThrustCurve { get; }
+
+      If this propellant should be ignored for thrust curve calculations.
+
+   .. property:: bool DrawStackGauge { get; }
+
+      If this propellant has a stack gauge or not.
+
+   .. property:: bool IsDeprived { get; }
+
+      If this propellant is deprived.
+
+   .. property:: float Ratio { get; }
+
+      The propellant ratio.
+
+   .. property:: System.Collections.Generic.IList<Resource> ConnectedResources { get; }
+
+      The reachable resources connected to this propellant.
+
+
+
+Experiment
+^^^^^^^^^^
+
+
+.. class:: Experiment
+
+   Obtained by calling :prop:`Part.Experiment`.
+
+   .. property:: Part Part { get; }
+
+      The part object for this experiment.
+
+   .. method:: void Run()
+
+      Run the experiment.
+
+   .. method:: void Transmit()
+
+      Transmit all experimental data contained by this part.
+
+   .. method:: void Dump()
+
+      Dump the experimental data contained by the experiment.
+
+   .. method:: void Reset()
+
+      Reset the experiment.
+
+   .. property:: bool Deployed { get; }
+
+      Whether the experiment has been deployed.
+
+   .. property:: bool Rerunnable { get; }
+
+      Whether the experiment can be re-run.
+
+   .. property:: bool Inoperable { get; }
+
+      Whether the experiment is inoperable.
+
+   .. property:: bool HasData { get; }
+
+      Whether the experiment contains data.
+
+   .. property:: System.Collections.Generic.IList<ScienceData> Data { get; }
+
+      The data contained in this experiment.
+
+
+
+.. class:: ScienceData
+
+   Obtained by calling :prop:`Experiment.Data`.
+
+   .. property:: float DataAmount { get; }
+
+      Data amount.
+
+   .. property:: float ScienceValue { get; }
+
+      Science value.
+
+   .. property:: float TransmitValue { get; }
+
+      Transmit value.
+
+
+
 Fairing
 ^^^^^^^
 
 
 .. class:: Fairing
 
-   Obtained by calling :prop:`Part.Fairing`.
+   A fairing. Obtained by calling :prop:`Part.Fairing`.
 
    .. property:: Part Part { get; }
 
@@ -1115,7 +1247,7 @@ Intake
 
 .. class:: Intake
 
-   Obtained by calling :prop:`Part.Intake`.
+   An air intake. Obtained by calling :prop:`Part.Intake`.
 
    .. property:: Part Part { get; }
 
@@ -1145,7 +1277,7 @@ Landing Gear
 
 .. class:: LandingGear
 
-   Obtained by calling :prop:`Part.LandingGear`.
+   Landing gear with wheels. Obtained by calling :prop:`Part.LandingGear`.
 
    .. property:: Part Part { get; }
 
@@ -1178,7 +1310,7 @@ Landing Gear
 
 .. enum:: LandingGearState
 
-   See :prop:`LandingGear.State`.
+   The state of a landing gear. See :prop:`LandingGear.State`.
 
 
    .. value:: Deployed
@@ -1213,7 +1345,7 @@ Landing Leg
 
 .. class:: LandingLeg
 
-   Obtained by calling :prop:`Part.LandingLeg`.
+   A landing leg. Obtained by calling :prop:`Part.LandingLeg`.
 
    .. property:: Part Part { get; }
 
@@ -1237,7 +1369,7 @@ Landing Leg
 
 .. enum:: LandingLegState
 
-   See :prop:`LandingLeg.State`.
+   The state of a landing leg. See :prop:`LandingLeg.State`.
 
 
    .. value:: Deployed
@@ -1272,7 +1404,7 @@ Launch Clamp
 
 .. class:: LaunchClamp
 
-   Obtained by calling :prop:`Part.LaunchClamp`.
+   A launch clamp. Obtained by calling :prop:`Part.LaunchClamp`.
 
    .. property:: Part Part { get; }
 
@@ -1290,7 +1422,7 @@ Light
 
 .. class:: Light
 
-   Obtained by calling :prop:`Part.Light`.
+   A light. Obtained by calling :prop:`Part.Light`.
 
    .. property:: Part Part { get; }
 
@@ -1316,7 +1448,7 @@ Parachute
 
 .. class:: Parachute
 
-   Obtained by calling :prop:`Part.Parachute`.
+   A parachute. Obtained by calling :prop:`Part.Parachute`.
 
    .. property:: Part Part { get; }
 
@@ -1347,7 +1479,7 @@ Parachute
 
 .. enum:: ParachuteState
 
-   See :prop:`Parachute.State`.
+   The state of a parachute. See :prop:`Parachute.State`.
 
 
    .. value:: Stowed
@@ -1383,7 +1515,7 @@ Radiator
 
 .. class:: Radiator
 
-   Obtained by calling :prop:`Part.Radiator`.
+   A radiator. Obtained by calling :prop:`Part.Radiator`.
 
    .. property:: Part Part { get; }
 
@@ -1411,7 +1543,7 @@ Radiator
 
 .. enum:: RadiatorState
 
-   :type:`RadiatorState`
+   The state of a radiator. :type:`RadiatorState`
 
 
    .. value:: Extended
@@ -1446,7 +1578,7 @@ Resource Converter
 
 .. class:: ResourceConverter
 
-   Obtained by calling :prop:`Part.ResourceConverter`.
+   A resource converter. Obtained by calling :prop:`Part.ResourceConverter`.
 
    .. property:: Part Part { get; }
 
@@ -1525,7 +1657,7 @@ Resource Converter
 
 .. enum:: ResourceConverterState
 
-   See :meth:`ResourceConverter.State`.
+   The state of a resource converter. See :meth:`ResourceConverter.State`.
 
 
    .. value:: Running
@@ -1566,7 +1698,7 @@ Resource Harvester
 
 .. class:: ResourceHarvester
 
-   Obtained by calling :prop:`Part.ResourceHarvester`.
+   A resource harvester (drill). Obtained by calling :prop:`Part.ResourceHarvester`.
 
    .. property:: Part Part { get; }
 
@@ -1604,7 +1736,7 @@ Resource Harvester
 
 .. enum:: ResourceHarvesterState
 
-   See :prop:`ResourceHarvester.State`.
+   The state of a resource harvester. See :prop:`ResourceHarvester.State`.
 
 
    .. value:: Deploying
@@ -1639,7 +1771,7 @@ Reaction Wheel
 
 .. class:: ReactionWheel
 
-   Obtained by calling :prop:`Part.ReactionWheel`.
+   A reaction wheel. Obtained by calling :prop:`Part.ReactionWheel`.
 
    .. property:: Part Part { get; }
 
@@ -1673,8 +1805,7 @@ RCS
 
 .. class:: RCS
 
-   Obtained by calling :prop:`Part.RCS`.
-   Provides functionality to interact with RCS blocks and thrusters.
+   An RCS block or thruster. Obtained by calling :prop:`Part.RCS`.
 
    .. property:: Part Part { get; }
 
@@ -1772,7 +1903,7 @@ Sensor
 
 .. class:: Sensor
 
-   Obtained by calling :prop:`Part.Sensor`.
+   A sensor, such as a thermometer. Obtained by calling :prop:`Part.Sensor`.
 
    .. property:: Part Part { get; }
 
@@ -1798,7 +1929,7 @@ Solar Panel
 
 .. class:: SolarPanel
 
-   Obtained by calling :prop:`Part.SolarPanel`.
+   A solar panel. Obtained by calling :prop:`Part.SolarPanel`.
 
    .. property:: Part Part { get; }
 
@@ -1826,7 +1957,7 @@ Solar Panel
 
 .. enum:: SolarPanelState
 
-   See :prop:`SolarPanel.State`.
+   The state of a solar panel. See :prop:`SolarPanel.State`.
 
 
    .. value:: Extended

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Interface &mdash; kRPC 0.3.4 documentation</title>
+  <title>User Interface &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,9 +32,9 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
-        <link rel="next" title="C#" href="../csharp.html"/>
+        <link rel="next" title="AutoPilot" href="autopilot.html"/>
         <link rel="prev" title="Docking Guidance" href="docking-guidance.html"/> 
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="parts.html">Interacting with Parts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docking-guidance.html">Docking Guidance</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autopilot.html">AutoPilot</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
@@ -196,14 +197,16 @@ throttle to maximum.</p>
 36
 37
 38
-39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">time</span>
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">time</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;User Interface Example&#39;</span><span class="p">)</span>
+<span class="n">canvas</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">stock_canvas</span>
 
 <span class="c1"># Get the size of the game window in pixels</span>
-<span class="n">screen_size</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rect_transform</span><span class="o">.</span><span class="n">size</span>
+<span class="n">screen_size</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">rect_transform</span><span class="o">.</span><span class="n">size</span>
 
 <span class="c1"># Add a panel to contain the UI elements</span>
-<span class="n">panel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">add_panel</span><span class="p">()</span>
+<span class="n">panel</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">add_panel</span><span class="p">()</span>
 
 <span class="c1"># Position the panel on the left of the screen</span>
 <span class="n">rect</span> <span class="o">=</span> <span class="n">panel</span><span class="o">.</span><span class="n">rect_transform</span>
@@ -246,7 +249,7 @@ throttle to maximum.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../csharp.html" class="btn btn-neutral float-right" title="C#" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="autopilot.html" class="btn btn-neutral float-right" title="AutoPilot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="docking-guidance.html" class="btn btn-neutral" title="Docking Guidance" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -280,7 +283,7 @@ throttle to maximum.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

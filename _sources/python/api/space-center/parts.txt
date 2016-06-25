@@ -140,6 +140,13 @@ Parts
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
+   .. attribute:: experiments
+
+      A list of all science experiments in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Experiment`
+
    .. attribute:: fairings
 
       A list of all fairings in the vessel.
@@ -246,8 +253,8 @@ Part
 
 .. class:: Part
 
-   Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :class:`Parts`.
+   Represents an individual part. Vessels are made up of multiple parts.
+   Instances of this class can be obtained by several methods in :class:`Parts`.
 
    .. attribute:: name
 
@@ -557,6 +564,13 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Engine`
 
+   .. attribute:: experiment
+
+      An :class:`Experiment` if the part is a science experiment, otherwise ``None``.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Experiment`
+
    .. attribute:: fairing
 
       A :class:`Fairing` if the part is a fairing, otherwise ``None``.
@@ -764,13 +778,13 @@ Module
 
 .. class:: Module
 
+   This can be used to interact with a specific part module. This includes part modules in stock KSP,
+   and those added by mods.
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
-   For example, an engine has a "ModuleEngines" PartModule that contains all the
+   For example, an engine has a "ModuleEngines" part module that contains all the
    functionality of an engine.
-   This class allows you to interact with KSPs PartModules, and any PartModules
-   that have been added by other mods.
 
    .. attribute:: name
 
@@ -894,7 +908,7 @@ Cargo Bay
 
 .. class:: CargoBay
 
-   Obtained by calling :attr:`Part.cargo_bay`.
+   A cargo bay. Obtained by calling :attr:`Part.cargo_bay`.
 
    .. attribute:: part
 
@@ -921,7 +935,7 @@ Cargo Bay
 
 .. class:: CargoBayState
 
-   See :attr:`CargoBay.state`.
+   The state of a cargo bay. See :attr:`CargoBay.state`.
 
 
    .. data:: open
@@ -951,8 +965,7 @@ Control Surface
 
 .. class:: ControlSurface
 
-   Obtained by calling :attr:`Part.control_surface`.
-   Provides functionality to interact with aerodynamic control surfaces.
+   An aerodynamic control surface. Obtained by calling :attr:`Part.control_surface`.
 
    .. attribute:: part
 
@@ -1019,7 +1032,7 @@ Decoupler
 
 .. class:: Decoupler
 
-   Obtained by calling :attr:`Part.decoupler`
+   A decoupler. Obtained by calling :attr:`Part.decoupler`
 
    .. attribute:: part
 
@@ -1057,7 +1070,7 @@ Docking Port
 
 .. class:: DockingPort
 
-   Obtained by calling :attr:`Part.docking_port`
+   A docking port. Obtained by calling :attr:`Part.docking_port`
 
    .. attribute:: part
 
@@ -1184,7 +1197,7 @@ Docking Port
 
 .. class:: DockingPortState
 
-   See :attr:`DockingPort.state`.
+   The state of a docking port. See :attr:`DockingPort.state`.
 
 
    .. data:: ready
@@ -1228,12 +1241,12 @@ Engine
 
 .. class:: Engine
 
+   An engine, including ones of various types.
+   For example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
    Obtained by calling :attr:`Part.engine`.
 
    .. note::
 
-      Provides functionality to interact with engines of various types,
-      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
       For RCS thrusters :attr:`Part.rcs`.
 
    .. attribute:: part
@@ -1253,28 +1266,25 @@ Engine
 
    .. attribute:: thrust
 
-      The current amount of thrust being produced by the engine, in
-      Newtons. Returns zero if the engine is not active or if it has no fuel.
+      The current amount of thrust being produced by the engine, in Newtons.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: available_thrust
 
-      The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :attr:`Engine.thrust_limit` into account,
-      and is the amount of thrust produced by the engine when activated and the
-      main throttle is set to 100%. Returns zero if the engine does not have any fuel.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and with its throttle set to 100%.
+      Returns zero if the engine does not have any fuel.
+      Takes the engine's current :attr:`Engine.thrust_limit` and atmospheric conditions into account.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: max_thrust
 
-      The maximum amount of thrust that can be produced by the engine, in
-      Newtons. This is the amount of thrust produced by the engine when
-      activated, :attr:`Engine.thrust_limit` is set to 100% and the main vessel's
-      throttle is set to 100%.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and fueled, with its throttle and throttle limiter set to 100%.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -1334,20 +1344,32 @@ Engine
       :Attribute: Read-only, cannot be set
       :rtype: float
 
-   .. attribute:: propellants
+   .. attribute:: propellant_names
 
-      The names of resources that the engine consumes.
+      The names of the propellants that the engine consumes.
 
       :Attribute: Read-only, cannot be set
       :rtype: list of str
 
    .. attribute:: propellant_ratios
 
-      The ratios of resources that the engine consumes. A dictionary mapping resource names
-      to the ratios at which they are consumed by the engine.
+      The ratio of resources that the engine consumes. A dictionary mapping resource names
+      to the ratio at which they are consumed by the engine.
 
       :Attribute: Read-only, cannot be set
       :rtype: dict from str to float
+
+      .. note::
+
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
+         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+
+   .. attribute:: propellants
+
+      The propellants that the engine consumes.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Propellant`
 
    .. attribute:: has_fuel
 
@@ -1471,13 +1493,191 @@ Engine
 
 
 
+.. class:: Propellant
+
+   A propellant for an engine. Obtains by calling :attr:`Engine.propellants`.
+
+   .. attribute:: name
+
+      The name of the propellant.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: str
+
+   .. attribute:: current_amount
+
+      The current amount of propellant.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: current_requirement
+
+      The required amount of propellant.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: total_resource_available
+
+      The total amount of the underlying resource currently reachable given resource flow rules.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: total_resource_capacity
+
+      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: ignore_for_isp
+
+      If this propellant should be ignored when calculating required mass flow given specific impulse.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: ignore_for_thrust_curve
+
+      If this propellant should be ignored for thrust curve calculations.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: draw_stack_gauge
+
+      If this propellant has a stack gauge or not.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: is_deprived
+
+      If this propellant is deprived.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: ratio
+
+      The propellant ratio.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: connected_resources
+
+      The reachable resources connected to this propellant.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Resource`
+
+
+
+Experiment
+^^^^^^^^^^
+
+
+.. class:: Experiment
+
+   Obtained by calling :attr:`Part.experiment`.
+
+   .. attribute:: part
+
+      The part object for this experiment.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. method:: run()
+
+      Run the experiment.
+
+   .. method:: transmit()
+
+      Transmit all experimental data contained by this part.
+
+   .. method:: dump()
+
+      Dump the experimental data contained by the experiment.
+
+   .. method:: reset()
+
+      Reset the experiment.
+
+   .. attribute:: deployed
+
+      Whether the experiment has been deployed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: rerunnable
+
+      Whether the experiment can be re-run.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: inoperable
+
+      Whether the experiment is inoperable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: has_data
+
+      Whether the experiment contains data.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: data
+
+      The data contained in this experiment.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`ScienceData`
+
+
+
+.. class:: ScienceData
+
+   Obtained by calling :attr:`Experiment.data`.
+
+   .. attribute:: data_amount
+
+      Data amount.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: science_value
+
+      Science value.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: transmit_value
+
+      Transmit value.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+
+
 Fairing
 ^^^^^^^
 
 
 .. class:: Fairing
 
-   Obtained by calling :attr:`Part.fairing`.
+   A fairing. Obtained by calling :attr:`Part.fairing`.
 
    .. attribute:: part
 
@@ -1505,7 +1705,7 @@ Intake
 
 .. class:: Intake
 
-   Obtained by calling :attr:`Part.intake`.
+   An air intake. Obtained by calling :attr:`Part.intake`.
 
    .. attribute:: part
 
@@ -1550,7 +1750,7 @@ Landing Gear
 
 .. class:: LandingGear
 
-   Obtained by calling :attr:`Part.landing_gear`.
+   Landing gear with wheels. Obtained by calling :attr:`Part.landing_gear`.
 
    .. attribute:: part
 
@@ -1593,7 +1793,7 @@ Landing Gear
 
 .. class:: LandingGearState
 
-   See :attr:`LandingGear.state`.
+   The state of a landing gear. See :attr:`LandingGear.state`.
 
 
    .. data:: deployed
@@ -1628,7 +1828,7 @@ Landing Leg
 
 .. class:: LandingLeg
 
-   Obtained by calling :attr:`Part.landing_leg`.
+   A landing leg. Obtained by calling :attr:`Part.landing_leg`.
 
    .. attribute:: part
 
@@ -1660,7 +1860,7 @@ Landing Leg
 
 .. class:: LandingLegState
 
-   See :attr:`LandingLeg.state`.
+   The state of a landing leg. See :attr:`LandingLeg.state`.
 
 
    .. data:: deployed
@@ -1695,7 +1895,7 @@ Launch Clamp
 
 .. class:: LaunchClamp
 
-   Obtained by calling :attr:`Part.launch_clamp`.
+   A launch clamp. Obtained by calling :attr:`Part.launch_clamp`.
 
    .. attribute:: part
 
@@ -1716,7 +1916,7 @@ Light
 
 .. class:: Light
 
-   Obtained by calling :attr:`Part.light`.
+   A light. Obtained by calling :attr:`Part.light`.
 
    .. attribute:: part
 
@@ -1754,7 +1954,7 @@ Parachute
 
 .. class:: Parachute
 
-   Obtained by calling :attr:`Part.parachute`.
+   A parachute. Obtained by calling :attr:`Part.parachute`.
 
    .. attribute:: part
 
@@ -1800,7 +2000,7 @@ Parachute
 
 .. class:: ParachuteState
 
-   See :attr:`Parachute.state`.
+   The state of a parachute. See :attr:`Parachute.state`.
 
 
    .. data:: stowed
@@ -1836,7 +2036,7 @@ Radiator
 
 .. class:: Radiator
 
-   Obtained by calling :attr:`Part.radiator`.
+   A radiator. Obtained by calling :attr:`Part.radiator`.
 
    .. attribute:: part
 
@@ -1875,7 +2075,7 @@ Radiator
 
 .. class:: RadiatorState
 
-   :class:`RadiatorState`
+   The state of a radiator. :class:`RadiatorState`
 
 
    .. data:: extended
@@ -1910,7 +2110,7 @@ Resource Converter
 
 .. class:: ResourceConverter
 
-   Obtained by calling :attr:`Part.resource_converter`.
+   A resource converter. Obtained by calling :attr:`Part.resource_converter`.
 
    .. attribute:: part
 
@@ -1985,7 +2185,7 @@ Resource Converter
 
 .. class:: ResourceConverterState
 
-   See :meth:`ResourceConverter.state`.
+   The state of a resource converter. See :meth:`ResourceConverter.state`.
 
 
    .. data:: running
@@ -2026,7 +2226,7 @@ Resource Harvester
 
 .. class:: ResourceHarvester
 
-   Obtained by calling :attr:`Part.resource_harvester`.
+   A resource harvester (drill). Obtained by calling :attr:`Part.resource_harvester`.
 
    .. attribute:: part
 
@@ -2088,7 +2288,7 @@ Resource Harvester
 
 .. class:: ResourceHarvesterState
 
-   See :attr:`ResourceHarvester.state`.
+   The state of a resource harvester. See :attr:`ResourceHarvester.state`.
 
 
    .. data:: deploying
@@ -2123,7 +2323,7 @@ Reaction Wheel
 
 .. class:: ReactionWheel
 
-   Obtained by calling :attr:`Part.reaction_wheel`.
+   A reaction wheel. Obtained by calling :attr:`Part.reaction_wheel`.
 
    .. attribute:: part
 
@@ -2172,8 +2372,7 @@ RCS
 
 .. class:: RCS
 
-   Obtained by calling :attr:`Part.rcs`.
-   Provides functionality to interact with RCS blocks and thrusters.
+   An RCS block or thruster. Obtained by calling :attr:`Part.rcs`.
 
    .. attribute:: part
 
@@ -2327,7 +2526,7 @@ Sensor
 
 .. class:: Sensor
 
-   Obtained by calling :attr:`Part.sensor`.
+   A sensor, such as a thermometer. Obtained by calling :attr:`Part.sensor`.
 
    .. attribute:: part
 
@@ -2365,7 +2564,7 @@ Solar Panel
 
 .. class:: SolarPanel
 
-   Obtained by calling :attr:`Part.solar_panel`.
+   A solar panel. Obtained by calling :attr:`Part.solar_panel`.
 
    .. attribute:: part
 
@@ -2408,7 +2607,7 @@ Solar Panel
 
 .. class:: SolarPanelState
 
-   See :attr:`SolarPanel.state`.
+   The state of a solar panel. See :attr:`SolarPanel.state`.
 
 
    .. data:: extended

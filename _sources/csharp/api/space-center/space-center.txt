@@ -40,13 +40,36 @@ SpaceCenter
 
       Clears the current target.
 
+   .. method:: System.Collections.Generic.IList<string> LaunchableVessels(string craftDirectory)
+
+      Returns a list of vessels from the given *craftDirectory* that can be launched.
+
+      :parameters:
+
+       * **craftDirectory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+
+   .. method:: void LaunchVessel(string craftDirectory, string name, string launchSite)
+
+      Launch a vessel.
+
+      :parameters:
+
+       * **craftDirectory** -- Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
+       * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
+       * **launchSite** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+
    .. method:: void LaunchVesselFromVAB(string name)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :parameters:
 
-       * **name** -- Name of the vessel's craft file.
+       * **name** -- Name of the vessel to launch.
+
+
+      .. note::
+
+         This is equivalent to calling :meth:`SpaceCenter.LaunchVessel` with the craft directory set to "VAB" and the launch site set to "LaunchPad".
 
    .. method:: void LaunchVesselFromSPH(string name)
 
@@ -54,7 +77,12 @@ SpaceCenter
 
       :parameters:
 
-       * **name** -- Name of the vessel's craft file.
+       * **name** -- Name of the vessel to launch.
+
+
+      .. note::
+
+         This is equivalent to calling :meth:`SpaceCenter.LaunchVessel` with the craft directory set to "SPH" and the launch site set to "Runway".
 
    .. method:: void Save(string name)
 
@@ -232,6 +260,7 @@ SpaceCenter
 
 .. enum:: WarpMode
 
+   The time warp mode.
    Returned by :type:`WarpMode`
 
 

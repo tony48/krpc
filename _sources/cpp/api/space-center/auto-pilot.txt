@@ -26,44 +26,62 @@ AutoPilot
 
    .. function:: void wait()
 
-      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
 
    .. function:: float error()
 
       The error, in degrees, between the direction the ship has been asked
       to point in and the direction it is pointing in. Returns zero if the auto-pilot
-      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
-      or no target direction is set.
+      has not been engaged and SAS is not enabled or is in stability assist mode.
+
+   .. function:: float pitch_error()
+
+      The error, in degrees, between the vessels current and target pitch.
+      Returns zero if the auto-pilot has not been engaged.
+
+   .. function:: float heading_error()
+
+      The error, in degrees, between the vessels current and target heading.
+      Returns zero if the auto-pilot has not been engaged.
 
    .. function:: float roll_error()
 
-      The error, in degrees, between the roll the ship has been asked to be
-      in and the actual roll. Returns zero if the auto-pilot has not been engaged
-      or no target roll is set.
+      The error, in degrees, between the vessels current and target roll.
+      Returns zero if the auto-pilot has not been engaged or no target roll is set.
 
    .. function:: ReferenceFrame reference_frame()
    .. function:: void set_reference_frame(ReferenceFrame value)
 
       The reference frame for the target direction (:func:`AutoPilot::target_direction`).
 
-   .. function:: std::tuple<double, double, double> target_direction()
-   .. function:: void set_target_direction(std::tuple<double, double, double> value)
+   .. function:: float target_pitch()
+   .. function:: void set_target_pitch(float value)
 
-      The target direction. ``NULL`` if no target direction is set.
+      The target pitch, in degrees, between -90° and +90°.
 
-   .. function:: void target_pitch_and_heading(float pitch, float heading)
+   .. function:: float target_heading()
+   .. function:: void set_target_heading(float value)
 
-      Set (:func:`AutoPilot::target_direction`) from a pitch and heading angle.
-
-      :Parameters:
-
-       * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
-       * **heading** -- Target heading angle, in degrees between 0° and 360°.
+      The target heading, in degrees, between 0° and 360°.
 
    .. function:: float target_roll()
    .. function:: void set_target_roll(float value)
 
       The target roll, in degrees. ``NaN`` if no target roll is set.
+
+   .. function:: std::tuple<double, double, double> target_direction()
+   .. function:: void set_target_direction(std::tuple<double, double, double> value)
+
+      Direction vector corresponding to the target pitch and heading.
+
+   .. function:: void target_pitch_and_heading(float pitch, float heading)
+
+      Set target pitch and heading angles.
+
+      :Parameters:
+
+       * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
+       * **heading** -- Target heading angle, in degrees between 0° and 360°.
 
    .. function:: bool sas()
    .. function:: void set_sas(bool value)
@@ -79,40 +97,90 @@ AutoPilot
    .. function:: void set_sas_mode(SASMode value)
 
       The current :enum:`SASMode`.
-      These modes are equivalent to the mode buttons to
-      the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
          Equivalent to :func:`Control::sas_mode`
 
-   .. function:: float rotation_speed_multiplier()
-   .. function:: void set_rotation_speed_multiplier(float value)
+   .. function:: double roll_threshold()
+   .. function:: void set_roll_threshold(double value)
 
-      Target rotation speed multiplier. Defaults to 1.
+      The threshold at which the autopilot will try to match the target roll angle, if any.
+      Defaults to 5 degrees.
 
-   .. function:: float max_rotation_speed()
-   .. function:: void set_max_rotation_speed(float value)
+   .. function:: std::tuple<double, double, double> stopping_time()
+   .. function:: void set_stopping_time(std::tuple<double, double, double> value)
 
-      Maximum target rotation speed. Defaults to 1.
+      The maximum amount of time that the vessel should need to come to a complete stop.
+      This determines the maximum angular velocity of the vessel.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 0.5 seconds for each axis.
 
-   .. function:: float roll_speed_multiplier()
-   .. function:: void set_roll_speed_multiplier(float value)
+   .. function:: std::tuple<double, double, double> deceleration_time()
+   .. function:: void set_deceleration_time(std::tuple<double, double, double> value)
 
-      Target roll speed multiplier. Defaults to 1.
+      The time the vessel should take to come to a stop pointing in the target direction.
+      This determines the angular acceleration used to decelerate the vessel.
+      A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 5 seconds for each axis.
 
-   .. function:: float max_roll_speed()
-   .. function:: void set_max_roll_speed(float value)
+   .. function:: std::tuple<double, double, double> attenuation_angle()
+   .. function:: void set_attenuation_angle(std::tuple<double, double, double> value)
 
-      Maximum target roll speed. Defaults to 1.
+      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      This determines the midpoint of the target velocity attenuation function.
+      A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
+      Defaults to 1° for each axis.
 
-   .. function:: void set_pid_parameters(float kp = 1.0, float ki = 0.0, float kd = 0.0)
+   .. function:: bool auto_tune()
+   .. function:: void set_auto_tune(bool value)
 
-      Sets the gains for the rotation rate PID controller.
+      Whether the rotation rate controllers PID parameters should be automatically tuned using the
+      vessels moment of inertia and available torque. Defaults to ``true``.
+      See :func:`AutoPilot::time_to_peak` and  :func:`AutoPilot::overshoot`.
 
-      :Parameters:
+   .. function:: std::tuple<double, double, double> time_to_peak()
+   .. function:: void set_time_to_peak(std::tuple<double, double, double> value)
 
-       * **kp** -- Proportional gain.
-       * **ki** -- Integral gain.
-       * **kd** -- Derivative gain.
+      The target time to peak used to autotune the PID controllers.
+      A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
+      Defaults to 3 seconds for each axis.
+
+   .. function:: std::tuple<double, double, double> overshoot()
+   .. function:: void set_overshoot(std::tuple<double, double, double> value)
+
+      The target overshoot percentage used to autotune the PID controllers.
+      A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
+      Defaults to 0.01 for each axis.
+
+   .. function:: std::tuple<double, double, double> pitch_pid_gains()
+   .. function:: void set_pitch_pid_gains(std::tuple<double, double, double> value)
+
+      Gains for the pitch PID controller.
+
+
+      .. note::
+
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. function:: std::tuple<double, double, double> roll_pid_gains()
+   .. function:: void set_roll_pid_gains(std::tuple<double, double, double> value)
+
+      Gains for the roll PID controller.
+
+
+      .. note::
+
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. function:: std::tuple<double, double, double> yaw_pid_gains()
+   .. function:: void set_yaw_pid_gains(std::tuple<double, double, double> value)
+
+      Gains for the yaw PID controller.
+
+
+      .. note::
+
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.

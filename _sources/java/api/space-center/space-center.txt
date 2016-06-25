@@ -50,17 +50,39 @@ SpaceCenter
 
       Clears the current target.
 
+   .. method:: java.util.List<String> launchableVessels(String craftDirectory)
+
+      Returns a list of vessels from the given *craftDirectory* that can be launched.
+
+      :param String craftDirectory: Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+
+   .. method:: void launchVessel(String craftDirectory, String name, String launchSite)
+
+      Launch a vessel.
+
+      :param String craftDirectory: Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
+      :param String name: Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
+      :param String launchSite: Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+
    .. method:: void launchVesselFromVAB(String name)
 
       Launch a new vessel from the VAB onto the launchpad.
 
-      :param String name: Name of the vessel's craft file.
+      :param String name: Name of the vessel to launch.
+
+      .. note::
+
+         This is equivalent to calling :meth:`launchVessel(String, String, String)` with the craft directory set to "VAB" and the launch site set to "LaunchPad".
 
    .. method:: void launchVesselFromSPH(String name)
 
       Launch a new vessel from the SPH onto the runway.
 
-      :param String name: Name of the vessel's craft file.
+      :param String name: Name of the vessel to launch.
+
+      .. note::
+
+         This is equivalent to calling :meth:`launchVessel(String, String, String)` with the craft directory set to "SPH" and the launch site set to "Runway".
 
    .. method:: void save(String name)
 
@@ -231,6 +253,7 @@ SpaceCenter
 
 .. type:: public enum WarpMode
 
+   The time warp mode.
    Returned by :type:`WarpMode`
 
 

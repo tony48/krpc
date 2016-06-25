@@ -120,6 +120,11 @@ Parts
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
+   .. method:: java.util.List<Experiment> getExperiments()
+
+
+      A list of all science experiments in the vessel.
+
    .. method:: java.util.List<Fairing> getFairings()
 
 
@@ -198,8 +203,8 @@ Part
 
 .. type:: public class Part
 
-   Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :type:`Parts`.
+   Represents an individual part. Vessels are made up of multiple parts.
+   Instances of this class can be obtained by several methods in :type:`Parts`.
 
    .. method:: String getName()
 
@@ -439,6 +444,11 @@ Part
 
       An :type:`Engine` if the part is an engine, otherwise ``null``.
 
+   .. method:: Experiment getExperiment()
+
+
+      An :type:`Experiment` if the part is a science experiment, otherwise ``null``.
+
    .. method:: Fairing getFairing()
 
 
@@ -608,13 +618,13 @@ Module
 
 .. type:: public class Module
 
+   This can be used to interact with a specific part module. This includes part modules in stock KSP,
+   and those added by mods.
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
-   For example, an engine has a "ModuleEngines" PartModule that contains all the
+   For example, an engine has a "ModuleEngines" part module that contains all the
    functionality of an engine.
-   This class allows you to interact with KSPs PartModules, and any PartModules
-   that have been added by other mods.
 
    .. method:: String getName()
 
@@ -724,7 +734,7 @@ Cargo Bay
 
 .. type:: public class CargoBay
 
-   Obtained by calling :meth:`Part.getCargoBay()`.
+   A cargo bay. Obtained by calling :meth:`Part.getCargoBay()`.
 
    .. method:: Part getPart()
 
@@ -746,7 +756,7 @@ Cargo Bay
 
 .. type:: public enum CargoBayState
 
-   See :meth:`CargoBay.getState()`.
+   The state of a cargo bay. See :meth:`CargoBay.getState()`.
 
 
    .. field:: public CargoBayState OPEN
@@ -776,8 +786,7 @@ Control Surface
 
 .. type:: public class ControlSurface
 
-   Obtained by calling :meth:`Part.getControlSurface()`.
-   Provides functionality to interact with aerodynamic control surfaces.
+   An aerodynamic control surface. Obtained by calling :meth:`Part.getControlSurface()`.
 
    .. method:: Part getPart()
 
@@ -833,7 +842,7 @@ Decoupler
 
 .. type:: public class Decoupler
 
-   Obtained by calling :meth:`Part.getDecoupler()`
+   A decoupler. Obtained by calling :meth:`Part.getDecoupler()`
 
    .. method:: Part getPart()
 
@@ -863,7 +872,7 @@ Docking Port
 
 .. type:: public class DockingPort
 
-   Obtained by calling :meth:`Part.getDockingPort()`
+   A docking port. Obtained by calling :meth:`Part.getDockingPort()`
 
    .. method:: Part getPart()
 
@@ -973,7 +982,7 @@ Docking Port
 
 .. type:: public enum DockingPortState
 
-   See :meth:`DockingPort.getState()`.
+   The state of a docking port. See :meth:`DockingPort.getState()`.
 
 
    .. field:: public DockingPortState READY
@@ -1017,12 +1026,12 @@ Engine
 
 .. type:: public class Engine
 
+   An engine, including ones of various types.
+   For example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
    Obtained by calling :meth:`Part.getEngine()`.
 
    .. note::
 
-      Provides functionality to interact with engines of various types,
-      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
       For RCS thrusters :meth:`Part.getRCS()`.
 
    .. method:: Part getPart()
@@ -1040,24 +1049,21 @@ Engine
    .. method:: float getThrust()
 
 
-      The current amount of thrust being produced by the engine, in
-      Newtons. Returns zero if the engine is not active or if it has no fuel.
+      The current amount of thrust being produced by the engine, in Newtons.
 
    .. method:: float getAvailableThrust()
 
 
-      The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :meth:`Engine.getThrustLimit()` into account,
-      and is the amount of thrust produced by the engine when activated and the
-      main throttle is set to 100%. Returns zero if the engine does not have any fuel.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and with its throttle set to 100%.
+      Returns zero if the engine does not have any fuel.
+      Takes the engine's current :meth:`Engine.getThrustLimit()` and atmospheric conditions into account.
 
    .. method:: float getMaxThrust()
 
 
-      The maximum amount of thrust that can be produced by the engine, in
-      Newtons. This is the amount of thrust produced by the engine when
-      activated, :meth:`Engine.getThrustLimit()` is set to 100% and the main vessel's
-      throttle is set to 100%.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and fueled, with its throttle and throttle limiter set to 100%.
 
    .. method:: float getMaxVacuumThrust()
 
@@ -1104,16 +1110,27 @@ Engine
 
       The specific impulse of the engine at sea level on Kerbin, in seconds.
 
-   .. method:: java.util.List<String> getPropellants()
+   .. method:: java.util.List<String> getPropellantNames()
 
 
-      The names of resources that the engine consumes.
+      The names of the propellants that the engine consumes.
 
    .. method:: java.util.Map<String,Single> getPropellantRatios()
 
 
-      The ratios of resources that the engine consumes. A dictionary mapping resource names
-      to the ratios at which they are consumed by the engine.
+      The ratio of resources that the engine consumes. A dictionary mapping resource names
+      to the ratio at which they are consumed by the engine.
+
+
+      .. note::
+
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
+         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+
+   .. method:: java.util.List<Propellant> getPropellants()
+
+
+      The propellants that the engine consumes.
 
    .. method:: boolean getHasFuel()
 
@@ -1214,13 +1231,151 @@ Engine
 
 
 
+.. type:: public class Propellant
+
+   A propellant for an engine. Obtains by calling :meth:`Engine.getPropellants()`.
+
+   .. method:: String getName()
+
+
+      The name of the propellant.
+
+   .. method:: double getCurrentAmount()
+
+
+      The current amount of propellant.
+
+   .. method:: double getCurrentRequirement()
+
+
+      The required amount of propellant.
+
+   .. method:: double getTotalResourceAvailable()
+
+
+      The total amount of the underlying resource currently reachable given resource flow rules.
+
+   .. method:: double getTotalResourceCapacity()
+
+
+      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+
+   .. method:: boolean getIgnoreForIsp()
+
+
+      If this propellant should be ignored when calculating required mass flow given specific impulse.
+
+   .. method:: boolean getIgnoreForThrustCurve()
+
+
+      If this propellant should be ignored for thrust curve calculations.
+
+   .. method:: boolean getDrawStackGauge()
+
+
+      If this propellant has a stack gauge or not.
+
+   .. method:: boolean getIsDeprived()
+
+
+      If this propellant is deprived.
+
+   .. method:: float getRatio()
+
+
+      The propellant ratio.
+
+   .. method:: java.util.List<Resource> getConnectedResources()
+
+
+      The reachable resources connected to this propellant.
+
+
+
+Experiment
+^^^^^^^^^^
+
+
+.. type:: public class Experiment
+
+   Obtained by calling :meth:`Part.getExperiment()`.
+
+   .. method:: Part getPart()
+
+
+      The part object for this experiment.
+
+   .. method:: void run()
+
+      Run the experiment.
+
+   .. method:: void transmit()
+
+      Transmit all experimental data contained by this part.
+
+   .. method:: void dump()
+
+      Dump the experimental data contained by the experiment.
+
+   .. method:: void reset()
+
+      Reset the experiment.
+
+   .. method:: boolean getDeployed()
+
+
+      Whether the experiment has been deployed.
+
+   .. method:: boolean getRerunnable()
+
+
+      Whether the experiment can be re-run.
+
+   .. method:: boolean getInoperable()
+
+
+      Whether the experiment is inoperable.
+
+   .. method:: boolean getHasData()
+
+
+      Whether the experiment contains data.
+
+   .. method:: java.util.List<ScienceData> getData()
+
+
+      The data contained in this experiment.
+
+
+
+.. type:: public class ScienceData
+
+   Obtained by calling :meth:`Experiment.getData()`.
+
+   .. method:: float getDataAmount()
+
+
+      Data amount.
+
+   .. method:: float getScienceValue()
+
+
+      Science value.
+
+   .. method:: float getTransmitValue()
+
+
+      Transmit value.
+
+
+
 Fairing
 ^^^^^^^
 
 
 .. type:: public class Fairing
 
-   Obtained by calling :meth:`Part.getFairing()`.
+   A fairing. Obtained by calling :meth:`Part.getFairing()`.
 
    .. method:: Part getPart()
 
@@ -1244,7 +1399,7 @@ Intake
 
 .. type:: public class Intake
 
-   Obtained by calling :meth:`Part.getIntake()`.
+   An air intake. Obtained by calling :meth:`Part.getIntake()`.
 
    .. method:: Part getPart()
 
@@ -1280,7 +1435,7 @@ Landing Gear
 
 .. type:: public class LandingGear
 
-   Obtained by calling :meth:`Part.getLandingGear()`.
+   Landing gear with wheels. Obtained by calling :meth:`Part.getLandingGear()`.
 
    .. method:: Part getPart()
 
@@ -1318,7 +1473,7 @@ Landing Gear
 
 .. type:: public enum LandingGearState
 
-   See :meth:`LandingGear.getState()`.
+   The state of a landing gear. See :meth:`LandingGear.getState()`.
 
 
    .. field:: public LandingGearState DEPLOYED
@@ -1353,7 +1508,7 @@ Landing Leg
 
 .. type:: public class LandingLeg
 
-   Obtained by calling :meth:`Part.getLandingLeg()`.
+   A landing leg. Obtained by calling :meth:`Part.getLandingLeg()`.
 
    .. method:: Part getPart()
 
@@ -1381,7 +1536,7 @@ Landing Leg
 
 .. type:: public enum LandingLegState
 
-   See :meth:`LandingLeg.getState()`.
+   The state of a landing leg. See :meth:`LandingLeg.getState()`.
 
 
    .. field:: public LandingLegState DEPLOYED
@@ -1416,7 +1571,7 @@ Launch Clamp
 
 .. type:: public class LaunchClamp
 
-   Obtained by calling :meth:`Part.getLaunchClamp()`.
+   A launch clamp. Obtained by calling :meth:`Part.getLaunchClamp()`.
 
    .. method:: Part getPart()
 
@@ -1435,7 +1590,7 @@ Light
 
 .. type:: public class Light
 
-   Obtained by calling :meth:`Part.getLight()`.
+   A light. Obtained by calling :meth:`Part.getLight()`.
 
    .. method:: Part getPart()
 
@@ -1467,7 +1622,7 @@ Parachute
 
 .. type:: public class Parachute
 
-   Obtained by calling :meth:`Part.getParachute()`.
+   A parachute. Obtained by calling :meth:`Part.getParachute()`.
 
    .. method:: Part getPart()
 
@@ -1505,7 +1660,7 @@ Parachute
 
 .. type:: public enum ParachuteState
 
-   See :meth:`Parachute.getState()`.
+   The state of a parachute. See :meth:`Parachute.getState()`.
 
 
    .. field:: public ParachuteState STOWED
@@ -1541,7 +1696,7 @@ Radiator
 
 .. type:: public class Radiator
 
-   Obtained by calling :meth:`Part.getRadiator()`.
+   A radiator. Obtained by calling :meth:`Part.getRadiator()`.
 
    .. method:: Part getPart()
 
@@ -1574,7 +1729,7 @@ Radiator
 
 .. type:: public enum RadiatorState
 
-   :type:`RadiatorState`
+   The state of a radiator. :type:`RadiatorState`
 
 
    .. field:: public RadiatorState EXTENDED
@@ -1609,7 +1764,7 @@ Resource Converter
 
 .. type:: public class ResourceConverter
 
-   Obtained by calling :meth:`Part.getResourceConverter()`.
+   A resource converter. Obtained by calling :meth:`Part.getResourceConverter()`.
 
    .. method:: Part getPart()
 
@@ -1674,7 +1829,7 @@ Resource Converter
 
 .. type:: public enum ResourceConverterState
 
-   See :meth:`ResourceConverter.state(int)`.
+   The state of a resource converter. See :meth:`ResourceConverter.state(int)`.
 
 
    .. field:: public ResourceConverterState RUNNING
@@ -1715,7 +1870,7 @@ Resource Harvester
 
 .. type:: public class ResourceHarvester
 
-   Obtained by calling :meth:`Part.getResourceHarvester()`.
+   A resource harvester (drill). Obtained by calling :meth:`Part.getResourceHarvester()`.
 
    .. method:: Part getPart()
 
@@ -1763,7 +1918,7 @@ Resource Harvester
 
 .. type:: public enum ResourceHarvesterState
 
-   See :meth:`ResourceHarvester.getState()`.
+   The state of a resource harvester. See :meth:`ResourceHarvester.getState()`.
 
 
    .. field:: public ResourceHarvesterState DEPLOYING
@@ -1798,7 +1953,7 @@ Reaction Wheel
 
 .. type:: public class ReactionWheel
 
-   Obtained by calling :meth:`Part.getReactionWheel()`.
+   A reaction wheel. Obtained by calling :meth:`Part.getReactionWheel()`.
 
    .. method:: Part getPart()
 
@@ -1838,8 +1993,7 @@ RCS
 
 .. type:: public class RCS
 
-   Obtained by calling :meth:`Part.getRCS()`.
-   Provides functionality to interact with RCS blocks and thrusters.
+   An RCS block or thruster. Obtained by calling :meth:`Part.getRCS()`.
 
    .. method:: Part getPart()
 
@@ -1963,7 +2117,7 @@ Sensor
 
 .. type:: public class Sensor
 
-   Obtained by calling :meth:`Part.getSensor()`.
+   A sensor, such as a thermometer. Obtained by calling :meth:`Part.getSensor()`.
 
    .. method:: Part getPart()
 
@@ -1994,7 +2148,7 @@ Solar Panel
 
 .. type:: public class SolarPanel
 
-   Obtained by calling :meth:`Part.getSolarPanel()`.
+   A solar panel. Obtained by calling :meth:`Part.getSolarPanel()`.
 
    .. method:: Part getPart()
 
@@ -2028,7 +2182,7 @@ Solar Panel
 
 .. type:: public enum SolarPanelState
 
-   See :meth:`SolarPanel.getState()`.
+   The state of a solar panel. See :meth:`SolarPanel.getState()`.
 
 
    .. field:: public SolarPanelState EXTENDED

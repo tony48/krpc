@@ -8,6 +8,7 @@ Resources
 
 .. type:: public class Resources
 
+   Represents the collection of resources stored in a vessel, stage or part.
    Created by calling :meth:`Vessel.getResources()`,
    :meth:`Vessel.resourcesInDecoupleStage(int, boolean)` or
    :meth:`Part.getResources()`.
@@ -58,11 +59,23 @@ Resources
 
       :param String name: The name of the resource.
 
+   .. method:: boolean getEnabled()
+
+   .. method:: void setEnabled(boolean value)
+
+      Whether use of all the resources are enabled.
+
+
+      .. note::
+
+         This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.
+
 
 
 .. type:: public class Resource
 
-   A resource stored within a part.
+   An individual resource stored within a part.
+   Created using methods in the :type:`Resources` class.
 
    .. method:: String getName()
 
@@ -133,7 +146,7 @@ Resources
 
 .. type:: public enum ResourceFlowMode
 
-   See :meth:`Resources.flowMode(String)`.
+   The way in which a resource flows between parts. See :meth:`Resources.flowMode(String)`.
 
 
    .. field:: public ResourceFlowMode VESSEL

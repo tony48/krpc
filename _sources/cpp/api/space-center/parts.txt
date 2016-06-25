@@ -118,6 +118,10 @@ Parts
          This includes any part that generates thrust. This covers many different types of engine,
          including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
 
+   .. function:: std::vector<Experiment> experiments()
+
+      A list of all science experiments in the vessel.
+
    .. function:: std::vector<Fairing> fairings()
 
       A list of all fairings in the vessel.
@@ -182,8 +186,8 @@ Part
 
 .. class:: Part
 
-   Instances of this class represents a part. A vessel is made of multiple parts.
-   Instances can be obtained by various methods in :class:`Parts`.
+   Represents an individual part. Vessels are made up of multiple parts.
+   Instances of this class can be obtained by several methods in :class:`Parts`.
 
    .. function:: std::string name()
 
@@ -384,6 +388,10 @@ Part
 
       An :class:`Engine` if the part is an engine, otherwise ``NULL``.
 
+   .. function:: Experiment experiment()
+
+      An :class:`Experiment` if the part is a science experiment, otherwise ``NULL``.
+
    .. function:: Fairing fairing()
 
       A :class:`Fairing` if the part is a fairing, otherwise ``NULL``.
@@ -538,13 +546,13 @@ Module
 
 .. class:: Module
 
+   This can be used to interact with a specific part module. This includes part modules in stock KSP,
+   and those added by mods.
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
-   For example, an engine has a "ModuleEngines" PartModule that contains all the
+   For example, an engine has a "ModuleEngines" part module that contains all the
    functionality of an engine.
-   This class allows you to interact with KSPs PartModules, and any PartModules
-   that have been added by other mods.
 
    .. function:: std::string name()
 
@@ -660,7 +668,7 @@ Cargo Bay
 
 .. class:: CargoBay
 
-   Obtained by calling :func:`Part::cargo_bay`.
+   A cargo bay. Obtained by calling :func:`Part::cargo_bay`.
 
    .. function:: Part part()
 
@@ -680,7 +688,7 @@ Cargo Bay
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: CargoBayState
 
-   See :func:`CargoBay::state`.
+   The state of a cargo bay. See :func:`CargoBay::state`.
 
 
    .. enumerator:: open
@@ -710,8 +718,7 @@ Control Surface
 
 .. class:: ControlSurface
 
-   Obtained by calling :func:`Part::control_surface`.
-   Provides functionality to interact with aerodynamic control surfaces.
+   An aerodynamic control surface. Obtained by calling :func:`Part::control_surface`.
 
    .. function:: Part part()
 
@@ -759,7 +766,7 @@ Decoupler
 
 .. class:: Decoupler
 
-   Obtained by calling :func:`Part::decoupler`
+   A decoupler. Obtained by calling :func:`Part::decoupler`
 
    .. function:: Part part()
 
@@ -786,7 +793,7 @@ Docking Port
 
 .. class:: DockingPort
 
-   Obtained by calling :func:`Part::docking_port`
+   A docking port. Obtained by calling :func:`Part::docking_port`
 
    .. function:: Part part()
 
@@ -890,7 +897,7 @@ Docking Port
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: DockingPortState
 
-   See :func:`DockingPort::state`.
+   The state of a docking port. See :func:`DockingPort::state`.
 
 
    .. enumerator:: ready
@@ -934,12 +941,12 @@ Engine
 
 .. class:: Engine
 
+   An engine, including ones of various types.
+   For example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
    Obtained by calling :func:`Part::engine`.
 
    .. note::
 
-      Provides functionality to interact with engines of various types,
-      for example liquid fuelled gimballed engines, solid rocket boosters and jet engines.
       For RCS thrusters :func:`Part::rcs`.
 
    .. function:: Part part()
@@ -954,22 +961,19 @@ Engine
 
    .. function:: float thrust()
 
-      The current amount of thrust being produced by the engine, in
-      Newtons. Returns zero if the engine is not active or if it has no fuel.
+      The current amount of thrust being produced by the engine, in Newtons.
 
    .. function:: float available_thrust()
 
-      The maximum available amount of thrust that can be produced by the
-      engine, in Newtons. This takes :func:`Engine::thrust_limit` into account,
-      and is the amount of thrust produced by the engine when activated and the
-      main throttle is set to 100%. Returns zero if the engine does not have any fuel.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and with its throttle set to 100%.
+      Returns zero if the engine does not have any fuel.
+      Takes the engine's current :func:`Engine::thrust_limit` and atmospheric conditions into account.
 
    .. function:: float max_thrust()
 
-      The maximum amount of thrust that can be produced by the engine, in
-      Newtons. This is the amount of thrust produced by the engine when
-      activated, :func:`Engine::thrust_limit` is set to 100% and the main vessel's
-      throttle is set to 100%.
+      The amount of thrust, in Newtons, that would be produced by the engine
+      when activated and fueled, with its throttle and throttle limiter set to 100%.
 
    .. function:: float max_vacuum_thrust()
 
@@ -1010,14 +1014,24 @@ Engine
 
       The specific impulse of the engine at sea level on Kerbin, in seconds.
 
-   .. function:: std::vector<std::string> propellants()
+   .. function:: std::vector<std::string> propellant_names()
 
-      The names of resources that the engine consumes.
+      The names of the propellants that the engine consumes.
 
    .. function:: std::map<std::string,float> propellant_ratios()
 
-      The ratios of resources that the engine consumes. A dictionary mapping resource names
-      to the ratios at which they are consumed by the engine.
+      The ratio of resources that the engine consumes. A dictionary mapping resource names
+      to the ratio at which they are consumed by the engine.
+
+
+      .. note::
+
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
+         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+
+   .. function:: std::vector<Propellant> propellants()
+
+      The propellants that the engine consumes.
 
    .. function:: bool has_fuel()
 
@@ -1104,13 +1118,131 @@ Engine
 
 
 
+.. class:: Propellant
+
+   A propellant for an engine. Obtains by calling :func:`Engine::propellants`.
+
+   .. function:: std::string name()
+
+      The name of the propellant.
+
+   .. function:: double current_amount()
+
+      The current amount of propellant.
+
+   .. function:: double current_requirement()
+
+      The required amount of propellant.
+
+   .. function:: double total_resource_available()
+
+      The total amount of the underlying resource currently reachable given resource flow rules.
+
+   .. function:: double total_resource_capacity()
+
+      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+
+   .. function:: bool ignore_for_isp()
+
+      If this propellant should be ignored when calculating required mass flow given specific impulse.
+
+   .. function:: bool ignore_for_thrust_curve()
+
+      If this propellant should be ignored for thrust curve calculations.
+
+   .. function:: bool draw_stack_gauge()
+
+      If this propellant has a stack gauge or not.
+
+   .. function:: bool is_deprived()
+
+      If this propellant is deprived.
+
+   .. function:: float ratio()
+
+      The propellant ratio.
+
+   .. function:: std::vector<Resource> connected_resources()
+
+      The reachable resources connected to this propellant.
+
+
+
+Experiment
+^^^^^^^^^^
+
+
+.. class:: Experiment
+
+   Obtained by calling :func:`Part::experiment`.
+
+   .. function:: Part part()
+
+      The part object for this experiment.
+
+   .. function:: void run()
+
+      Run the experiment.
+
+   .. function:: void transmit()
+
+      Transmit all experimental data contained by this part.
+
+   .. function:: void dump()
+
+      Dump the experimental data contained by the experiment.
+
+   .. function:: void reset()
+
+      Reset the experiment.
+
+   .. function:: bool deployed()
+
+      Whether the experiment has been deployed.
+
+   .. function:: bool rerunnable()
+
+      Whether the experiment can be re-run.
+
+   .. function:: bool inoperable()
+
+      Whether the experiment is inoperable.
+
+   .. function:: bool has_data()
+
+      Whether the experiment contains data.
+
+   .. function:: std::vector<ScienceData> data()
+
+      The data contained in this experiment.
+
+
+
+.. class:: ScienceData
+
+   Obtained by calling :func:`Experiment::data`.
+
+   .. function:: float data_amount()
+
+      Data amount.
+
+   .. function:: float science_value()
+
+      Science value.
+
+   .. function:: float transmit_value()
+
+      Transmit value.
+
+
+
 Fairing
 ^^^^^^^
 
 
 .. class:: Fairing
 
-   Obtained by calling :func:`Part::fairing`.
+   A fairing. Obtained by calling :func:`Part::fairing`.
 
    .. function:: Part part()
 
@@ -1132,7 +1264,7 @@ Intake
 
 .. class:: Intake
 
-   Obtained by calling :func:`Part::intake`.
+   An air intake. Obtained by calling :func:`Part::intake`.
 
    .. function:: Part part()
 
@@ -1163,7 +1295,7 @@ Landing Gear
 
 .. class:: LandingGear
 
-   Obtained by calling :func:`Part::landing_gear`.
+   Landing gear with wheels. Obtained by calling :func:`Part::landing_gear`.
 
    .. function:: Part part()
 
@@ -1198,7 +1330,7 @@ Landing Gear
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingGearState
 
-   See :func:`LandingGear::state`.
+   The state of a landing gear. See :func:`LandingGear::state`.
 
 
    .. enumerator:: deployed
@@ -1233,7 +1365,7 @@ Landing Leg
 
 .. class:: LandingLeg
 
-   Obtained by calling :func:`Part::landing_leg`.
+   A landing leg. Obtained by calling :func:`Part::landing_leg`.
 
    .. function:: Part part()
 
@@ -1259,7 +1391,7 @@ Landing Leg
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: LandingLegState
 
-   See :func:`LandingLeg::state`.
+   The state of a landing leg. See :func:`LandingLeg::state`.
 
 
    .. enumerator:: deployed
@@ -1294,7 +1426,7 @@ Launch Clamp
 
 .. class:: LaunchClamp
 
-   Obtained by calling :func:`Part::launch_clamp`.
+   A launch clamp. Obtained by calling :func:`Part::launch_clamp`.
 
    .. function:: Part part()
 
@@ -1312,7 +1444,7 @@ Light
 
 .. class:: Light
 
-   Obtained by calling :func:`Part::light`.
+   A light. Obtained by calling :func:`Part::light`.
 
    .. function:: Part part()
 
@@ -1340,7 +1472,7 @@ Parachute
 
 .. class:: Parachute
 
-   Obtained by calling :func:`Part::parachute`.
+   A parachute. Obtained by calling :func:`Part::parachute`.
 
    .. function:: Part part()
 
@@ -1374,7 +1506,7 @@ Parachute
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ParachuteState
 
-   See :func:`Parachute::state`.
+   The state of a parachute. See :func:`Parachute::state`.
 
 
    .. enumerator:: stowed
@@ -1410,7 +1542,7 @@ Radiator
 
 .. class:: Radiator
 
-   Obtained by calling :func:`Part::radiator`.
+   A radiator. Obtained by calling :func:`Part::radiator`.
 
    .. function:: Part part()
 
@@ -1440,7 +1572,7 @@ Radiator
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: RadiatorState
 
-   :enum:`RadiatorState`
+   The state of a radiator. :enum:`RadiatorState`
 
 
    .. enumerator:: extended
@@ -1475,7 +1607,7 @@ Resource Converter
 
 .. class:: ResourceConverter
 
-   Obtained by calling :func:`Part::resource_converter`.
+   A resource converter. Obtained by calling :func:`Part::resource_converter`.
 
    .. function:: Part part()
 
@@ -1555,7 +1687,7 @@ Resource Converter
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceConverterState
 
-   See :func:`ResourceConverter::state`.
+   The state of a resource converter. See :func:`ResourceConverter::state`.
 
 
    .. enumerator:: running
@@ -1596,7 +1728,7 @@ Resource Harvester
 
 .. class:: ResourceHarvester
 
-   Obtained by calling :func:`Part::resource_harvester`.
+   A resource harvester (drill). Obtained by calling :func:`Part::resource_harvester`.
 
    .. function:: Part part()
 
@@ -1637,7 +1769,7 @@ Resource Harvester
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceHarvesterState
 
-   See :func:`ResourceHarvester::state`.
+   The state of a resource harvester. See :func:`ResourceHarvester::state`.
 
 
    .. enumerator:: deploying
@@ -1672,7 +1804,7 @@ Reaction Wheel
 
 .. class:: ReactionWheel
 
-   Obtained by calling :func:`Part::reaction_wheel`.
+   A reaction wheel. Obtained by calling :func:`Part::reaction_wheel`.
 
    .. function:: Part part()
 
@@ -1707,8 +1839,7 @@ RCS
 
 .. class:: RCS
 
-   Obtained by calling :func:`Part::rcs`.
-   Provides functionality to interact with RCS blocks and thrusters.
+   An RCS block or thruster. Obtained by calling :func:`Part::rcs`.
 
    .. function:: Part part()
 
@@ -1813,7 +1944,7 @@ Sensor
 
 .. class:: Sensor
 
-   Obtained by calling :func:`Part::sensor`.
+   A sensor, such as a thermometer. Obtained by calling :func:`Part::sensor`.
 
    .. function:: Part part()
 
@@ -1840,7 +1971,7 @@ Solar Panel
 
 .. class:: SolarPanel
 
-   Obtained by calling :func:`Part::solar_panel`.
+   A solar panel. Obtained by calling :func:`Part::solar_panel`.
 
    .. function:: Part part()
 
@@ -1870,7 +2001,7 @@ Solar Panel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: SolarPanelState
 
-   See :func:`SolarPanel::state`.
+   The state of a solar panel. See :func:`SolarPanel::state`.
 
 
    .. enumerator:: extended

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Resources &mdash; kRPC 0.3.4 documentation</title>
+  <title>Resources &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Node" href="node.html"/>
         <link rel="prev" title="Parts" href="parts.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -175,7 +175,8 @@
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.Resources">
 public class <code class="descname">Resources</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Resources" title="Permalink to this definition">¶</a></dt>
-<dd><p>Created by calling <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.getResources()" title="krpc.client.services.SpaceCenter.Vessel.getResources()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getResources()</span></code></a>,
+<dd><p>Represents the collection of resources stored in a vessel, stage or part.
+Created by calling <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.getResources()" title="krpc.client.services.SpaceCenter.Vessel.getResources()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getResources()</span></code></a>,
 <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.resourcesInDecoupleStage(int, boolean)" title="krpc.client.services.SpaceCenter.Vessel.resourcesInDecoupleStage(int, boolean)"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.resourcesInDecoupleStage(int,</span> <span class="pre">boolean)</span></code></a> or
 <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Part.getResources()" title="krpc.client.services.SpaceCenter.Part.getResources()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getResources()</span></code></a>.</p>
 <dl class="method">
@@ -292,12 +293,28 @@ public class <code class="descname">Resources</code><a class="headerlink" href="
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Resources.getEnabled()">
+ boolean <code class="descname">getEnabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Resources.getEnabled()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Resources.setEnabled(boolean)">
+ void <code class="descname">setEnabled</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Resources.setEnabled(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether use of all the resources are enabled.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.</p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.Resource">
 public class <code class="descname">Resource</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Resource" title="Permalink to this definition">¶</a></dt>
-<dd><p>A resource stored within a part.</p>
+<dd><p>An individual resource stored within a part.
+Created using methods in the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Resources" title="krpc.client.services.SpaceCenter.Resources"><code class="xref java java-type docutils literal"><span class="pre">Resources</span></code></a> class.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Resource.getName()">
  <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Resource.getName()" title="Permalink to this definition">¶</a></dt>
@@ -392,7 +409,7 @@ Use <a class="reference internal" href="#krpc.client.services.SpaceCenter.Resour
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.ResourceFlowMode">
 public enum <code class="descname">ResourceFlowMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ResourceFlowMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Resources.flowMode(String)" title="krpc.client.services.SpaceCenter.Resources.flowMode(String)"><code class="xref java java-meth docutils literal"><span class="pre">Resources.flowMode(String)</span></code></a>.</p>
+<dd><p>The way in which a resource flows between parts. See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Resources.flowMode(String)" title="krpc.client.services.SpaceCenter.Resources.flowMode(String)"><code class="xref java java-meth docutils literal"><span class="pre">Resources.flowMode(String)</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.ResourceFlowMode.VESSEL">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ResourceFlowMode" title="krpc.client.services.SpaceCenter.ResourceFlowMode">ResourceFlowMode</a> <code class="descname">VESSEL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ResourceFlowMode.VESSEL" title="Permalink to this definition">¶</a></dt>
@@ -464,7 +481,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Res
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

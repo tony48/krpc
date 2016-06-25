@@ -8,6 +8,7 @@ Resources
 
 .. class:: Resources
 
+   Represents the collection of resources stored in a vessel, stage or part.
    Created by calling :attr:`Vessel.resources`,
    :meth:`Vessel.resources_in_decouple_stage` or
    :attr:`Part.resources`.
@@ -68,11 +69,23 @@ Resources
       :param str name: The name of the resource.
       :rtype: :class:`ResourceFlowMode`
 
+   .. attribute:: enabled
+
+      Whether use of all the resources are enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+      .. note::
+
+         This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.
+
 
 
 .. class:: Resource
 
-   A resource stored within a part.
+   An individual resource stored within a part.
+   Created using methods in the :class:`Resources` class.
 
    .. attribute:: name
 
@@ -161,7 +174,7 @@ Resources
 
 .. class:: ResourceFlowMode
 
-   See :meth:`Resources.flow_mode`.
+   The way in which a resource flows between parts. See :meth:`Resources.flow_mode`.
 
 
    .. data:: vessel

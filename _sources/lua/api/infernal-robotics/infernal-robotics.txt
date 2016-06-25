@@ -12,31 +12,33 @@ This service provides functionality to interact with
 `Infernal Robotics <http://forum.kerbalspaceprogram.com/index.php?/topic/104535-105-magic-smoke-industries-infernal-robotics-0214/>`_.
 
 
-.. attribute:: servo_groups
+.. staticmethod:: servo_groups(vessel)
 
-   A list of all the servo groups in the active vessel.
+   A list of all the servo groups in the given *vessel*.
 
-   :Attribute: Read-only, cannot be set
+   :param SpaceCenter.Vessel vessel:
    :rtype: List of :class:`InfernalRobotics.ServoGroup`
 
 
 
 
-.. staticmethod:: servo_group_with_name(name)
+.. staticmethod:: servo_group_with_name(vessel, name)
 
-   Returns the servo group with the given *name* or ``nil`` if none
-   exists. If multiple servo groups have the same name, only one of them is returned.
+   Returns the servo group in the given *vessel* with the given *name*,
+   or ``nil`` if none exists. If multiple servo groups have the same name, only one of them is returned.
 
+   :param SpaceCenter.Vessel vessel: Vessel to check.
    :param string name: Name of servo group to find.
    :rtype: :class:`InfernalRobotics.ServoGroup`
 
 
 
 
-.. staticmethod:: servo_with_name(name)
+.. staticmethod:: servo_with_name(vessel, name)
 
-   Returns the servo with the given *name*, from all servo groups, or
+   Returns the servo in the given *vessel* with the given *name* or
    ``nil`` if none exists. If multiple servos have the same name, only one of them is returned.
 
+   :param SpaceCenter.Vessel vessel: Vessel to check.
    :param string name: Name of the servo to find.
    :rtype: :class:`InfernalRobotics.Servo`

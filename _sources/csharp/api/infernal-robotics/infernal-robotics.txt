@@ -11,24 +11,28 @@ InfernalRobotics
    This service provides functionality to interact with
    `Infernal Robotics <http://forum.kerbalspaceprogram.com/index.php?/topic/104535-105-magic-smoke-industries-infernal-robotics-0214/>`_.
 
-   .. property:: System.Collections.Generic.IList<ServoGroup> ServoGroups { get; }
+   .. method:: System.Collections.Generic.IList<ServoGroup> ServoGroups(SpaceCenter.Vessel vessel)
 
-      A list of all the servo groups in the active vessel.
-
-   .. method:: ServoGroup ServoGroupWithName(string name)
-
-      Returns the servo group with the given *name* or ``null`` if none
-      exists. If multiple servo groups have the same name, only one of them is returned.
+      A list of all the servo groups in the given *vessel*.
 
       :parameters:
 
+   .. method:: ServoGroup ServoGroupWithName(SpaceCenter.Vessel vessel, string name)
+
+      Returns the servo group in the given *vessel* with the given *name*,
+      or ``null`` if none exists. If multiple servo groups have the same name, only one of them is returned.
+
+      :parameters:
+
+       * **vessel** -- Vessel to check.
        * **name** -- Name of servo group to find.
 
-   .. method:: Servo ServoWithName(string name)
+   .. method:: Servo ServoWithName(SpaceCenter.Vessel vessel, string name)
 
-      Returns the servo with the given *name*, from all servo groups, or
+      Returns the servo in the given *vessel* with the given *name* or
       ``null`` if none exists. If multiple servos have the same name, only one of them is returned.
 
       :parameters:
 
+       * **vessel** -- Vessel to check.
        * **name** -- Name of the servo to find.

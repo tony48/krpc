@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutoPilot &mdash; kRPC 0.3.5 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
+        <link rel="next" title="C#" href="../csharp.html"/>
+        <link rel="prev" title="User Interface" href="user-interface.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="suborbital-flight.html">Sub-Orbital Flight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference-frames.html">Reference Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch-into-orbit.html">Launch into Orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pitch-heading-roll.html">Pitch, Heading and Roll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parts.html">Interacting with Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docking-guidance.html">Docking Guidance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-interface.html">User Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">AutoPilot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-autopilot">Configuring the AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-the-target-angular-velocity">Computing the Target Angular Velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuning-the-controllers">Tuning the Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corner-cases">Corner Cases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#when-sitting-on-the-launchpad">When sitting on the launchpad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-the-available-angular-acceleration-is-zero">When the available angular acceleration is zero</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../tutorials.html">Tutorials and Examples</a> &raquo;</li>
+      
+    <li>AutoPilot</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/autopilot.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="autopilot">
+<h1>AutoPilot<a class="headerlink" href="#autopilot" title="Permalink to this headline">¶</a></h1>
+<p>kRPC provides an autopilot that can be used to hold a vessel in a chosen
+orientation. It automatically tunes itself to cope with vessels of differing
+size and control authority. This tutorial explains how the autopilot works, how
+to configure it and mathematics behind it.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The inputs to the autopilot are:</p>
+<ul class="simple">
+<li>A reference frame defining where zero rotation is,</li>
+<li>target pitch and heading angles,</li>
+<li>and an (optional) target roll angle.</li>
+</ul>
+<p>When a roll angle is not specified, the autopilot will try to zero out any
+rotation around the roll axis but will not try to hold a specific roll
+angle.</p>
+<p>The diagram below shows a high level overview of the autopilot. First, the
+current rotation and target rotation are used to compute the <a class="reference internal" href="#target-angular-velocity"><span>target
+angular velocity</span></a> that is needed to rotate the vessel
+to face the target. Next, the components of this angular velocity in the pitch,
+yaw and roll axes of the vessel are passed to three PID controllers. The outputs
+of these controllers are used as the control inputs for the vessel.</p>
+<p>There are several parameters affecting the operation of the autopilot, shown the
+the left of the diagram. They are covered in the next section.</p>
+<img alt="../_images/autopilot-schematic.png" class="align-center" src="../_images/autopilot-schematic.png" />
+</div>
+<div class="section" id="configuring-the-autopilot">
+<h2>Configuring the AutoPilot<a class="headerlink" href="#configuring-the-autopilot" title="Permalink to this headline">¶</a></h2>
+<p>There are several parameters that affect the behavior of the autopilot. The
+default values for these should suffice in most cases, but they can be adjusted
+to fit your needs.</p>
+<ul class="simple">
+<li>The <strong>stopping time</strong> is the maximum amount of time that the vessel should
+need to come to a complete stop. This limits the maximum angular velocity of
+the vessel. It is a vector of three stopping times, one for each of the pitch,
+roll and yaw axes. The default value is 0.5 seconds for each axis.</li>
+<li>The <strong>deceleration time</strong> is the minimum time the autopilot should take to
+decelerate the vessel to a stop, as it approaches the target direction. This
+is a minimum value, as the time required may be higher if the vessel does not
+have sufficient angular acceleration. It is a vector of three deceleration
+times, in seconds, for each of the pitch, roll and yaw axes. The default value
+is 5 seconds for each axis. A smaller value will make the autopilot decelerate
+more aggressively, turning the vessel towards the target more
+quickly. However, decreasing the value too much could result in overshoot.</li>
+<li>In order to avoid overshoot, the stopping time should be smaller than the
+deceleration time. This gives the autopilot some &#8216;spare&#8217; acceleration, to
+adjust for errors in the vessels rotation, for example due to changing
+aerodynamic forces.</li>
+<li>The <strong>attenuation angle</strong> sets the region in which the autopilot considers the
+vessel to be &#8216;close&#8217; to the target direction. In this region, the target
+velocity is attenuated based on how close the vessel is to the target. It is
+an angle, in degrees, for each of the pitch, roll and yaw axes. The default
+value is 1 degree in each axis. This attenuation prevents the controls from
+oscillating when the vessel is pointing in the correct direction. If you find
+that the vessel still oscillates, try increasing this value.</li>
+<li>The <strong>time to peak</strong>, in seconds, that the PID controllers take to adjust the
+angular velocity of the vessel to the target angular velocity. Decreasing this
+value will make the controllers try to match the target velocity more
+aggressively. It is a vector of three times, one for each of the pitch, roll
+and yaw axes. The default is 3 seconds in each axis.</li>
+<li>The <strong>overshoot</strong> is the percentage by which the PID controllers are allowed
+to overshoot the target angular velocity. Increasing this value will make the
+controllers try to match the target velocity more aggressively, but will cause
+more overshoot. It is a vector of three values, between 0 and 1, for each of
+the pitch, roll and yaw axes. The default is 0.01 in each axis.</li>
+</ul>
+</div>
+<div class="section" id="computing-the-target-angular-velocity">
+<span id="target-angular-velocity"></span><h2>Computing the Target Angular Velocity<a class="headerlink" href="#computing-the-target-angular-velocity" title="Permalink to this headline">¶</a></h2>
+<p>The target angular velocity is the angular velocity needed to the vessel to
+rotate it towards the target direction. It is computed by summing a target
+angular speed for each of pitch, yaw and roll axes. If no roll angle is set,
+then the target angular velocity in the roll axis is simply set to 0.</p>
+<p>The target angular speed <span class="math">\(\omega\)</span> in a given axis is computed from the
+angular error <span class="math">\(\theta\)</span> using the following function:</p>
+<img alt="../_images/autopilot-angular-speed.png" class="align-center" src="../_images/autopilot-angular-speed.png" />
+<p>The equation for this function is:</p>
+<div class="math">
+\[\begin{split}\omega &amp;= -\frac{\theta}{\lvert\theta\rvert}
+          \text{min} \big(
+              \omega_{max},
+              \sqrt{2 \alpha \lvert\theta\rvert} \cdot f_a(\theta)
+          \big) \\
+\text{where} &amp; \\
+\alpha &amp;= \frac{\omega_{max}}{t_{decel}} \\
+\omega_{max} &amp;= \frac{\tau_{max}t_{stop}}{I} \\
+f_a(\theta) &amp;= \frac{1}{1 + e^{-6/\theta_a(\lvert\theta\rvert - \theta_a)}}\end{split}\]</div>
+<p>The reasoning and derivation for this is as follows:</p>
+<ul>
+<li><p class="first">The vessel needs to rotate towards <span class="math">\(\theta = 0\)</span>. This means that the
+target angular speed <span class="math">\(\omega\)</span> needs to be positive when <span class="math">\(\theta\)</span>
+is negative, and negative when <span class="math">\(\theta\)</span> is positive. This is done by
+multiplying by the term <span class="math">\(-\frac{\theta}{\lvert\theta\rvert}\)</span>, which is 1
+when <span class="math">\(\theta &lt; 0\)</span> and -1 when <span class="math">\(\theta &gt;= 0\)</span></p>
+</li>
+<li><p class="first">We want the vessel to rotate at a maximum angular speed <span class="math">\(\omega_{max}\)</span>,
+which is determined by the stopping time <span class="math">\(t_{stop}\)</span>. Using the equations
+of motion under constant acceleration we can derive it as follows:</p>
+<div class="math">
+\[\begin{split}\omega &amp;= \alpha t \\
+\Rightarrow \omega_{max} &amp;= \alpha_{max} t_{stop} \\
+                         &amp;= \frac{\tau_{max}t_{stop}}{I}\end{split}\]</div>
+<p>where <span class="math">\(\tau_{max}\)</span> is the maximum torque the vessel can generate, and
+<span class="math">\(I\)</span> is its moment of inertia.</p>
+</li>
+<li><p class="first">We want the vessel to take time <span class="math">\(t_{decel}\)</span> (the deceleration time) to
+go from moving at speed <span class="math">\(\omega_{max}\)</span> to rest, when facing the
+target. And we want it to do this using a constant acceleration
+<span class="math">\(\alpha\)</span>. Using the equations of motion under constant acceleration we
+can derive the target velocity <span class="math">\(\omega\)</span> in terms of the current angular
+error <span class="math">\(\theta\)</span>:</p>
+<div class="math">
+\[\begin{split}\omega &amp;= \alpha t \\
+\Rightarrow \alpha &amp;= \frac{\omega}{t}
+                    = \frac{\omega_{max}}{t_{decel}} \\
+\theta &amp;= \frac{1}{2} \alpha t^2
+\Rightarrow t = \sqrt{\frac{2 \theta}{\alpha}} \\
+\Rightarrow \omega &amp;= \alpha \sqrt{\frac{2 \theta}{\alpha}}
+                    = \sqrt{2 \alpha \theta}\end{split}\]</div>
+</li>
+<li><p class="first">To prevent the vessel from oscillating when it is pointing in the target
+direction, the gradient of the target angular speed curve at <span class="math">\(\theta =
+0\)</span> needs to be 0, and increase/decrease smoothly with increasing/decreasing
+<span class="math">\(\theta\)</span>.</p>
+<p>This is not the case for the target angular speed calculated above. To correct
+this, we multiply by an attenuation function which has the required shape. The
+following diagram shows the shape of the attenuation function (line in red),
+the target velocity as calculated previously (line in blue) and the result of
+multiplying these together (dashed line in black):</p>
+<img alt="../_images/autopilot-attenuation.png" class="align-center" src="../_images/autopilot-attenuation.png" />
+<p>The formula for the attenuation function is a logistic function, with the
+following formula:</p>
+<div class="math">
+\[\begin{split}f_a(\theta) &amp;= \frac{1}{1 + e^{-6/\theta_a(\lvert\theta\rvert - \theta_a)}}\end{split}\]</div>
+<p>Note that the original function, derived from the equations of motion under
+constant acceleration, is only affected by the attenuation function close to
+the attenuation angle. This means that autopilot will use a constant
+acceleration to slow the vessel, until it gets close to the target direction.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="tuning-the-controllers">
+<span id="id1"></span><h2>Tuning the Controllers<a class="headerlink" href="#tuning-the-controllers" title="Permalink to this headline">¶</a></h2>
+<p>Three PID controllers, one for each of the pitch, roll and yaw control axes, are
+used to control the vessel. Each controller takes the relevant component of the
+target angular velocity as input. The following describes how the gains for
+these controllers are automatically tuned based on the vessels available torque
+and moment of inertia.</p>
+<p>The schematic for the entire system, in a single control axis, is as follows:</p>
+<img alt="../_images/autopilot-system.png" class="align-center" src="../_images/autopilot-system.png" />
+<p>The input to the system is the angular speed around the control axis, denoted
+<span class="math">\(\omega\)</span>. The error in the angular speed <span class="math">\(\omega_\epsilon\)</span> is
+calculated from this and passed to controller <span class="math">\(C\)</span>. This is a PID
+controller that we need to tune. The output of the controller is the control
+input, <span class="math">\(x\)</span>, that is passed to the vessel. The plant <span class="math">\(H\)</span> describes
+the physical system, i.e. how the control input affects the angular acceleration
+of the vessel. The derivative of this is computed to get the new angular speed
+of the vessel, which is then fed back to compute the new error.</p>
+<p>For the controller, <span class="math">\(C\)</span>, we use a proportional-integral controller. Note
+that the controller does not have a derivative term, so that the system behaves
+like a second order system and is therefore easy to tune.</p>
+<p>The transfer function for the controller in the <span class="math">\(s\)</span> domain is:</p>
+<div class="math">
+\[\begin{split}C(s) &amp;= K_P + K_I s^{-1}\end{split}\]</div>
+<p>From the schematic, the transfer function for the plant <span class="math">\(H\)</span> is:</p>
+<div class="math">
+\[\begin{split}H(s) &amp;= \frac{\omega_\epsilon(s)}{X(s)}\end{split}\]</div>
+<p><span class="math">\(x\)</span> is the control input to the vessel, which is the percentage of the
+available torque <span class="math">\(\tau_{max}\)</span> that is being applied to the vessel. Call
+this the current torque, denoted <span class="math">\(\tau\)</span>. This can be written
+mathematically as:</p>
+<div class="math">
+\[\begin{split}\tau &amp;= x \tau_{max}\end{split}\]</div>
+<p>Combining this with the angular equation of motion gives the angular
+acceleration in terms of the control input:</p>
+<div class="math">
+\[\begin{split}I &amp;= \text{moment of inertia of the vessel} \\
+\tau &amp;= I \omega_\epsilon \\
+\Rightarrow \omega_\epsilon &amp;= \frac{x\tau_{max}}{I}\end{split}\]</div>
+<p>Taking the laplace transform of this gives us:</p>
+<div class="math">
+\[\begin{split}\mathcal{L}(\omega_\epsilon(t)) &amp;= s\omega_\epsilon(s) \\
+                             &amp;= \frac{sX(s)\tau_{max}}{I} \\
+\Rightarrow \frac{\omega_\epsilon(s)}{X(s)} &amp;= \frac{\tau_{max}}{I}\end{split}\]</div>
+<p>We can now rewrite the transfer function for <span class="math">\(H\)</span> as:</p>
+<div class="math">
+\[H(s) = \frac{\tau_{max}}{I}\]</div>
+<p>The open loop transfer function for the entire system is:</p>
+<div class="math">
+\[\begin{split}G_{OL}(s) &amp;= C(S) \cdot H(s) \cdot s^{-1} \\
+          &amp;= (K_P + K_I s^{-1}) \frac{\tau_{max}}{Is}\end{split}\]</div>
+<p>The closed loop transfer function is then:</p>
+<div class="math">
+\[\begin{split}G(s) &amp;= \frac{G_{OL}(s)}{1 + G_{OL}(s)} \\
+     &amp;= \frac{a K_P s + a  K_I}{s^2 + a K_P s + a K_I}
+        \text{ where } a = \frac{\tau_{max}}{I}\end{split}\]</div>
+<p>The characteristic equation for the system is therefore:</p>
+<div class="math">
+\[\begin{split}\Phi &amp;= s^2 + \frac{\tau_{max}}{I} K_P s + \frac{\tau_{max}}{I} K_I\end{split}\]</div>
+<p>The characteristic equation for a standard second order system is:</p>
+<div class="math">
+\[\begin{split}\Phi_{standard} &amp;= s^2 + 2 \zeta \omega_0 s + \omega_0^2 \\\end{split}\]</div>
+<p>where <span class="math">\(\zeta\)</span> is the damping ratio and <span class="math">\(\omega_0\)</span> is the natural
+frequency of the system.</p>
+<p>Equating coefficients between these equations, and rearranging, gives us the
+gains for the PI controller in terms of <span class="math">\(\zeta\)</span> and <span class="math">\(\omega_0\)</span>:</p>
+<div class="math">
+\[\begin{split}K_P &amp;= \frac{2 \zeta \omega_0 I}{\tau_{max}} \\
+K_I &amp;= \frac{I\omega_0^2}{\tau_{max}}\end{split}\]</div>
+<p>We now need to choose some performance requirements to place on the system,
+which will allow us to determine the values of <span class="math">\(\zeta\)</span> and
+<span class="math">\(\omega_0\)</span>, and therefore the gains for the controller.</p>
+<p>The percentage by which a second order system overshoots is:</p>
+<div class="math">
+\[\begin{split}O &amp;= e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\end{split}\]</div>
+<p>And the time it takes to reach the first peak in its output is:</p>
+<div class="math">
+\[\begin{split}T_P &amp;= \frac{\pi}{\omega_0\sqrt{1-\zeta^2}}\end{split}\]</div>
+<p>These can be rearranged to give us <span class="math">\(\zeta\)</span> and <span class="math">\(\omega_0\)</span> in terms
+of overshoot and time to peak:</p>
+<div class="math">
+\[\begin{split}\zeta = \sqrt{\frac{\ln^2(O)}{\pi^2+\ln^2(O)}} \\
+\omega_0 = \frac{\pi}{T_P\sqrt{1-\zeta^2}}\end{split}\]</div>
+<p>By default, kRPC uses the values <span class="math">\(O = 0.01\)</span> and <span class="math">\(T_P = 3\)</span>.</p>
+</div>
+<div class="section" id="corner-cases">
+<h2>Corner Cases<a class="headerlink" href="#corner-cases" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="when-sitting-on-the-launchpad">
+<h3>When sitting on the launchpad<a class="headerlink" href="#when-sitting-on-the-launchpad" title="Permalink to this headline">¶</a></h3>
+<p>In this situation, the autopilot cannot rotate the vessel. This means that the
+integral term in the controllers will build up to a large value. This is even
+true if the vessel is pointing in the correct direction, as small floating point
+variations in the computed error will also cause the integral term to
+increase. The integral terms are therefore fixed at zero to overcome this.</p>
+</div>
+<div class="section" id="when-the-available-angular-acceleration-is-zero">
+<h3>When the available angular acceleration is zero<a class="headerlink" href="#when-the-available-angular-acceleration-is-zero" title="Permalink to this headline">¶</a></h3>
+<p>This could be caused, for example, by the reaction wheels on a vessel running
+out of electricity resulting in the vessel having no torque.</p>
+<p>In this situation, the autopilot also has little or no control over the
+vessel. This means that the integral terms in the controllers will build up to a
+large value over time. This is overcome by fixing the integral terms to zero
+when the available angular acceleration falls below a small threshold.</p>
+<p>This situation also causes an issue with the controller gain auto-tuning: as the
+available angular acceleration tends towards zero, the controller gains tend
+towards infinity. When it equals zero, the auto-tuning would cause a division by
+zero. Therefore, auto-tuning is also disabled when the available acceleration
+falls below the threshold. This leaves the controller gains at their current
+values until the available acceleration rises again.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../csharp.html" class="btn btn-neutral float-right" title="C#" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user-interface.html" class="btn btn-neutral" title="User Interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

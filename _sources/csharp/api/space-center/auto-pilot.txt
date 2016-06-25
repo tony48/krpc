@@ -26,41 +26,57 @@ AutoPilot
 
    .. method:: void Wait()
 
-      Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
 
    .. property:: float Error { get; }
 
       The error, in degrees, between the direction the ship has been asked
       to point in and the direction it is pointing in. Returns zero if the auto-pilot
-      has not been engaged, SAS is not enabled, SAS is in stability assist mode,
-      or no target direction is set.
+      has not been engaged and SAS is not enabled or is in stability assist mode.
+
+   .. property:: float PitchError { get; }
+
+      The error, in degrees, between the vessels current and target pitch.
+      Returns zero if the auto-pilot has not been engaged.
+
+   .. property:: float HeadingError { get; }
+
+      The error, in degrees, between the vessels current and target heading.
+      Returns zero if the auto-pilot has not been engaged.
 
    .. property:: float RollError { get; }
 
-      The error, in degrees, between the roll the ship has been asked to be
-      in and the actual roll. Returns zero if the auto-pilot has not been engaged
-      or no target roll is set.
+      The error, in degrees, between the vessels current and target roll.
+      Returns zero if the auto-pilot has not been engaged or no target roll is set.
 
    .. property:: ReferenceFrame ReferenceFrame { get; set; }
 
       The reference frame for the target direction (:prop:`AutoPilot.TargetDirection`).
 
+   .. property:: float TargetPitch { get; set; }
+
+      The target pitch, in degrees, between -90° and +90°.
+
+   .. property:: float TargetHeading { get; set; }
+
+      The target heading, in degrees, between 0° and 360°.
+
+   .. property:: float TargetRoll { get; set; }
+
+      The target roll, in degrees. ``NaN`` if no target roll is set.
+
    .. property:: System.Tuple<double,double,double> TargetDirection { get; set; }
 
-      The target direction. ``null`` if no target direction is set.
+      Direction vector corresponding to the target pitch and heading.
 
    .. method:: void TargetPitchAndHeading(float pitch, float heading)
 
-      Set (:prop:`AutoPilot.TargetDirection`) from a pitch and heading angle.
+      Set target pitch and heading angles.
 
       :parameters:
 
        * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
        * **heading** -- Target heading angle, in degrees between 0° and 360°.
-
-   .. property:: float TargetRoll { get; set; }
-
-      The target roll, in degrees. ``NaN`` if no target roll is set.
 
    .. property:: bool SAS { get; set; }
 
@@ -74,36 +90,80 @@ AutoPilot
    .. property:: SASMode SASMode { get; set; }
 
       The current :type:`SASMode`.
-      These modes are equivalent to the mode buttons to
-      the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
 
 
       .. note::
 
          Equivalent to :prop:`Control.SASMode`
 
-   .. property:: float RotationSpeedMultiplier { get; set; }
+   .. property:: double RollThreshold { get; set; }
 
-      Target rotation speed multiplier. Defaults to 1.
+      The threshold at which the autopilot will try to match the target roll angle, if any.
+      Defaults to 5 degrees.
 
-   .. property:: float MaxRotationSpeed { get; set; }
+   .. property:: System.Tuple<double,double,double> StoppingTime { get; set; }
 
-      Maximum target rotation speed. Defaults to 1.
+      The maximum amount of time that the vessel should need to come to a complete stop.
+      This determines the maximum angular velocity of the vessel.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 0.5 seconds for each axis.
 
-   .. property:: float RollSpeedMultiplier { get; set; }
+   .. property:: System.Tuple<double,double,double> DecelerationTime { get; set; }
 
-      Target roll speed multiplier. Defaults to 1.
+      The time the vessel should take to come to a stop pointing in the target direction.
+      This determines the angular acceleration used to decelerate the vessel.
+      A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
+      Defaults to 5 seconds for each axis.
 
-   .. property:: float MaxRollSpeed { get; set; }
+   .. property:: System.Tuple<double,double,double> AttenuationAngle { get; set; }
 
-      Maximum target roll speed. Defaults to 1.
+      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      This determines the midpoint of the target velocity attenuation function.
+      A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
+      Defaults to 1° for each axis.
 
-   .. method:: void SetPIDParameters(float kp = 1.0, float ki = 0.0, float kd = 0.0)
+   .. property:: bool AutoTune { get; set; }
 
-      Sets the gains for the rotation rate PID controller.
+      Whether the rotation rate controllers PID parameters should be automatically tuned using the
+      vessels moment of inertia and available torque. Defaults to ``true``.
+      See :prop:`AutoPilot.TimeToPeak` and  :prop:`AutoPilot.Overshoot`.
 
-      :parameters:
+   .. property:: System.Tuple<double,double,double> TimeToPeak { get; set; }
 
-       * **kp** -- Proportional gain.
-       * **ki** -- Integral gain.
-       * **kd** -- Derivative gain.
+      The target time to peak used to autotune the PID controllers.
+      A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
+      Defaults to 3 seconds for each axis.
+
+   .. property:: System.Tuple<double,double,double> Overshoot { get; set; }
+
+      The target overshoot percentage used to autotune the PID controllers.
+      A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
+      Defaults to 0.01 for each axis.
+
+   .. property:: System.Tuple<double,double,double> PitchPIDGains { get; set; }
+
+      Gains for the pitch PID controller.
+
+
+      .. note::
+
+         When :prop:`AutoPilot.AutoTune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. property:: System.Tuple<double,double,double> RollPIDGains { get; set; }
+
+      Gains for the roll PID controller.
+
+
+      .. note::
+
+         When :prop:`AutoPilot.AutoTune` is true, these values are updated automatically, which will overwrite any manual changes.
+
+   .. property:: System.Tuple<double,double,double> YawPIDGains { get; set; }
+
+      Gains for the yaw PID controller.
+
+
+      .. note::
+
+         When :prop:`AutoPilot.AutoTune` is true, these values are updated automatically, which will overwrite any manual changes.

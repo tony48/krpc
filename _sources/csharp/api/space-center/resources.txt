@@ -8,6 +8,7 @@ Resources
 
 .. class:: Resources
 
+   Represents the collection of resources stored in a vessel, stage or part.
    Created by calling :prop:`Vessel.Resources`,
    :meth:`Vessel.ResourcesInDecoupleStage` or
    :prop:`Part.Resources`.
@@ -66,11 +67,21 @@ Resources
 
        * **name** -- The name of the resource.
 
+   .. property:: bool Enabled { get; set; }
+
+      Whether use of all the resources are enabled.
+
+
+      .. note::
+
+         This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.
+
 
 
 .. class:: Resource
 
-   A resource stored within a part.
+   An individual resource stored within a part.
+   Created using methods in the :type:`Resources` class.
 
    .. property:: string Name { get; }
 
@@ -133,7 +144,7 @@ Resources
 
 .. enum:: ResourceFlowMode
 
-   See :meth:`Resources.FlowMode`.
+   The way in which a resource flows between parts. See :meth:`Resources.FlowMode`.
 
 
    .. value:: Vessel

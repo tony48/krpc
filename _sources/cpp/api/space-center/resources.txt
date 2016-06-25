@@ -8,6 +8,7 @@ Resources
 
 .. class:: Resources
 
+   Represents the collection of resources stored in a vessel, stage or part.
    Created by calling :func:`Vessel::resources`,
    :func:`Vessel::resources_in_decouple_stage` or
    :func:`Part::resources`.
@@ -66,11 +67,22 @@ Resources
 
        * **name** -- The name of the resource.
 
+   .. function:: bool enabled()
+   .. function:: void set_enabled(bool value)
+
+      Whether use of all the resources are enabled.
+
+
+      .. note::
+
+         This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.
+
 
 
 .. class:: Resource
 
-   A resource stored within a part.
+   An individual resource stored within a part.
+   Created using methods in the :class:`Resources` class.
 
    .. function:: std::string name()
 
@@ -135,7 +147,7 @@ Resources
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: ResourceFlowMode
 
-   See :func:`Resources::flow_mode`.
+   The way in which a resource flows between parts. See :func:`Resources::flow_mode`.
 
 
    .. enumerator:: vessel

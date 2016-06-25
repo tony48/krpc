@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AutoPilot &mdash; kRPC 0.3.4 documentation</title>
+  <title>AutoPilot &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Geometry Types" href="geometry-types.html"/>
         <link rel="prev" title="ReferenceFrame" href="reference-frame.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -197,7 +197,7 @@ the auto-pilot will be disengaged and its target reference frame, direction and 
 <dl class="method">
 <dt id="SpaceCenter.AutoPilot.wait">
 <code class="descname">wait</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.AutoPilot.wait" title="Permalink to this definition">¶</a></dt>
-<dd><p>Blocks until the vessel is pointing in the target direction (if set) and has the target roll (if set).</p>
+<dd><p>Blocks until the vessel is pointing in the target direction and has the target roll (if set).</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -205,8 +205,41 @@ the auto-pilot will be disengaged and its target reference frame, direction and 
 <code class="descname">error</code><a class="headerlink" href="#SpaceCenter.AutoPilot.error" title="Permalink to this definition">¶</a></dt>
 <dd><p>The error, in degrees, between the direction the ship has been asked
 to point in and the direction it is pointing in. Returns zero if the auto-pilot
-has not been engaged, SAS is not enabled, SAS is in stability assist mode,
-or no target direction is set.</p>
+has not been engaged and SAS is not enabled or is in stability assist mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.pitch_error">
+<code class="descname">pitch_error</code><a class="headerlink" href="#SpaceCenter.AutoPilot.pitch_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>The error, in degrees, between the vessels current and target pitch.
+Returns zero if the auto-pilot has not been engaged.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.heading_error">
+<code class="descname">heading_error</code><a class="headerlink" href="#SpaceCenter.AutoPilot.heading_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>The error, in degrees, between the vessels current and target heading.
+Returns zero if the auto-pilot has not been engaged.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -222,9 +255,8 @@ or no target direction is set.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.AutoPilot.roll_error">
 <code class="descname">roll_error</code><a class="headerlink" href="#SpaceCenter.AutoPilot.roll_error" title="Permalink to this definition">¶</a></dt>
-<dd><p>The error, in degrees, between the roll the ship has been asked to be
-in and the actual roll. Returns zero if the auto-pilot has not been engaged
-or no target roll is set.</p>
+<dd><p>The error, in degrees, between the vessels current and target roll.
+Returns zero if the auto-pilot has not been engaged or no target roll is set.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -254,34 +286,32 @@ or no target roll is set.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.AutoPilot.target_direction">
-<code class="descname">target_direction</code><a class="headerlink" href="#SpaceCenter.AutoPilot.target_direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>The target direction. <code class="docutils literal"><span class="pre">None</span></code> if no target direction is set.</p>
+<dt id="SpaceCenter.AutoPilot.target_pitch">
+<code class="descname">target_pitch</code><a class="headerlink" href="#SpaceCenter.AutoPilot.target_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target pitch, in degrees, between -90° and +90°.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="SpaceCenter.AutoPilot.target_pitch_and_heading">
-<code class="descname">target_pitch_and_heading</code><span class="sig-paren">(</span><em>pitch</em>, <em>heading</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.AutoPilot.target_pitch_and_heading" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set (<a class="reference internal" href="#SpaceCenter.AutoPilot.target_direction" title="SpaceCenter.AutoPilot.target_direction"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.target_direction</span></code></a>) from a pitch and heading angle.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.target_heading">
+<code class="descname">target_heading</code><a class="headerlink" href="#SpaceCenter.AutoPilot.target_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target heading, in degrees, between 0° and 360°.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pitch</strong> (<em>float</em>) &#8211; Target pitch angle, in degrees between -90° and +90°.</li>
-<li><strong>heading</strong> (<em>float</em>) &#8211; Target heading angle, in degrees between 0° and 360°.</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -298,6 +328,40 @@ or no target roll is set.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.target_direction">
+<code class="descname">target_direction</code><a class="headerlink" href="#SpaceCenter.AutoPilot.target_direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Direction vector corresponding to the target pitch and heading.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.AutoPilot.target_pitch_and_heading">
+<code class="descname">target_pitch_and_heading</code><span class="sig-paren">(</span><em>pitch</em>, <em>heading</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.AutoPilot.target_pitch_and_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set target pitch and heading angles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pitch</strong> (<em>float</em>) &#8211; Target pitch angle, in degrees between -90° and +90°.</li>
+<li><strong>heading</strong> (<em>float</em>) &#8211; Target heading angle, in degrees between 0° and 360°.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -327,8 +391,7 @@ or no target roll is set.</p>
 <dt id="SpaceCenter.AutoPilot.sas_mode">
 <code class="descname">sas_mode</code><a class="headerlink" href="#SpaceCenter.AutoPilot.sas_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current <a class="reference internal" href="control.html#SpaceCenter.SASMode" title="SpaceCenter.SASMode"><code class="xref py py-class docutils literal"><span class="pre">SASMode</span></code></a>.
-These modes are equivalent to the mode buttons to
-the left of the navball that appear when SAS is enabled.</p>
+These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -346,9 +409,10 @@ the left of the navball that appear when SAS is enabled.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.AutoPilot.rotation_speed_multiplier">
-<code class="descname">rotation_speed_multiplier</code><a class="headerlink" href="#SpaceCenter.AutoPilot.rotation_speed_multiplier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Target rotation speed multiplier. Defaults to 1.</p>
+<dt id="SpaceCenter.AutoPilot.roll_threshold">
+<code class="descname">roll_threshold</code><a class="headerlink" href="#SpaceCenter.AutoPilot.roll_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The threshold at which the autopilot will try to match the target roll angle, if any.
+Defaults to 5 degrees.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -362,70 +426,174 @@ the left of the navball that appear when SAS is enabled.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.AutoPilot.max_rotation_speed">
-<code class="descname">max_rotation_speed</code><a class="headerlink" href="#SpaceCenter.AutoPilot.max_rotation_speed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximum target rotation speed. Defaults to 1.</p>
+<dt id="SpaceCenter.AutoPilot.stopping_time">
+<code class="descname">stopping_time</code><a class="headerlink" href="#SpaceCenter.AutoPilot.stopping_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum amount of time that the vessel should need to come to a complete stop.
+This determines the maximum angular velocity of the vessel.
+A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
+Defaults to 0.5 seconds for each axis.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.AutoPilot.roll_speed_multiplier">
-<code class="descname">roll_speed_multiplier</code><a class="headerlink" href="#SpaceCenter.AutoPilot.roll_speed_multiplier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Target roll speed multiplier. Defaults to 1.</p>
+<dt id="SpaceCenter.AutoPilot.deceleration_time">
+<code class="descname">deceleration_time</code><a class="headerlink" href="#SpaceCenter.AutoPilot.deceleration_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time the vessel should take to come to a stop pointing in the target direction.
+This determines the angular acceleration used to decelerate the vessel.
+A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
+Defaults to 5 seconds for each axis.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.AutoPilot.max_roll_speed">
-<code class="descname">max_roll_speed</code><a class="headerlink" href="#SpaceCenter.AutoPilot.max_roll_speed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximum target roll speed. Defaults to 1.</p>
+<dt id="SpaceCenter.AutoPilot.attenuation_angle">
+<code class="descname">attenuation_angle</code><a class="headerlink" href="#SpaceCenter.AutoPilot.attenuation_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The angle at which the autopilot considers the vessel to be pointing close to the target.
+This determines the midpoint of the target velocity attenuation function.
+A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
+Defaults to 1° for each axis.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="SpaceCenter.AutoPilot.set_pid_parameters">
-<code class="descname">set_pid_parameters</code><span class="sig-paren">(</span><span class="optional">[</span><em>kp = 1.0</em><span class="optional">]</span><span class="optional">[</span>, <em>ki = 0.0</em><span class="optional">]</span><span class="optional">[</span>, <em>kd = 0.0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.AutoPilot.set_pid_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the gains for the rotation rate PID controller.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.auto_tune">
+<code class="descname">auto_tune</code><a class="headerlink" href="#SpaceCenter.AutoPilot.auto_tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the rotation rate controllers PID parameters should be automatically tuned using the
+vessels moment of inertia and available torque. Defaults to <code class="docutils literal"><span class="pre">True</span></code>.
+See <a class="reference internal" href="#SpaceCenter.AutoPilot.time_to_peak" title="SpaceCenter.AutoPilot.time_to_peak"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.time_to_peak</span></code></a> and  <a class="reference internal" href="#SpaceCenter.AutoPilot.overshoot" title="SpaceCenter.AutoPilot.overshoot"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.overshoot</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>kp</strong> (<em>float</em>) &#8211; Proportional gain.</li>
-<li><strong>ki</strong> (<em>float</em>) &#8211; Integral gain.</li>
-<li><strong>kd</strong> (<em>float</em>) &#8211; Derivative gain.</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.time_to_peak">
+<code class="descname">time_to_peak</code><a class="headerlink" href="#SpaceCenter.AutoPilot.time_to_peak" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target time to peak used to autotune the PID controllers.
+A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
+Defaults to 3 seconds for each axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.overshoot">
+<code class="descname">overshoot</code><a class="headerlink" href="#SpaceCenter.AutoPilot.overshoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The target overshoot percentage used to autotune the PID controllers.
+A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
+Defaults to 0.01 for each axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.pitch_pid_gains">
+<code class="descname">pitch_pid_gains</code><a class="headerlink" href="#SpaceCenter.AutoPilot.pitch_pid_gains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gains for the pitch PID controller.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <a class="reference internal" href="#SpaceCenter.AutoPilot.auto_tune" title="SpaceCenter.AutoPilot.auto_tune"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.auto_tune</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.roll_pid_gains">
+<code class="descname">roll_pid_gains</code><a class="headerlink" href="#SpaceCenter.AutoPilot.roll_pid_gains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gains for the roll PID controller.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <a class="reference internal" href="#SpaceCenter.AutoPilot.auto_tune" title="SpaceCenter.AutoPilot.auto_tune"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.auto_tune</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.AutoPilot.yaw_pid_gains">
+<code class="descname">yaw_pid_gains</code><a class="headerlink" href="#SpaceCenter.AutoPilot.yaw_pid_gains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gains for the yaw PID controller.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <a class="reference internal" href="#SpaceCenter.AutoPilot.auto_tune" title="SpaceCenter.AutoPilot.auto_tune"><code class="xref py py-attr docutils literal"><span class="pre">AutoPilot.auto_tune</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -473,7 +641,7 @@ the left of the navball that appear when SAS is enabled.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

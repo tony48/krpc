@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Canvas &mdash; kRPC 0.3.5 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+        <link rel="up" title="User Interface API" href="../ui.html"/>
+        <link rel="next" title="Panel" href="panel.html"/>
+        <link rel="prev" title="UI" href="ui.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ui.html">User Interface API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ui.html">UI</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Canvas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="panel.html">Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input-field.html">InputField</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rect-transform.html">Rect Transform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+      
+          <li><a href="../ui.html">User Interface API</a> &raquo;</li>
+      
+    <li>Canvas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/java/api/ui/canvas.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="package-krpc.client.services.UI"></span><div class="section" id="canvas">
+<h1>Canvas<a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="krpc.client.services.UI.Canvas">
+public class <code class="descname">Canvas</code><a class="headerlink" href="#krpc.client.services.UI.Canvas" title="Permalink to this definition">¶</a></dt>
+<dd><p>A canvas for user interface elements. See <a class="reference internal" href="ui.html#krpc.client.services.UI.UI.getStockCanvas()" title="krpc.client.services.UI.UI.getStockCanvas()"><code class="xref java java-meth docutils literal"><span class="pre">getStockCanvas()</span></code></a> and <a class="reference internal" href="ui.html#krpc.client.services.UI.UI.addCanvas()" title="krpc.client.services.UI.UI.addCanvas()"><code class="xref java java-meth docutils literal"><span class="pre">addCanvas()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.getRectTransform()">
+ <a class="reference internal" href="rect-transform.html#krpc.client.services.UI.RectTransform" title="krpc.client.services.UI.RectTransform">RectTransform</a> <code class="descname">getRectTransform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.getRectTransform()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rect transform for the canvas.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.getVisible()">
+ boolean <code class="descname">getVisible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.getVisible()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.setVisible(boolean)">
+ void <code class="descname">setVisible</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.setVisible(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI object is visible.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.addPanel(boolean)">
+ <a class="reference internal" href="panel.html#krpc.client.services.UI.Panel" title="krpc.client.services.UI.Panel">Panel</a> <code class="descname">addPanel</code><span class="sig-paren">(</span>boolean<em> visible</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.addPanel(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new container for user interface elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>visible</strong> (<em>boolean</em>) &#8211; Whether the panel is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.addText(String, boolean)">
+ <a class="reference internal" href="text.html#krpc.client.services.UI.Text" title="krpc.client.services.UI.Text">Text</a> <code class="descname">addText</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> content</em>, boolean<em> visible</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.addText(String, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add text to the canvas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>content</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; The text.</li>
+<li><strong>visible</strong> (<em>boolean</em>) &#8211; Whether the text is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.addInputField(boolean)">
+ <a class="reference internal" href="input-field.html#krpc.client.services.UI.InputField" title="krpc.client.services.UI.InputField">InputField</a> <code class="descname">addInputField</code><span class="sig-paren">(</span>boolean<em> visible</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.addInputField(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an input field to the canvas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>visible</strong> (<em>boolean</em>) &#8211; Whether the input field is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.addButton(String, boolean)">
+ <a class="reference internal" href="button.html#krpc.client.services.UI.Button" title="krpc.client.services.UI.Button">Button</a> <code class="descname">addButton</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> content</em>, boolean<em> visible</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.addButton(String, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a button to the canvas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>content</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; The label for the button.</li>
+<li><strong>visible</strong> (<em>boolean</em>) &#8211; Whether the button is visible.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.UI.Canvas.remove()">
+ void <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.UI.Canvas.remove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the UI object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="panel.html" class="btn btn-neutral float-right" title="Panel" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ui.html" class="btn btn-neutral" title="UI" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

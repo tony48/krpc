@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.4 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -278,6 +278,41 @@ keyed by the name of the body.</p>
 </dd></dl>
 
 <dl class="staticmethod">
+<dt id="SpaceCenter.launchable_vessels">
+<em class="property">static </em><code class="descname">launchable_vessels</code><span class="sig-paren">(</span><em>craft_directory</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launchable_vessels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of vessels from the given <em>craft_directory</em> that can be launched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>craft_directory</strong> (<em>string</em>) &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.launch_vessel">
+<em class="property">static </em><code class="descname">launch_vessel</code><span class="sig-paren">(</span><em>craft_directory</em>, <em>name</em>, <em>launch_site</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>craft_directory</strong> (<em>string</em>) &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+<li><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch. This is the name of the &#8221;.craft&#8221; file in the save directory, without the &#8221;.craft&#8221; file extension.</li>
+<li><strong>launch_site</strong> (<em>string</em>) &#8211; Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
 <dt id="SpaceCenter.launch_vessel_from_vab">
 <em class="property">static </em><code class="descname">launch_vessel_from_vab</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel_from_vab" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
@@ -285,10 +320,14 @@ keyed by the name of the body.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel&#8217;s craft file.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch.</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to &#8220;VAB&#8221; and the launch site set to &#8220;LaunchPad&#8221;.</p>
+</div>
 </dd></dl>
 
 <dl class="staticmethod">
@@ -299,10 +338,14 @@ keyed by the name of the body.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel&#8217;s craft file.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch.</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to &#8220;SPH&#8221; and the launch site set to &#8220;Runway&#8221;.</p>
+</div>
 </dd></dl>
 
 <dl class="staticmethod">
@@ -686,7 +729,8 @@ relative angular velocity of the reference frames into account.</p>
 <dl class="class">
 <dt id="SpaceCenter.WarpMode">
 <em class="property">class </em><code class="descname">WarpMode</code><a class="headerlink" href="#SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="SpaceCenter.WarpMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WarpMode</span></code></a></p>
+<dd><p>The time warp mode.
+Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="SpaceCenter.WarpMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WarpMode</span></code></a></p>
 <dl class="data">
 <dt id="SpaceCenter.WarpMode.rails">
 <code class="descname">rails</code><a class="headerlink" href="#SpaceCenter.WarpMode.rails" title="Permalink to this definition">¶</a></dt>
@@ -750,7 +794,7 @@ relative angular velocity of the reference frames into account.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

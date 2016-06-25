@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>InfernalRobotics &mdash; kRPC 0.3.4 documentation</title>
+  <title>InfernalRobotics &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="InfernalRobotics API" href="../infernal-robotics.html"/>
         <link rel="next" title="ServoGroup" href="servo-group.html"/>
         <link rel="prev" title="InfernalRobotics API" href="../infernal-robotics.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -169,21 +169,33 @@ public class <code class="descname">InfernalRobotics</code><a class="headerlink"
 <dd><p>This service provides functionality to interact with
 <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/104535-105-magic-smoke-industries-infernal-robotics-0214/">Infernal Robotics</a>.</p>
 <dl class="method">
-<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.getServoGroups()">
- java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="servo-group.html#krpc.client.services.InfernalRobotics.ServoGroup" title="krpc.client.services.InfernalRobotics.ServoGroup">ServoGroup</a>&gt; <code class="descname">getServoGroups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.getServoGroups()" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all the servo groups in the active vessel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroupWithName(String)">
- <a class="reference internal" href="servo-group.html#krpc.client.services.InfernalRobotics.ServoGroup" title="krpc.client.services.InfernalRobotics.ServoGroup">ServoGroup</a> <code class="descname">servoGroupWithName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroupWithName(String)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the servo group with the given <em>name</em> or <code class="docutils literal"><span class="pre">null</span></code> if none
-exists. If multiple servo groups have the same name, only one of them is returned.</p>
+<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroups(SpaceCenter.Vessel)">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="servo-group.html#krpc.client.services.InfernalRobotics.ServoGroup" title="krpc.client.services.InfernalRobotics.ServoGroup">ServoGroup</a>&gt; <code class="descname">servoGroups</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter" title="krpc.client.services.SpaceCenter.SpaceCenter">SpaceCenter</a>.<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> vessel</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroups(SpaceCenter.Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the servo groups in the given <em>vessel</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vessel</strong> (<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroupWithName(SpaceCenter.Vessel, String)">
+ <a class="reference internal" href="servo-group.html#krpc.client.services.InfernalRobotics.ServoGroup" title="krpc.client.services.InfernalRobotics.ServoGroup">ServoGroup</a> <code class="descname">servoGroupWithName</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter" title="krpc.client.services.SpaceCenter.SpaceCenter">SpaceCenter</a>.<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> vessel</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.servoGroupWithName(SpaceCenter.Vessel, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the servo group in the given <em>vessel</em> with the given <em>name</em>,
+or <code class="docutils literal"><span class="pre">null</span></code> if none exists. If multiple servo groups have the same name, only one of them is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vessel</strong> (<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) &#8211; Vessel to check.</li>
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; Name of servo group to find.</li>
 </ul>
 </td>
@@ -193,15 +205,16 @@ exists. If multiple servo groups have the same name, only one of them is returne
 </dd></dl>
 
 <dl class="method">
-<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.servoWithName(String)">
- <a class="reference internal" href="servo.html#krpc.client.services.InfernalRobotics.Servo" title="krpc.client.services.InfernalRobotics.Servo">Servo</a> <code class="descname">servoWithName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.servoWithName(String)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the servo with the given <em>name</em>, from all servo groups, or
+<dt id="krpc.client.services.InfernalRobotics.InfernalRobotics.servoWithName(SpaceCenter.Vessel, String)">
+ <a class="reference internal" href="servo.html#krpc.client.services.InfernalRobotics.Servo" title="krpc.client.services.InfernalRobotics.Servo">Servo</a> <code class="descname">servoWithName</code><span class="sig-paren">(</span><a class="reference internal" href="../space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter" title="krpc.client.services.SpaceCenter.SpaceCenter">SpaceCenter</a>.<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> vessel</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.InfernalRobotics.InfernalRobotics.servoWithName(SpaceCenter.Vessel, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the servo in the given <em>vessel</em> with the given <em>name</em> or
 <code class="docutils literal"><span class="pre">null</span></code> if none exists. If multiple servos have the same name, only one of them is returned.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vessel</strong> (<a class="reference internal" href="../space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) &#8211; Vessel to check.</li>
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; Name of the servo to find.</li>
 </ul>
 </td>
@@ -255,7 +268,7 @@ exists. If multiple servo groups have the same name, only one of them is returne
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

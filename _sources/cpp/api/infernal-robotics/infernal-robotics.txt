@@ -16,24 +16,28 @@ InfernalRobotics
 
       Construct an instance of this service.
 
-   .. function:: std::vector<ServoGroup> servo_groups()
+   .. function:: std::vector<ServoGroup> servo_groups(SpaceCenter::Vessel vessel)
 
-      A list of all the servo groups in the active vessel.
-
-   .. function:: ServoGroup servo_group_with_name(std::string name)
-
-      Returns the servo group with the given *name* or ``NULL`` if none
-      exists. If multiple servo groups have the same name, only one of them is returned.
+      A list of all the servo groups in the given *vessel*.
 
       :Parameters:
 
+   .. function:: ServoGroup servo_group_with_name(SpaceCenter::Vessel vessel, std::string name)
+
+      Returns the servo group in the given *vessel* with the given *name*,
+      or ``NULL`` if none exists. If multiple servo groups have the same name, only one of them is returned.
+
+      :Parameters:
+
+       * **vessel** -- Vessel to check.
        * **name** -- Name of servo group to find.
 
-   .. function:: Servo servo_with_name(std::string name)
+   .. function:: Servo servo_with_name(SpaceCenter::Vessel vessel, std::string name)
 
-      Returns the servo with the given *name*, from all servo groups, or
+      Returns the servo in the given *vessel* with the given *name* or
       ``NULL`` if none exists. If multiple servos have the same name, only one of them is returned.
 
       :Parameters:
 
+       * **vessel** -- Vessel to check.
        * **name** -- Name of the servo to find.

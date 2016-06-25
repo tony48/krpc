@@ -49,13 +49,36 @@ SpaceCenter
 
       Clears the current target.
 
+   .. function:: std::vector<std::string> launchable_vessels(std::string craft_directory)
+
+      Returns a list of vessels from the given *craft_directory* that can be launched.
+
+      :Parameters:
+
+       * **craft_directory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+
+   .. function:: void launch_vessel(std::string craft_directory, std::string name, std::string launch_site)
+
+      Launch a vessel.
+
+      :Parameters:
+
+       * **craft_directory** -- Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
+       * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
+       * **launch_site** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+
    .. function:: void launch_vessel_from_vab(std::string name)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :Parameters:
 
-       * **name** -- Name of the vessel's craft file.
+       * **name** -- Name of the vessel to launch.
+
+
+      .. note::
+
+         This is equivalent to calling :func:`launch_vessel` with the craft directory set to "VAB" and the launch site set to "LaunchPad".
 
    .. function:: void launch_vessel_from_sph(std::string name)
 
@@ -63,7 +86,12 @@ SpaceCenter
 
       :Parameters:
 
-       * **name** -- Name of the vessel's craft file.
+       * **name** -- Name of the vessel to launch.
+
+
+      .. note::
+
+         This is equivalent to calling :func:`launch_vessel` with the craft directory set to "SPH" and the launch site set to "Runway".
 
    .. function:: void save(std::string name)
 
@@ -244,6 +272,7 @@ SpaceCenter
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: WarpMode
 
+   The time warp mode.
    Returned by :enum:`WarpMode`
 
 

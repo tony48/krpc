@@ -81,11 +81,36 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
 
 
+.. staticmethod:: launchable_vessels(craft_directory)
+
+   Returns a list of vessels from the given *craft_directory* that can be launched.
+
+   :param str craft_directory: Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+   :rtype: list of str
+
+
+
+
+.. staticmethod:: launch_vessel(craft_directory, name, launch_site)
+
+   Launch a vessel.
+
+   :param str craft_directory: Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
+   :param str name: Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
+   :param str launch_site: Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+
+
+
+
 .. staticmethod:: launch_vessel_from_vab(name)
 
    Launch a new vessel from the VAB onto the launchpad.
 
-   :param str name: Name of the vessel's craft file.
+   :param str name: Name of the vessel to launch.
+
+   .. note::
+
+      This is equivalent to calling :meth:`launch_vessel` with the craft directory set to "VAB" and the launch site set to "LaunchPad".
 
 
 
@@ -94,7 +119,11 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
    Launch a new vessel from the SPH onto the runway.
 
-   :param str name: Name of the vessel's craft file.
+   :param str name: Name of the vessel to launch.
+
+   .. note::
+
+      This is equivalent to calling :meth:`launch_vessel` with the craft directory set to "SPH" and the launch site set to "Runway".
 
 
 
@@ -350,6 +379,7 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
 .. class:: WarpMode
 
+   The time warp mode.
    Returned by :class:`WarpMode`
 
 

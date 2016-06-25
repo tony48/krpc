@@ -10,6 +10,7 @@ Vessel
 
    These objects are used to interact with vessels in KSP. This includes getting
    orbital and flight data, manipulating control inputs and managing resources.
+   Created using :func:`active_vessel` or :func:`vessels`.
 
    .. function:: std::string name()
    .. function:: void set_name(std::string value)
@@ -24,6 +25,14 @@ Vessel
    .. function:: VesselSituation situation()
 
       The situation the vessel is in.
+
+   .. function:: bool recoverable()
+
+      Whether the vessel is recoverable.
+
+   .. function:: void recover()
+
+      Recover the vessel.
 
    .. function:: double met()
 
@@ -305,6 +314,7 @@ Vessel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselType
 
+   The type of a vessel.
    See :func:`Vessel::type`.
 
 
@@ -347,6 +357,7 @@ Vessel
 .. namespace:: krpc::services::SpaceCenter
 .. enum-struct:: VesselSituation
 
+   The situation a vessel is in.
    See :func:`Vessel::situation`.
 
 

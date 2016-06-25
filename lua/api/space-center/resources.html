@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Resources &mdash; kRPC 0.3.4 documentation</title>
+  <title>Resources &mdash; kRPC 0.3.5 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Node" href="node.html"/>
         <link rel="prev" title="Parts" href="parts.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.4
+                0.3.5
               </div>
             
           
@@ -175,7 +175,8 @@
 <dl class="class">
 <dt id="SpaceCenter.Resources">
 <em class="property">class </em><code class="descname">Resources</code><a class="headerlink" href="#SpaceCenter.Resources" title="Permalink to this definition">¶</a></dt>
-<dd><p>Created by calling <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.resources" title="SpaceCenter.Vessel.resources"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.resources</span></code></a>,
+<dd><p>Represents the collection of resources stored in a vessel, stage or part.
+Created by calling <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.resources" title="SpaceCenter.Vessel.resources"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.resources</span></code></a>,
 <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.resources_in_decouple_stage" title="SpaceCenter.Vessel.resources_in_decouple_stage"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.Vessel.resources_in_decouple_stage()</span></code></a> or
 <a class="reference internal" href="parts.html#SpaceCenter.Part.resources" title="SpaceCenter.Part.resources"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Part.resources</span></code></a>.</p>
 <dl class="attribute">
@@ -306,12 +307,33 @@
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="SpaceCenter.Resources.enabled">
+<code class="descname">enabled</code><a class="headerlink" href="#SpaceCenter.Resources.enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether use of all the resources are enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is true if all of the resources are enabled. If any of the resources are not enabled, this is false.</p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="SpaceCenter.Resource">
 <em class="property">class </em><code class="descname">Resource</code><a class="headerlink" href="#SpaceCenter.Resource" title="Permalink to this definition">¶</a></dt>
-<dd><p>A resource stored within a part.</p>
+<dd><p>An individual resource stored within a part.
+Created using methods in the <a class="reference internal" href="#SpaceCenter.Resources" title="SpaceCenter.Resources"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Resources</span></code></a> class.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Resource.name">
 <code class="descname">name</code><a class="headerlink" href="#SpaceCenter.Resource.name" title="Permalink to this definition">¶</a></dt>
@@ -494,7 +516,7 @@ Use <a class="reference internal" href="#SpaceCenter.ResourceTransfer.amount" ti
 <dl class="class">
 <dt id="SpaceCenter.ResourceFlowMode">
 <em class="property">class </em><code class="descname">ResourceFlowMode</code><a class="headerlink" href="#SpaceCenter.ResourceFlowMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#SpaceCenter.Resources.flow_mode" title="SpaceCenter.Resources.flow_mode"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.Resources.flow_mode()</span></code></a>.</p>
+<dd><p>The way in which a resource flows between parts. See <a class="reference internal" href="#SpaceCenter.Resources.flow_mode" title="SpaceCenter.Resources.flow_mode"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.Resources.flow_mode()</span></code></a>.</p>
 <dl class="data">
 <dt id="SpaceCenter.ResourceFlowMode.vessel">
 <code class="descname">vessel</code><a class="headerlink" href="#SpaceCenter.ResourceFlowMode.vessel" title="Permalink to this definition">¶</a></dt>
@@ -566,7 +588,7 @@ liquid fuel or oxidizer.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.4',
+            VERSION:'0.3.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
