@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CelestialBody &mdash; kRPC 0.3.5 documentation</title>
+  <title>CelestialBody &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Flight" href="flight.html"/>
         <link rel="prev" title="Vessel" href="vessel.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -354,6 +355,42 @@ reference frame. When over water, this is the position at the bottom of the sea-
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.getBiomes()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">getBiomes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getBiomes()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The biomes present on this body.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.biomeAt(double, double)">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">biomeAt</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.biomeAt(double, double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The biomes at the given latitude and longitude, in degrees.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> (<em>double</em>) &#8211; </li>
+<li><strong>longitude</strong> (<em>double</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.getFlyingHighAltitudeThreshold()">
+ float <code class="descname">getFlyingHighAltitudeThreshold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getFlyingHighAltitudeThreshold()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, above which a vessel is considered to be flying &#8220;high&#8221; when doing science.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.getSpaceHighAltitudeThreshold()">
+ float <code class="descname">getSpaceHighAltitudeThreshold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getSpaceHighAltitudeThreshold()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, above which a vessel is considered to be in &#8220;high&#8221; space when doing science.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getReferenceFrame()">
  <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a> <code class="descname">getReferenceFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getReferenceFrame()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reference frame that is fixed relative to the celestial body.</p>
@@ -541,7 +578,7 @@ rotation, using the right-hand rule.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flight &mdash; kRPC 0.3.5 documentation</title>
+  <title>Flight &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Orbit" href="orbit.html"/>
         <link rel="prev" title="CelestialBody" href="celestial-body.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -577,7 +578,7 @@ The direction of the vector is the direction of the vessels motion.</p>
 <code class="descname">dynamic_pressure</code><a class="headerlink" href="#SpaceCenter.Flight.dynamic_pressure" title="Permalink to this definition">¶</a></dt>
 <dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
 aerodynamic forces. It is equal to <span class="math">\(\frac{1}{2} . \mbox{air density} .  \mbox{velocity}^2\)</span>.
-It is commonly denoted as <span class="math">\(Q\)</span>.</p>
+It is commonly denoted <span class="math">\(Q\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -588,11 +589,6 @@ It is commonly denoted as <span class="math">\(Q\)</span>.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -609,11 +605,22 @@ It is commonly denoted as <span class="math">\(Q\)</span>.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Flight.static_pressure_at_msl">
+<code class="descname">static_pressure_at_msl</code><a class="headerlink" href="#SpaceCenter.Flight.static_pressure_at_msl" title="Permalink to this definition">¶</a></dt>
+<dd><p>The static atmospheric pressure at mean sea level, in Pascals.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -631,11 +638,6 @@ magnitude equal to the strength of the force in Newtons.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -653,11 +655,6 @@ as a vector pointing in the direction of the force, with its magnitude equal to 
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -675,11 +672,6 @@ as a vector pointing in the direction of the force, with its magnitude equal to 
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -696,10 +688,6 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -716,10 +704,42 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Flight.reynolds_number">
+<code class="descname">reynolds_number</code><a class="headerlink" href="#SpaceCenter.Flight.reynolds_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vessels Reynolds number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Flight.true_air_speed">
+<code class="descname">true_air_speed</code><a class="headerlink" href="#SpaceCenter.Flight.true_air_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -736,10 +756,6 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -757,11 +773,6 @@ This is the speed at which the drag forces cancel out the force of gravity.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -917,7 +928,7 @@ air density and wing area.</p>
 <code class="descname">thrust_specific_fuel_consumption</code><a class="headerlink" href="#SpaceCenter.Flight.thrust_specific_fuel_consumption" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
 efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
-number of Newtons of fuel that are burned, per hour, to product one newton of thrust.</p>
+number of Newtons of fuel that are burned, per hour, to produce one newton of thrust.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -979,7 +990,7 @@ number of Newtons of fuel that are burned, per hour, to product one newton of th
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

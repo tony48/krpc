@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flight &mdash; kRPC 0.3.5 documentation</title>
+  <title>Flight &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Orbit" href="orbit.html"/>
         <link rel="prev" title="CelestialBody" href="celestial-body.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -337,23 +338,19 @@ The direction of the vector is the direction of the vessels motion.</p>
  float <code class="descname">getDynamicPressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDynamicPressure()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
 aerodynamic forces. It is equal to <span class="math">\(\frac{1}{2} . \mbox{air density} .  \mbox{velocity}^2\)</span>.
-It is commonly denoted as <span class="math">\(Q\)</span>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
-</div>
+It is commonly denoted <span class="math">\(Q\)</span>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getStaticPressure()">
  float <code class="descname">getStaticPressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getStaticPressure()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The static atmospheric pressure acting on the vessel, in Pascals.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Flight.getStaticPressureAtMSL()">
+ float <code class="descname">getStaticPressureAtMSL</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getStaticPressureAtMSL()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The static atmospheric pressure at mean sea level, in Pascals.</p>
 </dd></dl>
 
 <dl class="method">
@@ -361,11 +358,6 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAerodynamicForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getAerodynamicForce()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The total aerodynamic forces acting on the vessel, as a vector pointing in the direction of the force, with its
 magnitude equal to the strength of the force in Newtons.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -373,11 +365,6 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getLift</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getLift()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
 as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -385,41 +372,40 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDrag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDrag()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
 as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>.
-Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getSpeedOfSound()">
  float <code class="descname">getSpeedOfSound</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getSpeedOfSound()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The speed of sound, in the atmosphere around the vessel, in <span class="math">\(m/s\)</span>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getMach()">
  float <code class="descname">getMach</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getMach()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The speed of the vessel, in multiples of the speed of sound.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Flight.getReynoldsNumber()">
+ float <code class="descname">getReynoldsNumber</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getReynoldsNumber()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vessels Reynolds number.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
+<p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Flight.getTrueAirSpeed()">
+ float <code class="descname">getTrueAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getTrueAirSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getEquivalentAirSpeed()">
  float <code class="descname">getEquivalentAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getEquivalentAirSpeed()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Not available when <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -427,11 +413,6 @@ Not available when <a class="reference external" href="http://forum.kerbalspacep
  float <code class="descname">getTerminalVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getTerminalVelocity()" title="Permalink to this definition">¶</a></dt>
 <dd><p>An estimate of the current terminal velocity of the vessel, in <span class="math">\(m/s\)</span>.
 This is the speed at which the drag forces cancel out the force of gravity.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Calculated using <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Atmosphere">KSPs stock aerodynamic model</a>, or
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a> if it is installed.</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -507,7 +488,7 @@ air density and wing area.</p>
  float <code class="descname">getThrustSpecificFuelConsumption</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getThrustSpecificFuelConsumption()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
 efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
-number of Newtons of fuel that are burned, per hour, to product one newton of thrust.</p>
+number of Newtons of fuel that are burned, per hour, to produce one newton of thrust.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -559,7 +540,7 @@ number of Newtons of fuel that are burned, per hour, to product one newton of th
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

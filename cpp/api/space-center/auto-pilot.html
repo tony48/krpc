@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AutoPilot &mdash; kRPC 0.3.5 documentation</title>
+  <title>AutoPilot &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Geometry Types" href="geometry-types.html"/>
         <link rel="prev" title="ReferenceFrame" href="reference-frame.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -105,6 +105,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -238,6 +239,11 @@ Returns zero if the auto-pilot has not been engaged or no target roll is set.</p
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot19set_reference_frameE14ReferenceFrame">
 <span id="krpc::services::SpaceCenter::AutoPilot::set_reference_frame__ReferenceFrame"></span>void <code class="descclassname"></code><code class="descname">set_reference_frame</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot19set_reference_frameE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reference frame for the target direction (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot16target_directionEv" title="krpc::services::SpaceCenter::AutoPilot::target_direction"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::target_direction()</span></code></a>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An error will be thrown if this property is set to a reference frame that rotates with the vessel being controlled,
+as it is impossible to rotate the vessel in such a reference frame.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -516,7 +522,7 @@ Defaults to 0.01 for each axis.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

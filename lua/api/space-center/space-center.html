@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.5 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -509,8 +510,8 @@ if time warp is not active. When in on-rails time warp, this is equal to
 <code class="descname">rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.rails_warp_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time warp rate, using regular &#8220;on-rails&#8221; time warp. A value between
 0 and 7 inclusive. 0 means no time warp. Returns 0 if physical time warp
-is active.
-If requested time warp factor cannot be set, it will be set to the next
+is active.</p>
+<p>If requested time warp factor cannot be set, it will be set to the next
 lowest possible value. For example, if the vessel is too close to a
 planet. See <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -726,6 +727,22 @@ relative angular velocity of the reference frames into account.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="SpaceCenter.waypoint_manager">
+<code class="descname">waypoint_manager</code><a class="headerlink" href="#SpaceCenter.waypoint_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>The waypoint manager.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="waypoint-manager.html#SpaceCenter.WaypointManager" title="SpaceCenter.WaypointManager"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WaypointManager</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="class">
 <dt id="SpaceCenter.WarpMode">
 <em class="property">class </em><code class="descname">WarpMode</code><a class="headerlink" href="#SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
@@ -794,7 +811,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

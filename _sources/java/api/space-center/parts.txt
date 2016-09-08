@@ -52,6 +52,12 @@ Parts
 
       :param String title:
 
+   .. method:: java.util.List<Part> withTag(String tag)
+
+      A list of all parts whose :meth:`Part.getTag()` is *tag*.
+
+      :param String tag:
+
    .. method:: java.util.List<Part> withModule(String moduleName)
 
       A list of all parts that contain a :type:`Module` whose
@@ -101,13 +107,6 @@ Parts
 
 
       A list of all docking ports in the vessel.
-
-   .. method:: DockingPort dockingPortWithName(String name)
-
-      The first docking port in the vessel with the given port name, as returned by :meth:`DockingPort.getName()`.
-      Returns ``null`` if there are no such docking ports.
-
-      :param String name:
 
    .. method:: java.util.List<Engine> getEngines()
 
@@ -217,6 +216,18 @@ Part
 
 
       Title of the part, as shown when the part is right clicked in-game. For example "Mk1-2 Command Pod".
+
+   .. method:: String getTag()
+
+   .. method:: void setTag(String value)
+
+      The name tag for the part. Can be set to a custom string using the in-game user interface.
+
+
+      .. note::
+
+         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
    .. method:: double getCost()
 
@@ -610,6 +621,60 @@ Part
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
          for the docking port, returned by :meth:`DockingPort.getReferenceFrame()`.
 
+   .. method:: Force addForce(org.javatuples.Triplet<Double,Double,Double> force, org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      Exert a constant force on the part, acting at the given position.
+      Returns an object that can be used to remove or modify the force.
+
+      :param org.javatuples.Triplet<Double,Double,Double> force:
+      :param org.javatuples.Triplet<Double,Double,Double> position:
+      :param ReferenceFrame referenceFrame:
+
+   .. method:: void instantaneousForce(org.javatuples.Triplet<Double,Double,Double> force, org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      Exert an instantaneous force on the part, acting at the given position.
+
+      :param org.javatuples.Triplet<Double,Double,Double> force:
+      :param org.javatuples.Triplet<Double,Double,Double> position:
+      :param ReferenceFrame referenceFrame:
+
+      .. note::
+
+         The force is applied instantaneously in a single physics update.
+
+
+
+.. type:: public class Force
+
+   Obtained by calling :meth:`Part.addForce(org.javatuples.Triplet<Double,Double,Double>, org.javatuples.Triplet<Double,Double,Double>, ReferenceFrame)`.
+
+   .. method:: Part getPart()
+
+
+      The part that this force is applied to.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getForceVector()
+
+   .. method:: void setForceVector(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getPosition()
+
+   .. method:: void setPosition(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The position at which the force acts.
+
+   .. method:: ReferenceFrame getReferenceFrame()
+
+   .. method:: void setReferenceFrame(ReferenceFrame value)
+
+      The reference frame of the force vector and position.
+
+   .. method:: void remove()
+
+      Remove the force.
+
 
 
 Module
@@ -620,6 +685,7 @@ Module
 
    This can be used to interact with a specific part module. This includes part modules in stock KSP,
    and those added by mods.
+
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
@@ -859,6 +925,11 @@ Decoupler
 
       Whether the decoupler has fired.
 
+   .. method:: boolean getStaged()
+
+
+      Whether the decoupler is enabled in the staging sequence.
+
    .. method:: float getImpulse()
 
 
@@ -878,16 +949,6 @@ Docking Port
 
 
       The part object for this docking port.
-
-   .. method:: String getName()
-
-   .. method:: void setName(String value)
-
-      The port name of the docking port. This is the name of the port that can be set
-      in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
-      mod is installed. If this mod is not installed, returns the title of the part
-      (:meth:`Part.getTitle()`).
 
    .. method:: DockingPortState getState()
 
@@ -927,6 +988,7 @@ Docking Port
    .. method:: void setShielded(boolean value)
 
       The state of the docking ports shield, if it has one.
+
       Returns ``true`` if the docking port has a shield, and the shield is
       closed. Otherwise returns ``false``. When set to ``true``, the shield is
       closed, and when set to ``false`` the shield is opened. If the docking
@@ -1346,6 +1408,22 @@ Experiment
 
       The data contained in this experiment.
 
+   .. method:: String getBiome()
+
+
+      The name of the biome the experiment is currently in.
+
+   .. method:: boolean getAvailable()
+
+
+      Determines if the experiment is available given the current conditions.
+
+   .. method:: ScienceSubject getScienceSubject()
+
+
+      Containing information on the corresponding specific science result for the current conditions.
+      Returns null if experiment is unavailable.
+
 
 
 .. type:: public class ScienceData
@@ -1366,6 +1444,47 @@ Experiment
 
 
       Transmit value.
+
+
+
+.. type:: public class ScienceSubject
+
+   Obtained by calling :meth:`Experiment.getScienceSubject()`.
+
+   .. method:: String getTitle()
+
+
+      Title of science subject, displayed in science archives
+
+   .. method:: boolean getIsComplete()
+
+
+      Whether the experiment has been completed.
+
+   .. method:: float getScience()
+
+
+      Amount of science already earned from this subject, not updated until after transmission/recovery.
+
+   .. method:: float getScienceCap()
+
+
+      Total science allowable for this subject.
+
+   .. method:: float getDataScale()
+
+
+      Multiply science value by this to determine data amount in mits.
+
+   .. method:: float getSubjectValue()
+
+
+      Multiplier for specific Celestial Body/Experiment Situation combination.
+
+   .. method:: float getScientificValue()
+
+
+      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
 
 
 

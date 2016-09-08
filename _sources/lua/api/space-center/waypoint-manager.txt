@@ -1,0 +1,166 @@
+.. default-domain:: lua
+.. highlight:: lua
+.. currentmodule:: SpaceCenter
+
+WaypointManager
+===============
+
+
+.. class:: WaypointManager
+
+   Waypoints are the location markers you can see on the map view showing you where contracts are targeted for. 
+   With this structure, you can obtain coordinate data for the locations of these waypoints.
+   Obtained by calling :attr:`SpaceCenter.waypoint_manager`.
+
+   .. attribute:: waypoints
+
+      A list of all existing waypoints.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: List of :class:`SpaceCenter.Waypoint`
+
+   .. method:: add_waypoint(latitude, longitude, body, name)
+
+      Creates a waypoint at the given position at ground level, and returns a
+      :class:`SpaceCenter.Waypoint` object that can be used to modify it.
+
+      :param number latitude: Latitude of the waypoint.
+      :param number longitude: Longitude of the waypoint.
+      :param SpaceCenter.CelestialBody body: Celestial body the waypoint is attached to.
+      :param string name: Name of the waypoint.
+      :rtype: :class:`SpaceCenter.Waypoint`
+
+   .. attribute:: colors
+
+      An example map of known color - seed pairs. 
+      Any other integers may be used as seed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: Map from string to number
+
+   .. attribute:: icons
+
+      Returns all available icons (from "GameData/Squad/Contracts/Icons/").
+
+      :Attribute: Read-only, cannot be set
+      :rtype: List of string
+
+
+
+.. class:: Waypoint
+
+   Represents a waypoint. Can be created using :meth:`SpaceCenter.WaypointManager.add_waypoint`.
+
+   .. attribute:: body
+
+      Celestial body the waypoint is attached to.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`SpaceCenter.CelestialBody`
+
+   .. attribute:: name
+
+      Name of the waypoint as it appears on the map and the contract.
+
+      :Attribute: Can be read or written
+      :rtype: string
+
+   .. attribute:: color
+
+      The seed of the icon color. See :attr:`SpaceCenter.WaypointManager.colors` for example colors.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: icon
+
+      The icon of the waypoint.
+
+      :Attribute: Can be read or written
+      :rtype: string
+
+   .. attribute:: latitude
+
+      The latitude of the waypoint.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: longitude
+
+      The longitude of the waypoint.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: mean_altitude
+
+      The altitude of the waypoint above sea level, in meters.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: surface_altitude
+
+      The altitude of the waypoint above the surface of the body or sea level, whichever is closer, in meters.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: bedrock_altitude
+
+      The altitude of the waypoint above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: near_surface
+
+      True if waypoint is a point near or on the body rather than high in orbit.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: grounded
+
+      True if waypoint is actually glued to the ground.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: index
+
+      The integer index of this waypoint amongst its cluster of sibling waypoints. 
+      In other words, when you have a cluster of waypoints called "Somewhere Alpha", "Somewhere Beta", and "Somewhere Gamma", 
+      then the alpha site has index 0, the beta site has index 1 and the gamma site has index 2. 
+      When :attr:`SpaceCenter.Waypoint.clustered` is false, this value is zero but meaningless.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: clustered
+
+      True if this waypoint is part of a set of clustered waypoints with greek letter names appended (Alpha, Beta, Gamma, etc). 
+      If true, there is a one-to-one correspondence with the greek letter name and the :attr:`SpaceCenter.Waypoint.index`.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: has_contract
+
+      Whether the waypoint belongs to a contract.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: contract_id
+
+      The id of the associated contract.
+      Returns 0 if the waypoint does not belong to a contract.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. method:: remove()
+
+      Removes the waypoint.

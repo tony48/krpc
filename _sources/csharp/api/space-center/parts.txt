@@ -48,6 +48,12 @@ Parts
 
       :parameters:
 
+   .. method:: System.Collections.Generic.IList<Part> WithTag(string tag)
+
+      A list of all parts whose :prop:`Part.Tag` is *tag*.
+
+      :parameters:
+
    .. method:: System.Collections.Generic.IList<Part> WithModule(string moduleName)
 
       A list of all parts that contain a :type:`Module` whose
@@ -99,13 +105,6 @@ Parts
    .. property:: System.Collections.Generic.IList<DockingPort> DockingPorts { get; }
 
       A list of all docking ports in the vessel.
-
-   .. method:: DockingPort DockingPortWithName(string name)
-
-      The first docking port in the vessel with the given port name, as returned by :prop:`DockingPort.Name`.
-      Returns ``null`` if there are no such docking ports.
-
-      :parameters:
 
    .. property:: System.Collections.Generic.IList<Engine> Engines { get; }
 
@@ -197,6 +196,16 @@ Part
    .. property:: string Title { get; }
 
       Title of the part, as shown when the part is right clicked in-game. For example "Mk1-2 Command Pod".
+
+   .. property:: string Tag { get; set; }
+
+      The name tag for the part. Can be set to a custom string using the in-game user interface.
+
+
+      .. note::
+
+         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
    .. property:: double Cost { get; }
 
@@ -537,6 +546,54 @@ Part
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
          for the docking port, returned by :prop:`DockingPort.ReferenceFrame`.
 
+   .. method:: Force AddForce(System.Tuple<double,double,double> force, System.Tuple<double,double,double> position, ReferenceFrame referenceFrame)
+
+      Exert a constant force on the part, acting at the given position.
+      Returns an object that can be used to remove or modify the force.
+
+      :parameters:
+
+   .. method:: void InstantaneousForce(System.Tuple<double,double,double> force, System.Tuple<double,double,double> position, ReferenceFrame referenceFrame)
+
+      Exert an instantaneous force on the part, acting at the given position.
+
+      :parameters:
+
+
+
+
+
+
+      .. note::
+
+         The force is applied instantaneously in a single physics update.
+
+
+
+.. class:: Force
+
+   Obtained by calling :meth:`Part.AddForce`.
+
+   .. property:: Part Part { get; }
+
+      The part that this force is applied to.
+
+   .. property:: System.Tuple<double,double,double> ForceVector { get; set; }
+
+      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+
+   .. property:: System.Tuple<double,double,double> Position { get; set; }
+
+      The position at which the force acts.
+
+   .. property:: ReferenceFrame ReferenceFrame { get; set; }
+
+      The reference frame of the force vector and position.
+
+   .. method:: void Remove()
+
+      Remove the force.
+
 
 
 Module
@@ -547,6 +604,7 @@ Module
 
    This can be used to interact with a specific part module. This includes part modules in stock KSP,
    and those added by mods.
+
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
@@ -773,6 +831,10 @@ Decoupler
 
       Whether the decoupler has fired.
 
+   .. property:: bool Staged { get; }
+
+      Whether the decoupler is enabled in the staging sequence.
+
    .. property:: float Impulse { get; }
 
       The impulse that the decoupler imparts when it is fired, in Newton seconds.
@@ -790,14 +852,6 @@ Docking Port
    .. property:: Part Part { get; }
 
       The part object for this docking port.
-
-   .. property:: string Name { get; set; }
-
-      The port name of the docking port. This is the name of the port that can be set
-      in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
-      mod is installed. If this mod is not installed, returns the title of the part
-      (:prop:`Part.Title`).
 
    .. property:: DockingPortState State { get; }
 
@@ -832,6 +886,7 @@ Docking Port
    .. property:: bool Shielded { get; set; }
 
       The state of the docking ports shield, if it has one.
+
       Returns ``true`` if the docking port has a shield, and the shield is
       closed. Otherwise returns ``false``. When set to ``true``, the shield is
       closed, and when set to ``false`` the shield is opened. If the docking
@@ -1199,6 +1254,19 @@ Experiment
 
       The data contained in this experiment.
 
+   .. property:: string Biome { get; }
+
+      The name of the biome the experiment is currently in.
+
+   .. property:: bool Available { get; }
+
+      Determines if the experiment is available given the current conditions.
+
+   .. property:: ScienceSubject ScienceSubject { get; }
+
+      Containing information on the corresponding specific science result for the current conditions.
+      Returns null if experiment is unavailable.
+
 
 
 .. class:: ScienceData
@@ -1216,6 +1284,40 @@ Experiment
    .. property:: float TransmitValue { get; }
 
       Transmit value.
+
+
+
+.. class:: ScienceSubject
+
+   Obtained by calling :prop:`Experiment.ScienceSubject`.
+
+   .. property:: string Title { get; }
+
+      Title of science subject, displayed in science archives
+
+   .. property:: bool IsComplete { get; }
+
+      Whether the experiment has been completed.
+
+   .. property:: float Science { get; }
+
+      Amount of science already earned from this subject, not updated until after transmission/recovery.
+
+   .. property:: float ScienceCap { get; }
+
+      Total science allowable for this subject.
+
+   .. property:: float DataScale { get; }
+
+      Multiply science value by this to determine data amount in mits.
+
+   .. property:: float SubjectValue { get; }
+
+      Multiplier for specific Celestial Body/Experiment Situation combination.
+
+   .. property:: float ScientificValue { get; }
+
+      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
 
 
 

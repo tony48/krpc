@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.5 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -115,6 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -289,6 +290,23 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Parts.withTag(String)">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.Part" title="krpc.client.services.SpaceCenter.Part">Part</a>&gt; <code class="descname">withTag</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> tag</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Parts.withTag(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts whose <a class="reference internal" href="#krpc.client.services.SpaceCenter.Part.getTag()" title="krpc.client.services.SpaceCenter.Part.getTag()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getTag()</span></code></a> is <em>tag</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tag</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Parts.withModule(String)">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.Part" title="krpc.client.services.SpaceCenter.Part">Part</a>&gt; <code class="descname">withModule</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> moduleName</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Parts.withModule(String)" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all parts that contain a <a class="reference internal" href="#krpc.client.services.SpaceCenter.Module" title="krpc.client.services.SpaceCenter.Module"><code class="xref java java-type docutils literal"><span class="pre">Module</span></code></a> whose
@@ -388,24 +406,6 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 <dt id="krpc.client.services.SpaceCenter.Parts.getDockingPorts()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.DockingPort" title="krpc.client.services.SpaceCenter.DockingPort">DockingPort</a>&gt; <code class="descname">getDockingPorts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Parts.getDockingPorts()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all docking ports in the vessel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.SpaceCenter.Parts.dockingPortWithName(String)">
- <a class="reference internal" href="#krpc.client.services.SpaceCenter.DockingPort" title="krpc.client.services.SpaceCenter.DockingPort">DockingPort</a> <code class="descname">dockingPortWithName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Parts.dockingPortWithName(String)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The first docking port in the vessel with the given port name, as returned by <a class="reference internal" href="#krpc.client.services.SpaceCenter.DockingPort.getName()" title="krpc.client.services.SpaceCenter.DockingPort.getName()"><code class="xref java java-meth docutils literal"><span class="pre">DockingPort.getName()</span></code></a>.
-Returns <code class="docutils literal"><span class="pre">null</span></code> if there are no such docking ports.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="method">
@@ -531,6 +531,22 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 <dt id="krpc.client.services.SpaceCenter.Part.getTitle()">
  <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getTitle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Part.getTitle()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Title of the part, as shown when the part is right clicked in-game. For example &#8220;Mk1-2 Command Pod&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Part.getTag()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getTag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Part.getTag()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Part.setTag(String)">
+ void <code class="descname">setTag</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Part.setTag(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name tag for the part. Can be set to a custom string using the in-game user interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This requires either the <a class="reference external" href="http://github.com/krpc/NameTag/releases/latest">NameTag</a> or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/">kOS</a> mods to be installed.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1042,6 +1058,100 @@ for the docking port, returned by <a class="reference internal" href="#krpc.clie
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Part.addForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.Force" title="krpc.client.services.SpaceCenter.Force">Force</a> <code class="descname">addForce</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> force</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Part.addForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert a constant force on the part, acting at the given position.
+Returns an object that can be used to remove or modify the force.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>force</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) &#8211; </li>
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) &#8211; </li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Part.instantaneousForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)">
+ void <code class="descname">instantaneousForce</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> force</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Part.instantaneousForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert an instantaneous force on the part, acting at the given position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>force</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) &#8211; </li>
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) &#8211; </li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The force is applied instantaneously in a single physics update.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.Force">
+public class <code class="descname">Force</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.Part.addForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)" title="krpc.client.services.SpaceCenter.Part.addForce(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)"><code class="xref java java-meth docutils literal"><span class="pre">Part.addForce(org.javatuples.Triplet&lt;Double,Double,Double&gt;,</span> <span class="pre">org.javatuples.Triplet&lt;Double,Double,Double&gt;,</span> <span class="pre">ReferenceFrame)</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.getPart()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.Part" title="krpc.client.services.SpaceCenter.Part">Part</a> <code class="descname">getPart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.getPart()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that this force is applied to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.getForceVector()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getForceVector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.getForceVector()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.setForceVector(org.javatuples.Triplet)">
+ void <code class="descname">setForceVector</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.setForceVector(org.javatuples.Triplet)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The force vector. The magnitude of the vector is the strength of the force in Newtons.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.getPosition()">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getPosition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.getPosition()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.setPosition(org.javatuples.Triplet)">
+ void <code class="descname">setPosition</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.setPosition(org.javatuples.Triplet)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at which the force acts.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.getReferenceFrame()">
+ <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a> <code class="descname">getReferenceFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.getReferenceFrame()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.setReferenceFrame(ReferenceFrame)">
+ void <code class="descname">setReferenceFrame</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.setReferenceFrame(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame of the force vector and position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Force.remove()">
+ void <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Force.remove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the force.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1051,8 +1161,8 @@ for the docking port, returned by <a class="reference internal" href="#krpc.clie
 <dt id="krpc.client.services.SpaceCenter.Module">
 public class <code class="descname">Module</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Module" title="Permalink to this definition">¶</a></dt>
 <dd><p>This can be used to interact with a specific part module. This includes part modules in stock KSP,
-and those added by mods.
-In KSP, each part has zero or more
+and those added by mods.</p>
+<p>In KSP, each part has zero or more
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES">PartModules</a>
 associated with it. Each one contains some of the functionality of the part.
 For example, an engine has a &#8220;ModuleEngines&#8221; part module that contains all the
@@ -1466,6 +1576,12 @@ Throws an exception if the decoupler has already fired.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Decoupler.getStaged()">
+ boolean <code class="descname">getStaged</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Decoupler.getStaged()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the decoupler is enabled in the staging sequence.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Decoupler.getImpulse()">
  float <code class="descname">getImpulse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Decoupler.getImpulse()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The impulse that the decoupler imparts when it is fired, in Newton seconds.</p>
@@ -1484,21 +1600,6 @@ public class <code class="descname">DockingPort</code><a class="headerlink" href
 <dt id="krpc.client.services.SpaceCenter.DockingPort.getPart()">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.Part" title="krpc.client.services.SpaceCenter.Part">Part</a> <code class="descname">getPart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.DockingPort.getPart()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this docking port.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.SpaceCenter.DockingPort.getName()">
- <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.DockingPort.getName()" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.SpaceCenter.DockingPort.setName(String)">
- void <code class="descname">setName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.DockingPort.setName(String)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The port name of the docking port. This is the name of the port that can be set
-in the right click menu, when the
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/">Docking Port Alignment Indicator</a>
-mod is installed. If this mod is not installed, returns the title of the part
-(<a class="reference internal" href="#krpc.client.services.SpaceCenter.Part.getTitle()" title="krpc.client.services.SpaceCenter.Part.getTitle()"><code class="xref java java-meth docutils literal"><span class="pre">Part.getTitle()</span></code></a>).</p>
 </dd></dl>
 
 <dl class="method">
@@ -1547,8 +1648,8 @@ becomes ready to dock with another port, in meters.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.DockingPort.setShielded(boolean)">
  void <code class="descname">setShielded</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.DockingPort.setShielded(boolean)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of the docking ports shield, if it has one.
-Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
+<dd><p>The state of the docking ports shield, if it has one.</p>
+<p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
 closed. Otherwise returns <code class="docutils literal"><span class="pre">false</span></code>. When set to <code class="docutils literal"><span class="pre">true</span></code>, the shield is
 closed, and when set to <code class="docutils literal"><span class="pre">false</span></code> the shield is opened. If the docking
 port does not have a shield, setting this attribute has no effect.</p>
@@ -2080,6 +2181,25 @@ public class <code class="descname">Experiment</code><a class="headerlink" href=
 <dd><p>The data contained in this experiment.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Experiment.getBiome()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getBiome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Experiment.getBiome()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the biome the experiment is currently in.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Experiment.getAvailable()">
+ boolean <code class="descname">getAvailable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Experiment.getAvailable()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the experiment is available given the current conditions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Experiment.getScienceSubject()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.ScienceSubject" title="krpc.client.services.SpaceCenter.ScienceSubject">ScienceSubject</a> <code class="descname">getScienceSubject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Experiment.getScienceSubject()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Containing information on the corresponding specific science result for the current conditions.
+Returns null if experiment is unavailable.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="type">
@@ -2102,6 +2222,54 @@ public class <code class="descname">ScienceData</code><a class="headerlink" href
 <dt id="krpc.client.services.SpaceCenter.ScienceData.getTransmitValue()">
  float <code class="descname">getTransmitValue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceData.getTransmitValue()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transmit value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject">
+public class <code class="descname">ScienceSubject</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.Experiment.getScienceSubject()" title="krpc.client.services.SpaceCenter.Experiment.getScienceSubject()"><code class="xref java java-meth docutils literal"><span class="pre">Experiment.getScienceSubject()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getTitle()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getTitle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getTitle()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of science subject, displayed in science archives</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getIsComplete()">
+ boolean <code class="descname">getIsComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getIsComplete()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the experiment has been completed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getScience()">
+ float <code class="descname">getScience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getScience()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of science already earned from this subject, not updated until after transmission/recovery.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getScienceCap()">
+ float <code class="descname">getScienceCap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getScienceCap()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total science allowable for this subject.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getDataScale()">
+ float <code class="descname">getDataScale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getDataScale()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply science value by this to determine data amount in mits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getSubjectValue()">
+ float <code class="descname">getSubjectValue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getSubjectValue()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplier for specific Celestial Body/Experiment Situation combination.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.ScienceSubject.getScientificValue()">
+ float <code class="descname">getScientificValue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.ScienceSubject.getScientificValue()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminishing value multiplier for decreasing the science value returned from repeated experiments.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3620,7 +3788,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -58,6 +58,13 @@ Parts
       :param string title:
       :rtype: List of :class:`SpaceCenter.Part`
 
+   .. method:: with_tag(tag)
+
+      A list of all parts whose :attr:`SpaceCenter.Part.tag` is *tag*.
+
+      :param string tag:
+      :rtype: List of :class:`SpaceCenter.Part`
+
    .. method:: with_module(module_name)
 
       A list of all parts that contain a :class:`SpaceCenter.Module` whose
@@ -119,14 +126,6 @@ Parts
 
       :Attribute: Read-only, cannot be set
       :rtype: List of :class:`SpaceCenter.DockingPort`
-
-   .. method:: docking_port_with_name(name)
-
-      The first docking port in the vessel with the given port name, as returned by :attr:`SpaceCenter.DockingPort.name`.
-      Returns ``nil`` if there are no such docking ports.
-
-      :param string name:
-      :rtype: :class:`SpaceCenter.DockingPort`
 
    .. attribute:: engines
 
@@ -271,6 +270,18 @@ Part
 
       :Attribute: Read-only, cannot be set
       :rtype: string
+
+   .. attribute:: tag
+
+      The name tag for the part. Can be set to a custom string using the in-game user interface.
+
+      :Attribute: Can be read or written
+      :rtype: string
+
+      .. note::
+
+         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
    .. attribute:: cost
 
@@ -770,6 +781,66 @@ Part
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
          for the docking port, returned by :attr:`SpaceCenter.DockingPort.reference_frame`.
 
+   .. method:: add_force(force, position, reference_frame)
+
+      Exert a constant force on the part, acting at the given position.
+      Returns an object that can be used to remove or modify the force.
+
+      :param Tuple force:
+      :param Tuple position:
+      :param SpaceCenter.ReferenceFrame reference_frame:
+      :rtype: :class:`SpaceCenter.Force`
+
+   .. method:: instantaneous_force(force, position, reference_frame)
+
+      Exert an instantaneous force on the part, acting at the given position.
+
+      :param Tuple force:
+      :param Tuple position:
+      :param SpaceCenter.ReferenceFrame reference_frame:
+
+      .. note::
+
+         The force is applied instantaneously in a single physics update.
+
+
+
+.. class:: Force
+
+   Obtained by calling :meth:`SpaceCenter.Part.add_force`.
+
+   .. attribute:: part
+
+      The part that this force is applied to.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`SpaceCenter.Part`
+
+   .. attribute:: force_vector
+
+      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: position
+
+      The position at which the force acts.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
+   .. attribute:: reference_frame
+
+      The reference frame of the force vector and position.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`SpaceCenter.ReferenceFrame`
+
+   .. method:: remove()
+
+      Remove the force.
+
 
 
 Module
@@ -780,6 +851,7 @@ Module
 
    This can be used to interact with a specific part module. This includes part modules in stock KSP,
    and those added by mods.
+
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
@@ -1055,6 +1127,13 @@ Decoupler
       :Attribute: Read-only, cannot be set
       :rtype: boolean
 
+   .. attribute:: staged
+
+      Whether the decoupler is enabled in the staging sequence.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
    .. attribute:: impulse
 
       The impulse that the decoupler imparts when it is fired, in Newton seconds.
@@ -1078,17 +1157,6 @@ Docking Port
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`SpaceCenter.Part`
-
-   .. attribute:: name
-
-      The port name of the docking port. This is the name of the port that can be set
-      in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
-      mod is installed. If this mod is not installed, returns the title of the part
-      (:attr:`SpaceCenter.Part.title`).
-
-      :Attribute: Can be read or written
-      :rtype: string
 
    .. attribute:: state
 
@@ -1135,6 +1203,7 @@ Docking Port
    .. attribute:: shielded
 
       The state of the docking ports shield, if it has one.
+
       Returns ``True`` if the docking port has a shield, and the shield is
       closed. Otherwise returns ``False``. When set to ``True``, the shield is
       closed, and when set to ``False`` the shield is opened. If the docking
@@ -1642,6 +1711,28 @@ Experiment
       :Attribute: Read-only, cannot be set
       :rtype: List of :class:`SpaceCenter.ScienceData`
 
+   .. attribute:: biome
+
+      The name of the biome the experiment is currently in.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: string
+
+   .. attribute:: available
+
+      Determines if the experiment is available given the current conditions.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: science_subject
+
+      Containing information on the corresponding specific science result for the current conditions.
+      Returns null if experiment is unavailable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`SpaceCenter.ScienceSubject`
+
 
 
 .. class:: ScienceData
@@ -1665,6 +1756,61 @@ Experiment
    .. attribute:: transmit_value
 
       Transmit value.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+
+
+.. class:: ScienceSubject
+
+   Obtained by calling :attr:`SpaceCenter.Experiment.science_subject`.
+
+   .. attribute:: title
+
+      Title of science subject, displayed in science archives
+
+      :Attribute: Read-only, cannot be set
+      :rtype: string
+
+   .. attribute:: is_complete
+
+      Whether the experiment has been completed.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: science
+
+      Amount of science already earned from this subject, not updated until after transmission/recovery.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: science_cap
+
+      Total science allowable for this subject.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: data_scale
+
+      Multiply science value by this to determine data amount in mits.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: subject_value
+
+      Multiplier for specific Celestial Body/Experiment Situation combination.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: scientific_value
+
+      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
 
       :Attribute: Read-only, cannot be set
       :rtype: number

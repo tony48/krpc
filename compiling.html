@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Compiling kRPC &mdash; kRPC 0.3.5 documentation</title>
+  <title>Compiling kRPC &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="index.html"/>
         <link rel="next" title="Extending kRPC" href="extending.html"/>
         <link rel="prev" title="Other Clients, Services and Scripts" href="third-party.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -93,8 +93,9 @@
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="third-party.html">Other Clients, Services and Scripts</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Compiling kRPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-the-source-code">Getting the source code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-dependencies">Install Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-your-environment">Setup your Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-your-environment">Set Up your Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#building-using-bazel">Building using Bazel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#building-the-c-projects-using-an-ide">Building the C# projects using an IDE</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-tests">Running the Tests</a></li>
@@ -151,36 +152,46 @@
             
   <div class="section" id="compiling-krpc">
 <h1>Compiling kRPC<a class="headerlink" href="#compiling-krpc" title="Permalink to this headline">¶</a></h1>
-<p>kRPC uses the <a class="reference external" href="http://bazel.io">Bazel build system</a>.</p>
-<div class="section" id="install-dependencies">
-<h2>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Bazel automatically downloads most of the required dependencies to build
-kRPC. However the following will need to be installed on your system:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="http://www.mono-project.com/download/">Mono C# compiler and runtime</a></li>
-<li>Python, including virtualenv and pip</li>
-<li>pdflatex for building the documentation</li>
-<li>RSVG for converting SVGs to PNGs</li>
-<li>libxml, libxslt and Python headers, for building the Java documentation</li>
-</ul>
-</div></blockquote>
-<p>To install the latest C# compiler and runtime on Ubuntu, follow the instructions
-on <a class="reference external" href="http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono&#8217;s website</a>
-The other dependencies can be installed via apt:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install mono-complete <span class="se">\</span>
-  python-virtualenv python-pip <span class="se">\</span>
-  texlive-latex-base texlive-latex-recommended <span class="se">\</span>
-  texlive-fonts-recommended texlive-latex-extra <span class="se">\</span>
-  librsvg2-bin libxml2-dev libxslt1-dev python-dev
+<div class="section" id="getting-the-source-code">
+<h2>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Permalink to this headline">¶</a></h2>
+<p>First you need to download a copy of the source code, which is available from
+<a class="reference external" href="https://github.com/krpc/krpc">GitHub</a> or using the following on the command
+line:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone http://github.com/krpc/krpc
 </pre></div>
 </div>
 </div>
-<div class="section" id="setup-your-environment">
-<h2>Setup your Environment<a class="headerlink" href="#setup-your-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-dependencies">
+<h2>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Next you need to install <a class="reference external" href="http://bazel.io">Bazel</a>. This is the build system
+used to compile the project.</p>
+<p>The Bazel build scripts will automatically download most of the required
+dependencies for the project, but the following need to be installed manually on
+your system:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://www.mono-project.com/download/">Mono C# compiler, runtime and tools</a></li>
+<li>Python and virtualenv</li>
+<li>Autotools</li>
+<li>LuaRocks</li>
+<li>pdflatex, rsvg, libxml, libxslt and python headers (for building the documentation)</li>
+</ul>
+</div></blockquote>
+<p>To install these dependencies via apt on Ubuntu, first follow the instructions
+on <a class="reference external" href="http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono&#8217;s website</a>
+to add their apt repository. Then run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install mono-complete python-setuptools python-virtualenv <span class="se">\</span>
+python-dev autoconf libtool luarocks texlive-latex-base <span class="se">\</span>
+texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra <span class="se">\</span>
+libxml2-dev libxslt1-dev librsvg2-bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-up-your-environment">
+<h2>Set Up your Environment<a class="headerlink" href="#set-up-your-environment" title="Permalink to this headline">¶</a></h2>
 <p>Before building kRPC you need to make <code class="docutils literal"><span class="pre">lib/ksp</span></code> point to a directory
 containing Kerbal Space Program. For example on Linux, if your KSP directory is
-at <code class="docutils literal"><span class="pre">/path/to/ksp</span></code> and your kRPC source tree at <code class="docutils literal"><span class="pre">/path/to/krpc</span></code> you can
+at <code class="docutils literal"><span class="pre">/path/to/ksp</span></code> and your kRPC source tree is at <code class="docutils literal"><span class="pre">/path/to/krpc</span></code> you can
 create a symlink using <code class="docutils literal"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">/path/to/ksp</span> <span class="pre">/path/to/krpc/lib/ksp</span></code></p>
 <p>You may also need to modify the symlink at <code class="docutils literal"><span class="pre">lib/mono-4.5</span></code> to point to the
 correct location of your Mono installation.</p>
@@ -190,8 +201,8 @@ correct location of your Mono installation.</p>
 <p>To build the kRPC release archive, run <code class="docutils literal"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">//:krpc</span></code>. The resulting
 archive containing the GameData directory, client libraries etc will be created
 at <code class="docutils literal"><span class="pre">bazel-out/krpc-&lt;version&gt;.zip</span></code>.</p>
-<p>The build scripts also define specific other targets that may be useful. Build
-them using <code class="docutils literal"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">&lt;target&gt;</span></code>:</p>
+<p>The build scripts also define targets for the different parts of the
+project. They can be built using <code class="docutils literal"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">&lt;target&gt;</span></code>:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">//server</span></code> builds the server plugin and associated files</li>
 <li>Targets for building individual clients:<ul>
@@ -204,6 +215,8 @@ them using <code class="docutils literal"><span class="pre">bazel</span> <span c
 </li>
 <li>Targets for building individual services:<ul>
 <li><code class="docutils literal"><span class="pre">//service/SpaceCenter</span></code></li>
+<li><code class="docutils literal"><span class="pre">//service/Drawing</span></code></li>
+<li><code class="docutils literal"><span class="pre">//service/UI</span></code></li>
 <li><code class="docutils literal"><span class="pre">//service/InfernalRobotics</span></code></li>
 <li><code class="docutils literal"><span class="pre">//service/KerbalAlarmClock</span></code></li>
 <li><code class="docutils literal"><span class="pre">//service/RemoteTech</span></code></li>
@@ -222,9 +235,9 @@ them using <code class="docutils literal"><span class="pre">bazel</span> <span c
 </ul>
 <p>There are also several convenience scripts:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">tools/serve-docs.sh</span></code> &#8211; build the documentation and serve it from
+<li><code class="docutils literal"><span class="pre">tools/serve-docs.sh</span></code> &#8211; builds the documentation and serves it from
 <code class="docutils literal"><span class="pre">http://localhost:8080</span></code></li>
-<li><code class="docutils literal"><span class="pre">tools/install.sh</span></code> &#8211; build the plugin and the testing tools, and install
+<li><code class="docutils literal"><span class="pre">tools/install.sh</span></code> &#8211; builds the plugin and the testing tools, and installs
 them into the GameData directory of the copy of KSP found at <code class="docutils literal"><span class="pre">lib/ksp</span></code>.</li>
 </ul>
 </div>
@@ -236,30 +249,23 @@ with MonoDevelop or a similar C# IDE.</p>
 scripts. You need to run <code class="docutils literal"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">//:csproj</span></code> to generate these files
 before the solution can be built.</p>
 <p>Alternatively, if you are unable to run Bazel to build these files, you can
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.5/krpc-genfiles-0.3.5.zip">download them from GitHub</a>. Simply extract
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.6/krpc-genfiles-0.3.6.zip">download them from GitHub</a>. Simply extract
 this archive over your copy of the source and you are good to go.</p>
 <div class="section" id="running-the-tests">
 <h3>Running the Tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
 <p>kRPC contains a suite of tests for the server plugin, services, client
 libraries and others.</p>
 <p>The tests, which do not require KSP to be running, can be executed using:
-<code class="docutils literal"><span class="pre">bazel</span> <span class="pre">test</span> <span class="pre">//:test</span></code>. Bazel will automatically download most of the required
-dependencies to run the tests, however you will also need to install Lua and
-LuaRocks on your system. On Ubuntu, these can be installed using: <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span>
-<span class="pre">install</span> <span class="pre">lua5.1</span> <span class="pre">luarocks</span></code></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You need to install luarocks version 2.2.0 or higher. On older versions of
-Ubuntu, the version in the apt repositories is too old and luarocks will need
-to be installed via other means.</p>
-</div>
+<code class="docutils literal"><span class="pre">bazel</span> <span class="pre">test</span> <span class="pre">//:test</span></code></p>
 <p>kRPC also includes a suite of tests that require KSP to be running. First run
 <code class="docutils literal"><span class="pre">tools/install.sh</span></code> to build kRPC and a testing tools DLL, and install them
 into the GameData directory of the copy of KSP found at <code class="docutils literal"><span class="pre">lib/ksp</span></code>. Then run
 KSP, load a save game and start the server (with automatically accept client
-connected enabled). Then install the krpc python client, and run the scripts
-found in <code class="docutils literal"><span class="pre">service/SpaceCenter/test</span></code>. These tests will automatically load a
-save game called <code class="docutils literal"><span class="pre">test</span></code>, launch a vessel and run various tests on it.</p>
+connections enabled). Then install the krpc python client, the krpctest package
+(built by target <code class="docutils literal"><span class="pre">//tools/krpctest</span></code>) and run the scripts to test a particular
+service, for example those found in <code class="docutils literal"><span class="pre">service/SpaceCenter/test</span></code>. These tests
+will automatically load a save game called <code class="docutils literal"><span class="pre">krpctest</span></code>, launch a vessel and run
+various tests on it.</p>
 </div>
 </div>
 </div>
@@ -305,7 +311,7 @@ save game called <code class="docutils literal"><span class="pre">test</span></c
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -49,6 +49,12 @@ Parts
 
       :Parameters:
 
+   .. function:: std::vector<Part> with_tag(std::string tag)
+
+      A list of all parts whose :func:`Part::tag` is *tag*.
+
+      :Parameters:
+
    .. function:: std::vector<Part> with_module(std::string module_name)
 
       A list of all parts that contain a :class:`Module` whose
@@ -100,13 +106,6 @@ Parts
    .. function:: std::vector<DockingPort> docking_ports()
 
       A list of all docking ports in the vessel.
-
-   .. function:: DockingPort docking_port_with_name(std::string name)
-
-      The first docking port in the vessel with the given port name, as returned by :func:`DockingPort::name`.
-      Returns ``NULL`` if there are no such docking ports.
-
-      :Parameters:
 
    .. function:: std::vector<Engine> engines()
 
@@ -198,6 +197,17 @@ Part
    .. function:: std::string title()
 
       Title of the part, as shown when the part is right clicked in-game. For example "Mk1-2 Command Pod".
+
+   .. function:: std::string tag()
+   .. function:: void set_tag(std::string value)
+
+      The name tag for the part. Can be set to a custom string using the in-game user interface.
+
+
+      .. note::
+
+         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
    .. function:: double cost()
 
@@ -538,6 +548,57 @@ Part
          For docking port parts, this reference frame is not necessarily equivalent to the reference frame
          for the docking port, returned by :func:`DockingPort::reference_frame`.
 
+   .. function:: Force add_force(std::tuple<double, double, double> force, std::tuple<double, double, double> position, ReferenceFrame reference_frame)
+
+      Exert a constant force on the part, acting at the given position.
+      Returns an object that can be used to remove or modify the force.
+
+      :Parameters:
+
+   .. function:: void instantaneous_force(std::tuple<double, double, double> force, std::tuple<double, double, double> position, ReferenceFrame reference_frame)
+
+      Exert an instantaneous force on the part, acting at the given position.
+
+      :Parameters:
+
+
+
+
+
+
+      .. note::
+
+         The force is applied instantaneously in a single physics update.
+
+
+
+.. class:: Force
+
+   Obtained by calling :func:`Part::add_force`.
+
+   .. function:: Part part()
+
+      The part that this force is applied to.
+
+   .. function:: std::tuple<double, double, double> force_vector()
+   .. function:: void set_force_vector(std::tuple<double, double, double> value)
+
+      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+
+   .. function:: std::tuple<double, double, double> position()
+   .. function:: void set_position(std::tuple<double, double, double> value)
+
+      The position at which the force acts.
+
+   .. function:: ReferenceFrame reference_frame()
+   .. function:: void set_reference_frame(ReferenceFrame value)
+
+      The reference frame of the force vector and position.
+
+   .. function:: void remove()
+
+      Remove the force.
+
 
 
 Module
@@ -548,6 +609,7 @@ Module
 
    This can be used to interact with a specific part module. This includes part modules in stock KSP,
    and those added by mods.
+
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
    associated with it. Each one contains some of the functionality of the part.
@@ -781,6 +843,10 @@ Decoupler
 
       Whether the decoupler has fired.
 
+   .. function:: bool staged()
+
+      Whether the decoupler is enabled in the staging sequence.
+
    .. function:: float impulse()
 
       The impulse that the decoupler imparts when it is fired, in Newton seconds.
@@ -798,15 +864,6 @@ Docking Port
    .. function:: Part part()
 
       The part object for this docking port.
-
-   .. function:: std::string name()
-   .. function:: void set_name(std::string value)
-
-      The port name of the docking port. This is the name of the port that can be set
-      in the right click menu, when the
-      `Docking Port Alignment Indicator <http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/>`_
-      mod is installed. If this mod is not installed, returns the title of the part
-      (:func:`Part::title`).
 
    .. function:: DockingPortState state()
 
@@ -842,6 +899,7 @@ Docking Port
    .. function:: void set_shielded(bool value)
 
       The state of the docking ports shield, if it has one.
+
       Returns ``true`` if the docking port has a shield, and the shield is
       closed. Otherwise returns ``false``. When set to ``true``, the shield is
       closed, and when set to ``false`` the shield is opened. If the docking
@@ -1216,6 +1274,19 @@ Experiment
 
       The data contained in this experiment.
 
+   .. function:: std::string biome()
+
+      The name of the biome the experiment is currently in.
+
+   .. function:: bool available()
+
+      Determines if the experiment is available given the current conditions.
+
+   .. function:: ScienceSubject science_subject()
+
+      Containing information on the corresponding specific science result for the current conditions.
+      Returns null if experiment is unavailable.
+
 
 
 .. class:: ScienceData
@@ -1233,6 +1304,40 @@ Experiment
    .. function:: float transmit_value()
 
       Transmit value.
+
+
+
+.. class:: ScienceSubject
+
+   Obtained by calling :func:`Experiment::science_subject`.
+
+   .. function:: std::string title()
+
+      Title of science subject, displayed in science archives
+
+   .. function:: bool is_complete()
+
+      Whether the experiment has been completed.
+
+   .. function:: float science()
+
+      Amount of science already earned from this subject, not updated until after transmission/recovery.
+
+   .. function:: float science_cap()
+
+      Total science allowable for this subject.
+
+   .. function:: float data_scale()
+
+      Multiply science value by this to determine data amount in mits.
+
+   .. function:: float subject_value()
+
+      Multiplier for specific Celestial Body/Experiment Situation combination.
+
+   .. function:: float scientific_value()
+
+      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
 
 
 

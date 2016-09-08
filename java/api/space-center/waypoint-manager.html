@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WaypointManager &mdash; kRPC 0.3.6 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Drawing API" href="../drawing.html"/>
+        <link rel="prev" title="Camera" href="camera.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">WaypointManager</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>WaypointManager</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/java/api/space-center/waypoint-manager.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="package-krpc.client.services.SpaceCenter"></span><div class="section" id="waypointmanager">
+<h1>WaypointManager<a class="headerlink" href="#waypointmanager" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.WaypointManager">
+public class <code class="descname">WaypointManager</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waypoints are the location markers you can see on the map view showing you where contracts are targeted for.
+With this structure, you can obtain coordinate data for the locations of these waypoints.
+Obtained by calling <a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()" title="krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()"><code class="xref java java-meth docutils literal"><span class="pre">getWaypointManager()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.WaypointManager.getWaypoints()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint">Waypoint</a>&gt; <code class="descname">getWaypoints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getWaypoints()" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all existing waypoints.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint">Waypoint</a> <code class="descname">addWaypoint</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em>, <a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> body</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a waypoint at the given position at ground level, and returns a
+<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint"><code class="xref java java-type docutils literal"><span class="pre">Waypoint</span></code></a> object that can be used to modify it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> (<em>double</em>) &#8211; Latitude of the waypoint.</li>
+<li><strong>longitude</strong> (<em>double</em>) &#8211; Longitude of the waypoint.</li>
+<li><strong>body</strong> (<a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody"><em>CelestialBody</em></a>) &#8211; Celestial body the waypoint is attached to.</li>
+<li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) &#8211; Name of the waypoint.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.WaypointManager.getColors()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>&gt; <code class="descname">getColors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getColors()" title="Permalink to this definition">¶</a></dt>
+<dd><p>An example map of known color - seed pairs.
+Any other integers may be used as seed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.WaypointManager.getIcons()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">getIcons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getIcons()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all available icons (from &#8220;GameData/Squad/Contracts/Icons/&#8221;).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.Waypoint">
+public class <code class="descname">Waypoint</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a waypoint. Can be created using <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)" title="krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)"><code class="xref java java-meth docutils literal"><span class="pre">WaypointManager.addWaypoint(double,</span> <span class="pre">double,</span> <span class="pre">CelestialBody,</span> <span class="pre">String)</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getBody()">
+ <a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a> <code class="descname">getBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getBody()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)">
+ void <code class="descname">setBody</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Celestial body the waypoint is attached to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getName()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getName()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setName(String)">
+ void <code class="descname">setName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setName(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the waypoint as it appears on the map and the contract.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getColor()">
+ int <code class="descname">getColor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getColor()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setColor(int)">
+ void <code class="descname">setColor</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setColor(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The seed of the icon color. See <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.getColors()" title="krpc.client.services.SpaceCenter.WaypointManager.getColors()"><code class="xref java java-meth docutils literal"><span class="pre">WaypointManager.getColors()</span></code></a> for example colors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getIcon()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getIcon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getIcon()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setIcon(String)">
+ void <code class="descname">setIcon</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setIcon(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The icon of the waypoint.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getLatitude()">
+ double <code class="descname">getLatitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getLatitude()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setLatitude(double)">
+ void <code class="descname">setLatitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setLatitude(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The latitude of the waypoint.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getLongitude()">
+ double <code class="descname">getLongitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getLongitude()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setLongitude(double)">
+ void <code class="descname">setLongitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setLongitude(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The longitude of the waypoint.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getMeanAltitude()">
+ double <code class="descname">getMeanAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getMeanAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setMeanAltitude(double)">
+ void <code class="descname">setMeanAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setMeanAltitude(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude of the waypoint above sea level, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getSurfaceAltitude()">
+ double <code class="descname">getSurfaceAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getSurfaceAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setSurfaceAltitude(double)">
+ void <code class="descname">setSurfaceAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setSurfaceAltitude(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude of the waypoint above the surface of the body or sea level, whichever is closer, in meters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getBedrockAltitude()">
+ double <code class="descname">getBedrockAltitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getBedrockAltitude()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.setBedrockAltitude(double)">
+ void <code class="descname">setBedrockAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBedrockAltitude(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude of the waypoint above the surface of the body, in meters. When over water, this is the altitude above the sea floor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getNearSurface()">
+ boolean <code class="descname">getNearSurface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getNearSurface()" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if waypoint is a point near or on the body rather than high in orbit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getGrounded()">
+ boolean <code class="descname">getGrounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getGrounded()" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if waypoint is actually glued to the ground.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getIndex()">
+ int <code class="descname">getIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The integer index of this waypoint amongst its cluster of sibling waypoints.
+In other words, when you have a cluster of waypoints called &#8220;Somewhere Alpha&#8221;, &#8220;Somewhere Beta&#8221;, and &#8220;Somewhere Gamma&#8221;,
+then the alpha site has index 0, the beta site has index 1 and the gamma site has index 2.
+When <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="krpc.client.services.SpaceCenter.Waypoint.getClustered()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getClustered()</span></code></a> is false, this value is zero but meaningless.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getClustered()">
+ boolean <code class="descname">getClustered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if this waypoint is part of a set of clustered waypoints with greek letter names appended (Alpha, Beta, Gamma, etc).
+If true, there is a one-to-one correspondence with the greek letter name and the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="krpc.client.services.SpaceCenter.Waypoint.getIndex()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getIndex()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getHasContract()">
+ boolean <code class="descname">getHasContract</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getHasContract()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the waypoint belongs to a contract.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.getContractId()">
+ long <code class="descname">getContractId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getContractId()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the associated contract.
+Returns 0 if the waypoint does not belong to a contract.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Waypoint.remove()">
+ void <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.remove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the waypoint.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drawing.html" class="btn btn-neutral float-right" title="Drawing API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="camera.html" class="btn btn-neutral" title="Camera" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2016, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

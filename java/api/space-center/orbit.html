@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Orbit &mdash; kRPC 0.3.5 documentation</title>
+  <title>Orbit &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Control" href="control.html"/>
         <link rel="prev" title="Flight" href="flight.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -326,6 +327,120 @@ in radians.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.eccentricAnomalyAtUT(double)">
+ double <code class="descname">eccentricAnomalyAtUT</code><span class="sig-paren">(</span>double<em> ut</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.eccentricAnomalyAtUT(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The eccentric anomaly at the given universal time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> (<em>double</em>) &#8211; The universal time, in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.getTrueAnomaly()">
+ double <code class="descname">getTrueAnomaly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getTrueAnomaly()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_anomaly">true anomaly</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtUT(double)">
+ double <code class="descname">trueAnomalyAtUT</code><span class="sig-paren">(</span>double<em> ut</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtUT(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly at the given time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> (<em>double</em>) &#8211; The universal time in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtRadius(double)">
+ double <code class="descname">trueAnomalyAtRadius</code><span class="sig-paren">(</span>double<em> radius</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtRadius(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly at the given orbital radius.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>radius</strong> (<em>double</em>) &#8211; The orbital radius in meters.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.uTAtTrueAnomaly(double)">
+ double <code class="descname">uTAtTrueAnomaly</code><span class="sig-paren">(</span>double<em> trueAnomaly</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.uTAtTrueAnomaly(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The universal time, in seconds, corresponding to the given true anomaly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>trueAnomaly</strong> (<em>double</em>) &#8211; True anomaly.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.radiusAtTrueAnomaly(double)">
+ double <code class="descname">radiusAtTrueAnomaly</code><span class="sig-paren">(</span>double<em> trueAnomaly</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.radiusAtTrueAnomaly(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbital radius at the point in the orbit given by the true anomaly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>trueAnomaly</strong> (<em>double</em>) &#8211; The true anomaly.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.getOrbitalSpeed()">
+ double <code class="descname">getOrbitalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getOrbitalSpeed()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current orbital speed in meters per second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.orbitalSpeedAt(double)">
+ double <code class="descname">orbitalSpeedAt</code><span class="sig-paren">(</span>double<em> time</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.orbitalSpeedAt(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbital speed at the given time, in meters per second.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time</strong> (<em>double</em>) &#8211; Time from now, in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.referencePlaneNormal(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">referencePlaneNormal</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.referencePlaneNormal(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The unit direction vector that is normal to the orbits reference plane, in the given
@@ -420,7 +535,7 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

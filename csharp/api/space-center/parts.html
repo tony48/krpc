@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.5 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -278,6 +279,20 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Parts.WithTag">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a>&gt; <code class="descname">WithTag</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Parts.WithTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts whose <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Tag" title="KRPC.Client.Services.SpaceCenter.Part.Tag property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Tag</span></code></a> is <em>tag</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Parts.WithModule">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a>&gt; <code class="descname">WithModule</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>moduleName</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Parts.WithModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all parts that contain a <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Module" title="KRPC.Client.Services.SpaceCenter.Module class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Module</span></code></a> whose
@@ -365,21 +380,6 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parts.DockingPorts">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.DockingPort" title="KRPC.Client.Services.SpaceCenter.DockingPort class">DockingPort</a>&gt; <code class="descname">DockingPorts</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.DockingPorts" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all docking ports in the vessel.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="method-KRPC.Client.Services.SpaceCenter.Parts.DockingPortWithName">
-<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.DockingPort" title="KRPC.Client.Services.SpaceCenter.DockingPort class">DockingPort</a> <code class="descname">DockingPortWithName</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Parts.DockingPortWithName" title="Permalink to this definition">¶</a></dt>
-<dd><p>The first docking port in the vessel with the given port name, as returned by <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.DockingPort.Name" title="KRPC.Client.Services.SpaceCenter.DockingPort.Name property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">DockingPort.Name</span></code></a>.
-Returns <code class="docutils literal"><span class="pre">null</span></code> if there are no such docking ports.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="property">
@@ -505,6 +505,17 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.Part.Title">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Title</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Title of the part, as shown when the part is right clicked in-game. For example &#8220;Mk1-2 Command Pod&#8221;.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.Tag">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Tag</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name tag for the part. Can be set to a custom string using the in-game user interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This requires either the <a class="reference external" href="http://github.com/krpc/NameTag/releases/latest">NameTag</a> or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/">kOS</a> mods to be installed.</p>
+</div>
 </dd></dl>
 
 <dl class="property">
@@ -1001,6 +1012,75 @@ for the docking port, returned by <a class="reference internal" href="#property-
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Part.AddForce">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Force" title="KRPC.Client.Services.SpaceCenter.Force class">Force</a> <code class="descname">AddForce</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>force</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>position</em>, <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Part.AddForce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert a constant force on the part, acting at the given position.
+Returns an object that can be used to remove or modify the force.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Part.InstantaneousForce">
+void <code class="descname">InstantaneousForce</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>force</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <em>position</em>, <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Part.InstantaneousForce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert an instantaneous force on the part, acting at the given position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The force is applied instantaneously in a single physics update.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-KRPC.Client.Services.SpaceCenter.Force">
+<code class="descname">class Force</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#method-KRPC.Client.Services.SpaceCenter.Part.AddForce" title="KRPC.Client.Services.SpaceCenter.Part.AddForce method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Part.AddForce</span></code></a>.</p>
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Force.Part">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Force.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that this force is applied to.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Force.ForceVector">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">ForceVector</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Force.ForceVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>The force vector. The magnitude of the vector is the strength of the force in Newtons.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Force.Position">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">Position</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Force.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at which the force acts.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Force.ReferenceFrame">
+<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Force.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame of the force vector and position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Force.Remove">
+void <code class="descname">Remove</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Force.Remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the force.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1010,8 +1090,8 @@ for the docking port, returned by <a class="reference internal" href="#property-
 <dt id="class-KRPC.Client.Services.SpaceCenter.Module">
 <code class="descname">class Module</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Module" title="Permalink to this definition">¶</a></dt>
 <dd><p>This can be used to interact with a specific part module. This includes part modules in stock KSP,
-and those added by mods.
-In KSP, each part has zero or more
+and those added by mods.</p>
+<p>In KSP, each part has zero or more
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES">PartModules</a>
 associated with it. Each one contains some of the functionality of the part.
 For example, an engine has a &#8220;ModuleEngines&#8221; part module that contains all the
@@ -1382,6 +1462,12 @@ Throws an exception if the decoupler has already fired.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Decoupler.Staged">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Staged</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Decoupler.Staged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the decoupler is enabled in the staging sequence.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Decoupler.Impulse">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Impulse</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Decoupler.Impulse" title="Permalink to this definition">¶</a></dt>
 <dd><p>The impulse that the decoupler imparts when it is fired, in Newton seconds.</p>
@@ -1400,16 +1486,6 @@ Throws an exception if the decoupler has already fired.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.DockingPort.Part">
 <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.DockingPort.Part" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this docking port.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.DockingPort.Name">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Name</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.DockingPort.Name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The port name of the docking port. This is the name of the port that can be set
-in the right click menu, when the
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/">Docking Port Alignment Indicator</a>
-mod is installed. If this mod is not installed, returns the title of the part
-(<a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Title" title="KRPC.Client.Services.SpaceCenter.Part.Title property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Title</span></code></a>).</p>
 </dd></dl>
 
 <dl class="property">
@@ -1453,8 +1529,8 @@ becomes ready to dock with another port, in meters.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.DockingPort.Shielded">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Shielded</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.DockingPort.Shielded" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of the docking ports shield, if it has one.
-Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
+<dd><p>The state of the docking ports shield, if it has one.</p>
+<p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
 closed. Otherwise returns <code class="docutils literal"><span class="pre">false</span></code>. When set to <code class="docutils literal"><span class="pre">true</span></code>, the shield is
 closed, and when set to <code class="docutils literal"><span class="pre">false</span></code> the shield is opened. If the docking
 port does not have a shield, setting this attribute has no effect.</p>
@@ -1947,6 +2023,25 @@ void <code class="descname">Reset</code> <span class="sig-paren">(</span><span c
 <dd><p>The data contained in this experiment.</p>
 </dd></dl>
 
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Experiment.Biome">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Biome</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Experiment.Biome" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the biome the experiment is currently in.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Experiment.Available">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Available</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Experiment.Available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the experiment is available given the current conditions.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Experiment.ScienceSubject">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.ScienceSubject" title="KRPC.Client.Services.SpaceCenter.ScienceSubject class">ScienceSubject</a> <code class="descname">ScienceSubject</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Experiment.ScienceSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Containing information on the corresponding specific science result for the current conditions.
+Returns null if experiment is unavailable.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1969,6 +2064,54 @@ void <code class="descname">Reset</code> <span class="sig-paren">(</span><span c
 <dt id="property-KRPC.Client.Services.SpaceCenter.ScienceData.TransmitValue">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">TransmitValue</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceData.TransmitValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transmit value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-KRPC.Client.Services.SpaceCenter.ScienceSubject">
+<code class="descname">class ScienceSubject</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.ScienceSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Experiment.ScienceSubject" title="KRPC.Client.Services.SpaceCenter.Experiment.ScienceSubject property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Experiment.ScienceSubject</span></code></a>.</p>
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.Title">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Title</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.Title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of science subject, displayed in science archives</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.IsComplete">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsComplete</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.IsComplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the experiment has been completed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.Science">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Science</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.Science" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of science already earned from this subject, not updated until after transmission/recovery.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.ScienceCap">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ScienceCap</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.ScienceCap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total science allowable for this subject.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.DataScale">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DataScale</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.DataScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply science value by this to determine data amount in mits.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.SubjectValue">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SubjectValue</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.SubjectValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplier for specific Celestial Body/Experiment Situation combination.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ScienceSubject.ScientificValue">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ScientificValue</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ScienceSubject.ScientificValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminishing value multiplier for decreasing the science value returned from repeated experiments.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3360,7 +3503,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

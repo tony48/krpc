@@ -125,6 +125,62 @@ Orbit
 
       The `eccentric anomaly <https://en.wikipedia.org/wiki/Eccentric_anomaly>`_.
 
+   .. method:: double EccentricAnomalyAtUT(double ut)
+
+      The eccentric anomaly at the given universal time.
+
+      :parameters:
+
+       * **ut** -- The universal time, in seconds.
+
+   .. property:: double TrueAnomaly { get; }
+
+      The `true anomaly <https://en.wikipedia.org/wiki/True_anomaly>`_.
+
+   .. method:: double TrueAnomalyAtUT(double ut)
+
+      The true anomaly at the given time.
+
+      :parameters:
+
+       * **ut** -- The universal time in seconds.
+
+   .. method:: double TrueAnomalyAtRadius(double radius)
+
+      The true anomaly at the given orbital radius.
+
+      :parameters:
+
+       * **radius** -- The orbital radius in meters.
+
+   .. method:: double UTAtTrueAnomaly(double trueAnomaly)
+
+      The universal time, in seconds, corresponding to the given true anomaly.
+
+      :parameters:
+
+       * **trueAnomaly** -- True anomaly.
+
+   .. method:: double RadiusAtTrueAnomaly(double trueAnomaly)
+
+      The orbital radius at the point in the orbit given by the true anomaly.
+
+      :parameters:
+
+       * **trueAnomaly** -- The true anomaly.
+
+   .. property:: double OrbitalSpeed { get; }
+
+      The current orbital speed in meters per second.
+
+   .. method:: double OrbitalSpeedAt(double time)
+
+      The orbital speed at the given time, in meters per second.
+
+      :parameters:
+
+       * **time** -- Time from now, in seconds.
+
    .. method:: static System.Tuple<double,double,double> ReferencePlaneNormal(ReferenceFrame referenceFrame)
 
       The unit direction vector that is normal to the orbits reference plane, in the given

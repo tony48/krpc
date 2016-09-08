@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.5 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -114,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -283,6 +284,20 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts8with_tagENSt6stringE">
+<span id="krpc::services::SpaceCenter::Parts::with_tag__ss"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a>&gt; <code class="descclassname"></code><code class="descname">with_tag</code><span class="sig-paren">(</span>std::string <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts8with_tagENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts whose <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part3tagEv" title="krpc::services::SpaceCenter::Part::tag"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::tag()</span></code></a> is <em>tag</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Parts11with_moduleENSt6stringE">
 <span id="krpc::services::SpaceCenter::Parts::with_module__ss"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a>&gt; <code class="descclassname"></code><code class="descname">with_module</code><span class="sig-paren">(</span>std::string <em>module_name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts11with_moduleENSt6stringE" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all parts that contain a <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6ModuleE" title="krpc::services::SpaceCenter::Module"><code class="xref cpp cpp-class docutils literal"><span class="pre">Module</span></code></a> whose
@@ -370,21 +385,6 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Parts13docking_portsEv">
 <span id="krpc::services::SpaceCenter::Parts::docking_ports"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPortE" title="krpc::services::SpaceCenter::DockingPort">DockingPort</a>&gt; <code class="descclassname"></code><code class="descname">docking_ports</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts13docking_portsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all docking ports in the vessel.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts22docking_port_with_nameENSt6stringE">
-<span id="krpc::services::SpaceCenter::Parts::docking_port_with_name__ss"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPortE" title="krpc::services::SpaceCenter::DockingPort">DockingPort</a> <code class="descclassname"></code><code class="descname">docking_port_with_name</code><span class="sig-paren">(</span>std::string <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts22docking_port_with_nameENSt6stringE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The first docking port in the vessel with the given port name, as returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPort4nameEv" title="krpc::services::SpaceCenter::DockingPort::name"><code class="xref cpp cpp-func docutils literal"><span class="pre">DockingPort::name()</span></code></a>.
-Returns <code class="docutils literal"><span class="pre">NULL</span></code> if there are no such docking ports.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="function">
@@ -510,6 +510,22 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter4Part5titleEv">
 <span id="krpc::services::SpaceCenter::Part::title"></span>std::string <code class="descclassname"></code><code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part5titleEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Title of the part, as shown when the part is right clicked in-game. For example &#8220;Mk1-2 Command Pod&#8221;.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part3tagEv">
+<span id="krpc::services::SpaceCenter::Part::tag"></span>std::string <code class="descclassname"></code><code class="descname">tag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part3tagEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part7set_tagENSt6stringE">
+<span id="krpc::services::SpaceCenter::Part::set_tag__ss"></span>void <code class="descclassname"></code><code class="descname">set_tag</code><span class="sig-paren">(</span>std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part7set_tagENSt6stringE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name tag for the part. Can be set to a custom string using the in-game user interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This requires either the <a class="reference external" href="http://github.com/krpc/NameTag/releases/latest">NameTag</a> or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/">kOS</a> mods to be installed.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -1006,6 +1022,90 @@ for the docking port, returned by <a class="reference internal" href="#_CPPv2N4k
 </div>
 </dd></dl>
 
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part9add_forceENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame">
+<span id="krpc::services::SpaceCenter::Part::add_force__std::tuple:double.double.double:.std::tuple:double.double.double:.ReferenceFrame"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5ForceE" title="krpc::services::SpaceCenter::Force">Force</a> <code class="descclassname"></code><code class="descname">add_force</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>force</em>, std::tuple&lt;double, double, double&gt; <em>position</em>, <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part9add_forceENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert a constant force on the part, acting at the given position.
+Returns an object that can be used to remove or modify the force.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part19instantaneous_forceENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame">
+<span id="krpc::services::SpaceCenter::Part::instantaneous_force__std::tuple:double.double.double:.std::tuple:double.double.double:.ReferenceFrame"></span>void <code class="descclassname"></code><code class="descname">instantaneous_force</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>force</em>, std::tuple&lt;double, double, double&gt; <em>position</em>, <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part19instantaneous_forceENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert an instantaneous force on the part, acting at the given position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The force is applied instantaneously in a single physics update.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5ForceE">
+<span id="krpc::services::SpaceCenter::Force"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Force</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5ForceE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part9add_forceENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame" title="krpc::services::SpaceCenter::Part::add_force"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::add_force()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force4partEv">
+<span id="krpc::services::SpaceCenter::Force::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force4partEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that this force is applied to.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force12force_vectorEv">
+<span id="krpc::services::SpaceCenter::Force::force_vector"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">force_vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force12force_vectorEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force16set_force_vectorENSt5tupleIdddEE">
+<span id="krpc::services::SpaceCenter::Force::set_force_vector__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_force_vector</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force16set_force_vectorENSt5tupleIdddEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The force vector. The magnitude of the vector is the strength of the force in Newtons.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force8positionEv">
+<span id="krpc::services::SpaceCenter::Force::position"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force8positionEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force12set_positionENSt5tupleIdddEE">
+<span id="krpc::services::SpaceCenter::Force::set_position__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_position</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force12set_positionENSt5tupleIdddEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at which the force acts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force15reference_frameEv">
+<span id="krpc::services::SpaceCenter::Force::reference_frame"></span><a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <code class="descclassname"></code><code class="descname">reference_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force15reference_frameEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force19set_reference_frameE14ReferenceFrame">
+<span id="krpc::services::SpaceCenter::Force::set_reference_frame__ReferenceFrame"></span>void <code class="descclassname"></code><code class="descname">set_reference_frame</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force19set_reference_frameE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame of the force vector and position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Force6removeEv">
+<span id="krpc::services::SpaceCenter::Force::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Force6removeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the force.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1015,8 +1115,8 @@ for the docking port, returned by <a class="reference internal" href="#_CPPv2N4k
 <dt id="_CPPv2N4krpc8services11SpaceCenter6ModuleE">
 <span id="krpc::services::SpaceCenter::Module"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Module</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6ModuleE" title="Permalink to this definition">¶</a></dt>
 <dd><p>This can be used to interact with a specific part module. This includes part modules in stock KSP,
-and those added by mods.
-In KSP, each part has zero or more
+and those added by mods.</p>
+<p>In KSP, each part has zero or more
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES">PartModules</a>
 associated with it. Each one contains some of the functionality of the part.
 For example, an engine has a &#8220;ModuleEngines&#8221; part module that contains all the
@@ -1417,6 +1517,12 @@ Throws an exception if the decoupler has already fired.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9Decoupler6stagedEv">
+<span id="krpc::services::SpaceCenter::Decoupler::staged"></span>bool <code class="descclassname"></code><code class="descname">staged</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Decoupler6stagedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the decoupler is enabled in the staging sequence.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9Decoupler7impulseEv">
 <span id="krpc::services::SpaceCenter::Decoupler::impulse"></span>float <code class="descclassname"></code><code class="descname">impulse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Decoupler7impulseEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The impulse that the decoupler imparts when it is fired, in Newton seconds.</p>
@@ -1435,21 +1541,6 @@ Throws an exception if the decoupler has already fired.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter11DockingPort4partEv">
 <span id="krpc::services::SpaceCenter::DockingPort::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPort4partEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this docking port.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11DockingPort4nameEv">
-<span id="krpc::services::SpaceCenter::DockingPort::name"></span>std::string <code class="descclassname"></code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPort4nameEv" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11DockingPort8set_nameENSt6stringE">
-<span id="krpc::services::SpaceCenter::DockingPort::set_name__ss"></span>void <code class="descclassname"></code><code class="descname">set_name</code><span class="sig-paren">(</span>std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPort8set_nameENSt6stringE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The port name of the docking port. This is the name of the port that can be set
-in the right click menu, when the
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/">Docking Port Alignment Indicator</a>
-mod is installed. If this mod is not installed, returns the title of the part
-(<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part5titleEv" title="krpc::services::SpaceCenter::Part::title"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::title()</span></code></a>).</p>
 </dd></dl>
 
 <dl class="function">
@@ -1498,8 +1589,8 @@ becomes ready to dock with another port, in meters.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter11DockingPort12set_shieldedEb">
 <span id="krpc::services::SpaceCenter::DockingPort::set_shielded__b"></span>void <code class="descclassname"></code><code class="descname">set_shielded</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPort12set_shieldedEb" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of the docking ports shield, if it has one.
-Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
+<dd><p>The state of the docking ports shield, if it has one.</p>
+<p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the docking port has a shield, and the shield is
 closed. Otherwise returns <code class="docutils literal"><span class="pre">false</span></code>. When set to <code class="docutils literal"><span class="pre">true</span></code>, the shield is
 closed, and when set to <code class="docutils literal"><span class="pre">false</span></code> the shield is opened. If the docking
 port does not have a shield, setting this attribute has no effect.</p>
@@ -2022,6 +2113,25 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <dd><p>The data contained in this experiment.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10Experiment5biomeEv">
+<span id="krpc::services::SpaceCenter::Experiment::biome"></span>std::string <code class="descclassname"></code><code class="descname">biome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10Experiment5biomeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the biome the experiment is currently in.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10Experiment9availableEv">
+<span id="krpc::services::SpaceCenter::Experiment::available"></span>bool <code class="descclassname"></code><code class="descname">available</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10Experiment9availableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the experiment is available given the current conditions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10Experiment15science_subjectEv">
+<span id="krpc::services::SpaceCenter::Experiment::science_subject"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubjectE" title="krpc::services::SpaceCenter::ScienceSubject">ScienceSubject</a> <code class="descclassname"></code><code class="descname">science_subject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10Experiment15science_subjectEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Containing information on the corresponding specific science result for the current conditions.
+Returns null if experiment is unavailable.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -2044,6 +2154,54 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter11ScienceData14transmit_valueEv">
 <span id="krpc::services::SpaceCenter::ScienceData::transmit_value"></span>float <code class="descclassname"></code><code class="descname">transmit_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11ScienceData14transmit_valueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transmit value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubjectE">
+<span id="krpc::services::SpaceCenter::ScienceSubject"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ScienceSubject</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubjectE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10Experiment15science_subjectEv" title="krpc::services::SpaceCenter::Experiment::science_subject"><code class="xref cpp cpp-func docutils literal"><span class="pre">Experiment::science_subject()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject5titleEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::title"></span>std::string <code class="descclassname"></code><code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject5titleEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of science subject, displayed in science archives</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject11is_completeEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::is_complete"></span>bool <code class="descclassname"></code><code class="descname">is_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject11is_completeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the experiment has been completed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject7scienceEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::science"></span>float <code class="descclassname"></code><code class="descname">science</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject7scienceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of science already earned from this subject, not updated until after transmission/recovery.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject11science_capEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::science_cap"></span>float <code class="descclassname"></code><code class="descname">science_cap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject11science_capEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total science allowable for this subject.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject10data_scaleEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::data_scale"></span>float <code class="descclassname"></code><code class="descname">data_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject10data_scaleEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply science value by this to determine data amount in mits.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject13subject_valueEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::subject_value"></span>float <code class="descclassname"></code><code class="descname">subject_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject13subject_valueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplier for specific Celestial Body/Experiment Situation combination.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ScienceSubject16scientific_valueEv">
+<span id="krpc::services::SpaceCenter::ScienceSubject::scientific_value"></span>float <code class="descclassname"></code><code class="descname">scientific_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ScienceSubject16scientific_valueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminishing value multiplier for decreasing the science value returned from repeated experiments.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3544,7 +3702,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

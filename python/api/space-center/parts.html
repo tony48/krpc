@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.5 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.5
+                0.3.6
               </div>
             
           
@@ -117,6 +117,7 @@
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -312,6 +313,22 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="method">
+<dt id="SpaceCenter.Parts.with_tag">
+<code class="descname">with_tag</code><span class="sig-paren">(</span><em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Parts.with_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parts whose <a class="reference internal" href="#SpaceCenter.Part.tag" title="SpaceCenter.Part.tag"><code class="xref py py-attr docutils literal"><span class="pre">Part.tag</span></code></a> is <em>tag</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tag</strong> (<em>str</em>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="SpaceCenter.Parts.with_module">
 <code class="descname">with_module</code><span class="sig-paren">(</span><em>module_name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Parts.with_module" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all parts that contain a <a class="reference internal" href="#SpaceCenter.Module" title="SpaceCenter.Module"><code class="xref py py-class docutils literal"><span class="pre">Module</span></code></a> whose
@@ -444,23 +461,6 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.DockingPort" title="SpaceCenter.DockingPort"><code class="xref py py-class docutils literal"><span class="pre">DockingPort</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="SpaceCenter.Parts.docking_port_with_name">
-<code class="descname">docking_port_with_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Parts.docking_port_with_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The first docking port in the vessel with the given port name, as returned by <a class="reference internal" href="#SpaceCenter.DockingPort.name" title="SpaceCenter.DockingPort.name"><code class="xref py py-attr docutils literal"><span class="pre">DockingPort.name</span></code></a>.
-Returns <code class="docutils literal"><span class="pre">None</span></code> if there are no such docking ports.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.DockingPort" title="SpaceCenter.DockingPort"><code class="xref py py-class docutils literal"><span class="pre">DockingPort</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -769,6 +769,27 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Part.tag">
+<code class="descname">tag</code><a class="headerlink" href="#SpaceCenter.Part.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name tag for the part. Can be set to a custom string using the in-game user interface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This requires either the <a class="reference external" href="http://github.com/krpc/NameTag/releases/latest">NameTag</a> or
+<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/">kOS</a> mods to be installed.</p>
+</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -1835,6 +1856,128 @@ for the docking port, returned by <a class="reference internal" href="#SpaceCent
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="SpaceCenter.Part.add_force">
+<code class="descname">add_force</code><span class="sig-paren">(</span><em>force</em>, <em>position</em>, <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Part.add_force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert a constant force on the part, acting at the given position.
+Returns an object that can be used to remove or modify the force.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>force</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>position</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#SpaceCenter.Force" title="SpaceCenter.Force"><code class="xref py py-class docutils literal"><span class="pre">Force</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Part.instantaneous_force">
+<code class="descname">instantaneous_force</code><span class="sig-paren">(</span><em>force</em>, <em>position</em>, <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Part.instantaneous_force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exert an instantaneous force on the part, acting at the given position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>force</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>position</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The force is applied instantaneously in a single physics update.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.Force">
+<em class="property">class </em><code class="descname">Force</code><a class="headerlink" href="#SpaceCenter.Force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.add_force" title="SpaceCenter.Part.add_force"><code class="xref py py-meth docutils literal"><span class="pre">Part.add_force()</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.Force.part">
+<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.Force.part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part that this force is applied to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Force.force_vector">
+<code class="descname">force_vector</code><a class="headerlink" href="#SpaceCenter.Force.force_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>The force vector. The magnitude of the vector is the strength of the force in Newtons.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Force.position">
+<code class="descname">position</code><a class="headerlink" href="#SpaceCenter.Force.position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at which the force acts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple of (float, float, float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Force.reference_frame">
+<code class="descname">reference_frame</code><a class="headerlink" href="#SpaceCenter.Force.reference_frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame of the force vector and position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><code class="xref py py-class docutils literal"><span class="pre">ReferenceFrame</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Force.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Force.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the force.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1844,8 +1987,8 @@ for the docking port, returned by <a class="reference internal" href="#SpaceCent
 <dt id="SpaceCenter.Module">
 <em class="property">class </em><code class="descname">Module</code><a class="headerlink" href="#SpaceCenter.Module" title="Permalink to this definition">¶</a></dt>
 <dd><p>This can be used to interact with a specific part module. This includes part modules in stock KSP,
-and those added by mods.
-In KSP, each part has zero or more
+and those added by mods.</p>
+<p>In KSP, each part has zero or more
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES">PartModules</a>
 associated with it. Each one contains some of the functionality of the part.
 For example, an engine has a &#8220;ModuleEngines&#8221; part module that contains all the
@@ -2407,6 +2550,22 @@ Throws an exception if the decoupler has already fired.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.Decoupler.staged">
+<code class="descname">staged</code><a class="headerlink" href="#SpaceCenter.Decoupler.staged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the decoupler is enabled in the staging sequence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Decoupler.impulse">
 <code class="descname">impulse</code><a class="headerlink" href="#SpaceCenter.Decoupler.impulse" title="Permalink to this definition">¶</a></dt>
 <dd><p>The impulse that the decoupler imparts when it is fired, in Newton seconds.</p>
@@ -2442,26 +2601,6 @@ Throws an exception if the decoupler has already fired.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.DockingPort.name">
-<code class="descname">name</code><a class="headerlink" href="#SpaceCenter.DockingPort.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The port name of the docking port. This is the name of the port that can be set
-in the right click menu, when the
-<a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/40423-11-docking-port-alignment-indicator-version-621-beta-updated-04122016/">Docking Port Alignment Indicator</a>
-mod is installed. If this mod is not installed, returns the title of the part
-(<a class="reference internal" href="#SpaceCenter.Part.title" title="SpaceCenter.Part.title"><code class="xref py py-attr docutils literal"><span class="pre">Part.title</span></code></a>).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
@@ -2556,8 +2695,8 @@ becomes ready to dock with another port, in meters.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.DockingPort.shielded">
 <code class="descname">shielded</code><a class="headerlink" href="#SpaceCenter.DockingPort.shielded" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of the docking ports shield, if it has one.
-Returns <code class="docutils literal"><span class="pre">True</span></code> if the docking port has a shield, and the shield is
+<dd><p>The state of the docking ports shield, if it has one.</p>
+<p>Returns <code class="docutils literal"><span class="pre">True</span></code> if the docking port has a shield, and the shield is
 closed. Otherwise returns <code class="docutils literal"><span class="pre">False</span></code>. When set to <code class="docutils literal"><span class="pre">True</span></code>, the shield is
 closed, and when set to <code class="docutils literal"><span class="pre">False</span></code> the shield is opened. If the docking
 port does not have a shield, setting this attribute has no effect.</p>
@@ -3526,6 +3665,55 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="SpaceCenter.Experiment.biome">
+<code class="descname">biome</code><a class="headerlink" href="#SpaceCenter.Experiment.biome" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the biome the experiment is currently in.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Experiment.available">
+<code class="descname">available</code><a class="headerlink" href="#SpaceCenter.Experiment.available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the experiment is available given the current conditions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Experiment.science_subject">
+<code class="descname">science_subject</code><a class="headerlink" href="#SpaceCenter.Experiment.science_subject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Containing information on the corresponding specific science result for the current conditions.
+Returns null if experiment is unavailable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.ScienceSubject" title="SpaceCenter.ScienceSubject"><code class="xref py py-class docutils literal"><span class="pre">ScienceSubject</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -3568,6 +3756,124 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <dt id="SpaceCenter.ScienceData.transmit_value">
 <code class="descname">transmit_value</code><a class="headerlink" href="#SpaceCenter.ScienceData.transmit_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transmit value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.ScienceSubject">
+<em class="property">class </em><code class="descname">ScienceSubject</code><a class="headerlink" href="#SpaceCenter.ScienceSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtained by calling <a class="reference internal" href="#SpaceCenter.Experiment.science_subject" title="SpaceCenter.Experiment.science_subject"><code class="xref py py-attr docutils literal"><span class="pre">Experiment.science_subject</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.title">
+<code class="descname">title</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of science subject, displayed in science archives</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.is_complete">
+<code class="descname">is_complete</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.is_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the experiment has been completed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.science">
+<code class="descname">science</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.science" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of science already earned from this subject, not updated until after transmission/recovery.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.science_cap">
+<code class="descname">science_cap</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.science_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total science allowable for this subject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.data_scale">
+<code class="descname">data_scale</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.data_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply science value by this to determine data amount in mits.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.subject_value">
+<code class="descname">subject_value</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.subject_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplier for specific Celestial Body/Experiment Situation combination.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ScienceSubject.scientific_value">
+<code class="descname">scientific_value</code><a class="headerlink" href="#SpaceCenter.ScienceSubject.scientific_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminishing value multiplier for decreasing the science value returned from repeated experiments.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -5686,7 +5992,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.5',
+            VERSION:'0.3.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
