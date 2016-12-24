@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -519,6 +519,18 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.Highlighted">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Highlighted</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Highlighted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is highlighted.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.HighlightColor">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">HighlightColor</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.HighlightColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color used to highlight the part.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Part.Cost">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Cost</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Cost" title="Permalink to this definition">¶</a></dt>
 <dd><p>The cost of the part, in units of funds.</p>
@@ -918,6 +930,27 @@ If the part is physicsless, this is equivalent to <a class="reference internal" 
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Part.BoundingBox">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">BoundingBox</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Part.BoundingBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.
+Returns the minimum and maximum vertices of the box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is computed from the collision meshes of the part.
+If the part is not collidable, the box has zero volume and is centered on
+the <a class="reference internal" href="#method-KRPC.Client.Services.SpaceCenter.Part.Position" title="KRPC.Client.Services.SpaceCenter.Part.Position method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Part.Position</span></code></a> of the part.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1428,8 +1461,9 @@ void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a 
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.ControlSurface.AvailableTorque">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ControlSurface.AvailableTorque" title="Permalink to this definition">¶</a></dt>
-<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ControlSurface.AvailableTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the positive pitch, roll and yaw axes and
+negative pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
@@ -1876,7 +1910,7 @@ Returns 0 if the gimbal is locked.</p>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Engine.AvailableTorque">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Engine.AvailableTorque" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Engine.AvailableTorque" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>.
 Returns zero if the engine is inactive, or not gimballed.</p>
@@ -1946,12 +1980,6 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.Propellant.Ratio">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Ratio</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Propellant.Ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>The propellant ratio.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Propellant.ConnectedResources">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="resources.html#class-KRPC.Client.Services.SpaceCenter.Resource" title="KRPC.Client.Services.SpaceCenter.Resource class">Resource</a>&gt; <code class="descname">ConnectedResources</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Propellant.ConnectedResources" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reachable resources connected to this propellant.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2222,6 +2250,12 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </div>
 </dd></dl>
 
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.IsGrounded">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsGrounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.IsGrounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the gear is touching the ground.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="enum">
@@ -2288,6 +2322,12 @@ Returns an error if you try to deploy fixed landing gear.</p>
 <p class="last">Fixed landing legs are always deployed.
 Returns an error if you try to deploy fixed landing gear.</p>
 </div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.LandingLeg.IsGrounded">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsGrounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.IsGrounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the leg is touching the ground.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2860,7 +2900,7 @@ In this case, check <a class="reference internal" href="#method-KRPC.Client.Serv
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.ReactionWheel.AvailableTorque">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ReactionWheel.AvailableTorque" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ReactionWheel.AvailableTorque" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>.
 Returns zero if the reaction wheel is inactive or broken.</p>
@@ -2868,7 +2908,7 @@ Returns zero if the reaction wheel is inactive or broken.</p>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.ReactionWheel.MaxTorque">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">MaxTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ReactionWheel.MaxTorque" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">MaxTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ReactionWheel.MaxTorque" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque the reaction wheel can provide, is it active,
 in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>.</p>
@@ -2942,7 +2982,7 @@ it is covered by a fairing (<a class="reference internal" href="#property-KRPC.C
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.RCS.AvailableTorque">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.RCS.AvailableTorque" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a>&gt;&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.RCS.AvailableTorque" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a>.
 Returns zero if the RCS is inactive.</p>
@@ -3033,12 +3073,6 @@ to the ratios at which they are consumed by the RCS.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.Sensor.Value">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <code class="descname">Value</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Sensor.Value" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current value of the sensor.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Sensor.PowerUsage">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PowerUsage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Sensor.PowerUsage" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current power usage of the sensor, in units of charge per second.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3282,14 +3316,16 @@ returns an empty list. A parts parent can be obtained by calling
 returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
 <p>The following C# example uses these attributes to perform a
 depth-first traversal over all of the parts in a vessel:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">AttachmentModes</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">AttachmentModes</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
+    <span class="p">{</span>
         <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
         <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
@@ -3346,11 +3382,11 @@ a parent part, so does not have an attachment mode. However, the part is
 consider to be <em>axially</em> attached to nothing.</p>
 <p>The following C# example does a depth-first traversal as before,
 but also prints out the attachment mode used by the part:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">AttachmentModes</span>
 <span class="p">{</span>
@@ -3503,7 +3539,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

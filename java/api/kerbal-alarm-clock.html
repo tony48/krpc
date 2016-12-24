@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kerbal Alarm Clock API &mdash; kRPC 0.3.6 documentation</title>
+  <title>Kerbal Alarm Clock API &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
         <link rel="up" title="Java" href="../../java.html"/>
         <link rel="next" title="KerbalAlarmClock" href="kerbal-alarm-clock/kerbal-alarm-clock.html"/>
         <link rel="prev" title="Servo" href="infernal-robotics/servo.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -176,16 +176,17 @@ following classes:</p>
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>The following example creates a new alarm for the active vessel. The alarm is
 set to trigger after 10 seconds have passed, and display a message.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.KerbalAlarmClock</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.KerbalAlarmClock.Alarm</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.KerbalAlarmClock.AlarmAction</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.KerbalAlarmClock.AlarmType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">KAC</span> <span class="o">{</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">KerbalAlarmClockExample</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
         <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Kerbal Alarm Clock Example&quot;</span><span class="o">,</span> <span class="s">&quot;10.0.2.2&quot;</span><span class="o">);</span>
         <span class="n">KerbalAlarmClock</span> <span class="n">kac</span> <span class="o">=</span> <span class="n">KerbalAlarmClock</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
@@ -240,7 +241,7 @@ set to trigger after 10 seconds have passed, and display a message.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

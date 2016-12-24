@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interacting with Parts &mdash; kRPC 0.3.6 documentation</title>
+  <title>Interacting with Parts &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Docking Guidance" href="docking-guidance.html"/>
         <link rel="prev" title="Pitch, Heading and Roll" href="pitch-heading-roll.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -189,10 +189,7 @@ control the vessel from it:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
-
-<span class="n">ports</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">docking_ports</span>
-<span class="n">port</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span> <span class="o">==</span> <span class="s1">&#39;Clamp-O-Tron Docking Port&#39;</span><span class="p">,</span> <span class="n">ports</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">part</span> <span class="o">=</span> <span class="n">port</span><span class="o">.</span><span class="n">part</span>
+<span class="n">part</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">with_title</span><span class="p">(</span><span class="s1">&#39;Clamp-O-Tron Docking Port&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">controlling</span> <span class="o">=</span> <span class="n">part</span>
 </pre></div>
 </div>
@@ -206,7 +203,7 @@ active and fueled engines on a rocket. See here for a description of the maths:
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
-<span class="n">active_engines</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">has_fuel</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">engines</span><span class="p">)</span>
+<span class="n">active_engines</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">engines</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">has_fuel</span><span class="p">]</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Active engines:&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">active_engines</span><span class="p">:</span>
@@ -216,7 +213,7 @@ active and fueled engines on a rocket. See here for a description of the maths:
 <span class="n">fuel_consumption</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">thrust</span> <span class="o">/</span> <span class="n">engine</span><span class="o">.</span><span class="n">specific_impulse</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">active_engines</span><span class="p">)</span>
 <span class="n">isp</span> <span class="o">=</span> <span class="n">thrust</span> <span class="o">/</span> <span class="n">fuel_consumption</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Combined vaccuum Isp = </span><span class="si">%d</span><span class="s1"> seconds&#39;</span> <span class="o">%</span> <span class="n">isp</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Combined vacuum Isp = </span><span class="si">%d</span><span class="s1"> seconds&#39;</span> <span class="o">%</span> <span class="n">isp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -263,7 +260,7 @@ active and fueled engines on a rocket. See here for a description of the maths:
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

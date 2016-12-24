@@ -10,19 +10,19 @@ Node
 
    Represents a maneuver node. Can be created using :meth:`Control.AddNode`.
 
-   .. property:: float Prograde { get; set; }
+   .. property:: double Prograde { get; set; }
 
       The magnitude of the maneuver nodes delta-v in the prograde direction, in meters per second.
 
-   .. property:: float Normal { get; set; }
+   .. property:: double Normal { get; set; }
 
       The magnitude of the maneuver nodes delta-v in the normal direction, in meters per second.
 
-   .. property:: float Radial { get; set; }
+   .. property:: double Radial { get; set; }
 
       The magnitude of the maneuver nodes delta-v in the radial direction, in meters per second.
 
-   .. property:: float DeltaV { get; set; }
+   .. property:: double DeltaV { get; set; }
 
       The delta-v of the maneuver node, in meters per second.
 
@@ -31,12 +31,12 @@ Node
 
          Does not change when executing the maneuver node. See :prop:`Node.RemainingDeltaV`.
 
-   .. property:: float RemainingDeltaV { get; }
+   .. property:: double RemainingDeltaV { get; }
 
       Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the node
       is executed. This is equivalent to the delta-v reported in-game.
 
-   .. method:: System.Tuple<double,double,double> BurnVector(ReferenceFrame referenceFrame = None)
+   .. method:: System.Tuple<double,double,double> BurnVector(ReferenceFrame referenceFrame = null)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s.
@@ -50,7 +50,7 @@ Node
 
          Does not change when executing the maneuver node. See :meth:`Node.RemainingBurnVector`.
 
-   .. method:: System.Tuple<double,double,double> RemainingBurnVector(ReferenceFrame referenceFrame = None)
+   .. method:: System.Tuple<double,double,double> RemainingBurnVector(ReferenceFrame referenceFrame = null)
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.

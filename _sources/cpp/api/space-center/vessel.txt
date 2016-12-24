@@ -42,7 +42,7 @@ Vessel
 
       The name of the biome the vessel is currently in.
 
-   .. function:: Flight flight(ReferenceFrame reference_frame = None)
+   .. function:: Flight flight(ReferenceFrame reference_frame = ReferenceFrame())
 
       Returns a :class:`Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
@@ -80,7 +80,7 @@ Vessel
       A :class:`Resources` object, that can used to get information
       about resources stored in the vessel.
 
-   .. function:: Resources resources_in_decouple_stage(int32_t stage, bool cumulative = True)
+   .. function:: Resources resources_in_decouple_stage(int32_t stage, bool cumulative = true)
 
       Returns a :class:`Resources` object, that can used to get
       information about resources stored in a given *stage*.
@@ -157,7 +157,7 @@ Vessel
       The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:func:`Vessel::reference_frame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
-   .. function:: std::tuple<double, double, double> available_torque()
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
       The maximum torque that the vessel generate. Includes contributions from reaction wheels,
       RCS, gimballed engines and aerodynamic control surfaces.
@@ -165,30 +165,37 @@ Vessel
       vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. function:: std::tuple<double, double, double> available_reaction_wheel_torque()
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_reaction_wheel_torque()
 
       The maximum torque that the currently active and powered reaction wheels can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. function:: std::tuple<double, double, double> available_rcs_torque()
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_rcs_torque()
 
       The maximum torque that the currently active RCS thrusters can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. function:: std::tuple<double, double, double> available_engine_torque()
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_engine_torque()
 
       The maximum torque that the currently active and gimballed engines can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. function:: std::tuple<double, double, double> available_control_surface_torque()
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_control_surface_torque()
 
       The maximum torque that the aerodynamic control surfaces can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:func:`Vessel::reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_other_torque()
+
+      The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:func:`Vessel::reference_frame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
@@ -284,6 +291,13 @@ Vessel
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
+
+      :Parameters:
+
+   .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> bounding_box(ReferenceFrame reference_frame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
 
       :Parameters:
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reference Frames &mdash; kRPC 0.3.6 documentation</title>
+  <title>Reference Frames &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Launch into Orbit" href="launch-into-orbit.html"/>
         <link rel="prev" title="Sub-Orbital Flight" href="suborbital-flight.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -95,6 +95,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#available-reference-frames">Available Reference Frames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-reference-frames">Custom Reference Frames</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#converting-between-reference-frames">Converting Between Reference Frames</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visual-debugging">Visual Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
@@ -187,15 +188,16 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#available-reference-frames" id="id10">Available Reference Frames</a></li>
-<li><a class="reference internal" href="#converting-between-reference-frames" id="id11">Converting Between Reference Frames</a></li>
-<li><a class="reference internal" href="#visual-debugging" id="id12">Visual Debugging</a></li>
-<li><a class="reference internal" href="#examples" id="id13">Examples</a><ul>
-<li><a class="reference internal" href="#navball-directions" id="id14">Navball directions</a></li>
-<li><a class="reference internal" href="#orbital-directions" id="id15">Orbital directions</a></li>
-<li><a class="reference internal" href="#surface-prograde" id="id16">Surface &#8216;prograde&#8217;</a></li>
-<li><a class="reference internal" href="#orbital-speed" id="id17">Orbital speed</a></li>
-<li><a class="reference internal" href="#surface-speed" id="id18">Surface speed</a></li>
-<li><a class="reference internal" href="#angle-of-attack" id="id19">Angle of attack</a></li>
+<li><a class="reference internal" href="#custom-reference-frames" id="id11">Custom Reference Frames</a></li>
+<li><a class="reference internal" href="#converting-between-reference-frames" id="id12">Converting Between Reference Frames</a></li>
+<li><a class="reference internal" href="#visual-debugging" id="id13">Visual Debugging</a></li>
+<li><a class="reference internal" href="#examples" id="id14">Examples</a><ul>
+<li><a class="reference internal" href="#navball-directions" id="id15">Navball directions</a></li>
+<li><a class="reference internal" href="#orbital-directions" id="id16">Orbital directions</a></li>
+<li><a class="reference internal" href="#surface-prograde" id="id17">Surface &#8216;prograde&#8217;</a></li>
+<li><a class="reference internal" href="#orbital-speed" id="id18">Orbital speed</a></li>
+<li><a class="reference internal" href="#surface-speed" id="id19">Surface speed</a></li>
+<li><a class="reference internal" href="#angle-of-attack" id="id20">Angle of attack</a></li>
 </ul>
 </li>
 </ul>
@@ -328,9 +330,36 @@ matches the current orbital velocity of Kerbin.</p>
 <li><a class="reference internal" href="../python/api/space-center/parts.html#SpaceCenter.DockingPort.reference_frame" title="SpaceCenter.DockingPort.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">DockingPort.reference_frame</span></code></a></li>
 <li><a class="reference internal" href="../python/api/space-center/parts.html#SpaceCenter.Thruster.thrust_reference_frame" title="SpaceCenter.Thruster.thrust_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Thruster.thrust_reference_frame</span></code></a></li>
 </ul>
+<p>Relative and hybrid reference frames can also be constructed from the above.</p>
+</div>
+<div class="section" id="custom-reference-frames">
+<h2><a class="toc-backref" href="#id11">Custom Reference Frames</a><a class="headerlink" href="#custom-reference-frames" title="Permalink to this headline">¶</a></h2>
+<p>Custom reference frames can be constructed from the built in frames listed
+above. They come in two varieties: &#8216;relative&#8217; and &#8216;hybrid&#8217;.</p>
+<p>A relative reference frame is constructed from a parent reference frame, a fixed
+position offset and a fixed rotation offset. For example, this could be used to
+construct a reference frame whose origin is 10m below the vessel as follows, by
+applying a position offset of 10 along the z-axis to
+<a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.reference_frame</span></code></a>. Relative reference frames can be constructed by
+calling <a class="reference internal" href="../python/api/space-center/reference-frame.html#SpaceCenter.ReferenceFrame.create_relative" title="SpaceCenter.ReferenceFrame.create_relative"><code class="xref py py-meth docutils literal"><span class="pre">ReferenceFrame.create_relative()</span></code></a>.</p>
+<p>A hybrid reference frame inherits its components (position, rotation, velocity
+and angular velocity) from the components of other reference frames. Note that
+these components need not be fixed. For example, you could construct a reference
+frame whose position is the center of mass of the vessel (inherited from
+<a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.reference_frame</span></code></a>) and whose rotation is that of the planet being
+orbited (inherited from <a class="reference internal" href="../python/api/space-center/celestial-body.html#SpaceCenter.CelestialBody.reference_frame" title="SpaceCenter.CelestialBody.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">CelestialBody.reference_frame</span></code></a>). Relative
+reference frames can be constructed by calling
+<a class="reference internal" href="../python/api/space-center/reference-frame.html#SpaceCenter.ReferenceFrame.create_hybrid" title="SpaceCenter.ReferenceFrame.create_hybrid"><code class="xref py py-meth docutils literal"><span class="pre">ReferenceFrame.create_hybrid()</span></code></a>.</p>
+<p>The parent reference frame(s) of a custom reference frame can also be other
+custom reference frames. For example, you could combine the two example frames
+from above: construct a hybrid reference frame, centered on the vessel and
+rotated with the planet being orbited, and then create a relative reference that
+offsets the position of this 10m along the z-axis. The resulting frame will have
+its origin 10m below the vessel, and will be rotated with the planet being
+orbited.</p>
 </div>
 <div class="section" id="converting-between-reference-frames">
-<h2><a class="toc-backref" href="#id11">Converting Between Reference Frames</a><a class="headerlink" href="#converting-between-reference-frames" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Converting Between Reference Frames</a><a class="headerlink" href="#converting-between-reference-frames" title="Permalink to this headline">¶</a></h2>
 <p>kRPC provides utility methods to convert positions, directions, rotations and
 velocities between the different reference frames:</p>
 <ul class="simple">
@@ -341,7 +370,7 @@ velocities between the different reference frames:</p>
 </ul>
 </div>
 <div class="section" id="visual-debugging">
-<h2><a class="toc-backref" href="#id12">Visual Debugging</a><a class="headerlink" href="#visual-debugging" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Visual Debugging</a><a class="headerlink" href="#visual-debugging" title="Permalink to this headline">¶</a></h2>
 <p>References frames can be confusing, and choosing the correct one is a challenge
 in itself. To aid debugging, kRPCs drawing functionality can be used to
 visualize direction vectors in-game.</p>
@@ -363,10 +392,10 @@ direction of the current vessels velocity relative to the surface:</p>
 
 <span class="n">ref_frame</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
 <span class="n">velocity</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">(</span><span class="n">ref_frame</span><span class="p">)</span><span class="o">.</span><span class="n">velocity</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">add_direction</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span> <span class="n">ref_frame</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">add_direction</span><span class="p">(</span><span class="n">velocity</span><span class="p">,</span> <span class="n">ref_frame</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-   <span class="k">pass</span>
+    <span class="k">pass</span>
 </pre></div>
 </td></tr></table></div>
 <div class="admonition note">
@@ -376,10 +405,10 @@ directions, hence the while loop at the end of this example.</p>
 </div>
 </div>
 <div class="section" id="examples">
-<h2><a class="toc-backref" href="#id13">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The following examples demonstrate various uses of reference frames.</p>
 <div class="section" id="navball-directions">
-<h3><a class="toc-backref" href="#id14">Navball directions</a><a class="headerlink" href="#navball-directions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Navball directions</a><a class="headerlink" href="#navball-directions" title="Permalink to this headline">¶</a></h3>
 <p>This example demonstrates how to make the vessel point in various directions on
 the navball:</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -409,15 +438,15 @@ the navball:</p>
 <span class="n">ap</span><span class="o">.</span><span class="n">engage</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel north on the navball, with a pitch of 0 degrees</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel vertically upwards on the navball</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel west (heading of 270 degrees), with a pitch of 0 degrees</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="n">ap</span><span class="o">.</span><span class="n">disengage</span><span class="p">()</span>
@@ -437,7 +466,7 @@ negative z axis). The z-axis of the reference frame points east, so the
 requested direction points west &#8211; as required.</p>
 </div>
 <div class="section" id="orbital-directions">
-<h3><a class="toc-backref" href="#id15">Orbital directions</a><a class="headerlink" href="#orbital-directions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Orbital directions</a><a class="headerlink" href="#orbital-directions" title="Permalink to this headline">¶</a></h3>
 <p>This example demonstrates how to make the vessel point in the various orbital
 directions, as seen on the navball when it is in &#8216;orbit&#8217; mode. It uses
 <a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.orbital_reference_frame" title="SpaceCenter.Vessel.orbital_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.orbital_reference_frame</span></code></a>.</p>
@@ -468,15 +497,15 @@ directions, as seen on the navball when it is in &#8216;orbit&#8217; mode. It us
 <span class="n">ap</span><span class="o">.</span><span class="n">engage</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel in the prograde direction</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel in the orbit normal direction</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1"># Point the vessel in the orbit radial direction</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="n">ap</span><span class="o">.</span><span class="n">disengage</span><span class="p">()</span>
@@ -486,7 +515,7 @@ directions, as seen on the navball when it is in &#8216;orbit&#8217; mode. It us
 <img alt="../_images/vessel-orbital.png" class="align-center" src="../_images/vessel-orbital.png" />
 </div>
 <div class="section" id="surface-prograde">
-<h3><a class="toc-backref" href="#id16">Surface &#8216;prograde&#8217;</a><a class="headerlink" href="#surface-prograde" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Surface &#8216;prograde&#8217;</a><a class="headerlink" href="#surface-prograde" title="Permalink to this headline">¶</a></h3>
 <p>This example demonstrates how to point the vessel in the &#8216;prograde&#8217; direction on
 the navball, when in &#8216;surface&#8217; mode. This is the direction of the vessels
 velocity relative to the surface:</p>
@@ -505,7 +534,7 @@ velocity relative to the surface:</p>
 <span class="n">ap</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span>
 
 <span class="n">ap</span><span class="o">.</span><span class="n">reference_frame</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">surface_velocity_reference_frame</span>
-<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">engage</span><span class="p">()</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 <span class="n">ap</span><span class="o">.</span><span class="n">disengage</span><span class="p">()</span>
@@ -516,7 +545,7 @@ below:</p>
 <img alt="../_images/vessel-surface-velocity.png" class="align-center" src="../_images/vessel-surface-velocity.png" />
 </div>
 <div class="section" id="orbital-speed">
-<span id="tutorial-reference-frames-orbital-speed"></span><h3><a class="toc-backref" href="#id17">Orbital speed</a><a class="headerlink" href="#orbital-speed" title="Permalink to this headline">¶</a></h3>
+<span id="tutorial-reference-frames-orbital-speed"></span><h3><a class="toc-backref" href="#id18">Orbital speed</a><a class="headerlink" href="#orbital-speed" title="Permalink to this headline">¶</a></h3>
 <p>To compute the orbital speed of a vessel, you need to get the velocity relative
 to the planet&#8217;s <em>non-rotating</em> reference frame
 (<a class="reference internal" href="../python/api/space-center/celestial-body.html#SpaceCenter.CelestialBody.non_rotating_reference_frame" title="SpaceCenter.CelestialBody.non_rotating_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">CelestialBody.non_rotating_reference_frame</span></code></a>). This reference frame is
@@ -533,7 +562,11 @@ fixed relative to the body, but does not rotate:</p>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">time</span>
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
+
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Orbital speed&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
@@ -550,7 +583,7 @@ fixed relative to the body, but does not rotate:</p>
 </td></tr></table></div>
 </div>
 <div class="section" id="surface-speed">
-<span id="tutorial-reference-frames-surface-speed"></span><h3><a class="toc-backref" href="#id18">Surface speed</a><a class="headerlink" href="#surface-speed" title="Permalink to this headline">¶</a></h3>
+<span id="tutorial-reference-frames-surface-speed"></span><h3><a class="toc-backref" href="#id19">Surface speed</a><a class="headerlink" href="#surface-speed" title="Permalink to this headline">¶</a></h3>
 <p>To compute the speed of a vessel relative to the surface of a planet/moon, you
 need to get the velocity relative to the planets reference frame
 (<a class="reference internal" href="../python/api/space-center/celestial-body.html#SpaceCenter.CelestialBody.reference_frame" title="SpaceCenter.CelestialBody.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">CelestialBody.reference_frame</span></code></a>). This reference frame rotates with the
@@ -568,7 +601,11 @@ computing the velocity of the vessel:</p>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">time</span>
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
+
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Surface speed&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
@@ -585,7 +622,7 @@ computing the velocity of the vessel:</p>
 </td></tr></table></div>
 </div>
 <div class="section" id="angle-of-attack">
-<h3><a class="toc-backref" href="#id19">Angle of attack</a><a class="headerlink" href="#angle-of-attack" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">Angle of attack</a><a class="headerlink" href="#angle-of-attack" title="Permalink to this headline">¶</a></h3>
 <p>This example computes the angle between the direction the vessel is pointing in,
 and the direction that the vessel is moving in (relative to the surface):</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -612,7 +649,12 @@ and the direction that the vessel is moving in (relative to the surface):</p>
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">time</span>
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
+
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Angle of attack&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
@@ -629,12 +671,11 @@ and the direction that the vessel is moving in (relative to the surface):</p>
     <span class="c1"># Note: don&#39;t need to magnitude of d as it is a unit vector</span>
 
     <span class="c1"># Compute the angle between the vectors</span>
-    <span class="k">if</span> <span class="n">dotprod</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">acos</span> <span class="p">(</span><span class="n">dotprod</span> <span class="o">/</span> <span class="n">vmag</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">180.</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">dotprod</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">dotprod</span> <span class="o">/</span> <span class="n">vmag</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">180.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Angle of attack = </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">angle</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Angle of attack = </span><span class="si">%.1f</span><span class="s1"> degrees&#39;</span> <span class="o">%</span> <span class="n">angle</span><span class="p">)</span>
 
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -690,7 +731,7 @@ the vessel. <a class="reference internal" href="../python/api/space-center/celes
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

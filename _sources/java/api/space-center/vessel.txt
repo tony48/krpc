@@ -173,7 +173,7 @@ Vessel
       The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
       The maximum torque that the vessel generate. Includes contributions from reaction wheels,
@@ -182,7 +182,7 @@ Vessel
       vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableReactionWheelTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableReactionWheelTorque()
 
 
       The maximum torque that the currently active and powered reaction wheels can generate.
@@ -190,7 +190,7 @@ Vessel
       vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableRCSTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableRCSTorque()
 
 
       The maximum torque that the currently active RCS thrusters can generate.
@@ -198,7 +198,7 @@ Vessel
       vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableEngineTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableEngineTorque()
 
 
       The maximum torque that the currently active and gimballed engines can generate.
@@ -206,10 +206,18 @@ Vessel
       vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableControlSurfaceTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableControlSurfaceTorque()
 
 
       The maximum torque that the aerodynamic control surfaces can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableOtherTorque()
+
+
+      The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:meth:`Vessel.getReferenceFrame()`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
@@ -309,6 +317,13 @@ Vessel
    .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
+
+      :param ReferenceFrame referenceFrame:
+
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> boundingBox(ReferenceFrame referenceFrame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
 
       :param ReferenceFrame referenceFrame:
 

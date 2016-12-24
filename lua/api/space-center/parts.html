@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -790,6 +790,38 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 <p class="last">This requires either the <a class="reference external" href="http://github.com/krpc/NameTag/releases/latest">NameTag</a> or
 <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/">kOS</a> mods to be installed.</p>
 </div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Part.highlighted">
+<code class="descname">highlighted</code><a class="headerlink" href="#SpaceCenter.Part.highlighted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is highlighted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Part.highlight_color">
+<code class="descname">highlight_color</code><a class="headerlink" href="#SpaceCenter.Part.highlight_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color used to highlight the part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -1719,6 +1751,29 @@ If the part is physicsless, this is equivalent to <a class="reference internal" 
 </dd></dl>
 
 <dl class="method">
+<dt id="SpaceCenter.Part.bounding_box">
+<code class="descname">bounding_box</code><span class="sig-paren">(</span><em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Part.bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.
+Returns the minimum and maximum vertices of the box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is computed from the collision meshes of the part.
+If the part is not collidable, the box has zero volume and is centered on
+the <a class="reference internal" href="#SpaceCenter.Part.position" title="SpaceCenter.Part.position"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.Part.position()</span></code></a> of the part.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="SpaceCenter.Part.direction">
 <code class="descname">direction</code><span class="sig-paren">(</span><em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Part.direction" title="Permalink to this definition">¶</a></dt>
 <dd><p>The direction of the part in the given reference frame.</p>
@@ -2479,7 +2534,8 @@ to action groups in the in-game editor.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.ControlSurface.available_torque">
 <code class="descname">available_torque</code><a class="headerlink" href="#SpaceCenter.ControlSurface.available_torque" title="Permalink to this definition">¶</a></dt>
-<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+<dd><p>The available torque in the positive pitch, roll and yaw axes and
+negative pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2487,7 +2543,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -3348,7 +3404,7 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -3515,22 +3571,6 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.Propellant.connected_resources">
-<code class="descname">connected_resources</code><a class="headerlink" href="#SpaceCenter.Propellant.connected_resources" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reachable resources connected to this propellant.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of <a class="reference internal" href="resources.html#SpaceCenter.Resource" title="SpaceCenter.Resource"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Resource</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -4104,6 +4144,22 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </div>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="SpaceCenter.LandingGear.is_grounded">
+<code class="descname">is_grounded</code><a class="headerlink" href="#SpaceCenter.LandingGear.is_grounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the gear is touching the ground.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -4200,6 +4256,22 @@ Returns an error if you try to deploy fixed landing gear.</p>
 <p class="last">Fixed landing legs are always deployed.
 Returns an error if you try to deploy fixed landing gear.</p>
 </div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.LandingLeg.is_grounded">
+<code class="descname">is_grounded</code><a class="headerlink" href="#SpaceCenter.LandingLeg.is_grounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the leg is touching the ground.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -5040,7 +5112,7 @@ Returns zero if the reaction wheel is inactive or broken.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -5058,7 +5130,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -5232,7 +5304,7 @@ Returns zero if the RCS is inactive.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -5440,22 +5512,6 @@ to the ratios at which they are consumed by the RCS.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.Sensor.power_usage">
-<code class="descname">power_usage</code><a class="headerlink" href="#SpaceCenter.Sensor.power_usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current power usage of the sensor, in units of charge per second.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
 </tr>
 </tbody>
 </table>
@@ -5802,7 +5858,11 @@ returns an empty list. A parts parent can be obtained by calling
 returns <code class="docutils literal"><span class="pre">nil</span></code>.</p>
 <p>The following Lua example uses these attributes to perform a
 depth-first traversal over all of the parts in a vessel:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">.</span><span class="n">root</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
+
+<span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">.</span><span class="n">root</span>
 <span class="kd">local</span> <span class="n">stack</span> <span class="o">=</span> <span class="p">{{</span><span class="n">root</span><span class="p">,</span><span class="mi">0</span><span class="p">}}</span>
 <span class="k">while</span> <span class="o">#</span><span class="n">stack</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
   <span class="kd">local</span> <span class="n">part</span><span class="p">,</span><span class="n">depth</span> <span class="o">=</span> <span class="nb">unpack</span><span class="p">(</span><span class="nb">table.remove</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span>
@@ -5852,7 +5912,11 @@ a parent part, so does not have an attachment mode. However, the part is
 consider to be <em>axially</em> attached to nothing.</p>
 <p>The following Lua example does a depth-first traversal as before,
 but also prints out the attachment mode used by the part:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">.</span><span class="n">root</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
+
+<span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">.</span><span class="n">root</span>
 <span class="kd">local</span> <span class="n">stack</span> <span class="o">=</span> <span class="p">{{</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">}}</span>
 <span class="k">while</span> <span class="o">#</span><span class="n">stack</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
   <span class="kd">local</span> <span class="n">part</span><span class="p">,</span><span class="n">depth</span> <span class="o">=</span> <span class="nb">unpack</span><span class="p">(</span><span class="nb">table.remove</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span>
@@ -5998,7 +6062,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

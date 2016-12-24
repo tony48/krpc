@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Launch into Orbit &mdash; kRPC 0.3.6 documentation</title>
+  <title>Launch into Orbit &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Pitch, Heading and Roll" href="pitch-heading-roll.html"/>
         <link rel="prev" title="Reference Frames" href="reference-frames.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -155,12 +155,51 @@
             
   <div class="section" id="launch-into-orbit">
 <h1>Launch into Orbit<a class="headerlink" href="#launch-into-orbit" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial launches a two-stage rocket into a 150km circular orbit. The craft
-file for the rocket can be <a class="reference download internal" href="../_downloads/LaunchIntoOrbit.craft"><code class="xref download docutils literal"><span class="pre">downloaded</span> <span class="pre">here</span></code></a> and the entire python script <a class="reference download internal" href="../_downloads/LaunchIntoOrbit.py"><code class="xref download docutils literal"><span class="pre">from</span>
-<span class="pre">here</span></code></a>.</p>
+<p>This tutorial launches a two-stage rocket into a 150km circular orbit. The
+program assumes you are using <a class="reference download internal" href="../_downloads/LaunchIntoOrbit.craft"><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">craft</span> <span class="pre">file</span></code></a>. The program is available in a variety of
+languages:</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cs"><code class="xref download docutils literal"><span class="pre">C#</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cpp"><code class="xref download docutils literal"><span class="pre">C++</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.py"><code class="xref download docutils literal"><span class="pre">Python</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.lua"><code class="xref download docutils literal"><span class="pre">Lua</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.java"><code class="xref download docutils literal"><span class="pre">Java</span></code></a></li>
+</ul>
 <p>The following code connects to the server, gets the active vessel, sets up a
 bunch of streams to get flight telemetry then prepares the rocket for launch.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">math</span>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
 
 <span class="n">turn_start_altitude</span> <span class="o">=</span> <span class="mi">250</span>
 <span class="n">turn_end_altitude</span> <span class="o">=</span> <span class="mi">45000</span>
@@ -173,25 +212,24 @@ bunch of streams to get flight telemetry then prepares the rocket for launch.</p
 <span class="n">ut</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">)</span>
 <span class="n">altitude</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">(),</span> <span class="s1">&#39;mean_altitude&#39;</span><span class="p">)</span>
 <span class="n">apoapsis</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="p">,</span> <span class="s1">&#39;apoapsis_altitude&#39;</span><span class="p">)</span>
-<span class="n">periapsis</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="p">,</span> <span class="s1">&#39;periapsis_altitude&#39;</span><span class="p">)</span>
-<span class="n">eccentricity</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="p">,</span> <span class="s1">&#39;eccentricity&#39;</span><span class="p">)</span>
-<span class="n">stage_2_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">stage_3_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">srb_fuel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">stage_3_resources</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span>
-<span class="n">launcher_fuel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">stage_2_resources</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="s1">&#39;LiquidFuel&#39;</span><span class="p">)</span>
 
 <span class="c1"># Pre-launch setup</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">sas</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">rcs</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">1.0</span>
 
 <span class="c1"># Countdown...</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;3...&#39;</span><span class="p">);</span> <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;2...&#39;</span><span class="p">);</span> <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;1...&#39;</span><span class="p">);</span> <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;3...&#39;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;2...&#39;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;1...&#39;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>The next part of the program launches the rocket. The main loop continuously
 updates the auto-pilot heading to gradually pitch the rocket towards the
 horizon. It also monitors the amount of solid fuel remaining in the boosters,
@@ -235,7 +273,7 @@ the rocket has left Kerbin&#8217;s atmosphere.</p>
 <span class="k">while</span> <span class="n">apoapsis</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">target_altitude</span><span class="p">:</span>
     <span class="k">pass</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Target apoapsis reached&#39;</span><span class="p">)</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 <span class="c1"># Wait until out of atmosphere</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Coasting out of atmosphere&#39;</span><span class="p">)</span>
@@ -272,7 +310,7 @@ orientate the ship along the y-axis of the maneuver node&#8217;s reference frame
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Orientate ship</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Orientating ship for circularization burn&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">reference_frame</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">reference_frame</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1"># Wait until burn</span>
@@ -292,14 +330,14 @@ which point the node has been executed).</p>
 <span class="k">while</span> <span class="n">time_to_apoapsis</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="n">burn_time</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
     <span class="k">pass</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Executing burn&#39;</span><span class="p">)</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">burn_time</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Fine tuning&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="n">remaining_burn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">remaining_burn_vector</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">remaining_burn</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
     <span class="k">pass</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">node</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch complete&#39;</span><span class="p">)</span>
@@ -349,7 +387,7 @@ which point the node has been executed).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

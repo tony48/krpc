@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.3.6 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -622,7 +622,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -641,7 +641,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -660,7 +660,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -679,7 +679,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -698,7 +698,26 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Vessel.available_other_torque">
+<code class="descname">available_other_torque</code><a class="headerlink" href="#SpaceCenter.Vessel.available_other_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Vessel.reference_frame</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -846,6 +865,23 @@ relative to the surface of the body being orbited.</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Vessel.bounding_box">
+<code class="descname">bounding_box</code><span class="sig-paren">(</span><em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Vessel.bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.
+Returns the minimum and maximum vertices of the box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))</td>
 </tr>
 </tbody>
 </table>
@@ -1066,7 +1102,7 @@ See <a class="reference internal" href="#SpaceCenter.Vessel.situation" title="Sp
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

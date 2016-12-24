@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>InfernalRobotics API &mdash; kRPC 0.3.6 documentation</title>
+  <title>InfernalRobotics API &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
         <link rel="up" title="Java" href="../../java.html"/>
         <link rel="next" title="InfernalRobotics" href="infernal-robotics/infernal-robotics.html"/>
         <link rel="prev" title="Text" href="drawing/text.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -175,16 +175,17 @@ following classes:</p>
 <p>The following example gets the control group named &#8220;MyGroup&#8221;, prints out the
 names and positions of all of the servos in the group, then moves all of the
 servos to the right for 1 second.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics.Servo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics.ServoGroup</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Vessel</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics.ServoGroup</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">krpc.client.services.InfernalRobotics.Servo</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IR</span> <span class="o">{</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InfernalRoboticsExample</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
         <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;InfernalRobotics Example&quot;</span><span class="o">);</span>
         <span class="n">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">).</span><span class="na">getActiveVessel</span><span class="o">();</span>
@@ -196,8 +197,9 @@ servos to the right for 1 second.</p>
             <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="k">for</span> <span class="o">(</span><span class="n">Servo</span> <span class="n">servo</span> <span class="o">:</span> <span class="n">group</span><span class="o">.</span><span class="na">getServos</span><span class="o">())</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Servo</span> <span class="n">servo</span> <span class="o">:</span> <span class="n">group</span><span class="o">.</span><span class="na">getServos</span><span class="o">())</span> <span class="o">{</span>
             <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">servo</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">servo</span><span class="o">.</span><span class="na">getPosition</span><span class="o">());</span>
+        <span class="o">}</span>
 
         <span class="n">group</span><span class="o">.</span><span class="na">moveRight</span><span class="o">();</span>
         <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
@@ -250,7 +252,7 @@ servos to the right for 1 second.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

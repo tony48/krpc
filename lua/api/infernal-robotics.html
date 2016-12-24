@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>InfernalRobotics API &mdash; kRPC 0.3.6 documentation</title>
+  <title>InfernalRobotics API &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
         <link rel="up" title="Lua" href="../../lua.html"/>
         <link rel="next" title="InfernalRobotics" href="infernal-robotics/infernal-robotics.html"/>
         <link rel="prev" title="Text" href="drawing/text.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -175,15 +175,13 @@ following classes:</p>
 <p>The following example gets the control group named &#8220;MyGroup&#8221;, prints out the
 names and positions of all of the servos in the group, then moves all of the
 servos to the right for 1 second.</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc.init&#39;</span>
-<span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc.platform&#39;</span>
-<span class="kd">local</span> <span class="n">Types</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc.types&#39;</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
 
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">InfernalRobotics Example&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
 
 <span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">infernal_robotics</span><span class="p">.</span><span class="n">servo_group_with_name</span><span class="p">(</span><span class="n">vessel</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">MyGroup&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">group</span> <span class="o">==</span> <span class="n">Types</span><span class="p">.</span><span class="n">none</span> <span class="k">then</span>
+<span class="k">if</span> <span class="n">group</span> <span class="o">==</span> <span class="n">krpc</span><span class="p">.</span><span class="n">types</span><span class="p">.</span><span class="n">none</span> <span class="k">then</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Group not found&#39;</span><span class="p">)</span>
   <span class="nb">os.exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">end</span>
@@ -193,7 +191,7 @@ servos to the right for 1 second.</p>
 <span class="k">end</span>
 
 <span class="n">group</span><span class="p">:</span><span class="n">move_right</span><span class="p">()</span>
-<span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">krpc</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">group</span><span class="p">:</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -241,7 +239,7 @@ servos to the right for 1 second.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

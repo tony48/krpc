@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.6 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Control" href="control.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -529,6 +529,28 @@ For example &#8220;Mark1-2Pod&#8221;.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part11highlightedEv">
+<span id="krpc::services::SpaceCenter::Part::highlighted"></span>bool <code class="descclassname"></code><code class="descname">highlighted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part11highlightedEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part15set_highlightedEb">
+<span id="krpc::services::SpaceCenter::Part::set_highlighted__b"></span>void <code class="descclassname"></code><code class="descname">set_highlighted</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part15set_highlightedEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the part is highlighted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part15highlight_colorEv">
+<span id="krpc::services::SpaceCenter::Part::highlight_color"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">highlight_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part15highlight_colorEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part19set_highlight_colorENSt5tupleIdddEE">
+<span id="krpc::services::SpaceCenter::Part::set_highlight_color__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_highlight_color</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part19set_highlight_colorENSt5tupleIdddEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The color used to highlight the part.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter4Part4costEv">
 <span id="krpc::services::SpaceCenter::Part::cost"></span>double <code class="descclassname"></code><code class="descname">cost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part4costEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The cost of the part, in units of funds.</p>
@@ -931,6 +953,27 @@ If the part is physicsless, this is equivalent to <a class="reference internal" 
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part12bounding_boxE14ReferenceFrame">
+<span id="krpc::services::SpaceCenter::Part::bounding_box__ReferenceFrame"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">bounding_box</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part12bounding_boxE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.
+Returns the minimum and maximum vertices of the box.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is computed from the collision meshes of the part.
+If the part is not collidable, the box has zero volume and is centered on
+the <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part8positionE14ReferenceFrame" title="krpc::services::SpaceCenter::Part::position"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::position()</span></code></a> of the part.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter4Part9directionE14ReferenceFrame">
 <span id="krpc::services::SpaceCenter::Part::direction__ReferenceFrame"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">direction</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part9directionE14ReferenceFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>The direction of the part in the given reference frame.</p>
@@ -1303,7 +1346,7 @@ to action groups in the in-game editor.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Module10set_actionENSt6stringEb">
-<span id="krpc::services::SpaceCenter::Module::set_action__ss.b"></span>void <code class="descclassname"></code><code class="descname">set_action</code><span class="sig-paren">(</span>std::string <em>name</em>, bool <em>value</em> = True<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Module10set_actionENSt6stringEb" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::Module::set_action__ss.b"></span>void <code class="descclassname"></code><code class="descname">set_action</code><span class="sig-paren">(</span>std::string <em>name</em>, bool <em>value</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Module10set_actionENSt6stringEb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the value of an action with the given name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1483,8 +1526,9 @@ to action groups in the in-game editor.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurface16available_torqueEv">
-<span id="krpc::services::SpaceCenter::ControlSurface::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface16available_torqueEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+<span id="krpc::services::SpaceCenter::ControlSurface::available_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The available torque in the positive pitch, roll and yaw axes and
+negative pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>.</p>
 </dd></dl>
 
@@ -1966,7 +2010,7 @@ Returns 0 if the gimbal is locked.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Engine16available_torqueEv">
-<span id="krpc::services::SpaceCenter::Engine::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Engine16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::Engine::available_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Engine16available_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>.
 Returns zero if the engine is inactive, or not gimballed.</p>
@@ -2036,12 +2080,6 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter10Propellant5ratioEv">
 <span id="krpc::services::SpaceCenter::Propellant::ratio"></span>float <code class="descclassname"></code><code class="descname">ratio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10Propellant5ratioEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The propellant ratio.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10Propellant19connected_resourcesEv">
-<span id="krpc::services::SpaceCenter::Propellant::connected_resources"></span>std::vector&lt;<a class="reference internal" href="resources.html#_CPPv2N4krpc8services11SpaceCenter8ResourceE" title="krpc::services::SpaceCenter::Resource">Resource</a>&gt; <code class="descclassname"></code><code class="descname">connected_resources</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10Propellant19connected_resourcesEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reachable resources connected to this propellant.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2322,6 +2360,12 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </div>
 </dd></dl>
 
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear11is_groundedEv">
+<span id="krpc::services::SpaceCenter::LandingGear::is_grounded"></span>bool <code class="descclassname"></code><code class="descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear11is_groundedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the gear is touching the ground.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="enum-struct">
@@ -2393,6 +2437,12 @@ Returns an error if you try to deploy fixed landing gear.</p>
 <p class="last">Fixed landing legs are always deployed.
 Returns an error if you try to deploy fixed landing gear.</p>
 </div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg11is_groundedEv">
+<span id="krpc::services::SpaceCenter::LandingLeg::is_grounded"></span>bool <code class="descclassname"></code><code class="descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg11is_groundedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the leg is touching the ground.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3005,7 +3055,7 @@ In this case, check <a class="reference internal" href="#_CPPv2N4krpc8services11
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheel16available_torqueEv">
-<span id="krpc::services::SpaceCenter::ReactionWheel::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::ReactionWheel::available_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel16available_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>.
 Returns zero if the reaction wheel is inactive or broken.</p>
@@ -3013,7 +3063,7 @@ Returns zero if the reaction wheel is inactive or broken.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheel10max_torqueEv">
-<span id="krpc::services::SpaceCenter::ReactionWheel::max_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">max_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel10max_torqueEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::ReactionWheel::max_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">max_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheel10max_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque the reaction wheel can provide, is it active,
 in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>.</p>
@@ -3122,7 +3172,7 @@ it is covered by a fairing (<a class="reference internal" href="#_CPPv2N4krpc8se
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter3RCS16available_torqueEv">
-<span id="krpc::services::SpaceCenter::RCS::available_torque"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3RCS16available_torqueEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::RCS::available_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3RCS16available_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
 These axes correspond to the coordinate axes of the <a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>.
 Returns zero if the RCS is inactive.</p>
@@ -3218,12 +3268,6 @@ to the ratios at which they are consumed by the RCS.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Sensor5valueEv">
 <span id="krpc::services::SpaceCenter::Sensor::value"></span>std::string <code class="descclassname"></code><code class="descname">value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Sensor5valueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current value of the sensor.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter6Sensor11power_usageEv">
-<span id="krpc::services::SpaceCenter::Sensor::power_usage"></span>float <code class="descclassname"></code><code class="descname">power_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Sensor11power_usageEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current power usage of the sensor, in units of charge per second.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3472,12 +3516,14 @@ returns an empty list. A parts parent can be obtained by calling
 returns <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
 <p>The following C++ example uses these attributes to perform a
 depth-first traversal over all of the parts in a vessel:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">SpaceCenter</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
@@ -3485,17 +3531,15 @@ depth-first traversal over all of the parts in a vessel:</p>
   <span class="k">auto</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
 
   <span class="k">auto</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">().</span><span class="n">root</span><span class="p">();</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">stack</span><span class="p">;</span>
+  <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
     <span class="k">auto</span> <span class="n">part</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">;</span>
     <span class="k">auto</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
     <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">part</span><span class="p">.</span><span class="n">title</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">auto</span> <span class="n">children</span> <span class="o">=</span> <span class="n">part</span><span class="p">.</span><span class="n">children</span><span class="p">();</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">child</span> <span class="o">=</span> <span class="n">children</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">child</span> <span class="o">!=</span> <span class="n">children</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">child</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
-    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">part</span><span class="p">.</span><span class="n">children</span><span class="p">())</span>
+      <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3539,35 +3583,32 @@ a parent part, so does not have an attachment mode. However, the part is
 consider to be <em>axially</em> attached to nothing.</p>
 <p>The following C++ example does a depth-first traversal as before,
 but also prints out the attachment mode used by the part:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">SpaceCenter</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">auto</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">();</span>
   <span class="n">SpaceCenter</span> <span class="n">sc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
 
   <span class="k">auto</span> <span class="n">root</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">().</span><span class="n">root</span><span class="p">();</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">;</span>
+  <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
     <span class="k">auto</span> <span class="n">part</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">;</span>
     <span class="k">auto</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
     <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">attach_mode</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">part</span><span class="p">.</span><span class="n">axially_attached</span><span class="p">())</span> <span class="p">{</span>
-      <span class="n">attach_mode</span> <span class="o">=</span> <span class="s">&quot;axial&quot;</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// radially_attached</span>
-      <span class="n">attach_mode</span> <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">attach_mode</span> <span class="o">=</span> <span class="n">part</span><span class="p">.</span><span class="n">axially_attached</span><span class="p">()</span> <span class="o">?</span> <span class="s">&quot;axial&quot;</span> <span class="o">:</span> <span class="s">&quot;radial&quot;</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">part</span><span class="p">.</span><span class="n">title</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; - &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">attach_mode</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="k">auto</span> <span class="n">children</span> <span class="o">=</span> <span class="n">part</span><span class="p">.</span><span class="n">children</span><span class="p">();</span>
     <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">children</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+      <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">Part</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -3702,7 +3743,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

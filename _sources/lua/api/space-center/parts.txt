@@ -283,6 +283,20 @@ Part
          This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
          `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
+   .. attribute:: highlighted
+
+      Whether the part is highlighted.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: highlight_color
+
+      The color used to highlight the part.
+
+      :Attribute: Can be read or written
+      :rtype: Tuple of (number, number, number)
+
    .. attribute:: cost
 
       The cost of the part, in units of funds.
@@ -707,6 +721,20 @@ Part
       :param SpaceCenter.ReferenceFrame reference_frame:
       :rtype: Tuple of (number, number, number)
 
+   .. method:: bounding_box(reference_frame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
+
+      :param SpaceCenter.ReferenceFrame reference_frame:
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
+
+      .. note::
+
+         This is computed from the collision meshes of the part.
+         If the part is not collidable, the box has zero volume and is centered on
+         the :meth:`SpaceCenter.Part.position` of the part.
+
    .. method:: direction(reference_frame)
 
       The direction of the part in the given reference frame.
@@ -1090,11 +1118,12 @@ Control Surface
 
    .. attribute:: available_torque
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The available torque in the positive pitch, roll and yaw axes and
+      negative pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
-      :rtype: Tuple of (number, number, number)
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
 
 
 
@@ -1558,7 +1587,7 @@ Engine
       Returns zero if the engine is inactive, or not gimballed.
 
       :Attribute: Read-only, cannot be set
-      :rtype: Tuple of (number, number, number)
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
 
 
 
@@ -1635,13 +1664,6 @@ Engine
 
       :Attribute: Read-only, cannot be set
       :rtype: number
-
-   .. attribute:: connected_resources
-
-      The reachable resources connected to this propellant.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: List of :class:`SpaceCenter.Resource`
 
 
 
@@ -1935,6 +1957,13 @@ Landing Gear
          Fixed landing gear are always deployed.
          Returns an error if you try to deploy fixed landing gear.
 
+   .. attribute:: is_grounded
+
+      Returns whether the gear is touching the ground.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
 
 
 .. class:: LandingGearState
@@ -2001,6 +2030,13 @@ Landing Leg
 
          Fixed landing legs are always deployed.
          Returns an error if you try to deploy fixed landing gear.
+
+   .. attribute:: is_grounded
+
+      Returns whether the leg is touching the ground.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
 
 
 
@@ -2499,7 +2535,7 @@ Reaction Wheel
       Returns zero if the reaction wheel is inactive or broken.
 
       :Attribute: Read-only, cannot be set
-      :rtype: Tuple of (number, number, number)
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
 
    .. attribute:: max_torque
 
@@ -2508,7 +2544,7 @@ Reaction Wheel
       These axes correspond to the coordinate axes of the :attr:`SpaceCenter.Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
-      :rtype: Tuple of (number, number, number)
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
 
 
 
@@ -2593,7 +2629,7 @@ RCS
       Returns zero if the RCS is inactive.
 
       :Attribute: Read-only, cannot be set
-      :rtype: Tuple of (number, number, number)
+      :rtype: Tuple of (Tuple of (number, number, number), Tuple of (number, number, number))
 
    .. attribute:: max_thrust
 
@@ -2694,13 +2730,6 @@ Sensor
 
       :Attribute: Read-only, cannot be set
       :rtype: string
-
-   .. attribute:: power_usage
-
-      The current power usage of the sensor, in units of charge per second.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: number
 
 
 

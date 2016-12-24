@@ -226,7 +226,7 @@ Vessel
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple of (float, float, float)
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. attribute:: available_reaction_wheel_torque
 
@@ -236,7 +236,7 @@ Vessel
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple of (float, float, float)
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. attribute:: available_rcs_torque
 
@@ -246,7 +246,7 @@ Vessel
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple of (float, float, float)
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. attribute:: available_engine_torque
 
@@ -256,7 +256,7 @@ Vessel
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple of (float, float, float)
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. attribute:: available_control_surface_torque
 
@@ -266,7 +266,17 @@ Vessel
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple of (float, float, float)
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
+
+   .. attribute:: available_other_torque
+
+      The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:attr:`Vessel.reference_frame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. attribute:: reference_frame
 
@@ -370,6 +380,14 @@ Vessel
 
       :param ReferenceFrame reference_frame:
       :rtype: tuple of (float, float, float)
+
+   .. method:: bounding_box(reference_frame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
+
+      :param ReferenceFrame reference_frame:
+      :rtype: tuple of (tuple of (float, float, float), tuple of (float, float, float))
 
    .. method:: velocity(reference_frame)
 

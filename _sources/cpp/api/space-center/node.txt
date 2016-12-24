@@ -10,23 +10,23 @@ Node
 
    Represents a maneuver node. Can be created using :func:`Control::add_node`.
 
-   .. function:: float prograde()
-   .. function:: void set_prograde(float value)
+   .. function:: double prograde()
+   .. function:: void set_prograde(double value)
 
       The magnitude of the maneuver nodes delta-v in the prograde direction, in meters per second.
 
-   .. function:: float normal()
-   .. function:: void set_normal(float value)
+   .. function:: double normal()
+   .. function:: void set_normal(double value)
 
       The magnitude of the maneuver nodes delta-v in the normal direction, in meters per second.
 
-   .. function:: float radial()
-   .. function:: void set_radial(float value)
+   .. function:: double radial()
+   .. function:: void set_radial(double value)
 
       The magnitude of the maneuver nodes delta-v in the radial direction, in meters per second.
 
-   .. function:: float delta_v()
-   .. function:: void set_delta_v(float value)
+   .. function:: double delta_v()
+   .. function:: void set_delta_v(double value)
 
       The delta-v of the maneuver node, in meters per second.
 
@@ -35,12 +35,12 @@ Node
 
          Does not change when executing the maneuver node. See :func:`Node::remaining_delta_v`.
 
-   .. function:: float remaining_delta_v()
+   .. function:: double remaining_delta_v()
 
       Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the node
       is executed. This is equivalent to the delta-v reported in-game.
 
-   .. function:: std::tuple<double, double, double> burn_vector(ReferenceFrame reference_frame = None)
+   .. function:: std::tuple<double, double, double> burn_vector(ReferenceFrame reference_frame = ReferenceFrame())
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s.
@@ -54,7 +54,7 @@ Node
 
          Does not change when executing the maneuver node. See :func:`Node::remaining_burn_vector`.
 
-   .. function:: std::tuple<double, double, double> remaining_burn_vector(ReferenceFrame reference_frame = None)
+   .. function:: std::tuple<double, double, double> remaining_burn_vector(ReferenceFrame reference_frame = ReferenceFrame())
 
       Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
       is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.

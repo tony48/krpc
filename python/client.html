@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Client &mdash; kRPC 0.3.6 documentation</title>
+  <title>Python Client &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
         <link rel="up" title="Python" href="../python.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="Python" href="../python.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -164,7 +164,7 @@
   <div class="section" id="python-client">
 <h1>Python Client<a class="headerlink" href="#python-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides functionality to interact with a kRPC server from programs
-written in Python. It can be <a class="reference external" href="https://pypi.python.org/pypi/krpc">installed using PyPI</a> or <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.6/krpc-python-0.3.6.zip">downloaded from
+written in Python. It can be <a class="reference external" href="https://pypi.python.org/pypi/krpc">installed using PyPI</a> or <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.7/krpc-python-0.3.7.zip">downloaded from
 GitHub</a>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
@@ -201,7 +201,8 @@ connect to a server running on the local machine:</p>
 <p>This function also accepts arguments that specify what address and port numbers
 to connect to. For example:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Remote example&#39;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;my.domain.name&#39;</span><span class="p">,</span> <span class="n">rpc_port</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stream_port</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Remote example&#39;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;my.domain.name&#39;</span><span class="p">,</span> <span class="n">rpc_port</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stream_port</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -235,7 +236,9 @@ directly.</p>
 <p>For example, consider the following loop that continuously prints out the
 position of the active vessel. This loop incurs significant communication
 overheads, as the <code class="docutils literal"><span class="pre">vessel.position</span></code> function is called repeatedly.</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="k">print</span> <span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">refframe</span><span class="p">)</span>
@@ -244,11 +247,13 @@ overheads, as the <code class="docutils literal"><span class="pre">vessel.positi
 <p>The following code achieves the same thing, but is far more efficient. It calls
 <a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a> once at the start of the program to create
 a stream, and then repeatedly gets the position from the stream.</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
 <span class="n">position</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">refframe</span><span class="p">)</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-   <span class="k">print</span> <span class="n">position</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">position</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>A stream can be created by calling <a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a> or
@@ -257,9 +262,12 @@ of these approaches return an instance of the <a class="reference internal" href
 <p>Both methods and attributes can be streamed. The example given above
 demonstrates how to stream methods. The following example shows how to stream an
 attribute (in this case <code class="docutils literal"><span class="pre">vessel.control.abort</span></code>):</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">abort</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="p">,</span> <span class="s1">&#39;abort&#39;</span><span class="p">)</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="n">abort</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="p">,</span> <span class="s1">&#39;abort&#39;</span><span class="p">)</span>
 <span class="k">while</span> <span class="ow">not</span> <span class="n">abort</span><span class="p">():</span>
-    <span class="o">...</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -315,14 +323,18 @@ streamed should be passed as <em>func</em>, and its arguments as <em>args</em> a
 <em>kwargs</em>.</p>
 <p>For example, to stream the result of method call
 <code class="docutils literal"><span class="pre">vessel.position(refframe)</span></code>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 <span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
 <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">refframe</span><span class="p">)</span> <span class="k">as</span> <span class="n">pos</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Position =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Or to stream the property <code class="docutils literal"><span class="pre">conn.space_center.ut</span></code>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">ut</span><span class="p">:</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">ut</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Universal Time =&#39;</span><span class="p">,</span> <span class="n">ut</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -366,12 +378,16 @@ only exception that may be useful is:</p>
 the server&#8217;s version string and performance statistics.</p>
 <p>For example, the following prints out the version string for the
 server:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Server version =&#39;</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Server version =&#39;</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or to get the rate at which the server is sending and receiving data
 over the network:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data in =&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">),</span> <span class="s1">&#39;KB/s&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data out =&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">bytes_written_rate</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">),</span> <span class="s1">&#39;KB/s&#39;</span><span class="p">)</span>
 </pre></div>
@@ -441,7 +457,7 @@ over the network:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

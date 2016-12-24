@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending kRPC &mdash; kRPC 0.3.6 documentation</title>
+  <title>Extending kRPC &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="index.html"/>
         <link rel="next" title="Communication Protocol" href="communication-protocol.html"/>
         <link rel="prev" title="Compiling kRPC" href="compiling.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -186,19 +186,18 @@ classes, methods and properties with these attributes.</p>
 <p>The following example implements a service that can control the throttle and
 staging of the active vessel. To add this to the server, compile the code and
 place the DLL in your GameData directory.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>using UnityEngine;
-using KRPC.Service;
+<div class="highlight-python"><div class="highlight"><pre><span></span>using KRPC.Service;
 using KRPC.Service.Attributes;
 using KSP.UI.Screens;
 
-namespace LaunchControl {
-
+namespace LaunchControl
+{
     /// &lt;summary&gt;
     /// Service for staging vessels and controlling their throttle.
     /// &lt;/summary&gt;
     [KRPCService (GameScene = GameScene.Flight)]
-    public static class LaunchControl {
-
+    public static class LaunchControl
+    {
         /// &lt;summary&gt;
         /// The current throttle setting for the active vessel, between 0 and 1.
         /// &lt;/summary&gt;
@@ -431,9 +430,9 @@ serialize</span></a>.</li>
 </div>
 </dd></dl>
 
-<dl class="class">
-<dt id="class-KRPCProperty">
-<code class="descname">class KRPCProperty</code><a class="headerlink" href="#class-KRPCProperty" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="attribute-KRPCProperty">
+<code class="descname">KRPCProperty</code><a class="headerlink" href="#attribute-KRPCProperty" title="Permalink to this definition">¶</a></dt>
 <dd><p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
 applied to class properties, and comes in two flavors:</p>
 <ol class="arabic simple">
@@ -537,6 +536,65 @@ name of the service it is part of.</li>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">eva</span><span class="o">.</span><span class="n">FlagState</span><span class="o">.</span><span class="n">lowered</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="attribute-KRPCDefaultValue">
+<code class="descname">KRPCDefaultValue</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">string</a> <em>Name</em>, Type <em>ValueConstructor</em><span class="sig-paren">)</span><a class="headerlink" href="#attribute-KRPCDefaultValue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Name</strong> &#8211; Name of the parameter to set the default value for.</li>
+<li><strong>ValueConstructor</strong> &#8211; Type of a static class with a Create method that
+returns an instance of the default value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a>
+can be applied to a kRPC method or procedure. It provides a workaround to set
+the default value of a parameter to a non-compile time constant.
+Ordinarily, C# only allows compile time constants to be used as the values
+of default arguments.</p>
+<p>The ValueConstructor parameter is the type of a static class that contains a
+static method, called Create. When invoke, this method should return the
+default value.</p>
+<p>Note: If you just want to set the default value to a compile time constant,
+use the C# syntax. kRPC will detect the default values and use them.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li><p class="first">Set the default value to a list:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">DefaultKerbals</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">IList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Create</span> <span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;Jeb&quot;</span><span class="p">,</span> <span class="s">&quot;Bill&quot;</span><span class="p">,</span> <span class="s">&quot;Bob&quot;</span> <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="na">[KRPCProcedure]</span>
+<span class="na">[KRPCDefaultValue (&quot;names&quot;, typeof(DefaultKerbals))]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">HireKerbals</span> <span class="p">(</span><span class="n">IList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">names</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the default value to a compile time constant, which does not require
+the KRPCDefaultValue attribute:</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCProcedure]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">HireKerbal</span> <span class="p">(</span><span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Jeb&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -770,7 +828,7 @@ the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in yo
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -40,7 +40,7 @@ Vessel
 
       The name of the biome the vessel is currently in.
 
-   .. method:: Flight Flight(ReferenceFrame referenceFrame = None)
+   .. method:: Flight Flight(ReferenceFrame referenceFrame = null)
 
       Returns a :type:`Flight` object that can be used to get flight
       telemetry for the vessel, in the specified reference frame.
@@ -155,7 +155,7 @@ Vessel
       The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
-   .. property:: System.Tuple<double,double,double> AvailableTorque { get; }
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableTorque { get; }
 
       The maximum torque that the vessel generate. Includes contributions from reaction wheels,
       RCS, gimballed engines and aerodynamic control surfaces.
@@ -163,30 +163,37 @@ Vessel
       vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. property:: System.Tuple<double,double,double> AvailableReactionWheelTorque { get; }
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableReactionWheelTorque { get; }
 
       The maximum torque that the currently active and powered reaction wheels can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. property:: System.Tuple<double,double,double> AvailableRCSTorque { get; }
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableRCSTorque { get; }
 
       The maximum torque that the currently active RCS thrusters can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. property:: System.Tuple<double,double,double> AvailableEngineTorque { get; }
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableEngineTorque { get; }
 
       The maximum torque that the currently active and gimballed engines can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
-   .. property:: System.Tuple<double,double,double> AvailableControlSurfaceTorque { get; }
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableControlSurfaceTorque { get; }
 
       The maximum torque that the aerodynamic control surfaces can generate.
+      Returns the torques in :math:`N.m` around each of the coordinate axes of the
+      vessels reference frame (:prop:`Vessel.ReferenceFrame`).
+      These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+   .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableOtherTorque { get; }
+
+      The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:prop:`Vessel.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
@@ -282,6 +289,13 @@ Vessel
    .. method:: System.Tuple<double,double,double> Position(ReferenceFrame referenceFrame)
 
       Returns the position vector of the center of mass of the vessel in the given reference frame.
+
+      :parameters:
+
+   .. method:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> BoundingBox(ReferenceFrame referenceFrame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
 
       :parameters:
 

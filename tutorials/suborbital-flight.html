@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sub-Orbital Flight &mdash; kRPC 0.3.6 documentation</title>
+  <title>Sub-Orbital Flight &mdash; kRPC 0.3.7 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Reference Frames" href="reference-frames.html"/>
         <link rel="prev" title="Tutorials and Examples" href="../tutorials.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.3.6
+                0.3.7
               </div>
             
           
@@ -184,7 +184,8 @@ the entire python script for this tutorial <a class="reference download internal
 <p>The first thing we need to do is load the python client module and open a
 connection to the server. We can also pass a descriptive name for our script
 that will appear in the server window in game:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sub-orbital flight script&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -197,10 +198,9 @@ object that we will send instructions to the rocket:</p>
 throttle to maximum and instructs the auto-pilot to hold a pitch and heading of
 90° (vertically upwards). It then waits for 1 second for these settings to take
 effect.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">engage</span><span class="p">()</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="kn">import</span> <span class="nn">time</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -209,7 +209,8 @@ effect.</p>
 <h2>Part Two: Lift-off!<a class="headerlink" href="#part-two-lift-off" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;re now ready to launch by activating the first stage (equivalent to pressing
 the space bar):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">activate_next_stage</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -233,7 +234,7 @@ that is used to get information about the resources in the rocket.</p>
 altitude. The following loop repeatedly checks the altitude and exits when the
 rocket reaches 10km:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
-   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this bit of code, calling <code class="docutils literal"><span class="pre">vessel.flight()</span></code> returns a <a class="reference internal" href="../python/api/space-center/flight.html#SpaceCenter.Flight" title="SpaceCenter.Flight"><code class="xref py py-class docutils literal"><span class="pre">Flight</span></code></a>
@@ -242,13 +243,13 @@ the direction it is pointing in and its velocity.</p>
 <p>Now we need to angle the rocket over to a pitch of 60° and maintain a heading of
 90° (west). To do this, we simply reconfigure the auto-pilot:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Gravity turn&#39;</span><span class="p">)</span>
-<span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now we wait until the apoapsis reaches 100km, then reduce the throttle to zero,
 jettison the launch stage and turn off the auto-pilot:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">:</span>
-   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch stage separation&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -333,7 +334,7 @@ planet. For more information, check out the tutorial on
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.6',
+            VERSION:'0.3.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

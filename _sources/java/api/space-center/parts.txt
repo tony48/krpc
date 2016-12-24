@@ -229,6 +229,18 @@ Part
          This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
          `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
 
+   .. method:: boolean getHighlighted()
+
+   .. method:: void setHighlighted(boolean value)
+
+      Whether the part is highlighted.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> getHighlightColor()
+
+   .. method:: void setHighlightColor(org.javatuples.Triplet<Double,Double,Double> value)
+
+      The color used to highlight the part.
+
    .. method:: double getCost()
 
 
@@ -555,6 +567,19 @@ Part
       If the part is physicsless, this is equivalent to :meth:`Part.position(ReferenceFrame)`.
 
       :param ReferenceFrame referenceFrame:
+
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> boundingBox(ReferenceFrame referenceFrame)
+
+      The axis-aligned bounding box of the vessel in the given reference frame.
+      Returns the minimum and maximum vertices of the box.
+
+      :param ReferenceFrame referenceFrame:
+
+      .. note::
+
+         This is computed from the collision meshes of the part.
+         If the part is not collidable, the box has zero volume and is centered on
+         the :meth:`Part.position(ReferenceFrame)` of the part.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
@@ -894,10 +919,11 @@ Control Surface
 
       Surface area of the control surface in :math:`m^2`.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The available torque in the positive pitch, roll and yaw axes and
+      negative pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
 
 
@@ -1284,7 +1310,7 @@ Engine
       The gimbal limiter of the engine. A value between 0 and 1.
       Returns 0 if the gimbal is locked.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
@@ -1346,11 +1372,6 @@ Engine
 
 
       The propellant ratio.
-
-   .. method:: java.util.List<Resource> getConnectedResources()
-
-
-      The reachable resources connected to this propellant.
 
 
 
@@ -1588,6 +1609,11 @@ Landing Gear
          Fixed landing gear are always deployed.
          Returns an error if you try to deploy fixed landing gear.
 
+   .. method:: boolean getIsGrounded()
+
+
+      Returns whether the gear is touching the ground.
+
 
 
 .. type:: public enum LandingGearState
@@ -1650,6 +1676,11 @@ Landing Leg
 
          Fixed landing legs are always deployed.
          Returns an error if you try to deploy fixed landing gear.
+
+   .. method:: boolean getIsGrounded()
+
+
+      Returns whether the leg is touching the ground.
 
 
 
@@ -2090,14 +2121,14 @@ Reaction Wheel
 
       Whether the reaction wheel is broken.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
       These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
       Returns zero if the reaction wheel is inactive or broken.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getMaxTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getMaxTorque()
 
 
       The maximum torque the reaction wheel can provide, is it active,
@@ -2169,7 +2200,7 @@ RCS
 
       Whether the RCS thruster will fire when roll control input is given.
 
-   .. method:: org.javatuples.Triplet<Double,Double,Double> getAvailableTorque()
+   .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
       The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
@@ -2253,11 +2284,6 @@ Sensor
 
 
       The current value of the sensor.
-
-   .. method:: float getPowerUsage()
-
-
-      The current power usage of the sensor, in units of charge per second.
 
 
 
