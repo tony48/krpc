@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RemoteTech API &mdash; kRPC 0.3.7 documentation</title>
+  <title>RemoteTech API &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../index.html"/>
         <link rel="up" title="C#" href="../../csharp.html"/>
         <link rel="next" title="RemoteTech" href="remote-tech/remote-tech.html"/>
         <link rel="prev" title="AlarmAction" href="kerbal-alarm-clock/alarm-action.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -193,19 +201,20 @@ out the signal delay to the active vessel.</p>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="s">&quot;RemoteTech Example&quot;</span><span class="p">);</span>
-        <span class="kt">var</span> <span class="n">sc</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">rt</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">RemoteTech</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="s">&quot;RemoteTech Example&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">sc</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">();</span>
+            <span class="kt">var</span> <span class="n">rt</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">RemoteTech</span> <span class="p">();</span>
+            <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">;</span>
 
-        <span class="c1">// Set a dish target</span>
-        <span class="kt">var</span> <span class="n">part</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">WithTitle</span> <span class="p">(</span><span class="s">&quot;Reflectron KR-7&quot;</span><span class="p">)</span> <span class="p">[</span><span class="m">0</span><span class="p">];</span>
-        <span class="kt">var</span> <span class="n">antenna</span> <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">Antenna</span> <span class="p">(</span><span class="n">part</span><span class="p">);</span>
-        <span class="n">antenna</span><span class="p">.</span><span class="n">TargetBody</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">Bodies</span> <span class="p">[</span><span class="s">&quot;Jool&quot;</span><span class="p">];</span>
+            <span class="c1">// Set a dish target</span>
+            <span class="kt">var</span> <span class="n">part</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">WithTitle</span> <span class="p">(</span><span class="s">&quot;Reflectron KR-7&quot;</span><span class="p">)</span> <span class="p">[</span><span class="m">0</span><span class="p">];</span>
+            <span class="kt">var</span> <span class="n">antenna</span> <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">Antenna</span> <span class="p">(</span><span class="n">part</span><span class="p">);</span>
+            <span class="n">antenna</span><span class="p">.</span><span class="n">TargetBody</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">Bodies</span> <span class="p">[</span><span class="s">&quot;Jool&quot;</span><span class="p">];</span>
 
-        <span class="c1">// Get info about the vessels communications</span>
-        <span class="kt">var</span> <span class="n">comms</span> <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">Comms</span> <span class="p">(</span><span class="n">vessel</span><span class="p">);</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Signal delay = &quot;</span> <span class="p">+</span> <span class="n">comms</span><span class="p">.</span><span class="n">SignalDelay</span><span class="p">);</span>
+            <span class="c1">// Get info about the vessels communications</span>
+            <span class="kt">var</span> <span class="n">comms</span> <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">Comms</span> <span class="p">(</span><span class="n">vessel</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Signal delay = &quot;</span> <span class="p">+</span> <span class="n">comms</span><span class="p">.</span><span class="n">SignalDelay</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -232,7 +241,7 @@ out the signal delay to the active vessel.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -254,7 +263,7 @@ out the signal delay to the active vessel.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -264,6 +273,8 @@ out the signal delay to the active vessel.</p>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

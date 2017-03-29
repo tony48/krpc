@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sub-Orbital Flight &mdash; kRPC 0.3.7 documentation</title>
+  <title>Sub-Orbital Flight &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Reference Frames" href="reference-frames.html"/>
         <link rel="prev" title="Tutorials and Examples" href="../tutorials.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -186,55 +194,374 @@ following topics:</p>
 <p class="last">For details on how to write scripts and connect to kRPC, see the
 <a class="reference internal" href="../getting-started.html#getting-started"><span>Getting Started</span></a> guide.</p>
 </div>
+<p>This tutorial uses the two stage rocket pictured below. The craft file for this
+rocket can be <a class="reference download internal" href="../_downloads/SubOrbitalFlight.craft"><code class="xref download docutils literal"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
+<p>This tutorial includes source code examples for the main client languages that
+kRPC supports. The entire program, for your chosen language can be downloaded
+from here:</p>
+<p><a class="reference download internal" href="../_downloads/SubOrbitalFlight.cs"><code class="xref download docutils literal"><span class="pre">C#</span></code></a>,
+<a class="reference download internal" href="../_downloads/SubOrbitalFlight.cpp"><code class="xref download docutils literal"><span class="pre">C++</span></code></a>,
+<a class="reference download internal" href="../_downloads/SubOrbitalFlight.java"><code class="xref download docutils literal"><span class="pre">Java</span></code></a>,
+<a class="reference download internal" href="../_downloads/SubOrbitalFlight.lua"><code class="xref download docutils literal"><span class="pre">Lua</span></code></a>,
+<a class="reference download internal" href="../_downloads/SubOrbitalFlight.py"><code class="xref download docutils literal"><span class="pre">Python</span></code></a></p>
+<img alt="../_images/SubOrbitalFlight.png" class="align-center" src="../_images/SubOrbitalFlight.png" />
 <div class="section" id="part-one-preparing-for-launch">
 <h2>Part One: Preparing for Launch<a class="headerlink" href="#part-one-preparing-for-launch" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial uses the two stage rocket pictured below. The craft file for this
-rocket can be <a class="reference download internal" href="../_downloads/SubOrbitalFlight.craft"><code class="xref download docutils literal"><span class="pre">downloaded</span> <span class="pre">here</span></code></a> and
-the entire python script for this tutorial <a class="reference download internal" href="../_downloads/SubOrbitalFlight.py"><code class="xref download docutils literal"><span class="pre">from</span> <span class="pre">here</span></code></a></p>
-<img alt="../_images/SubOrbitalFlight.png" class="align-center" src="../_images/SubOrbitalFlight.png" />
-<p>The first thing we need to do is load the python client module and open a
-connection to the server. We can also pass a descriptive name for our script
-that will appear in the server window in game:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sub-orbital flight script&#39;</span><span class="p">)</span>
+<p>The first thing we need to do is open a connection to the server. We can also
+pass a descriptive name for our script that will appear in the server window in
+game:</p>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-0 container">
+C#</div>
+<div class="item sphinx-data-tab-1 container">
+C++</div>
+<div class="item sphinx-data-tab-2 container">
+Java</div>
+<div class="item sphinx-data-tab-3 container">
+Lua</div>
+<div class="item sphinx-data-tab-4 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">SubOrbitalFlight</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">(</span><span class="s">&quot;Sub-orbital flight&quot;</span><span class="p">);</span>
 </pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-1 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;Sub-orbital flight&quot;</span><span class="p">);</span>
+  <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span> <span class="n">space_center</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-2 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Flight</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Node</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.ReferenceFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter.Resources</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.javatuples.Triplet</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubOrbitalFlight</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Sub-orbital flight&quot;</span><span class="o">);</span>
+        <span class="n">SpaceCenter</span> <span class="n">spaceCenter</span> <span class="o">=</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-3 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc.platform&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Sub-orbital flight&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-4 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sub-orbital flight&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>Next we need to get an object representing the active vessel. It&#8217;s via this
 object that we will send instructions to the rocket:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-5 container">
+C#</div>
+<div class="item sphinx-data-tab-6 container">
+C++</div>
+<div class="item sphinx-data-tab-7 container">
+Java</div>
+<div class="item sphinx-data-tab-8 container">
+Lua</div>
+<div class="item sphinx-data-tab-9 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-5 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
 </pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-6 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">auto</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-7 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>18</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">Vessel</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">spaceCenter</span><span class="o">.</span><span class="na">getActiveVessel</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-8 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-9 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>We then need to prepare the rocket for launch. The following code sets the
 throttle to maximum and instructs the auto-pilot to hold a pitch and heading of
 90° (vertically upwards). It then waits for 1 second for these settings to take
 effect.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-10 container">
+C#</div>
+<div class="item sphinx-data-tab-11 container">
+C++</div>
+<div class="item sphinx-data-tab-12 container">
+Java</div>
+<div class="item sphinx-data-tab-13 container">
+Lua</div>
+<div class="item sphinx-data-tab-14 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-10 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">vessel</span><span class="p">.</span><span class="n">AutoPilot</span><span class="p">.</span><span class="n">TargetPitchAndHeading</span> <span class="p">(</span><span class="m">90</span><span class="p">,</span> <span class="m">90</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">AutoPilot</span><span class="p">.</span><span class="n">Engage</span> <span class="p">();</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">Throttle</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-11 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">().</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">().</span><span class="n">engage</span><span class="p">();</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">set_throttle</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-12 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">vessel</span><span class="o">.</span><span class="na">getAutoPilot</span><span class="o">().</span><span class="na">targetPitchAndHeading</span><span class="o">(</span><span class="mi">90</span><span class="o">,</span> <span class="mi">90</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getAutoPilot</span><span class="o">().</span><span class="na">engage</span><span class="o">();</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">setThrottle</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-13 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">engage</span><span class="p">()</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-14 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">engage</span><span class="p">()</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 </div>
 <div class="section" id="part-two-lift-off">
 <h2>Part Two: Lift-off!<a class="headerlink" href="#part-two-lift-off" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;re now ready to launch by activating the first stage (equivalent to pressing
 the space bar):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-15 container">
+C#</div>
+<div class="item sphinx-data-tab-16 container">
+C++</div>
+<div class="item sphinx-data-tab-17 container">
+Java</div>
+<div class="item sphinx-data-tab-18 container">
+Lua</div>
+<div class="item sphinx-data-tab-19 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-15 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Launch!&quot;</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">ActivateNextStage</span> <span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-16 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Launch!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">activate_next_stage</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-17 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Launch!&quot;</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">activateNextStage</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-18 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Launch!&#39;</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-19 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">activate_next_stage</span><span class="p">()</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>The rocket has a solid fuel stage that will quickly run out, and will need to be
 jettisoned. We can monitor the amount of solid fuel in the rocket using a while
 loop that repeatedly checks how much solid fuel there is left in the
 rocket. When the loop exits, we will activate the next stage to jettison the
 boosters:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-20 container">
+C#</div>
+<div class="item sphinx-data-tab-21 container">
+C++</div>
+<div class="item sphinx-data-tab-22 container">
+Java</div>
+<div class="item sphinx-data-tab-23 container">
+Lua</div>
+<div class="item sphinx-data-tab-24 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-20 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Resources</span><span class="p">.</span><span class="n">Amount</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">)</span> <span class="p">&gt;</span> <span class="m">0.1</span><span class="p">)</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Booster separation&quot;</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">ActivateNextStage</span> <span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-21 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">resources</span><span class="p">().</span><span class="n">amount</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Booster separation&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">activate_next_stage</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-22 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getResources</span><span class="o">().</span><span class="na">amount</span><span class="o">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="o">)</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Booster separation&quot;</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">activateNextStage</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-23 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">resources</span><span class="p">:</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SolidFuel&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">do</span>
+    <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Booster separation&#39;</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-24 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Booster separation&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">activate_next_stage</span><span class="p">()</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>In this bit of code, <code class="docutils literal"><span class="pre">vessel.resources</span></code> returns a <a class="reference internal" href="../python/api/space-center/resources.html#SpaceCenter.Resources" title="SpaceCenter.Resources"><code class="xref py py-class docutils literal"><span class="pre">Resources</span></code></a> object
 that is used to get information about the resources in the rocket.</p>
@@ -244,22 +571,204 @@ that is used to get information about the resources in the rocket.</p>
 <p>Next we will execute a gravity turn when the rocket reaches a sufficiently high
 altitude. The following loop repeatedly checks the altitude and exits when the
 rocket reaches 10km:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-25 container">
+C#</div>
+<div class="item sphinx-data-tab-26 container">
+C++</div>
+<div class="item sphinx-data-tab-27 container">
+Java</div>
+<div class="item sphinx-data-tab-28 container">
+Lua</div>
+<div class="item sphinx-data-tab-29 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-25 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">().</span><span class="n">MeanAltitude</span> <span class="p">&lt;</span> <span class="m">10000</span><span class="p">)</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-26 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">flight</span><span class="p">().</span><span class="n">mean_altitude</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-27 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">flight</span><span class="o">(</span><span class="n">refFrame</span><span class="o">).</span><span class="na">getMeanAltitude</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="o">)</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-28 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">().</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">10000</span> <span class="k">do</span>
+    <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-29 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>In this bit of code, calling <code class="docutils literal"><span class="pre">vessel.flight()</span></code> returns a <a class="reference internal" href="../python/api/space-center/flight.html#SpaceCenter.Flight" title="SpaceCenter.Flight"><code class="xref py py-class docutils literal"><span class="pre">Flight</span></code></a>
 object that is used to get all sorts of information about the rocket, such as
 the direction it is pointing in and its velocity.</p>
 <p>Now we need to angle the rocket over to a pitch of 60° and maintain a heading of
 90° (west). To do this, we simply reconfigure the auto-pilot:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Gravity turn&#39;</span><span class="p">)</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-30 container">
+C#</div>
+<div class="item sphinx-data-tab-31 container">
+C++</div>
+<div class="item sphinx-data-tab-32 container">
+Java</div>
+<div class="item sphinx-data-tab-33 container">
+Lua</div>
+<div class="item sphinx-data-tab-34 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-30 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Gravity turn&quot;</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">AutoPilot</span><span class="p">.</span><span class="n">TargetPitchAndHeading</span> <span class="p">(</span><span class="m">60</span><span class="p">,</span> <span class="m">90</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-31 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Gravity turn&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">().</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-32 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Gravity turn&quot;</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getAutoPilot</span><span class="o">().</span><span class="na">targetPitchAndHeading</span><span class="o">(</span><span class="mi">60</span><span class="o">,</span> <span class="mi">90</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-33 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Gravity turn&#39;</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-34 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Gravity turn&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>Now we wait until the apoapsis reaches 100km, then reduce the throttle to zero,
 jettison the launch stage and turn off the auto-pilot:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">:</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-35 container">
+C#</div>
+<div class="item sphinx-data-tab-36 container">
+C++</div>
+<div class="item sphinx-data-tab-37 container">
+Java</div>
+<div class="item sphinx-data-tab-38 container">
+Lua</div>
+<div class="item sphinx-data-tab-39 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-35 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">ApoapsisAltitude</span> <span class="p">&lt;</span> <span class="m">100000</span><span class="p">)</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Launch stage separation&quot;</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">Throttle</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">ActivateNextStage</span> <span class="p">();</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">AutoPilot</span><span class="p">.</span><span class="n">Disengage</span> <span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-36 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">apoapsis_altitude</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Launch stage separation&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">set_throttle</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">activate_next_stage</span><span class="p">();</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">().</span><span class="n">disengage</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-37 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getApoapsisAltitude</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="o">)</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Launch stage separation&quot;</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">setThrottle</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">activateNextStage</span><span class="o">();</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getAutoPilot</span><span class="o">().</span><span class="na">disengage</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-38 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="mi">100000</span> <span class="k">do</span>
+    <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Launch stage separation&#39;</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">disengage</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-39 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Launch stage separation&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
@@ -267,6 +776,8 @@ jettison the launch stage and turn off the auto-pilot:</p>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">activate_next_stage</span><span class="p">()</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">auto_pilot</span><span class="o">.</span><span class="n">disengage</span><span class="p">()</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>In this bit of code, <code class="docutils literal"><span class="pre">vessel.orbit</span></code> returns an <a class="reference internal" href="../python/api/space-center/orbit.html#SpaceCenter.Orbit" title="SpaceCenter.Orbit"><code class="xref py py-class docutils literal"><span class="pre">Orbit</span></code></a> object that
 contains all the information about the orbit of the rocket.</p>
@@ -278,19 +789,162 @@ course with the surface. All that remains to do is wait until they fall to 1km
 altitude above the surface, and then deploy the parachutes. If you like, you can
 use time acceleration to skip ahead to just before this happens - the script
 will continue to work.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">surface_altitude</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-40 container">
+C#</div>
+<div class="item sphinx-data-tab-41 container">
+C++</div>
+<div class="item sphinx-data-tab-42 container">
+Java</div>
+<div class="item sphinx-data-tab-43 container">
+Lua</div>
+<div class="item sphinx-data-tab-44 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-40 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">().</span><span class="n">SurfaceAltitude</span> <span class="p">&gt;</span> <span class="m">1000</span><span class="p">)</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+        <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">ActivateNextStage</span> <span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-41 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">flight</span><span class="p">().</span><span class="n">surface_altitude</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">activate_next_stage</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-42 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">flight</span><span class="o">(</span><span class="n">refFrame</span><span class="o">).</span><span class="na">getSurfaceAltitude</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="o">)</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">activateNextStage</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-43 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">().</span><span class="n">surface_altitude</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">do</span>
+    <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-44 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">surface_altitude</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">activate_next_stage</span><span class="p">()</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>The parachutes should have now been deployed. The next bit of code will
 repeatedly print out the altitude of the capsule until its speed reaches zero &#8211;
 which will happen when it lands:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span><span class="o">.</span><span class="n">vertical_speed</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">:</span>
+<div class="sphinx-tabs container">
+<div class="ui top attached tabular menu sphinx-menu container">
+<div class="active item sphinx-data-tab-45 container">
+C#</div>
+<div class="item sphinx-data-tab-46 container">
+C++</div>
+<div class="item sphinx-data-tab-47 container">
+Java</div>
+<div class="item sphinx-data-tab-48 container">
+Lua</div>
+<div class="item sphinx-data-tab-49 container">
+Python</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-45 active container">
+<div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">ReferenceFrame</span><span class="p">).</span><span class="n">VerticalSpeed</span> <span class="p">&lt;</span> <span class="p">-</span><span class="m">0.1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Altitude = {0:F1} meters&quot;</span><span class="p">,</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">().</span><span class="n">SurfaceAltitude</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span> <span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="s">&quot;Landed!&quot;</span><span class="p">);</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-46 container">
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">flight</span><span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">body</span><span class="p">().</span><span class="n">reference_frame</span><span class="p">()).</span><span class="n">vertical_speed</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Altitude = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">vessel</span><span class="p">.</span><span class="n">flight</span><span class="p">().</span><span class="n">surface_altitude</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; meters&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Landed!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-47 container">
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52
+53
+54
+55
+56
+57
+58
+59</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="k">while</span> <span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">flight</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">().</span><span class="na">getBody</span><span class="o">().</span><span class="na">getReferenceFrame</span><span class="o">()).</span><span class="na">getVerticalSpeed</span><span class="o">()</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Altitude = %.1f meters\n&quot;</span><span class="o">,</span> <span class="n">vessel</span><span class="o">.</span><span class="na">flight</span><span class="o">(</span><span class="n">refFrame</span><span class="o">).</span><span class="na">getSurfaceAltitude</span><span class="o">());</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Landed!&quot;</span><span class="o">);</span>
+        <span class="n">connection</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-48 container">
+<div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">(</span><span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">).</span><span class="n">vertical_speed</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.1</span> <span class="k">do</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Altitude = %.1f meters&#39;</span><span class="p">,</span>
+                        <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">().</span><span class="n">surface_altitude</span><span class="p">))</span>
+    <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Landed!&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-49 container">
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span><span class="o">.</span><span class="n">vertical_speed</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Altitude = </span><span class="si">%.1f</span><span class="s1"> meters&#39;</span> <span class="o">%</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span><span class="o">.</span><span class="n">surface_altitude</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Landed!&#39;</span><span class="p">)</span>
 </pre></div>
+</td></tr></table></div>
+</div>
 </div>
 <p>This bit of code uses the <code class="docutils literal"><span class="pre">vessel.flight()</span></code> function, as before, but this time
 it is passed a <a class="reference internal" href="../python/api/space-center/reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><code class="xref py py-class docutils literal"><span class="pre">ReferenceFrame</span></code></a> parameter. We want to get the vertical
@@ -323,7 +977,7 @@ planet. For more information, check out the tutorial on
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -345,7 +999,7 @@ planet. For more information, check out the tutorial on
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -355,6 +1009,8 @@ planet. For more information, check out the tutorial on
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
 
   
 

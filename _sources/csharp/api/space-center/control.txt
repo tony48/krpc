@@ -18,6 +18,14 @@ Control
       Control inputs (such as pitch, yaw and roll) are zeroed when all clients
       that have set one or more of these inputs are no longer connected.
 
+   .. property:: ControlSource Source { get; }
+
+      The source of the vessels control, for example by a kerbal or a probe core.
+
+   .. property:: ControlState State { get; }
+
+      The control state of the vessel.
+
    .. property:: bool SAS { get; set; }
 
       The state of SAS.
@@ -47,9 +55,29 @@ Control
 
       The state of RCS.
 
+   .. property:: bool ReactionWheels { get; set; }
+
+      Returns whether all reactive wheels on the vessel are active,
+      and sets the active state of all reaction wheels.
+      See :prop:`ReactionWheel.Active`.
+
    .. property:: bool Gear { get; set; }
 
       The state of the landing gear/legs.
+
+   .. property:: bool Legs { get; set; }
+
+      Returns whether all landing legs on the vessel are deployed,
+      and sets the deployment state of all landing legs.
+      Does not include wheels (for example landing gear).
+      See :prop:`Leg.Deployed`.
+
+   .. property:: bool Wheels { get; set; }
+
+      Returns whether all wheels on the vessel are deployed,
+      and sets the deployment state of all wheels.
+      Does not include landing legs.
+      See :prop:`Wheel.Deployed`.
 
    .. property:: bool Lights { get; set; }
 
@@ -58,6 +86,55 @@ Control
    .. property:: bool Brakes { get; set; }
 
       The state of the wheel brakes.
+
+   .. property:: bool Antennas { get; set; }
+
+      Returns whether all antennas on the vessel are deployed,
+      and sets the deployment state of all antennas.
+      See :prop:`Antenna.Deployed`.
+
+   .. property:: bool CargoBays { get; set; }
+
+      Returns whether any of the cargo bays on the vessel are open,
+      and sets the open state of all cargo bays.
+      See :prop:`CargoBay.Open`.
+
+   .. property:: bool Intakes { get; set; }
+
+      Returns whether all of the air intakes on the vessel are open,
+      and sets the open state of all air intakes.
+      See :prop:`Intake.Open`.
+
+   .. property:: bool Parachutes { get; set; }
+
+      Returns whether all parachutes on the vessel are deployed,
+      and sets the deployment state of all parachutes.
+      Cannot be set to ``false``.
+      See :prop:`Parachute.Deployed`.
+
+   .. property:: bool Radiators { get; set; }
+
+      Returns whether all radiators on the vessel are deployed,
+      and sets the deployment state of all radiators.
+      See :prop:`Radiator.Deployed`.
+
+   .. property:: bool ResourceHarvesters { get; set; }
+
+      Returns whether all of the resource harvesters on the vessel are deployed,
+      and sets the deployment state of all resource harvesters.
+      See :prop:`ResourceHarvester.Deployed`.
+
+   .. property:: bool ResourceHarvestersActive { get; set; }
+
+      Returns whether any of the resource harvesters on the vessel are active,
+      and sets the active state of all resource harvesters.
+      See :prop:`ResourceHarvester.Active`.
+
+   .. property:: bool SolarPanels { get; set; }
+
+      Returns whether all solar panels on the vessel are deployed,
+      and sets the deployment state of all solar panels.
+      See :prop:`SolarPanel.Deployed`.
 
    .. property:: bool Abort { get; set; }
 
@@ -128,6 +205,12 @@ Control
 
       :returns: A list of vessel objects that are jettisoned from the active vessel.
 
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :prop:`SpaceCenter.ActiveVessel` no longer refer to the active vessel.
+
    .. method:: bool GetActionGroup(uint group)
 
       Returns ``true`` if the given action group is enabled.
@@ -173,6 +256,50 @@ Control
    .. method:: void RemoveNodes()
 
       Remove all maneuver nodes.
+
+
+
+.. enum:: ControlState
+
+   The control state of a vessel.
+   See :prop:`Control.State`.
+
+
+   .. value:: Full
+
+      Full controllable.
+
+
+   .. value:: Partial
+
+      Partially controllable.
+
+
+   .. value:: None
+
+      Not controllable.
+
+
+
+.. enum:: ControlSource
+
+   The control source of a vessel.
+   See :prop:`Control.Source`.
+
+
+   .. value:: Kerbal
+
+      Vessel is controlled by a Kerbal.
+
+
+   .. value:: Probe
+
+      Vessel is controlled by a probe core.
+
+
+   .. value:: None
+
+      Vessel is not controlled.
 
 
 

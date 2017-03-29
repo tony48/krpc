@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.3.7 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -109,14 +117,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -283,6 +293,13 @@ RCS and thrust.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel5commsEv">
+<span id="krpc::services::SpaceCenter::Vessel::comms"></span><a class="reference internal" href="comms.html#_CPPv2N4krpc8services11SpaceCenter5CommsE" title="krpc::services::SpaceCenter::Comms">Comms</a> <code class="descclassname"></code><code class="descname">comms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel5commsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="comms.html#_CPPv2N4krpc8services11SpaceCenter5CommsE" title="krpc::services::SpaceCenter::Comms"><code class="xref cpp cpp-class docutils literal"><span class="pre">Comms</span></code></a> object that can be used to interact
+with CommNet for this vessel.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel10auto_pilotEv">
 <span id="krpc::services::SpaceCenter::Vessel::auto_pilot"></span><a class="reference internal" href="auto-pilot.html#_CPPv2N4krpc8services11SpaceCenter9AutoPilotE" title="krpc::services::SpaceCenter::AutoPilot">AutoPilot</a> <code class="descclassname"></code><code class="descname">auto_pilot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel10auto_pilotEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="auto-pilot.html#_CPPv2N4krpc8services11SpaceCenter9AutoPilotE" title="krpc::services::SpaceCenter::AutoPilot"><code class="xref cpp cpp-class docutils literal"><span class="pre">AutoPilot</span></code></a> object, that can be used to perform
@@ -397,13 +414,13 @@ This is computed using the formula
 <span id="krpc::services::SpaceCenter::Vessel::moment_of_inertia"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">moment_of_inertia</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel17moment_of_inertiaEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The moment of inertia of the vessel around its center of mass in <span class="math">\(kg.m^2\)</span>.
 The inertia values are around the pitch, roll and yaw directions respectively.
-This corresponds to the vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).</p>
+This corresponds to the vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel14inertia_tensorEv">
 <span id="krpc::services::SpaceCenter::Vessel::inertia_tensor"></span>std::vector&lt;double&gt; <code class="descclassname"></code><code class="descname">inertia_tensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel14inertia_tensorEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The inertia tensor of the vessel around its center of mass, in the vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+<dd><p>The inertia tensor of the vessel around its center of mass, in the vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 Returns the 3x3 matrix as a list of elements, in row-major order.</p>
 </dd></dl>
 
@@ -413,7 +430,7 @@ Returns the 3x3 matrix as a list of elements, in row-major order.</p>
 <dd><p>The maximum torque that the vessel generate. Includes contributions from reaction wheels,
 RCS, gimballed engines and aerodynamic control surfaces.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -422,7 +439,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::available_reaction_wheel_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_reaction_wheel_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel31available_reaction_wheel_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque that the currently active and powered reaction wheels can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -431,7 +448,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::available_rcs_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_rcs_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel20available_rcs_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque that the currently active RCS thrusters can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -440,7 +457,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::available_engine_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_engine_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel23available_engine_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque that the currently active and gimballed engines can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -449,7 +466,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::available_control_surface_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_control_surface_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel32available_control_surface_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque that the aerodynamic control surfaces can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -458,7 +475,7 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::available_other_torque"></span>std::tuple&lt;std::tuple&lt;double, double, double&gt;, std::tuple&lt;double, double, double&gt;&gt; <code class="descclassname"></code><code class="descname">available_other_torque</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel22available_other_torqueEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
-vessels reference frame (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a>).
+vessels reference frame (<a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 </dd></dl>
 
@@ -767,7 +784,7 @@ See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vess
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -789,7 +806,7 @@ See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vess
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -799,6 +816,8 @@ See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vess
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

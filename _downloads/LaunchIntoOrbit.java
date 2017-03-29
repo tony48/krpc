@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.lang.Math;
 
 public class LaunchIntoOrbit {
-    public static void main(String[] args) throws IOException, RPCException, InterruptedException, StreamException {
+    public static void main(String[] args)
+        throws IOException, RPCException, InterruptedException, StreamException {
         Connection connection = Connection.newInstance("Launch into orbit");
         SpaceCenter spaceCenter = SpaceCenter.newInstance(connection);
         SpaceCenter.Vessel vessel = spaceCenter.getActiveVessel();
@@ -24,13 +25,16 @@ public class LaunchIntoOrbit {
         float targetAltitude = 150000;
 
         // Set up streams for telemetry
-        Stream<Double> ut = connection.addStream(SpaceCenter.class, "ut");
+        spaceCenter.getUT();
+        Stream<Double> ut = connection.addStream(SpaceCenter.class, "getUT");
         ReferenceFrame refFrame = vessel.getSurfaceReferenceFrame();
         Flight flight = vessel.flight(refFrame);
-        Stream<Double> altitude = connection.addStream(flight, "meanAltitude");
-        Stream<Double> apoapsis = connection.addStream(vessel.getOrbit(), "apoapsisAltitude");
+        Stream<Double> altitude = connection.addStream(flight, "getMeanAltitude");
+        Stream<Double> apoapsis =
+            connection.addStream(vessel.getOrbit(), "getApoapsisAltitude");
         Resources stage3Resources = vessel.resourcesInDecoupleStage(3, false);
-        Stream<Double> srbFuel = connection.addStream(stage3Resources, "amount", "SolidFuel");
+        Stream<Float> srbFuel =
+            connection.addStream(stage3Resources, "amount", "SolidFuel");
 
         // Pre-launch setup
         vessel.getControl().setSAS(false);
@@ -57,18 +61,21 @@ public class LaunchIntoOrbit {
         while (true) {
 
             // Gravity turn
-            if (altitude.get() > turnStartAltitude && altitude.get() < turnEndAltitude) {
-                double frac = (altitude.get() - turnStartAltitude) / (turnEndAltitude - turnStartAltitude);
+            if (altitude.get() > turnStartAltitude &&
+                altitude.get() < turnEndAltitude) {
+                double frac = (altitude.get() - turnStartAltitude)
+                              / (turnEndAltitude - turnStartAltitude);
                 double newTurnAngle = frac * 90.0;
                 if (Math.abs(newTurnAngle - turnAngle) > 0.5) {
                     turnAngle = newTurnAngle;
-                    vessel.getAutoPilot().targetPitchAndHeading((float)(90 - turnAngle), 90);
+                    vessel.getAutoPilot().targetPitchAndHeading(
+                        (float)(90 - turnAngle), 90);
                 }
             }
 
             // Separate SRBs when finished
             if (!srbsSeparated) {
-                if (srbFuel.get() < 0.1) {
+              if (srbFuel.get() < 0.1) {
                     vessel.getControl().activateNextStage();
                     srbsSeparated = true;
                     System.out.println("SRBs separated");
@@ -103,7 +110,8 @@ public class LaunchIntoOrbit {
         double v1 = Math.sqrt(mu * ((2.0 / r) - (1.0 / a1)));
         double v2 = Math.sqrt(mu * ((2.0 / r) - (1.0 / a2)));
         double deltaV = v2 - v1;
-        Node node = vessel.getControl().addNode(ut.get() + vessel.getOrbit().getTimeToApoapsis(), (float)deltaV, 0, 0);
+        Node node = vessel.getControl().addNode(
+          ut.get() + vessel.getOrbit().getTimeToApoapsis(), (float)deltaV, 0, 0);
 
         // Calculate burn time (using rocket equation)
         double force = vessel.getAvailableThrust();
@@ -116,18 +124,21 @@ public class LaunchIntoOrbit {
         // Orientate ship
         System.out.println("Orientating ship for circularization burn");
         vessel.getAutoPilot().setReferenceFrame(node.getReferenceFrame());
-        vessel.getAutoPilot().setTargetDirection(new Triplet<Double,Double,Double>(0.0, 1.0, 0.0));
+        vessel.getAutoPilot().setTargetDirection(
+          new Triplet<Double,Double,Double>(0.0, 1.0, 0.0));
         vessel.getAutoPilot().wait_();
 
         // Wait until burn
         System.out.println("Waiting until circularization burn");
-        double burnUt = ut.get() + vessel.getOrbit().getTimeToApoapsis() - (burnTime / 2.0);
+        double burnUt =
+          ut.get() + vessel.getOrbit().getTimeToApoapsis() - (burnTime / 2.0);
         double leadTime = 5;
         spaceCenter.warpTo(burnUt - leadTime, 100000, 2);
 
         // Execute burn
         System.out.println("Ready to execute burn");
-        Stream<Double> timeToApoapsis = connection.addStream(vessel.getOrbit(), "timeToApoapsis");
+        Stream<Double> timeToApoapsis =
+          connection.addStream(vessel.getOrbit(), "getTimeToApoapsis");
         while (timeToApoapsis.get() - (burnTime / 2.0) > 0) {
         }
         System.out.println("Executing burn");
@@ -136,12 +147,14 @@ public class LaunchIntoOrbit {
         System.out.println("Fine tuning");
         vessel.getControl().setThrottle(0.05f);
         Stream<Triplet<Double,Double,Double>> remainingBurn =
-            connection.addStream(node, "remainingBurnVector", node.getReferenceFrame());
-        while (remainingBurn.get().getValue0() > 0) {
+          connection.addStream(
+            node, "remainingBurnVector", node.getReferenceFrame());
+        while (remainingBurn.get().getValue1() > 0) {
         }
         vessel.getControl().setThrottle(0);
         node.remove();
 
         System.out.println("Launch complete");
+        connection.close();
     }
 }

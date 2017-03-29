@@ -90,6 +90,10 @@ Parts
 
       :parameters:
 
+   .. property:: System.Collections.Generic.IList<Antenna> Antennas { get; }
+
+      A list of all antennas in the vessel.
+
    .. property:: System.Collections.Generic.IList<CargoBay> CargoBays { get; }
 
       A list of all cargo bays in the vessel.
@@ -128,11 +132,7 @@ Parts
 
       A list of all intakes in the vessel.
 
-   .. property:: System.Collections.Generic.IList<LandingGear> LandingGear { get; }
-
-      A list of all landing gear attached to the vessel.
-
-   .. property:: System.Collections.Generic.IList<LandingLeg> LandingLegs { get; }
+   .. property:: System.Collections.Generic.IList<Leg> Legs { get; }
 
       A list of all landing legs attached to the vessel.
 
@@ -175,6 +175,10 @@ Parts
    .. property:: System.Collections.Generic.IList<SolarPanel> SolarPanels { get; }
 
       A list of all solar panels in the vessel.
+
+   .. property:: System.Collections.Generic.IList<Wheel> Wheels { get; }
+
+      A list of all wheels in the vessel.
 
 
 
@@ -384,6 +388,10 @@ Part
 
       The modules for this part.
 
+   .. property:: Antenna Antenna { get; }
+
+      A :type:`Antenna` if the part is an antenna, otherwise ``null``.
+
    .. property:: CargoBay CargoBay { get; }
 
       A :type:`CargoBay` if the part is a cargo bay, otherwise ``null``.
@@ -423,13 +431,9 @@ Part
          including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :type:`RCS`.
 
-   .. property:: LandingGear LandingGear { get; }
+   .. property:: Leg Leg { get; }
 
-      A :type:`LandingGear` if the part is a landing gear, otherwise ``null``.
-
-   .. property:: LandingLeg LandingLeg { get; }
-
-      A :type:`LandingLeg` if the part is a landing leg, otherwise ``null``.
+      A :type:`Leg` if the part is a landing leg, otherwise ``null``.
 
    .. property:: LaunchClamp LaunchClamp { get; }
 
@@ -470,6 +474,10 @@ Part
    .. property:: SolarPanel SolarPanel { get; }
 
       A :type:`SolarPanel` if the part is a solar panel, otherwise ``null``.
+
+   .. property:: Wheel Wheel { get; }
+
+      A :type:`Wheel` if the part is a wheel, otherwise ``null``.
 
    .. method:: System.Tuple<double,double,double> Position(ReferenceFrame referenceFrame)
 
@@ -743,6 +751,109 @@ The following classes provide functionality for specific types of part.
 .. contents::
    :local:
 
+Antenna
+^^^^^^^
+
+
+.. class:: Antenna
+
+   An antenna. Obtained by calling :prop:`Part.Antenna`.
+
+   .. property:: Part Part { get; }
+
+      The part object for this antenna.
+
+   .. property:: AntennaState State { get; }
+
+      The current state of the antenna.
+
+   .. property:: bool Deployable { get; }
+
+      Whether the antenna is deployable.
+
+   .. property:: bool Deployed { get; set; }
+
+      Whether the antenna is deployed.
+
+
+      .. note::
+
+         Fixed antennas are always deployed.
+         Returns an error if you try to deploy a fixed antenna.
+
+   .. property:: bool CanTransmit { get; }
+
+      Whether data can be transmitted by this antenna.
+
+   .. method:: void Transmit()
+
+      Transmit data.
+
+   .. method:: void Cancel()
+
+      Cancel current transmission of data.
+
+   .. property:: bool AllowPartial { get; set; }
+
+      Whether partial data transmission is permitted.
+
+   .. property:: double Power { get; }
+
+      The power of the antenna.
+
+   .. property:: bool Combinable { get; }
+
+      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+
+   .. property:: double CombinableExponent { get; }
+
+      Exponent used to calculate the combined power of multiple antennae on a vessel.
+
+   .. property:: float PacketInterval { get; }
+
+      Interval between sending packets in seconds.
+
+   .. property:: float PacketSize { get; }
+
+      Amount of data sent per packet in Mits.
+
+   .. property:: double PacketResourceCost { get; }
+
+      Units of electric charge consumed per packet sent.
+
+
+
+.. enum:: AntennaState
+
+   The state of an antenna. See :prop:`Antenna.State`.
+
+
+   .. value:: Deployed
+
+      Antenna is fully deployed.
+
+
+   .. value:: Retracted
+
+      Antenna is fully retracted.
+
+
+   .. value:: Deploying
+
+      Antenna is being deployed.
+
+
+   .. value:: Retracting
+
+      Antenna is being retracted.
+
+
+   .. value:: Broken
+
+      Antenna is broken.
+
+
+
 Cargo Bay
 ^^^^^^^^^
 
@@ -815,6 +926,10 @@ Control Surface
 
       Whether the control surface has roll control enabled.
 
+   .. property:: float AuthorityLimiter { get; set; }
+
+      The authority limiter for the control surface, which controls how far the control surface will move.
+
    .. property:: bool Inverted { get; set; }
 
       Whether the control surface movement is inverted.
@@ -851,6 +966,14 @@ Decoupler
 
       Fires the decoupler. Returns the new vessel created when the decoupler fires.
       Throws an exception if the decoupler has already fired.
+
+
+
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :prop:`SpaceCenter.ActiveVessel` no longer refer to the active vessel.
 
    .. property:: bool Decoupled { get; }
 
@@ -897,7 +1020,9 @@ Docking Port
 
       .. note::
 
-         After undocking, the active vessel may change. See :prop:`SpaceCenter.ActiveVessel`.
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :prop:`SpaceCenter.ActiveVessel` no longer refer to the active vessel.
 
    .. property:: float ReengageDistance { get; }
 
@@ -1394,93 +1519,25 @@ Intake
 
 
 
-Landing Gear
-^^^^^^^^^^^^
+Leg
+^^^
 
 
-.. class:: LandingGear
+.. class:: Leg
 
-   Landing gear with wheels. Obtained by calling :prop:`Part.LandingGear`.
-
-   .. property:: Part Part { get; }
-
-      The part object for this landing gear.
-
-   .. property:: LandingGearState State { get; }
-
-      Gets the current state of the landing gear.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-
-   .. property:: bool Deployable { get; }
-
-      Whether the landing gear is deployable.
-
-   .. property:: bool Deployed { get; set; }
-
-      Whether the landing gear is deployed.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-         Returns an error if you try to deploy fixed landing gear.
-
-   .. property:: bool IsGrounded { get; }
-
-      Returns whether the gear is touching the ground.
-
-
-
-.. enum:: LandingGearState
-
-   The state of a landing gear. See :prop:`LandingGear.State`.
-
-
-   .. value:: Deployed
-
-      Landing gear is fully deployed.
-
-
-   .. value:: Retracted
-
-      Landing gear is fully retracted.
-
-
-   .. value:: Deploying
-
-      Landing gear is being deployed.
-
-
-   .. value:: Retracting
-
-      Landing gear is being retracted.
-
-
-   .. value:: Broken
-
-      Landing gear is broken.
-
-
-
-Landing Leg
-^^^^^^^^^^^
-
-
-.. class:: LandingLeg
-
-   A landing leg. Obtained by calling :prop:`Part.LandingLeg`.
+   A landing leg. Obtained by calling :prop:`Part.Leg`.
 
    .. property:: Part Part { get; }
 
       The part object for this landing leg.
 
-   .. property:: LandingLegState State { get; }
+   .. property:: LegState State { get; }
 
       The current state of the landing leg.
+
+   .. property:: bool Deployable { get; }
+
+      Whether the leg is deployable.
 
    .. property:: bool Deployed { get; set; }
 
@@ -1498,9 +1555,9 @@ Landing Leg
 
 
 
-.. enum:: LandingLegState
+.. enum:: LegState
 
-   The state of a landing leg. See :prop:`LandingLeg.State`.
+   The state of a landing leg. See :prop:`Leg.State`.
 
 
    .. value:: Deployed
@@ -1594,6 +1651,15 @@ Parachute
 
       Whether the parachute has been deployed.
 
+   .. method:: void Arm()
+
+      Deploys the parachute. This has no effect if the parachute has already
+      been armed or deployed. Only applicable to RealChutes parachutes.
+
+   .. property:: bool Armed { get; }
+
+      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+
    .. property:: ParachuteState State { get; }
 
       The current state of the parachute.
@@ -1601,10 +1667,12 @@ Parachute
    .. property:: float DeployAltitude { get; set; }
 
       The altitude at which the parachute will full deploy, in meters.
+      Only applicable to stock parachutes.
 
    .. property:: float DeployMinPressure { get; set; }
 
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+      Only applicable to stock parachutes.
 
 
 
@@ -1618,15 +1686,21 @@ Parachute
       The parachute is safely tucked away inside its housing.
 
 
+   .. value:: Armed
+
+      The parachute is armed for deployment. (RealChutes only)
+
+
    .. value:: Active
 
       The parachute is still stowed, but ready to semi-deploy.
+      (Stock parachutes only)
 
 
    .. value:: SemiDeployed
 
       The parachute has been deployed and is providing some drag,
-      but is not fully deployed yet.
+      but is not fully deployed yet. (Stock parachutes only)
 
 
    .. value:: Deployed
@@ -2062,6 +2136,10 @@ Solar Panel
 
       The part object for this solar panel.
 
+   .. property:: bool Deployable { get; }
+
+      Whether the solar panel is deployable.
+
    .. property:: bool Deployed { get; set; }
 
       Whether the solar panel is extended.
@@ -2194,6 +2272,209 @@ Thruster
       This is opposite to the direction in which the thruster expels propellant.
 
       :parameters:
+
+
+
+Wheel
+^^^^^
+
+
+.. class:: Wheel
+
+   A wheel. Includes landing gear and rover wheels. Obtained by calling :prop:`Part.Wheel`.
+   Can be used to control the motors, steering and deployment of wheels, among other things.
+
+   .. property:: Part Part { get; }
+
+      The part object for this wheel.
+
+   .. property:: WheelState State { get; }
+
+      The current state of the wheel.
+
+   .. property:: float Radius { get; }
+
+      Radius of the wheel, in meters.
+
+   .. property:: bool Grounded { get; }
+
+      Whether the wheel is touching the ground.
+
+   .. property:: bool HasBrakes { get; }
+
+      Whether the wheel has brakes.
+
+   .. property:: float Brakes { get; set; }
+
+      The braking force, as a percentage of maximum, when the brakes are applied.
+
+   .. property:: bool AutoFrictionControl { get; set; }
+
+      Whether automatic friction control is enabled.
+
+   .. property:: float ManualFrictionControl { get; set; }
+
+      Manual friction control value. Only has an effect if automatic friction control is disabled.
+      A value between 0 and 5 inclusive.
+
+   .. property:: bool Deployable { get; }
+
+      Whether the wheel is deployable.
+
+   .. property:: bool Deployed { get; set; }
+
+      Whether the wheel is deployed.
+
+   .. property:: bool Powered { get; }
+
+      Whether the wheel is powered by a motor.
+
+   .. property:: bool MotorEnabled { get; set; }
+
+      Whether the motor is enabled.
+
+   .. property:: bool MotorInverted { get; set; }
+
+      Whether the direction of the motor is inverted.
+
+   .. property:: MotorState MotorState { get; }
+
+      Whether the direction of the motor is inverted.
+
+   .. property:: float MotorOutput { get; }
+
+      The output of the motor. This is the torque currently being generated, in Newton meters.
+
+   .. property:: bool TractionControlEnabled { get; set; }
+
+      Whether automatic traction control is enabled.
+      A wheel only has traction control if it is powered.
+
+   .. property:: float TractionControl { get; set; }
+
+      Setting for the traction control.
+      Only takes effect if the wheel has automatic traction control enabled.
+      A value between 0 and 5 inclusive.
+
+   .. property:: float DriveLimiter { get; set; }
+
+      Manual setting for the motor limiter.
+      Only takes effect if the wheel has automatic traction control disabled.
+      A value between 0 and 100 inclusive.
+
+   .. property:: bool Steerable { get; }
+
+      Whether the wheel has steering.
+
+   .. property:: bool SteeringEnabled { get; set; }
+
+      Whether the wheel steering is enabled.
+
+   .. property:: bool SteeringInverted { get; set; }
+
+      Whether the wheel steering is inverted.
+
+   .. property:: bool HasSuspension { get; }
+
+      Whether the wheel has suspension.
+
+   .. property:: float SuspensionSpringStrength { get; }
+
+      Suspension spring strength, as set in the editor.
+
+   .. property:: float SuspensionDamperStrength { get; }
+
+      Suspension damper strength, as set in the editor.
+
+   .. property:: bool Broken { get; }
+
+      Whether the wheel is broken.
+
+   .. property:: bool Repairable { get; }
+
+      Whether the wheel is repairable.
+
+   .. property:: float Stress { get; }
+
+      Current stress on the wheel.
+
+   .. property:: float StressTolerance { get; }
+
+      Stress tolerance of the wheel.
+
+   .. property:: float StressPercentage { get; }
+
+      Current stress on the wheel as a percentage of its stress tolerance.
+
+   .. property:: float Deflection { get; }
+
+      Current deflection of the wheel.
+
+   .. property:: float Slip { get; }
+
+      Current slip of the wheel.
+
+
+
+.. enum:: WheelState
+
+   The state of a wheel. See :prop:`Wheel.State`.
+
+
+   .. value:: Deployed
+
+      Wheel is fully deployed.
+
+
+   .. value:: Retracted
+
+      Wheel is fully retracted.
+
+
+   .. value:: Deploying
+
+      Wheel is being deployed.
+
+
+   .. value:: Retracting
+
+      Wheel is being retracted.
+
+
+   .. value:: Broken
+
+      Wheel is broken.
+
+
+
+.. enum:: MotorState
+
+   The state of the motor on a powered wheel. See :prop:`Wheel.MotorState`.
+
+
+   .. value:: Idle
+
+      The motor is idle.
+
+
+   .. value:: Running
+
+      The motor is running.
+
+
+   .. value:: Disabled
+
+      The motor is disabled.
+
+
+   .. value:: Inoperable
+
+      The motor is inoperable.
+
+
+   .. value:: NotEnoughResources
+
+      The motor does not have enough resources to run.
 
 
 

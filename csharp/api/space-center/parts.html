@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,12 +30,20 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
-        <link rel="prev" title="Control" href="control.html"/>
+        <link rel="prev" title="Communications" href="comms.html"/>
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -108,6 +116,7 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Parts</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Parts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#part">Part</a></li>
@@ -122,9 +131,10 @@
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -200,16 +210,16 @@
 <li><a class="reference internal" href="#part" id="id14">Part</a></li>
 <li><a class="reference internal" href="#module" id="id15">Module</a></li>
 <li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
-<li><a class="reference internal" href="#cargo-bay" id="id17">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id18">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id19">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id20">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id21">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id22">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id23">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id24">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id25">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id26">Landing Leg</a></li>
+<li><a class="reference internal" href="#antenna" id="id17">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id18">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id19">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id20">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id21">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id22">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id23">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id24">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id25">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id26">Leg</a></li>
 <li><a class="reference internal" href="#launch-clamp" id="id27">Launch Clamp</a></li>
 <li><a class="reference internal" href="#light" id="id28">Light</a></li>
 <li><a class="reference internal" href="#parachute" id="id29">Parachute</a></li>
@@ -221,15 +231,16 @@
 <li><a class="reference internal" href="#sensor" id="id35">Sensor</a></li>
 <li><a class="reference internal" href="#solar-panel" id="id36">Solar Panel</a></li>
 <li><a class="reference internal" href="#thruster" id="id37">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id38">Wheel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#trees-of-parts" id="id38">Trees of Parts</a><ul>
-<li><a class="reference internal" href="#traversing-the-tree" id="id39">Traversing the Tree</a></li>
-<li><a class="reference internal" href="#attachment-modes" id="id40">Attachment Modes</a></li>
+<li><a class="reference internal" href="#trees-of-parts" id="id39">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id40">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id41">Attachment Modes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fuel-lines" id="id41">Fuel Lines</a></li>
-<li><a class="reference internal" href="#staging" id="id42">Staging</a></li>
+<li><a class="reference internal" href="#fuel-lines" id="id42">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id43">Staging</a></li>
 </ul>
 </div>
 <div class="section" id="id1">
@@ -370,6 +381,12 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Parts.Antennas">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Antenna" title="KRPC.Client.Services.SpaceCenter.Antenna class">Antenna</a>&gt; <code class="descname">Antennas</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.Antennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all antennas in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parts.CargoBays">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.CargoBay" title="KRPC.Client.Services.SpaceCenter.CargoBay class">CargoBay</a>&gt; <code class="descname">CargoBays</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.CargoBays" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all cargo bays in the vessel.</p>
@@ -423,14 +440,8 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Parts.LandingGear">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingGear" title="KRPC.Client.Services.SpaceCenter.LandingGear class">LandingGear</a>&gt; <code class="descname">LandingGear</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.LandingGear" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all landing gear attached to the vessel.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Parts.LandingLegs">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingLeg" title="KRPC.Client.Services.SpaceCenter.LandingLeg class">LandingLeg</a>&gt; <code class="descname">LandingLegs</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.LandingLegs" title="Permalink to this definition">¶</a></dt>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Parts.Legs">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Leg" title="KRPC.Client.Services.SpaceCenter.Leg class">Leg</a>&gt; <code class="descname">Legs</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.Legs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all landing legs attached to the vessel.</p>
 </dd></dl>
 
@@ -492,6 +503,12 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parts.SolarPanels">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.SolarPanel" title="KRPC.Client.Services.SpaceCenter.SolarPanel class">SolarPanel</a>&gt; <code class="descname">SolarPanels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.SolarPanels" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all solar panels in the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Parts.Wheels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Wheel" title="KRPC.Client.Services.SpaceCenter.Wheel class">Wheel</a>&gt; <code class="descname">Wheels</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parts.Wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all wheels in the vessel.</p>
 </dd></dl>
 
 </dd></dl>
@@ -783,6 +800,12 @@ and negative means its skin is gaining heat energy.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.Antenna">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Antenna" title="KRPC.Client.Services.SpaceCenter.Antenna class">Antenna</a> <code class="descname">Antenna</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Antenna" title="KRPC.Client.Services.SpaceCenter.Antenna class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Antenna</span></code></a> if the part is an antenna, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Part.CargoBay">
 <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.CargoBay" title="KRPC.Client.Services.SpaceCenter.CargoBay class">CargoBay</a> <code class="descname">CargoBay</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.CargoBay" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.CargoBay" title="KRPC.Client.Services.SpaceCenter.CargoBay class"><code class="xref csharp csharp-type docutils literal"><span class="pre">CargoBay</span></code></a> if the part is a cargo bay, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
@@ -837,15 +860,9 @@ For RCS thrusters see <a class="reference internal" href="#class-KRPC.Client.Ser
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Part.LandingGear">
-<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingGear" title="KRPC.Client.Services.SpaceCenter.LandingGear class">LandingGear</a> <code class="descname">LandingGear</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.LandingGear" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingGear" title="KRPC.Client.Services.SpaceCenter.LandingGear class"><code class="xref csharp csharp-type docutils literal"><span class="pre">LandingGear</span></code></a> if the part is a landing gear, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.Part.LandingLeg">
-<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingLeg" title="KRPC.Client.Services.SpaceCenter.LandingLeg class">LandingLeg</a> <code class="descname">LandingLeg</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.LandingLeg" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.LandingLeg" title="KRPC.Client.Services.SpaceCenter.LandingLeg class"><code class="xref csharp csharp-type docutils literal"><span class="pre">LandingLeg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.Leg">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Leg" title="KRPC.Client.Services.SpaceCenter.Leg class">Leg</a> <code class="descname">Leg</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Leg" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Leg" title="KRPC.Client.Services.SpaceCenter.Leg class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Leg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </dd></dl>
 
 <dl class="property">
@@ -906,6 +923,12 @@ For RCS thrusters see <a class="reference internal" href="#class-KRPC.Client.Ser
 <dt id="property-KRPC.Client.Services.SpaceCenter.Part.SolarPanel">
 <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.SolarPanel" title="KRPC.Client.Services.SpaceCenter.SolarPanel class">SolarPanel</a> <code class="descname">SolarPanel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.SolarPanel" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.SolarPanel" title="KRPC.Client.Services.SpaceCenter.SolarPanel class"><code class="xref csharp csharp-type docutils literal"><span class="pre">SolarPanel</span></code></a> if the part is a solar panel, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Part.Wheel">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Wheel" title="KRPC.Client.Services.SpaceCenter.Wheel class">Wheel</a> <code class="descname">Wheel</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Part.Wheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Wheel" title="KRPC.Client.Services.SpaceCenter.Wheel class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Wheel</span></code></a> if the part is a wheel, otherwise <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1342,31 +1365,166 @@ void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a 
 <p>The following classes provide functionality for specific types of part.</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#cargo-bay" id="id43">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id44">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id45">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id46">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id47">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id48">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id49">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id50">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id51">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id52">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id53">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id54">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id55">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id56">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id57">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id58">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id59">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#rcs" id="id60">RCS</a></li>
-<li><a class="reference internal" href="#sensor" id="id61">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id62">Solar Panel</a></li>
-<li><a class="reference internal" href="#thruster" id="id63">Thruster</a></li>
+<li><a class="reference internal" href="#antenna" id="id44">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id45">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id46">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id47">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id48">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id49">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id50">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id51">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id52">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id53">Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id54">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id55">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id56">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id57">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id58">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id59">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id60">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#rcs" id="id61">RCS</a></li>
+<li><a class="reference internal" href="#sensor" id="id62">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id63">Solar Panel</a></li>
+<li><a class="reference internal" href="#thruster" id="id64">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id65">Wheel</a></li>
 </ul>
 </div>
+<div class="section" id="antenna">
+<h3><a class="toc-backref" href="#id44">Antenna</a><a class="headerlink" href="#antenna" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-KRPC.Client.Services.SpaceCenter.Antenna">
+<code class="descname">class Antenna</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>An antenna. Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Antenna" title="KRPC.Client.Services.SpaceCenter.Part.Antenna property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Antenna</span></code></a>.</p>
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.Part">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this antenna.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.State">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.AntennaState" title="KRPC.Client.Services.SpaceCenter.AntennaState enum">AntennaState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the antenna.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployable.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed antennas are always deployed.
+Returns an error if you try to deploy a fixed antenna.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.CanTransmit">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">CanTransmit</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.CanTransmit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether data can be transmitted by this antenna.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Antenna.Transmit">
+void <code class="descname">Transmit</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Antenna.Transmit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmit data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Antenna.Cancel">
+void <code class="descname">Cancel</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Antenna.Cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel current transmission of data.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.AllowPartial">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">AllowPartial</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.AllowPartial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether partial data transmission is permitted.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.Power">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">Power</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.Power" title="Permalink to this definition">¶</a></dt>
+<dd><p>The power of the antenna.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.Combinable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Combinable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.Combinable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna can be combined with other antennae on the vessel to boost the power.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.CombinableExponent">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">CombinableExponent</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.CombinableExponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponent used to calculate the combined power of multiple antennae on a vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.PacketInterval">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PacketInterval</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.PacketInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interval between sending packets in seconds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.PacketSize">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">PacketSize</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.PacketSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of data sent per packet in Mits.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Antenna.PacketResourceCost">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">PacketResourceCost</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.PacketResourceCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units of electric charge consumed per packet sent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.AntennaState">
+<code class="descname">enum AntennaState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.AntennaState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of an antenna. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Antenna.State" title="KRPC.Client.Services.SpaceCenter.Antenna.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Antenna.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.AntennaState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.AntennaState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.AntennaState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.AntennaState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.AntennaState.Deploying">
+<code class="descname">Deploying</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.AntennaState.Deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.AntennaState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.AntennaState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.AntennaState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.AntennaState.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="cargo-bay">
-<h3><a class="toc-backref" href="#id43">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.CargoBay">
 <code class="descname">class CargoBay</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.CargoBay" title="Permalink to this definition">¶</a></dt>
@@ -1423,7 +1581,7 @@ void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a 
 
 </div>
 <div class="section" id="control-surface">
-<h3><a class="toc-backref" href="#id44">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.ControlSurface">
 <code class="descname">class ControlSurface</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.ControlSurface" title="Permalink to this definition">¶</a></dt>
@@ -1450,6 +1608,12 @@ void <code class="descname">SetAction</code> <span class="sig-paren">(</span><a 
 <dt id="property-KRPC.Client.Services.SpaceCenter.ControlSurface.RollEnabled">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">RollEnabled</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ControlSurface.RollEnabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the control surface has roll control enabled.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.ControlSurface.AuthorityLimiter">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">AuthorityLimiter</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.ControlSurface.AuthorityLimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The authority limiter for the control surface, which controls how far the control surface will move.</p>
 </dd></dl>
 
 <dl class="property">
@@ -1482,7 +1646,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="decoupler">
-<h3><a class="toc-backref" href="#id45">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Decoupler">
 <code class="descname">class Decoupler</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Decoupler" title="Permalink to this definition">¶</a></dt>
@@ -1498,6 +1662,12 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 <a class="reference internal" href="vessel.html#class-KRPC.Client.Services.SpaceCenter.Vessel" title="KRPC.Client.Services.SpaceCenter.Vessel class">Vessel</a> <code class="descname">Decouple</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Decoupler.Decouple" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fires the decoupler. Returns the new vessel created when the decoupler fires.
 Throws an exception if the decoupler has already fired.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.ActiveVessel</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="property">
@@ -1522,7 +1692,7 @@ Throws an exception if the decoupler has already fired.</p>
 
 </div>
 <div class="section" id="docking-port">
-<h3><a class="toc-backref" href="#id46">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.DockingPort">
 <code class="descname">class DockingPort</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.DockingPort" title="Permalink to this definition">¶</a></dt>
@@ -1554,7 +1724,9 @@ This method can be called for either docking port in a docked pair.
 Throws an exception if the docking port is not docked to anything.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">After undocking, the active vessel may change. See <a class="reference internal" href="space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.ActiveVessel</span></code></a>.</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.ActiveVessel</span></code></a> no longer refer to the active vessel.</p>
 </div>
 </dd></dl>
 
@@ -1700,7 +1872,7 @@ and is disabled until it moves away by a sufficient distance
 
 </div>
 <div class="section" id="engine">
-<h3><a class="toc-backref" href="#id47">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Engine">
 <code class="descname">class Engine</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Engine" title="Permalink to this definition">¶</a></dt>
@@ -1997,7 +2169,7 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 
 </div>
 <div class="section" id="experiment">
-<h3><a class="toc-backref" href="#id48">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Experiment">
 <code class="descname">class Experiment</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Experiment" title="Permalink to this definition">¶</a></dt>
@@ -2157,7 +2329,7 @@ Returns null if experiment is unavailable.</p>
 
 </div>
 <div class="section" id="fairing">
-<h3><a class="toc-backref" href="#id49">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Fairing">
 <code class="descname">class Fairing</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Fairing" title="Permalink to this definition">¶</a></dt>
@@ -2184,7 +2356,7 @@ void <code class="descname">Jettison</code> <span class="sig-paren">(</span><spa
 
 </div>
 <div class="section" id="intake">
-<h3><a class="toc-backref" href="#id50">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id52">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Intake">
 <code class="descname">class Intake</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Intake" title="Permalink to this definition">¶</a></dt>
@@ -2222,111 +2394,33 @@ void <code class="descname">Jettison</code> <span class="sig-paren">(</span><spa
 </dd></dl>
 
 </div>
-<div class="section" id="landing-gear">
-<h3><a class="toc-backref" href="#id51">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="leg">
+<h3><a class="toc-backref" href="#id53">Leg</a><a class="headerlink" href="#leg" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="class-KRPC.Client.Services.SpaceCenter.LandingGear">
-<code class="descname">class LandingGear</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.LandingGear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear with wheels. Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.LandingGear" title="KRPC.Client.Services.SpaceCenter.Part.LandingGear property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.LandingGear</span></code></a>.</p>
+<dt id="class-KRPC.Client.Services.SpaceCenter.Leg">
+<code class="descname">class Leg</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Leg" title="Permalink to this definition">¶</a></dt>
+<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Leg" title="KRPC.Client.Services.SpaceCenter.Part.Leg property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Leg</span></code></a>.</p>
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.Part">
-<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.Part" title="Permalink to this definition">¶</a></dt>
-<dd><p>The part object for this landing gear.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.State">
-<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.LandingGearState" title="KRPC.Client.Services.SpaceCenter.LandingGearState enum">LandingGearState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.State" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current state of the landing gear.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.</p>
-</div>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.Deployable">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.Deployable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployable.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.Deployed">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.Deployed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployed.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.
-Returns an error if you try to deploy fixed landing gear.</p>
-</div>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingGear.IsGrounded">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsGrounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.IsGrounded" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether the gear is touching the ground.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="enum">
-<dt id="enum-KRPC.Client.Services.SpaceCenter.LandingGearState">
-<code class="descname">enum LandingGearState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.LandingGearState" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing gear. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.LandingGear.State" title="KRPC.Client.Services.SpaceCenter.LandingGear.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">LandingGear.State</span></code></a>.</p>
-<dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingGearState.Deployed">
-<code class="descname">Deployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingGearState.Deployed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully deployed.</p>
-</dd></dl>
-
-<dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingGearState.Retracted">
-<code class="descname">Retracted</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingGearState.Retracted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully retracted.</p>
-</dd></dl>
-
-<dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingGearState.Deploying">
-<code class="descname">Deploying</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingGearState.Deploying" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being deployed.</p>
-</dd></dl>
-
-<dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingGearState.Retracting">
-<code class="descname">Retracting</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingGearState.Retracting" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being retracted.</p>
-</dd></dl>
-
-<dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingGearState.Broken">
-<code class="descname">Broken</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingGearState.Broken" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is broken.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="landing-leg">
-<h3><a class="toc-backref" href="#id52">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="class-KRPC.Client.Services.SpaceCenter.LandingLeg">
-<code class="descname">class LandingLeg</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.LandingLeg" title="Permalink to this definition">¶</a></dt>
-<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.LandingLeg" title="KRPC.Client.Services.SpaceCenter.Part.LandingLeg property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.LandingLeg</span></code></a>.</p>
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingLeg.Part">
-<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.Part" title="Permalink to this definition">¶</a></dt>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Leg.Part">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Leg.Part" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this landing leg.</p>
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingLeg.State">
-<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.LandingLegState" title="KRPC.Client.Services.SpaceCenter.LandingLegState enum">LandingLegState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.State" title="Permalink to this definition">¶</a></dt>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Leg.State">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.LegState" title="KRPC.Client.Services.SpaceCenter.LegState enum">LegState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Leg.State" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the landing leg.</p>
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingLeg.Deployed">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.Deployed" title="Permalink to this definition">¶</a></dt>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Leg.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Leg.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the leg is deployable.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Leg.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Leg.Deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the landing leg is deployed.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -2336,44 +2430,44 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.LandingLeg.IsGrounded">
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsGrounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.IsGrounded" title="Permalink to this definition">¶</a></dt>
+<dt id="property-KRPC.Client.Services.SpaceCenter.Leg.IsGrounded">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">IsGrounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Leg.IsGrounded" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether the leg is touching the ground.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="enum">
-<dt id="enum-KRPC.Client.Services.SpaceCenter.LandingLegState">
-<code class="descname">enum LandingLegState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.LandingLegState" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing leg. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.LandingLeg.State" title="KRPC.Client.Services.SpaceCenter.LandingLeg.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">LandingLeg.State</span></code></a>.</p>
+<dt id="enum-KRPC.Client.Services.SpaceCenter.LegState">
+<code class="descname">enum LegState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.LegState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a landing leg. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Leg.State" title="KRPC.Client.Services.SpaceCenter.Leg.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Leg.State</span></code></a>.</p>
 <dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingLegState.Deployed">
-<code class="descname">Deployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingLegState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dt id="value-KRPC.Client.Services.SpaceCenter.LegState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LegState.Deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully deployed.</p>
 </dd></dl>
 
 <dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingLegState.Retracted">
-<code class="descname">Retracted</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingLegState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dt id="value-KRPC.Client.Services.SpaceCenter.LegState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LegState.Retracted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully retracted.</p>
 </dd></dl>
 
 <dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingLegState.Deploying">
-<code class="descname">Deploying</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingLegState.Deploying" title="Permalink to this definition">¶</a></dt>
+<dt id="value-KRPC.Client.Services.SpaceCenter.LegState.Deploying">
+<code class="descname">Deploying</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LegState.Deploying" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being deployed.</p>
 </dd></dl>
 
 <dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingLegState.Retracting">
-<code class="descname">Retracting</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingLegState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dt id="value-KRPC.Client.Services.SpaceCenter.LegState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LegState.Retracting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being retracted.</p>
 </dd></dl>
 
 <dl class="value">
-<dt id="value-KRPC.Client.Services.SpaceCenter.LandingLegState.Broken">
-<code class="descname">Broken</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LandingLegState.Broken" title="Permalink to this definition">¶</a></dt>
+<dt id="value-KRPC.Client.Services.SpaceCenter.LegState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.LegState.Broken" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is broken.</p>
 </dd></dl>
 
@@ -2381,7 +2475,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="launch-clamp">
-<h3><a class="toc-backref" href="#id53">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.LaunchClamp">
 <code class="descname">class LaunchClamp</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.LaunchClamp" title="Permalink to this definition">¶</a></dt>
@@ -2402,7 +2496,7 @@ void <code class="descname">Release</code> <span class="sig-paren">(</span><span
 
 </div>
 <div class="section" id="light">
-<h3><a class="toc-backref" href="#id54">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id55">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Light">
 <code class="descname">class Light</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Light" title="Permalink to this definition">¶</a></dt>
@@ -2435,7 +2529,7 @@ void <code class="descname">Release</code> <span class="sig-paren">(</span><span
 
 </div>
 <div class="section" id="parachute">
-<h3><a class="toc-backref" href="#id55">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Parachute">
 <code class="descname">class Parachute</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Parachute" title="Permalink to this definition">¶</a></dt>
@@ -2459,6 +2553,19 @@ been deployed.</p>
 <dd><p>Whether the parachute has been deployed.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Parachute.Arm">
+void <code class="descname">Arm</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Parachute.Arm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deploys the parachute. This has no effect if the parachute has already
+been armed or deployed. Only applicable to RealChutes parachutes.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Parachute.Armed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Armed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parachute.Armed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.</p>
+</dd></dl>
+
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parachute.State">
 <a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.ParachuteState" title="KRPC.Client.Services.SpaceCenter.ParachuteState enum">ParachuteState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parachute.State" title="Permalink to this definition">¶</a></dt>
@@ -2468,13 +2575,15 @@ been deployed.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parachute.DeployAltitude">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DeployAltitude</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parachute.DeployAltitude" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude at which the parachute will full deploy, in meters.</p>
+<dd><p>The altitude at which the parachute will full deploy, in meters.
+Only applicable to stock parachutes.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Parachute.DeployMinPressure">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DeployMinPressure</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Parachute.DeployMinPressure" title="Permalink to this definition">¶</a></dt>
-<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.</p>
+<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+Only applicable to stock parachutes.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2490,16 +2599,23 @@ been deployed.</p>
 </dd></dl>
 
 <dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ParachuteState.Armed">
+<code class="descname">Armed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ParachuteState.Armed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is armed for deployment. (RealChutes only)</p>
+</dd></dl>
+
+<dl class="value">
 <dt id="value-KRPC.Client.Services.SpaceCenter.ParachuteState.Active">
 <code class="descname">Active</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ParachuteState.Active" title="Permalink to this definition">¶</a></dt>
-<dd><p>The parachute is still stowed, but ready to semi-deploy.</p>
+<dd><p>The parachute is still stowed, but ready to semi-deploy.
+(Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="value">
 <dt id="value-KRPC.Client.Services.SpaceCenter.ParachuteState.SemiDeployed">
 <code class="descname">SemiDeployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ParachuteState.SemiDeployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>The parachute has been deployed and is providing some drag,
-but is not fully deployed yet.</p>
+but is not fully deployed yet. (Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="value">
@@ -2518,7 +2634,7 @@ but is not fully deployed yet.</p>
 
 </div>
 <div class="section" id="radiator">
-<h3><a class="toc-backref" href="#id56">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id57">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Radiator">
 <code class="descname">class Radiator</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Radiator" title="Permalink to this definition">¶</a></dt>
@@ -2592,7 +2708,7 @@ If the radiator is not deployable, this is always <code class="docutils literal"
 
 </div>
 <div class="section" id="resource-converter">
-<h3><a class="toc-backref" href="#id57">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id58">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.ResourceConverter">
 <code class="descname">class ResourceConverter</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.ResourceConverter" title="Permalink to this definition">¶</a></dt>
@@ -2793,7 +2909,7 @@ In this case, check <a class="reference internal" href="#method-KRPC.Client.Serv
 
 </div>
 <div class="section" id="resource-harvester">
-<h3><a class="toc-backref" href="#id58">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.ResourceHarvester">
 <code class="descname">class ResourceHarvester</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.ResourceHarvester" title="Permalink to this definition">¶</a></dt>
@@ -2886,7 +3002,7 @@ In this case, check <a class="reference internal" href="#method-KRPC.Client.Serv
 
 </div>
 <div class="section" id="reaction-wheel">
-<h3><a class="toc-backref" href="#id59">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id60">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.ReactionWheel">
 <code class="descname">class ReactionWheel</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.ReactionWheel" title="Permalink to this definition">¶</a></dt>
@@ -2929,7 +3045,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="rcs">
-<h3><a class="toc-backref" href="#id60">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id61">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.RCS">
 <code class="descname">class RCS</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.RCS" title="Permalink to this definition">¶</a></dt>
@@ -3063,7 +3179,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="sensor">
-<h3><a class="toc-backref" href="#id61">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id62">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Sensor">
 <code class="descname">class Sensor</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Sensor" title="Permalink to this definition">¶</a></dt>
@@ -3090,7 +3206,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="solar-panel">
-<h3><a class="toc-backref" href="#id62">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id63">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.SolarPanel">
 <code class="descname">class SolarPanel</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.SolarPanel" title="Permalink to this definition">¶</a></dt>
@@ -3099,6 +3215,12 @@ to the ratios at which they are consumed by the RCS.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.SolarPanel.Part">
 <a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SolarPanel.Part" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this solar panel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SolarPanel.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SolarPanel.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the solar panel is deployable.</p>
 </dd></dl>
 
 <dl class="property">
@@ -3167,7 +3289,7 @@ as a percentage. A value between 0 and 1.</p>
 
 </div>
 <div class="section" id="thruster">
-<h3><a class="toc-backref" href="#id63">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id64">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="class-KRPC.Client.Services.SpaceCenter.Thruster">
 <code class="descname">class Thruster</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Thruster" title="Permalink to this definition">¶</a></dt>
@@ -3295,9 +3417,283 @@ This is opposite to the direction in which the thruster expels propellant.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="wheel">
+<h3><a class="toc-backref" href="#id65">Wheel</a><a class="headerlink" href="#wheel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="class-KRPC.Client.Services.SpaceCenter.Wheel">
+<code class="descname">class Wheel</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.Wheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wheel. Includes landing gear and rover wheels. Obtained by calling <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Wheel" title="KRPC.Client.Services.SpaceCenter.Part.Wheel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Wheel</span></code></a>.
+Can be used to control the motors, steering and deployment of wheels, among other things.</p>
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Part">
+<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.Part" title="KRPC.Client.Services.SpaceCenter.Part class">Part</a> <code class="descname">Part</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.State">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.WheelState" title="KRPC.Client.Services.SpaceCenter.WheelState enum">WheelState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Radius">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Radius</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the wheel, in meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Grounded">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Grounded</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Grounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is touching the ground.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.HasBrakes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasBrakes</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.HasBrakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has brakes.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Brakes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Brakes</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Brakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The braking force, as a percentage of maximum, when the brakes are applied.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.AutoFrictionControl">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">AutoFrictionControl</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.AutoFrictionControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic friction control is enabled.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.ManualFrictionControl">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">ManualFrictionControl</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.ManualFrictionControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual friction control value. Only has an effect if automatic friction control is disabled.
+A value between 0 and 5 inclusive.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Deployable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployable.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Deployed">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Deployed</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Powered">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Powered</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Powered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is powered by a motor.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.MotorEnabled">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">MotorEnabled</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.MotorEnabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the motor is enabled.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.MotorInverted">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">MotorInverted</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.MotorInverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.MotorState">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.MotorState" title="KRPC.Client.Services.SpaceCenter.MotorState enum">MotorState</a> <code class="descname">MotorState</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.MotorState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.MotorOutput">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">MotorOutput</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.MotorOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output of the motor. This is the torque currently being generated, in Newton meters.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.TractionControlEnabled">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">TractionControlEnabled</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.TractionControlEnabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic traction control is enabled.
+A wheel only has traction control if it is powered.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.TractionControl">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">TractionControl</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.TractionControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting for the traction control.
+Only takes effect if the wheel has automatic traction control enabled.
+A value between 0 and 5 inclusive.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.DriveLimiter">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">DriveLimiter</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.DriveLimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual setting for the motor limiter.
+Only takes effect if the wheel has automatic traction control disabled.
+A value between 0 and 100 inclusive.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Steerable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Steerable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Steerable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has steering.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.SteeringEnabled">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">SteeringEnabled</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.SteeringEnabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is enabled.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.SteeringInverted">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">SteeringInverted</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.SteeringInverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is inverted.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.HasSuspension">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">HasSuspension</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.HasSuspension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has suspension.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.SuspensionSpringStrength">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SuspensionSpringStrength</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.SuspensionSpringStrength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension spring strength, as set in the editor.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.SuspensionDamperStrength">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">SuspensionDamperStrength</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.SuspensionDamperStrength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension damper strength, as set in the editor.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Broken">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Broken</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is broken.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Repairable">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Repairable</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Repairable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is repairable.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Stress">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Stress</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.StressTolerance">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">StressTolerance</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.StressTolerance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stress tolerance of the wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.StressPercentage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">StressPercentage</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.StressPercentage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel as a percentage of its stress tolerance.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Deflection">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Deflection</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Deflection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current deflection of the wheel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Wheel.Slip">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">float</a> <code class="descname">Slip</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.Slip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current slip of the wheel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.WheelState">
+<code class="descname">enum WheelState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.WheelState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a wheel. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.State" title="KRPC.Client.Services.SpaceCenter.Wheel.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Wheel.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.WheelState.Deployed">
+<code class="descname">Deployed</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.WheelState.Deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.WheelState.Retracted">
+<code class="descname">Retracted</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.WheelState.Retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.WheelState.Deploying">
+<code class="descname">Deploying</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.WheelState.Deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being deployed.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.WheelState.Retracting">
+<code class="descname">Retracting</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.WheelState.Retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being retracted.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.WheelState.Broken">
+<code class="descname">Broken</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.WheelState.Broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.MotorState">
+<code class="descname">enum MotorState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.MotorState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the motor on a powered wheel. See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Wheel.MotorState" title="KRPC.Client.Services.SpaceCenter.Wheel.MotorState property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Wheel.MotorState</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.MotorState.Idle">
+<code class="descname">Idle</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.MotorState.Idle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is idle.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.MotorState.Running">
+<code class="descname">Running</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.MotorState.Running" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is running.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.MotorState.Disabled">
+<code class="descname">Disabled</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.MotorState.Disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is disabled.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.MotorState.Inoperable">
+<code class="descname">Inoperable</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.MotorState.Inoperable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is inoperable.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.MotorState.NotEnoughResources">
+<code class="descname">NotEnoughResources</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.MotorState.NotEnoughResources" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor does not have enough resources to run.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="trees-of-parts">
-<span id="csharp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id38">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id39">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
 <p>Vessels in KSP are comprised of a number of parts, connected to one another in a
 <em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
 tree of parts in Figure 2. The craft file for this example can also be
@@ -3314,7 +3710,7 @@ the parent part to the child part.</span></p>
 <div class="clearer container">
 </div>
 <div class="section" id="traversing-the-tree">
-<h3><a class="toc-backref" href="#id39">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
 <p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Parts.Root" title="KRPC.Client.Services.SpaceCenter.Parts.Root property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Parts.Root</span></code></a>,
 <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Parent" title="KRPC.Client.Services.SpaceCenter.Part.Parent property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Parent</span></code></a> and <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Part.Children" title="KRPC.Client.Services.SpaceCenter.Part.Children property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Part.Children</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
@@ -3337,18 +3733,19 @@ depth-first traversal over all of the parts in a vessel:</p>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
-        <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
-        <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
-        <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
-            <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span><span class="p">);</span>
-            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
-                <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">())</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
+                <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span><span class="p">);</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -3382,7 +3779,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="attachment-modes">
-<span id="csharp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id40">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<span id="csharp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id41">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
 <p>Parts can be attached to other parts either <em>radially</em> (on the side of the
 parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
 <p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
@@ -3403,19 +3800,20 @@ but also prints out the attachment mode used by the part:</p>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">()</span>
     <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">();</span>
-        <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
-        <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
-        <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
-        <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
-            <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
-            <span class="kt">string</span> <span class="n">attachMode</span> <span class="p">=</span> <span class="p">(</span><span class="n">part</span><span class="p">.</span><span class="n">AxiallyAttached</span> <span class="p">?</span> <span class="s">&quot;axial&quot;</span> <span class="p">:</span> <span class="s">&quot;radial&quot;</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span> <span class="p">+</span> <span class="s">&quot; - &quot;</span> <span class="p">+</span> <span class="n">attachMode</span><span class="p">);</span>
-            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
-                <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span> <span class="p">())</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">vessel</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">SpaceCenter</span> <span class="p">().</span><span class="n">ActiveVessel</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">root</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Parts</span><span class="p">.</span><span class="n">Root</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">stack</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="p">();</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">Pop</span> <span class="p">();</span>
+                <span class="n">Part</span> <span class="n">part</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item1</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">depth</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Item2</span><span class="p">;</span>
+                <span class="kt">string</span> <span class="n">attachMode</span> <span class="p">=</span> <span class="p">(</span><span class="n">part</span><span class="p">.</span><span class="n">AxiallyAttached</span> <span class="p">?</span> <span class="s">&quot;axial&quot;</span> <span class="p">:</span> <span class="s">&quot;radial&quot;</span><span class="p">);</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span> <span class="p">(</span><span class="k">new</span> <span class="n">String</span> <span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="p">+</span> <span class="n">part</span><span class="p">.</span><span class="n">Title</span> <span class="p">+</span> <span class="s">&quot; - &quot;</span> <span class="p">+</span> <span class="n">attachMode</span><span class="p">);</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">child</span> <span class="k">in</span> <span class="n">part</span><span class="p">.</span><span class="n">Children</span><span class="p">)</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">Push</span> <span class="p">(</span><span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="n">Part</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="p">+</span> <span class="m">1</span><span class="p">));</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -3450,7 +3848,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="fuel-lines">
-<span id="csharp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id41">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id42">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8" style="width: 200px">
 <img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
@@ -3479,7 +3877,7 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
 <div class="section" id="staging">
-<span id="csharp-api-parts-staging"></span><h2><a class="toc-backref" href="#id42">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="csharp-api-parts-staging"></span><h2><a class="toc-backref" href="#id43">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id10" style="width: 340px">
 <img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
@@ -3519,7 +3917,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
         <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="control.html" class="btn btn-neutral" title="Control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="comms.html" class="btn btn-neutral" title="Communications" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -3528,7 +3926,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -3550,7 +3948,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -3560,6 +3958,8 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

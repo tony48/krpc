@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.7 documentation</title>
+  <title>Control &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,11 +30,19 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Parts" href="parts.html"/>
+        <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
  
 <script>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -108,14 +116,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -197,6 +207,18 @@ Obtained by calling <a class="reference internal" href="vessel.html#property-KRP
 that have set one or more of these inputs are no longer connected.</p>
 </div>
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Source">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.ControlSource" title="KRPC.Client.Services.SpaceCenter.ControlSource enum">ControlSource</a> <code class="descname">Source</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source of the vessels control, for example by a kerbal or a probe core.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.State">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.ControlState" title="KRPC.Client.Services.SpaceCenter.ControlState enum">ControlState</a> <code class="descname">State</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Control.SAS">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">SAS</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.SAS" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of SAS.</p>
@@ -232,9 +254,35 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.ReactionWheels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">ReactionWheels</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.ReactionWheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all reactive wheels on the vessel are active,
+and sets the active state of all reaction wheels.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.ReactionWheel.Active" title="KRPC.Client.Services.SpaceCenter.ReactionWheel.Active property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">ReactionWheel.Active</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Control.Gear">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Gear</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Gear" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the landing gear/legs.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Legs">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Legs</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Legs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all landing legs on the vessel are deployed,
+and sets the deployment state of all landing legs.
+Does not include wheels (for example landing gear).
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Leg.Deployed" title="KRPC.Client.Services.SpaceCenter.Leg.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Leg.Deployed</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Wheels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Wheels</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all wheels on the vessel are deployed,
+and sets the deployment state of all wheels.
+Does not include landing legs.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Wheel.Deployed" title="KRPC.Client.Services.SpaceCenter.Wheel.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Wheel.Deployed</span></code></a>.</p>
 </dd></dl>
 
 <dl class="property">
@@ -247,6 +295,71 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 <dt id="property-KRPC.Client.Services.SpaceCenter.Control.Brakes">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Brakes</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Brakes" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the wheel brakes.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Antennas">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Antennas</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Antennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all antennas on the vessel are deployed,
+and sets the deployment state of all antennas.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Antenna.Deployed" title="KRPC.Client.Services.SpaceCenter.Antenna.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Antenna.Deployed</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.CargoBays">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">CargoBays</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.CargoBays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the cargo bays on the vessel are open,
+and sets the open state of all cargo bays.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.CargoBay.Open" title="KRPC.Client.Services.SpaceCenter.CargoBay.Open property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">CargoBay.Open</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Intakes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Intakes</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Intakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the air intakes on the vessel are open,
+and sets the open state of all air intakes.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Intake.Open" title="KRPC.Client.Services.SpaceCenter.Intake.Open property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Intake.Open</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Parachutes">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Parachutes</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Parachutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all parachutes on the vessel are deployed,
+and sets the deployment state of all parachutes.
+Cannot be set to <code class="docutils literal"><span class="pre">false</span></code>.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Parachute.Deployed" title="KRPC.Client.Services.SpaceCenter.Parachute.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Parachute.Deployed</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.Radiators">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Radiators</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Radiators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all radiators on the vessel are deployed,
+and sets the deployment state of all radiators.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.Radiator.Deployed" title="KRPC.Client.Services.SpaceCenter.Radiator.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Radiator.Deployed</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.ResourceHarvesters">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">ResourceHarvesters</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.ResourceHarvesters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the resource harvesters on the vessel are deployed,
+and sets the deployment state of all resource harvesters.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.ResourceHarvester.Deployed" title="KRPC.Client.Services.SpaceCenter.ResourceHarvester.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">ResourceHarvester.Deployed</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.ResourceHarvestersActive">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">ResourceHarvestersActive</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.ResourceHarvestersActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the resource harvesters on the vessel are active,
+and sets the active state of all resource harvesters.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.ResourceHarvester.Active" title="KRPC.Client.Services.SpaceCenter.ResourceHarvester.Active property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">ResourceHarvester.Active</span></code></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.SolarPanels">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">SolarPanels</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.SolarPanels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all solar panels on the vessel are deployed,
+and sets the deployment state of all solar panels.
+See <a class="reference internal" href="parts.html#property-KRPC.Client.Services.SpaceCenter.SolarPanel.Deployed" title="KRPC.Client.Services.SpaceCenter.SolarPanel.Deployed property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SolarPanel.Deployed</span></code></a>.</p>
 </dd></dl>
 
 <dl class="property">
@@ -345,6 +458,12 @@ the in-game UI.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">SpaceCenter.ActiveVessel</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -431,6 +550,56 @@ in the prograde, normal and radial directions.</p>
 <dt id="method-KRPC.Client.Services.SpaceCenter.Control.RemoveNodes">
 void <code class="descname">RemoveNodes</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Control.RemoveNodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove all maneuver nodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.ControlState">
+<code class="descname">enum ControlState</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.ControlState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of a vessel.
+See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Control.State" title="KRPC.Client.Services.SpaceCenter.Control.State property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Control.State</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlState.Full">
+<code class="descname">Full</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlState.Full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full controllable.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlState.Partial">
+<code class="descname">Partial</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlState.Partial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partially controllable.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlState.None">
+<code class="descname">None</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlState.None" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not controllable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.ControlSource">
+<code class="descname">enum ControlSource</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.ControlSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control source of a vessel.
+See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Control.Source" title="KRPC.Client.Services.SpaceCenter.Control.Source property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Control.Source</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlSource.Kerbal">
+<code class="descname">Kerbal</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlSource.Kerbal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a Kerbal.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlSource.Probe">
+<code class="descname">Probe</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlSource.Probe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a probe core.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlSource.None">
+<code class="descname">None</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlSource.None" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is not controlled.</p>
 </dd></dl>
 
 </dd></dl>
@@ -535,7 +704,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="parts.html" class="btn btn-neutral float-right" title="Parts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="comms.html" class="btn btn-neutral float-right" title="Communications" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="orbit.html" class="btn btn-neutral" title="Orbit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -547,7 +716,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -569,7 +738,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -579,6 +748,8 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

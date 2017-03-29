@@ -118,9 +118,13 @@ SpaceCenter
 
          This is the same as calling :meth:`SpaceCenter.Load` with the name "quicksave".
 
-   .. property:: Camera Camera { get; }
+   .. property:: bool UIVisible { get; set; }
 
-      An object that can be used to control the camera.
+      Whether the UI is visible.
+
+   .. property:: bool Navball { get; set; }
+
+      Whether the navball is visible.
 
    .. property:: double UT { get; }
 
@@ -130,12 +134,6 @@ SpaceCenter
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
-
-   .. property:: WarpMode WarpMode { get; }
-
-      The current time warp mode. Returns :enum:`WarpMode.None` if time
-      warp is not active, :enum:`WarpMode.Rails` if regular "on-rails" time warp
-      is active, or :enum:`WarpMode.Physics` if physical time warp is active.
 
    .. property:: float WarpRate { get; }
 
@@ -181,7 +179,7 @@ SpaceCenter
    .. property:: int MaximumRailsWarpFactor { get; }
 
       The current maximum regular "on-rails" warp factor that can be set.
-      A value between 0 and 7 inclusive.  See
+      A value between 0 and 7 inclusive. See
       `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
    .. method:: void WarpTo(double ut, float maxRailsRate = 100000.0, float maxPhysicsRate = 2.0)
@@ -257,9 +255,23 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
 
+   .. property:: WarpMode WarpMode { get; }
+
+      The current time warp mode. Returns :enum:`WarpMode.None` if time
+      warp is not active, :enum:`WarpMode.Rails` if regular "on-rails" time warp
+      is active, or :enum:`WarpMode.Physics` if physical time warp is active.
+
+   .. property:: Camera Camera { get; }
+
+      An object that can be used to control the camera.
+
    .. property:: WaypointManager WaypointManager { get; }
 
       The waypoint manager.
+
+   .. property:: ContractManager ContractManager { get; }
+
+      The contract manager.
 
 
 

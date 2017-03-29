@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.7 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -111,14 +119,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -411,16 +421,32 @@ This will create a load a save file called <code class="docutils literal"><span 
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.camera">
-<code class="descname">camera</code><a class="headerlink" href="#SpaceCenter.camera" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object that can be used to control the camera.</p>
+<dt id="SpaceCenter.ui_visible">
+<code class="descname">ui_visible</code><a class="headerlink" href="#SpaceCenter.ui_visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI is visible.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="camera.html#SpaceCenter.Camera" title="SpaceCenter.Camera"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Camera</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.navball">
+<code class="descname">navball</code><a class="headerlink" href="#SpaceCenter.navball" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the navball is visible.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
 </tr>
 </tbody>
 </table>
@@ -454,24 +480,6 @@ G in <span class="math">\(N(m/kg)^2\)</span>.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.warp_mode">
-<code class="descname">warp_mode</code><a class="headerlink" href="#SpaceCenter.warp_mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current time warp mode. Returns <a class="reference internal" href="#SpaceCenter.WarpMode.none" title="SpaceCenter.WarpMode.none"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.none</span></code></a> if time
-warp is not active, <a class="reference internal" href="#SpaceCenter.WarpMode.rails" title="SpaceCenter.WarpMode.rails"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
-is active, or <a class="reference internal" href="#SpaceCenter.WarpMode.physics" title="SpaceCenter.WarpMode.physics"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.physics</span></code></a> if physical time warp is active.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.WarpMode" title="SpaceCenter.WarpMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WarpMode</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -577,7 +585,7 @@ including how close the active vessel is to a planet. See
 <dt id="SpaceCenter.maximum_rails_warp_factor">
 <code class="descname">maximum_rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.maximum_rails_warp_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current maximum regular &#8220;on-rails&#8221; warp factor that can be set.
-A value between 0 and 7 inclusive.  See
+A value between 0 and 7 inclusive. See
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -739,6 +747,40 @@ relative angular velocity of the reference frames into account.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.warp_mode">
+<code class="descname">warp_mode</code><a class="headerlink" href="#SpaceCenter.warp_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time warp mode. Returns <a class="reference internal" href="#SpaceCenter.WarpMode.none" title="SpaceCenter.WarpMode.none"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.none</span></code></a> if time
+warp is not active, <a class="reference internal" href="#SpaceCenter.WarpMode.rails" title="SpaceCenter.WarpMode.rails"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
+is active, or <a class="reference internal" href="#SpaceCenter.WarpMode.physics" title="SpaceCenter.WarpMode.physics"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.physics</span></code></a> if physical time warp is active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.WarpMode" title="SpaceCenter.WarpMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WarpMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.camera">
+<code class="descname">camera</code><a class="headerlink" href="#SpaceCenter.camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that can be used to control the camera.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="camera.html#SpaceCenter.Camera" title="SpaceCenter.Camera"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Camera</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.waypoint_manager">
 <code class="descname">waypoint_manager</code><a class="headerlink" href="#SpaceCenter.waypoint_manager" title="Permalink to this definition">¶</a></dt>
 <dd><p>The waypoint manager.</p>
@@ -748,7 +790,23 @@ relative angular velocity of the reference frames into account.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="waypoint-manager.html#SpaceCenter.WaypointManager" title="SpaceCenter.WaypointManager"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WaypointManager</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="waypoints.html#SpaceCenter.WaypointManager" title="SpaceCenter.WaypointManager"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.WaypointManager</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.contract_manager">
+<code class="descname">contract_manager</code><a class="headerlink" href="#SpaceCenter.contract_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract manager.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="contracts.html#SpaceCenter.ContractManager" title="SpaceCenter.ContractManager"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.ContractManager</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -800,7 +858,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -822,7 +880,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -832,6 +890,8 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

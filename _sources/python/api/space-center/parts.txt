@@ -99,6 +99,13 @@ Parts
       :param str module_name:
       :rtype: list of :class:`Module`
 
+   .. attribute:: antennas
+
+      A list of all antennas in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Antenna`
+
    .. attribute:: cargo_bays
 
       A list of all cargo bays in the vessel.
@@ -160,19 +167,12 @@ Parts
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Intake`
 
-   .. attribute:: landing_gear
-
-      A list of all landing gear attached to the vessel.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: list of :class:`LandingGear`
-
-   .. attribute:: landing_legs
+   .. attribute:: legs
 
       A list of all landing legs attached to the vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: list of :class:`LandingLeg`
+      :rtype: list of :class:`Leg`
 
    .. attribute:: launch_clamps
 
@@ -243,6 +243,13 @@ Parts
 
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`SolarPanel`
+
+   .. attribute:: wheels
+
+      A list of all wheels in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list of :class:`Wheel`
 
 
 
@@ -554,6 +561,13 @@ Part
       :Attribute: Read-only, cannot be set
       :rtype: list of :class:`Module`
 
+   .. attribute:: antenna
+
+      A :class:`Antenna` if the part is an antenna, otherwise ``None``.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Antenna`
+
    .. attribute:: cargo_bay
 
       A :class:`CargoBay` if the part is a cargo bay, otherwise ``None``.
@@ -616,19 +630,12 @@ Part
          including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :class:`RCS`.
 
-   .. attribute:: landing_gear
+   .. attribute:: leg
 
-      A :class:`LandingGear` if the part is a landing gear, otherwise ``None``.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingGear`
-
-   .. attribute:: landing_leg
-
-      A :class:`LandingLeg` if the part is a landing leg, otherwise ``None``.
+      A :class:`Leg` if the part is a landing leg, otherwise ``None``.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingLeg`
+      :rtype: :class:`Leg`
 
    .. attribute:: launch_clamp
 
@@ -699,6 +706,13 @@ Part
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`SolarPanel`
+
+   .. attribute:: wheel
+
+      A :class:`Wheel` if the part is a wheel, otherwise ``None``.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Wheel`
 
    .. method:: position(reference_frame)
 
@@ -1002,6 +1016,144 @@ The following classes provide functionality for specific types of part.
 .. contents::
    :local:
 
+Antenna
+^^^^^^^
+
+
+.. class:: Antenna
+
+   An antenna. Obtained by calling :attr:`Part.antenna`.
+
+   .. attribute:: part
+
+      The part object for this antenna.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. attribute:: state
+
+      The current state of the antenna.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`AntennaState`
+
+   .. attribute:: deployable
+
+      Whether the antenna is deployable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: deployed
+
+      Whether the antenna is deployed.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+      .. note::
+
+         Fixed antennas are always deployed.
+         Returns an error if you try to deploy a fixed antenna.
+
+   .. attribute:: can_transmit
+
+      Whether data can be transmitted by this antenna.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. method:: transmit()
+
+      Transmit data.
+
+   .. method:: cancel()
+
+      Cancel current transmission of data.
+
+   .. attribute:: allow_partial
+
+      Whether partial data transmission is permitted.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: power
+
+      The power of the antenna.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: combinable
+
+      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: combinable_exponent
+
+      Exponent used to calculate the combined power of multiple antennae on a vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: packet_interval
+
+      Interval between sending packets in seconds.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: packet_size
+
+      Amount of data sent per packet in Mits.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: packet_resource_cost
+
+      Units of electric charge consumed per packet sent.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+
+
+.. class:: AntennaState
+
+   The state of an antenna. See :attr:`Antenna.state`.
+
+
+   .. data:: deployed
+
+      Antenna is fully deployed.
+
+
+   .. data:: retracted
+
+      Antenna is fully retracted.
+
+
+   .. data:: deploying
+
+      Antenna is being deployed.
+
+
+   .. data:: retracting
+
+      Antenna is being retracted.
+
+
+   .. data:: broken
+
+      Antenna is broken.
+
+
+
 Cargo Bay
 ^^^^^^^^^
 
@@ -1095,6 +1247,13 @@ Control Surface
       :Attribute: Can be read or written
       :rtype: bool
 
+   .. attribute:: authority_limiter
+
+      The authority limiter for the control surface, which controls how far the control surface will move.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
    .. attribute:: inverted
 
       Whether the control surface movement is inverted.
@@ -1148,6 +1307,12 @@ Decoupler
       Throws an exception if the decoupler has already fired.
 
       :rtype: :class:`Vessel`
+
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :attr:`active_vessel` no longer refer to the active vessel.
 
    .. attribute:: decoupled
 
@@ -1212,7 +1377,9 @@ Docking Port
 
       .. note::
 
-         After undocking, the active vessel may change. See :attr:`active_vessel`.
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :attr:`active_vessel` no longer refer to the active vessel.
 
    .. attribute:: reengage_distance
 
@@ -1912,98 +2079,13 @@ Intake
 
 
 
-Landing Gear
-^^^^^^^^^^^^
+Leg
+^^^
 
 
-.. class:: LandingGear
+.. class:: Leg
 
-   Landing gear with wheels. Obtained by calling :attr:`Part.landing_gear`.
-
-   .. attribute:: part
-
-      The part object for this landing gear.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: :class:`Part`
-
-   .. attribute:: state
-
-      Gets the current state of the landing gear.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingGearState`
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-
-   .. attribute:: deployable
-
-      Whether the landing gear is deployable.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: bool
-
-   .. attribute:: deployed
-
-      Whether the landing gear is deployed.
-
-      :Attribute: Can be read or written
-      :rtype: bool
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-         Returns an error if you try to deploy fixed landing gear.
-
-   .. attribute:: is_grounded
-
-      Returns whether the gear is touching the ground.
-
-      :Attribute: Read-only, cannot be set
-      :rtype: bool
-
-
-
-.. class:: LandingGearState
-
-   The state of a landing gear. See :attr:`LandingGear.state`.
-
-
-   .. data:: deployed
-
-      Landing gear is fully deployed.
-
-
-   .. data:: retracted
-
-      Landing gear is fully retracted.
-
-
-   .. data:: deploying
-
-      Landing gear is being deployed.
-
-
-   .. data:: retracting
-
-      Landing gear is being retracted.
-
-
-   .. data:: broken
-
-      Landing gear is broken.
-
-
-
-Landing Leg
-^^^^^^^^^^^
-
-
-.. class:: LandingLeg
-
-   A landing leg. Obtained by calling :attr:`Part.landing_leg`.
+   A landing leg. Obtained by calling :attr:`Part.leg`.
 
    .. attribute:: part
 
@@ -2017,7 +2099,14 @@ Landing Leg
       The current state of the landing leg.
 
       :Attribute: Read-only, cannot be set
-      :rtype: :class:`LandingLegState`
+      :rtype: :class:`LegState`
+
+   .. attribute:: deployable
+
+      Whether the leg is deployable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
 
    .. attribute:: deployed
 
@@ -2040,9 +2129,9 @@ Landing Leg
 
 
 
-.. class:: LandingLegState
+.. class:: LegState
 
-   The state of a landing leg. See :attr:`LandingLeg.state`.
+   The state of a landing leg. See :attr:`Leg.state`.
 
 
    .. data:: deployed
@@ -2157,6 +2246,18 @@ Parachute
       :Attribute: Read-only, cannot be set
       :rtype: bool
 
+   .. method:: arm()
+
+      Deploys the parachute. This has no effect if the parachute has already
+      been armed or deployed. Only applicable to RealChutes parachutes.
+
+   .. attribute:: armed
+
+      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
    .. attribute:: state
 
       The current state of the parachute.
@@ -2167,6 +2268,7 @@ Parachute
    .. attribute:: deploy_altitude
 
       The altitude at which the parachute will full deploy, in meters.
+      Only applicable to stock parachutes.
 
       :Attribute: Can be read or written
       :rtype: float
@@ -2174,6 +2276,7 @@ Parachute
    .. attribute:: deploy_min_pressure
 
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+      Only applicable to stock parachutes.
 
       :Attribute: Can be read or written
       :rtype: float
@@ -2190,15 +2293,21 @@ Parachute
       The parachute is safely tucked away inside its housing.
 
 
+   .. data:: armed
+
+      The parachute is armed for deployment. (RealChutes only)
+
+
    .. data:: active
 
       The parachute is still stowed, but ready to semi-deploy.
+      (Stock parachutes only)
 
 
    .. data:: semi_deployed
 
       The parachute has been deployed and is providing some drag,
-      but is not fully deployed yet.
+      but is not fully deployed yet. (Stock parachutes only)
 
 
    .. data:: deployed
@@ -2748,6 +2857,13 @@ Solar Panel
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Part`
 
+   .. attribute:: deployable
+
+      Whether the solar panel is deployable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
    .. attribute:: deployed
 
       Whether the solar panel is extended.
@@ -2906,6 +3022,302 @@ Thruster
 
       :param ReferenceFrame reference_frame:
       :rtype: tuple of (float, float, float)
+
+
+
+Wheel
+^^^^^
+
+
+.. class:: Wheel
+
+   A wheel. Includes landing gear and rover wheels. Obtained by calling :attr:`Part.wheel`.
+   Can be used to control the motors, steering and deployment of wheels, among other things.
+
+   .. attribute:: part
+
+      The part object for this wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`Part`
+
+   .. attribute:: state
+
+      The current state of the wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`WheelState`
+
+   .. attribute:: radius
+
+      Radius of the wheel, in meters.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: grounded
+
+      Whether the wheel is touching the ground.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: has_brakes
+
+      Whether the wheel has brakes.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: brakes
+
+      The braking force, as a percentage of maximum, when the brakes are applied.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: auto_friction_control
+
+      Whether automatic friction control is enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: manual_friction_control
+
+      Manual friction control value. Only has an effect if automatic friction control is disabled.
+      A value between 0 and 5 inclusive.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: deployable
+
+      Whether the wheel is deployable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: deployed
+
+      Whether the wheel is deployed.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: powered
+
+      Whether the wheel is powered by a motor.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: motor_enabled
+
+      Whether the motor is enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: motor_inverted
+
+      Whether the direction of the motor is inverted.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: motor_state
+
+      Whether the direction of the motor is inverted.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`MotorState`
+
+   .. attribute:: motor_output
+
+      The output of the motor. This is the torque currently being generated, in Newton meters.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: traction_control_enabled
+
+      Whether automatic traction control is enabled.
+      A wheel only has traction control if it is powered.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: traction_control
+
+      Setting for the traction control.
+      Only takes effect if the wheel has automatic traction control enabled.
+      A value between 0 and 5 inclusive.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: drive_limiter
+
+      Manual setting for the motor limiter.
+      Only takes effect if the wheel has automatic traction control disabled.
+      A value between 0 and 100 inclusive.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: steerable
+
+      Whether the wheel has steering.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: steering_enabled
+
+      Whether the wheel steering is enabled.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: steering_inverted
+
+      Whether the wheel steering is inverted.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: has_suspension
+
+      Whether the wheel has suspension.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: suspension_spring_strength
+
+      Suspension spring strength, as set in the editor.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: suspension_damper_strength
+
+      Suspension damper strength, as set in the editor.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: broken
+
+      Whether the wheel is broken.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: repairable
+
+      Whether the wheel is repairable.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: stress
+
+      Current stress on the wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: stress_tolerance
+
+      Stress tolerance of the wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: stress_percentage
+
+      Current stress on the wheel as a percentage of its stress tolerance.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: deflection
+
+      Current deflection of the wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: slip
+
+      Current slip of the wheel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+
+
+.. class:: WheelState
+
+   The state of a wheel. See :attr:`Wheel.state`.
+
+
+   .. data:: deployed
+
+      Wheel is fully deployed.
+
+
+   .. data:: retracted
+
+      Wheel is fully retracted.
+
+
+   .. data:: deploying
+
+      Wheel is being deployed.
+
+
+   .. data:: retracting
+
+      Wheel is being retracted.
+
+
+   .. data:: broken
+
+      Wheel is broken.
+
+
+
+.. class:: MotorState
+
+   The state of the motor on a powered wheel. See :attr:`Wheel.motor_state`.
+
+
+   .. data:: idle
+
+      The motor is idle.
+
+
+   .. data:: running
+
+      The motor is running.
+
+
+   .. data:: disabled
+
+      The motor is disabled.
+
+
+   .. data:: inoperable
+
+      The motor is inoperable.
+
+
+   .. data:: not_enough_resources
+
+      The motor does not have enough resources to run.
 
 
 

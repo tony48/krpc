@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contracts &mdash; kRPC 0.3.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Geometry Types" href="geometry-types.html"/>
+        <link rel="prev" title="Waypoints" href="waypoints.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Python Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../python.html">Python</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Contracts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/python/api/space-center/contracts.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contracts">
+<h1>Contracts<a class="headerlink" href="#contracts" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="SpaceCenter.ContractManager">
+<em class="property">class </em><code class="descname">ContractManager</code><a class="headerlink" href="#SpaceCenter.ContractManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contracts manager.
+Obtained by calling <a class="reference internal" href="space-center.html#SpaceCenter.waypoint_manager" title="SpaceCenter.waypoint_manager"><code class="xref py py-attr docutils literal"><span class="pre">waypoint_manager</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.types">
+<code class="descname">types</code><a class="headerlink" href="#SpaceCenter.ContractManager.types" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all contract types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">set of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.all_contracts">
+<code class="descname">all_contracts</code><a class="headerlink" href="#SpaceCenter.ContractManager.all_contracts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all contracts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref py py-class docutils literal"><span class="pre">Contract</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.active_contracts">
+<code class="descname">active_contracts</code><a class="headerlink" href="#SpaceCenter.ContractManager.active_contracts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all active contracts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref py py-class docutils literal"><span class="pre">Contract</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.offered_contracts">
+<code class="descname">offered_contracts</code><a class="headerlink" href="#SpaceCenter.ContractManager.offered_contracts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all offered, but unaccepted, contracts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref py py-class docutils literal"><span class="pre">Contract</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.completed_contracts">
+<code class="descname">completed_contracts</code><a class="headerlink" href="#SpaceCenter.ContractManager.completed_contracts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all completed contracts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref py py-class docutils literal"><span class="pre">Contract</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractManager.failed_contracts">
+<code class="descname">failed_contracts</code><a class="headerlink" href="#SpaceCenter.ContractManager.failed_contracts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all failed contracts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref py py-class docutils literal"><span class="pre">Contract</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.Contract">
+<em class="property">class </em><code class="descname">Contract</code><a class="headerlink" href="#SpaceCenter.Contract" title="Permalink to this definition">¶</a></dt>
+<dd><p>A contract. Can be accessed using <a class="reference internal" href="space-center.html#SpaceCenter.contract_manager" title="SpaceCenter.contract_manager"><code class="xref py py-attr docutils literal"><span class="pre">contract_manager</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.type">
+<code class="descname">type</code><a class="headerlink" href="#SpaceCenter.Contract.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.title">
+<code class="descname">title</code><a class="headerlink" href="#SpaceCenter.Contract.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.description">
+<code class="descname">description</code><a class="headerlink" href="#SpaceCenter.Contract.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.notes">
+<code class="descname">notes</code><a class="headerlink" href="#SpaceCenter.Contract.notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notes for the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.synopsis">
+<code class="descname">synopsis</code><a class="headerlink" href="#SpaceCenter.Contract.synopsis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synopsis for the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.keywords">
+<code class="descname">keywords</code><a class="headerlink" href="#SpaceCenter.Contract.keywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keywords for the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.state">
+<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Contract.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.ContractState" title="SpaceCenter.ContractState"><code class="xref py py-class docutils literal"><span class="pre">ContractState</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.seen">
+<code class="descname">seen</code><a class="headerlink" href="#SpaceCenter.Contract.seen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been seen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.read">
+<code class="descname">read</code><a class="headerlink" href="#SpaceCenter.Contract.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been read.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.active">
+<code class="descname">active</code><a class="headerlink" href="#SpaceCenter.Contract.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract is active.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.failed">
+<code class="descname">failed</code><a class="headerlink" href="#SpaceCenter.Contract.failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.can_be_canceled">
+<code class="descname">can_be_canceled</code><a class="headerlink" href="#SpaceCenter.Contract.can_be_canceled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be canceled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.can_be_declined">
+<code class="descname">can_be_declined</code><a class="headerlink" href="#SpaceCenter.Contract.can_be_declined" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be declined.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.can_be_failed">
+<code class="descname">can_be_failed</code><a class="headerlink" href="#SpaceCenter.Contract.can_be_failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Contract.accept">
+<code class="descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Contract.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept an offered contract.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Contract.cancel">
+<code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Contract.cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel an active contract.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Contract.decline">
+<code class="descname">decline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Contract.decline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decline an offered contract.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.funds_advance">
+<code class="descname">funds_advance</code><a class="headerlink" href="#SpaceCenter.Contract.funds_advance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received when accepting the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.funds_completion">
+<code class="descname">funds_completion</code><a class="headerlink" href="#SpaceCenter.Contract.funds_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received on completion of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.funds_failure">
+<code class="descname">funds_failure</code><a class="headerlink" href="#SpaceCenter.Contract.funds_failure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds lost if the contract is failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.reputation_completion">
+<code class="descname">reputation_completion</code><a class="headerlink" href="#SpaceCenter.Contract.reputation_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation gained on completion of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.reputation_failure">
+<code class="descname">reputation_failure</code><a class="headerlink" href="#SpaceCenter.Contract.reputation_failure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation lost if the contract is failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.science_completion">
+<code class="descname">science_completion</code><a class="headerlink" href="#SpaceCenter.Contract.science_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science gained on completion of the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Contract.parameters">
+<code class="descname">parameters</code><a class="headerlink" href="#SpaceCenter.Contract.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters for the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.ContractParameter" title="SpaceCenter.ContractParameter"><code class="xref py py-class docutils literal"><span class="pre">ContractParameter</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.ContractState">
+<em class="property">class </em><code class="descname">ContractState</code><a class="headerlink" href="#SpaceCenter.ContractState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a contract. See <a class="reference internal" href="#SpaceCenter.Contract.state" title="SpaceCenter.Contract.state"><code class="xref py py-attr docutils literal"><span class="pre">Contract.state</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.ContractState.active">
+<code class="descname">active</code><a class="headerlink" href="#SpaceCenter.ContractState.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract is active.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.canceled">
+<code class="descname">canceled</code><a class="headerlink" href="#SpaceCenter.ContractState.canceled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been canceled.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.completed">
+<code class="descname">completed</code><a class="headerlink" href="#SpaceCenter.ContractState.completed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been completed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.deadline_expired">
+<code class="descname">deadline_expired</code><a class="headerlink" href="#SpaceCenter.ContractState.deadline_expired" title="Permalink to this definition">¶</a></dt>
+<dd><p>The deadline for the contract has expired.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.declined">
+<code class="descname">declined</code><a class="headerlink" href="#SpaceCenter.ContractState.declined" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been declined.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.failed">
+<code class="descname">failed</code><a class="headerlink" href="#SpaceCenter.ContractState.failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been failed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.generated">
+<code class="descname">generated</code><a class="headerlink" href="#SpaceCenter.ContractState.generated" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been generated.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.offered">
+<code class="descname">offered</code><a class="headerlink" href="#SpaceCenter.ContractState.offered" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been offered to the player.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.offer_expired">
+<code class="descname">offer_expired</code><a class="headerlink" href="#SpaceCenter.ContractState.offer_expired" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract was offered to the player, but the offer expired.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ContractState.withdrawn">
+<code class="descname">withdrawn</code><a class="headerlink" href="#SpaceCenter.ContractState.withdrawn" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been withdrawn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.ContractParameter">
+<em class="property">class </em><code class="descname">ContractParameter</code><a class="headerlink" href="#SpaceCenter.ContractParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A contract parameter. See <a class="reference internal" href="#SpaceCenter.Contract.parameters" title="SpaceCenter.Contract.parameters"><code class="xref py py-attr docutils literal"><span class="pre">Contract.parameters</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.title">
+<code class="descname">title</code><a class="headerlink" href="#SpaceCenter.ContractParameter.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.notes">
+<code class="descname">notes</code><a class="headerlink" href="#SpaceCenter.ContractParameter.notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notes for the parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.children">
+<code class="descname">children</code><a class="headerlink" href="#SpaceCenter.ContractParameter.children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Child contract parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.ContractParameter" title="SpaceCenter.ContractParameter"><code class="xref py py-class docutils literal"><span class="pre">ContractParameter</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.completed">
+<code class="descname">completed</code><a class="headerlink" href="#SpaceCenter.ContractParameter.completed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parameter has been completed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.failed">
+<code class="descname">failed</code><a class="headerlink" href="#SpaceCenter.ContractParameter.failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parameter has been failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.optional">
+<code class="descname">optional</code><a class="headerlink" href="#SpaceCenter.ContractParameter.optional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract parameter is optional.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.funds_completion">
+<code class="descname">funds_completion</code><a class="headerlink" href="#SpaceCenter.ContractParameter.funds_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received on completion of the contract parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.funds_failure">
+<code class="descname">funds_failure</code><a class="headerlink" href="#SpaceCenter.ContractParameter.funds_failure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds lost if the contract parameter is failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.reputation_completion">
+<code class="descname">reputation_completion</code><a class="headerlink" href="#SpaceCenter.ContractParameter.reputation_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation gained on completion of the contract parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.reputation_failure">
+<code class="descname">reputation_failure</code><a class="headerlink" href="#SpaceCenter.ContractParameter.reputation_failure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation lost if the contract parameter is failed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ContractParameter.science_completion">
+<code class="descname">science_completion</code><a class="headerlink" href="#SpaceCenter.ContractParameter.science_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science gained on completion of the contract parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="geometry-types.html" class="btn btn-neutral float-right" title="Geometry Types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="waypoints.html" class="btn btn-neutral" title="Waypoints" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

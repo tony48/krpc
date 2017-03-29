@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter API &mdash; kRPC 0.3.7 documentation</title>
+  <title>SpaceCenter API &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../index.html"/>
         <link rel="up" title="C#" href="../../csharp.html"/>
         <link rel="next" title="SpaceCenter" href="space-center/space-center.html"/>
         <link rel="prev" title="KRPC API" href="krpc.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -108,14 +116,16 @@
 <li class="toctree-l3"><a class="reference internal" href="space-center/flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="space-center/comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="space-center/geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="space-center/camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="space-center/waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="space-center/waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="space-center/contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="space-center/geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="drawing.html">Drawing API</a></li>
@@ -190,6 +200,7 @@
 <li class="toctree-l1"><a class="reference internal" href="space-center/flight.html">Flight</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/orbit.html">Orbit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/control.html">Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="space-center/comms.html">Communications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/parts.html">Parts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="space-center/parts.html#id1">Parts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="space-center/parts.html#part">Part</a></li>
@@ -204,9 +215,14 @@
 <li class="toctree-l1"><a class="reference internal" href="space-center/node.html">Node</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="space-center/geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="space-center/camera.html">Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="space-center/waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="space-center/waypoints.html">Waypoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="space-center/contracts.html">Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="space-center/geometry-types.html">Geometry Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="space-center/geometry-types.html#vectors">Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="space-center/geometry-types.html#quaternions">Quaternions</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -230,7 +246,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -252,7 +268,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -262,6 +278,8 @@
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

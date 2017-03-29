@@ -18,6 +18,14 @@ Control
       Control inputs (such as pitch, yaw and roll) are zeroed when all clients
       that have set one or more of these inputs are no longer connected.
 
+   .. function:: ControlSource source()
+
+      The source of the vessels control, for example by a kerbal or a probe core.
+
+   .. function:: ControlState state()
+
+      The control state of the vessel.
+
    .. function:: bool sas()
    .. function:: void set_sas(bool value)
 
@@ -51,10 +59,33 @@ Control
 
       The state of RCS.
 
+   .. function:: bool reaction_wheels()
+   .. function:: void set_reaction_wheels(bool value)
+
+      Returns whether all reactive wheels on the vessel are active,
+      and sets the active state of all reaction wheels.
+      See :func:`ReactionWheel::active`.
+
    .. function:: bool gear()
    .. function:: void set_gear(bool value)
 
       The state of the landing gear/legs.
+
+   .. function:: bool legs()
+   .. function:: void set_legs(bool value)
+
+      Returns whether all landing legs on the vessel are deployed,
+      and sets the deployment state of all landing legs.
+      Does not include wheels (for example landing gear).
+      See :func:`Leg::deployed`.
+
+   .. function:: bool wheels()
+   .. function:: void set_wheels(bool value)
+
+      Returns whether all wheels on the vessel are deployed,
+      and sets the deployment state of all wheels.
+      Does not include landing legs.
+      See :func:`Wheel::deployed`.
 
    .. function:: bool lights()
    .. function:: void set_lights(bool value)
@@ -65,6 +96,63 @@ Control
    .. function:: void set_brakes(bool value)
 
       The state of the wheel brakes.
+
+   .. function:: bool antennas()
+   .. function:: void set_antennas(bool value)
+
+      Returns whether all antennas on the vessel are deployed,
+      and sets the deployment state of all antennas.
+      See :func:`Antenna::deployed`.
+
+   .. function:: bool cargo_bays()
+   .. function:: void set_cargo_bays(bool value)
+
+      Returns whether any of the cargo bays on the vessel are open,
+      and sets the open state of all cargo bays.
+      See :func:`CargoBay::open`.
+
+   .. function:: bool intakes()
+   .. function:: void set_intakes(bool value)
+
+      Returns whether all of the air intakes on the vessel are open,
+      and sets the open state of all air intakes.
+      See :func:`Intake::open`.
+
+   .. function:: bool parachutes()
+   .. function:: void set_parachutes(bool value)
+
+      Returns whether all parachutes on the vessel are deployed,
+      and sets the deployment state of all parachutes.
+      Cannot be set to ``false``.
+      See :func:`Parachute::deployed`.
+
+   .. function:: bool radiators()
+   .. function:: void set_radiators(bool value)
+
+      Returns whether all radiators on the vessel are deployed,
+      and sets the deployment state of all radiators.
+      See :func:`Radiator::deployed`.
+
+   .. function:: bool resource_harvesters()
+   .. function:: void set_resource_harvesters(bool value)
+
+      Returns whether all of the resource harvesters on the vessel are deployed,
+      and sets the deployment state of all resource harvesters.
+      See :func:`ResourceHarvester::deployed`.
+
+   .. function:: bool resource_harvesters_active()
+   .. function:: void set_resource_harvesters_active(bool value)
+
+      Returns whether any of the resource harvesters on the vessel are active,
+      and sets the active state of all resource harvesters.
+      See :func:`ResourceHarvester::active`.
+
+   .. function:: bool solar_panels()
+   .. function:: void set_solar_panels(bool value)
+
+      Returns whether all solar panels on the vessel are deployed,
+      and sets the deployment state of all solar panels.
+      See :func:`SolarPanel::deployed`.
 
    .. function:: bool abort()
    .. function:: void set_abort(bool value)
@@ -145,6 +233,12 @@ Control
 
       :returns: A list of vessel objects that are jettisoned from the active vessel.
 
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :func:`active_vessel` no longer refer to the active vessel.
+
    .. function:: bool get_action_group(uint32_t group)
 
       Returns ``true`` if the given action group is enabled.
@@ -190,6 +284,52 @@ Control
    .. function:: void remove_nodes()
 
       Remove all maneuver nodes.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ControlState
+
+   The control state of a vessel.
+   See :func:`Control::state`.
+
+
+   .. enumerator:: full
+
+      Full controllable.
+
+
+   .. enumerator:: partial
+
+      Partially controllable.
+
+
+   .. enumerator:: none
+
+      Not controllable.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ControlSource
+
+   The control source of a vessel.
+   See :func:`Control::source`.
+
+
+   .. enumerator:: kerbal
+
+      Vessel is controlled by a Kerbal.
+
+
+   .. enumerator:: probe
+
+      Vessel is controlled by a probe core.
+
+
+   .. enumerator:: none
+
+      Vessel is not controlled.
 
 
 

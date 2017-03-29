@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.7 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -108,14 +116,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -361,9 +371,15 @@ void <code class="descname">Quickload</code> <span class="sig-paren">(</span><sp
 </dd></dl>
 
 <dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Camera">
-<a class="reference internal" href="camera.html#class-KRPC.Client.Services.SpaceCenter.Camera" title="KRPC.Client.Services.SpaceCenter.Camera class">Camera</a> <code class="descname">Camera</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Camera" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object that can be used to control the camera.</p>
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.UIVisible">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">UIVisible</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.UIVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI is visible.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Navball">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">bool</a> <code class="descname">Navball</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Navball" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the navball is visible.</p>
 </dd></dl>
 
 <dl class="property">
@@ -377,14 +393,6 @@ void <code class="descname">Quickload</code> <span class="sig-paren">(</span><sp
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">double</a> <code class="descname">G</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.G" title="Permalink to this definition">¶</a></dt>
 <dd><p>The value of the <a class="reference external" href="https://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>
 G in <span class="math">\(N(m/kg)^2\)</span>.</p>
-</dd></dl>
-
-<dl class="property">
-<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode">
-<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.WarpMode" title="KRPC.Client.Services.SpaceCenter.WarpMode enum">WarpMode</a> <code class="descname">WarpMode</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current time warp mode. Returns <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.None" title="KRPC.Client.Services.SpaceCenter.WarpMode.None value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.None</span></code></a> if time
-warp is not active, <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.Rails" title="KRPC.Client.Services.SpaceCenter.WarpMode.Rails value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.Rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
-is active, or <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.Physics" title="KRPC.Client.Services.SpaceCenter.WarpMode.Physics value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.Physics</span></code></a> if physical time warp is active.</p>
 </dd></dl>
 
 <dl class="property">
@@ -448,7 +456,7 @@ including how close the active vessel is to a planet. See
 <dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.MaximumRailsWarpFactor">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">int</a> <code class="descname">MaximumRailsWarpFactor</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.MaximumRailsWarpFactor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current maximum regular &#8220;on-rails&#8221; warp factor that can be set.
-A value between 0 and 7 inclusive.  See
+A value between 0 and 7 inclusive. See
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
 </dd></dl>
 
@@ -578,9 +586,29 @@ relative angular velocity of the reference frames into account.</p>
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.WarpMode" title="KRPC.Client.Services.SpaceCenter.WarpMode enum">WarpMode</a> <code class="descname">WarpMode</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time warp mode. Returns <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.None" title="KRPC.Client.Services.SpaceCenter.WarpMode.None value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.None</span></code></a> if time
+warp is not active, <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.Rails" title="KRPC.Client.Services.SpaceCenter.WarpMode.Rails value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.Rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
+is active, or <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.Physics" title="KRPC.Client.Services.SpaceCenter.WarpMode.Physics value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.Physics</span></code></a> if physical time warp is active.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Camera">
+<a class="reference internal" href="camera.html#class-KRPC.Client.Services.SpaceCenter.Camera" title="KRPC.Client.Services.SpaceCenter.Camera class">Camera</a> <code class="descname">Camera</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that can be used to control the camera.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WaypointManager">
-<a class="reference internal" href="waypoint-manager.html#class-KRPC.Client.Services.SpaceCenter.WaypointManager" title="KRPC.Client.Services.SpaceCenter.WaypointManager class">WaypointManager</a> <code class="descname">WaypointManager</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WaypointManager" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="waypoints.html#class-KRPC.Client.Services.SpaceCenter.WaypointManager" title="KRPC.Client.Services.SpaceCenter.WaypointManager class">WaypointManager</a> <code class="descname">WaypointManager</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WaypointManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>The waypoint manager.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ContractManager">
+<a class="reference internal" href="contracts.html#class-KRPC.Client.Services.SpaceCenter.ContractManager" title="KRPC.Client.Services.SpaceCenter.ContractManager class">ContractManager</a> <code class="descname">ContractManager</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ContractManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract manager.</p>
 </dd></dl>
 
 </dd></dl>
@@ -631,7 +659,7 @@ Returned by <a class="reference internal" href="#enum-KRPC.Client.Services.Space
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -653,7 +681,7 @@ Returned by <a class="reference internal" href="#enum-KRPC.Client.Services.Space
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -663,6 +691,8 @@ Returned by <a class="reference internal" href="#enum-KRPC.Client.Services.Space
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

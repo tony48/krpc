@@ -88,6 +88,11 @@ Parts
 
       :param String moduleName:
 
+   .. method:: java.util.List<Antenna> getAntennas()
+
+
+      A list of all antennas in the vessel.
+
    .. method:: java.util.List<CargoBay> getCargoBays()
 
 
@@ -134,12 +139,7 @@ Parts
 
       A list of all intakes in the vessel.
 
-   .. method:: java.util.List<LandingGear> getLandingGear()
-
-
-      A list of all landing gear attached to the vessel.
-
-   .. method:: java.util.List<LandingLeg> getLandingLegs()
+   .. method:: java.util.List<Leg> getLegs()
 
 
       A list of all landing legs attached to the vessel.
@@ -193,6 +193,11 @@ Parts
 
 
       A list of all solar panels in the vessel.
+
+   .. method:: java.util.List<Wheel> getWheels()
+
+
+      A list of all wheels in the vessel.
 
 
 
@@ -442,6 +447,11 @@ Part
 
       The modules for this part.
 
+   .. method:: Antenna getAntenna()
+
+
+      A :type:`Antenna` if the part is an antenna, otherwise ``null``.
+
    .. method:: CargoBay getCargoBay()
 
 
@@ -489,15 +499,10 @@ Part
          including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :type:`RCS`.
 
-   .. method:: LandingGear getLandingGear()
+   .. method:: Leg getLeg()
 
 
-      A :type:`LandingGear` if the part is a landing gear, otherwise ``null``.
-
-   .. method:: LandingLeg getLandingLeg()
-
-
-      A :type:`LandingLeg` if the part is a landing leg, otherwise ``null``.
+      A :type:`Leg` if the part is a landing leg, otherwise ``null``.
 
    .. method:: LaunchClamp getLaunchClamp()
 
@@ -548,6 +553,11 @@ Part
 
 
       A :type:`SolarPanel` if the part is a solar panel, otherwise ``null``.
+
+   .. method:: Wheel getWheel()
+
+
+      A :type:`Wheel` if the part is a wheel, otherwise ``null``.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
@@ -819,6 +829,123 @@ The following classes provide functionality for specific types of part.
 .. contents::
    :local:
 
+Antenna
+^^^^^^^
+
+
+.. type:: public class Antenna
+
+   An antenna. Obtained by calling :meth:`Part.getAntenna()`.
+
+   .. method:: Part getPart()
+
+
+      The part object for this antenna.
+
+   .. method:: AntennaState getState()
+
+
+      The current state of the antenna.
+
+   .. method:: boolean getDeployable()
+
+
+      Whether the antenna is deployable.
+
+   .. method:: boolean getDeployed()
+
+   .. method:: void setDeployed(boolean value)
+
+      Whether the antenna is deployed.
+
+
+      .. note::
+
+         Fixed antennas are always deployed.
+         Returns an error if you try to deploy a fixed antenna.
+
+   .. method:: boolean getCanTransmit()
+
+
+      Whether data can be transmitted by this antenna.
+
+   .. method:: void transmit()
+
+      Transmit data.
+
+   .. method:: void cancel()
+
+      Cancel current transmission of data.
+
+   .. method:: boolean getAllowPartial()
+
+   .. method:: void setAllowPartial(boolean value)
+
+      Whether partial data transmission is permitted.
+
+   .. method:: double getPower()
+
+
+      The power of the antenna.
+
+   .. method:: boolean getCombinable()
+
+
+      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+
+   .. method:: double getCombinableExponent()
+
+
+      Exponent used to calculate the combined power of multiple antennae on a vessel.
+
+   .. method:: float getPacketInterval()
+
+
+      Interval between sending packets in seconds.
+
+   .. method:: float getPacketSize()
+
+
+      Amount of data sent per packet in Mits.
+
+   .. method:: double getPacketResourceCost()
+
+
+      Units of electric charge consumed per packet sent.
+
+
+
+.. type:: public enum AntennaState
+
+   The state of an antenna. See :meth:`Antenna.getState()`.
+
+
+   .. field:: public AntennaState DEPLOYED
+
+      Antenna is fully deployed.
+
+
+   .. field:: public AntennaState RETRACTED
+
+      Antenna is fully retracted.
+
+
+   .. field:: public AntennaState DEPLOYING
+
+      Antenna is being deployed.
+
+
+   .. field:: public AntennaState RETRACTING
+
+      Antenna is being retracted.
+
+
+   .. field:: public AntennaState BROKEN
+
+      Antenna is broken.
+
+
+
 Cargo Bay
 ^^^^^^^^^
 
@@ -902,6 +1029,12 @@ Control Surface
 
       Whether the control surface has roll control enabled.
 
+   .. method:: float getAuthorityLimiter()
+
+   .. method:: void setAuthorityLimiter(float value)
+
+      The authority limiter for the control surface, which controls how far the control surface will move.
+
    .. method:: boolean getInverted()
 
    .. method:: void setInverted(boolean value)
@@ -945,6 +1078,13 @@ Decoupler
 
       Fires the decoupler. Returns the new vessel created when the decoupler fires.
       Throws an exception if the decoupler has already fired.
+
+
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :meth:`getActiveVessel()` no longer refer to the active vessel.
 
    .. method:: boolean getDecoupled()
 
@@ -996,7 +1136,9 @@ Docking Port
 
       .. note::
 
-         After undocking, the active vessel may change. See :meth:`getActiveVessel()`.
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :meth:`getActiveVessel()` no longer refer to the active vessel.
 
    .. method:: float getReengageDistance()
 
@@ -1569,101 +1711,28 @@ Intake
 
 
 
-Landing Gear
-^^^^^^^^^^^^
+Leg
+^^^
 
 
-.. type:: public class LandingGear
+.. type:: public class Leg
 
-   Landing gear with wheels. Obtained by calling :meth:`Part.getLandingGear()`.
-
-   .. method:: Part getPart()
-
-
-      The part object for this landing gear.
-
-   .. method:: LandingGearState getState()
-
-
-      Gets the current state of the landing gear.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-
-   .. method:: boolean getDeployable()
-
-
-      Whether the landing gear is deployable.
-
-   .. method:: boolean getDeployed()
-
-   .. method:: void setDeployed(boolean value)
-
-      Whether the landing gear is deployed.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-         Returns an error if you try to deploy fixed landing gear.
-
-   .. method:: boolean getIsGrounded()
-
-
-      Returns whether the gear is touching the ground.
-
-
-
-.. type:: public enum LandingGearState
-
-   The state of a landing gear. See :meth:`LandingGear.getState()`.
-
-
-   .. field:: public LandingGearState DEPLOYED
-
-      Landing gear is fully deployed.
-
-
-   .. field:: public LandingGearState RETRACTED
-
-      Landing gear is fully retracted.
-
-
-   .. field:: public LandingGearState DEPLOYING
-
-      Landing gear is being deployed.
-
-
-   .. field:: public LandingGearState RETRACTING
-
-      Landing gear is being retracted.
-
-
-   .. field:: public LandingGearState BROKEN
-
-      Landing gear is broken.
-
-
-
-Landing Leg
-^^^^^^^^^^^
-
-
-.. type:: public class LandingLeg
-
-   A landing leg. Obtained by calling :meth:`Part.getLandingLeg()`.
+   A landing leg. Obtained by calling :meth:`Part.getLeg()`.
 
    .. method:: Part getPart()
 
 
       The part object for this landing leg.
 
-   .. method:: LandingLegState getState()
+   .. method:: LegState getState()
 
 
       The current state of the landing leg.
+
+   .. method:: boolean getDeployable()
+
+
+      Whether the leg is deployable.
 
    .. method:: boolean getDeployed()
 
@@ -1684,32 +1753,32 @@ Landing Leg
 
 
 
-.. type:: public enum LandingLegState
+.. type:: public enum LegState
 
-   The state of a landing leg. See :meth:`LandingLeg.getState()`.
+   The state of a landing leg. See :meth:`Leg.getState()`.
 
 
-   .. field:: public LandingLegState DEPLOYED
+   .. field:: public LegState DEPLOYED
 
       Landing leg is fully deployed.
 
 
-   .. field:: public LandingLegState RETRACTED
+   .. field:: public LegState RETRACTED
 
       Landing leg is fully retracted.
 
 
-   .. field:: public LandingLegState DEPLOYING
+   .. field:: public LegState DEPLOYING
 
       Landing leg is being deployed.
 
 
-   .. field:: public LandingLegState RETRACTING
+   .. field:: public LegState RETRACTING
 
       Landing leg is being retracted.
 
 
-   .. field:: public LandingLegState BROKEN
+   .. field:: public LegState BROKEN
 
       Landing leg is broken.
 
@@ -1789,6 +1858,16 @@ Parachute
 
       Whether the parachute has been deployed.
 
+   .. method:: void arm()
+
+      Deploys the parachute. This has no effect if the parachute has already
+      been armed or deployed. Only applicable to RealChutes parachutes.
+
+   .. method:: boolean getArmed()
+
+
+      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+
    .. method:: ParachuteState getState()
 
 
@@ -1799,12 +1878,14 @@ Parachute
    .. method:: void setDeployAltitude(float value)
 
       The altitude at which the parachute will full deploy, in meters.
+      Only applicable to stock parachutes.
 
    .. method:: float getDeployMinPressure()
 
    .. method:: void setDeployMinPressure(float value)
 
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+      Only applicable to stock parachutes.
 
 
 
@@ -1818,15 +1899,21 @@ Parachute
       The parachute is safely tucked away inside its housing.
 
 
+   .. field:: public ParachuteState ARMED
+
+      The parachute is armed for deployment. (RealChutes only)
+
+
    .. field:: public ParachuteState ACTIVE
 
       The parachute is still stowed, but ready to semi-deploy.
+      (Stock parachutes only)
 
 
    .. field:: public ParachuteState SEMI_DEPLOYED
 
       The parachute has been deployed and is providing some drag,
-      but is not fully deployed yet.
+      but is not fully deployed yet. (Stock parachutes only)
 
 
    .. field:: public ParachuteState DEPLOYED
@@ -2300,6 +2387,11 @@ Solar Panel
 
       The part object for this solar panel.
 
+   .. method:: boolean getDeployable()
+
+
+      Whether the solar panel is deployable.
+
    .. method:: boolean getDeployed()
 
    .. method:: void setDeployed(boolean value)
@@ -2438,6 +2530,251 @@ Thruster
       This is opposite to the direction in which the thruster expels propellant.
 
       :param ReferenceFrame referenceFrame:
+
+
+
+Wheel
+^^^^^
+
+
+.. type:: public class Wheel
+
+   A wheel. Includes landing gear and rover wheels. Obtained by calling :meth:`Part.getWheel()`.
+   Can be used to control the motors, steering and deployment of wheels, among other things.
+
+   .. method:: Part getPart()
+
+
+      The part object for this wheel.
+
+   .. method:: WheelState getState()
+
+
+      The current state of the wheel.
+
+   .. method:: float getRadius()
+
+
+      Radius of the wheel, in meters.
+
+   .. method:: boolean getGrounded()
+
+
+      Whether the wheel is touching the ground.
+
+   .. method:: boolean getHasBrakes()
+
+
+      Whether the wheel has brakes.
+
+   .. method:: float getBrakes()
+
+   .. method:: void setBrakes(float value)
+
+      The braking force, as a percentage of maximum, when the brakes are applied.
+
+   .. method:: boolean getAutoFrictionControl()
+
+   .. method:: void setAutoFrictionControl(boolean value)
+
+      Whether automatic friction control is enabled.
+
+   .. method:: float getManualFrictionControl()
+
+   .. method:: void setManualFrictionControl(float value)
+
+      Manual friction control value. Only has an effect if automatic friction control is disabled.
+      A value between 0 and 5 inclusive.
+
+   .. method:: boolean getDeployable()
+
+
+      Whether the wheel is deployable.
+
+   .. method:: boolean getDeployed()
+
+   .. method:: void setDeployed(boolean value)
+
+      Whether the wheel is deployed.
+
+   .. method:: boolean getPowered()
+
+
+      Whether the wheel is powered by a motor.
+
+   .. method:: boolean getMotorEnabled()
+
+   .. method:: void setMotorEnabled(boolean value)
+
+      Whether the motor is enabled.
+
+   .. method:: boolean getMotorInverted()
+
+   .. method:: void setMotorInverted(boolean value)
+
+      Whether the direction of the motor is inverted.
+
+   .. method:: MotorState getMotorState()
+
+
+      Whether the direction of the motor is inverted.
+
+   .. method:: float getMotorOutput()
+
+
+      The output of the motor. This is the torque currently being generated, in Newton meters.
+
+   .. method:: boolean getTractionControlEnabled()
+
+   .. method:: void setTractionControlEnabled(boolean value)
+
+      Whether automatic traction control is enabled.
+      A wheel only has traction control if it is powered.
+
+   .. method:: float getTractionControl()
+
+   .. method:: void setTractionControl(float value)
+
+      Setting for the traction control.
+      Only takes effect if the wheel has automatic traction control enabled.
+      A value between 0 and 5 inclusive.
+
+   .. method:: float getDriveLimiter()
+
+   .. method:: void setDriveLimiter(float value)
+
+      Manual setting for the motor limiter.
+      Only takes effect if the wheel has automatic traction control disabled.
+      A value between 0 and 100 inclusive.
+
+   .. method:: boolean getSteerable()
+
+
+      Whether the wheel has steering.
+
+   .. method:: boolean getSteeringEnabled()
+
+   .. method:: void setSteeringEnabled(boolean value)
+
+      Whether the wheel steering is enabled.
+
+   .. method:: boolean getSteeringInverted()
+
+   .. method:: void setSteeringInverted(boolean value)
+
+      Whether the wheel steering is inverted.
+
+   .. method:: boolean getHasSuspension()
+
+
+      Whether the wheel has suspension.
+
+   .. method:: float getSuspensionSpringStrength()
+
+
+      Suspension spring strength, as set in the editor.
+
+   .. method:: float getSuspensionDamperStrength()
+
+
+      Suspension damper strength, as set in the editor.
+
+   .. method:: boolean getBroken()
+
+
+      Whether the wheel is broken.
+
+   .. method:: boolean getRepairable()
+
+
+      Whether the wheel is repairable.
+
+   .. method:: float getStress()
+
+
+      Current stress on the wheel.
+
+   .. method:: float getStressTolerance()
+
+
+      Stress tolerance of the wheel.
+
+   .. method:: float getStressPercentage()
+
+
+      Current stress on the wheel as a percentage of its stress tolerance.
+
+   .. method:: float getDeflection()
+
+
+      Current deflection of the wheel.
+
+   .. method:: float getSlip()
+
+
+      Current slip of the wheel.
+
+
+
+.. type:: public enum WheelState
+
+   The state of a wheel. See :meth:`Wheel.getState()`.
+
+
+   .. field:: public WheelState DEPLOYED
+
+      Wheel is fully deployed.
+
+
+   .. field:: public WheelState RETRACTED
+
+      Wheel is fully retracted.
+
+
+   .. field:: public WheelState DEPLOYING
+
+      Wheel is being deployed.
+
+
+   .. field:: public WheelState RETRACTING
+
+      Wheel is being retracted.
+
+
+   .. field:: public WheelState BROKEN
+
+      Wheel is broken.
+
+
+
+.. type:: public enum MotorState
+
+   The state of the motor on a powered wheel. See :meth:`Wheel.getMotorState()`.
+
+
+   .. field:: public MotorState IDLE
+
+      The motor is idle.
+
+
+   .. field:: public MotorState RUNNING
+
+      The motor is running.
+
+
+   .. field:: public MotorState DISABLED
+
+      The motor is disabled.
+
+
+   .. field:: public MotorState INOPERABLE
+
+      The motor is inoperable.
+
+
+   .. field:: public MotorState NOT_ENOUGH_RESOURCES
+
+      The motor does not have enough resources to run.
 
 
 

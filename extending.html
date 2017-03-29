@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending kRPC &mdash; kRPC 0.3.7 documentation</title>
+  <title>Extending kRPC &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="index.html"/>
         <link rel="next" title="Communication Protocol" href="communication-protocol.html"/>
         <link rel="prev" title="Compiling kRPC" href="compiling.html"/>
  
@@ -73,7 +81,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -197,37 +205,37 @@ classes, methods and properties with these attributes.</p>
 <p>The following example implements a service that can control the throttle and
 staging of the active vessel. To add this to the server, compile the code and
 place the DLL in your GameData directory.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>using KRPC.Service;
-using KRPC.Service.Attributes;
-using KSP.UI.Screens;
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Service</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KRPC.Service.Attributes</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">KSP.UI.Screens</span><span class="p">;</span>
 
-namespace LaunchControl
-{
-    /// &lt;summary&gt;
-    /// Service for staging vessels and controlling their throttle.
-    /// &lt;/summary&gt;
-    [KRPCService (GameScene = GameScene.Flight)]
-    public static class LaunchControl
-    {
-        /// &lt;summary&gt;
-        /// The current throttle setting for the active vessel, between 0 and 1.
-        /// &lt;/summary&gt;
-        [KRPCProperty]
-        public static float Throttle {
-            get { return FlightInputHandler.state.mainThrottle; }
-            set { FlightInputHandler.state.mainThrottle = value; }
-        }
+<span class="k">namespace</span> <span class="nn">LaunchControl</span>
+<span class="p">{</span>
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// Service for staging vessels and controlling their throttle.</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+<span class="na">    [KRPCService (GameScene = GameScene.Flight)]</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">LaunchControl</span>
+    <span class="p">{</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// The current throttle setting for the active vessel, between 0 and 1.</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+<span class="na">        [KRPCProperty]</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">float</span> <span class="n">Throttle</span> <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">FlightInputHandler</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">mainThrottle</span><span class="p">;</span> <span class="p">}</span>
+            <span class="k">set</span> <span class="p">{</span> <span class="n">FlightInputHandler</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">mainThrottle</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">}</span>
 
-        /// &lt;summary&gt;
-        /// Activate the next stage in the vessel.
-        /// &lt;/summary&gt;
-        [KRPCProcedure]
-        public static void ActivateStage ()
-        {
-            StageManager.ActivateNextStage ();
-        }
-    }
-}
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// Activate the next stage in the vessel.</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+<span class="na">        [KRPCProcedure]</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ActivateStage</span> <span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">StageManager</span><span class="p">.</span><span class="n">ActivateNextStage</span> <span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The following example shows how this service can then be used from a python client:</p>
@@ -817,7 +825,7 @@ the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in yo
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -839,7 +847,7 @@ the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in yo
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -849,6 +857,8 @@ the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in yo
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
 
   
 

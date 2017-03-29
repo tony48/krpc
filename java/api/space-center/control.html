@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.7 documentation</title>
+  <title>Control &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,11 +30,19 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Parts" href="parts.html"/>
+        <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
  
 <script>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -110,14 +118,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -197,6 +207,18 @@ Obtained by calling <a class="reference internal" href="vessel.html#krpc.client.
 that have set one or more of these inputs are no longer connected.</p>
 </div>
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getSource()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">getSource</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getSource()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source of the vessels control, for example by a kerbal or a probe core.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getState()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getState()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of the vessel.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.getSAS()">
  boolean <code class="descname">getSAS</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getSAS()" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -252,6 +274,19 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getReactionWheels()">
+ boolean <code class="descname">getReactionWheels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getReactionWheels()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setReactionWheels(boolean)">
+ void <code class="descname">setReactionWheels</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setReactionWheels(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all reactive wheels on the vessel are active,
+and sets the active state of all reaction wheels.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ReactionWheel.getActive()" title="krpc.client.services.SpaceCenter.ReactionWheel.getActive()"><code class="xref java java-meth docutils literal"><span class="pre">ReactionWheel.getActive()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.getGear()">
  boolean <code class="descname">getGear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getGear()" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -260,6 +295,34 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.setGear(boolean)">
  void <code class="descname">setGear</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setGear(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the landing gear/legs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getLegs()">
+ boolean <code class="descname">getLegs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getLegs()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setLegs(boolean)">
+ void <code class="descname">setLegs</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setLegs(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all landing legs on the vessel are deployed,
+and sets the deployment state of all landing legs.
+Does not include wheels (for example landing gear).
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Leg.getDeployed()" title="krpc.client.services.SpaceCenter.Leg.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Leg.getDeployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getWheels()">
+ boolean <code class="descname">getWheels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getWheels()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setWheels(boolean)">
+ void <code class="descname">setWheels</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setWheels(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all wheels on the vessel are deployed,
+and sets the deployment state of all wheels.
+Does not include landing legs.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Wheel.getDeployed()" title="krpc.client.services.SpaceCenter.Wheel.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Wheel.getDeployed()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -282,6 +345,111 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.setBrakes(boolean)">
  void <code class="descname">setBrakes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setBrakes(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the wheel brakes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getAntennas()">
+ boolean <code class="descname">getAntennas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getAntennas()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setAntennas(boolean)">
+ void <code class="descname">setAntennas</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setAntennas(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all antennas on the vessel are deployed,
+and sets the deployment state of all antennas.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Antenna.getDeployed()" title="krpc.client.services.SpaceCenter.Antenna.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Antenna.getDeployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getCargoBays()">
+ boolean <code class="descname">getCargoBays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getCargoBays()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setCargoBays(boolean)">
+ void <code class="descname">setCargoBays</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setCargoBays(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the cargo bays on the vessel are open,
+and sets the open state of all cargo bays.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.CargoBay.getOpen()" title="krpc.client.services.SpaceCenter.CargoBay.getOpen()"><code class="xref java java-meth docutils literal"><span class="pre">CargoBay.getOpen()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getIntakes()">
+ boolean <code class="descname">getIntakes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getIntakes()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setIntakes(boolean)">
+ void <code class="descname">setIntakes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setIntakes(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the air intakes on the vessel are open,
+and sets the open state of all air intakes.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Intake.getOpen()" title="krpc.client.services.SpaceCenter.Intake.getOpen()"><code class="xref java java-meth docutils literal"><span class="pre">Intake.getOpen()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getParachutes()">
+ boolean <code class="descname">getParachutes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getParachutes()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setParachutes(boolean)">
+ void <code class="descname">setParachutes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setParachutes(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all parachutes on the vessel are deployed,
+and sets the deployment state of all parachutes.
+Cannot be set to <code class="docutils literal"><span class="pre">false</span></code>.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Parachute.getDeployed()" title="krpc.client.services.SpaceCenter.Parachute.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Parachute.getDeployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getRadiators()">
+ boolean <code class="descname">getRadiators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getRadiators()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setRadiators(boolean)">
+ void <code class="descname">setRadiators</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setRadiators(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all radiators on the vessel are deployed,
+and sets the deployment state of all radiators.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Radiator.getDeployed()" title="krpc.client.services.SpaceCenter.Radiator.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Radiator.getDeployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getResourceHarvesters()">
+ boolean <code class="descname">getResourceHarvesters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getResourceHarvesters()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setResourceHarvesters(boolean)">
+ void <code class="descname">setResourceHarvesters</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setResourceHarvesters(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the resource harvesters on the vessel are deployed,
+and sets the deployment state of all resource harvesters.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">ResourceHarvester.getDeployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getResourceHarvestersActive()">
+ boolean <code class="descname">getResourceHarvestersActive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getResourceHarvestersActive()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setResourceHarvestersActive(boolean)">
+ void <code class="descname">setResourceHarvestersActive</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setResourceHarvestersActive(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the resource harvesters on the vessel are active,
+and sets the active state of all resource harvesters.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getActive()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getActive()"><code class="xref java java-meth docutils literal"><span class="pre">ResourceHarvester.getActive()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getSolarPanels()">
+ boolean <code class="descname">getSolarPanels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getSolarPanels()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setSolarPanels(boolean)">
+ void <code class="descname">setSolarPanels</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setSolarPanels(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all solar panels on the vessel are deployed,
+and sets the deployment state of all solar panels.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.SolarPanel.getDeployed()" title="krpc.client.services.SpaceCenter.SolarPanel.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">SolarPanel.getDeployed()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -430,6 +598,12 @@ the in-game UI.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()" title="krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()"><code class="xref java java-meth docutils literal"><span class="pre">getActiveVessel()</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -519,6 +693,56 @@ in the prograde, normal and radial directions.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.removeNodes()">
  void <code class="descname">removeNodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.removeNodes()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove all maneuver nodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.ControlState">
+public enum <code class="descname">ControlState</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of a vessel.
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getState()" title="krpc.client.services.SpaceCenter.Control.getState()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getState()</span></code></a>.</p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlState.FULL">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">FULL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState.FULL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full controllable.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlState.PARTIAL">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">PARTIAL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState.PARTIAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partially controllable.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlState.NONE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">NONE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState.NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not controllable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.ControlSource">
+public enum <code class="descname">ControlSource</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control source of a vessel.
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getSource()" title="krpc.client.services.SpaceCenter.Control.getSource()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getSource()</span></code></a>.</p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlSource.KERBAL">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">KERBAL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource.KERBAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a Kerbal.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlSource.PROBE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">PROBE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource.PROBE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a probe core.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlSource.NONE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">NONE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource.NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is not controlled.</p>
 </dd></dl>
 
 </dd></dl>
@@ -623,7 +847,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="parts.html" class="btn btn-neutral float-right" title="Parts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="comms.html" class="btn btn-neutral float-right" title="Communications" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="orbit.html" class="btn btn-neutral" title="Orbit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -635,7 +859,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -657,7 +881,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -667,6 +891,8 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

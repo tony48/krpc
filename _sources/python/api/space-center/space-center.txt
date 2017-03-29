@@ -172,12 +172,22 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
 
 
-.. attribute:: camera
+.. attribute:: ui_visible
 
-   An object that can be used to control the camera.
+   Whether the UI is visible.
 
-   :Attribute: Read-only, cannot be set
-   :rtype: :class:`Camera`
+   :Attribute: Can be read or written
+   :rtype: bool
+
+
+
+
+.. attribute:: navball
+
+   Whether the navball is visible.
+
+   :Attribute: Can be read or written
+   :rtype: bool
 
 
 
@@ -199,18 +209,6 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
    :Attribute: Read-only, cannot be set
    :rtype: float
-
-
-
-
-.. attribute:: warp_mode
-
-   The current time warp mode. Returns :attr:`WarpMode.none` if time
-   warp is not active, :attr:`WarpMode.rails` if regular "on-rails" time warp
-   is active, or :attr:`WarpMode.physics` if physical time warp is active.
-
-   :Attribute: Read-only, cannot be set
-   :rtype: :class:`WarpMode`
 
 
 
@@ -285,7 +283,7 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 .. attribute:: maximum_rails_warp_factor
 
    The current maximum regular "on-rails" warp factor that can be set.
-   A value between 0 and 7 inclusive.  See
+   A value between 0 and 7 inclusive. See
    `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
    :Attribute: Read-only, cannot be set
@@ -377,12 +375,44 @@ the active vessel, managing its resources, planning maneuver nodes and auto-pilo
 
 
 
+.. attribute:: warp_mode
+
+   The current time warp mode. Returns :attr:`WarpMode.none` if time
+   warp is not active, :attr:`WarpMode.rails` if regular "on-rails" time warp
+   is active, or :attr:`WarpMode.physics` if physical time warp is active.
+
+   :Attribute: Read-only, cannot be set
+   :rtype: :class:`WarpMode`
+
+
+
+
+.. attribute:: camera
+
+   An object that can be used to control the camera.
+
+   :Attribute: Read-only, cannot be set
+   :rtype: :class:`Camera`
+
+
+
+
 .. attribute:: waypoint_manager
 
    The waypoint manager.
 
    :Attribute: Read-only, cannot be set
    :rtype: :class:`WaypointManager`
+
+
+
+
+.. attribute:: contract_manager
+
+   The contract manager.
+
+   :Attribute: Read-only, cannot be set
+   :rtype: :class:`ContractManager`
 
 
 

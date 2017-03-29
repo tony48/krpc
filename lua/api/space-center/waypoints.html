@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>WaypointManager &mdash; kRPC 0.3.7 documentation</title>
+  <title>Waypoints &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,11 +30,19 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Drawing API" href="../drawing.html"/>
+        <link rel="next" title="Contracts" href="contracts.html"/>
         <link rel="prev" title="Camera" href="camera.html"/>
  
 <script>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -111,14 +119,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="">WaypointManager</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -168,11 +178,11 @@
       
           <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
       
-    <li>WaypointManager</li>
+    <li>Waypoints</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../../_sources/lua/api/space-center/waypoint-manager.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/lua/api/space-center/waypoints.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -182,8 +192,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="waypointmanager">
-<h1>WaypointManager<a class="headerlink" href="#waypointmanager" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="waypoints">
+<h1>Waypoints<a class="headerlink" href="#waypoints" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="SpaceCenter.WaypointManager">
 <em class="property">class </em><code class="descname">WaypointManager</code><a class="headerlink" href="#SpaceCenter.WaypointManager" title="Permalink to this definition">¶</a></dt>
@@ -498,17 +508,16 @@ If true, there is a one-to-one correspondence with the greek letter name and the
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.Waypoint.contract_id">
-<code class="descname">contract_id</code><a class="headerlink" href="#SpaceCenter.Waypoint.contract_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The id of the associated contract.
-Returns 0 if the waypoint does not belong to a contract.</p>
+<dt id="SpaceCenter.Waypoint.contract">
+<code class="descname">contract</code><a class="headerlink" href="#SpaceCenter.Waypoint.contract" title="Permalink to this definition">¶</a></dt>
+<dd><p>The associated contract.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="contracts.html#SpaceCenter.Contract" title="SpaceCenter.Contract"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Contract</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -531,7 +540,7 @@ Returns 0 if the waypoint does not belong to a contract.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../drawing.html" class="btn btn-neutral float-right" title="Drawing API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="contracts.html" class="btn btn-neutral float-right" title="Contracts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="camera.html" class="btn btn-neutral" title="Camera" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -543,7 +552,7 @@ Returns 0 if the waypoint does not belong to a contract.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -565,7 +574,7 @@ Returns 0 if the waypoint does not belong to a contract.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -575,6 +584,8 @@ Returns 0 if the waypoint does not belong to a contract.</p>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

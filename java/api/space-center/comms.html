@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Communications &mdash; kRPC 0.3.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Parts" href="parts.html"/>
+        <link rel="prev" title="Control" href="control.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Communications</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/java/api/space-center/comms.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="package-krpc.client.services.SpaceCenter"></span><div class="section" id="communications">
+<h1>Communications<a class="headerlink" href="#communications" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.Comms">
+public class <code class="descname">Comms</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to interact with CommNet for a given vessel.
+Obtained by calling <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.getComms()" title="krpc.client.services.SpaceCenter.Vessel.getComms()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getComms()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getCanCommunicate()">
+ boolean <code class="descname">getCanCommunicate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getCanCommunicate()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the vessel can communicate with KSC.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getCanTransmitScience()">
+ boolean <code class="descname">getCanTransmitScience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getCanTransmitScience()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the vessel can transmit science data to KSC.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getSignalStrength()">
+ double <code class="descname">getSignalStrength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getSignalStrength()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signal strength to KSC.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getSignalDelay()">
+ double <code class="descname">getSignalDelay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getSignalDelay()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signal delay to KSC in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getPower()">
+ double <code class="descname">getPower</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getPower()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined power of all active antennae on the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Comms.getControlPath()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLink" title="krpc.client.services.SpaceCenter.CommLink">CommLink</a>&gt; <code class="descname">getControlPath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Comms.getControlPath()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The communication path used to control the vessel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.CommLink">
+public class <code class="descname">CommLink</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a communication node in the network. For example, a vessel or the KSC.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommLink.getType()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLinkType" title="krpc.client.services.SpaceCenter.CommLinkType">CommLinkType</a> <code class="descname">getType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLink.getType()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of link.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommLink.getSignalStrength()">
+ double <code class="descname">getSignalStrength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLink.getSignalStrength()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signal strength of the link.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommLink.getStart()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommNode" title="krpc.client.services.SpaceCenter.CommNode">CommNode</a> <code class="descname">getStart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLink.getStart()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start point of the link.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommLink.getEnd()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommNode" title="krpc.client.services.SpaceCenter.CommNode">CommNode</a> <code class="descname">getEnd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLink.getEnd()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start point of the link.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.CommLinkType">
+public enum <code class="descname">CommLinkType</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLinkType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a communication link.
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLink.getType()" title="krpc.client.services.SpaceCenter.CommLink.getType()"><code class="xref java java-meth docutils literal"><span class="pre">CommLink.getType()</span></code></a>.</p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CommLinkType.HOME">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLinkType" title="krpc.client.services.SpaceCenter.CommLinkType">CommLinkType</a> <code class="descname">HOME</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLinkType.HOME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link is to a base station on Kerbin.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CommLinkType.CONTROL">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLinkType" title="krpc.client.services.SpaceCenter.CommLinkType">CommLinkType</a> <code class="descname">CONTROL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLinkType.CONTROL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link is to a control source, for example a manned spacecraft.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CommLinkType.RELAY">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CommLinkType" title="krpc.client.services.SpaceCenter.CommLinkType">CommLinkType</a> <code class="descname">RELAY</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommLinkType.RELAY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link is to a relay satellite.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.CommNode">
+public class <code class="descname">CommNode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a communication node in the network. For example, a vessel or the KSC.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommNode.getName()">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode.getName()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the communication node.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommNode.getIsHome()">
+ boolean <code class="descname">getIsHome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode.getIsHome()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the communication node is on Kerbin.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommNode.getIsControlPoint()">
+ boolean <code class="descname">getIsControlPoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode.getIsControlPoint()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the communication node is a control point, for example a manned vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommNode.getIsVessel()">
+ boolean <code class="descname">getIsVessel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode.getIsVessel()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the communication node is a vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CommNode.getVessel()">
+ <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a> <code class="descname">getVessel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CommNode.getVessel()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vessel for this communication node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parts.html" class="btn btn-neutral float-right" title="Parts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="control.html" class="btn btn-neutral" title="Control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

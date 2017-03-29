@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.3.7 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -109,14 +117,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -387,9 +397,25 @@ This will create a load a save file called <code class="docutils literal"><span 
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter6cameraEv">
-<span id="krpc::services::SpaceCenter::camera"></span><a class="reference internal" href="camera.html#_CPPv2N4krpc8services11SpaceCenter6CameraE" title="krpc::services::SpaceCenter::Camera">Camera</a> <code class="descclassname"></code><code class="descname">camera</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6cameraEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>An object that can be used to control the camera.</p>
+<dt id="_CPPv2N4krpc8services11SpaceCenter10ui_visibleEv">
+<span id="krpc::services::SpaceCenter::ui_visible"></span>bool <code class="descclassname"></code><code class="descname">ui_visible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10ui_visibleEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14set_ui_visibleEb">
+<span id="krpc::services::SpaceCenter::set_ui_visible__b"></span>void <code class="descclassname"></code><code class="descname">set_ui_visible</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14set_ui_visibleEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI is visible.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7navballEv">
+<span id="krpc::services::SpaceCenter::navball"></span>bool <code class="descclassname"></code><code class="descname">navball</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7navballEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter11set_navballEb">
+<span id="krpc::services::SpaceCenter::set_navball__b"></span>void <code class="descclassname"></code><code class="descname">set_navball</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11set_navballEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the navball is visible.</p>
 </dd></dl>
 
 <dl class="function">
@@ -403,14 +429,6 @@ This will create a load a save file called <code class="docutils literal"><span 
 <span id="krpc::services::SpaceCenter::g"></span>double <code class="descclassname"></code><code class="descname">g</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter1gEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The value of the <a class="reference external" href="https://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>
 G in <span class="math">\(N(m/kg)^2\)</span>.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter9warp_modeEv">
-<span id="krpc::services::SpaceCenter::warp_mode"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpModeE" title="krpc::services::SpaceCenter::WarpMode">WarpMode</a> <code class="descclassname"></code><code class="descname">warp_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9warp_modeEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current time warp mode. Returns <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode4noneE" title="krpc::services::SpaceCenter::WarpMode::none"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::none</span></code></a> if time
-warp is not active, <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode5railsE" title="krpc::services::SpaceCenter::WarpMode::rails"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
-is active, or <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode7physicsE" title="krpc::services::SpaceCenter::WarpMode::physics"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::physics</span></code></a> if physical time warp is active.</p>
 </dd></dl>
 
 <dl class="function">
@@ -484,7 +502,7 @@ including how close the active vessel is to a planet. See
 <dt id="_CPPv2N4krpc8services11SpaceCenter25maximum_rails_warp_factorEv">
 <span id="krpc::services::SpaceCenter::maximum_rails_warp_factor"></span>int32_t <code class="descclassname"></code><code class="descname">maximum_rails_warp_factor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter25maximum_rails_warp_factorEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current maximum regular &#8220;on-rails&#8221; warp factor that can be set.
-A value between 0 and 7 inclusive.  See
+A value between 0 and 7 inclusive. See
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
 </dd></dl>
 
@@ -614,9 +632,29 @@ relative angular velocity of the reference frames into account.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9warp_modeEv">
+<span id="krpc::services::SpaceCenter::warp_mode"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpModeE" title="krpc::services::SpaceCenter::WarpMode">WarpMode</a> <code class="descclassname"></code><code class="descname">warp_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9warp_modeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time warp mode. Returns <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode4noneE" title="krpc::services::SpaceCenter::WarpMode::none"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::none</span></code></a> if time
+warp is not active, <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode5railsE" title="krpc::services::SpaceCenter::WarpMode::rails"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
+is active, or <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8WarpMode7physicsE" title="krpc::services::SpaceCenter::WarpMode::physics"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">WarpMode::physics</span></code></a> if physical time warp is active.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6cameraEv">
+<span id="krpc::services::SpaceCenter::camera"></span><a class="reference internal" href="camera.html#_CPPv2N4krpc8services11SpaceCenter6CameraE" title="krpc::services::SpaceCenter::Camera">Camera</a> <code class="descclassname"></code><code class="descname">camera</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6cameraEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that can be used to control the camera.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter16waypoint_managerEv">
-<span id="krpc::services::SpaceCenter::waypoint_manager"></span><a class="reference internal" href="waypoint-manager.html#_CPPv2N4krpc8services11SpaceCenter15WaypointManagerE" title="krpc::services::SpaceCenter::WaypointManager">WaypointManager</a> <code class="descclassname"></code><code class="descname">waypoint_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16waypoint_managerEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::SpaceCenter::waypoint_manager"></span><a class="reference internal" href="waypoints.html#_CPPv2N4krpc8services11SpaceCenter15WaypointManagerE" title="krpc::services::SpaceCenter::WaypointManager">WaypointManager</a> <code class="descclassname"></code><code class="descname">waypoint_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16waypoint_managerEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The waypoint manager.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter16contract_managerEv">
+<span id="krpc::services::SpaceCenter::contract_manager"></span><a class="reference internal" href="contracts.html#_CPPv2N4krpc8services11SpaceCenter15ContractManagerE" title="krpc::services::SpaceCenter::ContractManager">ContractManager</a> <code class="descclassname"></code><code class="descname">contract_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16contract_managerEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract manager.</p>
 </dd></dl>
 
 </dd></dl>
@@ -667,7 +705,7 @@ Returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCen
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -689,7 +727,7 @@ Returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCen
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -699,6 +737,8 @@ Returned by <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCen
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

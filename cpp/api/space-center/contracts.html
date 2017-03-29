@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contracts &mdash; kRPC 0.3.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Geometry Types" href="geometry-types.html"/>
+        <link rel="prev" title="Waypoints" href="waypoints.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cpp.html">C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C++ Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">kRPC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../cpp.html">C++</a> &raquo;</li>
+      
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+      
+    <li>Contracts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/cpp/api/space-center/contracts.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contracts">
+<h1>Contracts<a class="headerlink" href="#contracts" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManagerE">
+<span id="krpc::services::SpaceCenter::ContractManager"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ContractManager</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManagerE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contracts manager.
+Obtained by calling <a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter16waypoint_managerEv" title="krpc::services::SpaceCenter::waypoint_manager"><code class="xref cpp cpp-func docutils literal"><span class="pre">waypoint_manager()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager5typesEv">
+<span id="krpc::services::SpaceCenter::ContractManager::types"></span>std::set&lt;std::string&gt; <code class="descclassname"></code><code class="descname">types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager5typesEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all contract types.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager13all_contractsEv">
+<span id="krpc::services::SpaceCenter::ContractManager::all_contracts"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="krpc::services::SpaceCenter::Contract">Contract</a>&gt; <code class="descclassname"></code><code class="descname">all_contracts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager13all_contractsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all contracts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager16active_contractsEv">
+<span id="krpc::services::SpaceCenter::ContractManager::active_contracts"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="krpc::services::SpaceCenter::Contract">Contract</a>&gt; <code class="descclassname"></code><code class="descname">active_contracts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager16active_contractsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all active contracts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager17offered_contractsEv">
+<span id="krpc::services::SpaceCenter::ContractManager::offered_contracts"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="krpc::services::SpaceCenter::Contract">Contract</a>&gt; <code class="descclassname"></code><code class="descname">offered_contracts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager17offered_contractsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all offered, but unaccepted, contracts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager19completed_contractsEv">
+<span id="krpc::services::SpaceCenter::ContractManager::completed_contracts"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="krpc::services::SpaceCenter::Contract">Contract</a>&gt; <code class="descclassname"></code><code class="descname">completed_contracts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager19completed_contractsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all completed contracts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter15ContractManager16failed_contractsEv">
+<span id="krpc::services::SpaceCenter::ContractManager::failed_contracts"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="krpc::services::SpaceCenter::Contract">Contract</a>&gt; <code class="descclassname"></code><code class="descname">failed_contracts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15ContractManager16failed_contractsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all failed contracts.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8ContractE">
+<span id="krpc::services::SpaceCenter::Contract"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Contract</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8ContractE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A contract. Can be accessed using <a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter16contract_managerEv" title="krpc::services::SpaceCenter::contract_manager"><code class="xref cpp cpp-func docutils literal"><span class="pre">contract_manager()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract4typeEv">
+<span id="krpc::services::SpaceCenter::Contract::type"></span>std::string <code class="descclassname"></code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract4typeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract5titleEv">
+<span id="krpc::services::SpaceCenter::Contract::title"></span>std::string <code class="descclassname"></code><code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract5titleEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract11descriptionEv">
+<span id="krpc::services::SpaceCenter::Contract::description"></span>std::string <code class="descclassname"></code><code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract11descriptionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract5notesEv">
+<span id="krpc::services::SpaceCenter::Contract::notes"></span>std::string <code class="descclassname"></code><code class="descname">notes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract5notesEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notes for the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract8synopsisEv">
+<span id="krpc::services::SpaceCenter::Contract::synopsis"></span>std::string <code class="descclassname"></code><code class="descname">synopsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract8synopsisEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synopsis for the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract8keywordsEv">
+<span id="krpc::services::SpaceCenter::Contract::keywords"></span>std::vector&lt;std::string&gt; <code class="descclassname"></code><code class="descname">keywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract8keywordsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keywords for the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract5stateEv">
+<span id="krpc::services::SpaceCenter::Contract::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter13ContractStateE" title="krpc::services::SpaceCenter::ContractState">ContractState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract5stateEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract4seenEv">
+<span id="krpc::services::SpaceCenter::Contract::seen"></span>bool <code class="descclassname"></code><code class="descname">seen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract4seenEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been seen.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract4readEv">
+<span id="krpc::services::SpaceCenter::Contract::read"></span>bool <code class="descclassname"></code><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract4readEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been read.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract6activeEv">
+<span id="krpc::services::SpaceCenter::Contract::active"></span>bool <code class="descclassname"></code><code class="descname">active</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract6activeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract is active.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract6failedEv">
+<span id="krpc::services::SpaceCenter::Contract::failed"></span>bool <code class="descclassname"></code><code class="descname">failed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract6failedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract has been failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract15can_be_canceledEv">
+<span id="krpc::services::SpaceCenter::Contract::can_be_canceled"></span>bool <code class="descclassname"></code><code class="descname">can_be_canceled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract15can_be_canceledEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be canceled.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract15can_be_declinedEv">
+<span id="krpc::services::SpaceCenter::Contract::can_be_declined"></span>bool <code class="descclassname"></code><code class="descname">can_be_declined</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract15can_be_declinedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be declined.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract13can_be_failedEv">
+<span id="krpc::services::SpaceCenter::Contract::can_be_failed"></span>bool <code class="descclassname"></code><code class="descname">can_be_failed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract13can_be_failedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract can be failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract6acceptEv">
+<span id="krpc::services::SpaceCenter::Contract::accept"></span>void <code class="descclassname"></code><code class="descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract6acceptEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept an offered contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract6cancelEv">
+<span id="krpc::services::SpaceCenter::Contract::cancel"></span>void <code class="descclassname"></code><code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract6cancelEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel an active contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract7declineEv">
+<span id="krpc::services::SpaceCenter::Contract::decline"></span>void <code class="descclassname"></code><code class="descname">decline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract7declineEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decline an offered contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract13funds_advanceEv">
+<span id="krpc::services::SpaceCenter::Contract::funds_advance"></span>double <code class="descclassname"></code><code class="descname">funds_advance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract13funds_advanceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received when accepting the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract16funds_completionEv">
+<span id="krpc::services::SpaceCenter::Contract::funds_completion"></span>double <code class="descclassname"></code><code class="descname">funds_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract16funds_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received on completion of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract13funds_failureEv">
+<span id="krpc::services::SpaceCenter::Contract::funds_failure"></span>double <code class="descclassname"></code><code class="descname">funds_failure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract13funds_failureEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds lost if the contract is failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract21reputation_completionEv">
+<span id="krpc::services::SpaceCenter::Contract::reputation_completion"></span>double <code class="descclassname"></code><code class="descname">reputation_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract21reputation_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation gained on completion of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract18reputation_failureEv">
+<span id="krpc::services::SpaceCenter::Contract::reputation_failure"></span>double <code class="descclassname"></code><code class="descname">reputation_failure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract18reputation_failureEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation lost if the contract is failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract18science_completionEv">
+<span id="krpc::services::SpaceCenter::Contract::science_completion"></span>double <code class="descclassname"></code><code class="descname">science_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract18science_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science gained on completion of the contract.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter8Contract10parametersEv">
+<span id="krpc::services::SpaceCenter::Contract::parameters"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameterE" title="krpc::services::SpaceCenter::ContractParameter">ContractParameter</a>&gt; <code class="descclassname"></code><code class="descname">parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8Contract10parametersEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters for the contract.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractStateE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">ContractState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractStateE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a contract. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8Contract5stateEv" title="krpc::services::SpaceCenter::Contract::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">Contract::state()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState6activeE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">active</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState6activeE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract is active.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState8canceledE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">canceled</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState8canceledE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been canceled.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState9completedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">completed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState9completedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been completed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState16deadline_expiredE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deadline_expired</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState16deadline_expiredE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The deadline for the contract has expired.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState8declinedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">declined</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState8declinedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been declined.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState6failedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">failed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState6failedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been failed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState9generatedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">generated</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState9generatedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been generated.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState7offeredE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">offered</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState7offeredE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been offered to the player.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState13offer_expiredE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">offer_expired</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState13offer_expiredE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract was offered to the player, but the offer expired.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter13ContractState9withdrawnE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">withdrawn</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ContractState9withdrawnE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract has been withdrawn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameterE">
+<span id="krpc::services::SpaceCenter::ContractParameter"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ContractParameter</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameterE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A contract parameter. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8Contract10parametersEv" title="krpc::services::SpaceCenter::Contract::parameters"><code class="xref cpp cpp-func docutils literal"><span class="pre">Contract::parameters()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter5titleEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::title"></span>std::string <code class="descclassname"></code><code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter5titleEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the parameter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter5notesEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::notes"></span>std::string <code class="descclassname"></code><code class="descname">notes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter5notesEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notes for the parameter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter8childrenEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::children"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameterE" title="krpc::services::SpaceCenter::ContractParameter">ContractParameter</a>&gt; <code class="descclassname"></code><code class="descname">children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter8childrenEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Child contract parameters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter9completedEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::completed"></span>bool <code class="descclassname"></code><code class="descname">completed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter9completedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parameter has been completed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter6failedEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::failed"></span>bool <code class="descclassname"></code><code class="descname">failed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter6failedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parameter has been failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter8optionalEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::optional"></span>bool <code class="descclassname"></code><code class="descname">optional</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter8optionalEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the contract parameter is optional.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter16funds_completionEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::funds_completion"></span>double <code class="descclassname"></code><code class="descname">funds_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter16funds_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds received on completion of the contract parameter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter13funds_failureEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::funds_failure"></span>double <code class="descclassname"></code><code class="descname">funds_failure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter13funds_failureEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funds lost if the contract parameter is failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter21reputation_completionEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::reputation_completion"></span>double <code class="descclassname"></code><code class="descname">reputation_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter21reputation_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation gained on completion of the contract parameter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter18reputation_failureEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::reputation_failure"></span>double <code class="descclassname"></code><code class="descname">reputation_failure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter18reputation_failureEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reputation lost if the contract parameter is failed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter17ContractParameter18science_completionEv">
+<span id="krpc::services::SpaceCenter::ContractParameter::science_completion"></span>double <code class="descclassname"></code><code class="descname">science_completion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ContractParameter18science_completionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science gained on completion of the contract parameter.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="geometry-types.html" class="btn btn-neutral float-right" title="Geometry Types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="waypoints.html" class="btn btn-neutral" title="Waypoints" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.3.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -90,6 +90,14 @@ Vessel
       :Attribute: Read-only, cannot be set
       :rtype: :class:`SpaceCenter.Control`
 
+   .. attribute:: comms
+
+      Returns a :class:`SpaceCenter.Comms` object that can be used to interact
+      with CommNet for this vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`SpaceCenter.Comms`
+
    .. attribute:: auto_pilot
 
       An :class:`SpaceCenter.AutoPilot` object, that can be used to perform
@@ -204,14 +212,14 @@ Vessel
 
       The moment of inertia of the vessel around its center of mass in :math:`kg.m^2`.
       The inertia values are around the pitch, roll and yaw directions respectively.
-      This corresponds to the vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      This corresponds to the vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
 
       :Attribute: Read-only, cannot be set
       :rtype: Tuple of (number, number, number)
 
    .. attribute:: inertia_tensor
 
-      The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      The inertia tensor of the vessel around its center of mass, in the vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
       :Attribute: Read-only, cannot be set
@@ -222,7 +230,7 @@ Vessel
       The maximum torque that the vessel generate. Includes contributions from reaction wheels,
       RCS, gimballed engines and aerodynamic control surfaces.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -232,7 +240,7 @@ Vessel
 
       The maximum torque that the currently active and powered reaction wheels can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -242,7 +250,7 @@ Vessel
 
       The maximum torque that the currently active RCS thrusters can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -252,7 +260,7 @@ Vessel
 
       The maximum torque that the currently active and gimballed engines can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -262,7 +270,7 @@ Vessel
 
       The maximum torque that the aerodynamic control surfaces can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set
@@ -272,7 +280,7 @@ Vessel
 
       The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
-      vessels reference frame (:attr:`SpaceCenter.Vessel.reference_frame`).
+      vessels reference frame (:class:`SpaceCenter.ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
       :Attribute: Read-only, cannot be set

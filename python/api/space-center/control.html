@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.7 documentation</title>
+  <title>Control &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,11 +30,19 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Parts" href="parts.html"/>
+        <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
  
 <script>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -112,14 +120,16 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -197,6 +207,38 @@ Obtained by calling <a class="reference internal" href="vessel.html#SpaceCenter.
 that have set one or more of these inputs are no longer connected.</p>
 </div>
 <dl class="attribute">
+<dt id="SpaceCenter.Control.source">
+<code class="descname">source</code><a class="headerlink" href="#SpaceCenter.Control.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source of the vessels control, for example by a kerbal or a probe core.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.ControlSource" title="SpaceCenter.ControlSource"><code class="xref py py-class docutils literal"><span class="pre">ControlSource</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.state">
+<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Control.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.ControlState" title="SpaceCenter.ControlState"><code class="xref py py-class docutils literal"><span class="pre">ControlState</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Control.sas">
 <code class="descname">sas</code><a class="headerlink" href="#SpaceCenter.Control.sas" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of SAS.</p>
@@ -272,9 +314,65 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.Control.reaction_wheels">
+<code class="descname">reaction_wheels</code><a class="headerlink" href="#SpaceCenter.Control.reaction_wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all reactive wheels on the vessel are active,
+and sets the active state of all reaction wheels.
+See <a class="reference internal" href="parts.html#SpaceCenter.ReactionWheel.active" title="SpaceCenter.ReactionWheel.active"><code class="xref py py-attr docutils literal"><span class="pre">ReactionWheel.active</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Control.gear">
 <code class="descname">gear</code><a class="headerlink" href="#SpaceCenter.Control.gear" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the landing gear/legs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.legs">
+<code class="descname">legs</code><a class="headerlink" href="#SpaceCenter.Control.legs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all landing legs on the vessel are deployed,
+and sets the deployment state of all landing legs.
+Does not include wheels (for example landing gear).
+See <a class="reference internal" href="parts.html#SpaceCenter.Leg.deployed" title="SpaceCenter.Leg.deployed"><code class="xref py py-attr docutils literal"><span class="pre">Leg.deployed</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.wheels">
+<code class="descname">wheels</code><a class="headerlink" href="#SpaceCenter.Control.wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all wheels on the vessel are deployed,
+and sets the deployment state of all wheels.
+Does not include landing legs.
+See <a class="reference internal" href="parts.html#SpaceCenter.Wheel.deployed" title="SpaceCenter.Wheel.deployed"><code class="xref py py-attr docutils literal"><span class="pre">Wheel.deployed</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -307,6 +405,151 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 <dt id="SpaceCenter.Control.brakes">
 <code class="descname">brakes</code><a class="headerlink" href="#SpaceCenter.Control.brakes" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the wheel brakes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.antennas">
+<code class="descname">antennas</code><a class="headerlink" href="#SpaceCenter.Control.antennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all antennas on the vessel are deployed,
+and sets the deployment state of all antennas.
+See <a class="reference internal" href="parts.html#SpaceCenter.Antenna.deployed" title="SpaceCenter.Antenna.deployed"><code class="xref py py-attr docutils literal"><span class="pre">Antenna.deployed</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.cargo_bays">
+<code class="descname">cargo_bays</code><a class="headerlink" href="#SpaceCenter.Control.cargo_bays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the cargo bays on the vessel are open,
+and sets the open state of all cargo bays.
+See <a class="reference internal" href="parts.html#SpaceCenter.CargoBay.open" title="SpaceCenter.CargoBay.open"><code class="xref py py-attr docutils literal"><span class="pre">CargoBay.open</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.intakes">
+<code class="descname">intakes</code><a class="headerlink" href="#SpaceCenter.Control.intakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the air intakes on the vessel are open,
+and sets the open state of all air intakes.
+See <a class="reference internal" href="parts.html#SpaceCenter.Intake.open" title="SpaceCenter.Intake.open"><code class="xref py py-attr docutils literal"><span class="pre">Intake.open</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.parachutes">
+<code class="descname">parachutes</code><a class="headerlink" href="#SpaceCenter.Control.parachutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all parachutes on the vessel are deployed,
+and sets the deployment state of all parachutes.
+Cannot be set to <code class="docutils literal"><span class="pre">False</span></code>.
+See <a class="reference internal" href="parts.html#SpaceCenter.Parachute.deployed" title="SpaceCenter.Parachute.deployed"><code class="xref py py-attr docutils literal"><span class="pre">Parachute.deployed</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.radiators">
+<code class="descname">radiators</code><a class="headerlink" href="#SpaceCenter.Control.radiators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all radiators on the vessel are deployed,
+and sets the deployment state of all radiators.
+See <a class="reference internal" href="parts.html#SpaceCenter.Radiator.deployed" title="SpaceCenter.Radiator.deployed"><code class="xref py py-attr docutils literal"><span class="pre">Radiator.deployed</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.resource_harvesters">
+<code class="descname">resource_harvesters</code><a class="headerlink" href="#SpaceCenter.Control.resource_harvesters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the resource harvesters on the vessel are deployed,
+and sets the deployment state of all resource harvesters.
+See <a class="reference internal" href="parts.html#SpaceCenter.ResourceHarvester.deployed" title="SpaceCenter.ResourceHarvester.deployed"><code class="xref py py-attr docutils literal"><span class="pre">ResourceHarvester.deployed</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.resource_harvesters_active">
+<code class="descname">resource_harvesters_active</code><a class="headerlink" href="#SpaceCenter.Control.resource_harvesters_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the resource harvesters on the vessel are active,
+and sets the active state of all resource harvesters.
+See <a class="reference internal" href="parts.html#SpaceCenter.ResourceHarvester.active" title="SpaceCenter.ResourceHarvester.active"><code class="xref py py-attr docutils literal"><span class="pre">ResourceHarvester.active</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Control.solar_panels">
+<code class="descname">solar_panels</code><a class="headerlink" href="#SpaceCenter.Control.solar_panels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all solar panels on the vessel are deployed,
+and sets the deployment state of all solar panels.
+See <a class="reference internal" href="parts.html#SpaceCenter.SolarPanel.deployed" title="SpaceCenter.SolarPanel.deployed"><code class="xref py py-attr docutils literal"><span class="pre">SolarPanel.deployed</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -527,6 +770,12 @@ the in-game UI.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#SpaceCenter.active_vessel" title="SpaceCenter.active_vessel"><code class="xref py py-attr docutils literal"><span class="pre">active_vessel</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -625,6 +874,56 @@ in the prograde, normal and radial directions.</p>
 <dt id="SpaceCenter.Control.remove_nodes">
 <code class="descname">remove_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Control.remove_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove all maneuver nodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.ControlState">
+<em class="property">class </em><code class="descname">ControlState</code><a class="headerlink" href="#SpaceCenter.ControlState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of a vessel.
+See <a class="reference internal" href="#SpaceCenter.Control.state" title="SpaceCenter.Control.state"><code class="xref py py-attr docutils literal"><span class="pre">Control.state</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.ControlState.full">
+<code class="descname">full</code><a class="headerlink" href="#SpaceCenter.ControlState.full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full controllable.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ControlState.partial">
+<code class="descname">partial</code><a class="headerlink" href="#SpaceCenter.ControlState.partial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partially controllable.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ControlState.none">
+<code class="descname">none</code><a class="headerlink" href="#SpaceCenter.ControlState.none" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not controllable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.ControlSource">
+<em class="property">class </em><code class="descname">ControlSource</code><a class="headerlink" href="#SpaceCenter.ControlSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control source of a vessel.
+See <a class="reference internal" href="#SpaceCenter.Control.source" title="SpaceCenter.Control.source"><code class="xref py py-attr docutils literal"><span class="pre">Control.source</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.ControlSource.kerbal">
+<code class="descname">kerbal</code><a class="headerlink" href="#SpaceCenter.ControlSource.kerbal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a Kerbal.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ControlSource.probe">
+<code class="descname">probe</code><a class="headerlink" href="#SpaceCenter.ControlSource.probe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a probe core.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ControlSource.none">
+<code class="descname">none</code><a class="headerlink" href="#SpaceCenter.ControlSource.none" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is not controlled.</p>
 </dd></dl>
 
 </dd></dl>
@@ -729,7 +1028,7 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="parts.html" class="btn btn-neutral float-right" title="Parts" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="comms.html" class="btn btn-neutral float-right" title="Communications" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="orbit.html" class="btn btn-neutral" title="Orbit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -741,7 +1040,7 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -763,7 +1062,7 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -773,6 +1072,8 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

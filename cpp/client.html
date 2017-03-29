@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C++ Client &mdash; kRPC 0.3.7 documentation</title>
+  <title>C++ Client &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../index.html"/>
         <link rel="up" title="C++" href="../cpp.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="C++" href="../cpp.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -183,7 +191,7 @@
   <div class="section" id="c-client">
 <h1>C++ Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides functionality to interact with a kRPC server from programs
-written in C++. It can be <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.7/krpc-cpp-0.3.7.zip">downloaded from GitHub</a>.</p>
+written in C++. It can be <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.8/krpc-cpp-0.3.8.zip">downloaded from GitHub</a>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="installing-dependencies">
@@ -208,7 +216,7 @@ version 2. This will <em>not</em> work with kRPC.</p>
 <h3>Install using the configure script<a class="headerlink" href="#install-using-the-configure-script" title="Permalink to this headline">¶</a></h3>
 <p>Once the dependencies have been installed, you can install the kRPC client
 library and headers using the configure script provided with the
-source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.7/krpc-cpp-0.3.7.zip">Download the source archive</a>, extract
+source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.8/krpc-cpp-0.3.8.zip">Download the source archive</a>, extract
 it and then execute the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
 make
@@ -220,7 +228,7 @@ sudo ldconfig
 <div class="section" id="install-using-cmake">
 <h3>Install using CMake<a class="headerlink" href="#install-using-cmake" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can install the client library and headers using
-CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.7/krpc-cpp-0.3.7.zip">Download the source archive</a>, extract it
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.8/krpc-cpp-0.3.8.zip">Download the source archive</a>, extract it
 and execute the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
 make
@@ -319,6 +327,7 @@ directly.</p>
 position of the active vessel. This loop incurs significant communication
 overheads, as the <code class="docutils literal"><span class="pre">vessel.position()</span></code> function is called repeatedly.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
@@ -334,8 +343,9 @@ overheads, as the <code class="docutils literal"><span class="pre">vessel.positi
   <span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span> <span class="n">ref_frame</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">body</span><span class="p">().</span><span class="n">reference_frame</span><span class="p">();</span>
   <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">position</span><span class="p">(</span><span class="n">ref_frame</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
-              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
               <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -345,6 +355,7 @@ overheads, as the <code class="docutils literal"><span class="pre">vessel.positi
 <code class="docutils literal"><span class="pre">vessel.position_stream()</span></code> once at the start of the program to create a
 stream, and then repeatedly gets the position from the stream.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
@@ -361,8 +372,9 @@ stream, and then repeatedly gets the position from the stream.</p>
   <span class="n">krpc</span><span class="o">::</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">pos_stream</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">position_stream</span><span class="p">(</span><span class="n">ref_frame</span><span class="p">);</span>
   <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">pos_stream</span><span class="p">();</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
-              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
               <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -473,6 +485,7 @@ server:</p>
 <p>Or to get the rate at which the server is sending and receiving data
 over the network:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.hpp&gt;</span><span class="cp"></span>
 
@@ -480,6 +493,7 @@ over the network:</p>
   <span class="n">krpc</span><span class="o">::</span><span class="n">Client</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">connect</span><span class="p">();</span>
   <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">KRPC</span> <span class="n">krpc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
   <span class="n">krpc</span><span class="o">::</span><span class="n">schema</span><span class="o">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">get_status</span><span class="p">();</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Data in = &quot;</span>
             <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="p">()</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; KB/s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Data out = &quot;</span>
@@ -558,7 +572,7 @@ from the server when all stream objects that refer to it are destroyed.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -580,7 +594,7 @@ from the server when all stream objects that refer to it are destroyed.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -590,6 +604,8 @@ from the server when all stream objects that refer to it are destroyed.</p>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
 
   
 

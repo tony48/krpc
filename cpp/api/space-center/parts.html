@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,12 +30,20 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
-        <link rel="prev" title="Control" href="control.html"/>
+        <link rel="prev" title="Communications" href="comms.html"/>
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -109,6 +117,7 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Parts</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Parts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#part">Part</a></li>
@@ -123,9 +132,10 @@
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -200,16 +210,16 @@
 <li><a class="reference internal" href="#part" id="id14">Part</a></li>
 <li><a class="reference internal" href="#module" id="id15">Module</a></li>
 <li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
-<li><a class="reference internal" href="#cargo-bay" id="id17">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id18">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id19">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id20">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id21">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id22">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id23">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id24">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id25">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id26">Landing Leg</a></li>
+<li><a class="reference internal" href="#antenna" id="id17">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id18">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id19">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id20">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id21">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id22">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id23">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id24">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id25">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id26">Leg</a></li>
 <li><a class="reference internal" href="#launch-clamp" id="id27">Launch Clamp</a></li>
 <li><a class="reference internal" href="#light" id="id28">Light</a></li>
 <li><a class="reference internal" href="#parachute" id="id29">Parachute</a></li>
@@ -221,15 +231,16 @@
 <li><a class="reference internal" href="#sensor" id="id35">Sensor</a></li>
 <li><a class="reference internal" href="#solar-panel" id="id36">Solar Panel</a></li>
 <li><a class="reference internal" href="#thruster" id="id37">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id38">Wheel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#trees-of-parts" id="id38">Trees of Parts</a><ul>
-<li><a class="reference internal" href="#traversing-the-tree" id="id39">Traversing the Tree</a></li>
-<li><a class="reference internal" href="#attachment-modes" id="id40">Attachment Modes</a></li>
+<li><a class="reference internal" href="#trees-of-parts" id="id39">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id40">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id41">Attachment Modes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fuel-lines" id="id41">Fuel Lines</a></li>
-<li><a class="reference internal" href="#staging" id="id42">Staging</a></li>
+<li><a class="reference internal" href="#fuel-lines" id="id42">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id43">Staging</a></li>
 </ul>
 </div>
 <div class="section" id="id1">
@@ -375,6 +386,12 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts8antennasEv">
+<span id="krpc::services::SpaceCenter::Parts::antennas"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter7AntennaE" title="krpc::services::SpaceCenter::Antenna">Antenna</a>&gt; <code class="descclassname"></code><code class="descname">antennas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts8antennasEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all antennas in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Parts10cargo_baysEv">
 <span id="krpc::services::SpaceCenter::Parts::cargo_bays"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8CargoBayE" title="krpc::services::SpaceCenter::CargoBay">CargoBay</a>&gt; <code class="descclassname"></code><code class="descname">cargo_bays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts10cargo_baysEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all cargo bays in the vessel.</p>
@@ -428,14 +445,8 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts12landing_gearEv">
-<span id="krpc::services::SpaceCenter::Parts::landing_gear"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGearE" title="krpc::services::SpaceCenter::LandingGear">LandingGear</a>&gt; <code class="descclassname"></code><code class="descname">landing_gear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts12landing_gearEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all landing gear attached to the vessel.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts12landing_legsEv">
-<span id="krpc::services::SpaceCenter::Parts::landing_legs"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLegE" title="krpc::services::SpaceCenter::LandingLeg">LandingLeg</a>&gt; <code class="descclassname"></code><code class="descname">landing_legs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts12landing_legsEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts4legsEv">
+<span id="krpc::services::SpaceCenter::Parts::legs"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter3LegE" title="krpc::services::SpaceCenter::Leg">Leg</a>&gt; <code class="descclassname"></code><code class="descname">legs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts4legsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all landing legs attached to the vessel.</p>
 </dd></dl>
 
@@ -497,6 +508,12 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Parts12solar_panelsEv">
 <span id="krpc::services::SpaceCenter::Parts::solar_panels"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanelE" title="krpc::services::SpaceCenter::SolarPanel">SolarPanel</a>&gt; <code class="descclassname"></code><code class="descname">solar_panels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts12solar_panelsEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all solar panels in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Parts6wheelsEv">
+<span id="krpc::services::SpaceCenter::Parts::wheels"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5WheelE" title="krpc::services::SpaceCenter::Wheel">Wheel</a>&gt; <code class="descclassname"></code><code class="descname">wheels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Parts6wheelsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all wheels in the vessel.</p>
 </dd></dl>
 
 </dd></dl>
@@ -803,6 +820,12 @@ and negative means its skin is gaining heat energy.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part7antennaEv">
+<span id="krpc::services::SpaceCenter::Part::antenna"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter7AntennaE" title="krpc::services::SpaceCenter::Antenna">Antenna</a> <code class="descclassname"></code><code class="descname">antenna</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part7antennaEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter7AntennaE" title="krpc::services::SpaceCenter::Antenna"><code class="xref cpp cpp-class docutils literal"><span class="pre">Antenna</span></code></a> if the part is an antenna, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter4Part9cargo_bayEv">
 <span id="krpc::services::SpaceCenter::Part::cargo_bay"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8CargoBayE" title="krpc::services::SpaceCenter::CargoBay">CargoBay</a> <code class="descclassname"></code><code class="descname">cargo_bay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part9cargo_bayEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8CargoBayE" title="krpc::services::SpaceCenter::CargoBay"><code class="xref cpp cpp-class docutils literal"><span class="pre">CargoBay</span></code></a> if the part is a cargo bay, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
@@ -857,15 +880,9 @@ For RCS thrusters see <a class="reference internal" href="#_CPPv2N4krpc8services
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter4Part12landing_gearEv">
-<span id="krpc::services::SpaceCenter::Part::landing_gear"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGearE" title="krpc::services::SpaceCenter::LandingGear">LandingGear</a> <code class="descclassname"></code><code class="descname">landing_gear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part12landing_gearEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGearE" title="krpc::services::SpaceCenter::LandingGear"><code class="xref cpp cpp-class docutils literal"><span class="pre">LandingGear</span></code></a> if the part is a landing gear, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter4Part11landing_legEv">
-<span id="krpc::services::SpaceCenter::Part::landing_leg"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLegE" title="krpc::services::SpaceCenter::LandingLeg">LandingLeg</a> <code class="descclassname"></code><code class="descname">landing_leg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part11landing_legEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLegE" title="krpc::services::SpaceCenter::LandingLeg"><code class="xref cpp cpp-class docutils literal"><span class="pre">LandingLeg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part3legEv">
+<span id="krpc::services::SpaceCenter::Part::leg"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter3LegE" title="krpc::services::SpaceCenter::Leg">Leg</a> <code class="descclassname"></code><code class="descname">leg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part3legEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter3LegE" title="krpc::services::SpaceCenter::Leg"><code class="xref cpp cpp-class docutils literal"><span class="pre">Leg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
@@ -926,6 +943,12 @@ For RCS thrusters see <a class="reference internal" href="#_CPPv2N4krpc8services
 <dt id="_CPPv2N4krpc8services11SpaceCenter4Part11solar_panelEv">
 <span id="krpc::services::SpaceCenter::Part::solar_panel"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanelE" title="krpc::services::SpaceCenter::SolarPanel">SolarPanel</a> <code class="descclassname"></code><code class="descname">solar_panel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part11solar_panelEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanelE" title="krpc::services::SpaceCenter::SolarPanel"><code class="xref cpp cpp-class docutils literal"><span class="pre">SolarPanel</span></code></a> if the part is a solar panel, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter4Part5wheelEv">
+<span id="krpc::services::SpaceCenter::Part::wheel"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5WheelE" title="krpc::services::SpaceCenter::Wheel">Wheel</a> <code class="descclassname"></code><code class="descname">wheel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter4Part5wheelEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5WheelE" title="krpc::services::SpaceCenter::Wheel"><code class="xref cpp cpp-class docutils literal"><span class="pre">Wheel</span></code></a> if the part is a wheel, otherwise <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1377,31 +1400,176 @@ to action groups in the in-game editor.</p>
 <p>The following classes provide functionality for specific types of part.</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#cargo-bay" id="id43">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id44">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id45">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id46">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id47">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id48">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id49">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id50">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id51">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id52">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id53">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id54">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id55">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id56">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id57">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id58">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id59">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#rcs" id="id60">RCS</a></li>
-<li><a class="reference internal" href="#sensor" id="id61">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id62">Solar Panel</a></li>
-<li><a class="reference internal" href="#thruster" id="id63">Thruster</a></li>
+<li><a class="reference internal" href="#antenna" id="id44">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id45">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id46">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id47">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id48">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id49">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id50">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id51">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id52">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id53">Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id54">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id55">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id56">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id57">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id58">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id59">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id60">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#rcs" id="id61">RCS</a></li>
+<li><a class="reference internal" href="#sensor" id="id62">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id63">Solar Panel</a></li>
+<li><a class="reference internal" href="#thruster" id="id64">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id65">Wheel</a></li>
 </ul>
 </div>
+<div class="section" id="antenna">
+<h3><a class="toc-backref" href="#id44">Antenna</a><a class="headerlink" href="#antenna" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7AntennaE">
+<span id="krpc::services::SpaceCenter::Antenna"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Antenna</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7AntennaE" title="Permalink to this definition">¶</a></dt>
+<dd><p>An antenna. Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part7antennaEv" title="krpc::services::SpaceCenter::Part::antenna"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::antenna()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna4partEv">
+<span id="krpc::services::SpaceCenter::Antenna::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna4partEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this antenna.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna5stateEv">
+<span id="krpc::services::SpaceCenter::Antenna::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaStateE" title="krpc::services::SpaceCenter::AntennaState">AntennaState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna5stateEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the antenna.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna10deployableEv">
+<span id="krpc::services::SpaceCenter::Antenna::deployable"></span>bool <code class="descclassname"></code><code class="descname">deployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna10deployableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna8deployedEv">
+<span id="krpc::services::SpaceCenter::Antenna::deployed"></span>bool <code class="descclassname"></code><code class="descname">deployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna8deployedEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna12set_deployedEb">
+<span id="krpc::services::SpaceCenter::Antenna::set_deployed__b"></span>void <code class="descclassname"></code><code class="descname">set_deployed</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna12set_deployedEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed antennas are always deployed.
+Returns an error if you try to deploy a fixed antenna.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna12can_transmitEv">
+<span id="krpc::services::SpaceCenter::Antenna::can_transmit"></span>bool <code class="descclassname"></code><code class="descname">can_transmit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna12can_transmitEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether data can be transmitted by this antenna.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna8transmitEv">
+<span id="krpc::services::SpaceCenter::Antenna::transmit"></span>void <code class="descclassname"></code><code class="descname">transmit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna8transmitEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmit data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna6cancelEv">
+<span id="krpc::services::SpaceCenter::Antenna::cancel"></span>void <code class="descclassname"></code><code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna6cancelEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel current transmission of data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna13allow_partialEv">
+<span id="krpc::services::SpaceCenter::Antenna::allow_partial"></span>bool <code class="descclassname"></code><code class="descname">allow_partial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna13allow_partialEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna17set_allow_partialEb">
+<span id="krpc::services::SpaceCenter::Antenna::set_allow_partial__b"></span>void <code class="descclassname"></code><code class="descname">set_allow_partial</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna17set_allow_partialEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether partial data transmission is permitted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna5powerEv">
+<span id="krpc::services::SpaceCenter::Antenna::power"></span>double <code class="descclassname"></code><code class="descname">power</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna5powerEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The power of the antenna.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna10combinableEv">
+<span id="krpc::services::SpaceCenter::Antenna::combinable"></span>bool <code class="descclassname"></code><code class="descname">combinable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna10combinableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna can be combined with other antennae on the vessel to boost the power.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna19combinable_exponentEv">
+<span id="krpc::services::SpaceCenter::Antenna::combinable_exponent"></span>double <code class="descclassname"></code><code class="descname">combinable_exponent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna19combinable_exponentEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponent used to calculate the combined power of multiple antennae on a vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna15packet_intervalEv">
+<span id="krpc::services::SpaceCenter::Antenna::packet_interval"></span>float <code class="descclassname"></code><code class="descname">packet_interval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna15packet_intervalEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interval between sending packets in seconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna11packet_sizeEv">
+<span id="krpc::services::SpaceCenter::Antenna::packet_size"></span>float <code class="descclassname"></code><code class="descname">packet_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna11packet_sizeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of data sent per packet in Mits.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter7Antenna20packet_resource_costEv">
+<span id="krpc::services::SpaceCenter::Antenna::packet_resource_cost"></span>double <code class="descclassname"></code><code class="descname">packet_resource_cost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna20packet_resource_costEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units of electric charge consumed per packet sent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaStateE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">AntennaState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaStateE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of an antenna. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter7Antenna5stateEv" title="krpc::services::SpaceCenter::Antenna::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">Antenna::state()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaState8deployedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaState8deployedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully deployed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaState9retractedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracted</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaState9retractedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully retracted.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaState9deployingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deploying</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaState9deployingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being deployed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaState10retractingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracting</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaState10retractingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being retracted.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter12AntennaState6brokenE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">broken</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter12AntennaState6brokenE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="cargo-bay">
-<h3><a class="toc-backref" href="#id43">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter8CargoBayE">
 <span id="krpc::services::SpaceCenter::CargoBay"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CargoBay</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8CargoBayE" title="Permalink to this definition">¶</a></dt>
@@ -1463,7 +1631,7 @@ to action groups in the in-game editor.</p>
 
 </div>
 <div class="section" id="control-surface">
-<h3><a class="toc-backref" href="#id44">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurfaceE">
 <span id="krpc::services::SpaceCenter::ControlSurface"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ControlSurface</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurfaceE" title="Permalink to this definition">¶</a></dt>
@@ -1508,6 +1676,17 @@ to action groups in the in-game editor.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurface17authority_limiterEv">
+<span id="krpc::services::SpaceCenter::ControlSurface::authority_limiter"></span>float <code class="descclassname"></code><code class="descname">authority_limiter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface17authority_limiterEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurface21set_authority_limiterEf">
+<span id="krpc::services::SpaceCenter::ControlSurface::set_authority_limiter__float"></span>void <code class="descclassname"></code><code class="descname">set_authority_limiter</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface21set_authority_limiterEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>The authority limiter for the control surface, which controls how far the control surface will move.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter14ControlSurface8invertedEv">
 <span id="krpc::services::SpaceCenter::ControlSurface::inverted"></span>bool <code class="descclassname"></code><code class="descname">inverted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ControlSurface8invertedEv" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1547,7 +1726,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="decoupler">
-<h3><a class="toc-backref" href="#id45">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9DecouplerE">
 <span id="krpc::services::SpaceCenter::Decoupler"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Decoupler</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9DecouplerE" title="Permalink to this definition">¶</a></dt>
@@ -1563,6 +1742,12 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 <span id="krpc::services::SpaceCenter::Decoupler::decouple"></span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <code class="descclassname"></code><code class="descname">decouple</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Decoupler8decoupleEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fires the decoupler. Returns the new vessel created when the decoupler fires.
 Throws an exception if the decoupler has already fired.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter13active_vesselEv" title="krpc::services::SpaceCenter::active_vessel"><code class="xref cpp cpp-func docutils literal"><span class="pre">active_vessel()</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -1587,7 +1772,7 @@ Throws an exception if the decoupler has already fired.</p>
 
 </div>
 <div class="section" id="docking-port">
-<h3><a class="toc-backref" href="#id46">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter11DockingPortE">
 <span id="krpc::services::SpaceCenter::DockingPort"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DockingPort</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11DockingPortE" title="Permalink to this definition">¶</a></dt>
@@ -1619,7 +1804,9 @@ This method can be called for either docking port in a docked pair.
 Throws an exception if the docking port is not docked to anything.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">After undocking, the active vessel may change. See <a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter13active_vesselEv" title="krpc::services::SpaceCenter::active_vessel"><code class="xref cpp cpp-func docutils literal"><span class="pre">active_vessel()</span></code></a>.</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#_CPPv2N4krpc8services11SpaceCenter13active_vesselEv" title="krpc::services::SpaceCenter::active_vessel"><code class="xref cpp cpp-func docutils literal"><span class="pre">active_vessel()</span></code></a> no longer refer to the active vessel.</p>
 </div>
 </dd></dl>
 
@@ -1770,7 +1957,7 @@ and is disabled until it moves away by a sufficient distance
 
 </div>
 <div class="section" id="engine">
-<h3><a class="toc-backref" href="#id47">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6EngineE">
 <span id="krpc::services::SpaceCenter::Engine"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Engine</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6EngineE" title="Permalink to this definition">¶</a></dt>
@@ -2097,7 +2284,7 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 
 </div>
 <div class="section" id="experiment">
-<h3><a class="toc-backref" href="#id48">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter10ExperimentE">
 <span id="krpc::services::SpaceCenter::Experiment"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Experiment</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10ExperimentE" title="Permalink to this definition">¶</a></dt>
@@ -2257,7 +2444,7 @@ Returns null if experiment is unavailable.</p>
 
 </div>
 <div class="section" id="fairing">
-<h3><a class="toc-backref" href="#id49">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter7FairingE">
 <span id="krpc::services::SpaceCenter::Fairing"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Fairing</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter7FairingE" title="Permalink to this definition">¶</a></dt>
@@ -2284,7 +2471,7 @@ Returns null if experiment is unavailable.</p>
 
 </div>
 <div class="section" id="intake">
-<h3><a class="toc-backref" href="#id50">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id52">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6IntakeE">
 <span id="krpc::services::SpaceCenter::Intake"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Intake</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6IntakeE" title="Permalink to this definition">¶</a></dt>
@@ -2327,121 +2514,38 @@ Returns null if experiment is unavailable.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="landing-gear">
-<h3><a class="toc-backref" href="#id51">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="leg">
+<h3><a class="toc-backref" href="#id53">Leg</a><a class="headerlink" href="#leg" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGearE">
-<span id="krpc::services::SpaceCenter::LandingGear"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">LandingGear</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGearE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear with wheels. Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part12landing_gearEv" title="krpc::services::SpaceCenter::Part::landing_gear"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::landing_gear()</span></code></a>.</p>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3LegE">
+<span id="krpc::services::SpaceCenter::Leg"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Leg</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3LegE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part3legEv" title="krpc::services::SpaceCenter::Part::leg"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::leg()</span></code></a>.</p>
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear4partEv">
-<span id="krpc::services::SpaceCenter::LandingGear::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear4partEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The part object for this landing gear.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear5stateEv">
-<span id="krpc::services::SpaceCenter::LandingGear::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearStateE" title="krpc::services::SpaceCenter::LandingGearState">LandingGearState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear5stateEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current state of the landing gear.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.</p>
-</div>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear10deployableEv">
-<span id="krpc::services::SpaceCenter::LandingGear::deployable"></span>bool <code class="descclassname"></code><code class="descname">deployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear10deployableEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployable.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear8deployedEv">
-<span id="krpc::services::SpaceCenter::LandingGear::deployed"></span>bool <code class="descclassname"></code><code class="descname">deployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear8deployedEv" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear12set_deployedEb">
-<span id="krpc::services::SpaceCenter::LandingGear::set_deployed__b"></span>void <code class="descclassname"></code><code class="descname">set_deployed</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear12set_deployedEb" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployed.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.
-Returns an error if you try to deploy fixed landing gear.</p>
-</div>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter11LandingGear11is_groundedEv">
-<span id="krpc::services::SpaceCenter::LandingGear::is_grounded"></span>bool <code class="descclassname"></code><code class="descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear11is_groundedEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether the gear is touching the ground.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="enum-struct">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearStateE">
-<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">LandingGearState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearStateE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing gear. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter11LandingGear5stateEv" title="krpc::services::SpaceCenter::LandingGear::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">LandingGear::state()</span></code></a>.</p>
-<dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearState8deployedE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearState8deployedE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully deployed.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearState9retractedE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracted</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearState9retractedE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully retracted.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearState9deployingE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deploying</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearState9deployingE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being deployed.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearState10retractingE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracting</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearState10retractingE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being retracted.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter16LandingGearState6brokenE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">broken</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter16LandingGearState6brokenE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is broken.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="landing-leg">
-<h3><a class="toc-backref" href="#id52">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLegE">
-<span id="krpc::services::SpaceCenter::LandingLeg"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">LandingLeg</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLegE" title="Permalink to this definition">¶</a></dt>
-<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part11landing_legEv" title="krpc::services::SpaceCenter::Part::landing_leg"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::landing_leg()</span></code></a>.</p>
-<dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg4partEv">
-<span id="krpc::services::SpaceCenter::LandingLeg::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg4partEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg4partEv">
+<span id="krpc::services::SpaceCenter::Leg::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg4partEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this landing leg.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg5stateEv">
-<span id="krpc::services::SpaceCenter::LandingLeg::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegStateE" title="krpc::services::SpaceCenter::LandingLegState">LandingLegState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg5stateEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg5stateEv">
+<span id="krpc::services::SpaceCenter::Leg::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter8LegStateE" title="krpc::services::SpaceCenter::LegState">LegState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg5stateEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the landing leg.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg8deployedEv">
-<span id="krpc::services::SpaceCenter::LandingLeg::deployed"></span>bool <code class="descclassname"></code><code class="descname">deployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg8deployedEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg10deployableEv">
+<span id="krpc::services::SpaceCenter::Leg::deployable"></span>bool <code class="descclassname"></code><code class="descname">deployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg10deployableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the leg is deployable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg8deployedEv">
+<span id="krpc::services::SpaceCenter::Leg::deployed"></span>bool <code class="descclassname"></code><code class="descname">deployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg8deployedEv" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg12set_deployedEb">
-<span id="krpc::services::SpaceCenter::LandingLeg::set_deployed__b"></span>void <code class="descclassname"></code><code class="descname">set_deployed</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg12set_deployedEb" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg12set_deployedEb">
+<span id="krpc::services::SpaceCenter::Leg::set_deployed__b"></span>void <code class="descclassname"></code><code class="descname">set_deployed</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg12set_deployedEb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the landing leg is deployed.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -2451,44 +2555,44 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc8services11SpaceCenter10LandingLeg11is_groundedEv">
-<span id="krpc::services::SpaceCenter::LandingLeg::is_grounded"></span>bool <code class="descclassname"></code><code class="descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg11is_groundedEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter3Leg11is_groundedEv">
+<span id="krpc::services::SpaceCenter::Leg::is_grounded"></span>bool <code class="descclassname"></code><code class="descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3Leg11is_groundedEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether the leg is touching the ground.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="enum-struct">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegStateE">
-<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">LandingLegState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegStateE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing leg. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10LandingLeg5stateEv" title="krpc::services::SpaceCenter::LandingLeg::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">LandingLeg::state()</span></code></a>.</p>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegStateE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">LegState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegStateE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a landing leg. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter3Leg5stateEv" title="krpc::services::SpaceCenter::Leg::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">Leg::state()</span></code></a>.</p>
 <dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegState8deployedE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegState8deployedE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegState8deployedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegState8deployedE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully deployed.</p>
 </dd></dl>
 
 <dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegState9retractedE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracted</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegState9retractedE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegState9retractedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracted</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegState9retractedE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully retracted.</p>
 </dd></dl>
 
 <dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegState9deployingE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deploying</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegState9deployingE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegState9deployingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deploying</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegState9deployingE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being deployed.</p>
 </dd></dl>
 
 <dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegState10retractingE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracting</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegState10retractingE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegState10retractingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracting</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegState10retractingE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being retracted.</p>
 </dd></dl>
 
 <dl class="enumerator">
-<dt id="_CPPv2N4krpc8services11SpaceCenter15LandingLegState6brokenE">
-<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">broken</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter15LandingLegState6brokenE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc8services11SpaceCenter8LegState6brokenE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">broken</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8LegState6brokenE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is broken.</p>
 </dd></dl>
 
@@ -2496,7 +2600,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="launch-clamp">
-<h3><a class="toc-backref" href="#id53">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter11LaunchClampE">
 <span id="krpc::services::SpaceCenter::LaunchClamp"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">LaunchClamp</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter11LaunchClampE" title="Permalink to this definition">¶</a></dt>
@@ -2517,7 +2621,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="light">
-<h3><a class="toc-backref" href="#id54">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id55">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5LightE">
 <span id="krpc::services::SpaceCenter::Light"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Light</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5LightE" title="Permalink to this definition">¶</a></dt>
@@ -2560,7 +2664,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="parachute">
-<h3><a class="toc-backref" href="#id55">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9ParachuteE">
 <span id="krpc::services::SpaceCenter::Parachute"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Parachute</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9ParachuteE" title="Permalink to this definition">¶</a></dt>
@@ -2585,6 +2689,19 @@ been deployed.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9Parachute3armEv">
+<span id="krpc::services::SpaceCenter::Parachute::arm"></span>void <code class="descclassname"></code><code class="descname">arm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Parachute3armEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deploys the parachute. This has no effect if the parachute has already
+been armed or deployed. Only applicable to RealChutes parachutes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter9Parachute5armedEv">
+<span id="krpc::services::SpaceCenter::Parachute::armed"></span>bool <code class="descclassname"></code><code class="descname">armed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Parachute5armedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9Parachute5stateEv">
 <span id="krpc::services::SpaceCenter::Parachute::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter14ParachuteStateE" title="krpc::services::SpaceCenter::ParachuteState">ParachuteState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Parachute5stateEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the parachute.</p>
@@ -2598,7 +2715,8 @@ been deployed.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9Parachute19set_deploy_altitudeEf">
 <span id="krpc::services::SpaceCenter::Parachute::set_deploy_altitude__float"></span>void <code class="descclassname"></code><code class="descname">set_deploy_altitude</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Parachute19set_deploy_altitudeEf" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude at which the parachute will full deploy, in meters.</p>
+<dd><p>The altitude at which the parachute will full deploy, in meters.
+Only applicable to stock parachutes.</p>
 </dd></dl>
 
 <dl class="function">
@@ -2609,7 +2727,8 @@ been deployed.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9Parachute23set_deploy_min_pressureEf">
 <span id="krpc::services::SpaceCenter::Parachute::set_deploy_min_pressure__float"></span>void <code class="descclassname"></code><code class="descname">set_deploy_min_pressure</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9Parachute23set_deploy_min_pressureEf" title="Permalink to this definition">¶</a></dt>
-<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.</p>
+<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+Only applicable to stock parachutes.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2625,16 +2744,23 @@ been deployed.</p>
 </dd></dl>
 
 <dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14ParachuteState5armedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">armed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ParachuteState5armedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is armed for deployment. (RealChutes only)</p>
+</dd></dl>
+
+<dl class="enumerator">
 <dt id="_CPPv2N4krpc8services11SpaceCenter14ParachuteState6activeE">
 <em class="property">enumerator </em><code class="descclassname"></code><code class="descname">active</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ParachuteState6activeE" title="Permalink to this definition">¶</a></dt>
-<dd><p>The parachute is still stowed, but ready to semi-deploy.</p>
+<dd><p>The parachute is still stowed, but ready to semi-deploy.
+(Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="enumerator">
 <dt id="_CPPv2N4krpc8services11SpaceCenter14ParachuteState13semi_deployedE">
 <em class="property">enumerator </em><code class="descclassname"></code><code class="descname">semi_deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14ParachuteState13semi_deployedE" title="Permalink to this definition">¶</a></dt>
 <dd><p>The parachute has been deployed and is providing some drag,
-but is not fully deployed yet.</p>
+but is not fully deployed yet. (Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="enumerator">
@@ -2653,7 +2779,7 @@ but is not fully deployed yet.</p>
 
 </div>
 <div class="section" id="radiator">
-<h3><a class="toc-backref" href="#id56">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id57">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter8RadiatorE">
 <span id="krpc::services::SpaceCenter::Radiator"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Radiator</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8RadiatorE" title="Permalink to this definition">¶</a></dt>
@@ -2732,7 +2858,7 @@ If the radiator is not deployable, this is always <code class="docutils literal"
 
 </div>
 <div class="section" id="resource-converter">
-<h3><a class="toc-backref" href="#id57">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id58">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter17ResourceConverterE">
 <span id="krpc::services::SpaceCenter::ResourceConverter"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ResourceConverter</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ResourceConverterE" title="Permalink to this definition">¶</a></dt>
@@ -2933,7 +3059,7 @@ In this case, check <a class="reference internal" href="#_CPPv2N4krpc8services11
 
 </div>
 <div class="section" id="resource-harvester">
-<h3><a class="toc-backref" href="#id58">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter17ResourceHarvesterE">
 <span id="krpc::services::SpaceCenter::ResourceHarvester"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ResourceHarvester</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter17ResourceHarvesterE" title="Permalink to this definition">¶</a></dt>
@@ -3036,7 +3162,7 @@ In this case, check <a class="reference internal" href="#_CPPv2N4krpc8services11
 
 </div>
 <div class="section" id="reaction-wheel">
-<h3><a class="toc-backref" href="#id59">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id60">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter13ReactionWheelE">
 <span id="krpc::services::SpaceCenter::ReactionWheel"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">ReactionWheel</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter13ReactionWheelE" title="Permalink to this definition">¶</a></dt>
@@ -3084,7 +3210,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="rcs">
-<h3><a class="toc-backref" href="#id60">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id61">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter3RCSE">
 <span id="krpc::services::SpaceCenter::RCS"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">RCS</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter3RCSE" title="Permalink to this definition">¶</a></dt>
@@ -3253,7 +3379,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="sensor">
-<h3><a class="toc-backref" href="#id61">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id62">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter6SensorE">
 <span id="krpc::services::SpaceCenter::Sensor"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Sensor</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6SensorE" title="Permalink to this definition">¶</a></dt>
@@ -3285,7 +3411,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="solar-panel">
-<h3><a class="toc-backref" href="#id62">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id63">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter10SolarPanelE">
 <span id="krpc::services::SpaceCenter::SolarPanel"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SolarPanel</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanelE" title="Permalink to this definition">¶</a></dt>
@@ -3294,6 +3420,12 @@ to the ratios at which they are consumed by the RCS.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter10SolarPanel4partEv">
 <span id="krpc::services::SpaceCenter::SolarPanel::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanel4partEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this solar panel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10SolarPanel10deployableEv">
+<span id="krpc::services::SpaceCenter::SolarPanel::deployable"></span>bool <code class="descclassname"></code><code class="descname">deployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10SolarPanel10deployableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the solar panel is deployable.</p>
 </dd></dl>
 
 <dl class="function">
@@ -3367,7 +3499,7 @@ as a percentage. A value between 0 and 1.</p>
 
 </div>
 <div class="section" id="thruster">
-<h3><a class="toc-backref" href="#id63">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id64">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="_CPPv2N4krpc8services11SpaceCenter8ThrusterE">
 <span id="krpc::services::SpaceCenter::Thruster"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Thruster</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter8ThrusterE" title="Permalink to this definition">¶</a></dt>
@@ -3495,9 +3627,338 @@ This is opposite to the direction in which the thruster expels propellant.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="wheel">
+<h3><a class="toc-backref" href="#id65">Wheel</a><a class="headerlink" href="#wheel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5WheelE">
+<span id="krpc::services::SpaceCenter::Wheel"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Wheel</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5WheelE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wheel. Includes landing gear and rover wheels. Obtained by calling <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part5wheelEv" title="krpc::services::SpaceCenter::Part::wheel"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::wheel()</span></code></a>.
+Can be used to control the motors, steering and deployment of wheels, among other things.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel4partEv">
+<span id="krpc::services::SpaceCenter::Wheel::part"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4PartE" title="krpc::services::SpaceCenter::Part">Part</a> <code class="descclassname"></code><code class="descname">part</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel4partEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this wheel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel5stateEv">
+<span id="krpc::services::SpaceCenter::Wheel::state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10WheelStateE" title="krpc::services::SpaceCenter::WheelState">WheelState</a> <code class="descclassname"></code><code class="descname">state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel5stateEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the wheel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel6radiusEv">
+<span id="krpc::services::SpaceCenter::Wheel::radius"></span>float <code class="descclassname"></code><code class="descname">radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel6radiusEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the wheel, in meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel8groundedEv">
+<span id="krpc::services::SpaceCenter::Wheel::grounded"></span>bool <code class="descclassname"></code><code class="descname">grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel8groundedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is touching the ground.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel10has_brakesEv">
+<span id="krpc::services::SpaceCenter::Wheel::has_brakes"></span>bool <code class="descclassname"></code><code class="descname">has_brakes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel10has_brakesEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has brakes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel6brakesEv">
+<span id="krpc::services::SpaceCenter::Wheel::brakes"></span>float <code class="descclassname"></code><code class="descname">brakes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel6brakesEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel10set_brakesEf">
+<span id="krpc::services::SpaceCenter::Wheel::set_brakes__float"></span>void <code class="descclassname"></code><code class="descname">set_brakes</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel10set_brakesEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>The braking force, as a percentage of maximum, when the brakes are applied.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel21auto_friction_controlEv">
+<span id="krpc::services::SpaceCenter::Wheel::auto_friction_control"></span>bool <code class="descclassname"></code><code class="descname">auto_friction_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel21auto_friction_controlEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel25set_auto_friction_controlEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_auto_friction_control__b"></span>void <code class="descclassname"></code><code class="descname">set_auto_friction_control</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel25set_auto_friction_controlEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic friction control is enabled.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel23manual_friction_controlEv">
+<span id="krpc::services::SpaceCenter::Wheel::manual_friction_control"></span>float <code class="descclassname"></code><code class="descname">manual_friction_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel23manual_friction_controlEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel27set_manual_friction_controlEf">
+<span id="krpc::services::SpaceCenter::Wheel::set_manual_friction_control__float"></span>void <code class="descclassname"></code><code class="descname">set_manual_friction_control</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel27set_manual_friction_controlEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual friction control value. Only has an effect if automatic friction control is disabled.
+A value between 0 and 5 inclusive.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel10deployableEv">
+<span id="krpc::services::SpaceCenter::Wheel::deployable"></span>bool <code class="descclassname"></code><code class="descname">deployable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel10deployableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel8deployedEv">
+<span id="krpc::services::SpaceCenter::Wheel::deployed"></span>bool <code class="descclassname"></code><code class="descname">deployed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel8deployedEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel12set_deployedEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_deployed__b"></span>void <code class="descclassname"></code><code class="descname">set_deployed</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel12set_deployedEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel7poweredEv">
+<span id="krpc::services::SpaceCenter::Wheel::powered"></span>bool <code class="descclassname"></code><code class="descname">powered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel7poweredEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is powered by a motor.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel13motor_enabledEv">
+<span id="krpc::services::SpaceCenter::Wheel::motor_enabled"></span>bool <code class="descclassname"></code><code class="descname">motor_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel13motor_enabledEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel17set_motor_enabledEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_motor_enabled__b"></span>void <code class="descclassname"></code><code class="descname">set_motor_enabled</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel17set_motor_enabledEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the motor is enabled.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel14motor_invertedEv">
+<span id="krpc::services::SpaceCenter::Wheel::motor_inverted"></span>bool <code class="descclassname"></code><code class="descname">motor_inverted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel14motor_invertedEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel18set_motor_invertedEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_motor_inverted__b"></span>void <code class="descclassname"></code><code class="descname">set_motor_inverted</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel18set_motor_invertedEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel11motor_stateEv">
+<span id="krpc::services::SpaceCenter::Wheel::motor_state"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10MotorStateE" title="krpc::services::SpaceCenter::MotorState">MotorState</a> <code class="descclassname"></code><code class="descname">motor_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel11motor_stateEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel12motor_outputEv">
+<span id="krpc::services::SpaceCenter::Wheel::motor_output"></span>float <code class="descclassname"></code><code class="descname">motor_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel12motor_outputEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output of the motor. This is the torque currently being generated, in Newton meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel24traction_control_enabledEv">
+<span id="krpc::services::SpaceCenter::Wheel::traction_control_enabled"></span>bool <code class="descclassname"></code><code class="descname">traction_control_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel24traction_control_enabledEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel28set_traction_control_enabledEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_traction_control_enabled__b"></span>void <code class="descclassname"></code><code class="descname">set_traction_control_enabled</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel28set_traction_control_enabledEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic traction control is enabled.
+A wheel only has traction control if it is powered.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel16traction_controlEv">
+<span id="krpc::services::SpaceCenter::Wheel::traction_control"></span>float <code class="descclassname"></code><code class="descname">traction_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel16traction_controlEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel20set_traction_controlEf">
+<span id="krpc::services::SpaceCenter::Wheel::set_traction_control__float"></span>void <code class="descclassname"></code><code class="descname">set_traction_control</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel20set_traction_controlEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting for the traction control.
+Only takes effect if the wheel has automatic traction control enabled.
+A value between 0 and 5 inclusive.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel13drive_limiterEv">
+<span id="krpc::services::SpaceCenter::Wheel::drive_limiter"></span>float <code class="descclassname"></code><code class="descname">drive_limiter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel13drive_limiterEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel17set_drive_limiterEf">
+<span id="krpc::services::SpaceCenter::Wheel::set_drive_limiter__float"></span>void <code class="descclassname"></code><code class="descname">set_drive_limiter</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel17set_drive_limiterEf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual setting for the motor limiter.
+Only takes effect if the wheel has automatic traction control disabled.
+A value between 0 and 100 inclusive.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel9steerableEv">
+<span id="krpc::services::SpaceCenter::Wheel::steerable"></span>bool <code class="descclassname"></code><code class="descname">steerable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel9steerableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has steering.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel16steering_enabledEv">
+<span id="krpc::services::SpaceCenter::Wheel::steering_enabled"></span>bool <code class="descclassname"></code><code class="descname">steering_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel16steering_enabledEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel20set_steering_enabledEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_steering_enabled__b"></span>void <code class="descclassname"></code><code class="descname">set_steering_enabled</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel20set_steering_enabledEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is enabled.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel17steering_invertedEv">
+<span id="krpc::services::SpaceCenter::Wheel::steering_inverted"></span>bool <code class="descclassname"></code><code class="descname">steering_inverted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel17steering_invertedEv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel21set_steering_invertedEb">
+<span id="krpc::services::SpaceCenter::Wheel::set_steering_inverted__b"></span>void <code class="descclassname"></code><code class="descname">set_steering_inverted</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel21set_steering_invertedEb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is inverted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel14has_suspensionEv">
+<span id="krpc::services::SpaceCenter::Wheel::has_suspension"></span>bool <code class="descclassname"></code><code class="descname">has_suspension</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel14has_suspensionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has suspension.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel26suspension_spring_strengthEv">
+<span id="krpc::services::SpaceCenter::Wheel::suspension_spring_strength"></span>float <code class="descclassname"></code><code class="descname">suspension_spring_strength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel26suspension_spring_strengthEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension spring strength, as set in the editor.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel26suspension_damper_strengthEv">
+<span id="krpc::services::SpaceCenter::Wheel::suspension_damper_strength"></span>float <code class="descclassname"></code><code class="descname">suspension_damper_strength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel26suspension_damper_strengthEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension damper strength, as set in the editor.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel6brokenEv">
+<span id="krpc::services::SpaceCenter::Wheel::broken"></span>bool <code class="descclassname"></code><code class="descname">broken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel6brokenEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is broken.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel10repairableEv">
+<span id="krpc::services::SpaceCenter::Wheel::repairable"></span>bool <code class="descclassname"></code><code class="descname">repairable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel10repairableEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is repairable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel6stressEv">
+<span id="krpc::services::SpaceCenter::Wheel::stress"></span>float <code class="descclassname"></code><code class="descname">stress</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel6stressEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel16stress_toleranceEv">
+<span id="krpc::services::SpaceCenter::Wheel::stress_tolerance"></span>float <code class="descclassname"></code><code class="descname">stress_tolerance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel16stress_toleranceEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stress tolerance of the wheel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel17stress_percentageEv">
+<span id="krpc::services::SpaceCenter::Wheel::stress_percentage"></span>float <code class="descclassname"></code><code class="descname">stress_percentage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel17stress_percentageEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel as a percentage of its stress tolerance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel10deflectionEv">
+<span id="krpc::services::SpaceCenter::Wheel::deflection"></span>float <code class="descclassname"></code><code class="descname">deflection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel10deflectionEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current deflection of the wheel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Wheel4slipEv">
+<span id="krpc::services::SpaceCenter::Wheel::slip"></span>float <code class="descclassname"></code><code class="descname">slip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel4slipEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current slip of the wheel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelStateE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">WheelState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelStateE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a wheel. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel5stateEv" title="krpc::services::SpaceCenter::Wheel::state"><code class="xref cpp cpp-func docutils literal"><span class="pre">Wheel::state()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelState8deployedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deployed</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelState8deployedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully deployed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelState9retractedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracted</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelState9retractedE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully retracted.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelState9deployingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">deploying</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelState9deployingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being deployed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelState10retractingE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">retracting</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelState10retractingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being retracted.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10WheelState6brokenE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">broken</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10WheelState6brokenE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorStateE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">MotorState</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorStateE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the motor on a powered wheel. See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Wheel11motor_stateEv" title="krpc::services::SpaceCenter::Wheel::motor_state"><code class="xref cpp cpp-func docutils literal"><span class="pre">Wheel::motor_state()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorState4idleE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">idle</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorState4idleE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is idle.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorState7runningE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">running</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorState7runningE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is running.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorState8disabledE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">disabled</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorState8disabledE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is disabled.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorState10inoperableE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">inoperable</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorState10inoperableE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is inoperable.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10MotorState20not_enough_resourcesE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">not_enough_resources</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10MotorState20not_enough_resourcesE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor does not have enough resources to run.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="trees-of-parts">
-<span id="cpp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id38">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<span id="cpp-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id39">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
 <p>Vessels in KSP are comprised of a number of parts, connected to one another in a
 <em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
 tree of parts in Figure 2. The craft file for this example can also be
@@ -3514,7 +3975,7 @@ the parent part to the child part.</span></p>
 <div class="clearer container">
 </div>
 <div class="section" id="traversing-the-tree">
-<h3><a class="toc-backref" href="#id39">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
 <p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Parts4rootEv" title="krpc::services::SpaceCenter::Parts::root"><code class="xref cpp cpp-func docutils literal"><span class="pre">Parts::root()</span></code></a>,
 <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part6parentEv" title="krpc::services::SpaceCenter::Part::parent"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::parent()</span></code></a> and <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter4Part8childrenEv" title="krpc::services::SpaceCenter::Part::children"><code class="xref cpp cpp-func docutils literal"><span class="pre">Part::children()</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
@@ -3583,7 +4044,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="attachment-modes">
-<span id="cpp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id40">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<span id="cpp-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id41">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
 <p>Parts can be attached to other parts either <em>radially</em> (on the side of the
 parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
 <p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
@@ -3654,7 +4115,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="fuel-lines">
-<span id="cpp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id41">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<span id="cpp-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id42">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8" style="width: 200px">
 <img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
@@ -3683,7 +4144,7 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
 <div class="section" id="staging">
-<span id="cpp-api-parts-staging"></span><h2><a class="toc-backref" href="#id42">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="cpp-api-parts-staging"></span><h2><a class="toc-backref" href="#id43">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id10" style="width: 340px">
 <img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
@@ -3723,7 +4184,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
         <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="control.html" class="btn btn-neutral" title="Control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="comms.html" class="btn btn-neutral" title="Communications" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -3732,7 +4193,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -3754,7 +4215,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -3764,6 +4225,8 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

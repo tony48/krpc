@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.3.7 documentation</title>
+  <title>Parts &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,12 +30,20 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
-        <link rel="prev" title="Control" href="control.html"/>
+        <link rel="prev" title="Communications" href="comms.html"/>
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -112,6 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">Parts</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Parts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#part">Part</a></li>
@@ -126,9 +135,10 @@
 <li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="waypoint-manager.html">WaypointManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
@@ -200,16 +210,16 @@
 <li><a class="reference internal" href="#part" id="id14">Part</a></li>
 <li><a class="reference internal" href="#module" id="id15">Module</a></li>
 <li><a class="reference internal" href="#specific-types-of-part" id="id16">Specific Types of Part</a><ul>
-<li><a class="reference internal" href="#cargo-bay" id="id17">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id18">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id19">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id20">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id21">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id22">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id23">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id24">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id25">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id26">Landing Leg</a></li>
+<li><a class="reference internal" href="#antenna" id="id17">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id18">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id19">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id20">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id21">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id22">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id23">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id24">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id25">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id26">Leg</a></li>
 <li><a class="reference internal" href="#launch-clamp" id="id27">Launch Clamp</a></li>
 <li><a class="reference internal" href="#light" id="id28">Light</a></li>
 <li><a class="reference internal" href="#parachute" id="id29">Parachute</a></li>
@@ -221,15 +231,16 @@
 <li><a class="reference internal" href="#sensor" id="id35">Sensor</a></li>
 <li><a class="reference internal" href="#solar-panel" id="id36">Solar Panel</a></li>
 <li><a class="reference internal" href="#thruster" id="id37">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id38">Wheel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#trees-of-parts" id="id38">Trees of Parts</a><ul>
-<li><a class="reference internal" href="#traversing-the-tree" id="id39">Traversing the Tree</a></li>
-<li><a class="reference internal" href="#attachment-modes" id="id40">Attachment Modes</a></li>
+<li><a class="reference internal" href="#trees-of-parts" id="id39">Trees of Parts</a><ul>
+<li><a class="reference internal" href="#traversing-the-tree" id="id40">Traversing the Tree</a></li>
+<li><a class="reference internal" href="#attachment-modes" id="id41">Attachment Modes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fuel-lines" id="id41">Fuel Lines</a></li>
-<li><a class="reference internal" href="#staging" id="id42">Staging</a></li>
+<li><a class="reference internal" href="#fuel-lines" id="id42">Fuel Lines</a></li>
+<li><a class="reference internal" href="#staging" id="id43">Staging</a></li>
 </ul>
 </div>
 <div class="section" id="id1">
@@ -414,6 +425,22 @@ An instance can be obtained by calling <a class="reference internal" href="vesse
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.Parts.antennas">
+<code class="descname">antennas</code><a class="headerlink" href="#SpaceCenter.Parts.antennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all antennas in the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Antenna" title="SpaceCenter.Antenna"><code class="xref py py-class docutils literal"><span class="pre">Antenna</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Parts.cargo_bays">
 <code class="descname">cargo_bays</code><a class="headerlink" href="#SpaceCenter.Parts.cargo_bays" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all cargo bays in the vessel.</p>
@@ -547,24 +574,8 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.Parts.landing_gear">
-<code class="descname">landing_gear</code><a class="headerlink" href="#SpaceCenter.Parts.landing_gear" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of all landing gear attached to the vessel.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.LandingGear" title="SpaceCenter.LandingGear"><code class="xref py py-class docutils literal"><span class="pre">LandingGear</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.Parts.landing_legs">
-<code class="descname">landing_legs</code><a class="headerlink" href="#SpaceCenter.Parts.landing_legs" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.Parts.legs">
+<code class="descname">legs</code><a class="headerlink" href="#SpaceCenter.Parts.legs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all landing legs attached to the vessel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -572,7 +583,7 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.LandingLeg" title="SpaceCenter.LandingLeg"><code class="xref py py-class docutils literal"><span class="pre">LandingLeg</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Leg" title="SpaceCenter.Leg"><code class="xref py py-class docutils literal"><span class="pre">Leg</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -733,6 +744,22 @@ including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrust
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.SolarPanel" title="SpaceCenter.SolarPanel"><code class="xref py py-class docutils literal"><span class="pre">SolarPanel</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Parts.wheels">
+<code class="descname">wheels</code><a class="headerlink" href="#SpaceCenter.Parts.wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all wheels in the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#SpaceCenter.Wheel" title="SpaceCenter.Wheel"><code class="xref py py-class docutils literal"><span class="pre">Wheel</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1397,6 +1424,22 @@ and negative means its skin is gaining heat energy.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.Part.antenna">
+<code class="descname">antenna</code><a class="headerlink" href="#SpaceCenter.Part.antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#SpaceCenter.Antenna" title="SpaceCenter.Antenna"><code class="xref py py-class docutils literal"><span class="pre">Antenna</span></code></a> if the part is an antenna, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Antenna" title="SpaceCenter.Antenna"><code class="xref py py-class docutils literal"><span class="pre">Antenna</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Part.cargo_bay">
 <code class="descname">cargo_bay</code><a class="headerlink" href="#SpaceCenter.Part.cargo_bay" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#SpaceCenter.CargoBay" title="SpaceCenter.CargoBay"><code class="xref py py-class docutils literal"><span class="pre">CargoBay</span></code></a> if the part is a cargo bay, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
@@ -1531,32 +1574,16 @@ For RCS thrusters see <a class="reference internal" href="#SpaceCenter.RCS" titl
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.Part.landing_gear">
-<code class="descname">landing_gear</code><a class="headerlink" href="#SpaceCenter.Part.landing_gear" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#SpaceCenter.LandingGear" title="SpaceCenter.LandingGear"><code class="xref py py-class docutils literal"><span class="pre">LandingGear</span></code></a> if the part is a landing gear, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<dt id="SpaceCenter.Part.leg">
+<code class="descname">leg</code><a class="headerlink" href="#SpaceCenter.Part.leg" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#SpaceCenter.Leg" title="SpaceCenter.Leg"><code class="xref py py-class docutils literal"><span class="pre">Leg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.LandingGear" title="SpaceCenter.LandingGear"><code class="xref py py-class docutils literal"><span class="pre">LandingGear</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.Part.landing_leg">
-<code class="descname">landing_leg</code><a class="headerlink" href="#SpaceCenter.Part.landing_leg" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#SpaceCenter.LandingLeg" title="SpaceCenter.LandingLeg"><code class="xref py py-class docutils literal"><span class="pre">LandingLeg</span></code></a> if the part is a landing leg, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.LandingLeg" title="SpaceCenter.LandingLeg"><code class="xref py py-class docutils literal"><span class="pre">LandingLeg</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Leg" title="SpaceCenter.Leg"><code class="xref py py-class docutils literal"><span class="pre">Leg</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1717,6 +1744,22 @@ For RCS thrusters see <a class="reference internal" href="#SpaceCenter.RCS" titl
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.SolarPanel" title="SpaceCenter.SolarPanel"><code class="xref py py-class docutils literal"><span class="pre">SolarPanel</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Part.wheel">
+<code class="descname">wheel</code><a class="headerlink" href="#SpaceCenter.Part.wheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#SpaceCenter.Wheel" title="SpaceCenter.Wheel"><code class="xref py py-class docutils literal"><span class="pre">Wheel</span></code></a> if the part is a wheel, otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Wheel" title="SpaceCenter.Wheel"><code class="xref py py-class docutils literal"><span class="pre">Wheel</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2314,31 +2357,286 @@ to action groups in the in-game editor.</p>
 <p>The following classes provide functionality for specific types of part.</p>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><a class="reference internal" href="#cargo-bay" id="id43">Cargo Bay</a></li>
-<li><a class="reference internal" href="#control-surface" id="id44">Control Surface</a></li>
-<li><a class="reference internal" href="#decoupler" id="id45">Decoupler</a></li>
-<li><a class="reference internal" href="#docking-port" id="id46">Docking Port</a></li>
-<li><a class="reference internal" href="#engine" id="id47">Engine</a></li>
-<li><a class="reference internal" href="#experiment" id="id48">Experiment</a></li>
-<li><a class="reference internal" href="#fairing" id="id49">Fairing</a></li>
-<li><a class="reference internal" href="#intake" id="id50">Intake</a></li>
-<li><a class="reference internal" href="#landing-gear" id="id51">Landing Gear</a></li>
-<li><a class="reference internal" href="#landing-leg" id="id52">Landing Leg</a></li>
-<li><a class="reference internal" href="#launch-clamp" id="id53">Launch Clamp</a></li>
-<li><a class="reference internal" href="#light" id="id54">Light</a></li>
-<li><a class="reference internal" href="#parachute" id="id55">Parachute</a></li>
-<li><a class="reference internal" href="#radiator" id="id56">Radiator</a></li>
-<li><a class="reference internal" href="#resource-converter" id="id57">Resource Converter</a></li>
-<li><a class="reference internal" href="#resource-harvester" id="id58">Resource Harvester</a></li>
-<li><a class="reference internal" href="#reaction-wheel" id="id59">Reaction Wheel</a></li>
-<li><a class="reference internal" href="#rcs" id="id60">RCS</a></li>
-<li><a class="reference internal" href="#sensor" id="id61">Sensor</a></li>
-<li><a class="reference internal" href="#solar-panel" id="id62">Solar Panel</a></li>
-<li><a class="reference internal" href="#thruster" id="id63">Thruster</a></li>
+<li><a class="reference internal" href="#antenna" id="id44">Antenna</a></li>
+<li><a class="reference internal" href="#cargo-bay" id="id45">Cargo Bay</a></li>
+<li><a class="reference internal" href="#control-surface" id="id46">Control Surface</a></li>
+<li><a class="reference internal" href="#decoupler" id="id47">Decoupler</a></li>
+<li><a class="reference internal" href="#docking-port" id="id48">Docking Port</a></li>
+<li><a class="reference internal" href="#engine" id="id49">Engine</a></li>
+<li><a class="reference internal" href="#experiment" id="id50">Experiment</a></li>
+<li><a class="reference internal" href="#fairing" id="id51">Fairing</a></li>
+<li><a class="reference internal" href="#intake" id="id52">Intake</a></li>
+<li><a class="reference internal" href="#leg" id="id53">Leg</a></li>
+<li><a class="reference internal" href="#launch-clamp" id="id54">Launch Clamp</a></li>
+<li><a class="reference internal" href="#light" id="id55">Light</a></li>
+<li><a class="reference internal" href="#parachute" id="id56">Parachute</a></li>
+<li><a class="reference internal" href="#radiator" id="id57">Radiator</a></li>
+<li><a class="reference internal" href="#resource-converter" id="id58">Resource Converter</a></li>
+<li><a class="reference internal" href="#resource-harvester" id="id59">Resource Harvester</a></li>
+<li><a class="reference internal" href="#reaction-wheel" id="id60">Reaction Wheel</a></li>
+<li><a class="reference internal" href="#rcs" id="id61">RCS</a></li>
+<li><a class="reference internal" href="#sensor" id="id62">Sensor</a></li>
+<li><a class="reference internal" href="#solar-panel" id="id63">Solar Panel</a></li>
+<li><a class="reference internal" href="#thruster" id="id64">Thruster</a></li>
+<li><a class="reference internal" href="#wheel" id="id65">Wheel</a></li>
 </ul>
 </div>
+<div class="section" id="antenna">
+<h3><a class="toc-backref" href="#id44">Antenna</a><a class="headerlink" href="#antenna" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="SpaceCenter.Antenna">
+<em class="property">class </em><code class="descname">Antenna</code><a class="headerlink" href="#SpaceCenter.Antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>An antenna. Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.antenna" title="SpaceCenter.Part.antenna"><code class="xref py py-attr docutils literal"><span class="pre">Part.antenna</span></code></a>.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.part">
+<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.Antenna.part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this antenna.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.state">
+<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Antenna.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the antenna.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.AntennaState" title="SpaceCenter.AntennaState"><code class="xref py py-class docutils literal"><span class="pre">AntennaState</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.deployable">
+<code class="descname">deployable</code><a class="headerlink" href="#SpaceCenter.Antenna.deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.Antenna.deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna is deployed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fixed antennas are always deployed.
+Returns an error if you try to deploy a fixed antenna.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.can_transmit">
+<code class="descname">can_transmit</code><a class="headerlink" href="#SpaceCenter.Antenna.can_transmit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether data can be transmitted by this antenna.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Antenna.transmit">
+<code class="descname">transmit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Antenna.transmit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmit data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Antenna.cancel">
+<code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Antenna.cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel current transmission of data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.allow_partial">
+<code class="descname">allow_partial</code><a class="headerlink" href="#SpaceCenter.Antenna.allow_partial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether partial data transmission is permitted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.power">
+<code class="descname">power</code><a class="headerlink" href="#SpaceCenter.Antenna.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>The power of the antenna.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.combinable">
+<code class="descname">combinable</code><a class="headerlink" href="#SpaceCenter.Antenna.combinable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the antenna can be combined with other antennae on the vessel to boost the power.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.combinable_exponent">
+<code class="descname">combinable_exponent</code><a class="headerlink" href="#SpaceCenter.Antenna.combinable_exponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponent used to calculate the combined power of multiple antennae on a vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.packet_interval">
+<code class="descname">packet_interval</code><a class="headerlink" href="#SpaceCenter.Antenna.packet_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interval between sending packets in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.packet_size">
+<code class="descname">packet_size</code><a class="headerlink" href="#SpaceCenter.Antenna.packet_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of data sent per packet in Mits.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Antenna.packet_resource_cost">
+<code class="descname">packet_resource_cost</code><a class="headerlink" href="#SpaceCenter.Antenna.packet_resource_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units of electric charge consumed per packet sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.AntennaState">
+<em class="property">class </em><code class="descname">AntennaState</code><a class="headerlink" href="#SpaceCenter.AntennaState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of an antenna. See <a class="reference internal" href="#SpaceCenter.Antenna.state" title="SpaceCenter.Antenna.state"><code class="xref py py-attr docutils literal"><span class="pre">Antenna.state</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.AntennaState.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.AntennaState.deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully deployed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.AntennaState.retracted">
+<code class="descname">retracted</code><a class="headerlink" href="#SpaceCenter.AntennaState.retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is fully retracted.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.AntennaState.deploying">
+<code class="descname">deploying</code><a class="headerlink" href="#SpaceCenter.AntennaState.deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being deployed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.AntennaState.retracting">
+<code class="descname">retracting</code><a class="headerlink" href="#SpaceCenter.AntennaState.retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is being retracted.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.AntennaState.broken">
+<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.AntennaState.broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="cargo-bay">
-<h3><a class="toc-backref" href="#id43">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">Cargo Bay</a><a class="headerlink" href="#cargo-bay" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.CargoBay">
 <em class="property">class </em><code class="descname">CargoBay</code><a class="headerlink" href="#SpaceCenter.CargoBay" title="Permalink to this definition">¶</a></dt>
@@ -2425,7 +2723,7 @@ to action groups in the in-game editor.</p>
 
 </div>
 <div class="section" id="control-surface">
-<h3><a class="toc-backref" href="#id44">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Control Surface</a><a class="headerlink" href="#control-surface" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.ControlSurface">
 <em class="property">class </em><code class="descname">ControlSurface</code><a class="headerlink" href="#SpaceCenter.ControlSurface" title="Permalink to this definition">¶</a></dt>
@@ -2489,6 +2787,22 @@ to action groups in the in-game editor.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.ControlSurface.authority_limiter">
+<code class="descname">authority_limiter</code><a class="headerlink" href="#SpaceCenter.ControlSurface.authority_limiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The authority limiter for the control surface, which controls how far the control surface will move.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
 </tr>
 </tbody>
 </table>
@@ -2564,7 +2878,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="decoupler">
-<h3><a class="toc-backref" href="#id45">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">Decoupler</a><a class="headerlink" href="#decoupler" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Decoupler">
 <em class="property">class </em><code class="descname">Decoupler</code><a class="headerlink" href="#SpaceCenter.Decoupler" title="Permalink to this definition">¶</a></dt>
@@ -2598,6 +2912,12 @@ Throws an exception if the decoupler has already fired.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#SpaceCenter.active_vessel" title="SpaceCenter.active_vessel"><code class="xref py py-attr docutils literal"><span class="pre">active_vessel</span></code></a> no longer refer to the active vessel.</p>
+</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -2652,7 +2972,7 @@ Throws an exception if the decoupler has already fired.</p>
 
 </div>
 <div class="section" id="docking-port">
-<h3><a class="toc-backref" href="#id46">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Docking Port</a><a class="headerlink" href="#docking-port" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.DockingPort">
 <em class="property">class </em><code class="descname">DockingPort</code><a class="headerlink" href="#SpaceCenter.DockingPort" title="Permalink to this definition">¶</a></dt>
@@ -2722,7 +3042,9 @@ Throws an exception if the docking port is not docked to anything.</p>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">After undocking, the active vessel may change. See <a class="reference internal" href="space-center.html#SpaceCenter.active_vessel" title="SpaceCenter.active_vessel"><code class="xref py py-attr docutils literal"><span class="pre">active_vessel</span></code></a>.</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#SpaceCenter.active_vessel" title="SpaceCenter.active_vessel"><code class="xref py py-attr docutils literal"><span class="pre">active_vessel</span></code></a> no longer refer to the active vessel.</p>
 </div>
 </dd></dl>
 
@@ -2914,7 +3236,7 @@ and is disabled until it moves away by a sufficient distance
 
 </div>
 <div class="section" id="engine">
-<h3><a class="toc-backref" href="#id47">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">Engine</a><a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Engine">
 <em class="property">class </em><code class="descname">Engine</code><a class="headerlink" href="#SpaceCenter.Engine" title="Permalink to this definition">¶</a></dt>
@@ -3591,7 +3913,7 @@ Returns zero if the engine is inactive, or not gimballed.</p>
 
 </div>
 <div class="section" id="experiment">
-<h3><a class="toc-backref" href="#id48">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Experiment">
 <em class="property">class </em><code class="descname">Experiment</code><a class="headerlink" href="#SpaceCenter.Experiment" title="Permalink to this definition">¶</a></dt>
@@ -3941,7 +4263,7 @@ Returns null if experiment is unavailable.</p>
 
 </div>
 <div class="section" id="fairing">
-<h3><a class="toc-backref" href="#id49">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">Fairing</a><a class="headerlink" href="#fairing" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Fairing">
 <em class="property">class </em><code class="descname">Fairing</code><a class="headerlink" href="#SpaceCenter.Fairing" title="Permalink to this definition">¶</a></dt>
@@ -3988,7 +4310,7 @@ Returns null if experiment is unavailable.</p>
 
 </div>
 <div class="section" id="intake">
-<h3><a class="toc-backref" href="#id50">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id52">Intake</a><a class="headerlink" href="#intake" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Intake">
 <em class="property">class </em><code class="descname">Intake</code><a class="headerlink" href="#SpaceCenter.Intake" title="Permalink to this definition">¶</a></dt>
@@ -4076,149 +4398,15 @@ Returns null if experiment is unavailable.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="landing-gear">
-<h3><a class="toc-backref" href="#id51">Landing Gear</a><a class="headerlink" href="#landing-gear" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="leg">
+<h3><a class="toc-backref" href="#id53">Leg</a><a class="headerlink" href="#leg" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="SpaceCenter.LandingGear">
-<em class="property">class </em><code class="descname">LandingGear</code><a class="headerlink" href="#SpaceCenter.LandingGear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear with wheels. Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.landing_gear" title="SpaceCenter.Part.landing_gear"><code class="xref py py-attr docutils literal"><span class="pre">Part.landing_gear</span></code></a>.</p>
+<dt id="SpaceCenter.Leg">
+<em class="property">class </em><code class="descname">Leg</code><a class="headerlink" href="#SpaceCenter.Leg" title="Permalink to this definition">¶</a></dt>
+<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.leg" title="SpaceCenter.Part.leg"><code class="xref py py-attr docutils literal"><span class="pre">Part.leg</span></code></a>.</p>
 <dl class="attribute">
-<dt id="SpaceCenter.LandingGear.part">
-<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.LandingGear.part" title="Permalink to this definition">¶</a></dt>
-<dd><p>The part object for this landing gear.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.LandingGear.state">
-<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.LandingGear.state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current state of the landing gear.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.LandingGearState" title="SpaceCenter.LandingGearState"><code class="xref py py-class docutils literal"><span class="pre">LandingGearState</span></code></a></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.LandingGear.deployable">
-<code class="descname">deployable</code><a class="headerlink" href="#SpaceCenter.LandingGear.deployable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployable.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.LandingGear.deployed">
-<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.LandingGear.deployed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the landing gear is deployed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Fixed landing gear are always deployed.
-Returns an error if you try to deploy fixed landing gear.</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpaceCenter.LandingGear.is_grounded">
-<code class="descname">is_grounded</code><a class="headerlink" href="#SpaceCenter.LandingGear.is_grounded" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns whether the gear is touching the ground.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="SpaceCenter.LandingGearState">
-<em class="property">class </em><code class="descname">LandingGearState</code><a class="headerlink" href="#SpaceCenter.LandingGearState" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing gear. See <a class="reference internal" href="#SpaceCenter.LandingGear.state" title="SpaceCenter.LandingGear.state"><code class="xref py py-attr docutils literal"><span class="pre">LandingGear.state</span></code></a>.</p>
-<dl class="data">
-<dt id="SpaceCenter.LandingGearState.deployed">
-<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.LandingGearState.deployed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully deployed.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="SpaceCenter.LandingGearState.retracted">
-<code class="descname">retracted</code><a class="headerlink" href="#SpaceCenter.LandingGearState.retracted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is fully retracted.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="SpaceCenter.LandingGearState.deploying">
-<code class="descname">deploying</code><a class="headerlink" href="#SpaceCenter.LandingGearState.deploying" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being deployed.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="SpaceCenter.LandingGearState.retracting">
-<code class="descname">retracting</code><a class="headerlink" href="#SpaceCenter.LandingGearState.retracting" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is being retracted.</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="SpaceCenter.LandingGearState.broken">
-<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.LandingGearState.broken" title="Permalink to this definition">¶</a></dt>
-<dd><p>Landing gear is broken.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="landing-leg">
-<h3><a class="toc-backref" href="#id52">Landing Leg</a><a class="headerlink" href="#landing-leg" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="SpaceCenter.LandingLeg">
-<em class="property">class </em><code class="descname">LandingLeg</code><a class="headerlink" href="#SpaceCenter.LandingLeg" title="Permalink to this definition">¶</a></dt>
-<dd><p>A landing leg. Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.landing_leg" title="SpaceCenter.Part.landing_leg"><code class="xref py py-attr docutils literal"><span class="pre">Part.landing_leg</span></code></a>.</p>
-<dl class="attribute">
-<dt id="SpaceCenter.LandingLeg.part">
-<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.LandingLeg.part" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.Leg.part">
+<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.Leg.part" title="Permalink to this definition">¶</a></dt>
 <dd><p>The part object for this landing leg.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -4233,8 +4421,8 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.LandingLeg.state">
-<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.LandingLeg.state" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.Leg.state">
+<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Leg.state" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current state of the landing leg.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -4242,15 +4430,31 @@ Returns an error if you try to deploy fixed landing gear.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.LandingLegState" title="SpaceCenter.LandingLegState"><code class="xref py py-class docutils literal"><span class="pre">LandingLegState</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.LegState" title="SpaceCenter.LegState"><code class="xref py py-class docutils literal"><span class="pre">LegState</span></code></a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.LandingLeg.deployed">
-<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.LandingLeg.deployed" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.Leg.deployable">
+<code class="descname">deployable</code><a class="headerlink" href="#SpaceCenter.Leg.deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the leg is deployable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Leg.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.Leg.deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the landing leg is deployed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -4270,8 +4474,8 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SpaceCenter.LandingLeg.is_grounded">
-<code class="descname">is_grounded</code><a class="headerlink" href="#SpaceCenter.LandingLeg.is_grounded" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.Leg.is_grounded">
+<code class="descname">is_grounded</code><a class="headerlink" href="#SpaceCenter.Leg.is_grounded" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether the leg is touching the ground.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -4288,36 +4492,36 @@ Returns an error if you try to deploy fixed landing gear.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="SpaceCenter.LandingLegState">
-<em class="property">class </em><code class="descname">LandingLegState</code><a class="headerlink" href="#SpaceCenter.LandingLegState" title="Permalink to this definition">¶</a></dt>
-<dd><p>The state of a landing leg. See <a class="reference internal" href="#SpaceCenter.LandingLeg.state" title="SpaceCenter.LandingLeg.state"><code class="xref py py-attr docutils literal"><span class="pre">LandingLeg.state</span></code></a>.</p>
+<dt id="SpaceCenter.LegState">
+<em class="property">class </em><code class="descname">LegState</code><a class="headerlink" href="#SpaceCenter.LegState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a landing leg. See <a class="reference internal" href="#SpaceCenter.Leg.state" title="SpaceCenter.Leg.state"><code class="xref py py-attr docutils literal"><span class="pre">Leg.state</span></code></a>.</p>
 <dl class="data">
-<dt id="SpaceCenter.LandingLegState.deployed">
-<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.LandingLegState.deployed" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.LegState.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.LegState.deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully deployed.</p>
 </dd></dl>
 
 <dl class="data">
-<dt id="SpaceCenter.LandingLegState.retracted">
-<code class="descname">retracted</code><a class="headerlink" href="#SpaceCenter.LandingLegState.retracted" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.LegState.retracted">
+<code class="descname">retracted</code><a class="headerlink" href="#SpaceCenter.LegState.retracted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is fully retracted.</p>
 </dd></dl>
 
 <dl class="data">
-<dt id="SpaceCenter.LandingLegState.deploying">
-<code class="descname">deploying</code><a class="headerlink" href="#SpaceCenter.LandingLegState.deploying" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.LegState.deploying">
+<code class="descname">deploying</code><a class="headerlink" href="#SpaceCenter.LegState.deploying" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being deployed.</p>
 </dd></dl>
 
 <dl class="data">
-<dt id="SpaceCenter.LandingLegState.retracting">
-<code class="descname">retracting</code><a class="headerlink" href="#SpaceCenter.LandingLegState.retracting" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.LegState.retracting">
+<code class="descname">retracting</code><a class="headerlink" href="#SpaceCenter.LegState.retracting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is being retracted.</p>
 </dd></dl>
 
 <dl class="data">
-<dt id="SpaceCenter.LandingLegState.broken">
-<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.LandingLegState.broken" title="Permalink to this definition">¶</a></dt>
+<dt id="SpaceCenter.LegState.broken">
+<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.LegState.broken" title="Permalink to this definition">¶</a></dt>
 <dd><p>Landing leg is broken.</p>
 </dd></dl>
 
@@ -4325,7 +4529,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="launch-clamp">
-<h3><a class="toc-backref" href="#id53">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">Launch Clamp</a><a class="headerlink" href="#launch-clamp" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.LaunchClamp">
 <em class="property">class </em><code class="descname">LaunchClamp</code><a class="headerlink" href="#SpaceCenter.LaunchClamp" title="Permalink to this definition">¶</a></dt>
@@ -4356,7 +4560,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="light">
-<h3><a class="toc-backref" href="#id54">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id55">Light</a><a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Light">
 <em class="property">class </em><code class="descname">Light</code><a class="headerlink" href="#SpaceCenter.Light" title="Permalink to this definition">¶</a></dt>
@@ -4429,7 +4633,7 @@ Returns an error if you try to deploy fixed landing gear.</p>
 
 </div>
 <div class="section" id="parachute">
-<h3><a class="toc-backref" href="#id55">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">Parachute</a><a class="headerlink" href="#parachute" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Parachute">
 <em class="property">class </em><code class="descname">Parachute</code><a class="headerlink" href="#SpaceCenter.Parachute" title="Permalink to this definition">¶</a></dt>
@@ -4473,6 +4677,29 @@ been deployed.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="SpaceCenter.Parachute.arm">
+<code class="descname">arm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Parachute.arm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deploys the parachute. This has no effect if the parachute has already
+been armed or deployed. Only applicable to RealChutes parachutes.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Parachute.armed">
+<code class="descname">armed</code><a class="headerlink" href="#SpaceCenter.Parachute.armed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="SpaceCenter.Parachute.state">
 <code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Parachute.state" title="Permalink to this definition">¶</a></dt>
@@ -4492,7 +4719,8 @@ been deployed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Parachute.deploy_altitude">
 <code class="descname">deploy_altitude</code><a class="headerlink" href="#SpaceCenter.Parachute.deploy_altitude" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude at which the parachute will full deploy, in meters.</p>
+<dd><p>The altitude at which the parachute will full deploy, in meters.
+Only applicable to stock parachutes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -4508,7 +4736,8 @@ been deployed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Parachute.deploy_min_pressure">
 <code class="descname">deploy_min_pressure</code><a class="headerlink" href="#SpaceCenter.Parachute.deploy_min_pressure" title="Permalink to this definition">¶</a></dt>
-<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.</p>
+<dd><p>The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+Only applicable to stock parachutes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -4534,16 +4763,23 @@ been deployed.</p>
 </dd></dl>
 
 <dl class="data">
+<dt id="SpaceCenter.ParachuteState.armed">
+<code class="descname">armed</code><a class="headerlink" href="#SpaceCenter.ParachuteState.armed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parachute is armed for deployment. (RealChutes only)</p>
+</dd></dl>
+
+<dl class="data">
 <dt id="SpaceCenter.ParachuteState.active">
 <code class="descname">active</code><a class="headerlink" href="#SpaceCenter.ParachuteState.active" title="Permalink to this definition">¶</a></dt>
-<dd><p>The parachute is still stowed, but ready to semi-deploy.</p>
+<dd><p>The parachute is still stowed, but ready to semi-deploy.
+(Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="SpaceCenter.ParachuteState.semi_deployed">
 <code class="descname">semi_deployed</code><a class="headerlink" href="#SpaceCenter.ParachuteState.semi_deployed" title="Permalink to this definition">¶</a></dt>
 <dd><p>The parachute has been deployed and is providing some drag,
-but is not fully deployed yet.</p>
+but is not fully deployed yet. (Stock parachutes only)</p>
 </dd></dl>
 
 <dl class="data">
@@ -4562,7 +4798,7 @@ but is not fully deployed yet.</p>
 
 </div>
 <div class="section" id="radiator">
-<h3><a class="toc-backref" href="#id56">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id57">Radiator</a><a class="headerlink" href="#radiator" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Radiator">
 <em class="property">class </em><code class="descname">Radiator</code><a class="headerlink" href="#SpaceCenter.Radiator" title="Permalink to this definition">¶</a></dt>
@@ -4676,7 +4912,7 @@ If the radiator is not deployable, this is always <code class="docutils literal"
 
 </div>
 <div class="section" id="resource-converter">
-<h3><a class="toc-backref" href="#id57">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id58">Resource Converter</a><a class="headerlink" href="#resource-converter" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.ResourceConverter">
 <em class="property">class </em><code class="descname">ResourceConverter</code><a class="headerlink" href="#SpaceCenter.ResourceConverter" title="Permalink to this definition">¶</a></dt>
@@ -4885,7 +5121,7 @@ In this case, check <a class="reference internal" href="#SpaceCenter.ResourceCon
 
 </div>
 <div class="section" id="resource-harvester">
-<h3><a class="toc-backref" href="#id58">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">Resource Harvester</a><a class="headerlink" href="#resource-harvester" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.ResourceHarvester">
 <em class="property">class </em><code class="descname">ResourceHarvester</code><a class="headerlink" href="#SpaceCenter.ResourceHarvester" title="Permalink to this definition">¶</a></dt>
@@ -5058,7 +5294,7 @@ In this case, check <a class="reference internal" href="#SpaceCenter.ResourceCon
 
 </div>
 <div class="section" id="reaction-wheel">
-<h3><a class="toc-backref" href="#id59">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id60">Reaction Wheel</a><a class="headerlink" href="#reaction-wheel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.ReactionWheel">
 <em class="property">class </em><code class="descname">ReactionWheel</code><a class="headerlink" href="#SpaceCenter.ReactionWheel" title="Permalink to this definition">¶</a></dt>
@@ -5151,7 +5387,7 @@ These axes correspond to the coordinate axes of the <a class="reference internal
 
 </div>
 <div class="section" id="rcs">
-<h3><a class="toc-backref" href="#id60">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id61">RCS</a><a class="headerlink" href="#rcs" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.RCS">
 <em class="property">class </em><code class="descname">RCS</code><a class="headerlink" href="#SpaceCenter.RCS" title="Permalink to this definition">¶</a></dt>
@@ -5475,7 +5711,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="sensor">
-<h3><a class="toc-backref" href="#id61">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id62">Sensor</a><a class="headerlink" href="#sensor" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Sensor">
 <em class="property">class </em><code class="descname">Sensor</code><a class="headerlink" href="#SpaceCenter.Sensor" title="Permalink to this definition">¶</a></dt>
@@ -5532,7 +5768,7 @@ to the ratios at which they are consumed by the RCS.</p>
 
 </div>
 <div class="section" id="solar-panel">
-<h3><a class="toc-backref" href="#id62">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id63">Solar Panel</a><a class="headerlink" href="#solar-panel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.SolarPanel">
 <em class="property">class </em><code class="descname">SolarPanel</code><a class="headerlink" href="#SpaceCenter.SolarPanel" title="Permalink to this definition">¶</a></dt>
@@ -5548,6 +5784,22 @@ to the ratios at which they are consumed by the RCS.</p>
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.SolarPanel.deployable">
+<code class="descname">deployable</code><a class="headerlink" href="#SpaceCenter.SolarPanel.deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the solar panel is deployable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
 </tr>
 </tbody>
 </table>
@@ -5659,7 +5911,7 @@ as a percentage. A value between 0 and 1.</p>
 
 </div>
 <div class="section" id="thruster">
-<h3><a class="toc-backref" href="#id63">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id64">Thruster</a><a class="headerlink" href="#thruster" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="SpaceCenter.Thruster">
 <em class="property">class </em><code class="descname">Thruster</code><a class="headerlink" href="#SpaceCenter.Thruster" title="Permalink to this definition">¶</a></dt>
@@ -5837,9 +6089,593 @@ This is opposite to the direction in which the thruster expels propellant.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="wheel">
+<h3><a class="toc-backref" href="#id65">Wheel</a><a class="headerlink" href="#wheel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="SpaceCenter.Wheel">
+<em class="property">class </em><code class="descname">Wheel</code><a class="headerlink" href="#SpaceCenter.Wheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wheel. Includes landing gear and rover wheels. Obtained by calling <a class="reference internal" href="#SpaceCenter.Part.wheel" title="SpaceCenter.Part.wheel"><code class="xref py py-attr docutils literal"><span class="pre">Part.wheel</span></code></a>.
+Can be used to control the motors, steering and deployment of wheels, among other things.</p>
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.part">
+<code class="descname">part</code><a class="headerlink" href="#SpaceCenter.Wheel.part" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part object for this wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.state">
+<code class="descname">state</code><a class="headerlink" href="#SpaceCenter.Wheel.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current state of the wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.WheelState" title="SpaceCenter.WheelState"><code class="xref py py-class docutils literal"><span class="pre">WheelState</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.radius">
+<code class="descname">radius</code><a class="headerlink" href="#SpaceCenter.Wheel.radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the wheel, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.grounded">
+<code class="descname">grounded</code><a class="headerlink" href="#SpaceCenter.Wheel.grounded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is touching the ground.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.has_brakes">
+<code class="descname">has_brakes</code><a class="headerlink" href="#SpaceCenter.Wheel.has_brakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has brakes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.brakes">
+<code class="descname">brakes</code><a class="headerlink" href="#SpaceCenter.Wheel.brakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The braking force, as a percentage of maximum, when the brakes are applied.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.auto_friction_control">
+<code class="descname">auto_friction_control</code><a class="headerlink" href="#SpaceCenter.Wheel.auto_friction_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic friction control is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.manual_friction_control">
+<code class="descname">manual_friction_control</code><a class="headerlink" href="#SpaceCenter.Wheel.manual_friction_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual friction control value. Only has an effect if automatic friction control is disabled.
+A value between 0 and 5 inclusive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.deployable">
+<code class="descname">deployable</code><a class="headerlink" href="#SpaceCenter.Wheel.deployable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.Wheel.deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is deployed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.powered">
+<code class="descname">powered</code><a class="headerlink" href="#SpaceCenter.Wheel.powered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is powered by a motor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.motor_enabled">
+<code class="descname">motor_enabled</code><a class="headerlink" href="#SpaceCenter.Wheel.motor_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the motor is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.motor_inverted">
+<code class="descname">motor_inverted</code><a class="headerlink" href="#SpaceCenter.Wheel.motor_inverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.motor_state">
+<code class="descname">motor_state</code><a class="headerlink" href="#SpaceCenter.Wheel.motor_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the direction of the motor is inverted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.MotorState" title="SpaceCenter.MotorState"><code class="xref py py-class docutils literal"><span class="pre">MotorState</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.motor_output">
+<code class="descname">motor_output</code><a class="headerlink" href="#SpaceCenter.Wheel.motor_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output of the motor. This is the torque currently being generated, in Newton meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.traction_control_enabled">
+<code class="descname">traction_control_enabled</code><a class="headerlink" href="#SpaceCenter.Wheel.traction_control_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether automatic traction control is enabled.
+A wheel only has traction control if it is powered.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.traction_control">
+<code class="descname">traction_control</code><a class="headerlink" href="#SpaceCenter.Wheel.traction_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting for the traction control.
+Only takes effect if the wheel has automatic traction control enabled.
+A value between 0 and 5 inclusive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.drive_limiter">
+<code class="descname">drive_limiter</code><a class="headerlink" href="#SpaceCenter.Wheel.drive_limiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manual setting for the motor limiter.
+Only takes effect if the wheel has automatic traction control disabled.
+A value between 0 and 100 inclusive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.steerable">
+<code class="descname">steerable</code><a class="headerlink" href="#SpaceCenter.Wheel.steerable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has steering.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.steering_enabled">
+<code class="descname">steering_enabled</code><a class="headerlink" href="#SpaceCenter.Wheel.steering_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.steering_inverted">
+<code class="descname">steering_inverted</code><a class="headerlink" href="#SpaceCenter.Wheel.steering_inverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel steering is inverted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.has_suspension">
+<code class="descname">has_suspension</code><a class="headerlink" href="#SpaceCenter.Wheel.has_suspension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel has suspension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.suspension_spring_strength">
+<code class="descname">suspension_spring_strength</code><a class="headerlink" href="#SpaceCenter.Wheel.suspension_spring_strength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension spring strength, as set in the editor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.suspension_damper_strength">
+<code class="descname">suspension_damper_strength</code><a class="headerlink" href="#SpaceCenter.Wheel.suspension_damper_strength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suspension damper strength, as set in the editor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.broken">
+<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.Wheel.broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is broken.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.repairable">
+<code class="descname">repairable</code><a class="headerlink" href="#SpaceCenter.Wheel.repairable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the wheel is repairable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.stress">
+<code class="descname">stress</code><a class="headerlink" href="#SpaceCenter.Wheel.stress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.stress_tolerance">
+<code class="descname">stress_tolerance</code><a class="headerlink" href="#SpaceCenter.Wheel.stress_tolerance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stress tolerance of the wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.stress_percentage">
+<code class="descname">stress_percentage</code><a class="headerlink" href="#SpaceCenter.Wheel.stress_percentage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current stress on the wheel as a percentage of its stress tolerance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.deflection">
+<code class="descname">deflection</code><a class="headerlink" href="#SpaceCenter.Wheel.deflection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current deflection of the wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.Wheel.slip">
+<code class="descname">slip</code><a class="headerlink" href="#SpaceCenter.Wheel.slip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current slip of the wheel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.WheelState">
+<em class="property">class </em><code class="descname">WheelState</code><a class="headerlink" href="#SpaceCenter.WheelState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of a wheel. See <a class="reference internal" href="#SpaceCenter.Wheel.state" title="SpaceCenter.Wheel.state"><code class="xref py py-attr docutils literal"><span class="pre">Wheel.state</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.WheelState.deployed">
+<code class="descname">deployed</code><a class="headerlink" href="#SpaceCenter.WheelState.deployed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully deployed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WheelState.retracted">
+<code class="descname">retracted</code><a class="headerlink" href="#SpaceCenter.WheelState.retracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is fully retracted.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WheelState.deploying">
+<code class="descname">deploying</code><a class="headerlink" href="#SpaceCenter.WheelState.deploying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being deployed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WheelState.retracting">
+<code class="descname">retracting</code><a class="headerlink" href="#SpaceCenter.WheelState.retracting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is being retracted.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.WheelState.broken">
+<code class="descname">broken</code><a class="headerlink" href="#SpaceCenter.WheelState.broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wheel is broken.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.MotorState">
+<em class="property">class </em><code class="descname">MotorState</code><a class="headerlink" href="#SpaceCenter.MotorState" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the motor on a powered wheel. See <a class="reference internal" href="#SpaceCenter.Wheel.motor_state" title="SpaceCenter.Wheel.motor_state"><code class="xref py py-attr docutils literal"><span class="pre">Wheel.motor_state</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.MotorState.idle">
+<code class="descname">idle</code><a class="headerlink" href="#SpaceCenter.MotorState.idle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is idle.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.MotorState.running">
+<code class="descname">running</code><a class="headerlink" href="#SpaceCenter.MotorState.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is running.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.MotorState.disabled">
+<code class="descname">disabled</code><a class="headerlink" href="#SpaceCenter.MotorState.disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is disabled.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.MotorState.inoperable">
+<code class="descname">inoperable</code><a class="headerlink" href="#SpaceCenter.MotorState.inoperable" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor is inoperable.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.MotorState.not_enough_resources">
+<code class="descname">not_enough_resources</code><a class="headerlink" href="#SpaceCenter.MotorState.not_enough_resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>The motor does not have enough resources to run.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="trees-of-parts">
-<span id="python-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id38">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
+<span id="python-api-parts-trees-of-parts"></span><h2><a class="toc-backref" href="#id39">Trees of Parts</a><a class="headerlink" href="#trees-of-parts" title="Permalink to this headline">¶</a></h2>
 <p>Vessels in KSP are comprised of a number of parts, connected to one another in a
 <em>tree</em> structure. An example vessel is shown in Figure 1, and the corresponding
 tree of parts in Figure 2. The craft file for this example can also be
@@ -5856,7 +6692,7 @@ the parent part to the child part.</span></p>
 <div class="clearer container">
 </div>
 <div class="section" id="traversing-the-tree">
-<h3><a class="toc-backref" href="#id39">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Traversing the Tree</a><a class="headerlink" href="#traversing-the-tree" title="Permalink to this headline">¶</a></h3>
 <p>The tree of parts can be traversed using the attributes <a class="reference internal" href="#SpaceCenter.Parts.root" title="SpaceCenter.Parts.root"><code class="xref py py-attr docutils literal"><span class="pre">Parts.root</span></code></a>,
 <a class="reference internal" href="#SpaceCenter.Part.parent" title="SpaceCenter.Part.parent"><code class="xref py py-attr docutils literal"><span class="pre">Part.parent</span></code></a> and <a class="reference internal" href="#SpaceCenter.Part.children" title="SpaceCenter.Part.children"><code class="xref py py-attr docutils literal"><span class="pre">Part.children</span></code></a>.</p>
 <p>The root of the tree is the same as the vessels <em>root part</em> (part number 1 in
@@ -5910,7 +6746,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="attachment-modes">
-<span id="python-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id40">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
+<span id="python-api-parts-attachment-modes"></span><h3><a class="toc-backref" href="#id41">Attachment Modes</a><a class="headerlink" href="#attachment-modes" title="Permalink to this headline">¶</a></h3>
 <p>Parts can be attached to other parts either <em>radially</em> (on the side of the
 parent part) or <em>axially</em> (on the end of the parent part, to form a stack).</p>
 <p>For example, in the vessel pictured above, the parachute (part 2) is <em>axially</em>
@@ -5931,7 +6767,7 @@ but also prints out the attachment mode used by the part:</p>
     <span class="n">part</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">axially_attached</span><span class="p">:</span>
         <span class="n">attach_mode</span> <span class="o">=</span> <span class="s1">&#39;axial&#39;</span>
-    <span class="k">else</span><span class="p">:</span> <span class="c1"># radially_attached</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># radially_attached</span>
         <span class="n">attach_mode</span> <span class="o">=</span> <span class="s1">&#39;radial&#39;</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">*</span><span class="n">depth</span><span class="p">,</span> <span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">attach_mode</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
@@ -5967,7 +6803,7 @@ above, the following is printed out:</p>
 </div>
 </div>
 <div class="section" id="fuel-lines">
-<span id="python-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id41">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
+<span id="python-api-parts-fuel-lines"></span><h2><a class="toc-backref" href="#id42">Fuel Lines</a><a class="headerlink" href="#fuel-lines" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8" style="width: 200px">
 <img alt="../../../_images/parts-fuel-lines.png" src="../../../_images/parts-fuel-lines.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 5</strong> &#8211; Fuel lines from the example in Figure 1. Fuel flows from the
@@ -5996,7 +6832,7 @@ fuel tank part 9, it will return a list containing fuel tank parts 11 and 17
 (the parts colored green).</p>
 </div>
 <div class="section" id="staging">
-<span id="python-api-parts-staging"></span><h2><a class="toc-backref" href="#id42">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
+<span id="python-api-parts-staging"></span><h2><a class="toc-backref" href="#id43">Staging</a><a class="headerlink" href="#staging" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id10" style="width: 340px">
 <img alt="../../../_images/parts-staging.png" src="../../../_images/parts-staging.png" />
 <p class="caption"><span class="caption-text"><strong>Figure 6</strong> &#8211; Example vessel from Figure 1 with a staging sequence.</span></p>
@@ -6036,7 +6872,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
         <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="control.html" class="btn btn-neutral" title="Control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="comms.html" class="btn btn-neutral" title="Communications" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -6045,7 +6881,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -6067,7 +6903,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -6077,6 +6913,8 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
 
   
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Docking Guidance &mdash; kRPC 0.3.7 documentation</title>
+  <title>Docking Guidance &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="User Interface" href="user-interface.html"/>
         <link rel="prev" title="Interacting with Parts" href="parts.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -174,9 +182,11 @@ relative to the docking axis.</p>
 returned by kRPC &#8211; for example computing the dot product or length of a vector
 &#8211; and uses <a class="reference external" href="https://docs.python.org/2/howto/curses.html">curses</a> for terminal
 output.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span><span class="o">,</span> <span class="nn">curses</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">curses</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="kn">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">krpc</span>
 
 <span class="c1"># Set up curses</span>
 <span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">initscr</span><span class="p">()</span>
@@ -185,7 +195,6 @@ output.</p>
 <span class="n">curses</span><span class="o">.</span><span class="n">noecho</span><span class="p">()</span>
 
 <span class="k">try</span><span class="p">:</span>
-
     <span class="c1"># Connect to kRPC</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Docking Guidance&#39;</span><span class="p">)</span>
     <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -193,21 +202,21 @@ output.</p>
     <span class="n">target</span> <span class="o">=</span> <span class="bp">None</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-
         <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;-- Docking Guidance --&#39;</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-- Docking Guidance --&#39;</span><span class="p">)</span>
 
         <span class="n">current</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">controlling</span><span class="o">.</span><span class="n">docking_port</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">target_docking_port</span>
 
         <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Awaiting control from docking port...&#39;</span><span class="p">)</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Awaiting control from docking port...&#39;</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">target</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Awaiting target docking port...&#39;</span><span class="p">)</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Awaiting target docking port...&#39;</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Get positions, distances, velocities and speeds relative to the target docking port</span>
+            <span class="c1"># Get positions, distances, velocities and</span>
+            <span class="c1"># speeds relative to the target docking port</span>
             <span class="n">current_position</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span>
             <span class="n">velocity</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">)</span>
             <span class="n">displacement</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">current_position</span><span class="p">)</span>
@@ -250,17 +259,20 @@ output.</p>
                 <span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;Unknown&#39;</span>
 
             <span class="c1"># Output information</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Current ship: {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">vessel</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Current port: {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Target ship:  {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">vessel</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Target port:  {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Status: {:10}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Current ship: {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">vessel</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Current port: {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Target ship:  {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">vessel</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Target port:  {:30}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Status: {:10}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
             <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;          +---------------------------+&#39;</span><span class="p">)</span>
             <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;          |  Distance  |  Speed       |&#39;</span><span class="p">)</span>
             <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;+---------+------------+--------------+&#39;</span><span class="p">)</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|         |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">speed</span><span class="p">))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|   Axial |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axial_distance</span><span class="p">,</span> <span class="n">axial_speed</span><span class="p">))</span>
-            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|  Radial |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">radial_distance</span><span class="p">,</span> <span class="n">radial_speed</span><span class="p">))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|         |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span>
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">speed</span><span class="p">))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|   Axial |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span>
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axial_distance</span><span class="p">,</span> <span class="n">axial_speed</span><span class="p">))</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;|  Radial |  {:&gt;+6.2f} m  |  {:&gt;+6.2f} m/s  |&#39;</span>
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">radial_distance</span><span class="p">,</span> <span class="n">radial_speed</span><span class="p">))</span>
             <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;+---------+------------+--------------+&#39;</span><span class="p">)</span>
 
         <span class="n">stdscr</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
@@ -295,7 +307,7 @@ output.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -317,7 +329,7 @@ output.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -327,6 +339,8 @@ output.</p>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
 
   
 

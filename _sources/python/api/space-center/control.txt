@@ -18,6 +18,20 @@ Control
       Control inputs (such as pitch, yaw and roll) are zeroed when all clients
       that have set one or more of these inputs are no longer connected.
 
+   .. attribute:: source
+
+      The source of the vessels control, for example by a kerbal or a probe core.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`ControlSource`
+
+   .. attribute:: state
+
+      The control state of the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`ControlState`
+
    .. attribute:: sas
 
       The state of SAS.
@@ -57,9 +71,38 @@ Control
       :Attribute: Can be read or written
       :rtype: bool
 
+   .. attribute:: reaction_wheels
+
+      Returns whether all reactive wheels on the vessel are active,
+      and sets the active state of all reaction wheels.
+      See :attr:`ReactionWheel.active`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
    .. attribute:: gear
 
       The state of the landing gear/legs.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: legs
+
+      Returns whether all landing legs on the vessel are deployed,
+      and sets the deployment state of all landing legs.
+      Does not include wheels (for example landing gear).
+      See :attr:`Leg.deployed`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: wheels
+
+      Returns whether all wheels on the vessel are deployed,
+      and sets the deployment state of all wheels.
+      Does not include landing legs.
+      See :attr:`Wheel.deployed`.
 
       :Attribute: Can be read or written
       :rtype: bool
@@ -74,6 +117,79 @@ Control
    .. attribute:: brakes
 
       The state of the wheel brakes.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: antennas
+
+      Returns whether all antennas on the vessel are deployed,
+      and sets the deployment state of all antennas.
+      See :attr:`Antenna.deployed`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: cargo_bays
+
+      Returns whether any of the cargo bays on the vessel are open,
+      and sets the open state of all cargo bays.
+      See :attr:`CargoBay.open`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: intakes
+
+      Returns whether all of the air intakes on the vessel are open,
+      and sets the open state of all air intakes.
+      See :attr:`Intake.open`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: parachutes
+
+      Returns whether all parachutes on the vessel are deployed,
+      and sets the deployment state of all parachutes.
+      Cannot be set to ``False``.
+      See :attr:`Parachute.deployed`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: radiators
+
+      Returns whether all radiators on the vessel are deployed,
+      and sets the deployment state of all radiators.
+      See :attr:`Radiator.deployed`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: resource_harvesters
+
+      Returns whether all of the resource harvesters on the vessel are deployed,
+      and sets the deployment state of all resource harvesters.
+      See :attr:`ResourceHarvester.deployed`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: resource_harvesters_active
+
+      Returns whether any of the resource harvesters on the vessel are active,
+      and sets the active state of all resource harvesters.
+      See :attr:`ResourceHarvester.active`.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: solar_panels
+
+      Returns whether all solar panels on the vessel are deployed,
+      and sets the deployment state of all solar panels.
+      See :attr:`SolarPanel.deployed`.
 
       :Attribute: Can be read or written
       :rtype: bool
@@ -180,6 +296,12 @@ Control
       :returns: A list of vessel objects that are jettisoned from the active vessel.
       :rtype: list of :class:`Vessel`
 
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :attr:`active_vessel` no longer refer to the active vessel.
+
    .. method:: get_action_group(group)
 
       Returns ``True`` if the given action group is enabled.
@@ -223,6 +345,50 @@ Control
    .. method:: remove_nodes()
 
       Remove all maneuver nodes.
+
+
+
+.. class:: ControlState
+
+   The control state of a vessel.
+   See :attr:`Control.state`.
+
+
+   .. data:: full
+
+      Full controllable.
+
+
+   .. data:: partial
+
+      Partially controllable.
+
+
+   .. data:: none
+
+      Not controllable.
+
+
+
+.. class:: ControlSource
+
+   The control source of a vessel.
+   See :attr:`Control.source`.
+
+
+   .. data:: kerbal
+
+      Vessel is controlled by a Kerbal.
+
+
+   .. data:: probe
+
+      Vessel is controlled by a probe core.
+
+
+   .. data:: none
+
+      Vessel is not controlled.
 
 
 

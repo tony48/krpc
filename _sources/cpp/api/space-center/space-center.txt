@@ -127,9 +127,15 @@ SpaceCenter
 
          This is the same as calling :func:`load` with the name "quicksave".
 
-   .. function:: Camera camera()
+   .. function:: bool ui_visible()
+   .. function:: void set_ui_visible(bool value)
 
-      An object that can be used to control the camera.
+      Whether the UI is visible.
+
+   .. function:: bool navball()
+   .. function:: void set_navball(bool value)
+
+      Whether the navball is visible.
 
    .. function:: double ut()
 
@@ -139,12 +145,6 @@ SpaceCenter
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
-
-   .. function:: WarpMode warp_mode()
-
-      The current time warp mode. Returns :enumerator:`WarpMode::none` if time
-      warp is not active, :enumerator:`WarpMode::rails` if regular "on-rails" time warp
-      is active, or :enumerator:`WarpMode::physics` if physical time warp is active.
 
    .. function:: float warp_rate()
 
@@ -192,7 +192,7 @@ SpaceCenter
    .. function:: int32_t maximum_rails_warp_factor()
 
       The current maximum regular "on-rails" warp factor that can be set.
-      A value between 0 and 7 inclusive.  See
+      A value between 0 and 7 inclusive. See
       `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
    .. function:: void warp_to(double ut, float max_rails_rate = 100000.0, float max_physics_rate = 2.0)
@@ -268,9 +268,23 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
 
+   .. function:: WarpMode warp_mode()
+
+      The current time warp mode. Returns :enumerator:`WarpMode::none` if time
+      warp is not active, :enumerator:`WarpMode::rails` if regular "on-rails" time warp
+      is active, or :enumerator:`WarpMode::physics` if physical time warp is active.
+
+   .. function:: Camera camera()
+
+      An object that can be used to control the camera.
+
    .. function:: WaypointManager waypoint_manager()
 
       The waypoint manager.
+
+   .. function:: ContractManager contract_manager()
+
+      The contract manager.
 
 
 

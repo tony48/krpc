@@ -116,10 +116,17 @@ SpaceCenter
 
          This is the same as calling :meth:`load(String)` with the name "quicksave".
 
-   .. method:: Camera getCamera()
+   .. method:: boolean getUIVisible()
 
+   .. method:: void setUIVisible(boolean value)
 
-      An object that can be used to control the camera.
+      Whether the UI is visible.
+
+   .. method:: boolean getNavball()
+
+   .. method:: void setNavball(boolean value)
+
+      Whether the navball is visible.
 
    .. method:: double getUT()
 
@@ -131,13 +138,6 @@ SpaceCenter
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_
       G in :math:`N(m/kg)^2`.
-
-   .. method:: WarpMode getWarpMode()
-
-
-      The current time warp mode. Returns :meth:`WarpMode.NONE` if time
-      warp is not active, :meth:`WarpMode.RAILS` if regular "on-rails" time warp
-      is active, or :meth:`WarpMode.PHYSICS` if physical time warp is active.
 
    .. method:: float getWarpRate()
 
@@ -188,7 +188,7 @@ SpaceCenter
 
 
       The current maximum regular "on-rails" warp factor that can be set.
-      A value between 0 and 7 inclusive.  See
+      A value between 0 and 7 inclusive. See
       `the KSP wiki <http://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
    .. method:: void warpTo(double ut, float maxRailsRate, float maxPhysicsRate)
@@ -250,10 +250,27 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/>`_ is installed.
 
+   .. method:: WarpMode getWarpMode()
+
+
+      The current time warp mode. Returns :meth:`WarpMode.NONE` if time
+      warp is not active, :meth:`WarpMode.RAILS` if regular "on-rails" time warp
+      is active, or :meth:`WarpMode.PHYSICS` if physical time warp is active.
+
+   .. method:: Camera getCamera()
+
+
+      An object that can be used to control the camera.
+
    .. method:: WaypointManager getWaypointManager()
 
 
       The waypoint manager.
+
+   .. method:: ContractManager getContractManager()
+
+
+      The contract manager.
 
 
 

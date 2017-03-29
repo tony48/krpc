@@ -1,0 +1,244 @@
+.. default-domain:: csharp
+.. highlight:: csharp
+.. namespace:: KRPC.Client.Services.SpaceCenter
+
+Contracts
+=========
+
+
+.. class:: ContractManager
+
+   Contracts manager.
+   Obtained by calling :prop:`SpaceCenter.WaypointManager`.
+
+   .. property:: System.Collections.Generic.ISet<string> Types { get; }
+
+      A list of all contract types.
+
+   .. property:: System.Collections.Generic.IList<Contract> AllContracts { get; }
+
+      A list of all contracts.
+
+   .. property:: System.Collections.Generic.IList<Contract> ActiveContracts { get; }
+
+      A list of all active contracts.
+
+   .. property:: System.Collections.Generic.IList<Contract> OfferedContracts { get; }
+
+      A list of all offered, but unaccepted, contracts.
+
+   .. property:: System.Collections.Generic.IList<Contract> CompletedContracts { get; }
+
+      A list of all completed contracts.
+
+   .. property:: System.Collections.Generic.IList<Contract> FailedContracts { get; }
+
+      A list of all failed contracts.
+
+
+
+.. class:: Contract
+
+   A contract. Can be accessed using :prop:`SpaceCenter.ContractManager`.
+
+   .. property:: string Type { get; }
+
+      Type of the contract.
+
+   .. property:: string Title { get; }
+
+      Title of the contract.
+
+   .. property:: string Description { get; }
+
+      Description of the contract.
+
+   .. property:: string Notes { get; }
+
+      Notes for the contract.
+
+   .. property:: string Synopsis { get; }
+
+      Synopsis for the contract.
+
+   .. property:: System.Collections.Generic.IList<string> Keywords { get; }
+
+      Keywords for the contract.
+
+   .. property:: ContractState State { get; }
+
+      State of the contract.
+
+   .. property:: bool Seen { get; }
+
+      Whether the contract has been seen.
+
+   .. property:: bool Read { get; }
+
+      Whether the contract has been read.
+
+   .. property:: bool Active { get; }
+
+      Whether the contract is active.
+
+   .. property:: bool Failed { get; }
+
+      Whether the contract has been failed.
+
+   .. property:: bool CanBeCanceled { get; }
+
+      Whether the contract can be canceled.
+
+   .. property:: bool CanBeDeclined { get; }
+
+      Whether the contract can be declined.
+
+   .. property:: bool CanBeFailed { get; }
+
+      Whether the contract can be failed.
+
+   .. method:: void Accept()
+
+      Accept an offered contract.
+
+   .. method:: void Cancel()
+
+      Cancel an active contract.
+
+   .. method:: void Decline()
+
+      Decline an offered contract.
+
+   .. property:: double FundsAdvance { get; }
+
+      Funds received when accepting the contract.
+
+   .. property:: double FundsCompletion { get; }
+
+      Funds received on completion of the contract.
+
+   .. property:: double FundsFailure { get; }
+
+      Funds lost if the contract is failed.
+
+   .. property:: double ReputationCompletion { get; }
+
+      Reputation gained on completion of the contract.
+
+   .. property:: double ReputationFailure { get; }
+
+      Reputation lost if the contract is failed.
+
+   .. property:: double ScienceCompletion { get; }
+
+      Science gained on completion of the contract.
+
+   .. property:: System.Collections.Generic.IList<ContractParameter> Parameters { get; }
+
+      Parameters for the contract.
+
+
+
+.. enum:: ContractState
+
+   The state of a contract. See :prop:`Contract.State`.
+
+
+   .. value:: Active
+
+      The contract is active.
+
+
+   .. value:: Canceled
+
+      The contract has been canceled.
+
+
+   .. value:: Completed
+
+      The contract has been completed.
+
+
+   .. value:: DeadlineExpired
+
+      The deadline for the contract has expired.
+
+
+   .. value:: Declined
+
+      The contract has been declined.
+
+
+   .. value:: Failed
+
+      The contract has been failed.
+
+
+   .. value:: Generated
+
+      The contract has been generated.
+
+
+   .. value:: Offered
+
+      The contract has been offered to the player.
+
+
+   .. value:: OfferExpired
+
+      The contract was offered to the player, but the offer expired.
+
+
+   .. value:: Withdrawn
+
+      The contract has been withdrawn.
+
+
+
+.. class:: ContractParameter
+
+   A contract parameter. See :prop:`Contract.Parameters`.
+
+   .. property:: string Title { get; }
+
+      Title of the parameter.
+
+   .. property:: string Notes { get; }
+
+      Notes for the parameter.
+
+   .. property:: System.Collections.Generic.IList<ContractParameter> Children { get; }
+
+      Child contract parameters.
+
+   .. property:: bool Completed { get; }
+
+      Whether the parameter has been completed.
+
+   .. property:: bool Failed { get; }
+
+      Whether the parameter has been failed.
+
+   .. property:: bool Optional { get; }
+
+      Whether the contract parameter is optional.
+
+   .. property:: double FundsCompletion { get; }
+
+      Funds received on completion of the contract parameter.
+
+   .. property:: double FundsFailure { get; }
+
+      Funds lost if the contract parameter is failed.
+
+   .. property:: double ReputationCompletion { get; }
+
+      Reputation gained on completion of the contract parameter.
+
+   .. property:: double ReputationFailure { get; }
+
+      Reputation lost if the contract parameter is failed.
+
+   .. property:: double ScienceCompletion { get; }
+
+      Science gained on completion of the contract parameter.

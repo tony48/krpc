@@ -23,7 +23,8 @@ public class CombinedIsp {
 
         System.out.println("Active engines:");
         for (Engine engine : activeEngines) {
-            System.out.println("   " + engine.getPart().getTitle() + " in stage " + engine.getPart().getStage());
+            System.out.println("   " + engine.getPart().getTitle() +
+                               " in stage " + engine.getPart().getStage());
         }
 
         double thrust = 0;
@@ -33,6 +34,7 @@ public class CombinedIsp {
             fuelConsumption += engine.getThrust() / engine.getSpecificImpulse();
         }
         double isp = thrust / fuelConsumption;
-        System.out.println("Combined vacuum Isp = " + isp + " seconds");
+        System.out.printf("Combined vacuum Isp = %.0f\n", isp);
+        connection.close();
     }
 }

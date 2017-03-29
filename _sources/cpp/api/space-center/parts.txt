@@ -91,6 +91,10 @@ Parts
 
       :Parameters:
 
+   .. function:: std::vector<Antenna> antennas()
+
+      A list of all antennas in the vessel.
+
    .. function:: std::vector<CargoBay> cargo_bays()
 
       A list of all cargo bays in the vessel.
@@ -129,11 +133,7 @@ Parts
 
       A list of all intakes in the vessel.
 
-   .. function:: std::vector<LandingGear> landing_gear()
-
-      A list of all landing gear attached to the vessel.
-
-   .. function:: std::vector<LandingLeg> landing_legs()
+   .. function:: std::vector<Leg> legs()
 
       A list of all landing legs attached to the vessel.
 
@@ -176,6 +176,10 @@ Parts
    .. function:: std::vector<SolarPanel> solar_panels()
 
       A list of all solar panels in the vessel.
+
+   .. function:: std::vector<Wheel> wheels()
+
+      A list of all wheels in the vessel.
 
 
 
@@ -388,6 +392,10 @@ Part
 
       The modules for this part.
 
+   .. function:: Antenna antenna()
+
+      A :class:`Antenna` if the part is an antenna, otherwise ``NULL``.
+
    .. function:: CargoBay cargo_bay()
 
       A :class:`CargoBay` if the part is a cargo bay, otherwise ``NULL``.
@@ -427,13 +435,9 @@ Part
          including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :class:`RCS`.
 
-   .. function:: LandingGear landing_gear()
+   .. function:: Leg leg()
 
-      A :class:`LandingGear` if the part is a landing gear, otherwise ``NULL``.
-
-   .. function:: LandingLeg landing_leg()
-
-      A :class:`LandingLeg` if the part is a landing leg, otherwise ``NULL``.
+      A :class:`Leg` if the part is a landing leg, otherwise ``NULL``.
 
    .. function:: LaunchClamp launch_clamp()
 
@@ -474,6 +478,10 @@ Part
    .. function:: SolarPanel solar_panel()
 
       A :class:`SolarPanel` if the part is a solar panel, otherwise ``NULL``.
+
+   .. function:: Wheel wheel()
+
+      A :class:`Wheel` if the part is a wheel, otherwise ``NULL``.
 
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
@@ -750,6 +758,112 @@ The following classes provide functionality for specific types of part.
 .. contents::
    :local:
 
+Antenna
+^^^^^^^
+
+
+.. class:: Antenna
+
+   An antenna. Obtained by calling :func:`Part::antenna`.
+
+   .. function:: Part part()
+
+      The part object for this antenna.
+
+   .. function:: AntennaState state()
+
+      The current state of the antenna.
+
+   .. function:: bool deployable()
+
+      Whether the antenna is deployable.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the antenna is deployed.
+
+
+      .. note::
+
+         Fixed antennas are always deployed.
+         Returns an error if you try to deploy a fixed antenna.
+
+   .. function:: bool can_transmit()
+
+      Whether data can be transmitted by this antenna.
+
+   .. function:: void transmit()
+
+      Transmit data.
+
+   .. function:: void cancel()
+
+      Cancel current transmission of data.
+
+   .. function:: bool allow_partial()
+   .. function:: void set_allow_partial(bool value)
+
+      Whether partial data transmission is permitted.
+
+   .. function:: double power()
+
+      The power of the antenna.
+
+   .. function:: bool combinable()
+
+      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+
+   .. function:: double combinable_exponent()
+
+      Exponent used to calculate the combined power of multiple antennae on a vessel.
+
+   .. function:: float packet_interval()
+
+      Interval between sending packets in seconds.
+
+   .. function:: float packet_size()
+
+      Amount of data sent per packet in Mits.
+
+   .. function:: double packet_resource_cost()
+
+      Units of electric charge consumed per packet sent.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: AntennaState
+
+   The state of an antenna. See :func:`Antenna::state`.
+
+
+   .. enumerator:: deployed
+
+      Antenna is fully deployed.
+
+
+   .. enumerator:: retracted
+
+      Antenna is fully retracted.
+
+
+   .. enumerator:: deploying
+
+      Antenna is being deployed.
+
+
+   .. enumerator:: retracting
+
+      Antenna is being retracted.
+
+
+   .. enumerator:: broken
+
+      Antenna is broken.
+
+
+
 Cargo Bay
 ^^^^^^^^^
 
@@ -827,6 +941,11 @@ Control Surface
 
       Whether the control surface has roll control enabled.
 
+   .. function:: float authority_limiter()
+   .. function:: void set_authority_limiter(float value)
+
+      The authority limiter for the control surface, which controls how far the control surface will move.
+
    .. function:: bool inverted()
    .. function:: void set_inverted(bool value)
 
@@ -865,6 +984,14 @@ Decoupler
 
       Fires the decoupler. Returns the new vessel created when the decoupler fires.
       Throws an exception if the decoupler has already fired.
+
+
+
+      .. note::
+
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :func:`active_vessel` no longer refer to the active vessel.
 
    .. function:: bool decoupled()
 
@@ -911,7 +1038,9 @@ Docking Port
 
       .. note::
 
-         After undocking, the active vessel may change. See :func:`active_vessel`.
+         When called, the active vessel may change. It is therefore possible that,
+         after calling this function, the object(s) returned by previous call(s) to
+         :func:`active_vessel` no longer refer to the active vessel.
 
    .. function:: float reengage_distance()
 
@@ -1417,95 +1546,25 @@ Intake
 
 
 
-Landing Gear
-^^^^^^^^^^^^
+Leg
+^^^
 
 
-.. class:: LandingGear
+.. class:: Leg
 
-   Landing gear with wheels. Obtained by calling :func:`Part::landing_gear`.
-
-   .. function:: Part part()
-
-      The part object for this landing gear.
-
-   .. function:: LandingGearState state()
-
-      Gets the current state of the landing gear.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-
-   .. function:: bool deployable()
-
-      Whether the landing gear is deployable.
-
-   .. function:: bool deployed()
-   .. function:: void set_deployed(bool value)
-
-      Whether the landing gear is deployed.
-
-
-      .. note::
-
-         Fixed landing gear are always deployed.
-         Returns an error if you try to deploy fixed landing gear.
-
-   .. function:: bool is_grounded()
-
-      Returns whether the gear is touching the ground.
-
-
-
-.. namespace:: krpc::services::SpaceCenter
-.. enum-struct:: LandingGearState
-
-   The state of a landing gear. See :func:`LandingGear::state`.
-
-
-   .. enumerator:: deployed
-
-      Landing gear is fully deployed.
-
-
-   .. enumerator:: retracted
-
-      Landing gear is fully retracted.
-
-
-   .. enumerator:: deploying
-
-      Landing gear is being deployed.
-
-
-   .. enumerator:: retracting
-
-      Landing gear is being retracted.
-
-
-   .. enumerator:: broken
-
-      Landing gear is broken.
-
-
-
-Landing Leg
-^^^^^^^^^^^
-
-
-.. class:: LandingLeg
-
-   A landing leg. Obtained by calling :func:`Part::landing_leg`.
+   A landing leg. Obtained by calling :func:`Part::leg`.
 
    .. function:: Part part()
 
       The part object for this landing leg.
 
-   .. function:: LandingLegState state()
+   .. function:: LegState state()
 
       The current state of the landing leg.
+
+   .. function:: bool deployable()
+
+      Whether the leg is deployable.
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
@@ -1525,9 +1584,9 @@ Landing Leg
 
 
 .. namespace:: krpc::services::SpaceCenter
-.. enum-struct:: LandingLegState
+.. enum-struct:: LegState
 
-   The state of a landing leg. See :func:`LandingLeg::state`.
+   The state of a landing leg. See :func:`Leg::state`.
 
 
    .. enumerator:: deployed
@@ -1623,6 +1682,15 @@ Parachute
 
       Whether the parachute has been deployed.
 
+   .. function:: void arm()
+
+      Deploys the parachute. This has no effect if the parachute has already
+      been armed or deployed. Only applicable to RealChutes parachutes.
+
+   .. function:: bool armed()
+
+      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+
    .. function:: ParachuteState state()
 
       The current state of the parachute.
@@ -1631,11 +1699,13 @@ Parachute
    .. function:: void set_deploy_altitude(float value)
 
       The altitude at which the parachute will full deploy, in meters.
+      Only applicable to stock parachutes.
 
    .. function:: float deploy_min_pressure()
    .. function:: void set_deploy_min_pressure(float value)
 
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
+      Only applicable to stock parachutes.
 
 
 
@@ -1650,15 +1720,21 @@ Parachute
       The parachute is safely tucked away inside its housing.
 
 
+   .. enumerator:: armed
+
+      The parachute is armed for deployment. (RealChutes only)
+
+
    .. enumerator:: active
 
       The parachute is still stowed, but ready to semi-deploy.
+      (Stock parachutes only)
 
 
    .. enumerator:: semi_deployed
 
       The parachute has been deployed and is providing some drag,
-      but is not fully deployed yet.
+      but is not fully deployed yet. (Stock parachutes only)
 
 
    .. enumerator:: deployed
@@ -2109,6 +2185,10 @@ Solar Panel
 
       The part object for this solar panel.
 
+   .. function:: bool deployable()
+
+      Whether the solar panel is deployable.
+
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
@@ -2243,6 +2323,222 @@ Thruster
       This is opposite to the direction in which the thruster expels propellant.
 
       :Parameters:
+
+
+
+Wheel
+^^^^^
+
+
+.. class:: Wheel
+
+   A wheel. Includes landing gear and rover wheels. Obtained by calling :func:`Part::wheel`.
+   Can be used to control the motors, steering and deployment of wheels, among other things.
+
+   .. function:: Part part()
+
+      The part object for this wheel.
+
+   .. function:: WheelState state()
+
+      The current state of the wheel.
+
+   .. function:: float radius()
+
+      Radius of the wheel, in meters.
+
+   .. function:: bool grounded()
+
+      Whether the wheel is touching the ground.
+
+   .. function:: bool has_brakes()
+
+      Whether the wheel has brakes.
+
+   .. function:: float brakes()
+   .. function:: void set_brakes(float value)
+
+      The braking force, as a percentage of maximum, when the brakes are applied.
+
+   .. function:: bool auto_friction_control()
+   .. function:: void set_auto_friction_control(bool value)
+
+      Whether automatic friction control is enabled.
+
+   .. function:: float manual_friction_control()
+   .. function:: void set_manual_friction_control(float value)
+
+      Manual friction control value. Only has an effect if automatic friction control is disabled.
+      A value between 0 and 5 inclusive.
+
+   .. function:: bool deployable()
+
+      Whether the wheel is deployable.
+
+   .. function:: bool deployed()
+   .. function:: void set_deployed(bool value)
+
+      Whether the wheel is deployed.
+
+   .. function:: bool powered()
+
+      Whether the wheel is powered by a motor.
+
+   .. function:: bool motor_enabled()
+   .. function:: void set_motor_enabled(bool value)
+
+      Whether the motor is enabled.
+
+   .. function:: bool motor_inverted()
+   .. function:: void set_motor_inverted(bool value)
+
+      Whether the direction of the motor is inverted.
+
+   .. function:: MotorState motor_state()
+
+      Whether the direction of the motor is inverted.
+
+   .. function:: float motor_output()
+
+      The output of the motor. This is the torque currently being generated, in Newton meters.
+
+   .. function:: bool traction_control_enabled()
+   .. function:: void set_traction_control_enabled(bool value)
+
+      Whether automatic traction control is enabled.
+      A wheel only has traction control if it is powered.
+
+   .. function:: float traction_control()
+   .. function:: void set_traction_control(float value)
+
+      Setting for the traction control.
+      Only takes effect if the wheel has automatic traction control enabled.
+      A value between 0 and 5 inclusive.
+
+   .. function:: float drive_limiter()
+   .. function:: void set_drive_limiter(float value)
+
+      Manual setting for the motor limiter.
+      Only takes effect if the wheel has automatic traction control disabled.
+      A value between 0 and 100 inclusive.
+
+   .. function:: bool steerable()
+
+      Whether the wheel has steering.
+
+   .. function:: bool steering_enabled()
+   .. function:: void set_steering_enabled(bool value)
+
+      Whether the wheel steering is enabled.
+
+   .. function:: bool steering_inverted()
+   .. function:: void set_steering_inverted(bool value)
+
+      Whether the wheel steering is inverted.
+
+   .. function:: bool has_suspension()
+
+      Whether the wheel has suspension.
+
+   .. function:: float suspension_spring_strength()
+
+      Suspension spring strength, as set in the editor.
+
+   .. function:: float suspension_damper_strength()
+
+      Suspension damper strength, as set in the editor.
+
+   .. function:: bool broken()
+
+      Whether the wheel is broken.
+
+   .. function:: bool repairable()
+
+      Whether the wheel is repairable.
+
+   .. function:: float stress()
+
+      Current stress on the wheel.
+
+   .. function:: float stress_tolerance()
+
+      Stress tolerance of the wheel.
+
+   .. function:: float stress_percentage()
+
+      Current stress on the wheel as a percentage of its stress tolerance.
+
+   .. function:: float deflection()
+
+      Current deflection of the wheel.
+
+   .. function:: float slip()
+
+      Current slip of the wheel.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: WheelState
+
+   The state of a wheel. See :func:`Wheel::state`.
+
+
+   .. enumerator:: deployed
+
+      Wheel is fully deployed.
+
+
+   .. enumerator:: retracted
+
+      Wheel is fully retracted.
+
+
+   .. enumerator:: deploying
+
+      Wheel is being deployed.
+
+
+   .. enumerator:: retracting
+
+      Wheel is being retracted.
+
+
+   .. enumerator:: broken
+
+      Wheel is broken.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: MotorState
+
+   The state of the motor on a powered wheel. See :func:`Wheel::motor_state`.
+
+
+   .. enumerator:: idle
+
+      The motor is idle.
+
+
+   .. enumerator:: running
+
+      The motor is running.
+
+
+   .. enumerator:: disabled
+
+      The motor is disabled.
+
+
+   .. enumerator:: inoperable
+
+      The motor is inoperable.
+
+
+   .. enumerator:: not_enough_resources
+
+      The motor does not have enough resources to run.
 
 
 

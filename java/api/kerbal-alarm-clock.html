@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kerbal Alarm Clock API &mdash; kRPC 0.3.7 documentation</title>
+  <title>Kerbal Alarm Clock API &mdash; kRPC 0.3.8 documentation</title>
   
 
   
@@ -30,9 +30,17 @@
   
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
 
   
-    <link rel="top" title="kRPC 0.3.7 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.3.8 documentation" href="../../index.html"/>
         <link rel="up" title="Java" href="../../java.html"/>
         <link rel="next" title="KerbalAlarmClock" href="kerbal-alarm-clock/kerbal-alarm-clock.html"/>
         <link rel="prev" title="Servo" href="infernal-robotics/servo.html"/>
@@ -74,7 +82,7 @@
             
             
               <div class="version">
-                0.3.7
+                0.3.8
               </div>
             
           
@@ -199,11 +207,12 @@ set to trigger after 10 seconds have passed, and display a message.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">KerbalAlarmClockExample</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">RPCException</span> <span class="o">{</span>
-        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Kerbal Alarm Clock Example&quot;</span><span class="o">,</span> <span class="s">&quot;10.0.2.2&quot;</span><span class="o">);</span>
+        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;Kerbal Alarm Clock Example&quot;</span><span class="o">);</span>
         <span class="n">KerbalAlarmClock</span> <span class="n">kac</span> <span class="o">=</span> <span class="n">KerbalAlarmClock</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">);</span>
         <span class="n">Alarm</span> <span class="n">alarm</span> <span class="o">=</span> <span class="n">kac</span><span class="o">.</span><span class="na">createAlarm</span><span class="o">(</span><span class="n">AlarmType</span><span class="o">.</span><span class="na">RAW</span><span class="o">,</span> <span class="s">&quot;My New Alarm&quot;</span><span class="o">,</span> <span class="n">SpaceCenter</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">connection</span><span class="o">).</span><span class="na">getUT</span><span class="o">()</span> <span class="o">+</span> <span class="mi">10</span><span class="o">);</span>
         <span class="n">alarm</span><span class="o">.</span><span class="na">setNotes</span><span class="o">(</span><span class="s">&quot;10 seconds have now passed since the alarm was created.&quot;</span><span class="o">);</span>
         <span class="n">alarm</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">AlarmAction</span><span class="o">.</span><span class="na">MESSAGE_ONLY</span><span class="o">);</span>
+        <span class="n">connection</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -230,7 +239,7 @@ set to trigger after 10 seconds have passed, and display a message.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2016, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm.
 
     </p>
   </div>
@@ -252,7 +261,7 @@ set to trigger after 10 seconds have passed, and display a message.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.7',
+            VERSION:'0.3.8',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -262,6 +271,8 @@ set to trigger after 10 seconds have passed, and display a message.</p>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="../../_static/sphinx_tabs/tabs.js"></script>
 
   
 
