@@ -51,7 +51,7 @@ Resources
 
        * **name** -- The name of the resource.
 
-   .. function:: static float density(std::string name)
+   .. function:: static float density(Client& connection, std::string name)
 
       Returns the density of a resource, in kg/l.
 
@@ -59,7 +59,7 @@ Resources
 
        * **name** -- The name of the resource.
 
-   .. function:: static ResourceFlowMode flow_mode(std::string name)
+   .. function:: static ResourceFlowMode flow_mode(Client& connection, std::string name)
 
       Returns the flow mode of a resource.
 
@@ -119,7 +119,7 @@ Resources
 
    Transfer resources between parts.
 
-   .. function:: static ResourceTransfer start(Part from_part, Part to_part, std::string resource, float max_amount)
+   .. function:: static ResourceTransfer start(Client& connection, Part from_part, Part to_part, std::string resource, float max_amount)
 
       Start transferring a resource transfer between a pair of parts. The transfer will move at most
       *max_amount* units of the resource, depending on how much of the resource is

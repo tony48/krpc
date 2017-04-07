@@ -51,7 +51,7 @@ Resources
 
        * **name** -- The name of the resource.
 
-   .. method:: static float Density(string name)
+   .. method:: static float Density(IConnection connection, string name)
 
       Returns the density of a resource, in kg/l.
 
@@ -59,7 +59,7 @@ Resources
 
        * **name** -- The name of the resource.
 
-   .. method:: static ResourceFlowMode FlowMode(string name)
+   .. method:: static ResourceFlowMode FlowMode(IConnection connection, string name)
 
       Returns the flow mode of a resource.
 
@@ -117,7 +117,7 @@ Resources
 
    Transfer resources between parts.
 
-   .. method:: static ResourceTransfer Start(Part fromPart, Part toPart, string resource, float maxAmount)
+   .. method:: static ResourceTransfer Start(IConnection connection, Part fromPart, Part toPart, string resource, float maxAmount)
 
       Start transferring a resource transfer between a pair of parts. The transfer will move at most
       *maxAmount* units of the resource, depending on how much of the resource is

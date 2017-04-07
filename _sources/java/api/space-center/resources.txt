@@ -47,13 +47,13 @@ Resources
 
       :param String name: The name of the resource.
 
-   .. method:: float density(String name)
+   .. method:: static float density(Connection connection, String name)
 
       Returns the density of a resource, in kg/l.
 
       :param String name: The name of the resource.
 
-   .. method:: ResourceFlowMode flowMode(String name)
+   .. method:: static ResourceFlowMode flowMode(Connection connection, String name)
 
       Returns the flow mode of a resource.
 
@@ -119,7 +119,7 @@ Resources
 
    Transfer resources between parts.
 
-   .. method:: ResourceTransfer start(Part fromPart, Part toPart, String resource, float maxAmount)
+   .. method:: static ResourceTransfer start(Connection connection, Part fromPart, Part toPart, String resource, float maxAmount)
 
       Start transferring a resource transfer between a pair of parts. The transfer will move at most
       *maxAmount* units of the resource, depending on how much of the resource is

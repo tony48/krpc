@@ -21,7 +21,7 @@ ReferenceFrame
       This class does not contain any properties or methods. It is only
       used as a parameter to other functions.
 
-   .. function:: static ReferenceFrame create_relative(ReferenceFrame reference_frame, std::tuple<double, double, double> position = (0.0, 0.0, 0.0), std::tuple<double, double, double, double> rotation = (0.0, 0.0, 0.0, 1.0), std::tuple<double, double, double> velocity = (0.0, 0.0, 0.0), std::tuple<double, double, double> angular_velocity = (0.0, 0.0, 0.0))
+   .. function:: static ReferenceFrame create_relative(Client& connection, ReferenceFrame reference_frame, std::tuple<double, double, double> position = (0.0, 0.0, 0.0), std::tuple<double, double, double, double> rotation = (0.0, 0.0, 0.0, 1.0), std::tuple<double, double, double> velocity = (0.0, 0.0, 0.0), std::tuple<double, double, double> angular_velocity = (0.0, 0.0, 0.0))
 
       Create a relative reference frame.
 
@@ -33,7 +33,7 @@ ReferenceFrame
        * **velocity** -- The linear velocity to offset the parent frame by. Defaults to zero.
        * **angular_velocity** -- The angular velocity to offset the parent frame by. Defaults to zero.
 
-   .. function:: static ReferenceFrame create_hybrid(ReferenceFrame position, ReferenceFrame rotation = ReferenceFrame(), ReferenceFrame velocity = ReferenceFrame(), ReferenceFrame angular_velocity = ReferenceFrame())
+   .. function:: static ReferenceFrame create_hybrid(Client& connection, ReferenceFrame position, ReferenceFrame rotation = ReferenceFrame(), ReferenceFrame velocity = ReferenceFrame(), ReferenceFrame angular_velocity = ReferenceFrame())
 
       Create a hybrid reference frame, which is a custom reference frame
       whose components are inherited from other reference frames.
