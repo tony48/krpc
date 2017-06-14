@@ -70,6 +70,7 @@ CelestialBody
    .. attribute:: rotation_angle
 
       The current rotation angle of the body, in radians.
+      A value between 0 and :math:`2\pi`
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -77,6 +78,7 @@ CelestialBody
    .. attribute:: initial_rotation
 
       The initial rotation angle of the body (at UT 0), in radians.
+      A value between 0 and :math:`2\pi`
 
       :Attribute: Read-only, cannot be set
       :rtype: number
@@ -133,6 +135,16 @@ CelestialBody
 
       :param number latitude: Latitude in degrees
       :param number longitude: Longitude in degrees
+      :param SpaceCenter.ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :rtype: Tuple of (number, number, number)
+
+   .. method:: position_at_altitude(latitude, longitude, altitude, reference_frame)
+
+      The position at the given latitude, longitude and altitude, in the given reference frame.
+
+      :param number latitude: Latitude in degrees
+      :param number longitude: Longitude in degrees
+      :param number altitude: Altitude in meters above sea level
       :param SpaceCenter.ReferenceFrame reference_frame: Reference frame for the returned position vector
       :rtype: Tuple of (number, number, number)
 

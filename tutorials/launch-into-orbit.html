@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Launch into Orbit &mdash; kRPC 0.3.8 documentation</title>
+  <title>Launch into Orbit &mdash; kRPC 0.3.9 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
   
 
   
-    <link rel="top" title="kRPC 0.3.8 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Pitch, Heading and Roll" href="pitch-heading-roll.html"/>
         <link rel="prev" title="Reference Frames" href="reference-frames.html"/>
@@ -82,7 +82,7 @@
             
             
               <div class="version">
-                0.3.8
+                0.3.9
               </div>
             
           
@@ -258,9 +258,9 @@ Python</div>
         <span class="kt">var</span> <span class="n">flight</span> <span class="p">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Flight</span> <span class="p">();</span>
         <span class="kt">var</span> <span class="n">altitude</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">AddStream</span> <span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">flight</span><span class="p">.</span><span class="n">MeanAltitude</span><span class="p">);</span>
         <span class="kt">var</span> <span class="n">apoapsis</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">AddStream</span> <span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">vessel</span><span class="p">.</span><span class="n">Orbit</span><span class="p">.</span><span class="n">ApoapsisAltitude</span><span class="p">);</span>
-        <span class="kt">var</span> <span class="n">stage3Resources</span> <span class="p">=</span>
-            <span class="n">vessel</span><span class="p">.</span><span class="n">ResourcesInDecoupleStage</span> <span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="m">3</span><span class="p">,</span> <span class="n">cumulative</span><span class="p">:</span> <span class="k">false</span><span class="p">);</span>
-        <span class="kt">var</span> <span class="n">srbFuel</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">AddStream</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">stage3Resources</span><span class="p">.</span><span class="n">Amount</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">));</span>
+        <span class="kt">var</span> <span class="n">stage2Resources</span> <span class="p">=</span>
+            <span class="n">vessel</span><span class="p">.</span><span class="n">ResourcesInDecoupleStage</span> <span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="m">2</span><span class="p">,</span> <span class="n">cumulative</span><span class="p">:</span> <span class="k">false</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">srbFuel</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">AddStream</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">stage2Resources</span><span class="p">.</span><span class="n">Amount</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">));</span>
 
         <span class="c1">// Pre-launch setup</span>
         <span class="n">vessel</span><span class="p">.</span><span class="n">Control</span><span class="p">.</span><span class="n">SAS</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
@@ -332,8 +332,8 @@ Python</div>
   <span class="k">auto</span> <span class="n">ut</span> <span class="o">=</span> <span class="n">space_center</span><span class="p">.</span><span class="n">ut_stream</span><span class="p">();</span>
   <span class="k">auto</span> <span class="n">altitude</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">flight</span><span class="p">().</span><span class="n">mean_altitude_stream</span><span class="p">();</span>
   <span class="k">auto</span> <span class="n">apoapsis</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">apoapsis_altitude_stream</span><span class="p">();</span>
-  <span class="k">auto</span> <span class="n">stage_3_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-  <span class="k">auto</span> <span class="n">srb_fuel</span> <span class="o">=</span> <span class="n">stage_3_resources</span><span class="p">.</span><span class="n">amount_stream</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">stage_2_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">srb_fuel</span> <span class="o">=</span> <span class="n">stage_2_resources</span><span class="p">.</span><span class="n">amount_stream</span><span class="p">(</span><span class="s">&quot;SolidFuel&quot;</span><span class="p">);</span>
 
   <span class="c1">// Pre-launch setup</span>
   <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">().</span><span class="n">set_sas</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
@@ -435,9 +435,9 @@ Python</div>
         <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">altitude</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">flight</span><span class="o">,</span> <span class="s">&quot;getMeanAltitude&quot;</span><span class="o">);</span>
         <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">apoapsis</span> <span class="o">=</span>
             <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">vessel</span><span class="o">.</span><span class="na">getOrbit</span><span class="o">(),</span> <span class="s">&quot;getApoapsisAltitude&quot;</span><span class="o">);</span>
-        <span class="n">Resources</span> <span class="n">stage3Resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">resourcesInDecoupleStage</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">Resources</span> <span class="n">stage2Resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="na">resourcesInDecoupleStage</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
         <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;</span> <span class="n">srbFuel</span> <span class="o">=</span>
-            <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">stage3Resources</span><span class="o">,</span> <span class="s">&quot;amount&quot;</span><span class="o">,</span> <span class="s">&quot;SolidFuel&quot;</span><span class="o">);</span>
+            <span class="n">connection</span><span class="o">.</span><span class="na">addStream</span><span class="o">(</span><span class="n">stage2Resources</span><span class="o">,</span> <span class="s">&quot;amount&quot;</span><span class="o">,</span> <span class="s">&quot;SolidFuel&quot;</span><span class="o">);</span>
 
         <span class="c1">// Pre-launch setup</span>
         <span class="n">vessel</span><span class="o">.</span><span class="na">getControl</span><span class="o">().</span><span class="na">setSAS</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
@@ -495,7 +495,7 @@ Python</div>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
 
 <span class="n">flight</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">()</span>
-<span class="n">stage_3_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">:</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">False</span><span class="p">)</span>
+<span class="n">stage_2_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">:</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">False</span><span class="p">)</span>
 
 <span class="c1">-- Pre-launch setup</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">sas</span> <span class="o">=</span> <span class="kc">false</span>
@@ -559,8 +559,8 @@ Python</div>
 <span class="n">ut</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">)</span>
 <span class="n">altitude</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">(),</span> <span class="s1">&#39;mean_altitude&#39;</span><span class="p">)</span>
 <span class="n">apoapsis</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="p">,</span> <span class="s1">&#39;apoapsis_altitude&#39;</span><span class="p">)</span>
-<span class="n">stage_3_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">srb_fuel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">stage_3_resources</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span>
+<span class="n">stage_2_resources</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">resources_in_decouple_stage</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">srb_fuel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="n">stage_2_resources</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span>
 
 <span class="c1"># Pre-launch setup</span>
 <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">sas</span> <span class="o">=</span> <span class="bp">False</span>
@@ -883,7 +883,7 @@ Python</div>
 
     <span class="c1">-- Separate SRBs when finished</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">srbs_separated</span> <span class="k">then</span>
-        <span class="k">if</span> <span class="n">stage_3_resources</span><span class="p">:</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SolidFuel&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="n">stage_2_resources</span><span class="p">:</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SolidFuel&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="k">then</span>
             <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
             <span class="n">srbs_separated</span> <span class="o">=</span> <span class="kc">true</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SRBs separated&#39;</span><span class="p">)</span>
@@ -1731,7 +1731,7 @@ Python</div>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.8',
+            VERSION:'0.3.9',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -46,10 +46,12 @@ CelestialBody
    .. property:: double RotationAngle { get; }
 
       The current rotation angle of the body, in radians.
+      A value between 0 and :math:`2\pi`
 
    .. property:: double InitialRotation { get; }
 
       The initial rotation angle of the body (at UT 0), in radians.
+      A value between 0 and :math:`2\pi`
 
    .. property:: float EquatorialRadius { get; }
 
@@ -106,6 +108,17 @@ CelestialBody
 
        * **latitude** -- Latitude in degrees
        * **longitude** -- Longitude in degrees
+       * **referenceFrame** -- Reference frame for the returned position vector
+
+   .. method:: System.Tuple<double,double,double> PositionAtAltitude(double latitude, double longitude, double altitude, ReferenceFrame referenceFrame)
+
+      The position at the given latitude, longitude and altitude, in the given reference frame.
+
+      :parameters:
+
+       * **latitude** -- Latitude in degrees
+       * **longitude** -- Longitude in degrees
+       * **altitude** -- Altitude in meters above sea level
        * **referenceFrame** -- Reference frame for the returned position vector
 
    .. property:: float SphereOfInfluence { get; }
