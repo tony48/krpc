@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="C#" href="../csharp.html"/>
@@ -113,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="parts.html">Interacting with Parts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docking-guidance.html">Docking Guidance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user-interface.html">User Interface</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">AutoPilot</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AutoPilot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-the-autopilot">Configuring the AutoPilot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#computing-the-target-angular-velocity">Computing the Target Angular Velocity</a></li>
@@ -159,7 +154,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -173,7 +168,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/autopilot.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/tutorials/autopilot.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -201,7 +196,7 @@ to configure it and mathematics behind it.</p>
 rotation around the roll axis but will not try to hold a specific roll
 angle.</p>
 <p>The diagram below shows a high level overview of the autopilot. First, the
-current rotation and target rotation are used to compute the <a class="reference internal" href="#target-angular-velocity"><span>target
+current rotation and target rotation are used to compute the <a class="reference internal" href="#target-angular-velocity"><span class="std std-ref">target
 angular velocity</span></a> that is needed to rotate the vessel
 to face the target. Next, the components of this angular velocity in the pitch,
 yaw and roll axes of the vessel are passed to three PID controllers. The outputs
@@ -229,11 +224,11 @@ is 5 seconds for each axis. A smaller value will make the autopilot decelerate
 more aggressively, turning the vessel towards the target more
 quickly. However, decreasing the value too much could result in overshoot.</li>
 <li>In order to avoid overshoot, the stopping time should be smaller than the
-deceleration time. This gives the autopilot some &#8216;spare&#8217; acceleration, to
+deceleration time. This gives the autopilot some ‘spare’ acceleration, to
 adjust for errors in the vessels rotation, for example due to changing
 aerodynamic forces.</li>
 <li>The <strong>attenuation angle</strong> sets the region in which the autopilot considers the
-vessel to be &#8216;close&#8217; to the target direction. In this region, the target
+vessel to be ‘close’ to the target direction. In this region, the target
 velocity is attenuated based on how close the vessel is to the target. It is
 an angle, in degrees, for each of the pitch, roll and yaw axes. The default
 value is 1 degree in each axis. This attenuation prevents the controls from
@@ -317,7 +312,7 @@ multiplying these together (dashed line in black):</p>
 <p>The formula for the attenuation function is a logistic function, with the
 following formula:</p>
 <div class="math">
-\[\begin{split}f_a(\theta) &amp;= \frac{1}{1 + e^{-6/\theta_a(\lvert\theta\rvert - \theta_a)}}\end{split}\]</div>
+\[f_a(\theta) &amp;= \frac{1}{1 + e^{-6/\theta_a(\lvert\theta\rvert - \theta_a)}}\]</div>
 <p>Note that the original function, derived from the equations of motion under
 constant acceleration, is only affected by the attenuation function close to
 the attenuation angle. This means that autopilot will use a constant
@@ -347,16 +342,16 @@ that the controller does not have a derivative term, so that the system behaves
 like a second order system and is therefore easy to tune.</p>
 <p>The transfer function for the controller in the <span class="math">\(s\)</span> domain is:</p>
 <div class="math">
-\[\begin{split}C(s) &amp;= K_P + K_I s^{-1}\end{split}\]</div>
+\[C(s) &amp;= K_P + K_I s^{-1}\]</div>
 <p>From the schematic, the transfer function for the plant <span class="math">\(H\)</span> is:</p>
 <div class="math">
-\[\begin{split}H(s) &amp;= \frac{\omega_\epsilon(s)}{X(s)}\end{split}\]</div>
+\[H(s) &amp;= \frac{\omega_\epsilon(s)}{X(s)}\]</div>
 <p><span class="math">\(x\)</span> is the control input to the vessel, which is the percentage of the
 available torque <span class="math">\(\tau_{max}\)</span> that is being applied to the vessel. Call
 this the current torque, denoted <span class="math">\(\tau\)</span>. This can be written
 mathematically as:</p>
 <div class="math">
-\[\begin{split}\tau &amp;= x \tau_{max}\end{split}\]</div>
+\[\tau &amp;= x \tau_{max}\]</div>
 <p>Combining this with the angular equation of motion gives the angular
 acceleration in terms of the control input:</p>
 <div class="math">
@@ -382,7 +377,7 @@ acceleration in terms of the control input:</p>
         \text{ where } a = \frac{\tau_{max}}{I}\end{split}\]</div>
 <p>The characteristic equation for the system is therefore:</p>
 <div class="math">
-\[\begin{split}\Phi &amp;= s^2 + \frac{\tau_{max}}{I} K_P s + \frac{\tau_{max}}{I} K_I\end{split}\]</div>
+\[\Phi &amp;= s^2 + \frac{\tau_{max}}{I} K_P s + \frac{\tau_{max}}{I} K_I\]</div>
 <p>The characteristic equation for a standard second order system is:</p>
 <div class="math">
 \[\begin{split}\Phi_{standard} &amp;= s^2 + 2 \zeta \omega_0 s + \omega_0^2 \\\end{split}\]</div>
@@ -398,10 +393,10 @@ which will allow us to determine the values of <span class="math">\(\zeta\)</spa
 <span class="math">\(\omega_0\)</span>, and therefore the gains for the controller.</p>
 <p>The percentage by which a second order system overshoots is:</p>
 <div class="math">
-\[\begin{split}O &amp;= e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\end{split}\]</div>
+\[O &amp;= e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\]</div>
 <p>And the time it takes to reach the first peak in its output is:</p>
 <div class="math">
-\[\begin{split}T_P &amp;= \frac{\pi}{\omega_0\sqrt{1-\zeta^2}}\end{split}\]</div>
+\[T_P &amp;= \frac{\pi}{\omega_0\sqrt{1-\zeta^2}}\]</div>
 <p>These can be rearranged to give us <span class="math">\(\zeta\)</span> and <span class="math">\(\omega_0\)</span> in terms
 of overshoot and time to peak:</p>
 <div class="math">
@@ -487,9 +482,7 @@ values until the available acceleration rises again.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

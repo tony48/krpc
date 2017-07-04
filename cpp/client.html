@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="C++" href="../cpp.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
@@ -108,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../cpp.html">C++</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">C++ Client</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++ Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#installing-dependencies">Installing Dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#install-using-the-configure-script">Install using the configure script</a></li>
@@ -164,7 +159,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -178,7 +173,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/cpp/client.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/client.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -196,7 +191,7 @@ written in C++. It can be <a class="reference external" href="https://github.com
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="installing-dependencies">
 <h3>Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>First you need to install kRPC&#8217;s dependencies: <a class="reference external" href="http://think-async.com/">ASIO</a>
+<p>First you need to install kRPC’s dependencies: <a class="reference external" href="http://think-async.com/">ASIO</a>
 which is used for network communication and <a class="reference external" href="https://github.com/google/protobuf">protobuf</a> which is used to serialize messages.</p>
 <p>ASIO is a headers-only library. The boost version is not required, installing
 the non-Boost variant is sufficient. On Ubuntu, this can be done using apt:</p>
@@ -208,7 +203,7 @@ the non-Boost variant is sufficient. On Ubuntu, this can be done using apt:</p>
 instructions <a class="reference external" href="https://github.com/google/protobuf/blob/master/src/README.md">can be found here</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The version of protobuf currently provided in Ubuntu&#8217;s apt repositories is
+<p class="last">The version of protobuf currently provided in Ubuntu’s apt repositories is
 version 2. This will <em>not</em> work with kRPC.</p>
 </div>
 </div>
@@ -239,7 +234,7 @@ sudo ldconfig
 </div>
 <div class="section" id="install-manually">
 <h3>Install manually<a class="headerlink" href="#install-manually" title="Permalink to this headline">¶</a></h3>
-<p>The library is fairly simple to build manually if you can&#8217;t use the configure
+<p>The library is fairly simple to build manually if you can’t use the configure
 script or CMake. The headers are in the <code class="docutils literal"><span class="pre">include</span></code> folder and the source files
 are in <code class="docutils literal"><span class="pre">src</span></code>.</p>
 </div>
@@ -381,11 +376,11 @@ stream, and then repeatedly gets the position from the stream.</p>
 </pre></div>
 </div>
 <p>A stream can be created for any function call (except property setters) by
-adding <code class="docutils literal"><span class="pre">_stream</span></code> to the end of the function&#8217;s name. This returns a stream
-object of type <code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Stream</span></code>, where <code class="docutils literal"><span class="pre">T</span></code> is the return type of the
+adding <code class="docutils literal"><span class="pre">_stream</span></code> to the end of the function’s name. This returns a stream
+object of type <a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream"><code class="xref cpp cpp-class docutils literal"><span class="pre">template</span> <span class="pre">&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">krpc::Stream</span></code></a>, where <code class="docutils literal"><span class="pre">T</span></code> is the return type of the
 original function. The most recent value of the stream can be obtained by
-calling <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TEclEv" title="krpc::Stream&lt;T&gt;::operator()"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::operator()()</span></code></a>. A stream can be stopped and
-removed from the server by calling <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TE6removeEv" title="krpc::Stream&lt;T&gt;::remove"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream&lt;T&gt;::remove()</span></code></a> on the
+calling <a class="reference internal" href="#_CPPv2N4krpc6StreamclEv" title="krpc::Stream::operator()"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream::operator()()</span></code></a>. A stream can be stopped and
+removed from the server by calling <a class="reference internal" href="#_CPPv2N4krpc6Stream6removeEv" title="krpc::Stream::remove"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::Stream::remove()</span></code></a> on the
 stream object. All of a clients streams are automatically stopped when it
 disconnects.</p>
 <p>Updates to streams can be paused by calling
@@ -400,7 +395,7 @@ values to be from the same physics tick.</p>
 <h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj">
-<span id="krpc::connect__ssCR.ssCR.unsigned-i.unsigned-i"></span><a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> <code class="descclassname"></code><code class="descname">connect</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em> = &quot;&quot;, <em class="property">const</em> std::string &amp;<em>address</em> = &quot;127.0.0.1&quot;, unsigned int <em>rpc_port</em> = 50000, unsigned int <em>stream_port</em> = 50001<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::connect__ssCR.ssCR.unsigned-i.unsigned-i"></span><a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> <code class="descclassname"></code><code class="descname">connect</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>name</em> = “”, <em class="property">const</em> std::string &amp;<em>address</em> = “127.0.0.1”, unsigned int <em>rpc_port</em> = 50000, unsigned int <em>stream_port</em> = 50001<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a> object, through which the server can be communicated
 with.</p>
@@ -409,15 +404,15 @@ with.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<em>std::string</em>) &#8211; A descriptive name for the connection. This
+<li><strong>name</strong> (<em>std::string</em>) – A descriptive name for the connection. This
 is passed to the server and appears, for example, in the client
 connection dialog on the in-game server window.</li>
-<li><strong>address</strong> (<em>std::string</em>) &#8211; The address of the server to connect
+<li><strong>address</strong> (<em>std::string</em>) – The address of the server to connect
 to. Can either be a hostname or an IP address in dotted decimal
-notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
-<li><strong>rpc_port</strong> (<em>unsigned int</em>) &#8211; The port number of the RPC
+notation. Defaults to ‘127.0.0.1’.</li>
+<li><strong>rpc_port</strong> (<em>unsigned int</em>) – The port number of the RPC
 Server. Defaults to 50000.</li>
-<li><strong>stream_port</strong> (<em>unsigned int</em>) &#8211; The port number of the Stream
+<li><strong>stream_port</strong> (<em>unsigned int</em>) – The port number of the Stream
 Server. Defaults to 50001. Set it to 0 to disable connection to the
 stream server.</li>
 </ul>
@@ -429,20 +424,20 @@ stream server.</li>
 
 <dl class="class">
 <dt id="_CPPv2N4krpc6ClientE">
-<span id="krpc::Client"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Client</code><a class="headerlink" href="#_CPPv2N4krpc6ClientE" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::Client"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Client</code><a class="headerlink" href="#_CPPv2N4krpc6ClientE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class provides the interface for communicating with the server. It is
 used by service class instances to invoke remote procedure calls. Instances
 of this class can be obtained by calling <a class="reference internal" href="#_CPPv2N4krpc7connectERKNSt6stringERKNSt6stringEjj" title="krpc::connect"><code class="xref cpp cpp-func docutils literal"><span class="pre">krpc::connect()</span></code></a>.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc6Client14freeze_streamsEv">
-<span id="krpc::Client::freeze_streams"></span>void <code class="descclassname"></code><code class="descname">freeze_streams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Client14freeze_streamsEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::Client::freeze_streams"></span>void <code class="descclassname"></code><code class="descname">freeze_streams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Client14freeze_streamsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pause stream updates, after the next stream update message is
 received. This function blocks until the streams have been frozen.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc6Client12thaw_streamsEv">
-<span id="krpc::Client::thaw_streams"></span>void <code class="descclassname"></code><code class="descname">thaw_streams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Client12thaw_streamsEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::Client::thaw_streams"></span>void <code class="descclassname"></code><code class="descname">thaw_streams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Client12thaw_streamsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Resume stream updates. Before this function returns, the last received
 update message is applied to the streams.</p>
 </dd></dl>
@@ -451,7 +446,7 @@ update message is applied to the streams.</p>
 
 <dl class="class">
 <dt id="_CPPv2N4krpc8services4KRPCE">
-<span id="krpc::services::KRPC"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">KRPC</code><a class="headerlink" href="#_CPPv2N4krpc8services4KRPCE" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::KRPC"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">KRPC</code><a class="headerlink" href="#_CPPv2N4krpc8services4KRPCE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class provides access to the basic server functionality provided by
 the <code class="docutils literal"><span class="pre">KRPC</span></code> service. Most of this functionality is used internally by the
 client (for example to create and remove streams) and therefore does not
@@ -459,16 +454,16 @@ need to be used directly from application code. The only exception that
 may be useful is <a class="reference internal" href="api/krpc.html#_CPPv2N4krpc8services4KRPC10get_statusEv" title="krpc::services::KRPC::get_status"><code class="xref cpp cpp-func docutils literal"><span class="pre">KRPC::get_status()</span></code></a>.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services4KRPC4KRPCEPN4krpc6ClientE">
-<span id="krpc::services::KRPC::KRPC__krpc::ClientP"></span><code class="descclassname"></code><code class="descname">KRPC</code><span class="sig-paren">(</span>krpc::<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> *<em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC4KRPCEPN4krpc6ClientE" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::KRPC::KRPC__krpc::ClientP"></span><code class="descclassname"></code><code class="descname">KRPC</code><span class="sig-paren">(</span>krpc::<a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> *<em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC4KRPCEPN4krpc6ClientE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct an instance of this service from the given <a class="reference internal" href="#_CPPv2N4krpc6ClientE" title="krpc::Client"><code class="xref cpp cpp-class docutils literal"><span class="pre">krpc::Client</span></code></a>
 object.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services4KRPC10get_statusEv">
-<span id="krpc::services::KRPC::get_status"></span>krpc::schema::Status <code class="descclassname"></code><code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC10get_statusEv" title="Permalink to this definition">¶</a></dt>
+<span id="krpc::services::KRPC::get_status"></span>krpc::schema::Status <code class="descclassname"></code><code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services4KRPC10get_statusEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets a status message from the server containing information including
-the server&#8217;s version string and performance statistics.</p>
+the server’s version string and performance statistics.</p>
 <p>For example, the following prints out the version string for the
 server:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -506,45 +501,45 @@ over the network:</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="_CPPv2N4krpc6StreamI1TEE">
-<span id="krpc::Stream:T:"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Stream</code>&lt;T&gt;<a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2I0EN4krpc6StreamE">
+template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Stream</code><a class="headerlink" href="#_CPPv2I0EN4krpc6StreamE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A stream object. Streams are created by calling a function with <code class="docutils literal"><span class="pre">_stream</span></code>
 appended to its name.</p>
 <p>Stream objects are copy constructible and assignable. A stream is removed
 from the server when all stream objects that refer to it are destroyed.</p>
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TE6StreamI1TEEv">
-<span id="krpc::Stream:T:::Stream:T:"></span><code class="descclassname"></code><code class="descname">Stream</code>&lt;T&gt;<span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TE6StreamI1TEEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6Stream6StreamEv">
+<span id="krpc::Stream::Stream"></span><code class="descclassname"></code><code class="descname">Stream</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Stream6StreamEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Create a stream object that is not bound to any stream.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TEclEv">
-<span id="krpc::Stream:T:::call-operator"></span>T <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEclEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamclEv">
+<span id="krpc::Stream::call-operator"></span><a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream::T">T</a> <code class="descclassname"></code><code class="descname">operator()</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamclEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the most recently received value from the stream.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TEeqERK6StreamI1TE">
-<span id="krpc::Stream:T:::eq-operator__Stream:T:CR"></span>bool <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TE6StreamI1TEEv" title="krpc::Stream&lt;T&gt;::Stream&lt;T&gt;">Stream</a>&lt;T&gt; &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEeqERK6StreamI1TE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreameqERK6StreamI1TE">
+<span id="krpc::Stream::eq-operator__Stream:T:CR"></span>bool <code class="descclassname"></code><code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream">Stream</a>&lt;<a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream::T">T</a>&gt; &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreameqERK6StreamI1TE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns true if the two stream objects are bound to the same stream.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TEneERK6StreamI1TE">
-<span id="krpc::Stream:T:::neq-operator__Stream:T:CR"></span>bool <code class="descclassname"></code><code class="descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4krpc6StreamI1TE6StreamI1TEEv" title="krpc::Stream&lt;T&gt;::Stream&lt;T&gt;">Stream</a>&lt;T&gt; &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEneERK6StreamI1TE" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamneERK6StreamI1TE">
+<span id="krpc::Stream::neq-operator__Stream:T:CR"></span>bool <code class="descclassname"></code><code class="descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream">Stream</a>&lt;<a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream::T">T</a>&gt; &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamneERK6StreamI1TE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns true if the two stream objects are bound to different streams.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TEcvbEv">
-<span id="krpc::Stream:T:::castto-b-operator"></span><code class="descclassname"></code><code class="descname">operator bool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TEcvbEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6StreamcvbEv">
+<span id="krpc::Stream::castto-b-operator"></span><code class="descclassname"></code><code class="descname">operator bool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamcvbEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns whether the stream object is bound to a stream.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4krpc6StreamI1TE6removeEv">
-<span id="krpc::Stream:T:::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6StreamI1TE6removeEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv2N4krpc6Stream6removeEv">
+<span id="krpc::Stream::remove"></span>void <code class="descclassname"></code><code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Stream6removeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Manually remove the stream from the server.</p>
 </dd></dl>
 
@@ -603,9 +598,7 @@ from the server when all stream objects that refer to it are destroyed.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

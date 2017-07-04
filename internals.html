@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="index.html"/>
         <link rel="prev" title="Communication Protocol" href="communication-protocol.html"/>
  
@@ -113,7 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="communication-protocol.html">Communication Protocol</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Internals of kRPC</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Internals of kRPC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#server-performance-settings">Server Performance Settings</a></li>
 </ul>
 </li>
@@ -139,7 +134,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -151,7 +146,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/internals.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/internals.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,19 +169,19 @@ invoked. This is called every fixed framerate frame, typically about 60 times a
 second. If kRPC were to only execute one RPC per FixedUpdate, it would only be
 able to execute at most 60 RPCs per second. In order to achieve a higher RPC
 throughput, it can execute multiple RPCs per FixedUpdate. However, if it is
-allowed to process too many RPCs per FixedUpdate, the game&#8217;s framerate would be
+allowed to process too many RPCs per FixedUpdate, the game’s framerate would be
 adversely affected. The following settings control this behavior, and the
 resulting tradeoff between RPC throughput and game FPS:</p>
 <ol class="arabic simple">
 <li><strong>One RPC per update</strong>. When this is enabled, the server will execute at most
 one RPC per client per update. This will have minimal impact on the games
-framerate, while still allowing kRPC to execute RPCs. If you don&#8217;t need a
+framerate, while still allowing kRPC to execute RPCs. If you don’t need a
 high RPC throughput, this is a good option to use.</li>
 <li><strong>Maximum time per update</strong>. When one RPC per update is not enabled, this
 setting controls the maximum amount of time (in nanoseconds) that kRPC will
 spend executing RPCs per FixedUpdate.  Setting this to a high value, for
 example 20000 ns, will allow the server to process many RPCs at the expense
-of the game&#8217;s framerate. A low value, for example 1000 ns, won&#8217;t allow the
+of the game’s framerate. A low value, for example 1000 ns, won’t allow the
 server to execute many RPCs per update, but will allow the game to run at a
 much higher framerate.</li>
 <li><strong>Adaptive rate control</strong>. When enabled, kRPC will automatically adjust the
@@ -258,9 +253,7 @@ from a client.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

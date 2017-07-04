@@ -30,16 +30,19 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
     <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/segment.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/menu.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.css" type="text/css" />
   
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Pitch, Heading and Roll" href="pitch-heading-roll.html"/>
@@ -108,7 +111,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="suborbital-flight.html">Sub-Orbital Flight</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference-frames.html">Reference Frames</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Launch into Orbit</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Launch into Orbit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pitch-heading-roll.html">Pitch, Heading and Roll</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parts.html">Interacting with Parts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docking-guidance.html">Docking Guidance</a></li>
@@ -148,7 +151,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -162,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/launch-into-orbit.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/tutorials/launch-into-orbit.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,29 +178,29 @@
   <div class="section" id="launch-into-orbit">
 <h1>Launch into Orbit<a class="headerlink" href="#launch-into-orbit" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial launches a two-stage rocket into a 150km circular orbit. The
-program assumes you are using <a class="reference download internal" href="../_downloads/LaunchIntoOrbit.craft"><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">craft</span> <span class="pre">file</span></code></a>.</p>
+program assumes you are using <a class="reference download internal" href="../_downloads/LaunchIntoOrbit.craft" download=""><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">craft</span> <span class="pre">file</span></code></a>.</p>
 <p>The program is available in a variety of languages:</p>
-<p><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cs"><code class="xref download docutils literal"><span class="pre">C#</span></code></a>,
-<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cpp"><code class="xref download docutils literal"><span class="pre">C++</span></code></a>,
-<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.java"><code class="xref download docutils literal"><span class="pre">Java</span></code></a>,
-<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.lua"><code class="xref download docutils literal"><span class="pre">Lua</span></code></a>,
-<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.py"><code class="xref download docutils literal"><span class="pre">Python</span></code></a></p>
+<p><a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cs" download=""><code class="xref download docutils literal"><span class="pre">C#</span></code></a>,
+<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.cpp" download=""><code class="xref download docutils literal"><span class="pre">C++</span></code></a>,
+<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.java" download=""><code class="xref download docutils literal"><span class="pre">Java</span></code></a>,
+<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.lua" download=""><code class="xref download docutils literal"><span class="pre">Lua</span></code></a>,
+<a class="reference download internal" href="../_downloads/LaunchIntoOrbit.py" download=""><code class="xref download docutils literal"><span class="pre">Python</span></code></a></p>
 <p>The following code connects to the server, gets the active vessel, sets up a
 bunch of streams to get flight telemetry then prepares the rocket for launch.</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-0 container">
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-1 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-2 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-3 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-4 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -278,7 +281,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-1 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -351,7 +354,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-2 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -454,7 +457,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-3 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -482,16 +485,16 @@ Python</div>
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
-<span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc.platform&#39;</span>
-<span class="kd">local</span> <span class="n">math</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">math&#39;</span>
-<span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">pl.List&#39;</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc.platform&#39;</span>
+<span class="kd">local</span> <span class="n">math</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;math&#39;</span>
+<span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;pl.List&#39;</span>
 
 <span class="kd">local</span> <span class="n">turn_start_altitude</span> <span class="o">=</span> <span class="mi">250</span>
 <span class="kd">local</span> <span class="n">turn_end_altitude</span> <span class="o">=</span> <span class="mi">45000</span>
 <span class="kd">local</span> <span class="n">target_altitude</span> <span class="o">=</span> <span class="mi">150000</span>
 
-<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Launch into orbit&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Launch into orbit&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
 
 <span class="n">flight</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">:</span><span class="n">flight</span><span class="p">()</span>
@@ -503,17 +506,17 @@ Python</div>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="c1">-- Countdown...</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">3...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3...&#39;</span><span class="p">)</span>
 <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">2...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2...&#39;</span><span class="p">)</span>
 <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">1...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1...&#39;</span><span class="p">)</span>
 <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Launch!&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Launch!&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-4 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -584,20 +587,20 @@ updates the auto-pilot heading to gradually pitch the rocket towards the
 horizon. It also monitors the amount of solid fuel remaining in the boosters,
 separating them when they run dry. The loop exits when the rockets apoapsis is
 close to the target apoapsis.</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-5 container">
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-6 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-7 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-8 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-9 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-5 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>41
 42
 43
@@ -676,7 +679,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-6 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>37
 38
 39
@@ -749,7 +752,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-7 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52
 53
 54
@@ -826,7 +829,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-8 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>30
 31
 32
@@ -869,37 +872,37 @@ Python</div>
 <span class="c1">-- Main ascent loop</span>
 <span class="kd">local</span> <span class="n">srbs_separated</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="kd">local</span> <span class="n">turn_angle</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
+<span class="kr">while</span> <span class="kc">true</span> <span class="kr">do</span>
 
     <span class="c1">-- Gravity turn</span>
-    <span class="k">if</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&gt;</span> <span class="n">turn_start_altitude</span> <span class="ow">and</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="n">turn_end_altitude</span> <span class="k">then</span>
+    <span class="kr">if</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&gt;</span> <span class="n">turn_start_altitude</span> <span class="ow">and</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="n">turn_end_altitude</span> <span class="kr">then</span>
         <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">-</span> <span class="n">turn_start_altitude</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">turn_end_altitude</span> <span class="o">-</span> <span class="n">turn_start_altitude</span><span class="p">)</span>
         <span class="n">new_turn_angle</span> <span class="o">=</span> <span class="n">frac</span> <span class="o">*</span> <span class="mi">90</span>
-        <span class="k">if</span> <span class="nb">math.abs</span><span class="p">(</span><span class="n">new_turn_angle</span> <span class="o">-</span> <span class="n">turn_angle</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">then</span>
+        <span class="kr">if</span> <span class="nb">math.abs</span><span class="p">(</span><span class="n">new_turn_angle</span> <span class="o">-</span> <span class="n">turn_angle</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="kr">then</span>
             <span class="n">turn_angle</span> <span class="o">=</span> <span class="n">new_turn_angle</span>
             <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">target_pitch_and_heading</span><span class="p">(</span><span class="mi">90</span><span class="o">-</span><span class="n">turn_angle</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
+        <span class="kr">end</span>
+    <span class="kr">end</span>
 
     <span class="c1">-- Separate SRBs when finished</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">srbs_separated</span> <span class="k">then</span>
-        <span class="k">if</span> <span class="n">stage_2_resources</span><span class="p">:</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SolidFuel&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="k">then</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">srbs_separated</span> <span class="kr">then</span>
+        <span class="kr">if</span> <span class="n">stage_2_resources</span><span class="p">:</span><span class="n">amount</span><span class="p">(</span><span class="s1">&#39;SolidFuel&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="kr">then</span>
             <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">:</span><span class="n">activate_next_stage</span><span class="p">()</span>
             <span class="n">srbs_separated</span> <span class="o">=</span> <span class="kc">true</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">SRBs separated&#39;</span><span class="p">)</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SRBs separated&#39;</span><span class="p">)</span>
+        <span class="kr">end</span>
+    <span class="kr">end</span>
 
     <span class="c1">-- Decrease throttle when approaching target apoapsis</span>
-    <span class="k">if</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis_altitude</span> <span class="o">&gt;</span> <span class="n">target_altitude</span><span class="o">*</span><span class="mf">0.9</span> <span class="k">then</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Approaching target apoapsis&#39;</span><span class="p">)</span>
-        <span class="k">break</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+    <span class="kr">if</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis_altitude</span> <span class="o">&gt;</span> <span class="n">target_altitude</span><span class="o">*</span><span class="mf">0.9</span> <span class="kr">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Approaching target apoapsis&#39;</span><span class="p">)</span>
+        <span class="kr">break</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-9 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>33
 34
 35
@@ -964,21 +967,21 @@ Python</div>
 </div>
 </div>
 <p>Next, the program fine tunes the apoapsis, using 10% thrust, then waits until
-the rocket has left Kerbin&#8217;s atmosphere.</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-10 container">
+the rocket has left Kerbin’s atmosphere.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-11 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-12 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-13 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-14 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-10 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>80
 81
 82
@@ -1003,7 +1006,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-11 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>73
 74
 75
@@ -1028,7 +1031,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-12 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 91
  92
  93
@@ -1051,7 +1054,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-13 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>66
 67
 68
@@ -1064,19 +1067,19 @@ Python</div>
 75
 76</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">-- Disable engines when target apoapsis is reached</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.25</span>
-<span class="k">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="n">target_altitude</span> <span class="k">do</span>
-<span class="k">end</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Target apoapsis reached&#39;</span><span class="p">)</span>
+<span class="kr">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis_altitude</span> <span class="o">&lt;</span> <span class="n">target_altitude</span> <span class="kr">do</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Target apoapsis reached&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="c1">-- Wait until out of atmosphere</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Coasting out of atmosphere&#39;</span><span class="p">)</span>
-<span class="k">while</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">70500</span> <span class="k">do</span>
-<span class="k">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coasting out of atmosphere&#39;</span><span class="p">)</span>
+<span class="kr">while</span> <span class="n">flight</span><span class="p">.</span><span class="n">mean_altitude</span> <span class="o">&lt;</span> <span class="mi">70500</span> <span class="kr">do</span>
+<span class="kr">end</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-14 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>64
 65
 66
@@ -1105,20 +1108,20 @@ Python</div>
 <p>It is now time to plan the circularization burn. First, we calculate the delta-v
 required to circularize the orbit using the <a class="reference external" href="https://en.wikipedia.org/wiki/Vis-viva_equation">vis-viva equation</a>. We then calculate the burn
 time needed to achieve this delta-v, using the <a class="reference external" href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky rocket equation</a>.</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-15 container">
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-16 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-17 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-18 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-19 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-15 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 92
  93
  94
@@ -1159,7 +1162,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-16 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 85
  86
  87
@@ -1200,7 +1203,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-17 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>103
 104
 105
@@ -1239,7 +1242,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-18 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>78
 79
 80
@@ -1258,7 +1261,7 @@ Python</div>
 93
 94
 95</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">---- Plan circularization burn (using vis-viva equation)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Planning circularization burn&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Planning circularization burn&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">gravitational_parameter</span>
 <span class="kd">local</span> <span class="n">r</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">apoapsis</span>
 <span class="kd">local</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">semi_major_axis</span>
@@ -1278,7 +1281,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-19 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>76
 77
 78
@@ -1321,22 +1324,22 @@ Python</div>
 </div>
 </div>
 <p>Next, we need to rotate the craft and wait until the circularization burn. We
-orientate the ship along the y-axis of the maneuver node&#8217;s reference frame
+orientate the ship along the y-axis of the maneuver node’s reference frame
 (i.e. in the direction of the burn) then time warp to 5 seconds before the burn.</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-20 container">
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-21 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-22 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-23 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-24 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-20 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>112
 113
 114
@@ -1361,7 +1364,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-21 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>105
 106
 107
@@ -1386,7 +1389,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-22 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>123
 124
 125
@@ -1413,7 +1416,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-23 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 97
  98
  99
@@ -1425,20 +1428,20 @@ Python</div>
 105
 106
 107</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">-- Orientate ship</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Orientating ship for circularization burn&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orientating ship for circularization burn&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">.</span><span class="n">reference_frame</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">reference_frame</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">.</span><span class="n">target_direction</span> <span class="o">=</span> <span class="n">List</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">auto_pilot</span><span class="p">:</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="c1">-- Wait until burn</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Waiting until circularization burn&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Waiting until circularization burn&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">burn_ut</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">ut</span> <span class="o">+</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">time_to_apoapsis</span> <span class="o">-</span> <span class="p">(</span><span class="n">burn_time</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">lead_time</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">warp_to</span><span class="p">(</span><span class="n">burn_ut</span> <span class="o">-</span> <span class="n">lead_time</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-24 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 96
  97
  98
@@ -1468,20 +1471,20 @@ Python</div>
 to 5% approximately a tenth of a second before the predicted end of the burn. It then
 monitors the remaining delta-v until it flips around to point retrograde (at
 which point the node has been executed).</p>
-<div class="sphinx-tabs container">
-<div class="ui top attached tabular menu sphinx-menu container">
-<div class="active item sphinx-data-tab-25 container">
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-c# docutils container">
 C#</div>
-<div class="item sphinx-data-tab-26 container">
+<div class="item sphinx-data-tab-c++ docutils container">
 C++</div>
-<div class="item sphinx-data-tab-27 container">
+<div class="item sphinx-data-tab-java docutils container">
 Java</div>
-<div class="item sphinx-data-tab-28 container">
+<div class="item sphinx-data-tab-lua docutils container">
 Lua</div>
-<div class="item sphinx-data-tab-29 container">
+<div class="item sphinx-data-tab-python docutils container">
 Python</div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-25 active container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c# active docutils container">
 <div class="highlight-csharp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>124
 125
 126
@@ -1526,7 +1529,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-26 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c++ docutils container">
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>115
 116
 117
@@ -1567,7 +1570,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-27 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-java docutils container">
 <div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>137
 138
 139
@@ -1616,7 +1619,7 @@ Python</div>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-28 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-lua docutils container">
 <div class="highlight-lua"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>109
 110
 111
@@ -1632,24 +1635,24 @@ Python</div>
 121
 122
 123</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">-- Execute burn</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Ready to execute burn&#39;</span><span class="p">)</span>
-<span class="k">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">time_to_apoapsis</span> <span class="o">-</span> <span class="p">(</span><span class="n">burn_time</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
-<span class="k">end</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Executing burn&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ready to execute burn&#39;</span><span class="p">)</span>
+<span class="kr">while</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">.</span><span class="n">time_to_apoapsis</span> <span class="o">-</span> <span class="p">(</span><span class="n">burn_time</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">do</span>
+<span class="kr">end</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Executing burn&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">burn_time</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Fine tuning&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fine tuning&#39;</span><span class="p">)</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="k">while</span> <span class="n">node</span><span class="p">:</span><span class="n">remaining_burn_vector</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
-<span class="k">end</span>
+<span class="kr">while</span> <span class="n">node</span><span class="p">:</span><span class="n">remaining_burn_vector</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">do</span>
+<span class="kr">end</span>
 <span class="n">vessel</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">node</span><span class="p">:</span><span class="n">remove</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Launch complete&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Launch complete&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-29 container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-python docutils container">
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>108
 109
 110
@@ -1740,9 +1743,9 @@ Python</div>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.js"></script>
 
   
 

@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
@@ -113,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../client.html">Lua Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="">SpaceCenter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SpaceCenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
@@ -166,7 +161,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -182,7 +177,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../../_sources/lua/api/space-center/space-center.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/lua/api/space-center/space-center.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -307,7 +302,7 @@ keyed by the name of the body.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>craft_directory</strong> (<em>string</em>) &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>craft_directory</strong> (<em>string</em>) – Name of the directory in the current saves “Ships” directory. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of string</td>
 </tr>
@@ -324,9 +319,9 @@ keyed by the name of the body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>craft_directory</strong> (<em>string</em>) &#8211; Name of the directory in the current saves &#8220;Ships&#8221; directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
-<li><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch. This is the name of the &#8221;.craft&#8221; file in the save directory, without the &#8221;.craft&#8221; file extension.</li>
-<li><strong>launch_site</strong> (<em>string</em>) &#8211; Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+<li><strong>craft_directory</strong> (<em>string</em>) – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+<li><strong>name</strong> (<em>string</em>) – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
+<li><strong>launch_site</strong> (<em>string</em>) – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -342,13 +337,13 @@ keyed by the name of the body.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to &#8220;VAB&#8221; and the launch site set to &#8220;LaunchPad&#8221;.</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to “VAB” and the launch site set to “LaunchPad”.</p>
 </div>
 </dd></dl>
 
@@ -360,13 +355,13 @@ keyed by the name of the body.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; Name of the vessel to launch.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to &#8220;SPH&#8221; and the launch site set to &#8220;Runway&#8221;.</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory set to “SPH” and the launch site set to “Runway”.</p>
 </div>
 </dd></dl>
 
@@ -379,7 +374,7 @@ This will create a save file called <code class="docutils literal"><span class="
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – </td>
 </tr>
 </tbody>
 </table>
@@ -394,7 +389,7 @@ This will create a load a save file called <code class="docutils literal"><span 
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – </td>
 </tr>
 </tbody>
 </table>
@@ -406,7 +401,7 @@ This will create a load a save file called <code class="docutils literal"><span 
 <dd><p>Save a quicksave.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is the same as calling <a class="reference internal" href="#SpaceCenter.save" title="SpaceCenter.save"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.save()</span></code></a> with the name &#8220;quicksave&#8221;.</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#SpaceCenter.save" title="SpaceCenter.save"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.save()</span></code></a> with the name “quicksave”.</p>
 </div>
 </dd></dl>
 
@@ -416,7 +411,7 @@ This will create a load a save file called <code class="docutils literal"><span 
 <dd><p>Load a quicksave.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is the same as calling <a class="reference internal" href="#SpaceCenter.load" title="SpaceCenter.load"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.load()</span></code></a> with the name &#8220;quicksave&#8221;.</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#SpaceCenter.load" title="SpaceCenter.load"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.load()</span></code></a> with the name “quicksave”.</p>
 </div>
 </dd></dl>
 
@@ -508,7 +503,7 @@ active.</p>
 <dt id="SpaceCenter.warp_factor">
 <code class="descname">warp_factor</code><a class="headerlink" href="#SpaceCenter.warp_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current warp factor. This is the index of the rate at which time
-is passing for either regular &#8220;on-rails&#8221; or physical time warp. Returns 0
+is passing for either regular “on-rails” or physical time warp. Returns 0
 if time warp is not active. When in on-rails time warp, this is equal to
 <a class="reference internal" href="#SpaceCenter.rails_warp_factor" title="SpaceCenter.rails_warp_factor"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.rails_warp_factor</span></code></a>, and in physics time warp, this is equal to
 <a class="reference internal" href="#SpaceCenter.physics_warp_factor" title="SpaceCenter.physics_warp_factor"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.physics_warp_factor</span></code></a>.</p>
@@ -527,7 +522,7 @@ if time warp is not active. When in on-rails time warp, this is equal to
 <dl class="attribute">
 <dt id="SpaceCenter.rails_warp_factor">
 <code class="descname">rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.rails_warp_factor" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time warp rate, using regular &#8220;on-rails&#8221; time warp. A value between
+<dd><p>The time warp rate, using regular “on-rails” time warp. A value between
 0 and 7 inclusive. 0 means no time warp. Returns 0 if physical time warp
 is active.</p>
 <p>If requested time warp factor cannot be set, it will be set to the next
@@ -549,7 +544,7 @@ planet. See <a class="reference external" href="http://wiki.kerbalspaceprogram.c
 <dt id="SpaceCenter.physics_warp_factor">
 <code class="descname">physics_warp_factor</code><a class="headerlink" href="#SpaceCenter.physics_warp_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The physical time warp rate. A value between 0 and 3 inclusive. 0 means
-no time warp. Returns 0 if regular &#8220;on-rails&#8221; time warp is active.</p>
+no time warp. Returns 0 if regular “on-rails” time warp is active.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -565,7 +560,7 @@ no time warp. Returns 0 if regular &#8220;on-rails&#8221; time warp is active.</
 <dl class="staticmethod">
 <dt id="SpaceCenter.can_rails_warp_at">
 <em class="property">static </em><code class="descname">can_rails_warp_at</code><span class="sig-paren">(</span><span class="optional">[</span><em>factor = 1</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.can_rails_warp_at" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns <code class="docutils literal"><span class="pre">True</span></code> if regular &#8220;on-rails&#8221; time warp can be used, at the specified warp
+<dd><p>Returns <code class="docutils literal"><span class="pre">True</span></code> if regular “on-rails” time warp can be used, at the specified warp
 <em>factor</em>. The maximum time warp rate is limited by various things,
 including how close the active vessel is to a planet. See
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
@@ -573,7 +568,7 @@ including how close the active vessel is to a planet. See
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>factor</strong> (<em>number</em>) &#8211; The warp factor to check.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>factor</strong> (<em>number</em>) – The warp factor to check.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
 </tr>
@@ -584,7 +579,7 @@ including how close the active vessel is to a planet. See
 <dl class="attribute">
 <dt id="SpaceCenter.maximum_rails_warp_factor">
 <code class="descname">maximum_rails_warp_factor</code><a class="headerlink" href="#SpaceCenter.maximum_rails_warp_factor" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current maximum regular &#8220;on-rails&#8221; warp factor that can be set.
+<dd><p>The current maximum regular “on-rails” warp factor that can be set.
 A value between 0 and 7 inclusive. See
 <a class="reference external" href="http://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -604,9 +599,9 @@ A value between 0 and 7 inclusive. See
 <em class="property">static </em><code class="descname">warp_to</code><span class="sig-paren">(</span><em>ut</em><span class="optional">[</span>, <em>max_rails_rate = 100000.0</em><span class="optional">]</span><span class="optional">[</span>, <em>max_physics_rate = 2.0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.warp_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses time acceleration to warp forward to a time in the future, specified
 by universal time <em>ut</em>. This call blocks until the desired
-time is reached. Uses regular &#8220;on-rails&#8221; or physical time warp as appropriate.
+time is reached. Uses regular “on-rails” or physical time warp as appropriate.
 For example, physical time warp is used when the active vessel is traveling
-through an atmosphere. When using regular &#8220;on-rails&#8221; time warp, the warp
+through an atmosphere. When using regular “on-rails” time warp, the warp
 rate is limited by <em>max_rails_rate</em>, and when using physical
 time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -614,9 +609,9 @@ time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>ut</strong> (<em>number</em>) &#8211; The universal time to warp to, in seconds.</li>
-<li><strong>max_rails_rate</strong> (<em>number</em>) &#8211; The maximum warp rate in regular &#8220;on-rails&#8221; time warp.</li>
-<li><strong>max_physics_rate</strong> (<em>number</em>) &#8211; The maximum warp rate in physical time warp.</li>
+<li><strong>ut</strong> (<em>number</em>) – The universal time to warp to, in seconds.</li>
+<li><strong>max_rails_rate</strong> (<em>number</em>) – The maximum warp rate in regular “on-rails” time warp.</li>
+<li><strong>max_physics_rate</strong> (<em>number</em>) – The maximum warp rate in physical time warp.</li>
 </ul>
 </td>
 </tr>
@@ -636,9 +631,9 @@ time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>position</strong> (<em>Tuple</em>) &#8211; Position vector in reference frame <em>from</em>.</li>
-<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame that the position vector is in.</li>
-<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame to covert the position vector to.</li>
+<li><strong>position</strong> (<em>Tuple</em>) – Position vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the position vector is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame to covert the position vector to.</li>
 </ul>
 </td>
 </tr>
@@ -661,9 +656,9 @@ time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>direction</strong> (<em>Tuple</em>) &#8211; Direction vector in reference frame <em>from</em>.</li>
-<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame that the direction vector is in.</li>
-<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame to covert the direction vector to.</li>
+<li><strong>direction</strong> (<em>Tuple</em>) – Direction vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the direction vector is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame to covert the direction vector to.</li>
 </ul>
 </td>
 </tr>
@@ -686,9 +681,9 @@ time warp, the warp rate is limited by <em>max_physics_rate</em>.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>rotation</strong> (<em>Tuple</em>) &#8211; Rotation in reference frame <em>from</em>.</li>
-<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame that the rotation is in.</li>
-<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The corresponding rotation in reference frame <em>to</em>.</li>
+<li><strong>rotation</strong> (<em>Tuple</em>) – Rotation in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the rotation is in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The corresponding rotation in reference frame <em>to</em>.</li>
 </ul>
 </td>
 </tr>
@@ -713,10 +708,10 @@ relative angular velocity of the reference frames into account.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>position</strong> (<em>Tuple</em>) &#8211; Position vector in reference frame <em>from</em>.</li>
-<li><strong>velocity</strong> (<em>Tuple</em>) &#8211; Velocity vector in reference frame <em>from</em>.</li>
-<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame that the position and velocity vectors are in.</li>
-<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) &#8211; The reference frame to covert the velocity vector to.</li>
+<li><strong>position</strong> (<em>Tuple</em>) – Position vector in reference frame <em>from</em>.</li>
+<li><strong>velocity</strong> (<em>Tuple</em>) – Velocity vector in reference frame <em>from</em>.</li>
+<li><strong>from</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the position and velocity vectors are in.</li>
+<li><strong>to</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame to covert the velocity vector to.</li>
 </ul>
 </td>
 </tr>
@@ -750,7 +745,7 @@ relative angular velocity of the reference frames into account.</p>
 <dt id="SpaceCenter.warp_mode">
 <code class="descname">warp_mode</code><a class="headerlink" href="#SpaceCenter.warp_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current time warp mode. Returns <a class="reference internal" href="#SpaceCenter.WarpMode.none" title="SpaceCenter.WarpMode.none"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.none</span></code></a> if time
-warp is not active, <a class="reference internal" href="#SpaceCenter.WarpMode.rails" title="SpaceCenter.WarpMode.rails"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.rails</span></code></a> if regular &#8220;on-rails&#8221; time warp
+warp is not active, <a class="reference internal" href="#SpaceCenter.WarpMode.rails" title="SpaceCenter.WarpMode.rails"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.rails</span></code></a> if regular “on-rails” time warp
 is active, or <a class="reference internal" href="#SpaceCenter.WarpMode.physics" title="SpaceCenter.WarpMode.physics"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.physics</span></code></a> if physical time warp is active.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -820,7 +815,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
 <dl class="data">
 <dt id="SpaceCenter.WarpMode.rails">
 <code class="descname">rails</code><a class="headerlink" href="#SpaceCenter.WarpMode.rails" title="Permalink to this definition">¶</a></dt>
-<dd><p>Time warp is active, and in regular &#8220;on-rails&#8221; mode.</p>
+<dd><p>Time warp is active, and in regular “on-rails” mode.</p>
 </dd></dl>
 
 <dl class="data">
@@ -889,9 +884,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../../../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

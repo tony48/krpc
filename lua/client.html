@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="Lua" href="../lua.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
@@ -110,7 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../lua.html">Lua</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Lua Client</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lua Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
@@ -156,7 +151,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -170,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/lua/client.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/lua/client.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -195,22 +190,22 @@ a single command:</p>
 </div>
 <div class="section" id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
-<p>Once it&#8217;s installed, simply <code class="docutils literal"><span class="pre">require</span> <span class="pre">'krpc'</span></code> and you are good to go!</p>
+<p>Once it’s installed, simply <code class="docutils literal"><span class="pre">require</span> <span class="pre">'krpc'</span></code> and you are good to go!</p>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
 <p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function. This returns a
 connection object through which you can interact with the server. For example to
 connect to a server running on the local machine:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
-<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Example&#39;</span><span class="p">)</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Example&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This function also accepts arguments that specify what address and port numbers
 to connect to. For example:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
-<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Remote example&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">my.domain.name&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Remote example&#39;</span><span class="p">,</span> <span class="s1">&#39;my.domain.name&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -237,7 +232,7 @@ procedure calls and passed to the server by the lua client.</p>
 <span id="reference"></span><h2>Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="krpc.connect">
-<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address=‘127.0.0.1’</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
 with.</p>
@@ -246,14 +241,14 @@ with.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<em>string</em>) &#8211; A descriptive name for the connection. This is passed to
+<li><strong>name</strong> (<em>string</em>) – A descriptive name for the connection. This is passed to
 the server and appears, for example, in the client
 connection dialog on the in-game server window.</li>
-<li><strong>address</strong> (<em>string</em>) &#8211; The address of the server to connect to. Can either be
+<li><strong>address</strong> (<em>string</em>) – The address of the server to connect to. Can either be
 a hostname or an IP address in dotted decimal
-notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
-<li><strong>rpc_port</strong> (<em>number</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
-<li><strong>stream_port</strong> (<em>number</em>) &#8211; The port number of the Stream Server. Defaults
+notation. Defaults to ‘127.0.0.1’.</li>
+<li><strong>rpc_port</strong> (<em>number</em>) – The port number of the RPC Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>number</em>) – The port number of the Stream Server. Defaults
 to 50001.</li>
 </ul>
 </td>
@@ -303,21 +298,21 @@ application code. The only exception that may be useful is:</p>
 <dt id="krpc.KRPC.get_status">
 <code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.KRPC.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets a status message from the server containing information including
-the server&#8217;s version string and performance statistics.</p>
+the server’s version string and performance statistics.</p>
 <p>For example, the following prints out the version string for the
 server:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Server version = &#39;</span> <span class="o">..</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Server version = &#39;</span> <span class="o">..</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or to get the rate at which the server is sending and receiving data
 over the network:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="kd">local</span> <span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Data in = %.2f KB/s&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Data out = %.2f KB/s&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">bytes_written_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;Data in = %.2f KB/s&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;Data out = %.2f KB/s&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">bytes_written_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -377,9 +372,7 @@ over the network:</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

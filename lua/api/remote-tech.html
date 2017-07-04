@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../../index.html"/>
         <link rel="up" title="Lua" href="../../lua.html"/>
         <link rel="next" title="RemoteTech" href="remote-tech/remote-tech.html"/>
@@ -116,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="drawing.html">Drawing API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="infernal-robotics.html">InfernalRobotics API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">RemoteTech API</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RemoteTech API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="remote-tech/remote-tech.html">RemoteTech</a></li>
 <li class="toctree-l3"><a class="reference internal" href="remote-tech/comms.html">Comms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="remote-tech/antenna.html">Antenna</a></li>
@@ -154,7 +149,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -168,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/lua/api/remote-tech.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/lua/api/remote-tech.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -192,19 +187,19 @@
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>The following example sets the target of a dish on the active vessel then prints
 out the signal delay to the active vessel.</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
-<span class="kd">local</span> <span class="n">math</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">math&#39;</span>
-<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">RemoteTech Example&#39;</span><span class="p">)</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<span class="kd">local</span> <span class="n">math</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;math&#39;</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;RemoteTech Example&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
 
 <span class="c1">-- Set a dish target</span>
-<span class="kd">local</span> <span class="n">part</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">:</span><span class="n">with_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Reflectron KR-7&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="kd">local</span> <span class="n">part</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">parts</span><span class="p">:</span><span class="n">with_title</span><span class="p">(</span><span class="s1">&#39;Reflectron KR-7&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="kd">local</span> <span class="n">antenna</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">remote_tech</span><span class="p">:</span><span class="n">antenna</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
-<span class="n">antenna</span><span class="p">.</span><span class="n">target_body</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">bodies</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Jool&#39;</span><span class="p">]</span>
+<span class="n">antenna</span><span class="p">.</span><span class="n">target_body</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">bodies</span><span class="p">[</span><span class="s1">&#39;Jool&#39;</span><span class="p">]</span>
 
 <span class="c1">-- Get info about the vessels communications</span>
 <span class="kd">local</span> <span class="n">comms</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">remote_tech</span><span class="p">:</span><span class="n">comms</span><span class="p">(</span><span class="n">vessel</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Signal delay = &#39;</span> <span class="o">..</span> <span class="n">comms</span><span class="p">.</span><span class="n">signal_delay</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Signal delay = &#39;</span> <span class="o">..</span> <span class="n">comms</span><span class="p">.</span><span class="n">signal_delay</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -260,9 +255,7 @@ out the signal delay to the active vessel.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

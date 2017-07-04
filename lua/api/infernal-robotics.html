@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../../index.html"/>
         <link rel="up" title="Lua" href="../../lua.html"/>
         <link rel="next" title="InfernalRobotics" href="infernal-robotics/infernal-robotics.html"/>
@@ -114,7 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="krpc.html">KRPC API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="space-center.html">SpaceCenter API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="drawing.html">Drawing API</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">InfernalRobotics API</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">InfernalRobotics API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="infernal-robotics/infernal-robotics.html">InfernalRobotics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infernal-robotics/servo-group.html">ServoGroup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infernal-robotics/servo.html">Servo</a></li>
@@ -154,7 +149,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -168,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/lua/api/infernal-robotics.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/lua/api/infernal-robotics.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,23 +186,23 @@ following classes:</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>The following example gets the control group named &#8220;MyGroup&#8221;, prints out the
+<p>The following example gets the control group named “MyGroup”, prints out the
 names and positions of all of the servos in the group, then moves all of the
 servos to the right for 1 second.</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;</span><span class="s">krpc&#39;</span>
+<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 
-<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">InfernalRobotics Example&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;InfernalRobotics Example&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
 
-<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">infernal_robotics</span><span class="p">.</span><span class="n">servo_group_with_name</span><span class="p">(</span><span class="n">vessel</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">MyGroup&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">group</span> <span class="o">==</span> <span class="n">krpc</span><span class="p">.</span><span class="n">types</span><span class="p">.</span><span class="n">none</span> <span class="k">then</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Group not found&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">infernal_robotics</span><span class="p">.</span><span class="n">servo_group_with_name</span><span class="p">(</span><span class="n">vessel</span><span class="p">,</span> <span class="s1">&#39;MyGroup&#39;</span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">group</span> <span class="o">==</span> <span class="n">krpc</span><span class="p">.</span><span class="n">types</span><span class="p">.</span><span class="n">none</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Group not found&#39;</span><span class="p">)</span>
   <span class="nb">os.exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="kr">end</span>
 
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">servo</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="n">servos</span><span class="p">)</span> <span class="k">do</span>
+<span class="kr">for</span> <span class="n">_</span><span class="p">,</span><span class="n">servo</span> <span class="kr">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="n">servos</span><span class="p">)</span> <span class="kr">do</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">servo</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">servo</span><span class="p">.</span><span class="n">position</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="kr">end</span>
 
 <span class="n">group</span><span class="p">:</span><span class="n">move_right</span><span class="p">()</span>
 <span class="n">krpc</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -267,9 +262,7 @@ servos to the right for 1 second.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -30,16 +30,11 @@
   
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/segment.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.css" type="text/css" />
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/menu.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
-  
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
         <link rel="up" title="Python" href="../python.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
@@ -111,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../python.html">Python</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Python Client</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
@@ -156,7 +151,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -170,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/python/client.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/client.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -200,7 +195,7 @@ single command. It supports Python 2.7+ and 3.x</p>
 </div>
 <div class="section" id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
-<p>Once it&#8217;s installed, simply <code class="docutils literal"><span class="pre">import</span> <span class="pre">krpc</span></code> and you are good to go! You can
+<p>Once it’s installed, simply <code class="docutils literal"><span class="pre">import</span> <span class="pre">krpc</span></code> and you are good to go! You can
 check what version you have installed by running the following script:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="k">print</span><span class="p">(</span><span class="n">krpc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
@@ -294,7 +289,7 @@ attribute (in this case <code class="docutils literal"><span class="pre">vessel.
 <span id="client-api-reference"></span><h2>Client API Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="krpc.connect">
-<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="optional">[</span>, <em>name=None</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>address=‘127.0.0.1’</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="optional">[</span>, <em>name=None</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#krpc.client.Client" title="krpc.client.Client"><code class="xref py py-class docutils literal"><span class="pre">krpc.client.Client</span></code></a> object, through which the server can be
 communicated with.</p>
@@ -303,13 +298,13 @@ communicated with.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>address</strong> (<em>str</em>) &#8211; The address of the server to connect to. Can either be a
+<li><strong>address</strong> (<em>str</em>) – The address of the server to connect to. Can either be a
 hostname or an IP address in dotted decimal
-notation. Defaults to &#8216;127.0.0.1&#8217;.</li>
-<li><strong>rpc_port</strong> (<em>int</em>) &#8211; The port number of the RPC Server. Defaults to 50000.</li>
-<li><strong>stream_port</strong> (<em>int</em>) &#8211; The port number of the Stream Server. Defaults
+notation. Defaults to ‘127.0.0.1’.</li>
+<li><strong>rpc_port</strong> (<em>int</em>) – The port number of the RPC Server. Defaults to 50000.</li>
+<li><strong>stream_port</strong> (<em>int</em>) – The port number of the Stream Server. Defaults
 to 50001.</li>
-<li><strong>name</strong> (<em>str</em>) &#8211; A descriptive name for the connection. This is passed to the
+<li><strong>name</strong> (<em>str</em>) – A descriptive name for the connection. This is passed to the
 server and appears, for example, in the client connection
 dialog on the in-game server window.</li>
 </ul>
@@ -394,7 +389,7 @@ only exception that may be useful is:</p>
 <dt id="krpc.client.KRPC.get_status">
 <code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.KRPC.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets a status message from the server containing information including
-the server&#8217;s version string and performance statistics.</p>
+the server’s version string and performance statistics.</p>
 <p>For example, the following prints out the version string for the
 server:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
@@ -485,9 +480,7 @@ over the network:</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/tab.js"></script>
-      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
