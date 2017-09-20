@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.9 documentation</title>
+  <title>Control &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -590,6 +590,27 @@ See <a class="reference internal" href="parts.html#SpaceCenter.SolarPanel.deploy
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.Control.input_mode">
+<code class="descname">input_mode</code><a class="headerlink" href="#SpaceCenter.Control.input_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the behavior of the pitch, yaw, roll and translation control inputs.
+When set to additive, these inputs are added to the vessels current inputs.
+This mode is the default.
+When set to override, these inputs (if non-zero) override the vessels inputs.
+This mode prevents keyboard control, or SAS, from interfering with the controls when
+they are set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Can be read or written</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.ControlInputMode" title="SpaceCenter.ControlInputMode"><code class="xref py py-class docutils literal"><span class="pre">ControlInputMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.Control.pitch">
 <code class="descname">pitch</code><a class="headerlink" href="#SpaceCenter.Control.pitch" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the pitch control.
@@ -1014,6 +1035,24 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
 
 </dd></dl>
 
+<dl class="class">
+<dt id="SpaceCenter.ControlInputMode">
+<em class="property">class </em><code class="descname">ControlInputMode</code><a class="headerlink" href="#SpaceCenter.ControlInputMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#SpaceCenter.Control.input_mode" title="SpaceCenter.Control.input_mode"><code class="xref py py-attr docutils literal"><span class="pre">Control.input_mode</span></code></a>.</p>
+<dl class="data">
+<dt id="SpaceCenter.ControlInputMode.additive">
+<code class="descname">additive</code><a class="headerlink" href="#SpaceCenter.ControlInputMode.additive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs are added to the vessels current control inputs.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.ControlInputMode.override">
+<code class="descname">override</code><a class="headerlink" href="#SpaceCenter.ControlInputMode.override" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs (when they are non-zero) override the vessels current control inputs.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -1057,7 +1096,7 @@ See <a class="reference internal" href="#SpaceCenter.Control.speed_mode" title="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

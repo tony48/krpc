@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AutoPilot &mdash; kRPC 0.3.9 documentation</title>
+  <title>AutoPilot &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Camera" href="camera.html"/>
         <link rel="prev" title="ReferenceFrame" href="reference-frame.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -197,7 +197,8 @@ Created by calling <a class="reference internal" href="vessel.html#_CPPv2N4krpc8
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If a client engages the auto-pilot and then closes its connection to the server,
-the auto-pilot will be disengaged and its target reference frame, direction and roll reset to default.</p>
+the auto-pilot will be disengaged and its target reference frame, direction and roll
+reset to default.</p>
 </div>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot6engageEv">
@@ -214,7 +215,8 @@ the auto-pilot will be disengaged and its target reference frame, direction and 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot4waitEv">
 <span id="krpc::services::SpaceCenter::AutoPilot::wait"></span>void <code class="descclassname"></code><code class="descname">wait</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot4waitEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Blocks until the vessel is pointing in the target direction and has the target roll (if set).</p>
+<dd><p>Blocks until the vessel is pointing in the target direction and has
+the target roll (if set).</p>
 </dd></dl>
 
 <dl class="function">
@@ -257,8 +259,9 @@ Returns zero if the auto-pilot has not been engaged or no target roll is set.</p
 <dd><p>The reference frame for the target direction (<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot16target_directionEv" title="krpc::services::SpaceCenter::AutoPilot::target_direction"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::target_direction()</span></code></a>).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">An error will be thrown if this property is set to a reference frame that rotates with the vessel being controlled,
-as it is impossible to rotate the vessel in such a reference frame.</p>
+<p class="last">An error will be thrown if this property is set to a reference frame that rotates with
+the vessel being controlled, as it is impossible to rotate the vessel in such a
+reference frame.</p>
 </div>
 </dd></dl>
 
@@ -303,7 +306,8 @@ as it is impossible to rotate the vessel in such a reference frame.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot20set_target_directionENSt5tupleIdddEE">
 <span id="krpc::services::SpaceCenter::AutoPilot::set_target_direction__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_target_direction</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot20set_target_directionENSt5tupleIdddEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Direction vector corresponding to the target pitch and heading.</p>
+<dd><p>Direction vector corresponding to the target pitch and heading.
+This is in the reference frame specified by <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame"><code class="xref cpp cpp-class docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
@@ -348,7 +352,8 @@ as it is impossible to rotate the vessel in such a reference frame.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot12set_sas_modeE7SASMode">
 <span id="krpc::services::SpaceCenter::AutoPilot::set_sas_mode__SASMode"></span>void <code class="descclassname"></code><code class="descname">set_sas_mode</code><span class="sig-paren">(</span><a class="reference internal" href="control.html#_CPPv2N4krpc8services11SpaceCenter7SASModeE" title="krpc::services::SpaceCenter::SASMode">SASMode</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot12set_sas_modeE7SASMode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The current <a class="reference internal" href="control.html#_CPPv2N4krpc8services11SpaceCenter7SASModeE" title="krpc::services::SpaceCenter::SASMode"><code class="xref cpp cpp-enum docutils literal"><span class="pre">SASMode</span></code></a>.
-These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.</p>
+These modes are equivalent to the mode buttons to the left of the navball that appear
+when SAS is enabled.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Equivalent to <a class="reference internal" href="control.html#_CPPv2N4krpc8services11SpaceCenter7Control8sas_modeEv" title="krpc::services::SpaceCenter::Control::sas_mode"><code class="xref cpp cpp-func docutils literal"><span class="pre">Control::sas_mode()</span></code></a></p>
@@ -377,8 +382,8 @@ Defaults to 5 degrees.</p>
 <span id="krpc::services::SpaceCenter::AutoPilot::set_stopping_time__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_stopping_time</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot17set_stopping_timeENSt5tupleIdddEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The maximum amount of time that the vessel should need to come to a complete stop.
 This determines the maximum angular velocity of the vessel.
-A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
-Defaults to 0.5 seconds for each axis.</p>
+A vector of three stopping times, in seconds, one for each of the pitch, roll
+and yaw axes. Defaults to 0.5 seconds for each axis.</p>
 </dd></dl>
 
 <dl class="function">
@@ -403,7 +408,8 @@ Defaults to 5 seconds for each axis.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot21set_attenuation_angleENSt5tupleIdddEE">
 <span id="krpc::services::SpaceCenter::AutoPilot::set_attenuation_angle__std::tuple:double.double.double:"></span>void <code class="descclassname"></code><code class="descname">set_attenuation_angle</code><span class="sig-paren">(</span>std::tuple&lt;double, double, double&gt; <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot21set_attenuation_angleENSt5tupleIdddEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The angle at which the autopilot considers the vessel to be pointing close to the target.
+<dd><p>The angle at which the autopilot considers the vessel to be pointing
+close to the target.
 This determines the midpoint of the target velocity attenuation function.
 A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
 Defaults to 1° for each axis.</p>
@@ -417,8 +423,8 @@ Defaults to 1° for each axis.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter9AutoPilot13set_auto_tuneEb">
 <span id="krpc::services::SpaceCenter::AutoPilot::set_auto_tune__b"></span>void <code class="descclassname"></code><code class="descname">set_auto_tune</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot13set_auto_tuneEb" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Whether the rotation rate controllers PID parameters should be automatically tuned using the
-vessels moment of inertia and available torque. Defaults to <code class="docutils literal"><span class="pre">true</span></code>.
+<dd><p>Whether the rotation rate controllers PID parameters should be automatically tuned
+using the vessels moment of inertia and available torque. Defaults to <code class="docutils literal"><span class="pre">true</span></code>.
 See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot12time_to_peakEv" title="krpc::services::SpaceCenter::AutoPilot::time_to_peak"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::time_to_peak()</span></code></a> and <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9overshootEv" title="krpc::services::SpaceCenter::AutoPilot::overshoot"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::overshoot()</span></code></a>.</p>
 </dd></dl>
 
@@ -459,7 +465,8 @@ Defaults to 0.01 for each axis.</p>
 <dd><p>Gains for the pitch PID controller.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically,
+which will overwrite any manual changes.</p>
 </div>
 </dd></dl>
 
@@ -474,7 +481,8 @@ Defaults to 0.01 for each axis.</p>
 <dd><p>Gains for the roll PID controller.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically,
+which will overwrite any manual changes.</p>
 </div>
 </dd></dl>
 
@@ -489,7 +497,8 @@ Defaults to 0.01 for each axis.</p>
 <dd><p>Gains for the yaw PID controller.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically, which will overwrite any manual changes.</p>
+<p class="last">When <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter9AutoPilot9auto_tuneEv" title="krpc::services::SpaceCenter::AutoPilot::auto_tune"><code class="xref cpp cpp-func docutils literal"><span class="pre">AutoPilot::auto_tune()</span></code></a> is true, these values are updated automatically,
+which will overwrite any manual changes.</p>
 </div>
 </dd></dl>
 
@@ -538,7 +547,7 @@ Defaults to 0.01 for each axis.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

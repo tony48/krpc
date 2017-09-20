@@ -117,8 +117,9 @@ Parts
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters, jet engines and
+         RCS thrusters.
 
    .. property:: System.Collections.Generic.IList<Experiment> Experiments { get; }
 
@@ -203,13 +204,16 @@ Part
 
    .. property:: string Tag { get; set; }
 
-      The name tag for the part. Can be set to a custom string using the in-game user interface.
+      The name tag for the part. Can be set to a custom string using the
+      in-game user interface.
 
 
       .. note::
 
-         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
-         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
+         This requires either the
+         `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_
+         mod to be installed.
 
    .. property:: bool Highlighted { get; set; }
 
@@ -217,7 +221,7 @@ Part
 
    .. property:: System.Tuple<double,double,double> HighlightColor { get; set; }
 
-      The color used to highlight the part.
+      The color used to highlight the part, as an RGB triple.
 
    .. property:: double Cost { get; }
 
@@ -230,7 +234,8 @@ Part
    .. property:: Part Parent { get; }
 
       The parts parent. Returns ``null`` if the part does not have a parent.
-      This, in combination with :prop:`Part.Children`, can be used to traverse the vessels parts tree.
+      This, in combination with :prop:`Part.Children`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-trees-of-parts`.
@@ -238,7 +243,8 @@ Part
    .. property:: System.Collections.Generic.IList<Part> Children { get; }
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :prop:`Part.Parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :prop:`Part.Parent`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-trees-of-parts`.
@@ -261,21 +267,24 @@ Part
 
    .. property:: int Stage { get; }
 
-      The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
+      The stage in which this part will be activated. Returns -1 if the part is not
+      activated by staging.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. property:: int DecoupleStage { get; }
 
-      The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
+      The stage in which this part will be decoupled. Returns -1 if the part is never
+      decoupled from the vessel.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-staging`.
 
    .. property:: bool Massless { get; }
 
-      Whether the part is `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
+      Whether the part is
+      `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
 
    .. property:: double Mass { get; }
 
@@ -284,7 +293,8 @@ Part
 
    .. property:: double DryMass { get; }
 
-      The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+      The mass of the part, not including any resources it contains, in kilograms.
+      Returns zero if the part is massless.
 
    .. property:: bool Shielded { get; }
 
@@ -316,40 +326,47 @@ Part
 
    .. property:: float ThermalMass { get; }
 
-      A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the internal temperature of the part,
+      in Joules per Kelvin.
 
    .. property:: float ThermalSkinMass { get; }
 
-      A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the skin temperature of the part,
+      in Joules per Kelvin.
 
    .. property:: float ThermalResourceMass { get; }
 
-      A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the temperature of the resources
+      contained in the part, in Joules per Kelvin.
 
    .. property:: float ThermalConductionFlux { get; }
 
-      The rate at which heat energy is conducting into or out of the part via contact with other parts.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is conducting into or out of the part via contact with
+      other parts. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. property:: float ThermalConvectionFlux { get; }
 
-      The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is convecting into or out of the part from the
+      surrounding atmosphere. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. property:: float ThermalRadiationFlux { get; }
 
-      The rate at which heat energy is radiating into or out of the part from the surrounding environment.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is radiating into or out of the part from the surrounding
+      environment. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. property:: float ThermalInternalFlux { get; }
 
       The rate at which heat energy is begin generated by the part.
       For example, some engines generate heat by combusting fuel.
       Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      A positive value means the part is gaining heat energy, and negative means it is losing
+      heat energy.
 
    .. property:: float ThermalSkinToInternalFlux { get; }
 
@@ -372,14 +389,16 @@ Part
 
    .. property:: System.Collections.Generic.IList<Part> FuelLinesFrom { get; }
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is into this part.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-fuel-lines`.
 
    .. property:: System.Collections.Generic.IList<Part> FuelLinesTo { get; }
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is out of this part.
 
 
       .. note:: See the discussion on :rst:ref:`csharp-api-parts-fuel-lines`.
@@ -398,7 +417,8 @@ Part
 
    .. property:: ControlSurface ControlSurface { get; }
 
-      A :type:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``null``.
+      A :type:`ControlSurface` if the part is an aerodynamic control surface,
+      otherwise ``null``.
 
    .. property:: Decoupler Decoupler { get; }
 
@@ -427,8 +447,8 @@ Part
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters and jet engines.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :type:`RCS`.
 
    .. property:: Leg Leg { get; }
@@ -461,11 +481,13 @@ Part
 
    .. property:: ResourceConverter ResourceConverter { get; }
 
-      A :type:`ResourceConverter` if the part is a resource converter, otherwise ``null``.
+      A :type:`ResourceConverter` if the part is a resource converter,
+      otherwise ``null``.
 
    .. property:: ResourceHarvester ResourceHarvester { get; }
 
-      A :type:`ResourceHarvester` if the part is a resource harvester, otherwise ``null``.
+      A :type:`ResourceHarvester` if the part is a resource harvester,
+      otherwise ``null``.
 
    .. property:: Sensor Sensor { get; }
 
@@ -485,8 +507,9 @@ Part
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
 
-
+      :returns: The position as a vector.
 
       .. note::
 
@@ -501,39 +524,55 @@ Part
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. method:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> BoundingBox(ReferenceFrame referenceFrame)
 
-      The axis-aligned bounding box of the vessel in the given reference frame.
-      Returns the minimum and maximum vertices of the box.
+      The axis-aligned bounding box of the part in the given reference frame.
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vectors are in.
 
-
+      :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
 
       .. note::
 
-         This is computed from the collision meshes of the part.
+         This is computed from the collision mesh of the part.
          If the part is not collidable, the box has zero volume and is centered on
          the :meth:`Part.Position` of the part.
 
    .. method:: System.Tuple<double,double,double> Direction(ReferenceFrame referenceFrame)
 
-      The direction of the part in the given reference frame.
+      The direction the part points in, in the given reference frame.
 
       :parameters:
+
+       * **referenceFrame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
 
    .. method:: System.Tuple<double,double,double> Velocity(ReferenceFrame referenceFrame)
 
-      The velocity of the part in the given reference frame.
+      The linear velocity of the part in the given reference frame.
 
       :parameters:
+
+       * **referenceFrame** -- The reference frame that the returned velocity vector is in.
+
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
 
    .. method:: System.Tuple<double,double,double,double> Rotation(ReferenceFrame referenceFrame)
 
-      The rotation of the part in the given reference frame.
+      The rotation of the part, in the given reference frame.
 
       :parameters:
+
+       * **referenceFrame** -- The reference frame that the returned rotation is in.
+
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. property:: System.Tuple<double,double,double> MomentOfInertia { get; }
 
@@ -542,22 +581,26 @@ Part
 
    .. property:: System.Collections.Generic.IList<double> InertiaTensor { get; }
 
-      The inertia tensor of the part in the parts reference frame (:type:`ReferenceFrame`).
+      The inertia tensor of the part in the parts reference frame
+      (:type:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
    .. property:: ReferenceFrame ReferenceFrame { get; }
 
-      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
+      The reference frame that is fixed relative to this part, and centered on a fixed
+      position within the part, defined by the parts model.
 
-      * The origin is at the position of the part, as returned by :meth:`Part.Position`.
+      * The origin is at the position of the part, as returned by
+        :meth:`Part.Position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :prop:`DockingPort.ReferenceFrame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :prop:`DockingPort.ReferenceFrame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -566,24 +609,32 @@ Part
 
    .. property:: ReferenceFrame CenterOfMassReferenceFrame { get; }
 
-      The reference frame that is fixed relative to this part, and centered on its center of mass.
+      The reference frame that is fixed relative to this part, and centered on its
+      center of mass.
 
-      * The origin is at the center of mass of the part, as returned by :meth:`Part.CenterOfMass`.
+      * The origin is at the center of mass of the part, as returned by
+        :meth:`Part.CenterOfMass`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :prop:`DockingPort.ReferenceFrame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :prop:`DockingPort.ReferenceFrame`.
 
    .. method:: Force AddForce(System.Tuple<double,double,double> force, System.Tuple<double,double,double> position, ReferenceFrame referenceFrame)
 
       Exert a constant force on the part, acting at the given position.
-      Returns an object that can be used to remove or modify the force.
 
       :parameters:
+
+       * **force** -- A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+       * **position** -- The position at which the force acts, as a vector.
+       * **referenceFrame** -- The reference frame that the force and position are in.
+
+      :returns: An object that can be used to remove or modify the force.
 
    .. method:: void InstantaneousForce(System.Tuple<double,double,double> force, System.Tuple<double,double,double> position, ReferenceFrame referenceFrame)
 
@@ -591,9 +642,9 @@ Part
 
       :parameters:
 
-
-
-
+       * **force** -- A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+       * **position** -- The position at which the force acts, as a vector.
+       * **referenceFrame** -- The reference frame that the force and position are in.
 
 
       .. note::
@@ -612,11 +663,15 @@ Part
 
    .. property:: System.Tuple<double,double,double> ForceVector { get; set; }
 
-      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+      The force vector, in Newtons.
+
+      :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
 
    .. property:: System.Tuple<double,double,double> Position { get; set; }
 
-      The position at which the force acts.
+      The position at which the force acts, in reference frame :type:`ReferenceFrame`.
+
+      :returns: The position as a vector.
 
    .. property:: ReferenceFrame ReferenceFrame { get; set; }
 
@@ -634,8 +689,8 @@ Module
 
 .. class:: Module
 
-   This can be used to interact with a specific part module. This includes part modules in stock KSP,
-   and those added by mods.
+   This can be used to interact with a specific part module. This includes part modules in
+   stock KSP, and those added by mods.
 
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
@@ -720,14 +775,15 @@ Module
 
    .. method:: void TriggerEvent(string name)
 
-      Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
+      Trigger the named event. Equivalent to clicking the button in the right-click menu
+      of the part.
 
       :parameters:
 
    .. property:: System.Collections.Generic.IList<string> Actions { get; }
 
-      A list of all the names of the modules actions. These are the parts actions that can be assigned
-      to action groups in the in-game editor.
+      A list of all the names of the modules actions. These are the parts actions that can
+      be assigned to action groups in the in-game editor.
 
    .. method:: bool HasAction(string name)
 
@@ -803,7 +859,8 @@ Antenna
 
    .. property:: bool Combinable { get; }
 
-      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+      Whether the antenna can be combined with other antennae on the vessel
+      to boost the power.
 
    .. property:: double CombinableExponent { get; }
 
@@ -928,7 +985,8 @@ Control Surface
 
    .. property:: float AuthorityLimiter { get; set; }
 
-      The authority limiter for the control surface, which controls how far the control surface will move.
+      The authority limiter for the control surface, which controls how far the
+      control surface will move.
 
    .. property:: bool Inverted { get; set; }
 
@@ -944,9 +1002,9 @@ Control Surface
 
    .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableTorque { get; }
 
-      The available torque in the positive pitch, roll and yaw axes and
-      negative pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
+      The available torque, in Newton meters, that can be produced by this control surface,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
 
 
 
@@ -1044,9 +1102,13 @@ Docking Port
 
    .. method:: System.Tuple<double,double,double> Position(ReferenceFrame referenceFrame)
 
-      The position of the docking port in the given reference frame.
+      The position of the docking port, in the given reference frame.
 
       :parameters:
+
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
 
    .. method:: System.Tuple<double,double,double> Direction(ReferenceFrame referenceFrame)
 
@@ -1054,11 +1116,19 @@ Docking Port
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
    .. method:: System.Tuple<double,double,double,double> Rotation(ReferenceFrame referenceFrame)
 
       The rotation of the docking port, in the given reference frame.
 
       :parameters:
+
+       * **referenceFrame** -- The reference frame that the returned rotation is in.
+
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. property:: ReferenceFrame ReferenceFrame { get; }
 
@@ -1161,7 +1231,8 @@ Engine
       The amount of thrust, in Newtons, that would be produced by the engine
       when activated and with its throttle set to 100%.
       Returns zero if the engine does not have any fuel.
-      Takes the engine's current :prop:`Engine.ThrustLimit` and atmospheric conditions into account.
+      Takes the engine's current :prop:`Engine.ThrustLimit` and atmospheric conditions
+      into account.
 
    .. property:: float MaxThrust { get; }
 
@@ -1218,8 +1289,8 @@ Engine
 
       .. note::
 
-         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
-         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every
+         0.6 units of LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
 
    .. property:: System.Collections.Generic.IList<Propellant> Propellants { get; }
 
@@ -1300,8 +1371,9 @@ Engine
 
    .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableTorque { get; }
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
+      The available torque, in Newton meters, that can be produced by this engine,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
       Returns zero if the engine is inactive, or not gimballed.
 
 
@@ -1324,15 +1396,18 @@ Engine
 
    .. property:: double TotalResourceAvailable { get; }
 
-      The total amount of the underlying resource currently reachable given resource flow rules.
+      The total amount of the underlying resource currently reachable given
+      resource flow rules.
 
    .. property:: double TotalResourceCapacity { get; }
 
-      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+      The total vehicle capacity for the underlying propellant resource,
+      restricted by resource flow rules.
 
    .. property:: bool IgnoreForIsp { get; }
 
-      If this propellant should be ignored when calculating required mass flow given specific impulse.
+      If this propellant should be ignored when calculating required mass flow
+      given specific impulse.
 
    .. property:: bool IgnoreForThrustCurve { get; }
 
@@ -1410,8 +1485,8 @@ Experiment
 
    .. property:: ScienceSubject ScienceSubject { get; }
 
-      Containing information on the corresponding specific science result for the current conditions.
-      Returns null if experiment is unavailable.
+      Containing information on the corresponding specific science result for the current
+      conditions. Returns ``null`` if the experiment is unavailable.
 
 
 
@@ -1447,7 +1522,8 @@ Experiment
 
    .. property:: float Science { get; }
 
-      Amount of science already earned from this subject, not updated until after transmission/recovery.
+      Amount of science already earned from this subject, not updated until after
+      transmission/recovery.
 
    .. property:: float ScienceCap { get; }
 
@@ -1463,7 +1539,8 @@ Experiment
 
    .. property:: float ScientificValue { get; }
 
-      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
+      Diminishing value multiplier for decreasing the science value returned from repeated
+      experiments.
 
 
 
@@ -1658,7 +1735,8 @@ Parachute
 
    .. property:: bool Armed { get; }
 
-      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+      Whether the parachute has been armed or deployed. Only applicable to
+      RealChutes parachutes.
 
    .. property:: ParachuteState State { get; }
 
@@ -1992,14 +2070,15 @@ Reaction Wheel
 
    .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableTorque { get; }
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
+      The available torque, in Newton meters, that can be produced by this reaction wheel,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
       Returns zero if the reaction wheel is inactive or broken.
 
    .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> MaxTorque { get; }
 
-      The maximum torque the reaction wheel can provide, is it active,
-      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The maximum torque, in Newton meters, that can be produced by this reaction wheel,
+      when it is active, in the positive and negative pitch, roll and yaw axes of the vessel.
       These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
 
 
@@ -2019,9 +2098,9 @@ RCS
    .. property:: bool Active { get; }
 
       Whether the RCS thrusters are active.
-      An RCS thruster is inactive if the RCS action group is disabled (:prop:`Control.RCS`),
-      the RCS thruster itself is not enabled (:prop:`RCS.Enabled`) or
-      it is covered by a fairing (:prop:`Part.Shielded`).
+      An RCS thruster is inactive if the RCS action group is disabled
+      (:prop:`Control.RCS`), the RCS thruster itself is not enabled
+      (:prop:`RCS.Enabled`) or it is covered by a fairing (:prop:`Part.Shielded`).
 
    .. property:: bool Enabled { get; set; }
 
@@ -2053,17 +2132,20 @@ RCS
 
    .. property:: System.Tuple<System.Tuple<double,double,double>,System.Tuple<double,double,double>> AvailableTorque { get; }
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
-      Returns zero if the RCS is inactive.
+      The available torque, in Newton meters, that can be produced by this RCS,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :prop:`Vessel.ReferenceFrame`.
+      Returns zero if RCS is disable.
 
    .. property:: float MaxThrust { get; }
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active,
+      in Newtons.
 
    .. property:: float MaxVacuumThrust { get; }
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active
+      in a vacuum, in Newtons.
 
    .. property:: System.Collections.Generic.IList<Thruster> Thrusters { get; }
 
@@ -2203,7 +2285,8 @@ Thruster
    .. note::
 
       Engines can consist of multiple thrusters.
-      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of
+      four thrusters.
 
    .. property:: Part Part { get; }
 
@@ -2216,6 +2299,10 @@ Thruster
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. method:: System.Tuple<double,double,double> ThrustDirection(ReferenceFrame referenceFrame)
 
       The direction of the force generated by the thruster, in the given reference frame.
@@ -2224,13 +2311,18 @@ Thruster
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
    .. property:: ReferenceFrame ThrustReferenceFrame { get; }
 
       A reference frame that is fixed relative to the thruster and orientated with
       its thrust direction (:meth:`Thruster.ThrustDirection`).
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      * The origin is at the position of thrust for this thruster (:meth:`Thruster.ThrustPosition`).
+      * The origin is at the position of thrust for this thruster
+        (:meth:`Thruster.ThrustPosition`).
       * The axes rotate with the thrust direction.
         This is the direction in which the thruster expels propellant, including any gimballing.
       * The y-axis points along the thrust direction.
@@ -2246,9 +2338,13 @@ Thruster
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. property:: System.Tuple<double,double,double> GimbalAngle { get; }
 
-      The current gimbal angle in the pitch, roll and yaw axes.
+      The current gimbal angle in the pitch, roll and yaw axes, in degrees.
 
    .. method:: System.Tuple<double,double,double> InitialThrustPosition(ReferenceFrame referenceFrame)
 
@@ -2257,8 +2353,9 @@ Thruster
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned position vector is in.
 
-
+      :returns: The position as a vector.
 
       .. note::
 
@@ -2273,6 +2370,10 @@ Thruster
 
       :parameters:
 
+       * **referenceFrame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
 
 
 Wheel
@@ -2281,7 +2382,8 @@ Wheel
 
 .. class:: Wheel
 
-   A wheel. Includes landing gear and rover wheels. Obtained by calling :prop:`Part.Wheel`.
+   A wheel. Includes landing gear and rover wheels.
+   Obtained by calling :prop:`Part.Wheel`.
    Can be used to control the motors, steering and deployment of wheels, among other things.
 
    .. property:: Part Part { get; }

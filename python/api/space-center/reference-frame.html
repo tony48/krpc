@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ReferenceFrame &mdash; kRPC 0.3.9 documentation</title>
+  <title>ReferenceFrame &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="AutoPilot" href="auto-pilot.html"/>
         <link rel="prev" title="Node" href="node.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -208,17 +208,18 @@ used as a parameter to other functions.</p>
 <dl class="staticmethod">
 <dt id="SpaceCenter.ReferenceFrame.create_relative">
 <em class="property">static </em><code class="descname">create_relative</code><span class="sig-paren">(</span><em>reference_frame</em><span class="optional">[</span>, <em>position = (0.0</em>, <em>0.0</em>, <em>0.0)</em><span class="optional">]</span><span class="optional">[</span>, <em>rotation = (0.0</em>, <em>0.0</em>, <em>0.0</em>, <em>1.0)</em><span class="optional">]</span><span class="optional">[</span>, <em>velocity = (0.0</em>, <em>0.0</em>, <em>0.0)</em><span class="optional">]</span><span class="optional">[</span>, <em>angular_velocity = (0.0</em>, <em>0.0</em>, <em>0.0)</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.ReferenceFrame.create_relative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a relative reference frame.</p>
+<dd><p>Create a relative reference frame. This is a custom reference frame
+whose components offset the components of a parent reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>reference_frame</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The parent reference frame.</li>
-<li><strong>position</strong> (<em>tuple</em>) – The offset of the position of the origin.</li>
-<li><strong>rotation</strong> (<em>tuple</em>) – The rotation to apply to the parent frames rotation, as a quaternion. Defaults to zero.</li>
-<li><strong>velocity</strong> (<em>tuple</em>) – The linear velocity to offset the parent frame by. Defaults to zero.</li>
-<li><strong>angular_velocity</strong> (<em>tuple</em>) – The angular velocity to offset the parent frame by. Defaults to zero.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The parent reference frame on which to base this reference frame.</li>
+<li><strong>position</strong> (<em>tuple</em>) – The offset of the position of the origin, as a position vector. Defaults to <span class="math">\((0, 0, 0)\)</span></li>
+<li><strong>rotation</strong> (<em>tuple</em>) – The rotation to apply to the parent frames rotation, as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>. Defaults to <span class="math">\((0, 0, 0, 1)\)</span> (i.e. no rotation)</li>
+<li><strong>velocity</strong> (<em>tuple</em>) – The linear velocity to offset the parent frame by, as a vector pointing in the direction of travel, whose magnitude is the speed in meters per second. Defaults to <span class="math">\((0, 0, 0)\)</span>.</li>
+<li><strong>angular_velocity</strong> (<em>tuple</em>) – The angular velocity to offset the parent frame by, as a vector. This vector points in the direction of the axis of rotation, and its magnitude is the speed of the rotation in radians per second. Defaults to <span class="math">\((0, 0, 0)\)</span>.</li>
 </ul>
 </td>
 </tr>
@@ -232,15 +233,15 @@ used as a parameter to other functions.</p>
 <dl class="staticmethod">
 <dt id="SpaceCenter.ReferenceFrame.create_hybrid">
 <em class="property">static </em><code class="descname">create_hybrid</code><span class="sig-paren">(</span><em>position</em><span class="optional">[</span>, <em>rotation = None</em><span class="optional">]</span><span class="optional">[</span>, <em>velocity = None</em><span class="optional">]</span><span class="optional">[</span>, <em>angular_velocity = None</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.ReferenceFrame.create_hybrid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a hybrid reference frame, which is a custom reference frame
-whose components are inherited from other reference frames.</p>
+<dd><p>Create a hybrid reference frame. This is a custom reference frame
+whose components inherited from other reference frames.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>position</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame providing the position of the origin.</li>
-<li><strong>rotation</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame providing the orientation of the frame.</li>
+<li><strong>rotation</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame providing the rotation of the frame.</li>
 <li><strong>velocity</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame providing the linear velocity of the frame.</li>
 <li><strong>angular_velocity</strong> (<a class="reference internal" href="#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame providing the angular velocity of the frame.</li>
 </ul>
@@ -253,8 +254,9 @@ whose components are inherited from other reference frames.</p>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <em>position</em> is required but all other reference frames are optional.
-If omitted, they are set to the <em>position</em> reference frame.</p>
+<p class="last">The <em>position</em> reference frame is required but all other
+reference frames are optional. If omitted, they are set to the
+<em>position</em> reference frame.</p>
 </div>
 </dd></dl>
 
@@ -303,7 +305,7 @@ If omitted, they are set to the <em>position</em> reference frame.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -20,22 +20,26 @@ Orbit
    .. method:: double getApoapsis()
 
 
-      Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.
+      Gets the apoapsis of the orbit, in meters, from the center of mass
+      of the body being orbited.
 
 
       .. note::
 
-         For the apoapsis altitude reported on the in-game map view, use :meth:`Orbit.getApoapsisAltitude()`.
+         For the apoapsis altitude reported on the in-game map view,
+         use :meth:`Orbit.getApoapsisAltitude()`.
 
    .. method:: double getPeriapsis()
 
 
-      The periapsis of the orbit, in meters, from the center of mass of the body being orbited.
+      The periapsis of the orbit, in meters, from the center of mass
+      of the body being orbited.
 
 
       .. note::
 
-         For the periapsis altitude reported on the in-game map view, use :meth:`Orbit.getPeriapsisAltitude()`.
+         For the periapsis altitude reported on the in-game map view,
+         use :meth:`Orbit.getPeriapsisAltitude()`.
 
    .. method:: double getApoapsisAltitude()
 
@@ -71,12 +75,27 @@ Orbit
 
 
       The current radius of the orbit, in meters. This is the distance between the center
-      of mass of the object in orbit, and the center of mass of the body around which it is orbiting.
+      of mass of the object in orbit, and the center of mass of the body around which it
+      is orbiting.
 
 
       .. note::
 
          This value will change over time if the orbit is elliptical.
+
+   .. method:: double radiusAt(double ut)
+
+      The orbital radius at the given time, in meters.
+
+      :param double ut: The universal time to measure the radius at.
+
+   .. method:: org.javatuples.Triplet<Double,Double,Double> positionAt(double ut, ReferenceFrame referenceFrame)
+
+      The position at a given time, in the specified reference frame.
+
+      :param double ut: The universal time to measure the position at.
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: double getSpeed()
 
@@ -106,12 +125,14 @@ Orbit
    .. method:: double getEccentricity()
 
 
-      The `eccentricity <https://en.wikipedia.org/wiki/Orbital_eccentricity>`_ of the orbit.
+      The `eccentricity <https://en.wikipedia.org/wiki/Orbital_eccentricity>`_
+      of the orbit.
 
    .. method:: double getInclination()
 
 
-      The `inclination <https://en.wikipedia.org/wiki/Orbital_inclination>`_ of the orbit,
+      The `inclination <https://en.wikipedia.org/wiki/Orbital_inclination>`_
+      of the orbit,
       in radians.
 
    .. method:: double getLongitudeOfAscendingNode()
@@ -133,12 +154,19 @@ Orbit
 
 
       The time since the epoch (the point at which the
-      `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_ was measured, in seconds.
+      `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_
+      was measured, in seconds.
 
    .. method:: double getMeanAnomaly()
 
 
       The `mean anomaly <https://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+   .. method:: double meanAnomalyAtUT(double ut)
+
+      The mean anomaly at the given time.
+
+      :param double ut: The universal time in seconds.
 
    .. method:: double getEccentricAnomaly()
 
@@ -180,6 +208,18 @@ Orbit
 
       :param double trueAnomaly: The true anomaly.
 
+   .. method:: double trueAnomalyAtAN(Vessel target)
+
+      The true anomaly of the ascending node with the given target vessel.
+
+      :param Vessel target: Target vessel.
+
+   .. method:: double trueAnomalyAtDN(Vessel target)
+
+      The true anomaly of the descending node with the given target vessel.
+
+      :param Vessel target: Target vessel.
+
    .. method:: double getOrbitalSpeed()
 
 
@@ -193,26 +233,56 @@ Orbit
 
    .. method:: static org.javatuples.Triplet<Double,Double,Double> referencePlaneNormal(Connection connection, ReferenceFrame referenceFrame)
 
-      The unit direction vector that is normal to the orbits reference plane, in the given
-      reference frame. The reference plane is the plane from which the orbits inclination is measured.
+      The direction that is normal to the orbits reference plane,
+      in the given reference frame.
+      The reference plane is the plane from which the orbits inclination is measured.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
    .. method:: static org.javatuples.Triplet<Double,Double,Double> referencePlaneDirection(Connection connection, ReferenceFrame referenceFrame)
 
-      The unit direction vector from which the orbits longitude of ascending node is measured,
+      The direction from which the orbits longitude of ascending node is measured,
       in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
+
+   .. method:: double relativeInclination(Vessel target)
+
+      Relative inclination of this orbit and the orbit of the given target vessel, in radians.
+
+      :param Vessel target: Target vessel.
 
    .. method:: double getTimeToSOIChange()
 
 
-      The time until the object changes sphere of influence, in seconds. Returns ``NaN`` if the
-      object is not going to change sphere of influence.
+      The time until the object changes sphere of influence, in seconds. Returns ``NaN``
+      if the object is not going to change sphere of influence.
 
    .. method:: Orbit getNextOrbit()
 
 
-      If the object is going to change sphere of influence in the future, returns the new orbit
-      after the change. Otherwise returns ``null``.
+      If the object is going to change sphere of influence in the future, returns the new
+      orbit after the change. Otherwise returns ``null``.
+
+   .. method:: double timeOfClosestApproach(Vessel target)
+
+      Estimates and returns the time at closest approach to a target vessel.
+
+      :param Vessel target: Target vessel.
+      :returns: The universal time at closest approach, in seconds.
+
+   .. method:: double distanceAtClosestApproach(Vessel target)
+
+      Estimates and returns the distance at closest approach to a target vessel, in meters.
+
+      :param Vessel target: Target vessel.
+
+   .. method:: java.util.List<java.util.List<Double>> listClosestApproaches(Vessel target, int orbits)
+
+      Returns the times at closest approach and corresponding distances, to a target vessel.
+
+      :param Vessel target: Target vessel.
+      :param int orbits: The number of future orbits to search.
+      :returns: A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.

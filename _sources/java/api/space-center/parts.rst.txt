@@ -121,8 +121,9 @@ Parts
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters, jet engines and
+         RCS thrusters.
 
    .. method:: java.util.List<Experiment> getExperiments()
 
@@ -226,13 +227,16 @@ Part
 
    .. method:: void setTag(String value)
 
-      The name tag for the part. Can be set to a custom string using the in-game user interface.
+      The name tag for the part. Can be set to a custom string using the
+      in-game user interface.
 
 
       .. note::
 
-         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
-         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
+         This requires either the
+         `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_
+         mod to be installed.
 
    .. method:: boolean getHighlighted()
 
@@ -244,7 +248,7 @@ Part
 
    .. method:: void setHighlightColor(org.javatuples.Triplet<Double,Double,Double> value)
 
-      The color used to highlight the part.
+      The color used to highlight the part, as an RGB triple.
 
    .. method:: double getCost()
 
@@ -260,7 +264,8 @@ Part
 
 
       The parts parent. Returns ``null`` if the part does not have a parent.
-      This, in combination with :meth:`Part.getChildren()`, can be used to traverse the vessels parts tree.
+      This, in combination with :meth:`Part.getChildren()`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-trees-of-parts`.
@@ -269,7 +274,8 @@ Part
 
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :meth:`Part.getParent()`, can be used to traverse the vessels parts tree.
+      This, in combination with :meth:`Part.getParent()`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-trees-of-parts`.
@@ -295,7 +301,8 @@ Part
    .. method:: int getStage()
 
 
-      The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
+      The stage in which this part will be activated. Returns -1 if the part is not
+      activated by staging.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
@@ -303,7 +310,8 @@ Part
    .. method:: int getDecoupleStage()
 
 
-      The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
+      The stage in which this part will be decoupled. Returns -1 if the part is never
+      decoupled from the vessel.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-staging`.
@@ -311,7 +319,8 @@ Part
    .. method:: boolean getMassless()
 
 
-      Whether the part is `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
+      Whether the part is
+      `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
 
    .. method:: double getMass()
 
@@ -322,7 +331,8 @@ Part
    .. method:: double getDryMass()
 
 
-      The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+      The mass of the part, not including any resources it contains, in kilograms.
+      Returns zero if the part is massless.
 
    .. method:: boolean getShielded()
 
@@ -362,38 +372,44 @@ Part
    .. method:: float getThermalMass()
 
 
-      A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the internal temperature of the part,
+      in Joules per Kelvin.
 
    .. method:: float getThermalSkinMass()
 
 
-      A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the skin temperature of the part,
+      in Joules per Kelvin.
 
    .. method:: float getThermalResourceMass()
 
 
-      A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the temperature of the resources
+      contained in the part, in Joules per Kelvin.
 
    .. method:: float getThermalConductionFlux()
 
 
-      The rate at which heat energy is conducting into or out of the part via contact with other parts.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is conducting into or out of the part via contact with
+      other parts. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. method:: float getThermalConvectionFlux()
 
 
-      The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is convecting into or out of the part from the
+      surrounding atmosphere. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. method:: float getThermalRadiationFlux()
 
 
-      The rate at which heat energy is radiating into or out of the part from the surrounding environment.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is radiating into or out of the part from the surrounding
+      environment. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. method:: float getThermalInternalFlux()
 
@@ -401,7 +417,8 @@ Part
       The rate at which heat energy is begin generated by the part.
       For example, some engines generate heat by combusting fuel.
       Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      A positive value means the part is gaining heat energy, and negative means it is losing
+      heat energy.
 
    .. method:: float getThermalSkinToInternalFlux()
 
@@ -429,7 +446,8 @@ Part
    .. method:: java.util.List<Part> getFuelLinesFrom()
 
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is into this part.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-fuel-lines`.
@@ -437,7 +455,8 @@ Part
    .. method:: java.util.List<Part> getFuelLinesTo()
 
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is out of this part.
 
 
       .. note:: See the discussion on :rst:ref:`java-api-parts-fuel-lines`.
@@ -460,7 +479,8 @@ Part
    .. method:: ControlSurface getControlSurface()
 
 
-      A :type:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``null``.
+      A :type:`ControlSurface` if the part is an aerodynamic control surface,
+      otherwise ``null``.
 
    .. method:: Decoupler getDecoupler()
 
@@ -495,8 +515,8 @@ Part
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters and jet engines.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :type:`RCS`.
 
    .. method:: Leg getLeg()
@@ -537,12 +557,14 @@ Part
    .. method:: ResourceConverter getResourceConverter()
 
 
-      A :type:`ResourceConverter` if the part is a resource converter, otherwise ``null``.
+      A :type:`ResourceConverter` if the part is a resource converter,
+      otherwise ``null``.
 
    .. method:: ResourceHarvester getResourceHarvester()
 
 
-      A :type:`ResourceHarvester` if the part is a resource harvester, otherwise ``null``.
+      A :type:`ResourceHarvester` if the part is a resource harvester,
+      otherwise ``null``.
 
    .. method:: Sensor getSensor()
 
@@ -563,7 +585,8 @@ Part
 
       The position of the part in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
       .. note::
 
@@ -576,38 +599,42 @@ Part
       The position of the parts center of mass in the given reference frame.
       If the part is physicsless, this is equivalent to :meth:`Part.position(ReferenceFrame)`.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> boundingBox(ReferenceFrame referenceFrame)
 
-      The axis-aligned bounding box of the vessel in the given reference frame.
-      Returns the minimum and maximum vertices of the box.
+      The axis-aligned bounding box of the part in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vectors are in.
+      :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
 
       .. note::
 
-         This is computed from the collision meshes of the part.
+         This is computed from the collision mesh of the part.
          If the part is not collidable, the box has zero volume and is centered on
          the :meth:`Part.position(ReferenceFrame)` of the part.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
-      The direction of the part in the given reference frame.
+      The direction the part points in, in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
-      The velocity of the part in the given reference frame.
+      The linear velocity of the part in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned velocity vector is in.
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
-      The rotation of the part in the given reference frame.
+      The rotation of the part, in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getMomentOfInertia()
 
@@ -618,23 +645,27 @@ Part
    .. method:: java.util.List<Double> getInertiaTensor()
 
 
-      The inertia tensor of the part in the parts reference frame (:type:`ReferenceFrame`).
+      The inertia tensor of the part in the parts reference frame
+      (:type:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
    .. method:: ReferenceFrame getReferenceFrame()
 
 
-      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
+      The reference frame that is fixed relative to this part, and centered on a fixed
+      position within the part, defined by the parts model.
 
-      * The origin is at the position of the part, as returned by :meth:`Part.position(ReferenceFrame)`.
+      * The origin is at the position of the part, as returned by
+        :meth:`Part.position(ReferenceFrame)`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :meth:`DockingPort.getReferenceFrame()`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :meth:`DockingPort.getReferenceFrame()`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -644,34 +675,37 @@ Part
    .. method:: ReferenceFrame getCenterOfMassReferenceFrame()
 
 
-      The reference frame that is fixed relative to this part, and centered on its center of mass.
+      The reference frame that is fixed relative to this part, and centered on its
+      center of mass.
 
-      * The origin is at the center of mass of the part, as returned by :meth:`Part.centerOfMass(ReferenceFrame)`.
+      * The origin is at the center of mass of the part, as returned by
+        :meth:`Part.centerOfMass(ReferenceFrame)`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :meth:`DockingPort.getReferenceFrame()`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :meth:`DockingPort.getReferenceFrame()`.
 
    .. method:: Force addForce(org.javatuples.Triplet<Double,Double,Double> force, org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
 
       Exert a constant force on the part, acting at the given position.
-      Returns an object that can be used to remove or modify the force.
 
-      :param org.javatuples.Triplet<Double,Double,Double> force:
-      :param org.javatuples.Triplet<Double,Double,Double> position:
-      :param ReferenceFrame referenceFrame:
+      :param org.javatuples.Triplet<Double,Double,Double> force: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :param org.javatuples.Triplet<Double,Double,Double> position: The position at which the force acts, as a vector.
+      :param ReferenceFrame referenceFrame: The reference frame that the force and position are in.
+      :returns: An object that can be used to remove or modify the force.
 
    .. method:: void instantaneousForce(org.javatuples.Triplet<Double,Double,Double> force, org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
 
       Exert an instantaneous force on the part, acting at the given position.
 
-      :param org.javatuples.Triplet<Double,Double,Double> force:
-      :param org.javatuples.Triplet<Double,Double,Double> position:
-      :param ReferenceFrame referenceFrame:
+      :param org.javatuples.Triplet<Double,Double,Double> force: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :param org.javatuples.Triplet<Double,Double,Double> position: The position at which the force acts, as a vector.
+      :param ReferenceFrame referenceFrame: The reference frame that the force and position are in.
 
       .. note::
 
@@ -692,13 +726,17 @@ Part
 
    .. method:: void setForceVector(org.javatuples.Triplet<Double,Double,Double> value)
 
-      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+      The force vector, in Newtons.
+
+      :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getPosition()
 
    .. method:: void setPosition(org.javatuples.Triplet<Double,Double,Double> value)
 
-      The position at which the force acts.
+      The position at which the force acts, in reference frame :type:`ReferenceFrame`.
+
+      :returns: The position as a vector.
 
    .. method:: ReferenceFrame getReferenceFrame()
 
@@ -718,8 +756,8 @@ Module
 
 .. type:: public class Module
 
-   This can be used to interact with a specific part module. This includes part modules in stock KSP,
-   and those added by mods.
+   This can be used to interact with a specific part module. This includes part modules in
+   stock KSP, and those added by mods.
 
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
@@ -796,15 +834,16 @@ Module
 
    .. method:: void triggerEvent(String name)
 
-      Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
+      Trigger the named event. Equivalent to clicking the button in the right-click menu
+      of the part.
 
       :param String name:
 
    .. method:: java.util.List<String> getActions()
 
 
-      A list of all the names of the modules actions. These are the parts actions that can be assigned
-      to action groups in the in-game editor.
+      A list of all the names of the modules actions. These are the parts actions that can
+      be assigned to action groups in the in-game editor.
 
    .. method:: boolean hasAction(String name)
 
@@ -891,7 +930,8 @@ Antenna
    .. method:: boolean getCombinable()
 
 
-      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+      Whether the antenna can be combined with other antennae on the vessel
+      to boost the power.
 
    .. method:: double getCombinableExponent()
 
@@ -1033,7 +1073,8 @@ Control Surface
 
    .. method:: void setAuthorityLimiter(float value)
 
-      The authority limiter for the control surface, which controls how far the control surface will move.
+      The authority limiter for the control surface, which controls how far the
+      control surface will move.
 
    .. method:: boolean getInverted()
 
@@ -1055,9 +1096,9 @@ Control Surface
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
-      The available torque in the positive pitch, roll and yaw axes and
-      negative pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      The available torque, in Newton meters, that can be produced by this control surface,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
 
 
 
@@ -1164,21 +1205,24 @@ Docking Port
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
-      The position of the docking port in the given reference frame.
+      The position of the docking port, in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
       The direction that docking port points in, in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
       The rotation of the docking port, in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. method:: ReferenceFrame getReferenceFrame()
 
@@ -1287,7 +1331,8 @@ Engine
       The amount of thrust, in Newtons, that would be produced by the engine
       when activated and with its throttle set to 100%.
       Returns zero if the engine does not have any fuel.
-      Takes the engine's current :meth:`Engine.getThrustLimit()` and atmospheric conditions into account.
+      Takes the engine's current :meth:`Engine.getThrustLimit()` and atmospheric conditions
+      into account.
 
    .. method:: float getMaxThrust()
 
@@ -1354,8 +1399,8 @@ Engine
 
       .. note::
 
-         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
-         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every
+         0.6 units of LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
 
    .. method:: java.util.List<Propellant> getPropellants()
 
@@ -1455,8 +1500,9 @@ Engine
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      The available torque, in Newton meters, that can be produced by this engine,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
       Returns zero if the engine is inactive, or not gimballed.
 
 
@@ -1483,17 +1529,20 @@ Engine
    .. method:: double getTotalResourceAvailable()
 
 
-      The total amount of the underlying resource currently reachable given resource flow rules.
+      The total amount of the underlying resource currently reachable given
+      resource flow rules.
 
    .. method:: double getTotalResourceCapacity()
 
 
-      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+      The total vehicle capacity for the underlying propellant resource,
+      restricted by resource flow rules.
 
    .. method:: boolean getIgnoreForIsp()
 
 
-      If this propellant should be ignored when calculating required mass flow given specific impulse.
+      If this propellant should be ignored when calculating required mass flow
+      given specific impulse.
 
    .. method:: boolean getIgnoreForThrustCurve()
 
@@ -1584,8 +1633,8 @@ Experiment
    .. method:: ScienceSubject getScienceSubject()
 
 
-      Containing information on the corresponding specific science result for the current conditions.
-      Returns null if experiment is unavailable.
+      Containing information on the corresponding specific science result for the current
+      conditions. Returns ``null`` if the experiment is unavailable.
 
 
 
@@ -1627,7 +1676,8 @@ Experiment
    .. method:: float getScience()
 
 
-      Amount of science already earned from this subject, not updated until after transmission/recovery.
+      Amount of science already earned from this subject, not updated until after
+      transmission/recovery.
 
    .. method:: float getScienceCap()
 
@@ -1647,7 +1697,8 @@ Experiment
    .. method:: float getScientificValue()
 
 
-      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
+      Diminishing value multiplier for decreasing the science value returned from repeated
+      experiments.
 
 
 
@@ -1866,7 +1917,8 @@ Parachute
    .. method:: boolean getArmed()
 
 
-      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+      Whether the parachute has been armed or deployed. Only applicable to
+      RealChutes parachutes.
 
    .. method:: ParachuteState getState()
 
@@ -2211,15 +2263,16 @@ Reaction Wheel
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      The available torque, in Newton meters, that can be produced by this reaction wheel,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
       Returns zero if the reaction wheel is inactive or broken.
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getMaxTorque()
 
 
-      The maximum torque the reaction wheel can provide, is it active,
-      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The maximum torque, in Newton meters, that can be produced by this reaction wheel,
+      when it is active, in the positive and negative pitch, roll and yaw axes of the vessel.
       These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
 
 
@@ -2241,9 +2294,9 @@ RCS
 
 
       Whether the RCS thrusters are active.
-      An RCS thruster is inactive if the RCS action group is disabled (:meth:`Control.getRCS()`),
-      the RCS thruster itself is not enabled (:meth:`RCS.getEnabled()`) or
-      it is covered by a fairing (:meth:`Part.getShielded()`).
+      An RCS thruster is inactive if the RCS action group is disabled
+      (:meth:`Control.getRCS()`), the RCS thruster itself is not enabled
+      (:meth:`RCS.getEnabled()`) or it is covered by a fairing (:meth:`Part.getShielded()`).
 
    .. method:: boolean getEnabled()
 
@@ -2290,19 +2343,22 @@ RCS
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
-      Returns zero if the RCS is inactive.
+      The available torque, in Newton meters, that can be produced by this RCS,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :meth:`Vessel.getReferenceFrame()`.
+      Returns zero if RCS is disable.
 
    .. method:: float getMaxThrust()
 
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active,
+      in Newtons.
 
    .. method:: float getMaxVacuumThrust()
 
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active
+      in a vacuum, in Newtons.
 
    .. method:: java.util.List<Thruster> getThrusters()
 
@@ -2460,7 +2516,8 @@ Thruster
    .. note::
 
       Engines can consist of multiple thrusters.
-      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of
+      four thrusters.
 
    .. method:: Part getPart()
 
@@ -2472,7 +2529,8 @@ Thruster
       The position at which the thruster generates thrust, in the given reference frame.
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> thrustDirection(ReferenceFrame referenceFrame)
 
@@ -2480,7 +2538,8 @@ Thruster
       This is opposite to the direction in which the thruster expels propellant.
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
    .. method:: ReferenceFrame getThrustReferenceFrame()
 
@@ -2489,7 +2548,8 @@ Thruster
       its thrust direction (:meth:`Thruster.thrustDirection(ReferenceFrame)`).
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      * The origin is at the position of thrust for this thruster (:meth:`Thruster.thrustPosition(ReferenceFrame)`).
+      * The origin is at the position of thrust for this thruster
+        (:meth:`Thruster.thrustPosition(ReferenceFrame)`).
       * The axes rotate with the thrust direction.
         This is the direction in which the thruster expels propellant, including any gimballing.
       * The y-axis points along the thrust direction.
@@ -2504,19 +2564,21 @@ Thruster
 
       Position around which the gimbal pivots.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getGimbalAngle()
 
 
-      The current gimbal angle in the pitch, roll and yaw axes.
+      The current gimbal angle in the pitch, roll and yaw axes, in degrees.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> initialThrustPosition(ReferenceFrame referenceFrame)
 
       The position at which the thruster generates thrust, when the engine is in its
       initial position (no gimballing), in the given reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
       .. note::
 
@@ -2529,7 +2591,8 @@ Thruster
       initial position (no gimballing), in the given reference frame.
       This is opposite to the direction in which the thruster expels propellant.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
 
 
@@ -2539,7 +2602,8 @@ Wheel
 
 .. type:: public class Wheel
 
-   A wheel. Includes landing gear and rover wheels. Obtained by calling :meth:`Part.getWheel()`.
+   A wheel. Includes landing gear and rover wheels.
+   Obtained by calling :meth:`Part.getWheel()`.
    Can be used to control the motors, steering and deployment of wheels, among other things.
 
    .. method:: Part getPart()

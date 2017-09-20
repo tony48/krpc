@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Orbit &mdash; kRPC 0.3.9 documentation</title>
+  <title>Orbit &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Control" href="control.html"/>
         <link rel="prev" title="Flight" href="flight.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -204,20 +204,24 @@ public class <code class="descname">Orbit</code><a class="headerlink" href="#krp
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getApoapsis()">
  double <code class="descname">getApoapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getApoapsis()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the apoapsis altitude reported on the in-game map view, use <a class="reference internal" href="#krpc.client.services.SpaceCenter.Orbit.getApoapsisAltitude()" title="krpc.client.services.SpaceCenter.Orbit.getApoapsisAltitude()"><code class="xref java java-meth docutils literal"><span class="pre">Orbit.getApoapsisAltitude()</span></code></a>.</p>
+<p class="last">For the apoapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#krpc.client.services.SpaceCenter.Orbit.getApoapsisAltitude()" title="krpc.client.services.SpaceCenter.Orbit.getApoapsisAltitude()"><code class="xref java java-meth docutils literal"><span class="pre">Orbit.getApoapsisAltitude()</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getPeriapsis()">
  double <code class="descname">getPeriapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getPeriapsis()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The periapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>The periapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the periapsis altitude reported on the in-game map view, use <a class="reference internal" href="#krpc.client.services.SpaceCenter.Orbit.getPeriapsisAltitude()" title="krpc.client.services.SpaceCenter.Orbit.getPeriapsisAltitude()"><code class="xref java java-meth docutils literal"><span class="pre">Orbit.getPeriapsisAltitude()</span></code></a>.</p>
+<p class="last">For the periapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#krpc.client.services.SpaceCenter.Orbit.getPeriapsisAltitude()" title="krpc.client.services.SpaceCenter.Orbit.getPeriapsisAltitude()"><code class="xref java java-meth docutils literal"><span class="pre">Orbit.getPeriapsisAltitude()</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -257,11 +261,50 @@ public class <code class="descname">Orbit</code><a class="headerlink" href="#krp
 <dt id="krpc.client.services.SpaceCenter.Orbit.getRadius()">
  double <code class="descname">getRadius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getRadius()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current radius of the orbit, in meters. This is the distance between the center
-of mass of the object in orbit, and the center of mass of the body around which it is orbiting.</p>
+of mass of the object in orbit, and the center of mass of the body around which it
+is orbiting.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This value will change over time if the orbit is elliptical.</p>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.radiusAt(double)">
+ double <code class="descname">radiusAt</code><span class="sig-paren">(</span>double<em> ut</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.radiusAt(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbital radius at the given time, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> (<em>double</em>) – The universal time to measure the radius at.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.positionAt(double, ReferenceFrame)">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">positionAt</code><span class="sig-paren">(</span>double<em> ut</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.positionAt(double, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at a given time, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ut</strong> (<em>double</em>) – The universal time to measure the position at.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -295,13 +338,15 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getEccentricity()">
  double <code class="descname">getEccentricity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getEccentricity()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a>
+of the orbit.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getInclination()">
  double <code class="descname">getInclination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getInclination()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit,
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a>
+of the orbit,
 in radians.</p>
 </dd></dl>
 
@@ -327,13 +372,31 @@ in radians.</p>
 <dt id="krpc.client.services.SpaceCenter.Orbit.getEpoch()">
  double <code class="descname">getEpoch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getEpoch()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time since the epoch (the point at which the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>
+was measured, in seconds.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getMeanAnomaly()">
  double <code class="descname">getMeanAnomaly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getMeanAnomaly()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.meanAnomalyAtUT(double)">
+ double <code class="descname">meanAnomalyAtUT</code><span class="sig-paren">(</span>double<em> ut</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.meanAnomalyAtUT(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mean anomaly at the given time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> (<em>double</em>) – The universal time in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -434,6 +497,40 @@ in radians.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtAN(Vessel)">
+ double <code class="descname">trueAnomalyAtAN</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtAN(Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly of the ascending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtDN(Vessel)">
+ double <code class="descname">trueAnomalyAtDN</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.trueAnomalyAtDN(Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly of the descending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getOrbitalSpeed()">
  double <code class="descname">getOrbitalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getOrbitalSpeed()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current orbital speed in meters per second.</p>
@@ -459,15 +556,19 @@ in radians.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.referencePlaneNormal(Connection, ReferenceFrame)">
 static org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">referencePlaneNormal</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.referencePlaneNormal(Connection, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector that is normal to the orbits reference plane, in the given
-reference frame. The reference plane is the plane from which the orbits inclination is measured.</p>
+<dd><p>The direction that is normal to the orbits reference plane,
+in the given reference frame.
+The reference plane is the plane from which the orbits inclination is measured.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned direction is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
 </td>
 </tr>
 </tbody>
@@ -477,14 +578,34 @@ reference frame. The reference plane is the plane from which the orbits inclinat
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.referencePlaneDirection(Connection, ReferenceFrame)">
 static org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">referencePlaneDirection</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.referencePlaneDirection(Connection, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector from which the orbits longitude of ascending node is measured,
+<dd><p>The direction from which the orbits longitude of ascending node is measured,
 in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.relativeInclination(Vessel)">
+ double <code class="descname">relativeInclination</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.relativeInclination(Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relative inclination of this orbit and the orbit of the given target vessel, in radians.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
 </ul>
 </td>
 </tr>
@@ -495,15 +616,73 @@ in the given reference frame.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getTimeToSOIChange()">
  double <code class="descname">getTimeToSOIChange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getTimeToSOIChange()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code> if the
-object is not going to change sphere of influence.</p>
+<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code>
+if the object is not going to change sphere of influence.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Orbit.getNextOrbit()">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.Orbit" title="krpc.client.services.SpaceCenter.Orbit">Orbit</a> <code class="descname">getNextOrbit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.getNextOrbit()" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the object is going to change sphere of influence in the future, returns the new orbit
-after the change. Otherwise returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
+<dd><p>If the object is going to change sphere of influence in the future, returns the new
+orbit after the change. Otherwise returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.timeOfClosestApproach(Vessel)">
+ double <code class="descname">timeOfClosestApproach</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.timeOfClosestApproach(Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates and returns the time at closest approach to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The universal time at closest approach, in seconds.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.distanceAtClosestApproach(Vessel)">
+ double <code class="descname">distanceAtClosestApproach</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.distanceAtClosestApproach(Vessel)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates and returns the distance at closest approach to a target vessel, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Orbit.listClosestApproaches(Vessel, int)">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;&gt; <code class="descname">listClosestApproaches</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a><em> target</em>, int<em> orbits</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Orbit.listClosestApproaches(Vessel, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the times at closest approach and corresponding distances, to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel"><em>Vessel</em></a>) – Target vessel.</li>
+<li><strong>orbits</strong> (<em>int</em>) – The number of future orbits to search.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -551,7 +730,7 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

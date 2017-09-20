@@ -23,30 +23,32 @@ ReferenceFrame
 
    .. function:: static ReferenceFrame create_relative(Client& connection, ReferenceFrame reference_frame, std::tuple<double, double, double> position = (0.0, 0.0, 0.0), std::tuple<double, double, double, double> rotation = (0.0, 0.0, 0.0, 1.0), std::tuple<double, double, double> velocity = (0.0, 0.0, 0.0), std::tuple<double, double, double> angular_velocity = (0.0, 0.0, 0.0))
 
-      Create a relative reference frame.
+      Create a relative reference frame. This is a custom reference frame
+      whose components offset the components of a parent reference frame.
 
       :Parameters:
 
-       * **reference_frame** -- The parent reference frame.
-       * **position** -- The offset of the position of the origin.
-       * **rotation** -- The rotation to apply to the parent frames rotation, as a quaternion. Defaults to zero.
-       * **velocity** -- The linear velocity to offset the parent frame by. Defaults to zero.
-       * **angular_velocity** -- The angular velocity to offset the parent frame by. Defaults to zero.
+       * **reference_frame** -- The parent reference frame on which to base this reference frame.
+       * **position** -- The offset of the position of the origin, as a position vector. Defaults to :math:`(0, 0, 0)`
+       * **rotation** -- The rotation to apply to the parent frames rotation, as a quaternion of the form :math:`(x, y, z, w)`. Defaults to :math:`(0, 0, 0, 1)` (i.e. no rotation)
+       * **velocity** -- The linear velocity to offset the parent frame by, as a vector pointing in the direction of travel, whose magnitude is the speed in meters per second. Defaults to :math:`(0, 0, 0)`.
+       * **angular_velocity** -- The angular velocity to offset the parent frame by, as a vector. This vector points in the direction of the axis of rotation, and its magnitude is the speed of the rotation in radians per second. Defaults to :math:`(0, 0, 0)`.
 
    .. function:: static ReferenceFrame create_hybrid(Client& connection, ReferenceFrame position, ReferenceFrame rotation = ReferenceFrame(), ReferenceFrame velocity = ReferenceFrame(), ReferenceFrame angular_velocity = ReferenceFrame())
 
-      Create a hybrid reference frame, which is a custom reference frame
-      whose components are inherited from other reference frames.
+      Create a hybrid reference frame. This is a custom reference frame
+      whose components inherited from other reference frames.
 
       :Parameters:
 
        * **position** -- The reference frame providing the position of the origin.
-       * **rotation** -- The reference frame providing the orientation of the frame.
+       * **rotation** -- The reference frame providing the rotation of the frame.
        * **velocity** -- The reference frame providing the linear velocity of the frame.
        * **angular_velocity** -- The reference frame providing the angular velocity of the frame.
 
 
       .. note::
 
-         The *position* is required but all other reference frames are optional.
-         If omitted, they are set to the *position* reference frame.
+         The *position* reference frame is required but all other
+         reference frames are optional. If omitted, they are set to the
+         *position* reference frame.

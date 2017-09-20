@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flight &mdash; kRPC 0.3.9 documentation</title>
+  <title>Flight &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Orbit" href="orbit.html"/>
         <link rel="prev" title="CelestialBody" href="celestial-body.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -249,98 +249,191 @@ and is negative when the vessel is over the sea.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getVelocity()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getVelocity()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The velocity vector of the vessel. The magnitude of the vector is the speed of the vessel in meters per second.
-The direction of the vector is the direction of the vessels motion.</p>
+<dd><p>The velocity of the vessel, in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the vessel in meters per second.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getSpeed()">
  double <code class="descname">getSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed of the vessel in meters per second.</p>
+<dd><p>The speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getHorizontalSpeed()">
  double <code class="descname">getHorizontalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getHorizontalSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The horizontal speed of the vessel in meters per second.</p>
+<dd><p>The horizontal speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getVerticalSpeed()">
  double <code class="descname">getVerticalSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getVerticalSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The vertical speed of the vessel in meters per second.</p>
+<dd><p>The vertical speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getCenterOfMass()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getCenterOfMass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getCenterOfMass()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The position of the center of mass of the vessel.</p>
+<dd><p>The position of the center of mass of the vessel,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The position as a vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getRotation()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Quartet.html" title="org.javatuples.Quartet">Quartet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getRotation()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The rotation of the vessel.</p>
+<dd><p>The rotation of the vessel, in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getDirection()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDirection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDirection()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The direction vector that the vessel is pointing in.</p>
+<dd><p>The direction that the vessel is pointing in,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getPitch()">
  float <code class="descname">getPitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getPitch()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The pitch angle of the vessel relative to the horizon, in degrees. A value between -90° and +90°.</p>
+<dd><p>The pitch of the vessel relative to the horizon, in degrees.
+A value between -90° and +90°.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getHeading()">
  float <code class="descname">getHeading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getHeading()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The heading angle of the vessel relative to north, in degrees. A value between 0° and 360°.</p>
+<dd><p>The heading of the vessel (its angle relative to north), in degrees.
+A value between 0° and 360°.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getRoll()">
  float <code class="descname">getRoll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getRoll()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The roll angle of the vessel relative to the horizon, in degrees. A value between -180° and +180°.</p>
+<dd><p>The roll of the vessel relative to the horizon, in degrees.
+A value between -180° and +180°.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getPrograde()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getPrograde</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getPrograde()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the prograde direction.</p>
+<dd><p>The prograde direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getRetrograde()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRetrograde</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getRetrograde()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the retrograde direction.</p>
+<dd><p>The retrograde direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getNormal()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getNormal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getNormal()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the normal direction.</p>
+<dd><p>The direction normal to the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getAntiNormal()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAntiNormal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getAntiNormal()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the anti-normal direction.</p>
+<dd><p>The direction opposite to the normal of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getRadial()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getRadial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getRadial()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the radial direction.</p>
+<dd><p>The radial direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getAntiRadial()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAntiRadial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getAntiRadial()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the anti-radial direction.</p>
+<dd><p>The direction opposite to the radial direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -352,8 +445,9 @@ The direction of the vector is the direction of the vessels motion.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getDynamicPressure()">
  float <code class="descname">getDynamicPressure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDynamicPressure()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
-aerodynamic forces. It is equal to <span class="math">\(\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2\)</span>.
+<dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the
+strength of the aerodynamic forces. It is equal to
+<span class="math">\(\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2\)</span>.
 It is commonly denoted <span class="math">\(Q\)</span>.</p>
 </dd></dl>
 
@@ -372,22 +466,69 @@ It is commonly denoted <span class="math">\(Q\)</span>.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getAerodynamicForce()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getAerodynamicForce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getAerodynamicForce()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The total aerodynamic forces acting on the vessel, as a vector pointing in the direction of the force, with its
-magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The total aerodynamic forces acting on the vessel,
+in reference frame <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><code class="xref java java-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Flight.simulateAerodynamicForceAt(CelestialBody, org.javatuples.Triplet, org.javatuples.Triplet)">
+ org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">simulateAerodynamicForceAt</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> body</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.simulateAerodynamicForceAt(CelestialBody, org.javatuples.Triplet, org.javatuples.Triplet)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate and return the total aerodynamic forces acting on the vessel,
+if it where to be traveling with the given velocity at the given position in the
+atmosphere of the given celestial body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>body</strong> (<a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody"><em>CelestialBody</em></a>) – </li>
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – </li>
+<li><strong>velocity</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getLift()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getLift</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getLift()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
-as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a>
+currently acting on the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getDrag()">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">getDrag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDrag()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
-as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -415,53 +556,56 @@ as a vector pointing in the direction of the force, with its magnitude equal to 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getTrueAirSpeed()">
  float <code class="descname">getTrueAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getTrueAirSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a>
+of the vessel, in meters per second.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getEquivalentAirSpeed()">
  float <code class="descname">getEquivalentAirSpeed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getEquivalentAirSpeed()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a>
+of the vessel, in meters per second.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getTerminalVelocity()">
  float <code class="descname">getTerminalVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getTerminalVelocity()" title="Permalink to this definition">¶</a></dt>
-<dd><p>An estimate of the current terminal velocity of the vessel, in <span class="math">\(m/s\)</span>.
+<dd><p>An estimate of the current terminal velocity of the vessel, in meters per second.
 This is the speed at which the drag forces cancel out the force of gravity.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getAngleOfAttack()">
  float <code class="descname">getAngleOfAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getAngleOfAttack()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the pitch angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+<dd><p>The pitch angle between the orientation of the vessel and its velocity vector,
+in degrees.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getSideslipAngle()">
  float <code class="descname">getSideslipAngle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getSideslipAngle()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the yaw angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+<dd><p>The yaw angle between the orientation of the vessel and its velocity vector, in degrees.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getTotalAirTemperature()">
  float <code class="descname">getTotalAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getTotalAirTemperature()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a> of the atmosphere
-around the vessel, in Kelvin. This temperature includes the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()" title="krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()"><code class="xref java java-meth docutils literal"><span class="pre">Flight.getStaticAirTemperature()</span></code></a> and the vessel’s kinetic energy.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a>
+of the atmosphere around the vessel, in Kelvin.
+This includes the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()" title="krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()"><code class="xref java java-meth docutils literal"><span class="pre">Flight.getStaticAirTemperature()</span></code></a> and the vessel’s kinetic energy.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()">
  float <code class="descname">getStaticAirTemperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getStaticAirTemperature()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the
-atmosphere around the vessel, in Kelvin.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the atmosphere around the vessel, in Kelvin.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getStallFraction()">
  float <code class="descname">getStallFraction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getStallFraction()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current amount of stall, between 0 and 1. A value greater than 0.005 indicates a minor stall
-and a value greater than 0.5 indicates a large-scale stall.</p>
+<dd><p>The current amount of stall, between 0 and 1. A value greater than 0.005 indicates
+a minor stall and a value greater than 0.5 indicates a large-scale stall.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -471,8 +615,8 @@ and a value greater than 0.5 indicates a large-scale stall.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getDragCoefficient()">
  float <code class="descname">getDragCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getDragCoefficient()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the coefficient of drag. This is the amount of drag produced by the vessel. It depends on air speed,
-air density and wing area.</p>
+<dd><p>The coefficient of drag. This is the amount of drag produced by the vessel.
+It depends on air speed, air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -482,7 +626,8 @@ air density and wing area.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getLiftCoefficient()">
  float <code class="descname">getLiftCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getLiftCoefficient()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the coefficient of lift. This is the amount of lift produced by the vessel, and depends on air speed, air density and wing area.</p>
+<dd><p>The coefficient of lift. This is the amount of lift produced by the vessel, and
+depends on air speed, air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -492,7 +637,7 @@ air density and wing area.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getBallisticCoefficient()">
  float <code class="descname">getBallisticCoefficient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getBallisticCoefficient()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the <a class="reference external" href="https://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -502,9 +647,10 @@ air density and wing area.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Flight.getThrustSpecificFuelConsumption()">
  float <code class="descname">getThrustSpecificFuelConsumption</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Flight.getThrustSpecificFuelConsumption()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
-efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
-number of Newtons of fuel that are burned, per hour, to produce one newton of thrust.</p>
+<dd><p>The thrust specific fuel consumption for the jet engines on the vessel. This is a
+measure of the efficiency of the engines, with a lower value indicating a more
+efficient vessel. This value is the number of Newtons of fuel that are burned,
+per hour, to produce one newton of thrust.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -556,7 +702,7 @@ number of Newtons of fuel that are burned, per hour, to produce one newton of th
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

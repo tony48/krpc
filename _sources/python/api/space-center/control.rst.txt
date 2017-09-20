@@ -208,6 +208,18 @@ Control
       :Attribute: Can be read or written
       :rtype: float
 
+   .. attribute:: input_mode
+
+      Sets the behavior of the pitch, yaw, roll and translation control inputs.
+      When set to additive, these inputs are added to the vessels current inputs.
+      This mode is the default.
+      When set to override, these inputs (if non-zero) override the vessels inputs.
+      This mode prevents keyboard control, or SAS, from interfering with the controls when
+      they are set.
+
+      :Attribute: Can be read or written
+      :rtype: :class:`ControlInputMode`
+
    .. attribute:: pitch
 
       The state of the pitch control.
@@ -467,3 +479,19 @@ Control
    .. data:: target
 
       Speed is relative to the current target.
+
+
+
+.. class:: ControlInputMode
+
+   See :attr:`Control.input_mode`.
+
+
+   .. data:: additive
+
+      Control inputs are added to the vessels current control inputs.
+
+
+   .. data:: override
+
+      Control inputs (when they are non-zero) override the vessels current control inputs.

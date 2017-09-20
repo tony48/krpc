@@ -118,8 +118,9 @@ Parts
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters, jet engines and
+         RCS thrusters.
 
    .. function:: std::vector<Experiment> experiments()
 
@@ -205,13 +206,16 @@ Part
    .. function:: std::string tag()
    .. function:: void set_tag(std::string value)
 
-      The name tag for the part. Can be set to a custom string using the in-game user interface.
+      The name tag for the part. Can be set to a custom string using the
+      in-game user interface.
 
 
       .. note::
 
-         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
-         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
+         This requires either the
+         `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_
+         mod to be installed.
 
    .. function:: bool highlighted()
    .. function:: void set_highlighted(bool value)
@@ -221,7 +225,7 @@ Part
    .. function:: std::tuple<double, double, double> highlight_color()
    .. function:: void set_highlight_color(std::tuple<double, double, double> value)
 
-      The color used to highlight the part.
+      The color used to highlight the part, as an RGB triple.
 
    .. function:: double cost()
 
@@ -234,7 +238,8 @@ Part
    .. function:: Part parent()
 
       The parts parent. Returns ``NULL`` if the part does not have a parent.
-      This, in combination with :func:`Part::children`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`Part::children`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
@@ -242,7 +247,8 @@ Part
    .. function:: std::vector<Part> children()
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :func:`Part::parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :func:`Part::parent`, can be used to traverse the vessels
+      parts tree.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
@@ -265,21 +271,24 @@ Part
 
    .. function:: int32_t stage()
 
-      The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
+      The stage in which this part will be activated. Returns -1 if the part is not
+      activated by staging.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
    .. function:: int32_t decouple_stage()
 
-      The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
+      The stage in which this part will be decoupled. Returns -1 if the part is never
+      decoupled from the vessel.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
    .. function:: bool massless()
 
-      Whether the part is `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
+      Whether the part is
+      `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
 
    .. function:: double mass()
 
@@ -288,7 +297,8 @@ Part
 
    .. function:: double dry_mass()
 
-      The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+      The mass of the part, not including any resources it contains, in kilograms.
+      Returns zero if the part is massless.
 
    .. function:: bool shielded()
 
@@ -320,40 +330,47 @@ Part
 
    .. function:: float thermal_mass()
 
-      A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the internal temperature of the part,
+      in Joules per Kelvin.
 
    .. function:: float thermal_skin_mass()
 
-      A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the skin temperature of the part,
+      in Joules per Kelvin.
 
    .. function:: float thermal_resource_mass()
 
-      A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the temperature of the resources
+      contained in the part, in Joules per Kelvin.
 
    .. function:: float thermal_conduction_flux()
 
-      The rate at which heat energy is conducting into or out of the part via contact with other parts.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is conducting into or out of the part via contact with
+      other parts. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. function:: float thermal_convection_flux()
 
-      The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is convecting into or out of the part from the
+      surrounding atmosphere. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. function:: float thermal_radiation_flux()
 
-      The rate at which heat energy is radiating into or out of the part from the surrounding environment.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is radiating into or out of the part from the surrounding
+      environment. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
    .. function:: float thermal_internal_flux()
 
       The rate at which heat energy is begin generated by the part.
       For example, some engines generate heat by combusting fuel.
       Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      A positive value means the part is gaining heat energy, and negative means it is losing
+      heat energy.
 
    .. function:: float thermal_skin_to_internal_flux()
 
@@ -376,14 +393,16 @@ Part
 
    .. function:: std::vector<Part> fuel_lines_from()
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is into this part.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
    .. function:: std::vector<Part> fuel_lines_to()
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is out of this part.
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
@@ -402,7 +421,8 @@ Part
 
    .. function:: ControlSurface control_surface()
 
-      A :class:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``NULL``.
+      A :class:`ControlSurface` if the part is an aerodynamic control surface,
+      otherwise ``NULL``.
 
    .. function:: Decoupler decoupler()
 
@@ -431,8 +451,8 @@ Part
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters and jet engines.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :class:`RCS`.
 
    .. function:: Leg leg()
@@ -465,11 +485,13 @@ Part
 
    .. function:: ResourceConverter resource_converter()
 
-      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``NULL``.
+      A :class:`ResourceConverter` if the part is a resource converter,
+      otherwise ``NULL``.
 
    .. function:: ResourceHarvester resource_harvester()
 
-      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``NULL``.
+      A :class:`ResourceHarvester` if the part is a resource harvester,
+      otherwise ``NULL``.
 
    .. function:: Sensor sensor()
 
@@ -489,8 +511,9 @@ Part
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vector is in.
 
-
+      :returns: The position as a vector.
 
       .. note::
 
@@ -505,39 +528,55 @@ Part
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> bounding_box(ReferenceFrame reference_frame)
 
-      The axis-aligned bounding box of the vessel in the given reference frame.
-      Returns the minimum and maximum vertices of the box.
+      The axis-aligned bounding box of the part in the given reference frame.
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vectors are in.
 
-
+      :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
 
       .. note::
 
-         This is computed from the collision meshes of the part.
+         This is computed from the collision mesh of the part.
          If the part is not collidable, the box has zero volume and is centered on
          the :func:`Part::position` of the part.
 
    .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
-      The direction of the part in the given reference frame.
+      The direction the part points in, in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
 
    .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
 
-      The velocity of the part in the given reference frame.
+      The linear velocity of the part in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned velocity vector is in.
+
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
 
    .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
-      The rotation of the part in the given reference frame.
+      The rotation of the part, in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned rotation is in.
+
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. function:: std::tuple<double, double, double> moment_of_inertia()
 
@@ -546,22 +585,26 @@ Part
 
    .. function:: std::vector<double> inertia_tensor()
 
-      The inertia tensor of the part in the parts reference frame (:class:`ReferenceFrame`).
+      The inertia tensor of the part in the parts reference frame
+      (:class:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
    .. function:: ReferenceFrame reference_frame()
 
-      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
+      The reference frame that is fixed relative to this part, and centered on a fixed
+      position within the part, defined by the parts model.
 
-      * The origin is at the position of the part, as returned by :func:`Part::position`.
+      * The origin is at the position of the part, as returned by
+        :func:`Part::position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :func:`DockingPort::reference_frame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :func:`DockingPort::reference_frame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -570,24 +613,32 @@ Part
 
    .. function:: ReferenceFrame center_of_mass_reference_frame()
 
-      The reference frame that is fixed relative to this part, and centered on its center of mass.
+      The reference frame that is fixed relative to this part, and centered on its
+      center of mass.
 
-      * The origin is at the center of mass of the part, as returned by :func:`Part::center_of_mass`.
+      * The origin is at the center of mass of the part, as returned by
+        :func:`Part::center_of_mass`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :func:`DockingPort::reference_frame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :func:`DockingPort::reference_frame`.
 
    .. function:: Force add_force(std::tuple<double, double, double> force, std::tuple<double, double, double> position, ReferenceFrame reference_frame)
 
       Exert a constant force on the part, acting at the given position.
-      Returns an object that can be used to remove or modify the force.
 
       :Parameters:
+
+       * **force** -- A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+       * **position** -- The position at which the force acts, as a vector.
+       * **reference_frame** -- The reference frame that the force and position are in.
+
+      :returns: An object that can be used to remove or modify the force.
 
    .. function:: void instantaneous_force(std::tuple<double, double, double> force, std::tuple<double, double, double> position, ReferenceFrame reference_frame)
 
@@ -595,9 +646,9 @@ Part
 
       :Parameters:
 
-
-
-
+       * **force** -- A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+       * **position** -- The position at which the force acts, as a vector.
+       * **reference_frame** -- The reference frame that the force and position are in.
 
 
       .. note::
@@ -617,12 +668,16 @@ Part
    .. function:: std::tuple<double, double, double> force_vector()
    .. function:: void set_force_vector(std::tuple<double, double, double> value)
 
-      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+      The force vector, in Newtons.
+
+      :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
 
    .. function:: std::tuple<double, double, double> position()
    .. function:: void set_position(std::tuple<double, double, double> value)
 
-      The position at which the force acts.
+      The position at which the force acts, in reference frame :class:`ReferenceFrame`.
+
+      :returns: The position as a vector.
 
    .. function:: ReferenceFrame reference_frame()
    .. function:: void set_reference_frame(ReferenceFrame value)
@@ -641,8 +696,8 @@ Module
 
 .. class:: Module
 
-   This can be used to interact with a specific part module. This includes part modules in stock KSP,
-   and those added by mods.
+   This can be used to interact with a specific part module. This includes part modules in
+   stock KSP, and those added by mods.
 
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
@@ -727,14 +782,15 @@ Module
 
    .. function:: void trigger_event(std::string name)
 
-      Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
+      Trigger the named event. Equivalent to clicking the button in the right-click menu
+      of the part.
 
       :Parameters:
 
    .. function:: std::vector<std::string> actions()
 
-      A list of all the names of the modules actions. These are the parts actions that can be assigned
-      to action groups in the in-game editor.
+      A list of all the names of the modules actions. These are the parts actions that can
+      be assigned to action groups in the in-game editor.
 
    .. function:: bool has_action(std::string name)
 
@@ -812,7 +868,8 @@ Antenna
 
    .. function:: bool combinable()
 
-      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+      Whether the antenna can be combined with other antennae on the vessel
+      to boost the power.
 
    .. function:: double combinable_exponent()
 
@@ -944,7 +1001,8 @@ Control Surface
    .. function:: float authority_limiter()
    .. function:: void set_authority_limiter(float value)
 
-      The authority limiter for the control surface, which controls how far the control surface will move.
+      The authority limiter for the control surface, which controls how far the
+      control surface will move.
 
    .. function:: bool inverted()
    .. function:: void set_inverted(bool value)
@@ -962,9 +1020,9 @@ Control Surface
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
-      The available torque in the positive pitch, roll and yaw axes and
-      negative pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+      The available torque, in Newton meters, that can be produced by this control surface,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
 
 
 
@@ -1063,9 +1121,13 @@ Docking Port
 
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
-      The position of the docking port in the given reference frame.
+      The position of the docking port, in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
 
    .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
@@ -1073,11 +1135,19 @@ Docking Port
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
    .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
       The rotation of the docking port, in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned rotation is in.
+
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. function:: ReferenceFrame reference_frame()
 
@@ -1182,7 +1252,8 @@ Engine
       The amount of thrust, in Newtons, that would be produced by the engine
       when activated and with its throttle set to 100%.
       Returns zero if the engine does not have any fuel.
-      Takes the engine's current :func:`Engine::thrust_limit` and atmospheric conditions into account.
+      Takes the engine's current :func:`Engine::thrust_limit` and atmospheric conditions
+      into account.
 
    .. function:: float max_thrust()
 
@@ -1240,8 +1311,8 @@ Engine
 
       .. note::
 
-         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
-         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every
+         0.6 units of LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
 
    .. function:: std::vector<Propellant> propellants()
 
@@ -1326,8 +1397,9 @@ Engine
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+      The available torque, in Newton meters, that can be produced by this engine,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the engine is inactive, or not gimballed.
 
 
@@ -1350,15 +1422,18 @@ Engine
 
    .. function:: double total_resource_available()
 
-      The total amount of the underlying resource currently reachable given resource flow rules.
+      The total amount of the underlying resource currently reachable given
+      resource flow rules.
 
    .. function:: double total_resource_capacity()
 
-      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+      The total vehicle capacity for the underlying propellant resource,
+      restricted by resource flow rules.
 
    .. function:: bool ignore_for_isp()
 
-      If this propellant should be ignored when calculating required mass flow given specific impulse.
+      If this propellant should be ignored when calculating required mass flow
+      given specific impulse.
 
    .. function:: bool ignore_for_thrust_curve()
 
@@ -1436,8 +1511,8 @@ Experiment
 
    .. function:: ScienceSubject science_subject()
 
-      Containing information on the corresponding specific science result for the current conditions.
-      Returns null if experiment is unavailable.
+      Containing information on the corresponding specific science result for the current
+      conditions. Returns ``NULL`` if the experiment is unavailable.
 
 
 
@@ -1473,7 +1548,8 @@ Experiment
 
    .. function:: float science()
 
-      Amount of science already earned from this subject, not updated until after transmission/recovery.
+      Amount of science already earned from this subject, not updated until after
+      transmission/recovery.
 
    .. function:: float science_cap()
 
@@ -1489,7 +1565,8 @@ Experiment
 
    .. function:: float scientific_value()
 
-      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
+      Diminishing value multiplier for decreasing the science value returned from repeated
+      experiments.
 
 
 
@@ -1689,7 +1766,8 @@ Parachute
 
    .. function:: bool armed()
 
-      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+      Whether the parachute has been armed or deployed. Only applicable to
+      RealChutes parachutes.
 
    .. function:: ParachuteState state()
 
@@ -2033,14 +2111,15 @@ Reaction Wheel
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+      The available torque, in Newton meters, that can be produced by this reaction wheel,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> max_torque()
 
-      The maximum torque the reaction wheel can provide, is it active,
-      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The maximum torque, in Newton meters, that can be produced by this reaction wheel,
+      when it is active, in the positive and negative pitch, roll and yaw axes of the vessel.
       These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
 
 
@@ -2060,9 +2139,9 @@ RCS
    .. function:: bool active()
 
       Whether the RCS thrusters are active.
-      An RCS thruster is inactive if the RCS action group is disabled (:func:`Control::rcs`),
-      the RCS thruster itself is not enabled (:func:`RCS::enabled`) or
-      it is covered by a fairing (:func:`Part::shielded`).
+      An RCS thruster is inactive if the RCS action group is disabled
+      (:func:`Control::rcs`), the RCS thruster itself is not enabled
+      (:func:`RCS::enabled`) or it is covered by a fairing (:func:`Part::shielded`).
 
    .. function:: bool enabled()
    .. function:: void set_enabled(bool value)
@@ -2101,17 +2180,20 @@ RCS
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
-      Returns zero if the RCS is inactive.
+      The available torque, in Newton meters, that can be produced by this RCS,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+      Returns zero if RCS is disable.
 
    .. function:: float max_thrust()
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active,
+      in Newtons.
 
    .. function:: float max_vacuum_thrust()
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active
+      in a vacuum, in Newtons.
 
    .. function:: std::vector<Thruster> thrusters()
 
@@ -2254,7 +2336,8 @@ Thruster
    .. note::
 
       Engines can consist of multiple thrusters.
-      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of
+      four thrusters.
 
    .. function:: Part part()
 
@@ -2267,6 +2350,10 @@ Thruster
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. function:: std::tuple<double, double, double> thrust_direction(ReferenceFrame reference_frame)
 
       The direction of the force generated by the thruster, in the given reference frame.
@@ -2275,13 +2362,18 @@ Thruster
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
    .. function:: ReferenceFrame thrust_reference_frame()
 
       A reference frame that is fixed relative to the thruster and orientated with
       its thrust direction (:func:`Thruster::thrust_direction`).
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      * The origin is at the position of thrust for this thruster (:func:`Thruster::thrust_position`).
+      * The origin is at the position of thrust for this thruster
+        (:func:`Thruster::thrust_position`).
       * The axes rotate with the thrust direction.
         This is the direction in which the thruster expels propellant, including any gimballing.
       * The y-axis points along the thrust direction.
@@ -2297,9 +2389,13 @@ Thruster
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
+
    .. function:: std::tuple<double, double, double> gimbal_angle()
 
-      The current gimbal angle in the pitch, roll and yaw axes.
+      The current gimbal angle in the pitch, roll and yaw axes, in degrees.
 
    .. function:: std::tuple<double, double, double> initial_thrust_position(ReferenceFrame reference_frame)
 
@@ -2308,8 +2404,9 @@ Thruster
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned position vector is in.
 
-
+      :returns: The position as a vector.
 
       .. note::
 
@@ -2324,6 +2421,10 @@ Thruster
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
 
 
 Wheel
@@ -2332,7 +2433,8 @@ Wheel
 
 .. class:: Wheel
 
-   A wheel. Includes landing gear and rover wheels. Obtained by calling :func:`Part::wheel`.
+   A wheel. Includes landing gear and rover wheels.
+   Obtained by calling :func:`Part::wheel`.
    Can be used to control the motors, steering and deployment of wheels, among other things.
 
    .. function:: Part part()

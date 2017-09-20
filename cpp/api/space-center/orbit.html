@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Orbit &mdash; kRPC 0.3.9 documentation</title>
+  <title>Orbit &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Control" href="control.html"/>
         <link rel="prev" title="Flight" href="flight.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -204,20 +204,24 @@
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit8apoapsisEv">
 <span id="krpc::services::SpaceCenter::Orbit::apoapsis"></span>double <code class="descclassname"></code><code class="descname">apoapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit8apoapsisEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the apoapsis altitude reported on the in-game map view, use <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit17apoapsis_altitudeEv" title="krpc::services::SpaceCenter::Orbit::apoapsis_altitude"><code class="xref cpp cpp-func docutils literal"><span class="pre">Orbit::apoapsis_altitude()</span></code></a>.</p>
+<p class="last">For the apoapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit17apoapsis_altitudeEv" title="krpc::services::SpaceCenter::Orbit::apoapsis_altitude"><code class="xref cpp cpp-func docutils literal"><span class="pre">Orbit::apoapsis_altitude()</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit9periapsisEv">
 <span id="krpc::services::SpaceCenter::Orbit::periapsis"></span>double <code class="descclassname"></code><code class="descname">periapsis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit9periapsisEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The periapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>The periapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the periapsis altitude reported on the in-game map view, use <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18periapsis_altitudeEv" title="krpc::services::SpaceCenter::Orbit::periapsis_altitude"><code class="xref cpp cpp-func docutils literal"><span class="pre">Orbit::periapsis_altitude()</span></code></a>.</p>
+<p class="last">For the periapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18periapsis_altitudeEv" title="krpc::services::SpaceCenter::Orbit::periapsis_altitude"><code class="xref cpp cpp-func docutils literal"><span class="pre">Orbit::periapsis_altitude()</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -257,11 +261,50 @@
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit6radiusEv">
 <span id="krpc::services::SpaceCenter::Orbit::radius"></span>double <code class="descclassname"></code><code class="descname">radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit6radiusEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The current radius of the orbit, in meters. This is the distance between the center
-of mass of the object in orbit, and the center of mass of the body around which it is orbiting.</p>
+of mass of the object in orbit, and the center of mass of the body around which it
+is orbiting.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This value will change over time if the orbit is elliptical.</p>
 </div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit9radius_atEd">
+<span id="krpc::services::SpaceCenter::Orbit::radius_at__double"></span>double <code class="descclassname"></code><code class="descname">radius_at</code><span class="sig-paren">(</span>double <em>ut</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit9radius_atEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The orbital radius at the given time, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> – The universal time to measure the radius at.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit11position_atEd14ReferenceFrame">
+<span id="krpc::services::SpaceCenter::Orbit::position_at__double.ReferenceFrame"></span>std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">position_at</code><span class="sig-paren">(</span>double <em>ut</em>, <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit11position_atEd14ReferenceFrame" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The position at a given time, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ut</strong> – The universal time to measure the position at.</li>
+<li><strong>reference_frame</strong> – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -295,13 +338,15 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit12eccentricityEv">
 <span id="krpc::services::SpaceCenter::Orbit::eccentricity"></span>double <code class="descclassname"></code><code class="descname">eccentricity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit12eccentricityEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a>
+of the orbit.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit11inclinationEv">
 <span id="krpc::services::SpaceCenter::Orbit::inclination"></span>double <code class="descclassname"></code><code class="descname">inclination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit11inclinationEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit,
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a>
+of the orbit,
 in radians.</p>
 </dd></dl>
 
@@ -327,13 +372,31 @@ in radians.</p>
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit5epochEv">
 <span id="krpc::services::SpaceCenter::Orbit::epoch"></span>double <code class="descclassname"></code><code class="descname">epoch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit5epochEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The time since the epoch (the point at which the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>
+was measured, in seconds.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit12mean_anomalyEv">
 <span id="krpc::services::SpaceCenter::Orbit::mean_anomaly"></span>double <code class="descclassname"></code><code class="descname">mean_anomaly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit12mean_anomalyEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit18mean_anomaly_at_utEd">
+<span id="krpc::services::SpaceCenter::Orbit::mean_anomaly_at_ut__double"></span>double <code class="descclassname"></code><code class="descname">mean_anomaly_at_ut</code><span class="sig-paren">(</span>double <em>ut</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18mean_anomaly_at_utEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The mean anomaly at the given time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> – The universal time in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -434,6 +497,40 @@ in radians.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit18true_anomaly_at_anE6Vessel">
+<span id="krpc::services::SpaceCenter::Orbit::true_anomaly_at_an__Vessel"></span>double <code class="descclassname"></code><code class="descname">true_anomaly_at_an</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18true_anomaly_at_anE6Vessel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The true anomaly of the ascending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit18true_anomaly_at_dnE6Vessel">
+<span id="krpc::services::SpaceCenter::Orbit::true_anomaly_at_dn__Vessel"></span>double <code class="descclassname"></code><code class="descname">true_anomaly_at_dn</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18true_anomaly_at_dnE6Vessel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The true anomaly of the descending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit13orbital_speedEv">
 <span id="krpc::services::SpaceCenter::Orbit::orbital_speed"></span>double <code class="descclassname"></code><code class="descname">orbital_speed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit13orbital_speedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The current orbital speed in meters per second.</p>
@@ -459,13 +556,20 @@ in radians.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit22reference_plane_normalER6Client14ReferenceFrame">
 <span id="krpc::services::SpaceCenter::Orbit::reference_plane_normal__ClientR.ReferenceFrame"></span><em class="property">static</em> std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">reference_plane_normal</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> &amp;<em>connection</em>, <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit22reference_plane_normalER6Client14ReferenceFrame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The unit direction vector that is normal to the orbits reference plane, in the given
-reference frame. The reference plane is the plane from which the orbits inclination is measured.</p>
+<dd><p>The direction that is normal to the orbits reference plane,
+in the given reference frame.
+The reference plane is the plane from which the orbits inclination is measured.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>reference_frame</strong> – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -474,13 +578,36 @@ reference frame. The reference plane is the plane from which the orbits inclinat
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit25reference_plane_directionER6Client14ReferenceFrame">
 <span id="krpc::services::SpaceCenter::Orbit::reference_plane_direction__ClientR.ReferenceFrame"></span><em class="property">static</em> std::tuple&lt;double, double, double&gt; <code class="descclassname"></code><code class="descname">reference_plane_direction</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#_CPPv2N4krpc6ClientE" title="krpc::Client">Client</a> &amp;<em>connection</em>, <a class="reference internal" href="reference-frame.html#_CPPv2N4krpc8services11SpaceCenter14ReferenceFrameE" title="krpc::services::SpaceCenter::ReferenceFrame">ReferenceFrame</a> <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit25reference_plane_directionER6Client14ReferenceFrame" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The unit direction vector from which the orbits longitude of ascending node is measured,
+<dd><p>The direction from which the orbits longitude of ascending node is measured,
 in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>reference_frame</strong> – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit20relative_inclinationE6Vessel">
+<span id="krpc::services::SpaceCenter::Orbit::relative_inclination__Vessel"></span>double <code class="descclassname"></code><code class="descname">relative_inclination</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit20relative_inclinationE6Vessel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Relative inclination of this orbit and the orbit of the given target vessel, in radians.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> – Target vessel.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -489,15 +616,73 @@ in the given reference frame.</p>
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit18time_to_soi_changeEv">
 <span id="krpc::services::SpaceCenter::Orbit::time_to_soi_change"></span>double <code class="descclassname"></code><code class="descname">time_to_soi_change</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit18time_to_soi_changeEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code> if the
-object is not going to change sphere of influence.</p>
+<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code>
+if the object is not going to change sphere of influence.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit10next_orbitEv">
 <span id="krpc::services::SpaceCenter::Orbit::next_orbit"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter5OrbitE" title="krpc::services::SpaceCenter::Orbit">Orbit</a> <code class="descclassname"></code><code class="descname">next_orbit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit10next_orbitEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>If the object is going to change sphere of influence in the future, returns the new orbit
-after the change. Otherwise returns <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+<dd><p>If the object is going to change sphere of influence in the future, returns the new
+orbit after the change. Otherwise returns <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit24time_of_closest_approachE6Vessel">
+<span id="krpc::services::SpaceCenter::Orbit::time_of_closest_approach__Vessel"></span>double <code class="descclassname"></code><code class="descname">time_of_closest_approach</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit24time_of_closest_approachE6Vessel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Estimates and returns the time at closest approach to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> – Target vessel.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The universal time at closest approach, in seconds.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit28distance_at_closest_approachE6Vessel">
+<span id="krpc::services::SpaceCenter::Orbit::distance_at_closest_approach__Vessel"></span>double <code class="descclassname"></code><code class="descname">distance_at_closest_approach</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit28distance_at_closest_approachE6Vessel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Estimates and returns the distance at closest approach to a target vessel, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> – Target vessel.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter5Orbit23list_closest_approachesE6Vessel7int32_t">
+<span id="krpc::services::SpaceCenter::Orbit::list_closest_approaches__Vessel.int32_t"></span>std::vector&lt;std::vector&lt;double&gt;&gt; <code class="descclassname"></code><code class="descname">list_closest_approaches</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#_CPPv2N4krpc8services11SpaceCenter6VesselE" title="krpc::services::SpaceCenter::Vessel">Vessel</a> <em>target</em>, int32_t <em>orbits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter5Orbit23list_closest_approachesE6Vessel7int32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the times at closest approach and corresponding distances, to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> – Target vessel.</li>
+<li><strong>orbits</strong> – The number of future orbits to search.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -545,7 +730,7 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

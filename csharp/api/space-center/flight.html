@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flight &mdash; kRPC 0.3.9 documentation</title>
+  <title>Flight &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Orbit" href="orbit.html"/>
         <link rel="prev" title="CelestialBody" href="celestial-body.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -249,98 +249,191 @@ and is negative when the vessel is over the sea.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Velocity">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Velocity</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The velocity vector of the vessel. The magnitude of the vector is the speed of the vessel in meters per second.
-The direction of the vector is the direction of the vessels motion.</p>
+<dd><p>The velocity of the vessel, in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the vessel in meters per second.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Speed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a> <code class="descname">Speed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Speed" title="Permalink to this definition">¶</a></dt>
-<dd><p>The speed of the vessel in meters per second.</p>
+<dd><p>The speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.HorizontalSpeed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a> <code class="descname">HorizontalSpeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.HorizontalSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><p>The horizontal speed of the vessel in meters per second.</p>
+<dd><p>The horizontal speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.VerticalSpeed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a> <code class="descname">VerticalSpeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.VerticalSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><p>The vertical speed of the vessel in meters per second.</p>
+<dd><p>The vertical speed of the vessel in meters per second,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.CenterOfMass">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">CenterOfMass</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.CenterOfMass" title="Permalink to this definition">¶</a></dt>
-<dd><p>The position of the center of mass of the vessel.</p>
+<dd><p>The position of the center of mass of the vessel,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The position as a vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Rotation">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Rotation</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>The rotation of the vessel.</p>
+<dd><p>The rotation of the vessel, in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Direction">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Direction</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>The direction vector that the vessel is pointing in.</p>
+<dd><p>The direction that the vessel is pointing in,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Pitch">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Pitch</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Pitch" title="Permalink to this definition">¶</a></dt>
-<dd><p>The pitch angle of the vessel relative to the horizon, in degrees. A value between -90° and +90°.</p>
+<dd><p>The pitch of the vessel relative to the horizon, in degrees.
+A value between -90° and +90°.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Heading">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Heading</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Heading" title="Permalink to this definition">¶</a></dt>
-<dd><p>The heading angle of the vessel relative to north, in degrees. A value between 0° and 360°.</p>
+<dd><p>The heading of the vessel (its angle relative to north), in degrees.
+A value between 0° and 360°.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Roll">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Roll</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Roll" title="Permalink to this definition">¶</a></dt>
-<dd><p>The roll angle of the vessel relative to the horizon, in degrees. A value between -180° and +180°.</p>
+<dd><p>The roll of the vessel relative to the horizon, in degrees.
+A value between -180° and +180°.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Prograde">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Prograde</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Prograde" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the prograde direction.</p>
+<dd><p>The prograde direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Retrograde">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Retrograde</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Retrograde" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the retrograde direction.</p>
+<dd><p>The retrograde direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Normal">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Normal</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Normal" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the normal direction.</p>
+<dd><p>The direction normal to the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.AntiNormal">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">AntiNormal</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.AntiNormal" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the anti-normal direction.</p>
+<dd><p>The direction opposite to the normal of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Radial">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Radial</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Radial" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the radial direction.</p>
+<dd><p>The radial direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.AntiRadial">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">AntiRadial</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.AntiRadial" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector pointing in the anti-radial direction.</p>
+<dd><p>The direction opposite to the radial direction of the vessels orbit,
+in the reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
@@ -352,8 +445,9 @@ The direction of the vector is the direction of the vessels motion.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.DynamicPressure">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">DynamicPressure</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.DynamicPressure" title="Permalink to this definition">¶</a></dt>
-<dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the strength of the
-aerodynamic forces. It is equal to <span class="math">\(\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2\)</span>.
+<dd><p>The dynamic pressure acting on the vessel, in Pascals. This is a measure of the
+strength of the aerodynamic forces. It is equal to
+<span class="math">\(\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2\)</span>.
 It is commonly denoted <span class="math">\(Q\)</span>.</p>
 </dd></dl>
 
@@ -372,22 +466,63 @@ It is commonly denoted <span class="math">\(Q\)</span>.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.AerodynamicForce">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">AerodynamicForce</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.AerodynamicForce" title="Permalink to this definition">¶</a></dt>
-<dd><p>The total aerodynamic forces acting on the vessel, as a vector pointing in the direction of the force, with its
-magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The total aerodynamic forces acting on the vessel,
+in reference frame <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-KRPC.Client.Services.SpaceCenter.Flight.SimulateAerodynamicForceAt">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">SimulateAerodynamicForceAt</code> <span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#class-KRPC.Client.Services.SpaceCenter.CelestialBody" title="KRPC.Client.Services.SpaceCenter.CelestialBody class">CelestialBody</a> <em>body</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <em>position</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <em>velocity</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Flight.SimulateAerodynamicForceAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate and return the total aerodynamic forces acting on the vessel,
+if it where to be traveling with the given velocity at the given position in the
+atmosphere of the given celestial body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Lift">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Lift</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Lift" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a> currently acting on the vessel,
-as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic lift</a>
+currently acting on the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.Drag">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Drag</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.Drag" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel,
-as a vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Aerodynamic_force">aerodynamic drag</a> currently acting on the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="property">
@@ -415,53 +550,56 @@ as a vector pointing in the direction of the force, with its magnitude equal to 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.TrueAirSpeed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">TrueAirSpeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.TrueAirSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/True_airspeed">true air speed</a>
+of the vessel, in meters per second.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.EquivalentAirSpeed">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">EquivalentAirSpeed</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.EquivalentAirSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a> of the vessel, in <span class="math">\(m/s\)</span>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalent_airspeed">equivalent air speed</a>
+of the vessel, in meters per second.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.TerminalVelocity">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">TerminalVelocity</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.TerminalVelocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>An estimate of the current terminal velocity of the vessel, in <span class="math">\(m/s\)</span>.
+<dd><p>An estimate of the current terminal velocity of the vessel, in meters per second.
 This is the speed at which the drag forces cancel out the force of gravity.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.AngleOfAttack">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">AngleOfAttack</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.AngleOfAttack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the pitch angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+<dd><p>The pitch angle between the orientation of the vessel and its velocity vector,
+in degrees.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.SideslipAngle">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">SideslipAngle</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.SideslipAngle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the yaw angle between the orientation of the vessel and its velocity vector, in degrees.</p>
+<dd><p>The yaw angle between the orientation of the vessel and its velocity vector, in degrees.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.TotalAirTemperature">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">TotalAirTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.TotalAirTemperature" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a> of the atmosphere
-around the vessel, in Kelvin. This temperature includes the <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature" title="KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Flight.StaticAirTemperature</span></code></a> and the vessel’s kinetic energy.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">total air temperature</a>
+of the atmosphere around the vessel, in Kelvin.
+This includes the <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature" title="KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Flight.StaticAirTemperature</span></code></a> and the vessel’s kinetic energy.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">StaticAirTemperature</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.StaticAirTemperature" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the
-atmosphere around the vessel, in Kelvin.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Total_air_temperature">static (ambient) temperature</a> of the atmosphere around the vessel, in Kelvin.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.StallFraction">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">StallFraction</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.StallFraction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current amount of stall, between 0 and 1. A value greater than 0.005 indicates a minor stall
-and a value greater than 0.5 indicates a large-scale stall.</p>
+<dd><p>The current amount of stall, between 0 and 1. A value greater than 0.005 indicates
+a minor stall and a value greater than 0.5 indicates a large-scale stall.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -471,8 +609,8 @@ and a value greater than 0.5 indicates a large-scale stall.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.DragCoefficient">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">DragCoefficient</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.DragCoefficient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the coefficient of drag. This is the amount of drag produced by the vessel. It depends on air speed,
-air density and wing area.</p>
+<dd><p>The coefficient of drag. This is the amount of drag produced by the vessel.
+It depends on air speed, air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -482,7 +620,8 @@ air density and wing area.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.LiftCoefficient">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">LiftCoefficient</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.LiftCoefficient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the coefficient of lift. This is the amount of lift produced by the vessel, and depends on air speed, air density and wing area.</p>
+<dd><p>The coefficient of lift. This is the amount of lift produced by the vessel, and
+depends on air speed, air density and wing area.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -492,7 +631,7 @@ air density and wing area.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.BallisticCoefficient">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">BallisticCoefficient</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.BallisticCoefficient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the <a class="reference external" href="https://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Ballistic_coefficient">ballistic coefficient</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -502,9 +641,10 @@ air density and wing area.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Flight.ThrustSpecificFuelConsumption">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">ThrustSpecificFuelConsumption</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Flight.ThrustSpecificFuelConsumption" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the thrust specific fuel consumption for the jet engines on the vessel. This is a measure of the
-efficiency of the engines, with a lower value indicating a more efficient vessel. This value is the
-number of Newtons of fuel that are burned, per hour, to produce one newton of thrust.</p>
+<dd><p>The thrust specific fuel consumption for the jet engines on the vessel. This is a
+measure of the efficiency of the engines, with a lower value indicating a more
+efficient vessel. This value is the number of Newtons of fuel that are burned,
+per hour, to produce one newton of thrust.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Requires <a class="reference external" href="http://forum.kerbalspaceprogram.com/index.php?/topic/19321-105-ferram-aerospace-research-v01557-johnson-21816/">Ferram Aerospace Research</a>.</p>
@@ -556,7 +696,7 @@ number of Newtons of fuel that are burned, per hour, to produce one newton of th
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

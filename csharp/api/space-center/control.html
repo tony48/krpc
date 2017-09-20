@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.9 documentation</title>
+  <title>Control &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -367,6 +367,17 @@ See <a class="reference internal" href="parts.html#property-KRPC.Client.Services
 <dt id="property-KRPC.Client.Services.SpaceCenter.Control.Throttle">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Throttle</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.Throttle" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the throttle. A value between 0 and 1.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Control.InputMode">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.ControlInputMode" title="KRPC.Client.Services.SpaceCenter.ControlInputMode enum">ControlInputMode</a> <code class="descname">InputMode</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Control.InputMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the behavior of the pitch, yaw, roll and translation control inputs.
+When set to additive, these inputs are added to the vessels current inputs.
+This mode is the default.
+When set to override, these inputs (if non-zero) override the vessels inputs.
+This mode prevents keyboard control, or SAS, from interfering with the controls when
+they are set.</p>
 </dd></dl>
 
 <dl class="property">
@@ -690,6 +701,24 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
 
 </dd></dl>
 
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.ControlInputMode">
+<code class="descname">enum ControlInputMode</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.ControlInputMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Control.InputMode" title="KRPC.Client.Services.SpaceCenter.Control.InputMode property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Control.InputMode</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlInputMode.Additive">
+<code class="descname">Additive</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlInputMode.Additive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs are added to the vessels current control inputs.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.ControlInputMode.Override">
+<code class="descname">Override</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.ControlInputMode.Override" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs (when they are non-zero) override the vessels current control inputs.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -733,7 +762,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

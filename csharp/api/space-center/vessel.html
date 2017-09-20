@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.3.9 documentation</title>
+  <title>Vessel &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -399,22 +399,24 @@ This is computed using the formula
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.MomentOfInertia">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">MomentOfInertia</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.MomentOfInertia" title="Permalink to this definition">¶</a></dt>
 <dd><p>The moment of inertia of the vessel around its center of mass in <span class="math">\(kg.m^2\)</span>.
-The inertia values are around the pitch, roll and yaw directions respectively.
+The inertia values in the returned 3-tuple are around the
+pitch, roll and yaw directions respectively.
 This corresponds to the vessels reference frame (<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>).</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.InertiaTensor">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">InertiaTensor</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.InertiaTensor" title="Permalink to this definition">¶</a></dt>
-<dd><p>The inertia tensor of the vessel around its center of mass, in the vessels reference frame (<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
+<dd><p>The inertia tensor of the vessel around its center of mass,
+in the vessels reference frame (<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 Returns the 3x3 matrix as a list of elements, in row-major order.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.AvailableTorque">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;&gt; <code class="descname">AvailableTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.AvailableTorque" title="Permalink to this definition">¶</a></dt>
-<dd><p>The maximum torque that the vessel generate. Includes contributions from reaction wheels,
-RCS, gimballed engines and aerodynamic control surfaces.
+<dd><p>The maximum torque that the vessel generates. Includes contributions from
+reaction wheels, RCS, gimballed engines and aerodynamic control surfaces.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
 vessels reference frame (<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
@@ -459,7 +461,8 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.AvailableOtherTorque">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;&gt; <code class="descname">AvailableOtherTorque</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.AvailableOtherTorque" title="Permalink to this definition">¶</a></dt>
-<dd><p>The maximum torque that parts (excluding reaction wheels, gimballed engines, RCS and control surfaces) can generate.
+<dd><p>The maximum torque that parts (excluding reaction wheels, gimballed engines,
+RCS and control surfaces) can generate.
 Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
 vessels reference frame (<a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class"><code class="xref csharp csharp-type docutils literal"><span class="pre">ReferenceFrame</span></code></a>).
 These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
@@ -468,7 +471,8 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame">
 <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <code class="descname">ReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessel.</p>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the vessel.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the vessel.</li>
@@ -489,8 +493,8 @@ These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.OrbitalReferenceFrame">
 <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <code class="descname">OrbitalReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.OrbitalReferenceFrame" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the vessels
-orbital prograde/normal/radial directions.</p>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the vessels orbital prograde/normal/radial directions.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the orbital prograde/normal/radial directions.</li>
@@ -511,8 +515,8 @@ orbital prograde/normal/radial directions.</p>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.SurfaceReferenceFrame">
 <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <code class="descname">SurfaceReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.SurfaceReferenceFrame" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the surface
-of the body being orbited.</p>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the surface of the body being orbited.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the north and up directions on the surface of the body.</li>
@@ -539,8 +543,9 @@ surface of the body – east on a compass when on the surface).</li>
 <dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.SurfaceVelocityReferenceFrame">
 <a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <code class="descname">SurfaceVelocityReferenceFrame</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.SurfaceVelocityReferenceFrame" title="Permalink to this definition">¶</a></dt>
-<dd><p>The reference frame that is fixed relative to the vessel, and orientated with the velocity
-vector of the vessel relative to the surface of the body being orbited.</p>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the velocity vector of the vessel relative
+to the surface of the body being orbited.</p>
 <ul class="simple">
 <li>The origin is at the center of mass of the vessel.</li>
 <li>The axes rotate with the vessel’s velocity vector.</li>
@@ -559,12 +564,18 @@ relative to the surface of the body being orbited.</li>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.Position">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Position</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.Position" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the position vector of the center of mass of the vessel in the given reference frame.</p>
+<dd><p>The position of the center of mass of the vessel, in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -573,13 +584,18 @@ relative to the surface of the body being orbited.</li>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.BoundingBox">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt;&gt; <code class="descname">BoundingBox</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.BoundingBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.
-Returns the minimum and maximum vertices of the box.</p>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned position vectors are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The positions of the minimum and maximum vertices of the box, as position vectors.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -588,12 +604,18 @@ Returns the minimum and maximum vertices of the box.</p>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.Velocity">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Velocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.Velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the velocity vector of the center of mass of the vessel in the given reference frame.</p>
+<dd><p>The velocity of the center of mass of the vessel, in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned velocity vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -602,12 +624,18 @@ Returns the minimum and maximum vertices of the box.</p>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.Rotation">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Rotation</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.Rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the rotation of the center of mass of the vessel in the given reference frame.</p>
+<dd><p>The rotation of the vessel, in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned rotation is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -616,12 +644,18 @@ Returns the minimum and maximum vertices of the box.</p>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.Direction">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">Direction</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.Direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the direction in which the vessel is pointing, as a unit vector, in the given reference frame.</p>
+<dd><p>The direction in which the vessel is pointing, in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -630,14 +664,18 @@ Returns the minimum and maximum vertices of the box.</p>
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.Vessel.AngularVelocity">
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.tuple.aspx" title="System.Tuple">Tuple</a>&lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a>&gt; <code class="descname">AngularVelocity</code> <span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#class-KRPC.Client.Services.SpaceCenter.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.ReferenceFrame class">ReferenceFrame</a> <em>referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.Vessel.AngularVelocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the angular velocity of the vessel in the given reference frame. The magnitude of the returned
-vector is the rotational speed in radians per second, and the direction of the vector indicates the
-axis of rotation (using the right hand rule).</p>
+<dd><p>The angular velocity of the vessel, in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame the returned angular velocity is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The angular velocity as a vector. The magnitude of the vector is the rotational speed of the vessel, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -804,7 +842,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CelestialBody &mdash; kRPC 0.3.9 documentation</title>
+  <title>CelestialBody &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Flight" href="flight.html"/>
         <link rel="prev" title="Vessel" href="vessel.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -227,7 +227,8 @@ See <a class="reference internal" href="space-center.html#krpc.client.services.S
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getSurfaceGravity()">
  float <code class="descname">getSurfaceGravity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getSurfaceGravity()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The acceleration due to gravity at sea level (mean altitude) on the body, in <span class="math">\(m/s^2\)</span>.</p>
+<dd><p>The acceleration due to gravity at sea level (mean altitude) on the body,
+in <span class="math">\(m/s^2\)</span>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -265,15 +266,15 @@ A value between 0 and <span class="math">\(2\pi\)</span></p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.surfaceHeight(double, double)">
  double <code class="descname">surfaceHeight</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.surfaceHeight(double, double)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The height of the surface relative to mean sea level at the given position,
-in meters. When over water this is equal to 0.</p>
+<dd><p>The height of the surface relative to mean sea level, in meters,
+at the given position. When over water this is equal to 0.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
 </ul>
 </td>
 </tr>
@@ -284,16 +285,16 @@ in meters. When over water this is equal to 0.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.bedrockHeight(double, double)">
  double <code class="descname">bedrockHeight</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.bedrockHeight(double, double)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The height of the surface relative to mean sea level at the given position,
-in meters. When over water, this is the height of the sea-bed and is therefore a
-negative value.</p>
+<dd><p>The height of the surface relative to mean sea level, in meters,
+at the given position. When over water, this is the height
+of the sea-bed and is therefore  negative value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
 </ul>
 </td>
 </tr>
@@ -304,16 +305,20 @@ negative value.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.mSLPosition(double, double, ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">mSLPosition</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.mSLPosition(double, double, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The position at mean sea level at the given latitude and longitude, in the given reference frame.</p>
+<dd><p>The position at mean sea level at the given latitude and longitude,
+in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
 </td>
 </tr>
 </tbody>
@@ -329,11 +334,14 @@ reference frame. When over water, this is the position of the surface of the wat
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
 </td>
 </tr>
 </tbody>
@@ -349,11 +357,14 @@ reference frame. When over water, this is the position at the bottom of the sea-
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
 </td>
 </tr>
 </tbody>
@@ -368,11 +379,68 @@ reference frame. When over water, this is the position at the bottom of the sea-
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees.</li>
+<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees.</li>
+<li><strong>altitude</strong> (<em>double</em>) – Altitude in meters above sea level.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.altitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">altitudeAtPosition</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.altitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, of the given position in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>latitude</strong> (<em>double</em>) – Latitude in degrees</li>
-<li><strong>longitude</strong> (<em>double</em>) – Longitude in degrees</li>
-<li><strong>altitude</strong> (<em>double</em>) – Altitude in meters above sea level</li>
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the returned position vector</li>
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position as a vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the position vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.latitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">latitudeAtPosition</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.latitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The latitude of the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position as a vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the position vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.longitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">longitudeAtPosition</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.longitudeAtPosition(org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The longitude of the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position as a vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame for the position vector.</li>
 </ul>
 </td>
 </tr>
@@ -399,9 +467,95 @@ reference frame. When over water, this is the position at the bottom of the sea-
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.atmosphericDensityAtPosition(org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">atmosphericDensityAtPosition</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.atmosphericDensityAtPosition(org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The atmospheric density at the given position, in <span class="math">\(kg/m^3\)</span>,
+in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – The position vector at which to measure the density.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – Reference frame that the position vector is in.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getHasAtmosphericOxygen()">
  boolean <code class="descname">getHasAtmosphericOxygen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getHasAtmosphericOxygen()" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal"><span class="pre">true</span></code> if there is oxygen in the atmosphere, required for air-breathing engines.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.temperatureAt(org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">temperatureAt</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.temperatureAt(org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature on the body at the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position as a vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the position is in.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This calculation is performed using the bodies current position, which means that
+the value could be wrong if you want to know the temperature in the far future.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.densityAt(double)">
+ double <code class="descname">densityAt</code><span class="sig-paren">(</span>double<em> altitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.densityAt(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the air density, in <span class="math">\(kg/m^3\)</span>, for the specified
+altitude above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>altitude</strong> (<em>double</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an approximation, because actual calculations, taking sun exposure into account
+to compute air temperature, require us to know the exact point on the body where the
+density is to be computed (knowing the altitude is not enough).
+However, the difference is small for high altitudes, so it makes very little difference
+for trajectory prediction.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CelestialBody.pressureAt(double)">
+ double <code class="descname">pressureAt</code><span class="sig-paren">(</span>double<em> altitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.pressureAt(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the air pressure, in Pascals, for the specified
+altitude above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>altitude</strong> (<em>double</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -413,7 +567,7 @@ reference frame. When over water, this is the position at the bottom of the sea-
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.biomeAt(double, double)">
  <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">biomeAt</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.biomeAt(double, double)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The biomes at the given latitude and longitude, in degrees.</p>
+<dd><p>The biome at the given latitude and longitude, in degrees.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -431,13 +585,15 @@ reference frame. When over water, this is the position at the bottom of the sea-
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getFlyingHighAltitudeThreshold()">
  float <code class="descname">getFlyingHighAltitudeThreshold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getFlyingHighAltitudeThreshold()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude, in meters, above which a vessel is considered to be flying “high” when doing science.</p>
+<dd><p>The altitude, in meters, above which a vessel is considered to be
+flying “high” when doing science.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getSpaceHighAltitudeThreshold()">
  float <code class="descname">getSpaceHighAltitudeThreshold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getSpaceHighAltitudeThreshold()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude, in meters, above which a vessel is considered to be in “high” space when doing science.</p>
+<dd><p>The altitude, in meters, above which a vessel is considered to be
+in “high” space when doing science.</p>
 </dd></dl>
 
 <dl class="method">
@@ -482,7 +638,7 @@ equator.</li>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.getOrbitalReferenceFrame()">
  <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a> <code class="descname">getOrbitalReferenceFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.getOrbitalReferenceFrame()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the reference frame that is fixed relative to this celestial body, but
+<dd><p>The reference frame that is fixed relative to this celestial body, but
 orientated with the body’s orbital prograde/normal/radial directions.</p>
 <ul class="simple">
 <li>The origin is at the center of the body.</li>
@@ -497,14 +653,17 @@ directions.</li>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.position(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">position</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.position(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the position vector of the center of the body in the specified reference frame.</p>
+<dd><p>The position of the center of the body, in the specified reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned position vector is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
 </td>
 </tr>
 </tbody>
@@ -514,14 +673,17 @@ directions.</li>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.velocity(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">velocity</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.velocity(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the velocity vector of the body in the specified reference frame.</p>
+<dd><p>The linear velocity of the body, in the specified reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned velocity vector is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.</p>
 </td>
 </tr>
 </tbody>
@@ -531,14 +693,17 @@ directions.</li>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.rotation(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Quartet.html" title="org.javatuples.Quartet">Quartet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">rotation</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.rotation(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the rotation of the body in the specified reference frame.</p>
+<dd><p>The rotation of the body, in the specified reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned rotation is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</p>
 </td>
 </tr>
 </tbody>
@@ -548,15 +713,18 @@ directions.</li>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.direction(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">direction</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.direction(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the direction in which the north pole of the celestial body is
-pointing, as a unit vector, in the specified reference frame.</p>
+<dd><p>The direction in which the north pole of the celestial body is pointing,
+in the specified reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the returned direction is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
 </td>
 </tr>
 </tbody>
@@ -566,17 +734,17 @@ pointing, as a unit vector, in the specified reference frame.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.CelestialBody.angularVelocity(ReferenceFrame)">
  org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt; <code class="descname">angularVelocity</code><span class="sig-paren">(</span><a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CelestialBody.angularVelocity(ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the angular velocity of the body in the specified reference
-frame. The magnitude of the vector is the rotational speed of the body, in
-radians per second, and the direction of the vector indicates the axis of
-rotation, using the right-hand rule.</p>
+<dd><p>The angular velocity of the body in the specified reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame the returned angular velocity is in.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The angular velocity as a vector. The magnitude of the vector is the rotational speed of the body, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.</p>
 </td>
 </tr>
 </tbody>
@@ -628,7 +796,7 @@ rotation, using the right-hand rule.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

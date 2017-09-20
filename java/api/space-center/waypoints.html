@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Waypoints &mdash; kRPC 0.3.9 documentation</title>
+  <title>Waypoints &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Contracts" href="contracts.html"/>
         <link rel="prev" title="Camera" href="camera.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -271,7 +271,7 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)">
  void <code class="descname">setBody</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Celestial body the waypoint is attached to.</p>
+<dd><p>The celestial body the waypoint is attached to.</p>
 </dd></dl>
 
 <dl class="method">
@@ -282,7 +282,7 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setName(String)">
  void <code class="descname">setName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setName(String)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the waypoint as it appears on the map and the contract.</p>
+<dd><p>The name of the waypoint as it appears on the map and the contract.</p>
 </dd></dl>
 
 <dl class="method">
@@ -348,7 +348,8 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setSurfaceAltitude(double)">
  void <code class="descname">setSurfaceAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setSurfaceAltitude(double)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude of the waypoint above the surface of the body or sea level, whichever is closer, in meters.</p>
+<dd><p>The altitude of the waypoint above the surface of the body or sea level,
+whichever is closer, in meters.</p>
 </dd></dl>
 
 <dl class="method">
@@ -359,35 +360,39 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setBedrockAltitude(double)">
  void <code class="descname">setBedrockAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBedrockAltitude(double)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude of the waypoint above the surface of the body, in meters. When over water, this is the altitude above the sea floor.</p>
+<dd><p>The altitude of the waypoint above the surface of the body, in meters.
+When over water, this is the altitude above the sea floor.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getNearSurface()">
  boolean <code class="descname">getNearSurface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getNearSurface()" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if waypoint is a point near or on the body rather than high in orbit.</p>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is near to the surface of a body.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getGrounded()">
  boolean <code class="descname">getGrounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getGrounded()" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if waypoint is actually glued to the ground.</p>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is attached to the ground.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getIndex()">
  int <code class="descname">getIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="Permalink to this definition">¶</a></dt>
-<dd><p>The integer index of this waypoint amongst its cluster of sibling waypoints.
-In other words, when you have a cluster of waypoints called “Somewhere Alpha”, “Somewhere Beta”, and “Somewhere Gamma”,
-then the alpha site has index 0, the beta site has index 1 and the gamma site has index 2.
-When <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="krpc.client.services.SpaceCenter.Waypoint.getClustered()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getClustered()</span></code></a> is false, this value is zero but meaningless.</p>
+<dd><p>The integer index of this waypoint within its cluster of sibling waypoints.
+In other words, when you have a cluster of waypoints called “Somewhere Alpha”,
+“Somewhere Beta” and “Somewhere Gamma”, the alpha site has index 0, the beta
+site has index 1 and the gamma site has index 2.
+When <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="krpc.client.services.SpaceCenter.Waypoint.getClustered()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getClustered()</span></code></a> is <code class="docutils literal"><span class="pre">false</span></code>, this is zero.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getClustered()">
  boolean <code class="descname">getClustered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if this waypoint is part of a set of clustered waypoints with greek letter names appended (Alpha, Beta, Gamma, etc).
-If true, there is a one-to-one correspondence with the greek letter name and the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="krpc.client.services.SpaceCenter.Waypoint.getIndex()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getIndex()</span></code></a>.</p>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
+names appended (Alpha, Beta, Gamma, etc).
+If <code class="docutils literal"><span class="pre">true</span></code>, there is a one-to-one correspondence with the greek letter name and
+the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="krpc.client.services.SpaceCenter.Waypoint.getIndex()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getIndex()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -453,7 +458,7 @@ If true, there is a one-to-one correspondence with the greek letter name and the
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

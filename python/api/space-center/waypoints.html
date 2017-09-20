@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Waypoints &mdash; kRPC 0.3.9 documentation</title>
+  <title>Waypoints &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Contracts" href="contracts.html"/>
         <link rel="prev" title="Camera" href="camera.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -302,7 +302,7 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.body">
 <code class="descname">body</code><a class="headerlink" href="#SpaceCenter.Waypoint.body" title="Permalink to this definition">¶</a></dt>
-<dd><p>Celestial body the waypoint is attached to.</p>
+<dd><p>The celestial body the waypoint is attached to.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -318,7 +318,7 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.name">
 <code class="descname">name</code><a class="headerlink" href="#SpaceCenter.Waypoint.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the waypoint as it appears on the map and the contract.</p>
+<dd><p>The name of the waypoint as it appears on the map and the contract.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -414,7 +414,8 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.surface_altitude">
 <code class="descname">surface_altitude</code><a class="headerlink" href="#SpaceCenter.Waypoint.surface_altitude" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude of the waypoint above the surface of the body or sea level, whichever is closer, in meters.</p>
+<dd><p>The altitude of the waypoint above the surface of the body or sea level,
+whichever is closer, in meters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -430,7 +431,8 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.bedrock_altitude">
 <code class="descname">bedrock_altitude</code><a class="headerlink" href="#SpaceCenter.Waypoint.bedrock_altitude" title="Permalink to this definition">¶</a></dt>
-<dd><p>The altitude of the waypoint above the surface of the body, in meters. When over water, this is the altitude above the sea floor.</p>
+<dd><p>The altitude of the waypoint above the surface of the body, in meters.
+When over water, this is the altitude above the sea floor.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -446,7 +448,7 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.near_surface">
 <code class="descname">near_surface</code><a class="headerlink" href="#SpaceCenter.Waypoint.near_surface" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if waypoint is a point near or on the body rather than high in orbit.</p>
+<dd><p><code class="docutils literal"><span class="pre">True</span></code> if the waypoint is near to the surface of a body.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -462,7 +464,7 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.grounded">
 <code class="descname">grounded</code><a class="headerlink" href="#SpaceCenter.Waypoint.grounded" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if waypoint is actually glued to the ground.</p>
+<dd><p><code class="docutils literal"><span class="pre">True</span></code> if the waypoint is attached to the ground.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -478,10 +480,11 @@ Any other integers may be used as seed.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.index">
 <code class="descname">index</code><a class="headerlink" href="#SpaceCenter.Waypoint.index" title="Permalink to this definition">¶</a></dt>
-<dd><p>The integer index of this waypoint amongst its cluster of sibling waypoints.
-In other words, when you have a cluster of waypoints called “Somewhere Alpha”, “Somewhere Beta”, and “Somewhere Gamma”,
-then the alpha site has index 0, the beta site has index 1 and the gamma site has index 2.
-When <a class="reference internal" href="#SpaceCenter.Waypoint.clustered" title="SpaceCenter.Waypoint.clustered"><code class="xref py py-attr docutils literal"><span class="pre">Waypoint.clustered</span></code></a> is false, this value is zero but meaningless.</p>
+<dd><p>The integer index of this waypoint within its cluster of sibling waypoints.
+In other words, when you have a cluster of waypoints called “Somewhere Alpha”,
+“Somewhere Beta” and “Somewhere Gamma”, the alpha site has index 0, the beta
+site has index 1 and the gamma site has index 2.
+When <a class="reference internal" href="#SpaceCenter.Waypoint.clustered" title="SpaceCenter.Waypoint.clustered"><code class="xref py py-attr docutils literal"><span class="pre">Waypoint.clustered</span></code></a> is <code class="docutils literal"><span class="pre">False</span></code>, this is zero.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -497,8 +500,10 @@ When <a class="reference internal" href="#SpaceCenter.Waypoint.clustered" title=
 <dl class="attribute">
 <dt id="SpaceCenter.Waypoint.clustered">
 <code class="descname">clustered</code><a class="headerlink" href="#SpaceCenter.Waypoint.clustered" title="Permalink to this definition">¶</a></dt>
-<dd><p>True if this waypoint is part of a set of clustered waypoints with greek letter names appended (Alpha, Beta, Gamma, etc).
-If true, there is a one-to-one correspondence with the greek letter name and the <a class="reference internal" href="#SpaceCenter.Waypoint.index" title="SpaceCenter.Waypoint.index"><code class="xref py py-attr docutils literal"><span class="pre">Waypoint.index</span></code></a>.</p>
+<dd><p><code class="docutils literal"><span class="pre">True</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
+names appended (Alpha, Beta, Gamma, etc).
+If <code class="docutils literal"><span class="pre">True</span></code>, there is a one-to-one correspondence with the greek letter name and
+the <a class="reference internal" href="#SpaceCenter.Waypoint.index" title="SpaceCenter.Waypoint.index"><code class="xref py py-attr docutils literal"><span class="pre">Waypoint.index</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -594,7 +599,7 @@ If true, there is a one-to-one correspondence with the greek letter name and the
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

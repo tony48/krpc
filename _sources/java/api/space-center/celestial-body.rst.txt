@@ -39,7 +39,8 @@ CelestialBody
    .. method:: float getSurfaceGravity()
 
 
-      The acceleration due to gravity at sea level (mean altitude) on the body, in :math:`m/s^2`.
+      The acceleration due to gravity at sea level (mean altitude) on the body,
+      in :math:`m/s^2`.
 
    .. method:: float getRotationalPeriod()
 
@@ -70,55 +71,81 @@ CelestialBody
 
    .. method:: double surfaceHeight(double latitude, double longitude)
 
-      The height of the surface relative to mean sea level at the given position,
-      in meters. When over water this is equal to 0.
+      The height of the surface relative to mean sea level, in meters,
+      at the given position. When over water this is equal to 0.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
 
    .. method:: double bedrockHeight(double latitude, double longitude)
 
-      The height of the surface relative to mean sea level at the given position,
-      in meters. When over water, this is the height of the sea-bed and is therefore a
-      negative value.
+      The height of the surface relative to mean sea level, in meters,
+      at the given position. When over water, this is the height
+      of the sea-bed and is therefore  negative value.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> mSLPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
-      The position at mean sea level at the given latitude and longitude, in the given reference frame.
+      The position at mean sea level at the given latitude and longitude,
+      in the given reference frame.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
-      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> surfacePosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position of the surface of the water.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
-      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> bedrockPosition(double latitude, double longitude, ReferenceFrame referenceFrame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position at the bottom of the sea-bed.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
-      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> positionAtAltitude(double latitude, double longitude, double altitude, ReferenceFrame referenceFrame)
 
       The position at the given latitude, longitude and altitude, in the given reference frame.
 
-      :param double latitude: Latitude in degrees
-      :param double longitude: Longitude in degrees
-      :param double altitude: Altitude in meters above sea level
-      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :param double altitude: Altitude in meters above sea level.
+      :param ReferenceFrame referenceFrame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
+
+   .. method:: double altitudeAtPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      The altitude, in meters, of the given position in the given reference frame.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position as a vector.
+      :param ReferenceFrame referenceFrame: Reference frame for the position vector.
+
+   .. method:: double latitudeAtPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      The latitude of the given position, in the given reference frame.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position as a vector.
+      :param ReferenceFrame referenceFrame: Reference frame for the position vector.
+
+   .. method:: double longitudeAtPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      The longitude of the given position, in the given reference frame.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position as a vector.
+      :param ReferenceFrame referenceFrame: Reference frame for the position vector.
 
    .. method:: float getSphereOfInfluence()
 
@@ -135,10 +162,52 @@ CelestialBody
 
       The depth of the atmosphere, in meters.
 
+   .. method:: double atmosphericDensityAtPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      The atmospheric density at the given position, in :math:`kg/m^3`,
+      in the given reference frame.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: The position vector at which to measure the density.
+      :param ReferenceFrame referenceFrame: Reference frame that the position vector is in.
+
    .. method:: boolean getHasAtmosphericOxygen()
 
 
       ``true`` if there is oxygen in the atmosphere, required for air-breathing engines.
+
+   .. method:: double temperatureAt(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame referenceFrame)
+
+      The temperature on the body at the given position, in the given reference frame.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position as a vector.
+      :param ReferenceFrame referenceFrame: The reference frame that the position is in.
+
+      .. note::
+
+         This calculation is performed using the bodies current position, which means that
+         the value could be wrong if you want to know the temperature in the far future.
+
+   .. method:: double densityAt(double altitude)
+
+      Gets the air density, in :math:`kg/m^3`, for the specified
+      altitude above sea level, in meters.
+
+      :param double altitude:
+
+      .. note::
+
+         This is an approximation, because actual calculations, taking sun exposure into account
+         to compute air temperature, require us to know the exact point on the body where the
+         density is to be computed (knowing the altitude is not enough).
+         However, the difference is small for high altitudes, so it makes very little difference
+         for trajectory prediction.
+
+   .. method:: double pressureAt(double altitude)
+
+      Gets the air pressure, in Pascals, for the specified
+      altitude above sea level, in meters.
+
+      :param double altitude:
 
    .. method:: java.util.Set<String> getBiomes()
 
@@ -147,7 +216,7 @@ CelestialBody
 
    .. method:: String biomeAt(double latitude, double longitude)
 
-      The biomes at the given latitude and longitude, in degrees.
+      The biome at the given latitude and longitude, in degrees.
 
       :param double latitude:
       :param double longitude:
@@ -155,12 +224,14 @@ CelestialBody
    .. method:: float getFlyingHighAltitudeThreshold()
 
 
-      The altitude, in meters, above which a vessel is considered to be flying "high" when doing science.
+      The altitude, in meters, above which a vessel is considered to be
+      flying "high" when doing science.
 
    .. method:: float getSpaceHighAltitudeThreshold()
 
 
-      The altitude, in meters, above which a vessel is considered to be in "high" space when doing science.
+      The altitude, in meters, above which a vessel is considered to be
+      in "high" space when doing science.
 
    .. method:: ReferenceFrame getReferenceFrame()
 
@@ -202,7 +273,7 @@ CelestialBody
    .. method:: ReferenceFrame getOrbitalReferenceFrame()
 
 
-      Gets the reference frame that is fixed relative to this celestial body, but
+      The reference frame that is fixed relative to this celestial body, but
       orientated with the body's orbital prograde/normal/radial directions.
 
       * The origin is at the center of the body.
@@ -214,34 +285,36 @@ CelestialBody
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> position(ReferenceFrame referenceFrame)
 
-      Returns the position vector of the center of the body in the specified reference frame.
+      The position of the center of the body, in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
-      Returns the velocity vector of the body in the specified reference frame.
+      The linear velocity of the body, in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned velocity vector is in.
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
-      Returns the rotation of the body in the specified reference frame.
+      The rotation of the body, in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
-      Returns the direction in which the north pole of the celestial body is
-      pointing, as a unit vector, in the specified reference frame.
+      The direction in which the north pole of the celestial body is pointing,
+      in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> angularVelocity(ReferenceFrame referenceFrame)
 
-      Returns the angular velocity of the body in the specified reference
-      frame. The magnitude of the vector is the rotational speed of the body, in
-      radians per second, and the direction of the vector indicates the axis of
-      rotation, using the right-hand rule.
+      The angular velocity of the body in the specified reference frame.
 
-      :param ReferenceFrame referenceFrame:
+      :param ReferenceFrame referenceFrame: The reference frame the returned angular velocity is in.
+      :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the body, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.

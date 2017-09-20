@@ -144,6 +144,15 @@ Control
 
       The state of the throttle. A value between 0 and 1.
 
+   .. property:: ControlInputMode InputMode { get; set; }
+
+      Sets the behavior of the pitch, yaw, roll and translation control inputs.
+      When set to additive, these inputs are added to the vessels current inputs.
+      This mode is the default.
+      When set to override, these inputs (if non-zero) override the vessels inputs.
+      This mode prevents keyboard control, or SAS, from interfering with the controls when
+      they are set.
+
    .. property:: float Pitch { get; set; }
 
       The state of the pitch control.
@@ -378,3 +387,19 @@ Control
    .. value:: Target
 
       Speed is relative to the current target.
+
+
+
+.. enum:: ControlInputMode
+
+   See :prop:`Control.InputMode`.
+
+
+   .. value:: Additive
+
+      Control inputs are added to the vessels current control inputs.
+
+
+   .. value:: Override
+
+      Control inputs (when they are non-zero) override the vessels current control inputs.

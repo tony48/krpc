@@ -18,21 +18,25 @@ Orbit
 
    .. function:: double apoapsis()
 
-      Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.
+      Gets the apoapsis of the orbit, in meters, from the center of mass
+      of the body being orbited.
 
 
       .. note::
 
-         For the apoapsis altitude reported on the in-game map view, use :func:`Orbit::apoapsis_altitude`.
+         For the apoapsis altitude reported on the in-game map view,
+         use :func:`Orbit::apoapsis_altitude`.
 
    .. function:: double periapsis()
 
-      The periapsis of the orbit, in meters, from the center of mass of the body being orbited.
+      The periapsis of the orbit, in meters, from the center of mass
+      of the body being orbited.
 
 
       .. note::
 
-         For the periapsis altitude reported on the in-game map view, use :func:`Orbit::periapsis_altitude`.
+         For the periapsis altitude reported on the in-game map view,
+         use :func:`Orbit::periapsis_altitude`.
 
    .. function:: double apoapsis_altitude()
 
@@ -63,12 +67,32 @@ Orbit
    .. function:: double radius()
 
       The current radius of the orbit, in meters. This is the distance between the center
-      of mass of the object in orbit, and the center of mass of the body around which it is orbiting.
+      of mass of the object in orbit, and the center of mass of the body around which it
+      is orbiting.
 
 
       .. note::
 
          This value will change over time if the orbit is elliptical.
+
+   .. function:: double radius_at(double ut)
+
+      The orbital radius at the given time, in meters.
+
+      :Parameters:
+
+       * **ut** -- The universal time to measure the radius at.
+
+   .. function:: std::tuple<double, double, double> position_at(double ut, ReferenceFrame reference_frame)
+
+      The position at a given time, in the specified reference frame.
+
+      :Parameters:
+
+       * **ut** -- The universal time to measure the position at.
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
 
    .. function:: double speed()
 
@@ -93,11 +117,13 @@ Orbit
 
    .. function:: double eccentricity()
 
-      The `eccentricity <https://en.wikipedia.org/wiki/Orbital_eccentricity>`_ of the orbit.
+      The `eccentricity <https://en.wikipedia.org/wiki/Orbital_eccentricity>`_
+      of the orbit.
 
    .. function:: double inclination()
 
-      The `inclination <https://en.wikipedia.org/wiki/Orbital_inclination>`_ of the orbit,
+      The `inclination <https://en.wikipedia.org/wiki/Orbital_inclination>`_
+      of the orbit,
       in radians.
 
    .. function:: double longitude_of_ascending_node()
@@ -115,11 +141,20 @@ Orbit
    .. function:: double epoch()
 
       The time since the epoch (the point at which the
-      `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_ was measured, in seconds.
+      `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_
+      was measured, in seconds.
 
    .. function:: double mean_anomaly()
 
       The `mean anomaly <https://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+   .. function:: double mean_anomaly_at_ut(double ut)
+
+      The mean anomaly at the given time.
+
+      :Parameters:
+
+       * **ut** -- The universal time in seconds.
 
    .. function:: double eccentric_anomaly()
 
@@ -169,6 +204,22 @@ Orbit
 
        * **true_anomaly** -- The true anomaly.
 
+   .. function:: double true_anomaly_at_an(Vessel target)
+
+      The true anomaly of the ascending node with the given target vessel.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+
+   .. function:: double true_anomaly_at_dn(Vessel target)
+
+      The true anomaly of the descending node with the given target vessel.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+
    .. function:: double orbital_speed()
 
       The current orbital speed in meters per second.
@@ -183,24 +234,70 @@ Orbit
 
    .. function:: static std::tuple<double, double, double> reference_plane_normal(Client& connection, ReferenceFrame reference_frame)
 
-      The unit direction vector that is normal to the orbits reference plane, in the given
-      reference frame. The reference plane is the plane from which the orbits inclination is measured.
+      The direction that is normal to the orbits reference plane,
+      in the given reference frame.
+      The reference plane is the plane from which the orbits inclination is measured.
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
    .. function:: static std::tuple<double, double, double> reference_plane_direction(Client& connection, ReferenceFrame reference_frame)
 
-      The unit direction vector from which the orbits longitude of ascending node is measured,
+      The direction from which the orbits longitude of ascending node is measured,
       in the given reference frame.
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.
+
+   .. function:: double relative_inclination(Vessel target)
+
+      Relative inclination of this orbit and the orbit of the given target vessel, in radians.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+
    .. function:: double time_to_soi_change()
 
-      The time until the object changes sphere of influence, in seconds. Returns ``NaN`` if the
-      object is not going to change sphere of influence.
+      The time until the object changes sphere of influence, in seconds. Returns ``NaN``
+      if the object is not going to change sphere of influence.
 
    .. function:: Orbit next_orbit()
 
-      If the object is going to change sphere of influence in the future, returns the new orbit
-      after the change. Otherwise returns ``NULL``.
+      If the object is going to change sphere of influence in the future, returns the new
+      orbit after the change. Otherwise returns ``NULL``.
+
+   .. function:: double time_of_closest_approach(Vessel target)
+
+      Estimates and returns the time at closest approach to a target vessel.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+
+      :returns: The universal time at closest approach, in seconds.
+
+   .. function:: double distance_at_closest_approach(Vessel target)
+
+      Estimates and returns the distance at closest approach to a target vessel, in meters.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+
+   .. function:: std::vector<std::vector<double>> list_closest_approaches(Vessel target, int32_t orbits)
+
+      Returns the times at closest approach and corresponding distances, to a target vessel.
+
+      :Parameters:
+
+       * **target** -- Target vessel.
+       * **orbits** -- The number of future orbits to search.
+
+      :returns: A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Orbit &mdash; kRPC 0.3.9 documentation</title>
+  <title>Orbit &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Control" href="control.html"/>
         <link rel="prev" title="Flight" href="flight.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -214,7 +214,8 @@
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.apoapsis">
 <code class="descname">apoapsis</code><a class="headerlink" href="#SpaceCenter.Orbit.apoapsis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>Gets the apoapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -227,14 +228,16 @@
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the apoapsis altitude reported on the in-game map view, use <a class="reference internal" href="#SpaceCenter.Orbit.apoapsis_altitude" title="SpaceCenter.Orbit.apoapsis_altitude"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Orbit.apoapsis_altitude</span></code></a>.</p>
+<p class="last">For the apoapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#SpaceCenter.Orbit.apoapsis_altitude" title="SpaceCenter.Orbit.apoapsis_altitude"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Orbit.apoapsis_altitude</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.periapsis">
 <code class="descname">periapsis</code><a class="headerlink" href="#SpaceCenter.Orbit.periapsis" title="Permalink to this definition">¶</a></dt>
-<dd><p>The periapsis of the orbit, in meters, from the center of mass of the body being orbited.</p>
+<dd><p>The periapsis of the orbit, in meters, from the center of mass
+of the body being orbited.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,7 +250,8 @@
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For the periapsis altitude reported on the in-game map view, use <a class="reference internal" href="#SpaceCenter.Orbit.periapsis_altitude" title="SpaceCenter.Orbit.periapsis_altitude"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Orbit.periapsis_altitude</span></code></a>.</p>
+<p class="last">For the periapsis altitude reported on the in-game map view,
+use <a class="reference internal" href="#SpaceCenter.Orbit.periapsis_altitude" title="SpaceCenter.Orbit.periapsis_altitude"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.Orbit.periapsis_altitude</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -327,7 +331,8 @@
 <dt id="SpaceCenter.Orbit.radius">
 <code class="descname">radius</code><a class="headerlink" href="#SpaceCenter.Orbit.radius" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current radius of the orbit, in meters. This is the distance between the center
-of mass of the object in orbit, and the center of mass of the body around which it is orbiting.</p>
+of mass of the object in orbit, and the center of mass of the body around which it
+is orbiting.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -342,6 +347,46 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <p class="first admonition-title">Note</p>
 <p class="last">This value will change over time if the orbit is elliptical.</p>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.radius_at">
+<code class="descname">radius_at</code><span class="sig-paren">(</span><em>ut</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.radius_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbital radius at the given time, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ut</strong> (<em>number</em>) – The universal time to measure the radius at.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.position_at">
+<code class="descname">position_at</code><span class="sig-paren">(</span><em>ut</em>, <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.position_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at a given time, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ut</strong> (<em>number</em>) – The universal time to measure the position at.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The position as a vector.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Tuple of (number, number, number)</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -415,7 +460,8 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.eccentricity">
 <code class="descname">eccentricity</code><a class="headerlink" href="#SpaceCenter.Orbit.eccentricity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a> of the orbit.</p>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_eccentricity">eccentricity</a>
+of the orbit.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -431,7 +477,8 @@ of mass of the object in orbit, and the center of mass of the body around which 
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.inclination">
 <code class="descname">inclination</code><a class="headerlink" href="#SpaceCenter.Orbit.inclination" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a> of the orbit,
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_inclination">inclination</a>
+of the orbit,
 in radians.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -497,7 +544,8 @@ in radians.</p>
 <dt id="SpaceCenter.Orbit.epoch">
 <code class="descname">epoch</code><a class="headerlink" href="#SpaceCenter.Orbit.epoch" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time since the epoch (the point at which the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a> was measured, in seconds.</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly at epoch</a>
+was measured, in seconds.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -519,6 +567,22 @@ in radians.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.mean_anomaly_at_ut">
+<code class="descname">mean_anomaly_at_ut</code><span class="sig-paren">(</span><em>ut</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.mean_anomaly_at_ut" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mean anomaly at the given time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ut</strong> (<em>number</em>) – The universal time in seconds.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
 </tr>
@@ -638,6 +702,38 @@ in radians.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="SpaceCenter.Orbit.true_anomaly_at_an">
+<code class="descname">true_anomaly_at_an</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.true_anomaly_at_an" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly of the ascending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.true_anomaly_at_dn">
+<code class="descname">true_anomaly_at_dn</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.true_anomaly_at_dn" title="Permalink to this definition">¶</a></dt>
+<dd><p>The true anomaly of the descending node with the given target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.orbital_speed">
 <code class="descname">orbital_speed</code><a class="headerlink" href="#SpaceCenter.Orbit.orbital_speed" title="Permalink to this definition">¶</a></dt>
@@ -673,15 +769,18 @@ in radians.</p>
 <dl class="staticmethod">
 <dt id="SpaceCenter.Orbit.reference_plane_normal">
 <em class="property">static </em><code class="descname">reference_plane_normal</code><span class="sig-paren">(</span><em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.reference_plane_normal" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector that is normal to the orbits reference plane, in the given
-reference frame. The reference plane is the plane from which the orbits inclination is measured.</p>
+<dd><p>The direction that is normal to the orbits reference plane,
+in the given reference frame.
+The reference plane is the plane from which the orbits inclination is measured.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the returned direction is in.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
 </tr>
 </tbody>
 </table>
@@ -690,15 +789,33 @@ reference frame. The reference plane is the plane from which the orbits inclinat
 <dl class="staticmethod">
 <dt id="SpaceCenter.Orbit.reference_plane_direction">
 <em class="property">static </em><code class="descname">reference_plane_direction</code><span class="sig-paren">(</span><em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.reference_plane_direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unit direction vector from which the orbits longitude of ascending node is measured,
+<dd><p>The direction from which the orbits longitude of ascending node is measured,
 in the given reference frame.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>SpaceCenter.ReferenceFrame</em></a>) – The reference frame that the returned direction is in.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The direction as a unit vector.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Tuple of (number, number, number)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.relative_inclination">
+<code class="descname">relative_inclination</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.relative_inclination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relative inclination of this orbit and the orbit of the given target vessel, in radians.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
 </tr>
 </tbody>
 </table>
@@ -707,8 +824,8 @@ in the given reference frame.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.time_to_soi_change">
 <code class="descname">time_to_soi_change</code><a class="headerlink" href="#SpaceCenter.Orbit.time_to_soi_change" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code> if the
-object is not going to change sphere of influence.</p>
+<dd><p>The time until the object changes sphere of influence, in seconds. Returns <code class="docutils literal"><span class="pre">NaN</span></code>
+if the object is not going to change sphere of influence.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -724,8 +841,8 @@ object is not going to change sphere of influence.</p>
 <dl class="attribute">
 <dt id="SpaceCenter.Orbit.next_orbit">
 <code class="descname">next_orbit</code><a class="headerlink" href="#SpaceCenter.Orbit.next_orbit" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the object is going to change sphere of influence in the future, returns the new orbit
-after the change. Otherwise returns <code class="docutils literal"><span class="pre">nil</span></code>.</p>
+<dd><p>If the object is going to change sphere of influence in the future, returns the new
+orbit after the change. Otherwise returns <code class="docutils literal"><span class="pre">nil</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -733,6 +850,64 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
 <tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.Orbit" title="SpaceCenter.Orbit"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.Orbit</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.time_of_closest_approach">
+<code class="descname">time_of_closest_approach</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.time_of_closest_approach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates and returns the time at closest approach to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The universal time at closest approach, in seconds.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.distance_at_closest_approach">
+<code class="descname">distance_at_closest_approach</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.distance_at_closest_approach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates and returns the distance at closest approach to a target vessel, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="SpaceCenter.Orbit.list_closest_approaches">
+<code class="descname">list_closest_approaches</code><span class="sig-paren">(</span><em>target</em>, <em>orbits</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.Orbit.list_closest_approaches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the times at closest approach and corresponding distances, to a target vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> (<a class="reference internal" href="vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><em>SpaceCenter.Vessel</em></a>) – Target vessel.</li>
+<li><strong>orbits</strong> (<em>number</em>) – The number of future orbits to search.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List of List of number</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -783,7 +958,7 @@ after the change. Otherwise returns <code class="docutils literal"><span class="
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reference Frames &mdash; kRPC 0.3.9 documentation</title>
+  <title>Reference Frames &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Launch into Orbit" href="launch-into-orbit.html"/>
         <link rel="prev" title="Sub-Orbital Flight" href="suborbital-flight.html"/>
@@ -109,7 +109,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -1879,7 +1879,6 @@ Python</div>
   <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">Drawing</span> <span class="n">drawing</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span><span class="p">();</span>
   <span class="k">auto</span> <span class="n">body</span> <span class="o">=</span> <span class="n">vessel</span><span class="p">.</span><span class="n">orbit</span><span class="p">().</span><span class="n">body</span><span class="p">();</span>
-  <span class="k">auto</span> <span class="n">create_relative</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span><span class="o">::</span><span class="n">create_relative</span><span class="p">;</span>
 
   <span class="c1">// Define the landing site as the top of the VAB</span>
   <span class="kt">double</span> <span class="n">landing_latitude</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mf">0.0</span><span class="o">+</span><span class="p">(</span><span class="mf">5.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">48.38</span><span class="o">/</span><span class="mf">60.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">));</span>
@@ -1903,25 +1902,18 @@ Python</div>
     <span class="n">cos</span><span class="p">(</span><span class="n">landing_latitude</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
   <span class="p">);</span>
   <span class="k">auto</span> <span class="n">landing_reference_frame</span> <span class="o">=</span>
-    <span class="n">create_relative</span><span class="p">(</span>
+    <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span><span class="o">::</span><span class="n">create_relative</span><span class="p">(</span>
       <span class="n">conn</span><span class="p">,</span>
-      <span class="n">create_relative</span><span class="p">(</span>
+      <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span><span class="o">::</span><span class="n">create_relative</span><span class="p">(</span>
         <span class="n">conn</span><span class="p">,</span>
-        <span class="n">create_relative</span><span class="p">(</span>
+        <span class="n">krpc</span><span class="o">::</span><span class="n">services</span><span class="o">::</span><span class="n">SpaceCenter</span><span class="o">::</span><span class="n">ReferenceFrame</span><span class="o">::</span><span class="n">create_relative</span><span class="p">(</span>
           <span class="n">conn</span><span class="p">,</span>
           <span class="n">body</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">(),</span>
           <span class="n">landing_position</span><span class="p">,</span>
-          <span class="n">q_long</span><span class="p">,</span>
-          <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">),</span>
-          <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)),</span>
+          <span class="n">q_long</span><span class="p">),</span>
         <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="n">q_lat</span><span class="p">,</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">),</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)),</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">landing_altitude</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">),</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">));</span>
+        <span class="n">q_lat</span><span class="p">),</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">landing_altitude</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
 
   <span class="c1">// Draw axes</span>
   <span class="n">drawing</span><span class="p">.</span><span class="n">add_line</span><span class="p">(</span>
@@ -2166,7 +2158,7 @@ Python</div>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

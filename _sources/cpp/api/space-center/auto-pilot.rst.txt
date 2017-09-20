@@ -14,7 +14,8 @@ AutoPilot
    .. note::
 
       If a client engages the auto-pilot and then closes its connection to the server,
-      the auto-pilot will be disengaged and its target reference frame, direction and roll reset to default.
+      the auto-pilot will be disengaged and its target reference frame, direction and roll
+      reset to default.
 
    .. function:: void engage()
 
@@ -26,7 +27,8 @@ AutoPilot
 
    .. function:: void wait()
 
-      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has
+      the target roll (if set).
 
    .. function:: float error()
 
@@ -57,8 +59,9 @@ AutoPilot
 
       .. note::
 
-         An error will be thrown if this property is set to a reference frame that rotates with the vessel being controlled,
-         as it is impossible to rotate the vessel in such a reference frame.
+         An error will be thrown if this property is set to a reference frame that rotates with
+         the vessel being controlled, as it is impossible to rotate the vessel in such a
+         reference frame.
 
    .. function:: float target_pitch()
    .. function:: void set_target_pitch(float value)
@@ -79,6 +82,7 @@ AutoPilot
    .. function:: void set_target_direction(std::tuple<double, double, double> value)
 
       Direction vector corresponding to the target pitch and heading.
+      This is in the reference frame specified by :class:`ReferenceFrame`.
 
    .. function:: void target_pitch_and_heading(float pitch, float heading)
 
@@ -103,7 +107,8 @@ AutoPilot
    .. function:: void set_sas_mode(SASMode value)
 
       The current :enum:`SASMode`.
-      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear
+      when SAS is enabled.
 
 
       .. note::
@@ -121,8 +126,8 @@ AutoPilot
 
       The maximum amount of time that the vessel should need to come to a complete stop.
       This determines the maximum angular velocity of the vessel.
-      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
-      Defaults to 0.5 seconds for each axis.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll
+      and yaw axes. Defaults to 0.5 seconds for each axis.
 
    .. function:: std::tuple<double, double, double> deceleration_time()
    .. function:: void set_deceleration_time(std::tuple<double, double, double> value)
@@ -135,7 +140,8 @@ AutoPilot
    .. function:: std::tuple<double, double, double> attenuation_angle()
    .. function:: void set_attenuation_angle(std::tuple<double, double, double> value)
 
-      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      The angle at which the autopilot considers the vessel to be pointing
+      close to the target.
       This determines the midpoint of the target velocity attenuation function.
       A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
       Defaults to 1° for each axis.
@@ -143,8 +149,8 @@ AutoPilot
    .. function:: bool auto_tune()
    .. function:: void set_auto_tune(bool value)
 
-      Whether the rotation rate controllers PID parameters should be automatically tuned using the
-      vessels moment of inertia and available torque. Defaults to ``true``.
+      Whether the rotation rate controllers PID parameters should be automatically tuned
+      using the vessels moment of inertia and available torque. Defaults to ``true``.
       See :func:`AutoPilot::time_to_peak` and :func:`AutoPilot::overshoot`.
 
    .. function:: std::tuple<double, double, double> time_to_peak()
@@ -169,7 +175,8 @@ AutoPilot
 
       .. note::
 
-         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.
 
    .. function:: std::tuple<double, double, double> roll_pid_gains()
    .. function:: void set_roll_pid_gains(std::tuple<double, double, double> value)
@@ -179,7 +186,8 @@ AutoPilot
 
       .. note::
 
-         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.
 
    .. function:: std::tuple<double, double, double> yaw_pid_gains()
    .. function:: void set_yaw_pid_gains(std::tuple<double, double, double> value)
@@ -189,4 +197,5 @@ AutoPilot
 
       .. note::
 
-         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :func:`AutoPilot::auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.

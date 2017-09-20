@@ -143,8 +143,9 @@ Parts
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters, jet engines and RCS thrusters.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters, jet engines and
+         RCS thrusters.
 
    .. attribute:: experiments
 
@@ -280,15 +281,18 @@ Part
 
    .. attribute:: tag
 
-      The name tag for the part. Can be set to a custom string using the in-game user interface.
+      The name tag for the part. Can be set to a custom string using the
+      in-game user interface.
 
       :Attribute: Can be read or written
       :rtype: str
 
       .. note::
 
-         This requires either the `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
-         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_ mods to be installed.
+         This requires either the
+         `NameTag <http://github.com/krpc/NameTag/releases/latest>`_ or
+         `kOS <http://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_
+         mod to be installed.
 
    .. attribute:: highlighted
 
@@ -299,7 +303,7 @@ Part
 
    .. attribute:: highlight_color
 
-      The color used to highlight the part.
+      The color used to highlight the part, as an RGB triple.
 
       :Attribute: Can be read or written
       :rtype: tuple(float, float, float)
@@ -321,7 +325,8 @@ Part
    .. attribute:: parent
 
       The parts parent. Returns ``None`` if the part does not have a parent.
-      This, in combination with :attr:`Part.children`, can be used to traverse the vessels parts tree.
+      This, in combination with :attr:`Part.children`, can be used to traverse the vessels
+      parts tree.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Part`
@@ -331,7 +336,8 @@ Part
    .. attribute:: children
 
       The parts children. Returns an empty list if the part has no children.
-      This, in combination with :attr:`Part.parent`, can be used to traverse the vessels parts tree.
+      This, in combination with :attr:`Part.parent`, can be used to traverse the vessels
+      parts tree.
 
       :Attribute: Read-only, cannot be set
       :rtype: list(:class:`Part`)
@@ -360,7 +366,8 @@ Part
 
    .. attribute:: stage
 
-      The stage in which this part will be activated. Returns -1 if the part is not activated by staging.
+      The stage in which this part will be activated. Returns -1 if the part is not
+      activated by staging.
 
       :Attribute: Read-only, cannot be set
       :rtype: int
@@ -369,7 +376,8 @@ Part
 
    .. attribute:: decouple_stage
 
-      The stage in which this part will be decoupled. Returns -1 if the part is never decoupled from the vessel.
+      The stage in which this part will be decoupled. Returns -1 if the part is never
+      decoupled from the vessel.
 
       :Attribute: Read-only, cannot be set
       :rtype: int
@@ -378,7 +386,8 @@ Part
 
    .. attribute:: massless
 
-      Whether the part is `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
+      Whether the part is
+      `massless <http://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -393,7 +402,8 @@ Part
 
    .. attribute:: dry_mass
 
-      The mass of the part, not including any resources it contains, in kilograms. Returns zero if the part is massless.
+      The mass of the part, not including any resources it contains, in kilograms.
+      Returns zero if the part is massless.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -449,48 +459,54 @@ Part
 
    .. attribute:: thermal_mass
 
-      A measure of how much energy it takes to increase the internal temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the internal temperature of the part,
+      in Joules per Kelvin.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: thermal_skin_mass
 
-      A measure of how much energy it takes to increase the skin temperature of the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the skin temperature of the part,
+      in Joules per Kelvin.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: thermal_resource_mass
 
-      A measure of how much energy it takes to increase the temperature of the resources contained in the part, in Joules per Kelvin.
+      A measure of how much energy it takes to increase the temperature of the resources
+      contained in the part, in Joules per Kelvin.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: thermal_conduction_flux
 
-      The rate at which heat energy is conducting into or out of the part via contact with other parts.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is conducting into or out of the part via contact with
+      other parts. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: thermal_convection_flux
 
-      The rate at which heat energy is convecting into or out of the part from the surrounding atmosphere.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is convecting into or out of the part from the
+      surrounding atmosphere. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: thermal_radiation_flux
 
-      The rate at which heat energy is radiating into or out of the part from the surrounding environment.
-      Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      The rate at which heat energy is radiating into or out of the part from the surrounding
+      environment. Measured in energy per unit time, or power, in Watts.
+      A positive value means the part is gaining heat energy, and negative means it is
+      losing heat energy.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -500,7 +516,8 @@ Part
       The rate at which heat energy is begin generated by the part.
       For example, some engines generate heat by combusting fuel.
       Measured in energy per unit time, or power, in Watts.
-      A positive value means the part is gaining heat energy, and negative means it is losing heat energy.
+      A positive value means the part is gaining heat energy, and negative means it is losing
+      heat energy.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -538,7 +555,8 @@ Part
 
    .. attribute:: fuel_lines_from
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is into this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is into this part.
 
       :Attribute: Read-only, cannot be set
       :rtype: list(:class:`Part`)
@@ -547,7 +565,8 @@ Part
 
    .. attribute:: fuel_lines_to
 
-      The parts that are connected to this part via fuel lines, where the direction of the fuel line is out of this part.
+      The parts that are connected to this part via fuel lines, where the direction of the
+      fuel line is out of this part.
 
       :Attribute: Read-only, cannot be set
       :rtype: list(:class:`Part`)
@@ -577,7 +596,8 @@ Part
 
    .. attribute:: control_surface
 
-      A :class:`ControlSurface` if the part is an aerodynamic control surface, otherwise ``None``.
+      A :class:`ControlSurface` if the part is an aerodynamic control surface,
+      otherwise ``None``.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ControlSurface`
@@ -626,8 +646,8 @@ Part
 
       .. note::
 
-         This includes any part that generates thrust. This covers many different types of engine,
-         including liquid fuel rockets, solid rocket boosters and jet engines.
+         This includes any part that generates thrust. This covers many different types
+         of engine, including liquid fuel rockets, solid rocket boosters and jet engines.
          For RCS thrusters see :class:`RCS`.
 
    .. attribute:: leg
@@ -681,14 +701,16 @@ Part
 
    .. attribute:: resource_converter
 
-      A :class:`ResourceConverter` if the part is a resource converter, otherwise ``None``.
+      A :class:`ResourceConverter` if the part is a resource converter,
+      otherwise ``None``.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ResourceConverter`
 
    .. attribute:: resource_harvester
 
-      A :class:`ResourceHarvester` if the part is a resource harvester, otherwise ``None``.
+      A :class:`ResourceHarvester` if the part is a resource harvester,
+      otherwise ``None``.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ResourceHarvester`
@@ -718,7 +740,8 @@ Part
 
       The position of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
       .. note::
@@ -732,42 +755,46 @@ Part
       The position of the parts center of mass in the given reference frame.
       If the part is physicsless, this is equivalent to :meth:`Part.position`.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: bounding_box(reference_frame)
 
-      The axis-aligned bounding box of the vessel in the given reference frame.
-      Returns the minimum and maximum vertices of the box.
+      The axis-aligned bounding box of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vectors are in.
+      :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
       :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
 
       .. note::
 
-         This is computed from the collision meshes of the part.
+         This is computed from the collision mesh of the part.
          If the part is not collidable, the box has zero volume and is centered on
          the :meth:`Part.position` of the part.
 
    .. method:: direction(reference_frame)
 
-      The direction of the part in the given reference frame.
+      The direction the part points in, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
       :rtype: tuple(float, float, float)
 
    .. method:: velocity(reference_frame)
 
-      The velocity of the part in the given reference frame.
+      The linear velocity of the part in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned velocity vector is in.
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
       :rtype: tuple(float, float, float)
 
    .. method:: rotation(reference_frame)
 
-      The rotation of the part in the given reference frame.
+      The rotation of the part, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
       :rtype: tuple(float, float, float, float)
 
    .. attribute:: moment_of_inertia
@@ -780,7 +807,8 @@ Part
 
    .. attribute:: inertia_tensor
 
-      The inertia tensor of the part in the parts reference frame (:class:`ReferenceFrame`).
+      The inertia tensor of the part in the parts reference frame
+      (:class:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
       :Attribute: Read-only, cannot be set
@@ -788,9 +816,11 @@ Part
 
    .. attribute:: reference_frame
 
-      The reference frame that is fixed relative to this part, and centered on a fixed position within the part, defined by the parts model.
+      The reference frame that is fixed relative to this part, and centered on a fixed
+      position within the part, defined by the parts model.
 
-      * The origin is at the position of the part, as returned by :meth:`Part.position`.
+      * The origin is at the position of the part, as returned by
+        :meth:`Part.position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -799,8 +829,9 @@ Part
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :attr:`DockingPort.reference_frame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :attr:`DockingPort.reference_frame`.
 
       .. figure:: /images/reference-frames/part.png
          :align: center
@@ -809,9 +840,11 @@ Part
 
    .. attribute:: center_of_mass_reference_frame
 
-      The reference frame that is fixed relative to this part, and centered on its center of mass.
+      The reference frame that is fixed relative to this part, and centered on its
+      center of mass.
 
-      * The origin is at the center of mass of the part, as returned by :meth:`Part.center_of_mass`.
+      * The origin is at the center of mass of the part, as returned by
+        :meth:`Part.center_of_mass`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
@@ -820,26 +853,27 @@ Part
 
       .. note::
 
-         For docking port parts, this reference frame is not necessarily equivalent to the reference frame
-         for the docking port, returned by :attr:`DockingPort.reference_frame`.
+         For docking port parts, this reference frame is not necessarily equivalent to the
+         reference frame for the docking port, returned by
+         :attr:`DockingPort.reference_frame`.
 
    .. method:: add_force(force, position, reference_frame)
 
       Exert a constant force on the part, acting at the given position.
-      Returns an object that can be used to remove or modify the force.
 
-      :param tuple force:
-      :param tuple position:
-      :param ReferenceFrame reference_frame:
+      :param tuple force: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :param tuple position: The position at which the force acts, as a vector.
+      :param ReferenceFrame reference_frame: The reference frame that the force and position are in.
+      :returns: An object that can be used to remove or modify the force.
       :rtype: :class:`Force`
 
    .. method:: instantaneous_force(force, position, reference_frame)
 
       Exert an instantaneous force on the part, acting at the given position.
 
-      :param tuple force:
-      :param tuple position:
-      :param ReferenceFrame reference_frame:
+      :param tuple force: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :param tuple position: The position at which the force acts, as a vector.
+      :param ReferenceFrame reference_frame: The reference frame that the force and position are in.
 
       .. note::
 
@@ -860,16 +894,18 @@ Part
 
    .. attribute:: force_vector
 
-      The force vector. The magnitude of the vector is the strength of the force in Newtons.
+      The force vector, in Newtons.
 
       :Attribute: Can be read or written
+      :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
       :rtype: tuple(float, float, float)
 
    .. attribute:: position
 
-      The position at which the force acts.
+      The position at which the force acts, in reference frame :class:`ReferenceFrame`.
 
       :Attribute: Can be read or written
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. attribute:: reference_frame
@@ -891,8 +927,8 @@ Module
 
 .. class:: Module
 
-   This can be used to interact with a specific part module. This includes part modules in stock KSP,
-   and those added by mods.
+   This can be used to interact with a specific part module. This includes part modules in
+   stock KSP, and those added by mods.
 
    In KSP, each part has zero or more
    `PartModules <http://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation#MODULES>`_
@@ -980,14 +1016,15 @@ Module
 
    .. method:: trigger_event(name)
 
-      Trigger the named event. Equivalent to clicking the button in the right-click menu of the part.
+      Trigger the named event. Equivalent to clicking the button in the right-click menu
+      of the part.
 
       :param str name:
 
    .. attribute:: actions
 
-      A list of all the names of the modules actions. These are the parts actions that can be assigned
-      to action groups in the in-game editor.
+      A list of all the names of the modules actions. These are the parts actions that can
+      be assigned to action groups in the in-game editor.
 
       :Attribute: Read-only, cannot be set
       :rtype: list(str)
@@ -1088,7 +1125,8 @@ Antenna
 
    .. attribute:: combinable
 
-      Whether the antenna can be combined with other antennae on the vessel to boost the power.
+      Whether the antenna can be combined with other antennae on the vessel
+      to boost the power.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -1249,7 +1287,8 @@ Control Surface
 
    .. attribute:: authority_limiter
 
-      The authority limiter for the control surface, which controls how far the control surface will move.
+      The authority limiter for the control surface, which controls how far the
+      control surface will move.
 
       :Attribute: Can be read or written
       :rtype: float
@@ -1277,9 +1316,9 @@ Control Surface
 
    .. attribute:: available_torque
 
-      The available torque in the positive pitch, roll and yaw axes and
-      negative pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      The available torque, in Newton meters, that can be produced by this control surface,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
@@ -1410,23 +1449,26 @@ Docking Port
 
    .. method:: position(reference_frame)
 
-      The position of the docking port in the given reference frame.
+      The position of the docking port, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: direction(reference_frame)
 
       The direction that docking port points in, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
       :rtype: tuple(float, float, float)
 
    .. method:: rotation(reference_frame)
 
       The rotation of the docking port, in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
       :rtype: tuple(float, float, float, float)
 
    .. attribute:: reference_frame
@@ -1541,7 +1583,8 @@ Engine
       The amount of thrust, in Newtons, that would be produced by the engine
       when activated and with its throttle set to 100%.
       Returns zero if the engine does not have any fuel.
-      Takes the engine's current :attr:`Engine.thrust_limit` and atmospheric conditions into account.
+      Takes the engine's current :attr:`Engine.thrust_limit` and atmospheric conditions
+      into account.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -1626,8 +1669,8 @@ Engine
 
       .. note::
 
-         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every 0.6 units of
-         LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
+         For example, if the ratios are 0.6 for LiquidFuel and 0.4 for Oxidizer, then for every
+         0.6 units of LiquidFuel that the engine burns, it will burn 0.4 units of Oxidizer.
 
    .. attribute:: propellants
 
@@ -1749,8 +1792,9 @@ Engine
 
    .. attribute:: available_torque
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      The available torque, in Newton meters, that can be produced by this engine,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
       Returns zero if the engine is inactive, or not gimballed.
 
       :Attribute: Read-only, cannot be set
@@ -1785,21 +1829,24 @@ Engine
 
    .. attribute:: total_resource_available
 
-      The total amount of the underlying resource currently reachable given resource flow rules.
+      The total amount of the underlying resource currently reachable given
+      resource flow rules.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: total_resource_capacity
 
-      The total vehicle capacity for the underlying propellant resource, restricted by resource flow rules.
+      The total vehicle capacity for the underlying propellant resource,
+      restricted by resource flow rules.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: ignore_for_isp
 
-      If this propellant should be ignored when calculating required mass flow given specific impulse.
+      If this propellant should be ignored when calculating required mass flow
+      given specific impulse.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -1916,8 +1963,8 @@ Experiment
 
    .. attribute:: science_subject
 
-      Containing information on the corresponding specific science result for the current conditions.
-      Returns null if experiment is unavailable.
+      Containing information on the corresponding specific science result for the current
+      conditions. Returns ``None`` if the experiment is unavailable.
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ScienceSubject`
@@ -1971,7 +2018,8 @@ Experiment
 
    .. attribute:: science
 
-      Amount of science already earned from this subject, not updated until after transmission/recovery.
+      Amount of science already earned from this subject, not updated until after
+      transmission/recovery.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -1999,7 +2047,8 @@ Experiment
 
    .. attribute:: scientific_value
 
-      Diminishing value multiplier for decreasing the science value returned from repeated experiments.
+      Diminishing value multiplier for decreasing the science value returned from repeated
+      experiments.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -2253,7 +2302,8 @@ Parachute
 
    .. attribute:: armed
 
-      Whether the parachute has been armed or deployed. Only applicable to RealChutes parachutes.
+      Whether the parachute has been armed or deployed. Only applicable to
+      RealChutes parachutes.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -2639,8 +2689,9 @@ Reaction Wheel
 
    .. attribute:: available_torque
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      The available torque, in Newton meters, that can be produced by this reaction wheel,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
 
       :Attribute: Read-only, cannot be set
@@ -2648,8 +2699,8 @@ Reaction Wheel
 
    .. attribute:: max_torque
 
-      The maximum torque the reaction wheel can provide, is it active,
-      in the pitch, roll and yaw axes of the vessel, in Newton meters.
+      The maximum torque, in Newton meters, that can be produced by this reaction wheel,
+      when it is active, in the positive and negative pitch, roll and yaw axes of the vessel.
       These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
@@ -2675,9 +2726,9 @@ RCS
    .. attribute:: active
 
       Whether the RCS thrusters are active.
-      An RCS thruster is inactive if the RCS action group is disabled (:attr:`Control.rcs`),
-      the RCS thruster itself is not enabled (:attr:`RCS.enabled`) or
-      it is covered by a fairing (:attr:`Part.shielded`).
+      An RCS thruster is inactive if the RCS action group is disabled
+      (:attr:`Control.rcs`), the RCS thruster itself is not enabled
+      (:attr:`RCS.enabled`) or it is covered by a fairing (:attr:`Part.shielded`).
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
@@ -2733,23 +2784,26 @@ RCS
 
    .. attribute:: available_torque
 
-      The available torque in the pitch, roll and yaw axes of the vessel, in Newton meters.
-      These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
-      Returns zero if the RCS is inactive.
+      The available torque, in Newton meters, that can be produced by this RCS,
+      in the positive and negative pitch, roll and yaw axes of the vessel. These axes
+      correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
+      Returns zero if RCS is disable.
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
 
    .. attribute:: max_thrust
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active,
+      in Newtons.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: max_vacuum_thrust
 
-      The maximum amount of thrust that can be produced by the RCS thrusters when active in a vacuum, in Newtons.
+      The maximum amount of thrust that can be produced by the RCS thrusters when active
+      in a vacuum, in Newtons.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -2939,7 +2993,8 @@ Thruster
    .. note::
 
       Engines can consist of multiple thrusters.
-      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of four thrusters.
+      For example, the S3 KS-25x4 "Mammoth" has four rocket nozzels, and so consists of
+      four thrusters.
 
    .. attribute:: part
 
@@ -2953,7 +3008,8 @@ Thruster
       The position at which the thruster generates thrust, in the given reference frame.
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: thrust_direction(reference_frame)
@@ -2962,7 +3018,8 @@ Thruster
       This is opposite to the direction in which the thruster expels propellant.
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
       :rtype: tuple(float, float, float)
 
    .. attribute:: thrust_reference_frame
@@ -2971,7 +3028,8 @@ Thruster
       its thrust direction (:meth:`Thruster.thrust_direction`).
       For gimballed engines, this takes into account the current rotation of the gimbal.
 
-      * The origin is at the position of thrust for this thruster (:meth:`Thruster.thrust_position`).
+      * The origin is at the position of thrust for this thruster
+        (:meth:`Thruster.thrust_position`).
       * The axes rotate with the thrust direction.
         This is the direction in which the thruster expels propellant, including any gimballing.
       * The y-axis points along the thrust direction.
@@ -2991,12 +3049,13 @@ Thruster
 
       Position around which the gimbal pivots.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. attribute:: gimbal_angle
 
-      The current gimbal angle in the pitch, roll and yaw axes.
+      The current gimbal angle in the pitch, roll and yaw axes, in degrees.
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(float, float, float)
@@ -3006,7 +3065,8 @@ Thruster
       The position at which the thruster generates thrust, when the engine is in its
       initial position (no gimballing), in the given reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
       .. note::
@@ -3020,7 +3080,8 @@ Thruster
       initial position (no gimballing), in the given reference frame.
       This is opposite to the direction in which the thruster expels propellant.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
       :rtype: tuple(float, float, float)
 
 
@@ -3031,7 +3092,8 @@ Wheel
 
 .. class:: Wheel
 
-   A wheel. Includes landing gear and rover wheels. Obtained by calling :attr:`Part.wheel`.
+   A wheel. Includes landing gear and rover wheels.
+   Obtained by calling :attr:`Part.wheel`.
    Can be used to control the motors, steering and deployment of wheels, among other things.
 
    .. attribute:: part

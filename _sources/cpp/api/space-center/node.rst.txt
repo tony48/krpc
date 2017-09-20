@@ -13,17 +13,20 @@ Node
    .. function:: double prograde()
    .. function:: void set_prograde(double value)
 
-      The magnitude of the maneuver nodes delta-v in the prograde direction, in meters per second.
+      The magnitude of the maneuver nodes delta-v in the prograde direction,
+      in meters per second.
 
    .. function:: double normal()
    .. function:: void set_normal(double value)
 
-      The magnitude of the maneuver nodes delta-v in the normal direction, in meters per second.
+      The magnitude of the maneuver nodes delta-v in the normal direction,
+      in meters per second.
 
    .. function:: double radial()
    .. function:: void set_radial(double value)
 
-      The magnitude of the maneuver nodes delta-v in the radial direction, in meters per second.
+      The magnitude of the maneuver nodes delta-v in the radial direction,
+      in meters per second.
 
    .. function:: double delta_v()
    .. function:: void set_delta_v(double value)
@@ -37,18 +40,18 @@ Node
 
    .. function:: double remaining_delta_v()
 
-      Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the node
-      is executed. This is equivalent to the delta-v reported in-game.
+      Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the
+      node is executed. This is equivalent to the delta-v reported in-game.
 
    .. function:: std::tuple<double, double, double> burn_vector(ReferenceFrame reference_frame = ReferenceFrame())
 
-      Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
-      is the delta-v of the burn in m/s.
+      Returns the burn vector for the maneuver node.
 
       :Parameters:
 
+       * **reference_frame** -- The reference frame that the returned vector is in. Defaults to :func:`Vessel::orbital_reference_frame`.
 
-
+      :returns: A vector whose direction is the direction of the maneuver node burn, and magnitude is the delta-v of the burn in meters per second.
 
       .. note::
 
@@ -56,10 +59,17 @@ Node
 
    .. function:: std::tuple<double, double, double> remaining_burn_vector(ReferenceFrame reference_frame = ReferenceFrame())
 
-      Returns a vector whose direction the direction of the maneuver node burn, and whose magnitude
-      is the delta-v of the burn in m/s. The direction and magnitude change as the burn is executed.
+      Returns the remaining burn vector for the maneuver node.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned vector is in. Defaults to :func:`Vessel::orbital_reference_frame`.
+
+      :returns: A vector whose direction is the direction of the maneuver node burn, and magnitude is the delta-v of the burn in meters per second.
+
+      .. note::
+
+         Changes as the maneuver node is executed. See :func:`Node::burn_vector`.
 
    .. function:: double ut()
    .. function:: void set_ut(double value)
@@ -80,7 +90,7 @@ Node
 
    .. function:: ReferenceFrame reference_frame()
 
-      Gets the reference frame that is fixed relative to the maneuver node's burn.
+      The reference frame that is fixed relative to the maneuver node's burn.
 
       * The origin is at the position of the maneuver node.
       * The y-axis points in the direction of the burn.
@@ -88,7 +98,7 @@ Node
 
    .. function:: ReferenceFrame orbital_reference_frame()
 
-      Gets the reference frame that is fixed relative to the maneuver node, and
+      The reference frame that is fixed relative to the maneuver node, and
       orientated with the orbital prograde/normal/radial directions of the
       original orbit at the maneuver node's position.
 
@@ -102,12 +112,20 @@ Node
 
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
-      Returns the position vector of the maneuver node in the given reference frame.
+      The position vector of the maneuver node in the given reference frame.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned position vector is in.
+
+      :returns: The position as a vector.
 
    .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
-      Returns the unit direction vector of the maneuver nodes burn in the given reference frame.
+      The direction of the maneuver nodes burn.
 
       :Parameters:
+
+       * **reference_frame** -- The reference frame that the returned direction is in.
+
+      :returns: The direction as a unit vector.

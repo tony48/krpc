@@ -59,13 +59,13 @@ Waypoints
 
    .. method:: void setBody(CelestialBody value)
 
-      Celestial body the waypoint is attached to.
+      The celestial body the waypoint is attached to.
 
    .. method:: String getName()
 
    .. method:: void setName(String value)
 
-      Name of the waypoint as it appears on the map and the contract.
+      The name of the waypoint as it appears on the map and the contract.
 
    .. method:: int getColor()
 
@@ -101,37 +101,42 @@ Waypoints
 
    .. method:: void setSurfaceAltitude(double value)
 
-      The altitude of the waypoint above the surface of the body or sea level, whichever is closer, in meters.
+      The altitude of the waypoint above the surface of the body or sea level,
+      whichever is closer, in meters.
 
    .. method:: double getBedrockAltitude()
 
    .. method:: void setBedrockAltitude(double value)
 
-      The altitude of the waypoint above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
+      The altitude of the waypoint above the surface of the body, in meters.
+      When over water, this is the altitude above the sea floor.
 
    .. method:: boolean getNearSurface()
 
 
-      True if waypoint is a point near or on the body rather than high in orbit.
+      ``true`` if the waypoint is near to the surface of a body.
 
    .. method:: boolean getGrounded()
 
 
-      True if waypoint is actually glued to the ground.
+      ``true`` if the waypoint is attached to the ground.
 
    .. method:: int getIndex()
 
 
-      The integer index of this waypoint amongst its cluster of sibling waypoints.
-      In other words, when you have a cluster of waypoints called "Somewhere Alpha", "Somewhere Beta", and "Somewhere Gamma",
-      then the alpha site has index 0, the beta site has index 1 and the gamma site has index 2.
-      When :meth:`Waypoint.getClustered()` is false, this value is zero but meaningless.
+      The integer index of this waypoint within its cluster of sibling waypoints.
+      In other words, when you have a cluster of waypoints called "Somewhere Alpha",
+      "Somewhere Beta" and "Somewhere Gamma", the alpha site has index 0, the beta
+      site has index 1 and the gamma site has index 2.
+      When :meth:`Waypoint.getClustered()` is ``false``, this is zero.
 
    .. method:: boolean getClustered()
 
 
-      True if this waypoint is part of a set of clustered waypoints with greek letter names appended (Alpha, Beta, Gamma, etc).
-      If true, there is a one-to-one correspondence with the greek letter name and the :meth:`Waypoint.getIndex()`.
+      ``true`` if this waypoint is part of a set of clustered waypoints with greek letter
+      names appended (Alpha, Beta, Gamma, etc).
+      If ``true``, there is a one-to-one correspondence with the greek letter name and
+      the :meth:`Waypoint.getIndex()`.
 
    .. method:: boolean getHasContract()
 

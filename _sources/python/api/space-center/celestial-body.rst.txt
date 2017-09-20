@@ -48,7 +48,8 @@ CelestialBody
 
    .. attribute:: surface_gravity
 
-      The acceleration due to gravity at sea level (mean altitude) on the body, in :math:`m/s^2`.
+      The acceleration due to gravity at sea level (mean altitude) on the body,
+      in :math:`m/s^2`.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -92,30 +93,32 @@ CelestialBody
 
    .. method:: surface_height(latitude, longitude)
 
-      The height of the surface relative to mean sea level at the given position,
-      in meters. When over water this is equal to 0.
+      The height of the surface relative to mean sea level, in meters,
+      at the given position. When over water this is equal to 0.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
       :rtype: float
 
    .. method:: bedrock_height(latitude, longitude)
 
-      The height of the surface relative to mean sea level at the given position,
-      in meters. When over water, this is the height of the sea-bed and is therefore a
-      negative value.
+      The height of the surface relative to mean sea level, in meters,
+      at the given position. When over water, this is the height
+      of the sea-bed and is therefore  negative value.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
       :rtype: float
 
    .. method:: msl_position(latitude, longitude, reference_frame)
 
-      The position at mean sea level at the given latitude and longitude, in the given reference frame.
+      The position at mean sea level at the given latitude and longitude,
+      in the given reference frame.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
+      :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: surface_position(latitude, longitude, reference_frame)
@@ -123,9 +126,10 @@ CelestialBody
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position of the surface of the water.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
+      :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: bedrock_position(latitude, longitude, reference_frame)
@@ -133,20 +137,46 @@ CelestialBody
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position at the bottom of the sea-bed.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
+      :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: position_at_altitude(latitude, longitude, altitude, reference_frame)
 
       The position at the given latitude, longitude and altitude, in the given reference frame.
 
-      :param float latitude: Latitude in degrees
-      :param float longitude: Longitude in degrees
-      :param float altitude: Altitude in meters above sea level
-      :param ReferenceFrame reference_frame: Reference frame for the returned position vector
+      :param float latitude: Latitude in degrees.
+      :param float longitude: Longitude in degrees.
+      :param float altitude: Altitude in meters above sea level.
+      :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
+      :returns: Position as a vector.
       :rtype: tuple(float, float, float)
+
+   .. method:: altitude_at_position(position, reference_frame)
+
+      The altitude, in meters, of the given position in the given reference frame.
+
+      :param tuple position: Position as a vector.
+      :param ReferenceFrame reference_frame: Reference frame for the position vector.
+      :rtype: float
+
+   .. method:: latitude_at_position(position, reference_frame)
+
+      The latitude of the given position, in the given reference frame.
+
+      :param tuple position: Position as a vector.
+      :param ReferenceFrame reference_frame: Reference frame for the position vector.
+      :rtype: float
+
+   .. method:: longitude_at_position(position, reference_frame)
+
+      The longitude of the given position, in the given reference frame.
+
+      :param tuple position: Position as a vector.
+      :param ReferenceFrame reference_frame: Reference frame for the position vector.
+      :rtype: float
 
    .. attribute:: sphere_of_influence
 
@@ -169,12 +199,58 @@ CelestialBody
       :Attribute: Read-only, cannot be set
       :rtype: float
 
+   .. method:: atmospheric_density_at_position(position, reference_frame)
+
+      The atmospheric density at the given position, in :math:`kg/m^3`,
+      in the given reference frame.
+
+      :param tuple position: The position vector at which to measure the density.
+      :param ReferenceFrame reference_frame: Reference frame that the position vector is in.
+      :rtype: float
+
    .. attribute:: has_atmospheric_oxygen
 
       ``True`` if there is oxygen in the atmosphere, required for air-breathing engines.
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
+
+   .. method:: temperature_at(position, reference_frame)
+
+      The temperature on the body at the given position, in the given reference frame.
+
+      :param tuple position: Position as a vector.
+      :param ReferenceFrame reference_frame: The reference frame that the position is in.
+      :rtype: float
+
+      .. note::
+
+         This calculation is performed using the bodies current position, which means that
+         the value could be wrong if you want to know the temperature in the far future.
+
+   .. method:: density_at(altitude)
+
+      Gets the air density, in :math:`kg/m^3`, for the specified
+      altitude above sea level, in meters.
+
+      :param float altitude:
+      :rtype: float
+
+      .. note::
+
+         This is an approximation, because actual calculations, taking sun exposure into account
+         to compute air temperature, require us to know the exact point on the body where the
+         density is to be computed (knowing the altitude is not enough).
+         However, the difference is small for high altitudes, so it makes very little difference
+         for trajectory prediction.
+
+   .. method:: pressure_at(altitude)
+
+      Gets the air pressure, in Pascals, for the specified
+      altitude above sea level, in meters.
+
+      :param float altitude:
+      :rtype: float
 
    .. attribute:: biomes
 
@@ -185,7 +261,7 @@ CelestialBody
 
    .. method:: biome_at(latitude, longitude)
 
-      The biomes at the given latitude and longitude, in degrees.
+      The biome at the given latitude and longitude, in degrees.
 
       :param float latitude:
       :param float longitude:
@@ -193,14 +269,16 @@ CelestialBody
 
    .. attribute:: flying_high_altitude_threshold
 
-      The altitude, in meters, above which a vessel is considered to be flying "high" when doing science.
+      The altitude, in meters, above which a vessel is considered to be
+      flying "high" when doing science.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
 
    .. attribute:: space_high_altitude_threshold
 
-      The altitude, in meters, above which a vessel is considered to be in "high" space when doing science.
+      The altitude, in meters, above which a vessel is considered to be
+      in "high" space when doing science.
 
       :Attribute: Read-only, cannot be set
       :rtype: float
@@ -247,7 +325,7 @@ CelestialBody
 
    .. attribute:: orbital_reference_frame
 
-      Gets the reference frame that is fixed relative to this celestial body, but
+      The reference frame that is fixed relative to this celestial body, but
       orientated with the body's orbital prograde/normal/radial directions.
 
       * The origin is at the center of the body.
@@ -262,39 +340,41 @@ CelestialBody
 
    .. method:: position(reference_frame)
 
-      Returns the position vector of the center of the body in the specified reference frame.
+      The position of the center of the body, in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
+      :returns: The position as a vector.
       :rtype: tuple(float, float, float)
 
    .. method:: velocity(reference_frame)
 
-      Returns the velocity vector of the body in the specified reference frame.
+      The linear velocity of the body, in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned velocity vector is in.
+      :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
       :rtype: tuple(float, float, float)
 
    .. method:: rotation(reference_frame)
 
-      Returns the rotation of the body in the specified reference frame.
+      The rotation of the body, in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
+      :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
       :rtype: tuple(float, float, float, float)
 
    .. method:: direction(reference_frame)
 
-      Returns the direction in which the north pole of the celestial body is
-      pointing, as a unit vector, in the specified reference frame.
+      The direction in which the north pole of the celestial body is pointing,
+      in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
+      :returns: The direction as a unit vector.
       :rtype: tuple(float, float, float)
 
    .. method:: angular_velocity(reference_frame)
 
-      Returns the angular velocity of the body in the specified reference
-      frame. The magnitude of the vector is the rotational speed of the body, in
-      radians per second, and the direction of the vector indicates the axis of
-      rotation, using the right-hand rule.
+      The angular velocity of the body in the specified reference frame.
 
-      :param ReferenceFrame reference_frame:
+      :param ReferenceFrame reference_frame: The reference frame the returned angular velocity is in.
+      :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the body, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.
       :rtype: tuple(float, float, float)

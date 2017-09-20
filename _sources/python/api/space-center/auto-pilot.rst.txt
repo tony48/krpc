@@ -14,7 +14,8 @@ AutoPilot
    .. note::
 
       If a client engages the auto-pilot and then closes its connection to the server,
-      the auto-pilot will be disengaged and its target reference frame, direction and roll reset to default.
+      the auto-pilot will be disengaged and its target reference frame, direction and roll
+      reset to default.
 
    .. method:: engage()
 
@@ -26,7 +27,8 @@ AutoPilot
 
    .. method:: wait()
 
-      Blocks until the vessel is pointing in the target direction and has the target roll (if set).
+      Blocks until the vessel is pointing in the target direction and has
+      the target roll (if set).
 
    .. attribute:: error
 
@@ -70,8 +72,9 @@ AutoPilot
 
       .. note::
 
-         An error will be thrown if this property is set to a reference frame that rotates with the vessel being controlled,
-         as it is impossible to rotate the vessel in such a reference frame.
+         An error will be thrown if this property is set to a reference frame that rotates with
+         the vessel being controlled, as it is impossible to rotate the vessel in such a
+         reference frame.
 
    .. attribute:: target_pitch
 
@@ -97,6 +100,7 @@ AutoPilot
    .. attribute:: target_direction
 
       Direction vector corresponding to the target pitch and heading.
+      This is in the reference frame specified by :class:`ReferenceFrame`.
 
       :Attribute: Can be read or written
       :rtype: tuple(float, float, float)
@@ -122,7 +126,8 @@ AutoPilot
    .. attribute:: sas_mode
 
       The current :class:`SASMode`.
-      These modes are equivalent to the mode buttons to the left of the navball that appear when SAS is enabled.
+      These modes are equivalent to the mode buttons to the left of the navball that appear
+      when SAS is enabled.
 
       :Attribute: Can be read or written
       :rtype: :class:`SASMode`
@@ -143,8 +148,8 @@ AutoPilot
 
       The maximum amount of time that the vessel should need to come to a complete stop.
       This determines the maximum angular velocity of the vessel.
-      A vector of three stopping times, in seconds, one for each of the pitch, roll and yaw axes.
-      Defaults to 0.5 seconds for each axis.
+      A vector of three stopping times, in seconds, one for each of the pitch, roll
+      and yaw axes. Defaults to 0.5 seconds for each axis.
 
       :Attribute: Can be read or written
       :rtype: tuple(float, float, float)
@@ -161,7 +166,8 @@ AutoPilot
 
    .. attribute:: attenuation_angle
 
-      The angle at which the autopilot considers the vessel to be pointing close to the target.
+      The angle at which the autopilot considers the vessel to be pointing
+      close to the target.
       This determines the midpoint of the target velocity attenuation function.
       A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
       Defaults to 1° for each axis.
@@ -171,8 +177,8 @@ AutoPilot
 
    .. attribute:: auto_tune
 
-      Whether the rotation rate controllers PID parameters should be automatically tuned using the
-      vessels moment of inertia and available torque. Defaults to ``True``.
+      Whether the rotation rate controllers PID parameters should be automatically tuned
+      using the vessels moment of inertia and available torque. Defaults to ``True``.
       See :attr:`AutoPilot.time_to_peak` and :attr:`AutoPilot.overshoot`.
 
       :Attribute: Can be read or written
@@ -205,7 +211,8 @@ AutoPilot
 
       .. note::
 
-         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.
 
    .. attribute:: roll_pid_gains
 
@@ -216,7 +223,8 @@ AutoPilot
 
       .. note::
 
-         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.
 
    .. attribute:: yaw_pid_gains
 
@@ -227,4 +235,5 @@ AutoPilot
 
       .. note::
 
-         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically, which will overwrite any manual changes.
+         When :attr:`AutoPilot.auto_tune` is true, these values are updated automatically,
+         which will overwrite any manual changes.

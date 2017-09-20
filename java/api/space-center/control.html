@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.3.9 documentation</title>
+  <title>Control &mdash; kRPC 0.3.10 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.3.9 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.3.10 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Communications" href="comms.html"/>
         <link rel="prev" title="Orbit" href="orbit.html"/>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                0.3.9
+                0.3.10
               </div>
             
           
@@ -470,6 +470,22 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.getInputMode()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="krpc.client.services.SpaceCenter.ControlInputMode">ControlInputMode</a> <code class="descname">getInputMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getInputMode()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Control.setInputMode(ControlInputMode)">
+ void <code class="descname">setInputMode</code><span class="sig-paren">(</span><a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="krpc.client.services.SpaceCenter.ControlInputMode">ControlInputMode</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setInputMode(ControlInputMode)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the behavior of the pitch, yaw, roll and translation control inputs.
+When set to additive, these inputs are added to the vessels current inputs.
+This mode is the default.
+When set to override, these inputs (if non-zero) override the vessels inputs.
+This mode prevents keyboard control, or SAS, from interfering with the controls when
+they are set.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.getPitch()">
  float <code class="descname">getPitch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getPitch()" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -833,6 +849,24 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
 
 </dd></dl>
 
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.ControlInputMode">
+public enum <code class="descname">ControlInputMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getInputMode()" title="krpc.client.services.SpaceCenter.Control.getInputMode()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getInputMode()</span></code></a>.</p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlInputMode.ADDITIVE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="krpc.client.services.SpaceCenter.ControlInputMode">ControlInputMode</a> <code class="descname">ADDITIVE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlInputMode.ADDITIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs are added to the vessels current control inputs.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.ControlInputMode.OVERRIDE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="krpc.client.services.SpaceCenter.ControlInputMode">ControlInputMode</a> <code class="descname">OVERRIDE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlInputMode.OVERRIDE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs (when they are non-zero) override the vessels current control inputs.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -876,7 +910,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.3.9',
+            VERSION:'0.3.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

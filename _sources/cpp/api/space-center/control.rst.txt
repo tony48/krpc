@@ -164,6 +164,16 @@ Control
 
       The state of the throttle. A value between 0 and 1.
 
+   .. function:: ControlInputMode input_mode()
+   .. function:: void set_input_mode(ControlInputMode value)
+
+      Sets the behavior of the pitch, yaw, roll and translation control inputs.
+      When set to additive, these inputs are added to the vessels current inputs.
+      This mode is the default.
+      When set to override, these inputs (if non-zero) override the vessels inputs.
+      This mode prevents keyboard control, or SAS, from interfering with the controls when
+      they are set.
+
    .. function:: float pitch()
    .. function:: void set_pitch(float value)
 
@@ -410,3 +420,20 @@ Control
    .. enumerator:: target
 
       Speed is relative to the current target.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: ControlInputMode
+
+   See :func:`Control::input_mode`.
+
+
+   .. enumerator:: additive
+
+      Control inputs are added to the vessels current control inputs.
+
+
+   .. enumerator:: override
+
+      Control inputs (when they are non-zero) override the vessels current control inputs.
