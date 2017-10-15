@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Client &mdash; kRPC 0.3.11 documentation</title>
+  <title>Python Client &mdash; kRPC 0.4.0 documentation</title>
   
 
+  
+  
   
   
 
@@ -35,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.3.11 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Python" href="../python.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="Python" href="../python.html"/>
@@ -58,6 +60,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -77,7 +80,7 @@
             
             
               <div class="version">
-                0.3.11
+                0.4.0
               </div>
             
           
@@ -98,7 +101,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
@@ -108,11 +114,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../python.html">Python</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interacting-with-the-server">Interacting with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calling-remote-procedures">Calling Remote Procedures</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streaming-data-from-the-server">Streaming Data from the Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-krpc">Client API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#synchronizing-with-stream-updates">Synchronizing with Stream Updates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#condition-variables">Condition Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#callbacks">Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-events">Custom Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-api-reference">Client API Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/krpc.html">KRPC API</a></li>
@@ -127,7 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocols.html">Communication Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
 </ul>
 
@@ -141,8 +152,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">kRPC</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kRPC</a>
+        
       </nav>
 
 
@@ -151,25 +164,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../python.html">Python</a> &raquo;</li>
-      
-    <li>Python Client</li>
+        
+      <li>Python Client</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/python/client.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -177,79 +207,75 @@
             
   <div class="section" id="python-client">
 <h1>Python Client<a class="headerlink" href="#python-client" title="Permalink to this headline">¶</a></h1>
-<p>This client provides functionality to interact with a kRPC server from programs
-written in Python. It can be <a class="reference external" href="https://pypi.python.org/pypi/krpc">installed using PyPI</a> or <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.11/krpc-python-0.3.11.zip">downloaded from
-GitHub</a>.</p>
+<p>This client provides a Python API for interacting with a kRPC server. It supports Python 2.7+ and
+3.x</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
-<p>The python client and all of its dependencies can be installed using pip with a
-single command. It supports Python 2.7+ and 3.x</p>
-<p>On linux:</p>
+<p>The library can be found on <a class="reference external" href="https://pypi.python.org/pypi/krpc">PyPI</a> or
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.0/krpc-python-0.4.0.zip">downloaded from GitHub</a>.</p>
+<p>To install using pip on Linux:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>pip install krpc
 </pre></div>
 </div>
-<p>On Windows:</p>
+<p>Or on Windows:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>C:\Python27\Scripts\pip.exe install krpc
-</pre></div>
-</div>
-</div>
-<div class="section" id="using-the-library">
-<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
-<p>Once it’s installed, simply <code class="docutils literal"><span class="pre">import</span> <span class="pre">krpc</span></code> and you are good to go! You can
-check what version you have installed by running the following script:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="k">print</span><span class="p">(</span><span class="n">krpc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
-<p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref py py-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function. This returns a
-connection object through which you can interact with the server. For example to
-connect to a server running on the local machine:</p>
+<p>The <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref py py-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function is used to open a connection to a server. It returns a connection
+object (of type <a class="reference internal" href="#krpc.client.Client" title="krpc.client.Client"><code class="xref py py-class docutils literal"><span class="pre">krpc.client.Client</span></code></a>) through which you can interact with the server. The
+following example connects to a server running on the local machine, queries its version and prints
+it out:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example&#39;</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This function also accepts arguments that specify what address and port numbers
-to connect to. For example:</p>
+<p>This function also accepts arguments that specify what address and port numbers to connect to, and
+an optional descriptive name for the connection which is displayed in the kRPC window in the
+game. For example:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Remote example&#39;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;my.domain.name&#39;</span><span class="p">,</span> <span class="n">rpc_port</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stream_port</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;My Example Program&#39;</span><span class="p">,</span>
+    <span class="n">address</span><span class="o">=</span><span class="s1">&#39;192.168.1.10&#39;</span><span class="p">,</span>
+    <span class="n">rpc_port</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stream_port</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="interacting-with-the-server">
-<h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
-<p>Interaction with the server is performed via the client object (of type
-<a class="reference internal" href="#krpc.client.Client" title="krpc.client.Client"><code class="xref py py-class docutils literal"><span class="pre">krpc.client.Client</span></code></a>) returned when connecting to the server using
-<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref py py-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
-<p>Upon connecting, the client interrogates the server to find out what
-functionality it provides and dynamically adds all of the classes, methods,
-properties to the client object.</p>
-<p>For example, all of the functionality provided by the SpaceCenter service is
-accessible via <code class="docutils literal"><span class="pre">conn.space_center</span></code> and the functionality provided by the
-InfernalRobotics service is accessible via <code class="docutils literal"><span class="pre">conn.infernal_robotics</span></code>. To
-explore the functionality provided by a service, you can use the <code class="docutils literal"><span class="pre">help()</span></code>
-function from an interactive terminal. For example, running
-<code class="docutils literal"><span class="pre">help(conn.space_center)</span></code> will list all of the classes, enumerations,
-procedures and properties provides by the SpaceCenter service. Or for a class,
-such as the vessel class provided by the SpaceCenter service by calling
+<div class="section" id="calling-remote-procedures">
+<h2>Calling Remote Procedures<a class="headerlink" href="#calling-remote-procedures" title="Permalink to this headline">¶</a></h2>
+<p>The kRPC server provides <em>procedures</em> that a client can run. These procedures are arranged in groups
+called <em>services</em> to keep things organized. When connecting, the Python client interrogates the
+server to discover what procedures it provides, and dynamically creates class types, methods,
+properties etc. to call them.</p>
+<p>The following example demonstrates how to invoke remote procedures using the Python client. It calls
+<a class="reference internal" href="api/space-center/space-center.html#SpaceCenter.active_vessel" title="SpaceCenter.active_vessel"><code class="xref py py-attr docutils literal"><span class="pre">SpaceCenter.active_vessel</span></code></a> to get an object representing the active vessel (of type
+<a class="reference internal" href="api/space-center/vessel.html#SpaceCenter.Vessel" title="SpaceCenter.Vessel"><code class="xref py py-class docutils literal"><span class="pre">SpaceCenter.Vessel</span></code></a>). It sets the name of the vessel and then prints out its altitude:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+
+<span class="n">vessel</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Vessel&quot;</span>
+
+<span class="n">flight_info</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">flight_info</span><span class="o">.</span><span class="n">mean_altitude</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All of the functionality provided by the <code class="docutils literal"><span class="pre">SpaceCenter</span></code> service is accessible via
+<code class="docutils literal"><span class="pre">conn.space_center</span></code>. To explore the functionality provided by a service, you can use the
+<code class="docutils literal"><span class="pre">help()</span></code> function from an interactive terminal. For example, running <code class="docutils literal"><span class="pre">help(conn.space_center)</span></code>
+will list all of the classes, enumerations, procedures and properties provides by the
+<code class="docutils literal"><span class="pre">SpaceCenter</span></code> service. This works similarly for class types, for example:
 <code class="docutils literal"><span class="pre">help(conn.space_center.Vessel)</span></code>.</p>
-<p>Calling methods, getting or setting properties, etc. are mapped to remote
-procedure calls and passed to the server by the python client.</p>
 </div>
 <div class="section" id="streaming-data-from-the-server">
 <span id="python-client-streams"></span><h2>Streaming Data from the Server<a class="headerlink" href="#streaming-data-from-the-server" title="Permalink to this headline">¶</a></h2>
-<p>A stream repeatedly executes a function on the server, with a fixed set of
-argument values. It provides a more efficient way of repeatedly getting the
-result of a function, avoiding the network overhead of having to invoke it
-directly.</p>
-<p>For example, consider the following loop that continuously prints out the
-position of the active vessel. This loop incurs significant communication
-overheads, as the <code class="docutils literal"><span class="pre">vessel.position</span></code> function is called repeatedly.</p>
+<p>A common use case for kRPC is to continuously extract data from the game. The naive approach to do
+this would be to repeatedly call a remote procedure, such as in the following which repeatedly
+prints the position of the active vessel:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -258,9 +284,14 @@ overheads, as the <code class="docutils literal"><span class="pre">vessel.positi
     <span class="k">print</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">refframe</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>The following code achieves the same thing, but is far more efficient. It calls
-<a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a> once at the start of the program to create
-a stream, and then repeatedly gets the position from the stream.</p>
+<p>This approach requires significant communication overhead as request/response messages are
+repeatedly sent between the client and server. kRPC provides a more efficient mechanism to achieve
+this, called <em>streams</em>.</p>
+<p>A stream repeatedly executes a procedure on the server (with a fixed set of argument values) and
+sends the result to the client. It only requires a single message to be sent to the server to
+establish the stream, which will then continuously send data to the client until the stream is
+closed.</p>
+<p>The following example does the same thing as above using streams:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -270,43 +301,183 @@ a stream, and then repeatedly gets the position from the stream.</p>
     <span class="k">print</span><span class="p">(</span><span class="n">position</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>A stream can be created by calling <a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a> or
-using the <code class="docutils literal"><span class="pre">with</span></code> statement applied to <a class="reference internal" href="#krpc.client.Client.stream" title="krpc.client.Client.stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.stream()</span></code></a>. Both
-of these approaches return an instance of the <a class="reference internal" href="#krpc.stream.Stream" title="krpc.stream.Stream"><code class="xref py py-class docutils literal"><span class="pre">krpc.stream.Stream</span></code></a> class.</p>
-<p>Both methods and attributes can be streamed. The example given above
-demonstrates how to stream methods. The following example shows how to stream an
-attribute (in this case <code class="docutils literal"><span class="pre">vessel.control.abort</span></code>):</p>
+<p>It calls <a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a> once at the start of the program to create the
+stream, and then repeatedly prints the position returned by the stream. The stream is automatically
+closed when the client disconnects.</p>
+<p>Streams can also be created using the <code class="docutils literal"><span class="pre">with</span></code> statement, which ensures that the stream is closed
+after leaving the block:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
+<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">refframe</span><span class="p">)</span> <span class="k">as</span> <span class="n">position</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">position</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>A stream can be created for any procedure that returns a value. This includes both method calls and
+attribute accesses. The examples above demonstrated how to stream method calls. Attributes can be
+streamed as follows:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="n">flight_info</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span>
+<span class="n">altitude</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">flight_info</span><span class="p">,</span> <span class="s1">&#39;mean_altitude&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">altitude</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>A stream can be created for any function call (except property setters). The most recent value of a
+stream can be obtained by calling <a class="reference internal" href="#krpc.stream.Stream.__call__" title="krpc.stream.Stream.__call__"><code class="xref py py-func docutils literal"><span class="pre">krpc.stream.Stream.__call__()</span></code></a>. A stream can be stopped and
+removed from the server by calling <a class="reference internal" href="#krpc.stream.Stream.remove" title="krpc.stream.Stream.remove"><code class="xref py py-func docutils literal"><span class="pre">krpc.stream.Stream.remove()</span></code></a> on the stream object. All of a
+clients streams are automatically stopped when it disconnects.</p>
+</div>
+<div class="section" id="synchronizing-with-stream-updates">
+<h2>Synchronizing with Stream Updates<a class="headerlink" href="#synchronizing-with-stream-updates" title="Permalink to this headline">¶</a></h2>
+<p>A common use case for kRPC is to wait until the value returned by a method or attribute changes, and
+then take some action. kRPC provides two mechanisms to do this efficiently: <em>condition variables</em>
+and <em>callbacks</em>.</p>
+<div class="section" id="condition-variables">
+<h3>Condition Variables<a class="headerlink" href="#condition-variables" title="Permalink to this headline">¶</a></h3>
+<p>Each stream has a condition variable associated with it, that is notified whenever the value of the
+stream changes. The condition variables are instances of <code class="docutils literal"><span class="pre">threading.Condition</span></code> from the Python
+standard library. These can be used to block the current thread of execution until the value of the
+stream changes.</p>
+<p>The following example waits until the abort button is pressed in game, by waiting for the value of
+<code class="docutils literal"><span class="pre">vessel.control.abort</span></code> to change to true:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="p">,</span> <span class="s1">&#39;abort&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">abort</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">abort</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">abort</span><span class="p">():</span>
+            <span class="n">abort</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This code creates a stream, acquires a lock on the streams condition variable (using a <code class="docutils literal"><span class="pre">with</span></code>
+statement) and then repeatedly checks the value of <code class="docutils literal"><span class="pre">abort</span></code>. It leaves the loop when it changes to
+true.</p>
+<p>The body of the loop calls <code class="docutils literal"><span class="pre">wait</span></code> on the stream, which causes the program to block until the value
+changes. This prevents the loop from ‘spinning’ and so it does not consume processing resources
+whilst waiting.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The stream does not start receiving updates until the first call to <code class="docutils literal"><span class="pre">wait</span></code>. This means that the
+example code will not miss any updates to the streams value, as it will have already locked the
+condition variable before the first stream update is received.</p>
+</div>
+<p>The example code above uses a <code class="docutils literal"><span class="pre">with</span></code> statement to acquire the lock on the condition variable. This
+can also be done explicitly using <code class="docutils literal"><span class="pre">acquire</span></code> and <code class="docutils literal"><span class="pre">release</span></code>:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="p">,</span> <span class="s1">&#39;abort&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">abort</span><span class="p">:</span>
+    <span class="n">abort</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">abort</span><span class="p">():</span>
+        <span class="n">abort</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">abort</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="callbacks">
+<h3>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h3>
+<p>Streams allow you to register callback functions that are called whenever the value of the stream
+changes. Callback functions should take a single argument, which is the new value of the stream, and
+should return nothing.</p>
+<p>For example the following program registers two callbacks that are invoked when the value of
+<code class="docutils literal"><span class="pre">vessel.conrol.abort</span></code> changes:</p>
 <div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 <span class="n">abort</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">add_stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">vessel</span><span class="o">.</span><span class="n">control</span><span class="p">,</span> <span class="s1">&#39;abort&#39;</span><span class="p">)</span>
-<span class="k">while</span> <span class="ow">not</span> <span class="n">abort</span><span class="p">():</span>
+
+
+<span class="k">def</span> <span class="nf">check_abort1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s1">&#39;Abort 1 called with a value of&#39;</span><span class="p">,</span> <span class="n">x</span>
+
+
+<span class="k">def</span> <span class="nf">check_abort2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s1">&#39;Abort 2 called with a value of&#39;</span><span class="p">,</span> <span class="n">x</span>
+
+<span class="n">abort</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="n">check_abort1</span><span class="p">)</span>
+<span class="n">abort</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="n">check_abort2</span><span class="p">)</span>
+<span class="n">abort</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Keep the program running...</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When a stream is created it does not start receiving updates until <code class="docutils literal"><span class="pre">start</span></code> is called. This is
+implicitly called when accessing the value of a stream, but as this example does not do this an
+explicit call to <code class="docutils literal"><span class="pre">start</span></code> is required.</p>
 </div>
-<div class="section" id="module-krpc">
-<span id="client-api-reference"></span><h2>Client API Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The callbacks are registered before the call to <code class="docutils literal"><span class="pre">start</span></code> so that stream updates are not missed.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The callback function may be called from a different thread to that which created the stream. Any
+changes to shared state must therefore be protected with appropriate synchronization.</p>
+</div>
+</div>
+</div>
+<div class="section" id="custom-events">
+<span id="python-client-events"></span><h2>Custom Events<a class="headerlink" href="#custom-events" title="Permalink to this headline">¶</a></h2>
+<p>Some procedures return event objects of type <a class="reference internal" href="#krpc.event.Event" title="krpc.event.Event"><code class="xref py py-class docutils literal"><span class="pre">krpc.event.Event</span></code></a>. These allow you to wait
+until an event occurs, by calling <a class="reference internal" href="#krpc.event.Event.wait" title="krpc.event.Event.wait"><code class="xref py py-class docutils literal"><span class="pre">krpc.event.Event.wait</span></code></a>. Under the hood, these are
+implemented using streams and condition variables.</p>
+<p>Custom events can also be created. An expression API allows you to create code that runs on the
+server and these can be used to build a custom event. For example, the following creates the
+expression <code class="docutils literal"><span class="pre">mean_altitude</span> <span class="pre">&gt;</span> <span class="pre">1000</span></code> and then creates an event that will be triggered when the
+expression returns true:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
+<span class="n">flight</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">flight</span><span class="p">()</span>
+
+<span class="c1"># Convert a remote procedure call to a message,</span>
+<span class="c1"># so it can be passed to the server</span>
+<span class="n">mean_altitude</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_call</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">flight</span><span class="p">,</span> <span class="s1">&#39;mean_altitude&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create an expression on the server</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">Expression</span><span class="o">.</span><span class="n">greater_than</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">Expression</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">mean_altitude</span><span class="p">),</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">Expression</span><span class="o">.</span><span class="n">constant_double</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="c1"># Create an event from the expression</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+
+<span class="c1"># Wait on the event</span>
+<span class="k">with</span> <span class="n">event</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s1">&#39;Altitude reached 1000m&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-api-reference">
+<h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="krpc.connect">
-<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>address=‘127.0.0.1’</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="optional">[</span>, <em>name=None</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function creates a connection to a kRPC server. It returns a
-<a class="reference internal" href="#krpc.client.Client" title="krpc.client.Client"><code class="xref py py-class docutils literal"><span class="pre">krpc.client.Client</span></code></a> object, through which the server can be
-communicated with.</p>
+<code class="descclassname">krpc.</code><code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=None</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a connection to a kRPC server. It returns a <a class="reference internal" href="#krpc.client.Client" title="krpc.client.Client"><code class="xref py py-class docutils literal"><span class="pre">krpc.client.Client</span></code></a>
+object, through which the server can be communicated with.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>address</strong> (<em>str</em>) – The address of the server to connect to. Can either be a
-hostname or an IP address in dotted decimal
-notation. Defaults to ‘127.0.0.1’.</li>
-<li><strong>rpc_port</strong> (<em>int</em>) – The port number of the RPC Server. Defaults to 50000.</li>
-<li><strong>stream_port</strong> (<em>int</em>) – The port number of the Stream Server. Defaults
-to 50001.</li>
-<li><strong>name</strong> (<em>str</em>) – A descriptive name for the connection. This is passed to the
-server and appears, for example, in the client connection
-dialog on the in-game server window.</li>
+<li><strong>name</strong> (<em>str</em>) – A descriptive name for the connection. This is passed to the server and appears
+in the in-game server window.</li>
+<li><strong>address</strong> (<em>str</em>) – The address of the server to connect to. Can either be a hostname or an IP
+address in dotted decimal notation. Defaults to ‘127.0.0.1’.</li>
+<li><strong>rpc_port</strong> (<em>int</em>) – The port number of the RPC Server. Defaults to 50000. This should match the
+RPC port number of the server you want to connect to.</li>
+<li><strong>stream_port</strong> (<em>int</em>) – The port number of the Stream Server. Defaults to 50001. This should
+match the stream port number of the server you want to connect to.</li>
 </ul>
 </td>
 </tr>
@@ -314,44 +485,33 @@ dialog on the in-game server window.</li>
 </table>
 </dd></dl>
 
-<span class="target" id="module-krpc.client"></span><dl class="class">
+<dl class="class">
 <dt id="krpc.client.Client">
-<em class="property">class </em><code class="descname">Client</code><a class="headerlink" href="#krpc.client.Client" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class provides the interface for communicating with the server. It is
-dynamically populated with all the functionality provided by the
-server. Instances of this class should be obtained by calling
-<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref py py-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
+<em class="property">class </em><code class="descclassname">krpc.client.</code><code class="descname">Client</code><a class="headerlink" href="#krpc.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides the interface for communicating with the server. It is dynamically populated
+with all the functionality provided by the server. Instances of this class should be obtained by
+calling <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref py py-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
 <dl class="method">
 <dt id="krpc.client.Client.add_stream">
 <code class="descname">add_stream</code><span class="sig-paren">(</span><em>func</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Client.add_stream" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a stream for the function <em>func</em> called with arguments <em>args</em> and
-<em>kwargs</em>. Returns a <a class="reference internal" href="#krpc.stream.Stream" title="krpc.stream.Stream"><code class="xref py py-class docutils literal"><span class="pre">krpc.stream.Stream</span></code></a> object.</p>
+<dd><p>Create a stream for the function <em>func</em> called with arguments <em>args</em> and <em>kwargs</em>. Returns a
+<a class="reference internal" href="#krpc.stream.Stream" title="krpc.stream.Stream"><code class="xref py py-class docutils literal"><span class="pre">krpc.stream.Stream</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.Client.stream">
 <code class="descname">stream</code><span class="sig-paren">(</span><em>func</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Client.stream" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allows use of the <code class="docutils literal"><span class="pre">with</span></code> statement to create a stream and automatically
-remove it from the server when it goes out of scope. The function to be
-streamed should be passed as <em>func</em>, and its arguments as <em>args</em> and
-<em>kwargs</em>.</p>
-<p>For example, to stream the result of method call
-<code class="docutils literal"><span class="pre">vessel.position(refframe)</span></code>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
-<span class="n">refframe</span> <span class="o">=</span> <span class="n">vessel</span><span class="o">.</span><span class="n">orbit</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">reference_frame</span>
-<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">vessel</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">refframe</span><span class="p">)</span> <span class="k">as</span> <span class="n">pos</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Position =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>Or to stream the property <code class="docutils literal"><span class="pre">conn.space_center.ut</span></code>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ut</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Universal Time =&#39;</span><span class="p">,</span> <span class="n">ut</span><span class="p">())</span>
-</pre></div>
-</div>
+<dd><p>Allows use of the <code class="docutils literal"><span class="pre">with</span></code> statement to create a stream and automatically remove it from the
+server when it goes out of scope. The function to be streamed should be passed as <em>func</em>, and
+its arguments as <em>args</em> and <em>kwargs</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Client.get_call">
+<code class="descname">get_call</code><span class="sig-paren">(</span><em>func</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Client.get_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a call to function <em>func</em> with arguments <em>args</em> and <em>kwargs</em> into a message
+object. This allows descriptions of procedure calls to be passed to the server, for example
+when constructing custom events. See <a class="reference internal" href="#python-client-events"><span class="std std-ref">Custom Events</span></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -363,7 +523,7 @@ streamed should be passed as <em>func</em>, and its arguments as <em>args</em> a
 <dl class="attribute">
 <dt id="krpc.client.Client.krpc">
 <code class="descname">krpc</code><a class="headerlink" href="#krpc.client.Client.krpc" title="Permalink to this definition">¶</a></dt>
-<dd><p>The built-in KRPC class, providing basic interactions with the server.</p>
+<dd><p>The basic KRPC service, providing interaction with basic functionality of the server.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -378,51 +538,126 @@ streamed should be passed as <em>func</em>, and its arguments as <em>args</em> a
 
 <dl class="class">
 <dt id="krpc.client.KRPC">
-<em class="property">class </em><code class="descname">KRPC</code><a class="headerlink" href="#krpc.client.KRPC" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class provides access to the basic server functionality provided by
-the <code class="docutils literal"><span class="pre">KRPC</span></code> service. An instance can be obtained by calling
-<a class="reference internal" href="#krpc.client.Client.krpc" title="krpc.client.Client.krpc"><code class="xref py py-attr docutils literal"><span class="pre">krpc.client.Client.krpc</span></code></a>. Most of this functionality is used
-internally by the python client (for example to create and remove streams)
-and therefore does not need to be used directly from application code. The
-only exception that may be useful is:</p>
-<dl class="method">
-<dt id="krpc.client.KRPC.get_status">
-<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.KRPC.get_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets a status message from the server containing information including
-the server’s version string and performance statistics.</p>
-<p>For example, the following prints out the version string for the
-server:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Server version =&#39;</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Or to get the rate at which the server is sending and receiving data
-over the network:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">krpc</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data in = </span><span class="si">%.1f</span><span class="s1"> KB/s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Data out = </span><span class="si">%.1f</span><span class="s1"> KB/s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">bytes_written_rate</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">))</span>
-</pre></div>
-</div>
+<em class="property">class </em><code class="descclassname">krpc.client.</code><code class="descname">KRPC</code><a class="headerlink" href="#krpc.client.KRPC" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides access to the basic server functionality provided by the <a class="reference internal" href="api/krpc/krpc.html#module-KRPC" title="KRPC"><code class="xref py py-class docutils literal"><span class="pre">KRPC</span></code></a>
+service. An instance can be obtained by calling <a class="reference internal" href="#krpc.client.Client.krpc" title="krpc.client.Client.krpc"><code class="xref py py-attr docutils literal"><span class="pre">krpc.client.Client.krpc</span></code></a>.</p>
+<p>See <a class="reference internal" href="api/krpc/krpc.html#module-KRPC" title="KRPC"><code class="xref py py-class docutils literal"><span class="pre">KRPC</span></code></a> for full documentation of this class.</p>
+<p>Some of this functionality is used internally by the python client (for example to create and
+remove streams) and therefore does not need to be used directly from application code.</p>
 </dd></dl>
 
-</dd></dl>
-
-<span class="target" id="module-krpc.stream"></span><dl class="class">
+<dl class="class">
 <dt id="krpc.stream.Stream">
-<em class="property">class </em><code class="descname">Stream</code><a class="headerlink" href="#krpc.stream.Stream" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<em class="property">class </em><code class="descclassname">krpc.stream.</code><code class="descname">Stream</code><a class="headerlink" href="#krpc.stream.Stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class represents a stream. See <a class="reference internal" href="#python-client-streams"><span class="std std-ref">Streaming Data from the Server</span></a>.</p>
+<dl class="method">
+<dt id="krpc.stream.Stream.start">
+<code class="descname">start</code><span class="sig-paren">(</span><em>wait=True</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.stream.Stream.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the stream. When a stream is created by calling <a class="reference internal" href="#krpc.client.Client.add_stream" title="krpc.client.Client.add_stream"><code class="xref py py-meth docutils literal"><span class="pre">krpc.client.Client.add_stream()</span></code></a>
+it does not start sending updates to the client until this method is called.</p>
+<p>If wait is true, this method will block until at least one update has been received from the
+server.</p>
+<p>If wait is false, the method starts the stream and returns immediately. Subsequent calls to
+<a class="reference internal" href="#krpc.stream.Stream.__call__" title="krpc.stream.Stream.__call__"><code class="xref py py-meth docutils literal"><span class="pre">__call__()</span></code></a> may raise a <code class="docutils literal"><span class="pre">StreamError</span></code> exception if the stream does not yet contain a
+value.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.stream.Stream.__call__">
 <code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.stream.Stream.__call__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the most recently received value for the stream.</p>
+<dd><p>Returns the most recent value for the stream. If executing the remote procedure for the stream
+throws an exception, calling this method will rethrow the exception. Raises a <code class="docutils literal"><span class="pre">StreamError</span></code>
+exception if no update has been received from the server.</p>
+<p>If the stream has not been started this method calls <code class="docutils literal"><span class="pre">start(True)</span></code> to start the stream and
+wait until at least one update has been received.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="krpc.stream.Stream.condition">
+<code class="descname">condition</code><a class="headerlink" href="#krpc.stream.Stream.condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>A condition variable (of type <code class="docutils literal"><span class="pre">threading.Condition</span></code>) that is notified whenever the value of
+the stream changes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.stream.Stream.wait">
+<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.stream.Stream.wait" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method blocks until the value of the stream changes or the operation times out.</p>
+<p>The streams condition variable must be locked before calling this method.</p>
+<p>If <em>timeout</em> is specified and is not <code class="docutils literal"><span class="pre">None</span></code>, it should be a floating point number specifying
+the timeout in seconds for the operation.</p>
+<p>If the stream has not been started this method calls <code class="docutils literal"><span class="pre">start(False)</span></code> to start the stream
+(without waiting for at least one update to be received).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.stream.Stream.add_callback">
+<code class="descname">add_callback</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.stream.Stream.add_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a callback function that is invoked whenever the value of the stream changes. The
+callback function should take one argument, which is passed the new value of the stream.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The callback function may be called from a different thread to that which created the
+stream. Any changes to shared state must therefore be protected with appropriate
+synchronization.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.stream.Stream.remove">
 <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.stream.Stream.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove the stream from the server.</p>
+<dd><p>Removes the stream from the server.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="krpc.event.Event">
+<em class="property">class </em><code class="descclassname">krpc.event.</code><code class="descname">Event</code><a class="headerlink" href="#krpc.event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class represents an event. See <a class="reference internal" href="#python-client-events"><span class="std std-ref">Custom Events</span></a>. It is wrapper around a stream of
+type <code class="docutils literal"><span class="pre">bool</span></code> that indicates when the event occurs.</p>
+<dl class="method">
+<dt id="krpc.event.Event.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.event.Event.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the event. When an event is created, it will not receive updates from the server until
+this method is called.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="krpc.event.Event.condition">
+<code class="descname">condition</code><a class="headerlink" href="#krpc.event.Event.condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The condition variable (of type <code class="docutils literal"><span class="pre">threading.Condition</span></code>) that is notified whenever the event
+occurs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.event.Event.wait">
+<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.event.Event.wait" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method blocks until the event occurs or the operation times out.</p>
+<p>The events condition variable must be locked before calling this method.</p>
+<p>If <em>timeout</em> is specified and is not <code class="docutils literal"><span class="pre">None</span></code>, it should be a floating point number specifying
+the timeout in seconds for the operation.</p>
+<p>If the event has not been started this method calls <code class="docutils literal"><span class="pre">start()</span></code> to start the underlying
+stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.event.Event.add_callback">
+<code class="descname">add_callback</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.event.Event.add_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a callback function that is invoked whenever the event occurs. The callback function
+should be a function that takes zero arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.event.Event.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.event.Event.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the event from the server.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="krpc.event.Event.stream">
+<code class="descname">stream</code><a class="headerlink" href="#krpc.event.Event.stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the underlying stream for the event.</p>
 </dd></dl>
 
 </dd></dl>
@@ -432,15 +667,18 @@ over the network:</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api/krpc.html" class="btn btn-neutral float-right" title="KRPC API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api/krpc.html" class="btn btn-neutral float-right" title="KRPC API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../python.html" class="btn btn-neutral" title="Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../python.html" class="btn btn-neutral" title="Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -471,16 +709,18 @@ over the network:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.11',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

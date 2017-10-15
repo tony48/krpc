@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Expressions &mdash; kRPC 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="KRPC API" href="../krpc.html"/>
+        <link rel="next" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="prev" title="KRPC" href="krpc.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">Java Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../krpc.html">KRPC API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="krpc.html">KRPC</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../java.html">Java</a> &raquo;</li>
+        
+          <li><a href="../krpc.html">KRPC API</a> &raquo;</li>
+        
+      <li>Expressions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/java/api/krpc/expressions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="package-krpc.client.services.KRPC"></span><div class="section" id="expressions">
+<h1>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="krpc.client.services.KRPC.Expression">
+public class <code class="descname">Expression</code><a class="headerlink" href="#krpc.client.services.KRPC.Expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>A server side expression.</p>
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.constantDouble(Connection, double)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">constantDouble</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.constantDouble(Connection, double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant value of type double.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>double</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.constantFloat(Connection, float)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">constantFloat</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.constantFloat(Connection, float)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant value of type float.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>float</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.constantInt(Connection, int)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">constantInt</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.constantInt(Connection, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant value of type int.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>int</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.constantString(Connection, String)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">constantString</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.constantString(Connection, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant value of type string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.call(Connection, krpc.schema.KRPC.ProcedureCall)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">call</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, krpc.schema.KRPC.ProcedureCall<em> call</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.call(Connection, krpc.schema.KRPC.ProcedureCall)" title="Permalink to this definition">¶</a></dt>
+<dd><p>An RPC call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>call</strong> (<em>krpc.schema.KRPC.ProcedureCall</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.equal(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">equal</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.equal(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equality comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.notEqual(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">notEqual</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.notEqual(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inequality comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.greaterThan(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">greaterThan</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.greaterThan(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Greater than numerical comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.greaterThanOrEqual(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">greaterThanOrEqual</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.greaterThanOrEqual(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Greater than or equal numerical comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.lessThan(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">lessThan</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.lessThan(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Less than numerical comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.lessThanOrEqual(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">lessThanOrEqual</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.lessThanOrEqual(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Less than or equal numerical comparison.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.and(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">and</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.and(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean and operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.or(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">or</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.or(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean or operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.exclusiveOr(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">exclusiveOr</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.exclusiveOr(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean exclusive-or operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.not(Connection, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">not</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.not(Connection, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean negation operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.add(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">add</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.add(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical addition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.subtract(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">subtract</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.subtract(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical subtraction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.multiply(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">multiply</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.multiply(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical multiplication.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.divide(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">divide</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.divide(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical division.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.modulo(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">modulo</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.modulo(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical modulo operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The remainder of arg0 divided by arg1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.power(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">power</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.power(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numerical power operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">arg0 raised to the power of arg1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.leftShift(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">leftShift</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.leftShift(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bitwise left shift.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.rightShift(Connection, Expression, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">rightShift</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg0</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg1</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.rightShift(Connection, Expression, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bitwise right shift.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg0</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+<li><strong>arg1</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.toDouble(Connection, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">toDouble</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.toDouble(Connection, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a double type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.toFloat(Connection, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">toFloat</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.toFloat(Connection, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a float type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.KRPC.Expression.toInt(Connection, Expression)">
+static <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a> <code class="descname">toInt</code><span class="sig-paren">(</span><a class="reference internal" href="../../client.html#krpc.client.Connection" title="krpc.client.Connection">Connection</a><em> connection</em>, <a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression">Expression</a><em> arg</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.Expression.toInt(Connection, Expression)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to an int type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg</strong> (<a class="reference internal" href="#krpc.client.services.KRPC.Expression" title="krpc.client.services.KRPC.Expression"><em>Expression</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../space-center.html" class="btn btn-neutral float-right" title="SpaceCenter API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="krpc.html" class="btn btn-neutral" title="KRPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

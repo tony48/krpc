@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>KRPC API &mdash; kRPC 0.3.11 documentation</title>
+  <title>KRPC API &mdash; kRPC 0.4.0 documentation</title>
   
 
+  
+  
   
   
 
@@ -35,9 +37,9 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="kRPC 0.3.11 documentation" href="../../index.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../../index.html"/>
         <link rel="up" title="Java" href="../../java.html"/>
-        <link rel="next" title="SpaceCenter API" href="space-center.html"/>
+        <link rel="next" title="KRPC" href="krpc/krpc.html"/>
         <link rel="prev" title="Java Client" href="../client.html"/>
  
 <script>
@@ -58,6 +60,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -77,7 +80,7 @@
             
             
               <div class="version">
-                0.3.11
+                0.4.0
               </div>
             
           
@@ -98,14 +101,21 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cpp.html">C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../java.html">Java</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../client.html">Java Client</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">KRPC API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="krpc/krpc.html">KRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="krpc/expressions.html">Expressions</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="space-center.html">SpaceCenter API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="drawing.html">Drawing API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="infernal-robotics.html">InfernalRobotics API</a></li>
@@ -119,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../third-party.html">Other Clients, Services and Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Compiling kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending kRPC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../communication-protocols.html">Communication Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../internals.html">Internals of kRPC</a></li>
 </ul>
 
@@ -133,8 +143,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">kRPC</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">kRPC</a>
+        
       </nav>
 
 
@@ -143,155 +155,71 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../java.html">Java</a> &raquo;</li>
-      
-    <li>KRPC API</li>
+        
+      <li>KRPC API</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../_sources/java/api/krpc.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <span class="target" id="package-krpc.client.services.KRPC"></span><div class="section" id="krpc-api">
+  <div class="section" id="krpc-api">
 <h1>KRPC API<a class="headerlink" href="#krpc-api" title="Permalink to this headline">¶</a></h1>
-<dl class="type">
-<dt id="krpc.client.services.KRPC.KRPC">
-public class <code class="descname">KRPC</code><a class="headerlink" href="#krpc.client.services.KRPC.KRPC" title="Permalink to this definition">¶</a></dt>
-<dd><p>Main kRPC service, used by clients to interact with basic server functionality.</p>
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.getStatus()">
- krpc.schema.KRPC.Status <code class="descname">getStatus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.getStatus()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns some information about the server, such as the version.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.getServices()">
- krpc.schema.KRPC.Services <code class="descname">getServices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.getServices()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns information on all services, procedures, classes, properties etc. provided by the server.
-Can be used by client libraries to automatically create functionality such as stubs.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.getClients()">
- java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html" title="java.lang.Byte">Byte</a>[], <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;&gt; <code class="descname">getClients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.getClients()" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of RPC clients that are currently connected to the server.
-Each entry in the list is a clients identifier, name and address.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.getCurrentGameScene()">
- <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">getCurrentGameScene</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.getCurrentGameScene()" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the current game scene.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.addStream(krpc.schema.KRPC.Request)">
- int <code class="descname">addStream</code><span class="sig-paren">(</span>krpc.schema.KRPC.Request<em> request</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.addStream(krpc.schema.KRPC.Request)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a streaming request and return its identifier.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>request</strong> (<em>krpc.schema.KRPC.Request</em>) – </li>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="krpc/krpc.html">KRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="krpc/expressions.html">Expressions</a></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Do not call this method from client code. Use <a class="reference internal" href="../client.html#java-client-streams"><span class="std std-ref">streams</span></a> provided by the Java client library.</p>
 </div>
-</dd></dl>
-
-<dl class="method">
-<dt id="krpc.client.services.KRPC.KRPC.removeStream(int)">
- void <code class="descname">removeStream</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.KRPC.KRPC.removeStream(int)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a streaming request.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>id</strong> (<em>int</em>) – </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Do not call this method from client code. Use <a class="reference internal" href="../client.html#java-client-streams"><span class="std std-ref">streams</span></a> provided by the Java client library.</p>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="type">
-<dt id="krpc.client.services.KRPC.GameScene">
-public enum <code class="descname">GameScene</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene" title="Permalink to this definition">¶</a></dt>
-<dd><p>The game scene. See <a class="reference internal" href="#krpc.client.services.KRPC.KRPC.getCurrentGameScene()" title="krpc.client.services.KRPC.KRPC.getCurrentGameScene()"><code class="xref java java-meth docutils literal"><span class="pre">getCurrentGameScene()</span></code></a>.</p>
-<dl class="field">
-<dt id="krpc.client.services.KRPC.GameScene.SPACE_CENTER">
-public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">SPACE_CENTER</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene.SPACE_CENTER" title="Permalink to this definition">¶</a></dt>
-<dd><p>The game scene showing the Kerbal Space Center buildings.</p>
-</dd></dl>
-
-<dl class="field">
-<dt id="krpc.client.services.KRPC.GameScene.FLIGHT">
-public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">FLIGHT</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene.FLIGHT" title="Permalink to this definition">¶</a></dt>
-<dd><p>The game scene showing a vessel in flight (or on the launchpad/runway).</p>
-</dd></dl>
-
-<dl class="field">
-<dt id="krpc.client.services.KRPC.GameScene.TRACKING_STATION">
-public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">TRACKING_STATION</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene.TRACKING_STATION" title="Permalink to this definition">¶</a></dt>
-<dd><p>The tracking station.</p>
-</dd></dl>
-
-<dl class="field">
-<dt id="krpc.client.services.KRPC.GameScene.EDITOR_VAB">
-public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">EDITOR_VAB</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene.EDITOR_VAB" title="Permalink to this definition">¶</a></dt>
-<dd><p>The Vehicle Assembly Building.</p>
-</dd></dl>
-
-<dl class="field">
-<dt id="krpc.client.services.KRPC.GameScene.EDITOR_SPH">
-public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene" title="krpc.client.services.KRPC.GameScene">GameScene</a> <code class="descname">EDITOR_SPH</code><a class="headerlink" href="#krpc.client.services.KRPC.GameScene.EDITOR_SPH" title="Permalink to this definition">¶</a></dt>
-<dd><p>The Space Plane Hangar.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="space-center.html" class="btn btn-neutral float-right" title="SpaceCenter API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="krpc/krpc.html" class="btn btn-neutral float-right" title="KRPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../client.html" class="btn btn-neutral" title="Java Client" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../client.html" class="btn btn-neutral" title="Java Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -322,16 +250,18 @@ public <a class="reference internal" href="#krpc.client.services.KRPC.GameScene"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.3.11',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

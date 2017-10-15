@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Compiling kRPC &mdash; kRPC 0.3.11 documentation</title>
+  <title>Compiling kRPC &mdash; kRPC 0.4.0 documentation</title>
   
 
+  
+  
   
   
 
@@ -35,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="kRPC 0.3.11 documentation" href="index.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="index.html"/>
         <link rel="next" title="Extending kRPC" href="extending.html"/>
         <link rel="prev" title="Other Clients, Services and Scripts" href="third-party.html"/>
  
@@ -57,6 +59,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -76,7 +79,7 @@
             
             
               <div class="version">
-                0.3.11
+                0.4.0
               </div>
             
           
@@ -97,7 +100,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="csharp.html">C#</a></li>
@@ -118,7 +124,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending kRPC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols.html">Communication Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">Internals of kRPC</a></li>
 </ul>
 
@@ -132,8 +138,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">kRPC</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">kRPC</a>
+        
       </nav>
 
 
@@ -142,23 +150,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Compiling kRPC</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Compiling kRPC</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/compiling.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -171,29 +196,28 @@
 <p>First you need to download a copy of the source code, which is available from
 <a class="reference external" href="https://github.com/krpc/krpc">GitHub</a> or using the following on the command
 line:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone http://github.com/krpc/krpc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/krpc/krpc
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-dependencies">
 <h2>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Next you need to install <a class="reference external" href="http://bazel.io">Bazel</a>. This is the build system
+<p>Next you need to install <a class="reference external" href="https://bazel.io">Bazel</a>. This is the build system
 used to compile the project.</p>
 <p>The Bazel build scripts will automatically download most of the required
 dependencies for the project, but the following need to be installed manually on
 your system:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="http://www.mono-project.com/download/">Mono C# compiler, runtime and tools</a></li>
+<li><a class="reference external" href="https://www.mono-project.com/download/">Mono C# compiler, runtime and tools</a></li>
 <li>Python and virtualenv</li>
 <li>Autotools</li>
 <li>LuaRocks</li>
 <li>pdflatex, rsvg, libxml, libxslt and python headers (for building the documentation)</li>
 </ul>
 </div></blockquote>
-<p>To install these dependencies via apt on Ubuntu, first follow the instructions
-on <a class="reference external" href="http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono’s website</a>
-to add their apt repository. Then run the following command:</p>
+<p>To install these dependencies via apt on Ubuntu, first follow the instructions on <a class="reference external" href="http://www.mono-project.com/download">Mono’s website</a> to add their apt repository. Then run the following
+command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install mono-complete python-setuptools python-virtualenv <span class="se">\</span>
 python-dev autoconf libtool luarocks texlive-latex-base <span class="se">\</span>
 texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra <span class="se">\</span>
@@ -263,7 +287,7 @@ with MonoDevelop or a similar C# IDE.</p>
 scripts. You need to run <code class="docutils literal"><span class="pre">bazel</span> <span class="pre">build</span> <span class="pre">//:csproj</span></code> to generate these files
 before the solution can be built.</p>
 <p>Alternatively, if you are unable to run Bazel to build these files, you can
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.11/krpc-genfiles-0.3.11.zip">download them from GitHub</a>. Simply extract
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.0/krpc-genfiles-0.4.0.zip">download them from GitHub</a>. Simply extract
 this archive over your copy of the source and you are good to go.</p>
 <div class="section" id="running-the-tests">
 <h3>Running the Tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
@@ -286,15 +310,18 @@ various tests on it.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="extending.html" class="btn btn-neutral float-right" title="Extending kRPC" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="extending.html" class="btn btn-neutral float-right" title="Extending kRPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="third-party.html" class="btn btn-neutral" title="Other Clients, Services and Scripts" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="third-party.html" class="btn btn-neutral" title="Other Clients, Services and Scripts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -325,16 +352,18 @@ various tests on it.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.11',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

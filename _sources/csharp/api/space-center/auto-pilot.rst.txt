@@ -28,28 +28,28 @@ AutoPilot
    .. method:: void Wait()
 
       Blocks until the vessel is pointing in the target direction and has
-      the target roll (if set).
+      the target roll (if set). Throws an exception if the auto-pilot has not been engaged.
 
    .. property:: float Error { get; }
 
       The error, in degrees, between the direction the ship has been asked
-      to point in and the direction it is pointing in. Returns zero if the auto-pilot
+      to point in and the direction it is pointing in. Throws an exception if the auto-pilot
       has not been engaged and SAS is not enabled or is in stability assist mode.
 
    .. property:: float PitchError { get; }
 
       The error, in degrees, between the vessels current and target pitch.
-      Returns zero if the auto-pilot has not been engaged.
+      Throws an exception if the auto-pilot has not been engaged.
 
    .. property:: float HeadingError { get; }
 
       The error, in degrees, between the vessels current and target heading.
-      Returns zero if the auto-pilot has not been engaged.
+      Throws an exception if the auto-pilot has not been engaged.
 
    .. property:: float RollError { get; }
 
       The error, in degrees, between the vessels current and target roll.
-      Returns zero if the auto-pilot has not been engaged or no target roll is set.
+      Throws an exception if the auto-pilot has not been engaged or no target roll is set.
 
    .. property:: ReferenceFrame ReferenceFrame { get; set; }
 

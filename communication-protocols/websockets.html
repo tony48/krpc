@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Protocol Buffers over WebSockets &mdash; kRPC 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../index.html"/>
+        <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
+        <link rel="next" title="Messaging Protocol" href="messages.html"/>
+        <link rel="prev" title="Protocol Buffers over TCP/IP" href="tcpip.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../communication-protocols.html">Communication Protocols</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tcpip.html">Protocol Buffers over TCP/IP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Protocol Buffers over WebSockets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-rpc-server">Connecting to the RPC Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-stream-server">Connecting to the Stream Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-and-receiving-messages">Sending and Receiving Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#invoking-remote-procedures">Invoking Remote Procedures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Messaging Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../communication-protocols.html">Communication Protocols</a> &raquo;</li>
+        
+      <li>Protocol Buffers over WebSockets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/communication-protocols/websockets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="protocol-buffers-over-websockets">
+<h1>Protocol Buffers over WebSockets<a class="headerlink" href="#protocol-buffers-over-websockets" title="Permalink to this headline">¶</a></h1>
+<p>This communication protocol allows web browsers to communicate with a kRPC over a websockets
+connection, for example from Javascript in a web browser.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a client library is available for your language, you do not need to implement this
+protocol.</p>
+</div>
+<div class="section" id="connecting-to-the-rpc-server">
+<h2>Connecting to the RPC Server<a class="headerlink" href="#connecting-to-the-rpc-server" title="Permalink to this headline">¶</a></h2>
+<p>A client invokes remote procedures by communicating with the <em>RPC server</em>. To establish a
+connection, open a websockets connection to the server on its RPC port (which defaults to
+50000). The connection URI can also contain a <code class="docutils literal"><span class="pre">name</span></code> parameter with the name of the client to
+display in the on the in-game UI. For example: <code class="docutils literal"><span class="pre">ws://localhost:50000/?name=Jeb</span></code></p>
+</div>
+<div class="section" id="connecting-to-the-stream-server">
+<h2>Connecting to the Stream Server<a class="headerlink" href="#connecting-to-the-stream-server" title="Permalink to this headline">¶</a></h2>
+<p>Clients can receive <a class="reference internal" href="messages.html#communication-protocol-streams"><span class="std std-ref">Streams</span></a> from the <em>stream server</em>. To establish a
+connection, a client must first connect to the RPC server (as above) then do the following:</p>
+<ol class="arabic simple">
+<li>Get the identifier of the client by calling the <code class="docutils literal"><span class="pre">KRPC.GetClientID</span></code> remote procedure.</li>
+<li>Open a websockets connection to the server on its stream port (which defaults to 50001), with an
+<code class="docutils literal"><span class="pre">id</span></code> query parameter set to the client identifier encoded in base64. For example:
+<code class="docutils literal"><span class="pre">ws://localhost:50001/?id=Eeh8Vbj2DkWTcJZTkYlEhQ==</span></code></li>
+</ol>
+<p>Connecting to the stream server is optional. If the client doesn’t require stream functionality,
+there is no need to connect.</p>
+</div>
+<div class="section" id="sending-and-receiving-messages">
+<h2>Sending and Receiving Messages<a class="headerlink" href="#sending-and-receiving-messages" title="Permalink to this headline">¶</a></h2>
+<p>Communication with the server is performed via Protocol Buffer messages, encoded according to the
+protobuf binary format.</p>
+<p>To send a message to the server:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Encode the message using the Protocol Buffers format.</li>
+<li>Send a binary websockets message to the server, with payload containing the encoded message
+data.</li>
+</ol>
+</div></blockquote>
+<p>To receive a message from the server, do the reverse:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Receive a binary websockets message from the server.</li>
+<li>Decode the messages payload using the Protocol Buffers format.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="invoking-remote-procedures">
+<h2>Invoking Remote Procedures<a class="headerlink" href="#invoking-remote-procedures" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="messages.html"><span class="doc">Messaging Protocol</span></a>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following code connects to the RPC server at address 127.0.0.1 and port 50000 using
+the name “Jeb”. Next, it connects to the stream server on port 50001. It then invokes the
+<code class="docutils literal"><span class="pre">KRPC.GetStatus</span></code> RPC, receives and decodes the result and prints out the server version number
+from the response.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ws&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">protobufjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;protobufjs&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">ByteBuffer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bytebuffer&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nx">protobufjs</span><span class="p">.</span><span class="nx">loadProtoFile</span><span class="p">(</span><span class="s1">&#39;krpc.proto&#39;</span><span class="p">).</span><span class="nx">build</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connecting to RPC server&#39;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">rpcConn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">websocket</span><span class="p">(</span><span class="s1">&#39;ws://127.0.0.1:50000&#39;</span><span class="p">)</span>
+<span class="nx">rpcConn</span><span class="p">.</span><span class="nx">binaryType</span> <span class="o">=</span> <span class="s1">&#39;arraybuffer&#39;</span>
+
+<span class="nx">rpcConn</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Successfully connected&#39;</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">call</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">ProcedureCall</span><span class="p">(</span><span class="s1">&#39;KRPC&#39;</span><span class="p">,</span> <span class="s1">&#39;GetStatus&#39;</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Request</span><span class="p">([</span><span class="nx">call</span><span class="p">]);</span>
+  <span class="nx">rpcConn</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">toArrayBuffer</span><span class="p">());</span>
+  <span class="nx">rpcConn</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">status</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Status</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The following example demonstrates how to set up and receive data from the server over a stream:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span>
+
+<span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ws&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">protobufjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;protobufjs&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nx">protobufjs</span><span class="p">.</span><span class="nx">loadProtoFile</span><span class="p">(</span><span class="s1">&#39;krpc.proto&#39;</span><span class="p">).</span><span class="nx">build</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connecting to RPC server&#39;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">rpcConn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">websocket</span><span class="p">(</span><span class="s1">&#39;ws://127.0.0.1:50000&#39;</span><span class="p">)</span>
+<span class="nx">rpcConn</span><span class="p">.</span><span class="nx">binaryType</span> <span class="o">=</span> <span class="s1">&#39;arraybuffer&#39;</span>
+
+<span class="nx">rpcConn</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Successfully connected&#39;</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Calling KRPC.GetClientID&#39;</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">call</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">ProcedureCall</span><span class="p">(</span><span class="s1">&#39;KRPC&#39;</span><span class="p">,</span> <span class="s1">&#39;GetClientID&#39;</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Request</span><span class="p">([</span><span class="nx">call</span><span class="p">]);</span>
+  <span class="nx">rpcConn</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">toArrayBuffer</span><span class="p">());</span>
+<span class="p">};</span>
+
+<span class="nx">rpcConn</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">.</span><span class="nx">readVarint32</span><span class="p">();</span> <span class="c1">// skip size</span>
+  <span class="kd">let</span> <span class="nx">client_identifier</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">.</span><span class="nx">toBase64</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Client identifier =&#39;</span><span class="p">,</span> <span class="nx">client_identifier</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connecting to Stream server&#39;</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">streamConn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">websocket</span><span class="p">(</span><span class="s1">&#39;ws://127.0.0.1:50001?id=&#39;</span> <span class="o">+</span> <span class="nx">client_identifier</span><span class="p">);</span>
+  <span class="nx">streamConn</span><span class="p">.</span><span class="nx">binaryType</span> <span class="o">=</span> <span class="s1">&#39;arraybuffer&#39;</span><span class="p">;</span>
+
+  <span class="nx">streamConn</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Successfully connected&#39;</span><span class="p">);</span>
+
+    <span class="kd">let</span> <span class="nx">call_to_stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">ProcedureCall</span><span class="p">(</span><span class="s1">&#39;KRPC&#39;</span><span class="p">,</span> <span class="s1">&#39;GetStatus&#39;</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">arg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Argument</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">call_to_stream</span><span class="p">.</span><span class="nx">toArrayBuffer</span><span class="p">());</span>
+    <span class="kd">let</span> <span class="nx">call</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">ProcedureCall</span><span class="p">(</span><span class="s1">&#39;KRPC&#39;</span><span class="p">,</span> <span class="s1">&#39;AddStream&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">arg</span><span class="p">]);</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Request</span><span class="p">([</span><span class="nx">call</span><span class="p">]);</span>
+    <span class="nx">rpcConn</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">toArrayBuffer</span><span class="p">());</span>
+    <span class="nx">rpcConn</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+      <span class="kd">let</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;added stream id =&quot;</span><span class="p">,</span> <span class="nx">stream</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+
+  <span class="nx">streamConn</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">StreamUpdate</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">status</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">krpc</span><span class="p">.</span><span class="nx">schema</span><span class="p">.</span><span class="nx">Status</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">result</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="messages.html" class="btn btn-neutral float-right" title="Messaging Protocol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tcpip.html" class="btn btn-neutral" title="Protocol Buffers over TCP/IP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

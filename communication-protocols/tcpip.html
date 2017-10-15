@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Protocol Buffers over TCP/IP &mdash; kRPC 0.4.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../index.html"/>
+        <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
+        <link rel="next" title="Protocol Buffers over WebSockets" href="websockets.html"/>
+        <link rel="prev" title="Communication Protocols" href="../communication-protocols.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../communication-protocols.html">Communication Protocols</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Protocol Buffers over TCP/IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sending-and-receiving-messages">Sending and Receiving Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-rpc-server">Connecting to the RPC Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-stream-server">Connecting to the Stream Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#invoking-remote-procedures">Invoking Remote Procedures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="websockets.html">Protocol Buffers over WebSockets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Messaging Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../communication-protocols.html">Communication Protocols</a> &raquo;</li>
+        
+      <li>Protocol Buffers over TCP/IP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/communication-protocols/tcpip.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="protocol-buffers-over-tcp-ip">
+<h1>Protocol Buffers over TCP/IP<a class="headerlink" href="#protocol-buffers-over-tcp-ip" title="Permalink to this headline">¶</a></h1>
+<p>This communication protocol allows languages that can communication over a TCP/IP connection to
+interact with a kRPC server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a client library is available for your language, you do not need to implement this
+protocol.</p>
+</div>
+<div class="section" id="sending-and-receiving-messages">
+<h2>Sending and Receiving Messages<a class="headerlink" href="#sending-and-receiving-messages" title="Permalink to this headline">¶</a></h2>
+<p>Communication with the server is performed via Protocol Buffer messages, encoded according to the
+protobuf binary format. When sending messages to and from the server, they are prefixed with their
+size, in bytes, encoded as a Protocol Buffers varint.</p>
+<p>To send a message to the server:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Encode the message using the Protocol Buffers format.</li>
+<li>Get the length of the encoded message data (in bytes) and encode that as a Protocol Buffers
+varint.</li>
+<li>Send the encoded length followed by the encoded message data.</li>
+</ol>
+</div></blockquote>
+<p>To receive a message from the server, do the reverse:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Receive the size of the message as a Protocol Buffers encoded varint.</li>
+<li>Decode the message size.</li>
+<li>Receive message size bytes of message data.</li>
+<li>Decode the message data.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="connecting-to-the-rpc-server">
+<h2>Connecting to the RPC Server<a class="headerlink" href="#connecting-to-the-rpc-server" title="Permalink to this headline">¶</a></h2>
+<p>A client invokes remote procedures by communicating with the <em>RPC server</em>. To establish a
+connection, a client must do the following:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Open a TCP socket to the server on its RPC port (which defaults to 50000).</p>
+</li>
+<li><p class="first">Send a <code class="docutils literal"><span class="pre">ConnectionRequest</span></code> message to the server. This message is defined as:</p>
+<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">ConnectionRequest</span> <span class="p">{</span>
+  <span class="n">Type</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">client_name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">bytes</span> <span class="na">client_identifier</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kd">enum</span> <span class="n">Type</span> <span class="p">{</span>
+    <span class="na">RPC</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">STREAM</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">type</span></code> field should be set to <code class="docutils literal"><span class="pre">ConnectionRequest.RPC</span></code> and the <code class="docutils literal"><span class="pre">client_name</span></code> field can
+be set to the name of the client to display on the in-game UI. The <code class="docutils literal"><span class="pre">client_identifier</span></code> should
+be left blank.</p>
+</li>
+<li><p class="first">Receive a <cite>ConnectionResponse</cite> message from the server. This message is defined as:</p>
+<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">ConnectionResponse</span> <span class="p">{</span>
+  <span class="n">Status</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kd">enum</span> <span class="n">Status</span> <span class="p">{</span>
+    <span class="na">OK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">MALFORMED_MESSAGE</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">TIMEOUT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="na">WRONG_TYPE</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">bytes</span> <span class="na">client_identifier</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal"><span class="pre">status</span></code> field is set to <code class="docutils literal"><span class="pre">ConnectionResponse.OK</span></code> then the connection was
+successful. If not, the <code class="docutils literal"><span class="pre">message</span></code> field contains a description of what went wrong.</p>
+<p>When the connection is successful, the <code class="docutils literal"><span class="pre">client_identifier</span></code> contains a unique 16-byte
+identifier for the client. This is required when connecting to the stream server (described
+below).</p>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="connecting-to-the-stream-server">
+<h2>Connecting to the Stream Server<a class="headerlink" href="#connecting-to-the-stream-server" title="Permalink to this headline">¶</a></h2>
+<p>Clients can receive <a class="reference internal" href="messages.html#communication-protocol-streams"><span class="std std-ref">Streams</span></a> from the <em>stream server</em>. To establish a
+connection, a client must first connect to the RPC server (as above) then do the following:</p>
+<ol class="arabic simple">
+<li>Open a TCP socket to the server on its stream port (which defaults to 50001).</li>
+<li>Send a <cite>ConnectionRequest</cite> message, with its <cite>type</cite> field set to <cite>ConnectionRequest.STREAM</cite> and
+its <cite>client_identifier</cite> field set to the value received in the <cite>client_identifier</cite> field of the
+<cite>ConnectionResponse</cite> message received when connecting to the RPC server earlier.</li>
+<li><dl class="first docutils">
+<dt>Receive a <cite>ConnectionResponse</cite> message, similarly to the RPC server, and check that the value of</dt>
+<dd>the <cite>status</cite> field is <cite>ConnectionResponse.OK</cite>. If not, then the connection was not successful,
+and the <cite>message</cite> field contains a description of what went wrong.</dd>
+</dl>
+</li>
+</ol>
+<p>Connecting to the stream server is optional. If the client doesn’t require stream functionality,
+there is no need to connect.</p>
+</div>
+<div class="section" id="invoking-remote-procedures">
+<h2>Invoking Remote Procedures<a class="headerlink" href="#invoking-remote-procedures" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="messages.html"><span class="doc">Messaging Protocol</span></a>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following Python code connects to the RPC server at address 127.0.0.1 and port 50000 using the
+name “Jeb”. Next, it connects to the stream server on port 50001. It then invokes the
+<code class="docutils literal"><span class="pre">KRPC.GetStatus</span></code> RPC, receives and decodes the result and prints out the server version number
+from the response.</p>
+<p>The following python code connects to the RPC server at address 127.0.0.1 and port 50000, using the
+name “Jeb”. Next, it connects to the stream server on port 50001. Finally it invokes the
+<code class="docutils literal"><span class="pre">KRPC.GetStatus</span></code> procedure, and receives, decodes and prints the result.</p>
+<p>To send and receive messages to the server, they need to be encoded and decoded from their binary
+format:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The <code class="docutils literal"><span class="pre">encode_varint</span></code> and <code class="docutils literal"><span class="pre">decode_varint</span></code> functions convert between Python integers and
+Protocol Buffer varint encoded integers.</li>
+<li><code class="docutils literal"><span class="pre">send_message</span></code> encodes a message, sends the length of the message to the server as a Protocol
+Buffer varint encoded integer, and then sends the message data.</li>
+<li><code class="docutils literal"><span class="pre">recv_message</span></code> receives the size of the message, decodes it, receives the message data, and
+decodes it.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">google.protobuf.internal.encoder</span> <span class="kn">import</span> <span class="n">_VarintEncoder</span>
+<span class="kn">from</span> <span class="nn">google.protobuf.internal.decoder</span> <span class="kn">import</span> <span class="n">_DecodeVarint</span>
+<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC</span>
+
+
+<span class="k">def</span> <span class="nf">encode_varint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Encode an int as a protobuf varint &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">decode_varint</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Decode a protobuf varint to an int &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_DecodeVarint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Send a message, prefixed with its size, to a TPC/IP socket &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">encode_varint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">recv_message</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Receive a message, prefixed with its size, from a TCP/IP socket &quot;&quot;&quot;</span>
+    <span class="c1"># Receive the size of the message data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">decode_varint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="c1"># Receive the message data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="c1"># Decode the message</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_type</span><span class="p">()</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">msg</span>
+
+
+<span class="c1"># Open a TCP/IP socket to the RPC server</span>
+<span class="n">rpc_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">rpc_conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">))</span>
+
+<span class="c1"># Send an RPC connection request</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="o">.</span><span class="n">RPC</span>
+<span class="n">request</span><span class="o">.</span><span class="n">client_name</span> <span class="o">=</span> <span class="s1">&#39;Jeb&#39;</span>
+<span class="n">send_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="c1"># Receive the connection response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="p">)</span>
+
+<span class="c1"># Check the connection was successful</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Connection failed: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected to RPC server&#39;</span><span class="p">)</span>
+
+<span class="c1"># Invoke the KRPC.GetStatus RPC</span>
+<span class="n">call</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ProcedureCall</span><span class="p">()</span>
+<span class="n">call</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;KRPC&#39;</span>
+<span class="n">call</span><span class="o">.</span><span class="n">procedure</span> <span class="o">=</span> <span class="s1">&#39;GetStatus&#39;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">call</span><span class="p">])</span>
+<span class="n">send_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="c1"># Receive the response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Response</span><span class="p">)</span>
+
+<span class="c1"># Check for an error in the response</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+
+<span class="c1"># Check for an error in the results</span>
+<span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+
+<span class="c1"># Decode the return value as a Status message</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Status</span><span class="p">()</span>
+<span class="n">status</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Print out the Status message</span>
+<span class="k">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following example demonstrates how to set up and receive data from the server over a stream:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">binascii</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">google.protobuf.internal.encoder</span> <span class="kn">import</span> <span class="n">_VarintEncoder</span>
+<span class="kn">from</span> <span class="nn">google.protobuf.internal.decoder</span> <span class="kn">import</span> <span class="n">_DecodeVarint</span>
+<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC</span>
+
+
+<span class="k">def</span> <span class="nf">encode_varint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Encode an int as a protobuf varint &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">decode_varint</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Decode a protobuf varint to an int &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_DecodeVarint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Send a message, prefixed with its size, to a TPC/IP socket &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">encode_varint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">recv_message</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Receive a message, prefixed with its size, from a TCP/IP socket &quot;&quot;&quot;</span>
+    <span class="c1"># Receive the size of the message data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">decode_varint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="c1"># Receive the message data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="c1"># Decode the message</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_type</span><span class="p">()</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">msg</span>
+
+
+<span class="c1"># Open a TCP/IP socket to the RPC server</span>
+<span class="n">rpc_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">rpc_conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">))</span>
+
+<span class="c1"># Send an RPC connection request</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="o">.</span><span class="n">RPC</span>
+<span class="n">request</span><span class="o">.</span><span class="n">client_name</span> <span class="o">=</span> <span class="s1">&#39;Jeb&#39;</span>
+<span class="n">send_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="c1"># Receive the connection response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="p">)</span>
+
+<span class="c1"># Check the connection was successful</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Connection failed: &#39;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected to RPC server&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print out the clients identifier</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;RPC client idenfitier = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span>
+    <span class="nb">bytearray</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">client_identifier</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+
+<span class="c1"># Open a TCP/IP socket to the Stream server</span>
+<span class="n">stream_conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">stream_conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">))</span>
+
+<span class="c1"># Send a stream connection request, containing the clients identifier</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionRequest</span><span class="o">.</span><span class="n">STREAM</span>
+<span class="n">request</span><span class="o">.</span><span class="n">client_identifier</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">client_identifier</span>
+<span class="n">send_message</span><span class="p">(</span><span class="n">stream_conn</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="c1"># Receive the connection response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">stream_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="p">)</span>
+
+<span class="c1"># Check the connection was successful</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ConnectionResponse</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Connection failed: &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected to stream server&#39;</span><span class="p">)</span>
+
+<span class="c1"># Build a KRPC.GetStatus call to be streamed</span>
+<span class="n">stream_call</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ProcedureCall</span><span class="p">()</span>
+<span class="n">stream_call</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;KRPC&#39;</span>
+<span class="n">stream_call</span><span class="o">.</span><span class="n">procedure</span> <span class="o">=</span> <span class="s1">&#39;GetStatus&#39;</span>
+
+<span class="c1"># Call KRPC.AddStream to add the stream</span>
+<span class="n">call</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ProcedureCall</span><span class="p">()</span>
+<span class="n">call</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;KRPC&#39;</span>
+<span class="n">call</span><span class="o">.</span><span class="n">procedure</span> <span class="o">=</span> <span class="s1">&#39;AddStream&#39;</span>
+<span class="n">arg</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Argument</span><span class="p">()</span>
+<span class="n">arg</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">arg</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">stream_call</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">()</span>
+<span class="n">call</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">arg</span><span class="p">])</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+<span class="n">request</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">call</span><span class="p">])</span>
+<span class="n">send_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="c1"># Receive the response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">rpc_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Response</span><span class="p">)</span>
+
+<span class="c1"># Check for an error in the response</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+
+<span class="c1"># Check for an error in the results</span>
+<span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+
+<span class="c1"># Decode the return value as a Stream message</span>
+<span class="n">stream</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Stream</span><span class="p">()</span>
+<span class="n">stream</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Repeatedly receive stream updates from the stream server</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">update</span> <span class="o">=</span> <span class="n">recv_message</span><span class="p">(</span><span class="n">stream_conn</span><span class="p">,</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">StreamUpdate</span><span class="p">)</span>
+    <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">update</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">update</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="c1"># Decode and print the return value</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Status</span><span class="p">()</span>
+    <span class="n">status</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">update</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="websockets.html" class="btn btn-neutral float-right" title="Protocol Buffers over WebSockets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../communication-protocols.html" class="btn btn-neutral" title="Communication Protocols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Lua Client &mdash; kRPC 0.3.11 documentation</title>
+  <title>Lua Client &mdash; kRPC 0.4.0 documentation</title>
   
 
+  
+  
   
   
 
@@ -35,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.3.11 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Lua" href="../lua.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="Lua" href="../lua.html"/>
@@ -58,6 +60,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -77,7 +80,7 @@
             
             
               <div class="version">
-                0.3.11
+                0.4.0
               </div>
             
           
@@ -98,7 +101,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
@@ -127,7 +133,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocols.html">Communication Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
 </ul>
 
@@ -141,8 +147,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">kRPC</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kRPC</a>
+        
       </nav>
 
 
@@ -151,25 +159,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../lua.html">Lua</a> &raquo;</li>
-      
-    <li>Lua Client</li>
+        
+      <li>Lua Client</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/lua/client.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -179,7 +204,7 @@
 <h1>Lua Client<a class="headerlink" href="#lua-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides functionality to interact with a kRPC server from programs
 written in Lua. It can be <a class="reference external" href="https://luarocks.org/modules/djungelorm/krpc">installed using LuaRocks</a> or
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.3.11/krpc-lua-0.3.11.zip">downloaded from GitHub</a>.</p>
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.0/krpc-lua-0.4.0.zip">downloaded from GitHub</a>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The Lua client and all of its dependencies can be installed using luarocks with
@@ -232,7 +257,7 @@ procedure calls and passed to the server by the lua client.</p>
 <span id="reference"></span><h2>Reference<a class="headerlink" href="#module-krpc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="krpc.connect">
-<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address=‘127.0.0.1’</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
 <a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
 with.</p>
@@ -324,15 +349,18 @@ over the network:</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api/krpc.html" class="btn btn-neutral float-right" title="KRPC API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api/krpc.html" class="btn btn-neutral float-right" title="KRPC API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../lua.html" class="btn btn-neutral" title="Lua" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../lua.html" class="btn btn-neutral" title="Lua" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -363,16 +391,18 @@ over the network:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.11',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

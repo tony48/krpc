@@ -1,103 +1,12 @@
 .. default-domain:: py
 .. highlight:: python
-.. currentmodule:: KRPC
 
 KRPC API
 ========
 
+.. toctree::
+   :includehidden:
+   :maxdepth: 2
 
-.. module:: KRPC
-
-Main kRPC service, used by clients to interact with basic server functionality.
-
-
-.. staticmethod:: get_status()
-
-   Returns some information about the server, such as the version.
-
-   :rtype: :class:`krpc.schema.KRPC.Status`
-
-
-
-
-.. staticmethod:: get_services()
-
-   Returns information on all services, procedures, classes, properties etc. provided by the server.
-   Can be used by client libraries to automatically create functionality such as stubs.
-
-   :rtype: :class:`krpc.schema.KRPC.Services`
-
-
-
-
-.. attribute:: clients
-
-   A list of RPC clients that are currently connected to the server.
-   Each entry in the list is a clients identifier, name and address.
-
-   :Attribute: Read-only, cannot be set
-   :rtype: list(tuple(str, str, str))
-
-
-
-
-.. attribute:: current_game_scene
-
-   Get the current game scene.
-
-   :Attribute: Read-only, cannot be set
-   :rtype: :class:`GameScene`
-
-
-
-
-.. staticmethod:: add_stream(request)
-
-   Add a streaming request and return its identifier.
-
-   :param krpc.schema.KRPC.Request request:
-   :rtype: int
-
-   .. note:: Do not call this method from client code. Use :rst:ref:`streams <python-client-streams>` provided by the Python client library.
-
-
-
-.. staticmethod:: remove_stream(id)
-
-   Remove a streaming request.
-
-   :param int id:
-
-   .. note:: Do not call this method from client code. Use :rst:ref:`streams <python-client-streams>` provided by the Python client library.
-
-
-
-
-.. class:: GameScene
-
-   The game scene. See :attr:`current_game_scene`.
-
-
-   .. data:: space_center
-
-      The game scene showing the Kerbal Space Center buildings.
-
-
-   .. data:: flight
-
-      The game scene showing a vessel in flight (or on the launchpad/runway).
-
-
-   .. data:: tracking_station
-
-      The tracking station.
-
-
-   .. data:: editor_vab
-
-      The Vehicle Assembly Building.
-
-
-   .. data:: editor_sph
-
-      The Space Plane Hangar.
+   krpc/krpc
+   krpc/expressions

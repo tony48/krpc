@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending kRPC &mdash; kRPC 0.3.11 documentation</title>
+  <title>Extending kRPC &mdash; kRPC 0.4.0 documentation</title>
   
 
+  
+  
   
   
 
@@ -35,8 +37,8 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="kRPC 0.3.11 documentation" href="index.html"/>
-        <link rel="next" title="Communication Protocol" href="communication-protocol.html"/>
+    <link rel="top" title="kRPC 0.4.0 documentation" href="index.html"/>
+        <link rel="next" title="Communication Protocols" href="communication-protocols.html"/>
         <link rel="prev" title="Compiling kRPC" href="compiling.html"/>
  
 <script>
@@ -57,6 +59,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -76,7 +79,7 @@
             
             
               <div class="version">
-                0.3.11
+                0.4.0
               </div>
             
           
@@ -97,7 +100,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials and Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="csharp.html">C#</a></li>
@@ -113,6 +119,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#service-api-identifiers">Identifiers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#serializable-types">Serializable Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#events">Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manually-triggered-events">Manually Triggered Events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#actively-polled-events">Actively Polled Events</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#game-scenes">Game Scenes</a></li>
 </ul>
 </li>
@@ -124,7 +135,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="communication-protocol.html">Communication Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols.html">Communication Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">Internals of kRPC</a></li>
 </ul>
 
@@ -138,8 +149,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">kRPC</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">kRPC</a>
+        
       </nav>
 
 
@@ -148,23 +161,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Extending kRPC</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Extending kRPC</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/extending.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -174,32 +204,27 @@
 <span id="extending"></span><h1>Extending kRPC<a class="headerlink" href="#extending-krpc" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-krpc-architecture">
 <h2>The kRPC Architecture<a class="headerlink" href="#the-krpc-architecture" title="Permalink to this headline">¶</a></h2>
-<p>kRPC consists of two components: a server and a client. The server plugin
-(provided by <code class="docutils literal"><span class="pre">KRPC.dll</span></code>) runs inside KSP. It provides a collection of
-<em>procedures</em> that clients can run. These procedures are arranged in groups
-called <em>services</em> to keep things organized. It also provides an in-game user
-interface that can be used to start/stop the server, change settings and monitor
-active clients.</p>
-<p>Clients run outside of KSP. This gives you the freedom to run scripts in
-whatever environment you want. A client communicates with the server to run
-procedures using a <a class="reference internal" href="communication-protocol.html#communication-protocol"><span class="std std-ref">communication protocol</span></a>.  kRPC
-comes with several client libraries that implement this communication protocol,
-making it easier to write programs in these languages.</p>
-<p>kRPC comes with a collection of standard functionality for interacting with
-vessels, contained in a service called <code class="docutils literal"><span class="pre">SpaceCenter</span></code>. This service provides
-procedures for things like getting flight/orbital data and controlling the
-active vessel. This service is provided by <code class="docutils literal"><span class="pre">KRPC.SpaceCenter.dll</span></code>.</p>
+<p>kRPC consists of two components: a server and a client. The server plugin (provided by <code class="docutils literal"><span class="pre">KRPC.dll</span></code>)
+runs inside KSP. It provides a collection of <em>procedures</em> that clients can run. These procedures are
+arranged in groups called <em>services</em> to keep things organized. It also provides an in-game user
+interface that can be used to start/stop the server, change settings and monitor active clients.</p>
+<p>Clients run outside of KSP. This gives you the freedom to run scripts in whatever environment you
+want. A client communicates with the server to run procedures using one of the supported
+<a class="reference internal" href="communication-protocols.html"><span class="doc">Communication Protocols</span></a>.  kRPC comes with several client libraries that implement one of
+these protocols, making it easier to write programs in these languages.</p>
+<p>kRPC comes with a collection of standard functionality for interacting with vessels, contained in a
+service called <code class="docutils literal"><span class="pre">SpaceCenter</span></code>. This service provides procedures for things like getting
+flight/orbital data and controlling the active vessel. This service is provided by
+<code class="docutils literal"><span class="pre">KRPC.SpaceCenter.dll</span></code>.</p>
 </div>
 <div class="section" id="service-api">
 <h2>Service API<a class="headerlink" href="#service-api" title="Permalink to this headline">¶</a></h2>
-<p>Third party mods can add functionality to kRPC using the <em>Service API</em>. This is
-done by adding <a class="reference internal" href="#service-api-attributes"><span class="std std-ref">attributes</span></a> to your own classes,
-methods and properties to make them visible through the server. When the kRPC
-server starts, it scans all the assemblies loaded by the game, looking for
-classes, methods and properties with these attributes.</p>
-<p>The following example implements a service that can control the throttle and
-staging of the active vessel. To add this to the server, compile the code and
-place the DLL in your GameData directory.</p>
+<p>Third party mods can add functionality to kRPC using the <em>Service API</em>. This is done by adding
+<a class="reference internal" href="#service-api-attributes"><span class="std std-ref">attributes</span></a> to your own classes, methods and properties to make them
+visible through the server. When the kRPC server starts, it scans all the assemblies loaded by the
+game, looking for classes, methods and properties with these attributes.</p>
+<p>The following example implements a service that can control the throttle and staging of the active
+vessel. To add this to the server, compile the code and place the DLL in your GameData directory.</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KRPC.Service</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Service.Attributes</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KSP.UI.Screens</span><span class="p">;</span>
@@ -240,14 +265,14 @@ place the DLL in your GameData directory.</p>
 <span class="n">conn</span><span class="o">.</span><span class="n">launch_control</span><span class="o">.</span><span class="n">activate_stage</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Some of the client libraries automatically pick up changes to the functionality
-provided by the server, including the Python and Lua clients. However, some
-clients require code to be generated from the service assembly so that they can
-interact with new or changed functionality. See <a class="reference internal" href="#service-api-clientgen"><span class="std std-ref">clientgen</span></a> for details on how to generate this code.</p>
+<p>Some of the client libraries automatically pick up changes to the functionality provided by the
+server, including the Python and Lua clients. However, some clients require code to be generated
+from the service assembly so that they can interact with new or changed functionality. See
+<a class="reference internal" href="#service-api-clientgen"><span class="std std-ref">clientgen</span></a> for details on how to generate this code.</p>
 <div class="section" id="attributes">
 <span id="service-api-attributes"></span><h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
-<p>The following <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">C# attributes</a> can be used to add
-functionality to the kRPC server.</p>
+<p>The following <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">C# attributes</a> can be used
+to add functionality to the kRPC server.</p>
 <dl class="attribute">
 <dt id="attribute-KRPCService">
 <code class="descname">KRPCService</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>Name</em>, <a class="reference internal" href="#enum-KRPC.Service.GameScene" title="KRPC.Service.GameScene enum">KRPC.Service.GameScene</a> <em>GameScene</em><span class="sig-paren">)</span><a class="headerlink" href="#attribute-KRPCService" title="Permalink to this definition">¶</a></dt>
@@ -256,37 +281,34 @@ functionality to the kRPC server.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>Name</strong> – Optional name for the service. If omitted, the service name is
-set to the name of the class this attribute is applied to.</li>
-<li><strong>GameScene</strong> – The game scenes in which the services procedures are
-available.</li>
+<li><strong>Name</strong> – Optional name for the service. If omitted, the service name is set to the name of
+the class this attribute is applied to.</li>
+<li><strong>GameScene</strong> – The game scenes in which the services procedures are available.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to a static class, to indicate that all methods, properties and
-classes declared within it are part of the the same service. The name of the
-service is set to the name of the class, or – if present – the <code class="docutils literal"><span class="pre">Name</span></code>
-parameter.</p>
-<p>Multiple services with the same name can be declared, as long the classes,
-procedures and methods they contain have unique names. The classes will be
-merged to appear as a single service on the server.</p>
-<p>The type to which this attribute is applied must satisfy the following
-criteria:</p>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to a static
+class, to indicate that all methods, properties and classes declared within it are part of the
+the same service. The name of the service is set to the name of the class, or – if present –
+the <code class="docutils literal"><span class="pre">Name</span></code> parameter.</p>
+<p>Multiple services with the same name can be declared, as long the classes, procedures and methods
+they contain have unique names. The classes will be merged to appear as a single service on the
+server.</p>
+<p>The type to which this attribute is applied must satisfy the following criteria:</p>
 <ul class="simple">
 <li>The type must be a class.</li>
 <li>The class must be <code class="docutils literal"><span class="pre">public</span> <span class="pre">static</span></code>.</li>
-<li>The name of the class, or the <code class="docutils literal"><span class="pre">Name</span></code> parameter if specified, must be a
-valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
-<li>The class must not be declared within another class that has the
-<a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a> attribute. Nesting of services is not permitted.</li>
+<li>The name of the class, or the <code class="docutils literal"><span class="pre">Name</span></code> parameter if specified, must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC
+identifier</span></a>.</li>
+<li>The class must not be declared within another class that has the <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>
+attribute. Nesting of services is not permitted.</li>
 </ul>
-<p>Services are configured to be available in specific <a class="reference internal" href="#service-api-game-scenes"><span class="std std-ref">game scenes</span></a> via the <code class="docutils literal"><span class="pre">GameScene</span></code> parameter. If the
-<code class="docutils literal"><span class="pre">GameScene</span></code> parameter is not specified, the service is available in any
-scene. If a procedure is called when the service is not available, it will
-throw an exception.</p>
+<p>Services are configured to be available in specific <a class="reference internal" href="#service-api-game-scenes"><span class="std std-ref">game scenes</span></a>
+via the <code class="docutils literal"><span class="pre">GameScene</span></code> parameter. If the <code class="docutils literal"><span class="pre">GameScene</span></code> parameter is not specified, the service is
+available in any scene. If a procedure is called when the service is not available, it will throw
+an exception.</p>
 <p><strong>Examples</strong></p>
 <ul>
 <li><p class="first">Declare a service called <code class="docutils literal"><span class="pre">EVA</span></code>:</p>
@@ -297,8 +319,7 @@ throw an exception.</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Declare a service called <code class="docutils literal"><span class="pre">MyEVAService</span></code> (different to the name of the
-class):</p>
+<li><p class="first">Declare a service called <code class="docutils literal"><span class="pre">MyEVAService</span></code> (different to the name of the class):</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCService (Name = &quot;MyEVAService&quot;)]</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">EVA</span> <span class="p">{</span>
     <span class="p">...</span>
@@ -306,8 +327,8 @@ class):</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Declare a service called <code class="docutils literal"><span class="pre">FlightTools</span></code> that is only available during the
-<code class="docutils literal"><span class="pre">Flight</span></code> game scene:</p>
+<li><p class="first">Declare a service called <code class="docutils literal"><span class="pre">FlightTools</span></code> that is only available during the <code class="docutils literal"><span class="pre">Flight</span></code> game
+scene:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCService (GameScene = GameScene.Flight)]</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">FlightTools</span> <span class="p">{</span>
     <span class="p">...</span>
@@ -321,21 +342,32 @@ class):</p>
 <dl class="attribute">
 <dt id="attribute-KRPCProcedure">
 <code class="descname">KRPCProcedure</code><a class="headerlink" href="#attribute-KRPCProcedure" title="Permalink to this definition">¶</a></dt>
-<dd><p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to static methods, to add them to the server as procedures.</p>
-<p>The method to which this attribute is applied must satisfy the following
-criteria:</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Nullable</strong> – Whether the return value of the procedure can be null. Defaults to false.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to static
+methods, to add them to the server as procedures.</p>
+<p>The method to which this attribute is applied must satisfy the following criteria:</p>
 <ul class="simple">
 <li>The method must be <code class="docutils literal"><span class="pre">public</span> <span class="pre">static</span></code>.</li>
 <li>The name of the method must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
 <li>The method must be declared inside a class that is a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>.</li>
-<li>The parameter types and return type must be <a class="reference internal" href="#service-api-serializable-types"><span class="std std-ref">types that kRPC knows how
-to serialize</span></a>.</li>
+<li>The parameter types and return type must be <a class="reference internal" href="#service-api-serializable-types"><span class="std std-ref">types that kRPC knows how to serialize</span></a>.</li>
 <li>Parameters can have default arguments.</li>
 </ul>
+<p>If the procedure might return a null value, the <code class="docutils literal"><span class="pre">Nullable</span></code> parameter of the attribute must be
+set to true.</p>
 <p><strong>Example</strong></p>
-<p>The following defines a service called <code class="docutils literal"><span class="pre">EVA</span></code> with a <code class="docutils literal"><span class="pre">PlantFlag</span></code> procedure
-that takes a name and an optional description, and returns a <code class="docutils literal"><span class="pre">Flag</span></code> object.</p>
+<p>The following defines a service called <code class="docutils literal"><span class="pre">EVA</span></code> with a <code class="docutils literal"><span class="pre">PlantFlag</span></code> procedure that takes a name
+and an optional description, and returns a <code class="docutils literal"><span class="pre">Flag</span></code> object.</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCService]</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">EVA</span> <span class="p">{</span>
 <span class="na">    [KRPCProcedure]</span>
@@ -362,32 +394,29 @@ that takes a name and an optional description, and returns a <code class="docuti
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>Service</strong> – Optional name of the service to add this class to. If
-omitted, the class is added to the service that contains its definition.</li>
+<li><strong>Service</strong> – Optional name of the service to add this class to. If omitted, the class is
+added to the service that contains its definition.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to non-static classes. It adds the class to the server, so that
-references to instances of the class can be passed between client and server.</p>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to
+non-static classes. It adds the class to the server, so that references to instances of the class
+can be passed between client and server.</p>
 <p>A <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> must be part of a service, just like a
-<a class="reference internal" href="#attribute-KRPCProcedure" title="KRPCProcedure attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCProcedure</span></code></a>. However, it would be restrictive if the class
-had to be declared as a nested class inside a class with the
-<a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a> attribute. Therefore, a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>
-can be declared outside of any service if it has the <code class="docutils literal"><span class="pre">Service</span></code> parameter
-set to the name of the service that it is part of. Also, the service that the
-<code class="docutils literal"><span class="pre">Service</span></code> parameter refers to does not have to exist. If it does not exist,
-a service with the given name is created.</p>
-<p>The class to which this attribute is applied must satisfy the following
-criteria:</p>
+<a class="reference internal" href="#attribute-KRPCProcedure" title="KRPCProcedure attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCProcedure</span></code></a>. However, it would be restrictive if the class had to be declared as
+a nested class inside a class with the <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a> attribute. Therefore, a
+<a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> can be declared outside of any service if it has the <code class="docutils literal"><span class="pre">Service</span></code>
+parameter set to the name of the service that it is part of. Also, the service that the
+<code class="docutils literal"><span class="pre">Service</span></code> parameter refers to does not have to exist. If it does not exist, a service with the
+given name is created.</p>
+<p>The class to which this attribute is applied must satisfy the following criteria:</p>
 <ul class="simple">
 <li>The class must be <code class="docutils literal"><span class="pre">public</span></code> and <em>not</em> <code class="docutils literal"><span class="pre">static</span></code>.</li>
 <li>The name of the class must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
-<li>The class must either be declared inside a class that is a
-<a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>, or have its <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the
-name of the service it is part of.</li>
+<li>The class must either be declared inside a class that is a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>, or have
+its <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the name of the service it is part of.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <ul>
@@ -402,8 +431,7 @@ name of the service it is part of.</li>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Declare a class called <code class="docutils literal"><span class="pre">Flag</span></code>, without nesting the class definition in a
-service class:</p>
+<li><p class="first">Declare a class called <code class="docutils literal"><span class="pre">Flag</span></code>, without nesting the class definition in a service class:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCClass (Service = &quot;EVA&quot;)]</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Flag</span> <span class="p">{</span>
     <span class="p">...</span>
@@ -417,19 +445,30 @@ service class:</p>
 <dl class="attribute">
 <dt id="attribute-KRPCMethod">
 <code class="descname">KRPCMethod</code><a class="headerlink" href="#attribute-KRPCMethod" title="Permalink to this definition">¶</a></dt>
-<dd><p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to methods inside a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. This allows a client
-to call methods on an instance, or static methods in the class.</p>
-<p>The method to which this attribute is applied must satisfy the following
-criteria:</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Nullable</strong> – Whether the return value of the procedure can be null. Defaults to false.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to methods
+inside a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. This allows a client to call methods on an instance, or static
+methods in the class.</p>
+<p>The method to which this attribute is applied must satisfy the following criteria:</p>
 <ul class="simple">
 <li>The method must be <code class="docutils literal"><span class="pre">public</span></code>.</li>
 <li>The name of the method must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
 <li>The method must be declared in a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>.</li>
-<li>The parameter types and return type must be <a class="reference internal" href="#service-api-serializable-types"><span class="std std-ref">types that kRPC can
-serialize</span></a>.</li>
+<li>The parameter types and return type must be <a class="reference internal" href="#service-api-serializable-types"><span class="std std-ref">types that kRPC can serialize</span></a>.</li>
 <li>Parameters can have default arguments.</li>
 </ul>
+<p>If the method might return a null value, the <code class="docutils literal"><span class="pre">Nullable</span></code> parameter of the attribute must be set
+to true.</p>
 <p><strong>Example</strong></p>
 <p>Declare a <code class="docutils literal"><span class="pre">Remove</span></code> method in the <code class="docutils literal"><span class="pre">Flag</span></code> class:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCClass (Service = &quot;EVA&quot;)]</span>
@@ -447,26 +486,38 @@ serialize</span></a>.</li>
 <dl class="attribute">
 <dt id="attribute-KRPCProperty">
 <code class="descname">KRPCProperty</code><a class="headerlink" href="#attribute-KRPCProperty" title="Permalink to this definition">¶</a></dt>
-<dd><p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to class properties, and comes in two flavors:</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Nullable</strong> – Whether the return value of the procedure can be null. Defaults to false.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to class
+properties, and comes in two flavors:</p>
 <ol class="arabic simple">
-<li>Applied to static properties in a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>. In this
-case, the property must satisfy the following criteria:<ul>
-<li>Must be <code class="docutils literal"><span class="pre">public</span> <span class="pre">static</span></code> and have at least one publicly accessible
-getter or setter.</li>
+<li>Applied to static properties in a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>. In this case, the property must
+satisfy the following criteria:<ul>
+<li>Must be <code class="docutils literal"><span class="pre">public</span> <span class="pre">static</span></code> and have at least one publicly accessible getter or setter.</li>
 <li>The name of the property must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
 <li>Must be declared inside a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>.</li>
 </ul>
 </li>
-<li>Applied to non-static properties in a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. In this
-case, the property must satisfy the following criteria:<ul>
-<li>Must be <code class="docutils literal"><span class="pre">public</span></code> and <em>not</em> <code class="docutils literal"><span class="pre">static</span></code>, and have at least one publicly
-accessible getter or setter.</li>
+<li>Applied to non-static properties in a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. In this case, the property
+must satisfy the following criteria:<ul>
+<li>Must be <code class="docutils literal"><span class="pre">public</span></code> and <em>not</em> <code class="docutils literal"><span class="pre">static</span></code>, and have at least one publicly accessible getter or
+setter.</li>
 <li>The name of the property must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
 <li>Must be declared inside a <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>.</li>
 </ul>
 </li>
 </ol>
+<p>If the property getter might return a null value, the <code class="docutils literal"><span class="pre">Nullable</span></code> parameter of the attribute
+must be set to true.</p>
 <p><strong>Examples</strong></p>
 <ul>
 <li><p class="first">Applied to a static property in a service:</p>
@@ -510,30 +561,26 @@ accessible getter or setter.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>Service</strong> – Optional name of the service to add this enum to. If
-omitted, the enum is added to the service that contains its definition.</li>
+<li><strong>Service</strong> – Optional name of the service to add this enum to. If omitted, the enum is added
+to the service that contains its definition.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is
-applied to enumeration types. It adds the enumeration and its permissible
-values to the server. This attribute works similarly to
-<a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>, but is applied to enumeration types.</p>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to
+enumeration types. It adds the enumeration and its permissible values to the server. This
+attribute works similarly to <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>, but is applied to enumeration types.</p>
 <p>A <a class="reference internal" href="#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> must be part of a service, just like a
-<a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. Similarly, a <a class="reference internal" href="#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> can be
-declared outside of a service if it has its <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the
-name of the service that it is part of.</p>
-<p>The enumeration type to which this attribute is applied must satisfy the
-following criteria:</p>
+<a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. Similarly, a <a class="reference internal" href="#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> can be declared outside of a
+service if it has its <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the name of the service that it is part of.</p>
+<p>The enumeration type to which this attribute is applied must satisfy the following criteria:</p>
 <ul class="simple">
 <li>The enumeration must be <code class="docutils literal"><span class="pre">public</span></code>.</li>
 <li>The name of the enumeration must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
-<li>The enumeration must either be declared inside a
-<a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>, or have it’s <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the
-name of the service it is part of.</li>
-<li>The <a class="reference external" href="https://msdn.microsoft.com/en-gb/library/sbbt4032.aspx">underlying C# type</a> must be an
+<li>The enumeration must either be declared inside a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>, or have it’s
+<code class="docutils literal"><span class="pre">Service</span></code> parameter set to the name of the service it is part of.</li>
+<li>The <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/enum">underlying C# type</a> must be an
 <code class="docutils literal"><span class="pre">int</span></code>.</li>
 </ul>
 <p><strong>Examples</strong></p>
@@ -557,6 +604,37 @@ name of the service it is part of.</li>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="attribute-KRPCException">
+<code class="descname">KRPCException</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>Service</em>, Type <em>MappedException</em><span class="sig-paren">)</span><a class="headerlink" href="#attribute-KRPCException" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Service</strong> – Optional name of the service to add this enum to. If omitted, the enum is added
+to the service that contains its definition.</li>
+<li><strong>MappedException</strong> – Optional type of an exception to map to this exception. For example,
+can be used to map a built-in C# exception type onto this kRPC exception type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> is applied to
+an exception class type.</p>
+<p>A <a class="reference internal" href="#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCException</span></code></a> must be part of a service, just like a
+<a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>. Similarly, a <a class="reference internal" href="#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCException</span></code></a> can be declared outside of a
+service if it has its <code class="docutils literal"><span class="pre">Service</span></code> parameter set to the name of the service that it is part of.</p>
+<p>The class type to which this attribute is applied must satisfy the following criteria:</p>
+<ul class="simple">
+<li>The class must be <code class="docutils literal"><span class="pre">public</span></code>.</li>
+<li>The name of the class must be a valid <a class="reference internal" href="#service-api-identifiers"><span class="std std-ref">kRPC identifier</span></a>.</li>
+<li>The class must either be declared inside a <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a>, or have it’s <code class="docutils literal"><span class="pre">Service</span></code>
+parameter set to the name of the service it is part of.</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="attribute-KRPCDefaultValue">
 <code class="descname">KRPCDefaultValue</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>Name</em>, Type <em>ValueConstructor</em><span class="sig-paren">)</span><a class="headerlink" href="#attribute-KRPCDefaultValue" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -565,23 +643,21 @@ name of the service it is part of.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>Name</strong> – Name of the parameter to set the default value for.</li>
-<li><strong>ValueConstructor</strong> – Type of a static class with a Create method that
-returns an instance of the default value.</li>
+<li><strong>ValueConstructor</strong> – Type of a static class with a Create method that returns an instance
+of the default value.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a>
-can be applied to a kRPC method or procedure. It provides a workaround to set
-the default value of a parameter to a non-compile time constant.
-Ordinarily, C# only allows compile time constants to be used as the values
-of default arguments.</p>
-<p>The ValueConstructor parameter is the type of a static class that contains a
-static method, called Create. When invoke, this method should return the
-default value.</p>
-<p>Note: If you just want to set the default value to a compile time constant,
-use the C# syntax. kRPC will detect the default values and use them.</p>
+<p>This <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa287992.aspx">attribute</a> can be applied to a
+kRPC method or procedure. It provides a workaround to set the default value of a parameter to a
+non-compile time constant.  Ordinarily, C# only allows compile time constants to be used as the
+values of default arguments.</p>
+<p>The ValueConstructor parameter is the type of a static class that contains a static method,
+called Create. When invoke, this method should return the default value.</p>
+<p>Note: If you just want to set the default value to a compile time constant, use the C#
+syntax. kRPC will detect the default values and use them.</p>
 <p><strong>Examples</strong></p>
 <ul>
 <li><p class="first">Set the default value to a list:</p>
@@ -602,8 +678,8 @@ use the C# syntax. kRPC will detect the default values and use them.</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Set the default value to a compile time constant, which does not require
-the KRPCDefaultValue attribute:</p>
+<li><p class="first">Set the default value to a compile time constant, which does not require the KRPCDefaultValue
+attribute:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCProcedure]</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">HireKerbal</span> <span class="p">(</span><span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Jeb&quot;</span><span class="p">)</span>
 <span class="p">{</span>
@@ -618,41 +694,87 @@ the KRPCDefaultValue attribute:</p>
 </div>
 <div class="section" id="service-api-identifiers">
 <span id="identifiers"></span><h3>Identifiers<a class="headerlink" href="#service-api-identifiers" title="Permalink to this headline">¶</a></h3>
-<p>An identifier must only contain alphanumeric characters and underscores. An
-identifier must not start with an underscore. Identifiers should follow
-<a class="reference external" href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a> capitalization
-conventions.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although underscores are permitted, they should be avoided as they are
-used for internal name mangling.</p>
-</div>
+<p>An identifier can only contain letters and numbers, and must start with an upper case letter.  They
+should follow <a class="reference external" href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a> capitalization conventions.</p>
 </div>
 <div class="section" id="serializable-types">
 <span id="service-api-serializable-types"></span><h3>Serializable Types<a class="headerlink" href="#serializable-types" title="Permalink to this headline">¶</a></h3>
-<p>A type can only be used as a parameter or return type if kRPC knows how to
-serialize it. The following types are serializable:</p>
+<p>A type can only be used as a parameter or return type if kRPC knows how to serialize it. The
+following types are serializable:</p>
 <ul class="simple">
-<li>The C# types <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span></code>, <code class="docutils literal"><span class="pre">uint</span></code>, <code class="docutils literal"><span class="pre">ulong</span></code>,
-<code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">string</span></code> and <code class="docutils literal"><span class="pre">byte[]</span></code></li>
+<li>The C# types <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span></code>, <code class="docutils literal"><span class="pre">uint</span></code>, <code class="docutils literal"><span class="pre">ulong</span></code>, <code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">string</span></code>
+and <code class="docutils literal"><span class="pre">byte[]</span></code></li>
 <li>Any type annotated with <a class="reference internal" href="#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a></li>
 <li>Any type annotated with <a class="reference internal" href="#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a></li>
 <li>Collections of serializable types:<ul>
 <li><code class="docutils literal"><span class="pre">System.Collections.Generic.IList&lt;T&gt;</span></code> where <code class="docutils literal"><span class="pre">T</span></code> is a serializable type</li>
-<li><code class="docutils literal"><span class="pre">System.Collections.Generic.IDictionary&lt;K,V&gt;</span></code> where <code class="docutils literal"><span class="pre">K</span></code> is one of
-<code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span></code>, <code class="docutils literal"><span class="pre">uint</span></code>, <code class="docutils literal"><span class="pre">ulong</span></code>, <code class="docutils literal"><span class="pre">bool</span></code> or <code class="docutils literal"><span class="pre">string</span></code> and <code class="docutils literal"><span class="pre">V</span></code> is
-a serializable type</li>
+<li><code class="docutils literal"><span class="pre">System.Collections.Generic.IDictionary&lt;K,V&gt;</span></code> where <code class="docutils literal"><span class="pre">K</span></code> is one of <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span></code>,
+<code class="docutils literal"><span class="pre">uint</span></code>, <code class="docutils literal"><span class="pre">ulong</span></code>, <code class="docutils literal"><span class="pre">bool</span></code> or <code class="docutils literal"><span class="pre">string</span></code> and <code class="docutils literal"><span class="pre">V</span></code> is a serializable type</li>
 <li><code class="docutils literal"><span class="pre">System.Collections.HashSet&lt;V&gt;</span></code> where <code class="docutils literal"><span class="pre">V</span></code> is a serializable type</li>
 </ul>
 </li>
 <li>Return types can be <code class="docutils literal"><span class="pre">void</span></code></li>
-<li>Protocol buffer message types from namespace <code class="docutils literal"><span class="pre">KRPC.Schema.KRPC</span></code></li>
+<li>Protocol buffer message types from namespace <code class="docutils literal"><span class="pre">KRPC.Service.Messages</span></code></li>
 </ul>
+</div>
+<div class="section" id="events">
+<h3>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h3>
+<p>kRPC procedures, methods and properties can return event objects to clients. This is done using the
+class <code class="docutils literal"><span class="pre">KRPC.Services.Event</span></code>. This class supports two different types of
+event.</p>
+<div class="section" id="manually-triggered-events">
+<h4>Manually Triggered Events<a class="headerlink" href="#manually-triggered-events" title="Permalink to this headline">¶</a></h4>
+<p>This type of event must be triggered by some other piece of code running somewhere in the game. It
+is created by calling the default constructor for type <code class="docutils literal"><span class="pre">KRPC.Services.Event</span></code>.</p>
+<p>For example, the following example is a procedure that returns an event that triggers after a given
+number of milliseconds. When the event triggers it is removed.</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCProcedure]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Service</span><span class="p">.</span><span class="n">Messages</span><span class="p">.</span><span class="n">Event</span> <span class="n">OnTimer</span><span class="p">(</span><span class="kt">uint</span> <span class="n">milliseconds</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create the event</span>
+    <span class="kt">var</span> <span class="n">evnt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Service</span><span class="p">.</span><span class="n">Event</span> <span class="p">();</span>
+
+    <span class="c1">// Set up a timer that will trigger the event</span>
+    <span class="kt">var</span> <span class="n">timer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Timers</span><span class="p">.</span><span class="n">Timer</span> <span class="p">(</span><span class="n">milliseconds</span><span class="p">);</span>
+    <span class="n">timer</span><span class="p">.</span><span class="n">Elapsed</span> <span class="p">+=</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">evnt</span><span class="p">.</span><span class="n">Trigger</span> <span class="p">();</span>
+        <span class="n">evnt</span><span class="p">.</span><span class="n">Remove</span> <span class="p">();</span>
+        <span class="n">timer</span><span class="p">.</span><span class="n">Enabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="n">timer</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+
+    <span class="c1">// Return the message describing the event to the client</span>
+    <span class="k">return</span> <span class="n">evnt</span><span class="p">.</span><span class="n">Message</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="actively-polled-events">
+<h4>Actively Polled Events<a class="headerlink" href="#actively-polled-events" title="Permalink to this headline">¶</a></h4>
+<p>This type of event contains a function that is evaluated once per game update. When the function
+returns true, the event is triggered. The event object is passed to the function so that it can
+manipulate it as desired.</p>
+<p>For example the following creates an event that triggers when the active vessel reaches the given
+altitude. The event is removed the first time it triggers.</p>
+<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCProcedure]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Service</span><span class="p">.</span><span class="n">Messages</span><span class="p">.</span><span class="n">Event</span> <span class="n">OnAltitudeReached</span><span class="p">(</span><span class="kt">uint</span> <span class="n">altitude</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create the event</span>
+    <span class="kt">var</span> <span class="n">evnt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KRPC</span><span class="p">.</span><span class="n">Service</span><span class="p">.</span><span class="n">Event</span> <span class="p">((</span><span class="n">KRPC</span><span class="p">.</span><span class="n">Service</span><span class="p">.</span><span class="n">Event</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">result</span> <span class="p">=</span> <span class="n">FlightGlobals</span><span class="p">.</span><span class="n">ActiveVessel</span><span class="p">.</span><span class="n">terrainAltitude</span> <span class="p">&gt;</span> <span class="n">altitude</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">e</span><span class="p">.</span><span class="n">Remove</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Return the message describing the event to the client</span>
+    <span class="k">return</span> <span class="n">evnt</span><span class="p">.</span><span class="n">Message</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="game-scenes">
 <span id="service-api-game-scenes"></span><h3>Game Scenes<a class="headerlink" href="#game-scenes" title="Permalink to this headline">¶</a></h3>
-<p>Each service is configured to be available from a particular game scene, or
-scenes.</p>
+<p>Each service is configured to be available from a particular game scene, or scenes.</p>
 <dl class="enum">
 <dt id="enum-KRPC.Service.GameScene">
 <code class="descname">enum KRPC.Service.GameScene</code><a class="headerlink" href="#enum-KRPC.Service.GameScene" title="Permalink to this definition">¶</a></dt>
@@ -702,8 +824,8 @@ scenes.</p>
 
 <p><strong>Examples</strong></p>
 <ul>
-<li><p class="first">Declare a service that is available in the <a class="reference internal" href="#value-KRPC.Service.GameScene.Flight" title="KRPC.Service.GameScene.Flight value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">KRPC.Service.GameScene.Flight</span></code></a>
-game scene:</p>
+<li><p class="first">Declare a service that is available in the <a class="reference internal" href="#value-KRPC.Service.GameScene.Flight" title="KRPC.Service.GameScene.Flight value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">KRPC.Service.GameScene.Flight</span></code></a> game
+scene:</p>
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="na">[KRPCService (GameScene = GameScene.Flight)]</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">MyService</span> <span class="p">{</span>
    <span class="p">...</span>
@@ -725,26 +847,25 @@ game scene:</p>
 </div>
 <div class="section" id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>Documentation can be added using
-<a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.
-The documentation will be automatically exported to clients when they connect.</p>
+<p>Documentation can be added using <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>. For dynamic clients, such
+as the Python and Lua clients, the documentation will be automatically exported to clients when they
+connect.</p>
 </div>
 <div class="section" id="further-examples">
 <h2>Further Examples<a class="headerlink" href="#further-examples" title="Permalink to this headline">¶</a></h2>
-<p>See the <a class="reference external" href="https://github.com/krpc/krpc/tree/latest-version/service/SpaceCenter/src/Services">SpaceCenter service implementation</a>
-for more extensive examples.</p>
+<p>See the <a class="reference external" href="https://github.com/krpc/krpc/tree/latest-version/service/SpaceCenter/src/Services">SpaceCenter service implementation</a> for more
+extensive examples.</p>
 </div>
 <div class="section" id="generating-service-code-for-static-clients">
 <span id="service-api-clientgen"></span><h2>Generating Service Code for Static Clients<a class="headerlink" href="#generating-service-code-for-static-clients" title="Permalink to this headline">¶</a></h2>
-<p>Some of the client libraries dynamically construct the code necessary to
-interact with the server when they connect. This means that these libraries will
-automatically pick up changes to service code. Such client libraries include
-those for Python and Lua.</p>
-<p>Other client libraries required code to be generated and compiled into them
-statically. They do not automatically pick up changes to service code. Such
-client libraries include those for C++ and C#.</p>
-<p>Code for these ‘static’ libraries is generated using the krpc-clientgen
-tool. This is provided as part of the <a class="reference external" href="https://pypi.python.org/pypi/krpctools">krpctools python package</a>. It can be installed using pip:</p>
+<p>Some of the client libraries dynamically construct the code necessary to interact with the server
+when they connect. This means that these libraries will automatically pick up changes to service
+code. Such client libraries include those for Python and Lua.</p>
+<p>Other client libraries required code to be generated and compiled into them statically. They do not
+automatically pick up changes to service code. Such client libraries include those for C++ and C#.</p>
+<p>Code for these ‘static’ libraries is generated using the krpc-clientgen tool. This is provided as
+part of the <a class="reference external" href="https://pypi.python.org/pypi/krpctools">krpctools python package</a>. It can be
+installed using pip:</p>
 <p><code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">krpctools</span></code></p>
 <p>You can then run the script from the command line:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> krpc-clientgen --help
@@ -774,44 +895,45 @@ tool. This is provided as part of the <a class="reference external" href="https:
 <span class="go">                        service definitions to the given JSON file</span>
 </pre></div>
 </div>
-<p>Client code can be generated either directly from an assembly DLL containing the
-service, or from a JSON file that has previously been generated from an
-assembly DLL (using the <code class="docutils literal"><span class="pre">--output-defs</span></code> flag).</p>
-<p>Generating client code from an assembly DLL requires a copy of Kerbal Space
-Program and a C# runtime to be available on the machine. In contrast, generating
-client code from a JSON file does not have these requirements and so is more
-portable.</p>
+<p>Client code can be generated either directly from an assembly DLL containing the service, or from a
+JSON file that has previously been generated from an assembly DLL (using the <code class="docutils literal"><span class="pre">--output-defs</span></code>
+flag).</p>
+<p>Generating client code from an assembly DLL requires a copy of Kerbal Space Program and a C# runtime
+to be available on the machine. In contrast, generating client code from a JSON file does not have
+these requirements and so is more portable.</p>
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
-<p>The following demonstrates how to generate code for the C++ and C# clients to
-interact with the LaunchControl service, given in an example previously.</p>
-<p>krpc-clientgen expects to be passed the location of your copy of Kerbal Space
-Program, the name of the language to generate, the name of the service (from the
-<a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a> attribute), a path to the assembly containing the
-service and the path to write the generated code to.</p>
+<p>The following demonstrates how to generate code for the C++ and C# clients to interact with the
+LaunchControl service, given in an example previously.</p>
+<p>krpc-clientgen expects to be passed the location of your copy of Kerbal Space Program, the name of
+the language to generate, the name of the service (from the <a class="reference internal" href="#attribute-KRPCService" title="KRPCService attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCService</span></code></a> attribute), a
+path to the assembly containing the service and the path to write the generated code to.</p>
 <p>For C++, run the following:</p>
 <p><code class="docutils literal"><span class="pre">krpc-clientgen</span> <span class="pre">--ksp=/path/to/ksp</span> <span class="pre">cpp</span> <span class="pre">LaunchControl</span> <span class="pre">LaunchControl.dll</span> <span class="pre">launch_control.hpp</span></code></p>
-<p>To then use the LaunchControl service from C++, you need to link your code
-against the C++ client library, and include <cite>launch_control.hpp</cite>.</p>
+<p>To then use the LaunchControl service from C++, you need to link your code against the C++ client
+library, and include <cite>launch_control.hpp</cite>.</p>
 <p>For C#, run the following:</p>
 <p><code class="docutils literal"><span class="pre">krpc-clientgen</span> <span class="pre">--ksp=/path/to/ksp</span> <span class="pre">csharp</span> <span class="pre">LaunchControl</span> <span class="pre">LaunchControl.dll</span> <span class="pre">LaunchControl.cs</span></code></p>
-<p>To then use the LaunchControl service from a C# client, you need to reference
-the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in your project.</p>
+<p>To then use the LaunchControl service from a C# client, you need to reference the <cite>KRPC.Client.dll</cite>
+and include <cite>LaunchControl.cs</cite> in your project.</p>
 </div>
 </div>
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="communication-protocol.html" class="btn btn-neutral float-right" title="Communication Protocol" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="communication-protocols.html" class="btn btn-neutral float-right" title="Communication Protocols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="compiling.html" class="btn btn-neutral" title="Compiling kRPC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="compiling.html" class="btn btn-neutral" title="Compiling kRPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -842,16 +964,18 @@ the <cite>KRPC.Client.dll</cite> and include <cite>LaunchControl.cs</cite> in yo
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.11',
+            VERSION:'0.4.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

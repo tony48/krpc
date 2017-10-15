@@ -1,78 +1,12 @@
 .. default-domain:: java
 .. highlight:: java
-.. package:: krpc.client.services.KRPC
 
 KRPC API
 ========
 
+.. toctree::
+   :includehidden:
+   :maxdepth: 2
 
-.. type:: public class KRPC
-
-   Main kRPC service, used by clients to interact with basic server functionality.
-
-   .. method:: krpc.schema.KRPC.Status getStatus()
-
-      Returns some information about the server, such as the version.
-
-   .. method:: krpc.schema.KRPC.Services getServices()
-
-      Returns information on all services, procedures, classes, properties etc. provided by the server.
-      Can be used by client libraries to automatically create functionality such as stubs.
-
-   .. method:: java.util.List<org.javatuples.Triplet<Byte[],String,String>> getClients()
-
-
-      A list of RPC clients that are currently connected to the server.
-      Each entry in the list is a clients identifier, name and address.
-
-   .. method:: GameScene getCurrentGameScene()
-
-
-      Get the current game scene.
-
-   .. method:: int addStream(krpc.schema.KRPC.Request request)
-
-      Add a streaming request and return its identifier.
-
-      :param krpc.schema.KRPC.Request request:
-
-      .. note:: Do not call this method from client code. Use :rst:ref:`streams <java-client-streams>` provided by the Java client library.
-
-   .. method:: void removeStream(int id)
-
-      Remove a streaming request.
-
-      :param int id:
-
-      .. note:: Do not call this method from client code. Use :rst:ref:`streams <java-client-streams>` provided by the Java client library.
-
-
-
-.. type:: public enum GameScene
-
-   The game scene. See :meth:`getCurrentGameScene()`.
-
-
-   .. field:: public GameScene SPACE_CENTER
-
-      The game scene showing the Kerbal Space Center buildings.
-
-
-   .. field:: public GameScene FLIGHT
-
-      The game scene showing a vessel in flight (or on the launchpad/runway).
-
-
-   .. field:: public GameScene TRACKING_STATION
-
-      The tracking station.
-
-
-   .. field:: public GameScene EDITOR_VAB
-
-      The Vehicle Assembly Building.
-
-
-   .. field:: public GameScene EDITOR_SPH
-
-      The Space Plane Hangar.
+   krpc/krpc
+   krpc/expressions
