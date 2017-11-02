@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.4.0 documentation</title>
+  <title>Vessel &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../csharp.html">C#</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../client.html">C# Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
@@ -315,6 +316,24 @@ with CommNet for this vessel.</p>
 <a class="reference internal" href="auto-pilot.html#class-KRPC.Client.Services.SpaceCenter.AutoPilot" title="KRPC.Client.Services.SpaceCenter.AutoPilot class">AutoPilot</a> <code class="descname">AutoPilot</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.AutoPilot" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="auto-pilot.html#class-KRPC.Client.Services.SpaceCenter.AutoPilot" title="KRPC.Client.Services.SpaceCenter.AutoPilot class"><code class="xref csharp csharp-type docutils literal"><span class="pre">AutoPilot</span></code></a> object, that can be used to perform
 simple auto-piloting of the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.CrewCapacity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <code class="descname">CrewCapacity</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.CrewCapacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that can occupy the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.CrewCount">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <code class="descname">CrewCount</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.CrewCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that are occupying the vessel.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.Vessel.Crew">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/5y536ey6.aspx" title="System.Collections.Generic.IList">IList</a>&lt;<a class="reference internal" href="#class-KRPC.Client.Services.SpaceCenter.CrewMember" title="KRPC.Client.Services.SpaceCenter.CrewMember class">CrewMember</a>&gt; <code class="descname">Crew</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.Crew" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew in the vessel.</p>
 </dd></dl>
 
 <dl class="property">
@@ -824,6 +843,91 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
 
 </dd></dl>
 
+<dl class="class">
+<dt id="class-KRPC.Client.Services.SpaceCenter.CrewMember">
+<code class="descname">class CrewMember</code><a class="headerlink" href="#class-KRPC.Client.Services.SpaceCenter.CrewMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents crew in a vessel. Can be obtained using <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.Vessel.Crew" title="KRPC.Client.Services.SpaceCenter.Vessel.Crew property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.Crew</span></code></a>.</p>
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Name">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <code class="descname">Name</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members name.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Type">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.CrewMemberType" title="KRPC.Client.Services.SpaceCenter.CrewMemberType enum">CrewMemberType</a> <code class="descname">Type</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of crew member.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.OnMission">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <code class="descname">OnMission</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.OnMission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is on a mission.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Courage">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Courage</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Courage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members courage.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Stupidity">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Stupidity</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Stupidity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members stupidity.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Experience">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Experience</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Experience" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members experience.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Badass">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <code class="descname">Badass</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Badass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a badass.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.CrewMember.Veteran">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <code class="descname">Veteran</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Veteran" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a veteran.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.CrewMemberType">
+<code class="descname">enum CrewMemberType</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.CrewMemberType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a crew member.
+See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCenter.CrewMember.Type" title="KRPC.Client.Services.SpaceCenter.CrewMember.Type property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">CrewMember.Type</span></code></a>.</p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Applicant">
+<code class="descname">Applicant</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Applicant" title="Permalink to this definition">¶</a></dt>
+<dd><p>An applicant for crew.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Crew">
+<code class="descname">Crew</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Crew" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rocket crew.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Tourist">
+<code class="descname">Tourist</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Tourist" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tourist.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Unowned">
+<code class="descname">Unowned</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.CrewMemberType.Unowned" title="Permalink to this definition">¶</a></dt>
+<dd><p>An unowned crew member.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -870,7 +974,7 @@ See <a class="reference internal" href="#property-KRPC.Client.Services.SpaceCent
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.0 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
@@ -756,6 +757,58 @@ reference frames into account.</p>
 </table>
 </dd></dl>
 
+<dl class="staticmethod">
+<dt id="SpaceCenter.raycast_distance">
+<em class="property">static </em><code class="descname">raycast_distance</code><span class="sig-paren">(</span><em>position</em>, <em>direction</em>, <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.raycast_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the distance to the hit point.
+If no hit occurs, returns infinity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<em>tuple</em>) – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> (<em>tuple</em>) – Direction of the ray, as a unit vector.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The distance to the hit, in meters, or infinity if there was no hit.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="SpaceCenter.raycast_part">
+<em class="property">static </em><code class="descname">raycast_part</code><span class="sig-paren">(</span><em>position</em>, <em>direction</em>, <em>reference_frame</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.raycast_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the part that it hits.
+If no hit occurs, returns <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<em>tuple</em>) – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> (<em>tuple</em>) – Direction of the ray, as a unit vector.</li>
+<li><strong>reference_frame</strong> (<a class="reference internal" href="reference-frame.html#SpaceCenter.ReferenceFrame" title="SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The part that was hit or <code class="docutils literal"><span class="pre">None</span></code> if there was no hit.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="parts.html#SpaceCenter.Part" title="SpaceCenter.Part"><code class="xref py py-class docutils literal"><span class="pre">Part</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="SpaceCenter.far_available">
 <code class="descname">far_available</code><a class="headerlink" href="#SpaceCenter.far_available" title="Permalink to this definition">¶</a></dt>
@@ -909,7 +962,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

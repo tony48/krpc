@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RemoteTech API &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../index.html"/>
+        <link rel="up" title="C-nano" href="../../cnano.html"/>
+        <link rel="next" title="RemoteTech" href="remote-tech/remote-tech.html"/>
+        <link rel="prev" title="AlarmAction" href="kerbal-alarm-clock/alarm-action.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="krpc.html">KRPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RemoteTech API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="remote-tech/remote-tech.html">RemoteTech</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote-tech/comms.html">Comms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote-tech/antenna.html">Antenna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../cnano.html">C-nano</a> &raquo;</li>
+        
+      <li>RemoteTech API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/cnano/api/remote-tech.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="remotetech-api">
+<h1>RemoteTech API<a class="headerlink" href="#remotetech-api" title="Permalink to this headline">¶</a></h1>
+<p>Provides RPCs to interact with the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/139167-13-remotetech-v188-2017-09-03/">RemoteTech</a> mod. Provides the following classes:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="remote-tech/remote-tech.html">RemoteTech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remote-tech/comms.html">Comms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remote-tech/antenna.html">Antenna</a></li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The following example sets the target of a dish on the active vessel then prints
+out the signal delay to the active vessel.</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/remote_tech.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;RemoteTech Example&quot;</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+
+  <span class="c1">// Set a dish target</span>
+  <span class="n">krpc_SpaceCenter_Parts_t</span> <span class="n">parts</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Parts</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">parts</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_list_object_t</span> <span class="n">parts_with_title</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Parts_WithTitle</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">parts_with_title</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="s">&quot;Reflectron KR-7&quot;</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Part_t</span> <span class="n">part</span> <span class="o">=</span> <span class="n">parts_with_title</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+  <span class="n">krpc_RemoteTech_Antenna_t</span> <span class="n">antenna</span><span class="p">;</span>
+  <span class="n">krpc_RemoteTech_Antenna</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">antenna</span><span class="p">,</span> <span class="n">part</span><span class="p">);</span>
+
+  <span class="n">krpc_dictionary_string_object_t</span> <span class="n">bodies</span> <span class="o">=</span> <span class="n">KRPC_NULL_DICTIONARY</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Bodies</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bodies</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">jool</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bodies</span><span class="p">.</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bodies</span><span class="p">.</span><span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span><span class="p">,</span> <span class="s">&quot;Jool&quot;</span><span class="p">))</span>
+      <span class="n">jool</span> <span class="o">=</span> <span class="n">bodies</span><span class="p">.</span><span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">value</span><span class="p">;</span>
+
+  <span class="n">krpc_RemoteTech_Antenna_set_TargetBody</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">antenna</span><span class="p">,</span> <span class="n">jool</span><span class="p">);</span>
+
+  <span class="c1">// Get info about the vessels communications</span>
+  <span class="n">krpc_RemoteTech_Comms_t</span> <span class="n">comms</span><span class="p">;</span>
+  <span class="n">krpc_RemoteTech_Comms</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">comms</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="kt">double</span> <span class="n">signal_delay</span><span class="p">;</span>
+  <span class="n">krpc_RemoteTech_Comms_SignalDelay</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signal_delay</span><span class="p">,</span> <span class="n">comms</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Signal delay = %.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">signal_delay</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="remote-tech/remote-tech.html" class="btn btn-neutral float-right" title="RemoteTech" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kerbal-alarm-clock/alarm-action.html" class="btn btn-neutral" title="AlarmAction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

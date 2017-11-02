@@ -1,0 +1,1060 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vessel &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="CelestialBody" href="celestial-body.html"/>
+        <link rel="prev" title="SpaceCenter" href="space-center.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cnano.html">C-nano</a> &raquo;</li>
+        
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+        
+      <li>Vessel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cnano/api/space-center/vessel.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vessel">
+<h1>Vessel<a class="headerlink" href="#vessel" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_Vessel_t">
+<code class="descname">krpc_SpaceCenter_Vessel_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>These objects are used to interact with vessels in KSP. This includes getting
+orbital and flight data, manipulating control inputs and managing resources.
+Created using <a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_ActiveVessel" title="krpc_SpaceCenter_ActiveVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ActiveVessel()</span></code></a> or <a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_Vessels" title="krpc_SpaceCenter_Vessels"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessels()</span></code></a>.</p>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Name">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Name</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, char * *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_set_Name">
+void <code class="descname">krpc_SpaceCenter_Vessel_set_Name</code><span class="sig-paren">(</span>const char *<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_set_Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Type">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Type</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_VesselType_t" title="krpc_SpaceCenter_VesselType_t">krpc_SpaceCenter_VesselType_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_set_Type">
+void <code class="descname">krpc_SpaceCenter_Vessel_set_Type</code><span class="sig-paren">(</span><a class="reference internal" href="#c.krpc_SpaceCenter_VesselType_t" title="krpc_SpaceCenter_VesselType_t">krpc_SpaceCenter_VesselType_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_set_Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Situation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Situation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_VesselSituation_t" title="krpc_SpaceCenter_VesselSituation_t">krpc_SpaceCenter_VesselSituation_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Situation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The situation the vessel is in.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Recoverable">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Recoverable</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Recoverable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the vessel is recoverable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Recover">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Recover</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Recover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recover the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_MET">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_MET</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_MET" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mission elapsed time in seconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Biome">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Biome</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, char * *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Biome" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the biome the vessel is currently in.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Flight">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Flight</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="flight.html#c.krpc_SpaceCenter_Flight_t" title="krpc_SpaceCenter_Flight_t">krpc_SpaceCenter_Flight_t</a> *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Flight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="flight.html#c.krpc_SpaceCenter_Flight_t" title="krpc_SpaceCenter_Flight_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Flight_t</span></code></a> object that can be used to get flight
+telemetry for the vessel, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>referenceFrame</strong> – Reference frame. Defaults to the vessel’s surface reference frame (<a class="reference internal" href="#c.krpc_SpaceCenter_Vessel_SurfaceReferenceFrame" title="krpc_SpaceCenter_Vessel_SurfaceReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_SurfaceReferenceFrame()</span></code></a>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When this is called with no arguments, the vessel’s surface reference
+frame is used. This reference frame moves with the vessel, therefore
+velocities and speeds returned by the flight object will be zero. See
+the <a class="reference internal" href="../../../tutorials/reference-frames.html#tutorial-reference-frames"><span class="std std-ref">reference frames tutorial</span></a>
+for examples of getting <a class="reference internal" href="../../../tutorials/reference-frames.html#tutorial-reference-frames-vessel-speed"><span class="std std-ref">the orbital and surface speeds of a
+vessel</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Orbit">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Orbit</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="orbit.html#c.krpc_SpaceCenter_Orbit_t" title="krpc_SpaceCenter_Orbit_t">krpc_SpaceCenter_Orbit_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current orbit of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Control">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Control</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="control.html#c.krpc_SpaceCenter_Control_t" title="krpc_SpaceCenter_Control_t">krpc_SpaceCenter_Control_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="control.html#c.krpc_SpaceCenter_Control_t" title="krpc_SpaceCenter_Control_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Control_t</span></code></a> object that can be used to manipulate
+the vessel’s control inputs. For example, its pitch/yaw/roll controls,
+RCS and thrust.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Comms">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Comms</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="comms.html#c.krpc_SpaceCenter_Comms_t" title="krpc_SpaceCenter_Comms_t">krpc_SpaceCenter_Comms_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Comms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="comms.html#c.krpc_SpaceCenter_Comms_t" title="krpc_SpaceCenter_Comms_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Comms_t</span></code></a> object that can be used to interact
+with CommNet for this vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AutoPilot">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AutoPilot</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="auto-pilot.html#c.krpc_SpaceCenter_AutoPilot_t" title="krpc_SpaceCenter_AutoPilot_t">krpc_SpaceCenter_AutoPilot_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AutoPilot" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="auto-pilot.html#c.krpc_SpaceCenter_AutoPilot_t" title="krpc_SpaceCenter_AutoPilot_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_AutoPilot_t</span></code></a> object, that can be used to perform
+simple auto-piloting of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_CrewCapacity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_CrewCapacity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_CrewCapacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that can occupy the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_CrewCount">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_CrewCount</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_CrewCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that are occupying the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Crew">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Crew</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Crew" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Resources">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Resources</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="resources.html#c.krpc_SpaceCenter_Resources_t" title="krpc_SpaceCenter_Resources_t">krpc_SpaceCenter_Resources_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="resources.html#c.krpc_SpaceCenter_Resources_t" title="krpc_SpaceCenter_Resources_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Resources_t</span></code></a> object, that can used to get information
+about resources stored in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_ResourcesInDecoupleStage">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_ResourcesInDecoupleStage</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="resources.html#c.krpc_SpaceCenter_Resources_t" title="krpc_SpaceCenter_Resources_t">krpc_SpaceCenter_Resources_t</a> *<em>&nbsp;result</em>, int32_t<em>&nbsp;stage</em>, bool<em>&nbsp;cumulative</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_ResourcesInDecoupleStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="resources.html#c.krpc_SpaceCenter_Resources_t" title="krpc_SpaceCenter_Resources_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Resources_t</span></code></a> object, that can used to get
+information about resources stored in a given <em>stage</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stage</strong> – Get resources for parts that are decoupled in this stage.</li>
+<li><strong>cumulative</strong> – When <code class="docutils literal"><span class="pre">false</span></code>, returns the resources for parts decoupled in just the given stage. When <code class="docutils literal"><span class="pre">true</span></code> returns the resources decoupled in the given stage and all subsequent stages combined.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For details on stage numbering, see the
+discussion on <a class="reference internal" href="parts.html#cnano-api-parts-staging"><span class="std std-ref">Staging</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Parts">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Parts</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Parts_t" title="krpc_SpaceCenter_Parts_t">krpc_SpaceCenter_Parts_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Parts_t" title="krpc_SpaceCenter_Parts_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Parts_t</span></code></a> object, that can used to interact with the parts that make up this vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Mass">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Mass</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total mass of the vessel, including resources, in kg.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_DryMass">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_DryMass</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_DryMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total mass of the vessel, excluding resources, in kg.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Thrust">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Thrust</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Thrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total thrust currently being produced by the vessel’s engines, in
+Newtons. This is computed by summing <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Engine_Thrust" title="krpc_SpaceCenter_Engine_Thrust"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Engine_Thrust()</span></code></a> for
+every engine in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableThrust">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableThrust</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total available thrust that can be produced by the vessel’s
+active engines, in Newtons. This is computed by summing
+<a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Engine_AvailableThrust" title="krpc_SpaceCenter_Engine_AvailableThrust"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Engine_AvailableThrust()</span></code></a> for every active engine in the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_MaxThrust">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_MaxThrust</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_MaxThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total maximum thrust that can be produced by the vessel’s active
+engines, in Newtons. This is computed by summing
+<a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Engine_MaxThrust" title="krpc_SpaceCenter_Engine_MaxThrust"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Engine_MaxThrust()</span></code></a> for every active engine.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_MaxVacuumThrust">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_MaxVacuumThrust</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_MaxVacuumThrust" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total maximum thrust that can be produced by the vessel’s active
+engines when the vessel is in a vacuum, in Newtons. This is computed by
+summing <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Engine_MaxVacuumThrust" title="krpc_SpaceCenter_Engine_MaxVacuumThrust"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Engine_MaxVacuumThrust()</span></code></a> for every active engine.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_SpecificImpulse">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_SpecificImpulse</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_SpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined specific impulse of all active engines, in seconds. This is computed using the formula
+<a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_VacuumSpecificImpulse">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_VacuumSpecificImpulse</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_VacuumSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined vacuum specific impulse of all active engines, in seconds. This is computed using the formula
+<a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_KerbinSeaLevelSpecificImpulse">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_KerbinSeaLevelSpecificImpulse</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_KerbinSeaLevelSpecificImpulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>The combined specific impulse of all active engines at sea level on Kerbin, in seconds.
+This is computed using the formula
+<a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines">described here</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_MomentOfInertia">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_MomentOfInertia</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_MomentOfInertia" title="Permalink to this definition">¶</a></dt>
+<dd><p>The moment of inertia of the vessel around its center of mass in <span class="math">\(kg.m^2\)</span>.
+The inertia values in the returned 3-tuple are around the
+pitch, roll and yaw directions respectively.
+This corresponds to the vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_InertiaTensor">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_InertiaTensor</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_InertiaTensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inertia tensor of the vessel around its center of mass,
+in the vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+Returns the 3x3 matrix as a list of elements, in row-major order.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the vessel generates. Includes contributions from
+reaction wheels, RCS, gimballed engines and aerodynamic control surfaces.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableReactionWheelTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableReactionWheelTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableReactionWheelTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active and powered reaction wheels can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableRCSTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableRCSTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableRCSTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active RCS thrusters can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableEngineTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableEngineTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableEngineTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the currently active and gimballed engines can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableControlSurfaceTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableControlSurfaceTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableControlSurfaceTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that the aerodynamic control surfaces can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AvailableOtherTorque">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AvailableOtherTorque</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AvailableOtherTorque" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum torque that parts (excluding reaction wheels, gimballed engines,
+RCS and control surfaces) can generate.
+Returns the torques in <span class="math">\(N.m\)</span> around each of the coordinate axes of the
+vessels reference frame (<a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_ReferenceFrame_t</span></code></a>).
+These axes are equivalent to the pitch, roll and yaw axes of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_ReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_ReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the vessel.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the vessel.</li>
+<li>The x-axis points out to the right of the vessel.</li>
+<li>The y-axis points in the forward direction of the vessel.</li>
+<li>The z-axis points out of the bottom off the vessel.</li>
+</ul>
+<div class="figure align-center" id="id5">
+<img alt="../../../_images/vessel-aircraft.png" src="../../../_images/vessel-aircraft.png" />
+<p class="caption"><span class="caption-text">Vessel reference frame origin and axes for the Aeris 3A aircraft</span></p>
+</div>
+<div class="figure align-center" id="id6">
+<img alt="../../../_images/vessel-rocket.png" src="../../../_images/vessel-rocket.png" />
+<p class="caption"><span class="caption-text">Vessel reference frame origin and axes for the Kerbal-X rocket</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_OrbitalReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_OrbitalReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_OrbitalReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the vessels orbital prograde/normal/radial directions.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the orbital prograde/normal/radial directions.</li>
+<li>The x-axis points in the orbital anti-radial direction.</li>
+<li>The y-axis points in the orbital prograde direction.</li>
+<li>The z-axis points in the orbital normal direction.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be careful not to confuse this with ‘orbit’ mode on the navball.</p>
+</div>
+<div class="figure align-center" id="id7">
+<img alt="../../../_images/vessel-orbital.png" src="../../../_images/vessel-orbital.png" />
+<p class="caption"><span class="caption-text">Vessel orbital reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_SurfaceReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_SurfaceReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_SurfaceReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the surface of the body being orbited.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the north and up directions on the surface of the body.</li>
+<li>The x-axis points in the <a class="reference external" href="https://en.wikipedia.org/wiki/Zenith">zenith</a>
+direction (upwards, normal to the body being orbited, from the center of the body towards the center of
+mass of the vessel).</li>
+<li>The y-axis points northwards towards the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (north, and tangential to the
+surface of the body – the direction in which a compass would point when on the surface).</li>
+<li>The z-axis points eastwards towards the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a> (east, and tangential to the
+surface of the body – east on a compass when on the surface).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be careful not to confuse this with ‘surface’ mode on the navball.</p>
+</div>
+<div class="figure align-center" id="id8">
+<img alt="../../../_images/vessel-surface.png" src="../../../_images/vessel-surface.png" />
+<p class="caption"><span class="caption-text">Vessel surface reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the vessel,
+and orientated with the velocity vector of the vessel relative
+to the surface of the body being orbited.</p>
+<ul class="simple">
+<li>The origin is at the center of mass of the vessel.</li>
+<li>The axes rotate with the vessel’s velocity vector.</li>
+<li>The y-axis points in the direction of the vessel’s velocity vector,
+relative to the surface of the body being orbited.</li>
+<li>The z-axis is in the plane of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Horizon">astronomical horizon</a>.</li>
+<li>The x-axis is orthogonal to the other two axes.</li>
+</ul>
+<div class="figure align-center" id="id9">
+<img alt="../../../_images/vessel-surface-velocity.png" src="../../../_images/vessel-surface-velocity.png" />
+<p class="caption"><span class="caption-text">Vessel surface velocity reference frame origin and axes</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Position">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Position</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the center of mass of the vessel, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_BoundingBox">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_BoundingBox</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_tuple_double_double_double_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_BoundingBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axis-aligned bounding box of the vessel in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned position vectors are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The positions of the minimum and maximum vertices of the box, as position vectors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Velocity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Velocity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The velocity of the center of mass of the vessel, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned velocity vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Rotation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Rotation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotation of the vessel, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned rotation is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_Direction">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_Direction</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction in which the vessel is pointing, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessel_AngularVelocity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessel_AngularVelocity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessel_AngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The angular velocity of the vessel, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame the returned angular velocity is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The angular velocity as a vector. The magnitude of the vector is the rotational speed of the vessel, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_VesselType_t">
+<code class="descname">krpc_SpaceCenter_VesselType_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_VesselType_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a vessel.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_Vessel_Type" title="krpc_SpaceCenter_Vessel_Type"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_Type()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_BASE">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_BASE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_DEBRIS">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_DEBRIS</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_DEBRIS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Debris.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_LANDER">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_LANDER</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_LANDER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lander.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_PLANE">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_PLANE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_PLANE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_PROBE">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_PROBE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_PROBE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probe.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_RELAY">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_RELAY</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_RELAY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relay.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_ROVER">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_ROVER</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_ROVER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rover.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_SHIP">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_SHIP</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_SHIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ship.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELTYPE_STATION">
+<code class="descname">KRPC_SPACECENTER_VESSELTYPE_STATION</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELTYPE_STATION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Station.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_VesselSituation_t">
+<code class="descname">krpc_SpaceCenter_VesselSituation_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_VesselSituation_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The situation a vessel is in.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_Vessel_Situation" title="krpc_SpaceCenter_Vessel_Situation"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_Situation()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_DOCKED">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_DOCKED</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_DOCKED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is docked to another.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_ESCAPING">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_ESCAPING</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_ESCAPING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escaping.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_FLYING">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_FLYING</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_FLYING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is flying through an atmosphere.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_LANDED">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_LANDED</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_LANDED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is landed on the surface of a body.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_ORBITING">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_ORBITING</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_ORBITING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is orbiting a body.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_PRELAUNCH">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_PRELAUNCH</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_PRELAUNCH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is awaiting launch.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_SPLASHED">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_SPLASHED</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_SPLASHED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel has splashed down in an ocean.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_VESSELSITUATION_SUBORBITAL">
+<code class="descname">KRPC_SPACECENTER_VESSELSITUATION_SUBORBITAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_VESSELSITUATION_SUBORBITAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is on a sub-orbital trajectory.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_CrewMember_t">
+<code class="descname">krpc_SpaceCenter_CrewMember_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents crew in a vessel. Can be obtained using <a class="reference internal" href="#c.krpc_SpaceCenter_Vessel_Crew" title="krpc_SpaceCenter_Vessel_Crew"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_Crew()</span></code></a>.</p>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Name">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Name</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, char * *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Name">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Name</code><span class="sig-paren">(</span>const char *<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Type">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Type</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_CrewMemberType_t" title="krpc_SpaceCenter_CrewMemberType_t">krpc_SpaceCenter_CrewMemberType_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of crew member.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_OnMission">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_OnMission</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_OnMission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is on a mission.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Courage">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Courage</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Courage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Courage">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Courage</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Courage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members courage.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Stupidity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Stupidity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Stupidity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Stupidity">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Stupidity</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Stupidity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members stupidity.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Experience">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Experience</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Experience" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Experience">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Experience</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Experience" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members experience.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Badass">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Badass</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Badass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Badass">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Badass</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Badass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a badass.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_Veteran">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CrewMember_Veteran</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_Veteran" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CrewMember_set_Veteran">
+void <code class="descname">krpc_SpaceCenter_CrewMember_set_Veteran</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMember_set_Veteran" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a veteran.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_CrewMemberType_t">
+<code class="descname">krpc_SpaceCenter_CrewMemberType_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_CrewMemberType_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a crew member.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_CrewMember_Type" title="krpc_SpaceCenter_CrewMember_Type"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_CrewMember_Type()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CREWMEMBERTYPE_APPLICANT">
+<code class="descname">KRPC_SPACECENTER_CREWMEMBERTYPE_APPLICANT</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CREWMEMBERTYPE_APPLICANT" title="Permalink to this definition">¶</a></dt>
+<dd><p>An applicant for crew.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CREWMEMBERTYPE_CREW">
+<code class="descname">KRPC_SPACECENTER_CREWMEMBERTYPE_CREW</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CREWMEMBERTYPE_CREW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rocket crew.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CREWMEMBERTYPE_TOURIST">
+<code class="descname">KRPC_SPACECENTER_CREWMEMBERTYPE_TOURIST</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CREWMEMBERTYPE_TOURIST" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tourist.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CREWMEMBERTYPE_UNOWNED">
+<code class="descname">KRPC_SPACECENTER_CREWMEMBERTYPE_UNOWNED</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CREWMEMBERTYPE_UNOWNED" title="Permalink to this definition">¶</a></dt>
+<dd><p>An unowned crew member.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="celestial-body.html" class="btn btn-neutral float-right" title="CelestialBody" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="space-center.html" class="btn btn-neutral" title="SpaceCenter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

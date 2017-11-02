@@ -105,6 +105,27 @@ Vessel
       :Attribute: Read-only, cannot be set
       :rtype: :class:`SpaceCenter.AutoPilot`
 
+   .. attribute:: crew_capacity
+
+      The number of crew that can occupy the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: crew_count
+
+      The number of crew that are occupying the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: number
+
+   .. attribute:: crew
+
+      The crew in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: List of :class:`SpaceCenter.CrewMember`
+
    .. attribute:: resources
 
       A :class:`SpaceCenter.Resources` object, that can used to get information
@@ -532,3 +553,92 @@ Vessel
    .. data:: sub_orbital
 
       Vessel is on a sub-orbital trajectory.
+
+
+
+.. class:: CrewMember
+
+   Represents crew in a vessel. Can be obtained using :attr:`SpaceCenter.Vessel.crew`.
+
+   .. attribute:: name
+
+      The crew members name.
+
+      :Attribute: Can be read or written
+      :rtype: string
+
+   .. attribute:: type
+
+      The type of crew member.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`SpaceCenter.CrewMemberType`
+
+   .. attribute:: on_mission
+
+      Whether the crew member is on a mission.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: boolean
+
+   .. attribute:: courage
+
+      The crew members courage.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: stupidity
+
+      The crew members stupidity.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: experience
+
+      The crew members experience.
+
+      :Attribute: Can be read or written
+      :rtype: number
+
+   .. attribute:: badass
+
+      Whether the crew member is a badass.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+   .. attribute:: veteran
+
+      Whether the crew member is a veteran.
+
+      :Attribute: Can be read or written
+      :rtype: boolean
+
+
+
+.. class:: CrewMemberType
+
+   The type of a crew member.
+   See :attr:`SpaceCenter.CrewMember.type`.
+
+
+   .. data:: applicant
+
+      An applicant for crew.
+
+
+   .. data:: crew
+
+      Rocket crew.
+
+
+   .. data:: tourist
+
+      A tourist.
+
+
+   .. data:: unowned
+
+      An unowned crew member.

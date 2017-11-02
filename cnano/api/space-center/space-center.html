@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SpaceCenter &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Vessel" href="vessel.html"/>
+        <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cnano.html">C-nano</a> &raquo;</li>
+        
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+        
+      <li>SpaceCenter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cnano/api/space-center/space-center.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spacecenter">
+<h1>SpaceCenter<a class="headerlink" href="#spacecenter" title="Permalink to this headline">¶</a></h1>
+<p>Service SpaceCenter</p>
+<blockquote>
+<div><p>Provides functionality to interact with Kerbal Space Program. This includes controlling
+the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_ActiveVessel">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ActiveVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t">krpc_SpaceCenter_Vessel_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ActiveVessel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_ActiveVessel">
+void <code class="descname">krpc_SpaceCenter_set_ActiveVessel</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t">krpc_SpaceCenter_Vessel_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_ActiveVessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently active vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Vessels">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Vessels</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Vessels" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the vessels in the game.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Bodies">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Bodies</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_dictionary_string_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Bodies" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of all celestial bodies (planets, moons, etc.) in the game,
+keyed by the name of the body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TargetBody">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TargetBody</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TargetBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_TargetBody">
+void <code class="descname">krpc_SpaceCenter_set_TargetBody</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_TargetBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted celestial body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TargetVessel">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TargetVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t">krpc_SpaceCenter_Vessel_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TargetVessel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_TargetVessel">
+void <code class="descname">krpc_SpaceCenter_set_TargetVessel</code><span class="sig-paren">(</span><a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t">krpc_SpaceCenter_Vessel_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_TargetVessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TargetDockingPort">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TargetDockingPort</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_DockingPort_t" title="krpc_SpaceCenter_DockingPort_t">krpc_SpaceCenter_DockingPort_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TargetDockingPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_TargetDockingPort">
+void <code class="descname">krpc_SpaceCenter_set_TargetDockingPort</code><span class="sig-paren">(</span><a class="reference internal" href="parts.html#c.krpc_SpaceCenter_DockingPort_t" title="krpc_SpaceCenter_DockingPort_t">krpc_SpaceCenter_DockingPort_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_TargetDockingPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently targeted docking port.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_ClearTarget">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ClearTarget</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ClearTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the current target.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_LaunchableVessels">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchableVessels</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_string_t *<em>&nbsp;result</em>, const char *<em>&nbsp;craftDirectory</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchableVessels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of vessels from the given <em>craftDirectory</em>
+that can be launched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>craftDirectory</strong> – Name of the directory in the current saves “Ships” directory. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_LaunchVessel">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;craftDirectory</em>, const char *<em>&nbsp;name</em>, const char *<em>&nbsp;launchSite</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVessel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>craftDirectory</strong> – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
+<li><strong>name</strong> – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
+<li><strong>launchSite</strong> – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_LaunchVesselFromVAB">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromVAB</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromVAB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – Name of the vessel to launch.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#c.krpc_SpaceCenter_LaunchVessel" title="krpc_SpaceCenter_LaunchVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_LaunchVessel()</span></code></a> with the craft directory
+set to “VAB” and the launch site set to “LaunchPad”.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_LaunchVesselFromSPH">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromSPH</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromSPH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a new vessel from the SPH onto the runway.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – Name of the vessel to launch.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#c.krpc_SpaceCenter_LaunchVessel" title="krpc_SpaceCenter_LaunchVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_LaunchVessel()</span></code></a> with the craft directory
+set to “SPH” and the launch site set to “Runway”.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Save">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Save</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the game with a given name.
+This will create a save file called <code class="docutils literal"><span class="pre">name.sfs</span></code> in the folder of the
+current save game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Load">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Load</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the game with the given name.
+This will create a load a save file called <code class="docutils literal"><span class="pre">name.sfs</span></code> from the folder of the
+current save game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Quicksave">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Quicksave</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Quicksave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a quicksave.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#c.krpc_SpaceCenter_Save" title="krpc_SpaceCenter_Save"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Save()</span></code></a> with the name “quicksave”.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Quickload">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Quickload</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Quickload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a quicksave.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the same as calling <a class="reference internal" href="#c.krpc_SpaceCenter_Load" title="krpc_SpaceCenter_Load"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Load()</span></code></a> with the name “quicksave”.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_UIVisible">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_UIVisible</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_UIVisible" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_UIVisible">
+void <code class="descname">krpc_SpaceCenter_set_UIVisible</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_UIVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the UI is visible.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Navball">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Navball</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Navball" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_Navball">
+void <code class="descname">krpc_SpaceCenter_set_Navball</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_Navball" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the navball is visible.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_UT">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_UT</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_UT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current universal time in seconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_G">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_G</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_G" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value of the <a class="reference external" href="https://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a> G in <span class="math">\(N(m/kg)^2\)</span>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_WarpRate">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WarpRate</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WarpRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current warp rate. This is the rate at which time is passing for
+either on-rails or physical time warp. For example, a value of 10 means
+time is passing 10x faster than normal. Returns 1 if time warp is not
+active.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_WarpFactor">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WarpFactor</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current warp factor. This is the index of the rate at which time
+is passing for either regular “on-rails” or physical time warp. Returns 0
+if time warp is not active. When in on-rails time warp, this is equal to
+<a class="reference internal" href="#c.krpc_SpaceCenter_RailsWarpFactor" title="krpc_SpaceCenter_RailsWarpFactor"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_RailsWarpFactor()</span></code></a>, and in physics time warp, this is equal to
+<a class="reference internal" href="#c.krpc_SpaceCenter_PhysicsWarpFactor" title="krpc_SpaceCenter_PhysicsWarpFactor"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_PhysicsWarpFactor()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_RailsWarpFactor">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_RailsWarpFactor</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_RailsWarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_RailsWarpFactor">
+void <code class="descname">krpc_SpaceCenter_set_RailsWarpFactor</code><span class="sig-paren">(</span>int32_t<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_RailsWarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time warp rate, using regular “on-rails” time warp. A value between
+0 and 7 inclusive. 0 means no time warp. Returns 0 if physical time warp
+is active.</p>
+<p>If requested time warp factor cannot be set, it will be set to the next
+lowest possible value. For example, if the vessel is too close to a
+planet. See <a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a> for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_PhysicsWarpFactor">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_PhysicsWarpFactor</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_PhysicsWarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_set_PhysicsWarpFactor">
+void <code class="descname">krpc_SpaceCenter_set_PhysicsWarpFactor</code><span class="sig-paren">(</span>int32_t<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_set_PhysicsWarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The physical time warp rate. A value between 0 and 3 inclusive. 0 means
+no time warp. Returns 0 if regular “on-rails” time warp is active.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CanRailsWarpAt">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CanRailsWarpAt</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em>, int32_t<em>&nbsp;factor</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CanRailsWarpAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if regular “on-rails” time warp can be used, at the specified warp
+<em>factor</em>. The maximum time warp rate is limited by various things,
+including how close the active vessel is to a planet. See
+<a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a>
+for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>factor</strong> – The warp factor to check.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_MaximumRailsWarpFactor">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_MaximumRailsWarpFactor</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_MaximumRailsWarpFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current maximum regular “on-rails” warp factor that can be set.
+A value between 0 and 7 inclusive. See
+<a class="reference external" href="https://wiki.kerbalspaceprogram.com/wiki/Time_warp">the KSP wiki</a>
+for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_WarpTo">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WarpTo</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double<em>&nbsp;ut</em>, float<em>&nbsp;maxRailsRate</em>, float<em>&nbsp;maxPhysicsRate</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WarpTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses time acceleration to warp forward to a time in the future, specified
+by universal time <em>ut</em>. This call blocks until the desired
+time is reached. Uses regular “on-rails” or physical time warp as appropriate.
+For example, physical time warp is used when the active vessel is traveling
+through an atmosphere. When using regular “on-rails” time warp, the warp
+rate is limited by <em>maxRailsRate</em>, and when using physical
+time warp, the warp rate is limited by <em>maxPhysicsRate</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ut</strong> – The universal time to warp to, in seconds.</li>
+<li><strong>maxRailsRate</strong> – The maximum warp rate in regular “on-rails” time warp.</li>
+<li><strong>maxPhysicsRate</strong> – The maximum warp rate in physical time warp.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">When the time warp is complete.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TransformPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TransformPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;from</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;to</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TransformPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a position from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> – Position, as a vector, in reference frame <em>from</em>.</li>
+<li><strong>from</strong> – The reference frame that the position is in.</li>
+<li><strong>to</strong> – The reference frame to covert the position to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The corresponding position, as a vector, in reference frame <em>to</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TransformDirection">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TransformDirection</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;direction</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;from</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;to</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TransformDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a direction from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>direction</strong> – Direction, as a vector, in reference frame <em>from</em>.</li>
+<li><strong>from</strong> – The reference frame that the direction is in.</li>
+<li><strong>to</strong> – The reference frame to covert the direction to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The corresponding direction, as a vector, in reference frame <em>to</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TransformRotation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TransformRotation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_double_t *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_double_t *<em>&nbsp;rotation</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;from</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;to</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TransformRotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a rotation from one reference frame to another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rotation</strong> – Rotation, as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>, in reference frame <em>from</em>.</li>
+<li><strong>from</strong> – The reference frame that the rotation is in.</li>
+<li><strong>to</strong> – The reference frame to covert the rotation to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The corresponding rotation, as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>, in reference frame <em>to</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_TransformVelocity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_TransformVelocity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;velocity</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;from</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;to</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_TransformVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a velocity (acting at the specified position) from one reference frame
+to another. The position is required to take the relative angular velocity of the
+reference frames into account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> – Position, as a vector, in reference frame <em>from</em>.</li>
+<li><strong>velocity</strong> – Velocity, as a vector that points in the direction of travel and whose magnitude is the speed in meters per second, in reference frame <em>from</em>.</li>
+<li><strong>from</strong> – The reference frame that the position and velocity are in.</li>
+<li><strong>to</strong> – The reference frame to covert the velocity to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The corresponding velocity, as a vector, in reference frame <em>to</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_RaycastDistance">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_RaycastDistance</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;direction</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_RaycastDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the distance to the hit point.
+If no hit occurs, returns infinity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> – Direction of the ray, as a unit vector.</li>
+<li><strong>referenceFrame</strong> – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The distance to the hit, in meters, or infinity if there was no hit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_RaycastPart">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_RaycastPart</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Part_t" title="krpc_SpaceCenter_Part_t">krpc_SpaceCenter_Part_t</a> *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;direction</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_RaycastPart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the part that it hits.
+If no hit occurs, returns <code class="docutils literal"><span class="pre">nullptr</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> – Direction of the ray, as a unit vector.</li>
+<li><strong>referenceFrame</strong> – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The part that was hit or <code class="docutils literal"><span class="pre">nullptr</span></code> if there was no hit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_FARAvailable">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_FARAvailable</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_FARAvailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/">Ferram Aerospace Research</a> is installed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_WarpMode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WarpMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_WarpMode_t" title="krpc_SpaceCenter_WarpMode_t">krpc_SpaceCenter_WarpMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WarpMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current time warp mode. Returns <a class="reference internal" href="#c.KRPC_SPACECENTER_WARPMODE_NONE" title="KRPC_SPACECENTER_WARPMODE_NONE"><code class="xref c c-macro docutils literal"><span class="pre">KRPC_SPACECENTER_WARPMODE_NONE</span></code></a> if time
+warp is not active, <a class="reference internal" href="#c.KRPC_SPACECENTER_WARPMODE_RAILS" title="KRPC_SPACECENTER_WARPMODE_RAILS"><code class="xref c c-macro docutils literal"><span class="pre">KRPC_SPACECENTER_WARPMODE_RAILS</span></code></a> if regular “on-rails” time warp
+is active, or <a class="reference internal" href="#c.KRPC_SPACECENTER_WARPMODE_PHYSICS" title="KRPC_SPACECENTER_WARPMODE_PHYSICS"><code class="xref c c-macro docutils literal"><span class="pre">KRPC_SPACECENTER_WARPMODE_PHYSICS</span></code></a> if physical time warp is active.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Camera">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Camera</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="camera.html#c.krpc_SpaceCenter_Camera_t" title="krpc_SpaceCenter_Camera_t">krpc_SpaceCenter_Camera_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that can be used to control the camera.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_WaypointManager">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="waypoints.html#c.krpc_SpaceCenter_WaypointManager_t" title="krpc_SpaceCenter_WaypointManager_t">krpc_SpaceCenter_WaypointManager_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>The waypoint manager.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_ContractManager">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ContractManager</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="contracts.html#c.krpc_SpaceCenter_ContractManager_t" title="krpc_SpaceCenter_ContractManager_t">krpc_SpaceCenter_ContractManager_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ContractManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>The contract manager.</p>
+</dd></dl>
+
+</div></blockquote>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_WarpMode_t">
+<code class="descname">krpc_SpaceCenter_WarpMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_WarpMode_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time warp mode.
+Returned by <a class="reference internal" href="#c.krpc_SpaceCenter_WarpMode_t" title="krpc_SpaceCenter_WarpMode_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_WarpMode_t</span></code></a></p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_WARPMODE_RAILS">
+<code class="descname">KRPC_SPACECENTER_WARPMODE_RAILS</code><a class="headerlink" href="#c.KRPC_SPACECENTER_WARPMODE_RAILS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is active, and in regular “on-rails” mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_WARPMODE_PHYSICS">
+<code class="descname">KRPC_SPACECENTER_WARPMODE_PHYSICS</code><a class="headerlink" href="#c.KRPC_SPACECENTER_WARPMODE_PHYSICS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is active, and in physical time warp mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_WARPMODE_NONE">
+<code class="descname">KRPC_SPACECENTER_WARPMODE_NONE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_WARPMODE_NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time warp is not active.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vessel.html" class="btn btn-neutral float-right" title="Vessel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../space-center.html" class="btn btn-neutral" title="SpaceCenter API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

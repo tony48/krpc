@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reference Frames &mdash; kRPC 0.4.0 documentation</title>
+  <title>Reference Frames &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -45,7 +45,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials and Examples" href="../tutorials.html"/>
         <link rel="next" title="Launch into Orbit" href="launch-into-orbit.html"/>
         <link rel="prev" title="Sub-Orbital Flight" href="suborbital-flight.html"/>
@@ -88,7 +88,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -146,6 +146,7 @@
 <li class="toctree-l2"><a class="reference internal" href="autopilot.html">AutoPilot</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
@@ -306,13 +307,17 @@ C++</div>
 </div>
 <div class="item sphinx-data-tab-2 docutils container">
 <div class="docutils container">
-Java</div>
+C</div>
 </div>
 <div class="item sphinx-data-tab-3 docutils container">
 <div class="docutils container">
-Lua</div>
+Java</div>
 </div>
 <div class="item sphinx-data-tab-4 docutils container">
+<div class="docutils container">
+Lua</div>
+</div>
+<div class="item sphinx-data-tab-5 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
@@ -357,6 +362,33 @@ Python</div>
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-2 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Vessel position&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Orbit_t</span> <span class="n">orbit</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Orbit</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">orbit</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">body</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Orbit_Body</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body</span><span class="p">,</span> <span class="n">orbit</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">body_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body_frame</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+  <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">position</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Position</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">position</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">body_frame</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%.2f, %.2f, %.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">.</span><span class="n">e0</span><span class="p">,</span> <span class="n">position</span><span class="p">.</span><span class="n">e1</span><span class="p">,</span> <span class="n">position</span><span class="p">.</span><span class="n">e2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-3 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -383,7 +415,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-3 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-4 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
@@ -391,7 +423,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-4 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-5 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -463,28 +495,32 @@ matches the current orbital velocity of Kerbin.</p>
 <p>kRPC provides the following reference frames:</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-5 docutils container">
+<div class="active item sphinx-data-tab-6 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-6 docutils container">
+<div class="item sphinx-data-tab-7 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-7 docutils container">
+<div class="item sphinx-data-tab-8 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-9 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-8 docutils container">
+<div class="item sphinx-data-tab-10 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-9 docutils container">
+<div class="item sphinx-data-tab-11 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-5 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-6 active docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../csharp/api/space-center/vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.ReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.ReferenceFrame</span></code></a></li>
 <li><a class="reference internal" href="../csharp/api/space-center/vessel.html#property-KRPC.Client.Services.SpaceCenter.Vessel.OrbitalReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Vessel.OrbitalReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Vessel.OrbitalReferenceFrame</span></code></a></li>
@@ -501,7 +537,7 @@ Python</div>
 <li><a class="reference internal" href="../csharp/api/space-center/parts.html#property-KRPC.Client.Services.SpaceCenter.Thruster.ThrustReferenceFrame" title="KRPC.Client.Services.SpaceCenter.Thruster.ThrustReferenceFrame property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">Thruster.ThrustReferenceFrame</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-6 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-7 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../cpp/api/space-center/vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel15reference_frameEv" title="krpc::services::SpaceCenter::Vessel::reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::reference_frame()</span></code></a></li>
 <li><a class="reference internal" href="../cpp/api/space-center/vessel.html#_CPPv2N4krpc8services11SpaceCenter6Vessel23orbital_reference_frameEv" title="krpc::services::SpaceCenter::Vessel::orbital_reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::orbital_reference_frame()</span></code></a></li>
@@ -518,7 +554,24 @@ Python</div>
 <li><a class="reference internal" href="../cpp/api/space-center/parts.html#_CPPv2N4krpc8services11SpaceCenter8Thruster22thrust_reference_frameEv" title="krpc::services::SpaceCenter::Thruster::thrust_reference_frame"><code class="xref cpp cpp-func docutils literal"><span class="pre">Thruster::thrust_reference_frame()</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-7 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-8 docutils container">
+<ul class="simple">
+<li><a class="reference internal" href="../cnano/api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_ReferenceFrame" title="krpc_SpaceCenter_Vessel_ReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_ReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_OrbitalReferenceFrame" title="krpc_SpaceCenter_Vessel_OrbitalReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_OrbitalReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_SurfaceReferenceFrame" title="krpc_SpaceCenter_Vessel_SurfaceReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_SurfaceReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame" title="krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/celestial-body.html#c.krpc_SpaceCenter_CelestialBody_ReferenceFrame" title="krpc_SpaceCenter_CelestialBody_ReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_CelestialBody_ReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/celestial-body.html#c.krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame" title="krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/celestial-body.html#c.krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame" title="krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/node.html#c.krpc_SpaceCenter_Node_ReferenceFrame" title="krpc_SpaceCenter_Node_ReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Node_ReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/node.html#c.krpc_SpaceCenter_Node_OrbitalReferenceFrame" title="krpc_SpaceCenter_Node_OrbitalReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Node_OrbitalReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/parts.html#c.krpc_SpaceCenter_Part_ReferenceFrame" title="krpc_SpaceCenter_Part_ReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Part_ReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/parts.html#c.krpc_SpaceCenter_Part_CenterOfMassReferenceFrame" title="krpc_SpaceCenter_Part_CenterOfMassReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Part_CenterOfMassReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/parts.html#c.krpc_SpaceCenter_DockingPort_ReferenceFrame" title="krpc_SpaceCenter_DockingPort_ReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_DockingPort_ReferenceFrame()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/parts.html#c.krpc_SpaceCenter_Thruster_ThrustReferenceFrame" title="krpc_SpaceCenter_Thruster_ThrustReferenceFrame"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Thruster_ThrustReferenceFrame()</span></code></a></li>
+</ul>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-9 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../java/api/space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel.getReferenceFrame()" title="krpc.client.services.SpaceCenter.Vessel.getReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getReferenceFrame</span></code></a></li>
 <li><a class="reference internal" href="../java/api/space-center/vessel.html#krpc.client.services.SpaceCenter.Vessel.getOrbitalReferenceFrame()" title="krpc.client.services.SpaceCenter.Vessel.getOrbitalReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getOrbitalReferenceFrame</span></code></a></li>
@@ -535,7 +588,7 @@ Python</div>
 <li><a class="reference internal" href="../java/api/space-center/parts.html#krpc.client.services.SpaceCenter.Thruster.getThrustReferenceFrame()" title="krpc.client.services.SpaceCenter.Thruster.getThrustReferenceFrame()"><code class="xref java java-meth docutils literal"><span class="pre">Thruster.getThrustReferenceFrame</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-8 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-10 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../lua/api/space-center/vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">Vessel.reference_frame</span></code></a></li>
 <li><a class="reference internal" href="../lua/api/space-center/vessel.html#SpaceCenter.Vessel.orbital_reference_frame" title="SpaceCenter.Vessel.orbital_reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">Vessel.orbital_reference_frame</span></code></a></li>
@@ -552,7 +605,7 @@ Python</div>
 <li><a class="reference internal" href="../lua/api/space-center/parts.html#SpaceCenter.Thruster.thrust_reference_frame" title="SpaceCenter.Thruster.thrust_reference_frame"><code class="xref lua lua-attr docutils literal"><span class="pre">Thruster.thrust_reference_frame</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-9 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-11 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.reference_frame" title="SpaceCenter.Vessel.reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.reference_frame</span></code></a></li>
 <li><a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.orbital_reference_frame" title="SpaceCenter.Vessel.orbital_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.orbital_reference_frame</span></code></a></li>
@@ -604,28 +657,32 @@ orbited.</p>
 velocities between the different reference frames:</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-10 docutils container">
+<div class="active item sphinx-data-tab-12 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-11 docutils container">
+<div class="item sphinx-data-tab-13 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-12 docutils container">
+<div class="item sphinx-data-tab-14 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-15 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-13 docutils container">
+<div class="item sphinx-data-tab-16 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-14 docutils container">
+<div class="item sphinx-data-tab-17 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-10 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-12 active docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../csharp/api/space-center/space-center.html#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformPosition" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformPosition method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">SpaceCenter.TransformPosition</span></code></a></li>
 <li><a class="reference internal" href="../csharp/api/space-center/space-center.html#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformDirection" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformDirection method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">SpaceCenter.TransformDirection</span></code></a></li>
@@ -633,7 +690,7 @@ Python</div>
 <li><a class="reference internal" href="../csharp/api/space-center/space-center.html#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformVelocity" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.TransformVelocity method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">SpaceCenter.TransformVelocity</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-11 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-13 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../cpp/api/space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenter18transform_positionENSt5tupleIdddEE14ReferenceFrame14ReferenceFrame" title="krpc::services::SpaceCenter::transform_position"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::transform_position()</span></code></a></li>
 <li><a class="reference internal" href="../cpp/api/space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenter19transform_directionENSt5tupleIdddEE14ReferenceFrame14ReferenceFrame" title="krpc::services::SpaceCenter::transform_direction"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::transform_direction()</span></code></a></li>
@@ -641,7 +698,15 @@ Python</div>
 <li><a class="reference internal" href="../cpp/api/space-center/space-center.html#_CPPv2N4krpc8services11SpaceCenter18transform_velocityENSt5tupleIdddEENSt5tupleIdddEE14ReferenceFrame14ReferenceFrame" title="krpc::services::SpaceCenter::transform_velocity"><code class="xref cpp cpp-func docutils literal"><span class="pre">SpaceCenter::transform_velocity()</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-12 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-14 docutils container">
+<ul class="simple">
+<li><a class="reference internal" href="../cnano/api/space-center/space-center.html#c.krpc_SpaceCenter_TransformPosition" title="krpc_SpaceCenter_TransformPosition"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_TransformPosition()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/space-center.html#c.krpc_SpaceCenter_TransformDirection" title="krpc_SpaceCenter_TransformDirection"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_TransformDirection()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/space-center.html#c.krpc_SpaceCenter_TransformRotation" title="krpc_SpaceCenter_TransformRotation"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_TransformRotation()</span></code></a></li>
+<li><a class="reference internal" href="../cnano/api/space-center/space-center.html#c.krpc_SpaceCenter_TransformVelocity" title="krpc_SpaceCenter_TransformVelocity"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_TransformVelocity()</span></code></a></li>
+</ul>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-15 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../java/api/space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.transformPosition(org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)" title="krpc.client.services.SpaceCenter.SpaceCenter.transformPosition(org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)"><code class="xref java java-meth docutils literal"><span class="pre">SpaceCenter.transformPosition</span></code></a></li>
 <li><a class="reference internal" href="../java/api/space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.transformDirection(org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)" title="krpc.client.services.SpaceCenter.SpaceCenter.transformDirection(org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)"><code class="xref java java-meth docutils literal"><span class="pre">SpaceCenter.transformDirection</span></code></a></li>
@@ -649,7 +714,7 @@ Python</div>
 <li><a class="reference internal" href="../java/api/space-center/space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.transformVelocity(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)" title="krpc.client.services.SpaceCenter.SpaceCenter.transformVelocity(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame, ReferenceFrame)"><code class="xref java java-meth docutils literal"><span class="pre">SpaceCenter.transformVelocity</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-13 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-16 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../lua/api/space-center/space-center.html#SpaceCenter.transform_position" title="SpaceCenter.transform_position"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.transform_position()</span></code></a></li>
 <li><a class="reference internal" href="../lua/api/space-center/space-center.html#SpaceCenter.transform_direction" title="SpaceCenter.transform_direction"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.transform_direction()</span></code></a></li>
@@ -657,7 +722,7 @@ Python</div>
 <li><a class="reference internal" href="../lua/api/space-center/space-center.html#SpaceCenter.transform_velocity" title="SpaceCenter.transform_velocity"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.transform_velocity()</span></code></a></li>
 </ul>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-14 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-17 docutils container">
 <ul class="simple">
 <li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_position" title="SpaceCenter.transform_position"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_position()</span></code></a></li>
 <li><a class="reference internal" href="../python/api/space-center/space-center.html#SpaceCenter.transform_direction" title="SpaceCenter.transform_direction"><code class="xref py py-meth docutils literal"><span class="pre">SpaceCenter.transform_direction()</span></code></a></li>
@@ -678,28 +743,32 @@ direction of the current vessels velocity relative to the surface of the body it
 is orbiting:</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-15 docutils container">
+<div class="active item sphinx-data-tab-18 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-16 docutils container">
+<div class="item sphinx-data-tab-19 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-17 docutils container">
+<div class="item sphinx-data-tab-20 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-21 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-18 docutils container">
+<div class="item sphinx-data-tab-22 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-19 docutils container">
+<div class="item sphinx-data-tab-23 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-15 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-18 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.Drawing</span><span class="p">;</span>
@@ -722,7 +791,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-16 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-19 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/ui.hpp&gt;</span><span class="cp"></span>
@@ -742,7 +811,31 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-17 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-20 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/ui.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/drawing.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Visual debugging&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">ref_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ref_frame</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+  <span class="n">krpc_Drawing_AddDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">,</span> <span class="n">ref_frame</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-21 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -770,7 +863,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-18 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-22 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Visual Debugging&#39;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">space_center</span><span class="p">.</span><span class="n">active_vessel</span>
@@ -782,7 +875,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-19 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-23 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Visual Debugging&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -810,28 +903,32 @@ hence the infinite loop at the end of this example.</p>
 the navball:</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-20 docutils container">
+<div class="active item sphinx-data-tab-24 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-21 docutils container">
+<div class="item sphinx-data-tab-25 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-22 docutils container">
+<div class="item sphinx-data-tab-26 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-27 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-23 docutils container">
+<div class="item sphinx-data-tab-28 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-24 docutils container">
+<div class="item sphinx-data-tab-29 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-20 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-24 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
@@ -867,7 +964,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-21 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-25 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
 
@@ -896,7 +993,56 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-22 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-26 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Navball directions&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">vessel_srf_ref</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_SurfaceReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel_srf_ref</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_t</span> <span class="n">ap</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_AutoPilot</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ap</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_set_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">vessel_srf_ref</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_Engage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+
+  <span class="c1">// Point the vessel north on the navball, with a pitch of 0 degrees</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Point the vessel vertically upwards on the navball</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Point the vessel west (heading of 270 degrees), with a pitch of 0 degrees</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_Disengage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-27 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -935,7 +1081,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-23 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-28 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;pl.List&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Navball directions&#39;</span><span class="p">)</span>
@@ -960,7 +1106,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-24 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-29 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Navball directions&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -1005,28 +1151,32 @@ directions, as seen on the navball when it is in ‘orbit’ mode. It uses
 <a class="reference internal" href="../python/api/space-center/vessel.html#SpaceCenter.Vessel.orbital_reference_frame" title="SpaceCenter.Vessel.orbital_reference_frame"><code class="xref py py-attr docutils literal"><span class="pre">Vessel.orbital_reference_frame</span></code></a>.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-25 docutils container">
+<div class="active item sphinx-data-tab-30 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-26 docutils container">
+<div class="item sphinx-data-tab-31 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-27 docutils container">
+<div class="item sphinx-data-tab-32 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-33 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-28 docutils container">
+<div class="item sphinx-data-tab-34 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-29 docutils container">
+<div class="item sphinx-data-tab-35 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-25 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-30 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
@@ -1062,7 +1212,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-26 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-31 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
 
@@ -1091,7 +1241,56 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-27 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-32 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Orbital directions&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">vessel_obt_ref</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_OrbitalReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel_obt_ref</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_t</span> <span class="n">ap</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_AutoPilot</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ap</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_set_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">vessel_obt_ref</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_Engage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+
+  <span class="c1">// Point the vessel in the prograde direction</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Point the vessel in the orbit normal direction</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Point the vessel in the orbit radial direction</span>
+  <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_Disengage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-33 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -1130,7 +1329,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-28 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-34 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;pl.List&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Orbital directions&#39;</span><span class="p">)</span>
@@ -1155,7 +1354,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-29 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-35 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Orbital directions&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -1190,28 +1389,32 @@ the navball, when in ‘surface’ mode. This is the direction of the vessels
 velocity relative to the surface:</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-30 docutils container">
+<div class="active item sphinx-data-tab-36 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-31 docutils container">
+<div class="item sphinx-data-tab-37 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-32 docutils container">
+<div class="item sphinx-data-tab-38 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-39 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-33 docutils container">
+<div class="item sphinx-data-tab-40 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-34 docutils container">
+<div class="item sphinx-data-tab-41 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-30 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-36 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -1235,7 +1438,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-31 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-37 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.hpp&gt;</span><span class="cp"></span>
@@ -1255,7 +1458,38 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-32 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-38 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Surface prograde&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">vessel_srf_vel_ref</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_SurfaceVelocityReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel_srf_vel_ref</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_t</span> <span class="n">ap</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_AutoPilot</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ap</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_AutoPilot_set_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="n">vessel_srf_vel_ref</span><span class="p">);</span>
+  <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_set_TargetDirection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">direction</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_Engage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_Wait</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_AutoPilot_Disengage</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-39 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -1284,7 +1518,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-33 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-40 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;pl.List&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Surface prograde&#39;</span><span class="p">)</span>
@@ -1299,7 +1533,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-34 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-41 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Surface prograde&#39;</span><span class="p">)</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
@@ -1331,28 +1565,32 @@ fixed relative to the body, but does not rotate.</p>
 rotates with the body.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-35 docutils container">
+<div class="active item sphinx-data-tab-42 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-36 docutils container">
+<div class="item sphinx-data-tab-43 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-37 docutils container">
+<div class="item sphinx-data-tab-44 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-45 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-38 docutils container">
+<div class="item sphinx-data-tab-46 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-39 docutils container">
+<div class="item sphinx-data-tab-47 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-35 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-42 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -1378,7 +1616,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-36 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-43 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
@@ -1404,7 +1642,47 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-37 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-44 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Vessel speed&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Orbit_t</span> <span class="n">orbit</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Orbit</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">orbit</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">body</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Orbit_Body</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body</span><span class="p">,</span> <span class="n">orbit</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">obt_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">srf_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">obt_frame</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">srf_frame</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">obt_speed</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">srf_speed</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_Flight_t</span> <span class="n">flight</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_Vessel_Flight</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flight</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">obt_frame</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_Flight_Speed</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">obt_speed</span><span class="p">,</span> <span class="n">flight</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_Vessel_Flight</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flight</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">srf_frame</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_Flight_Speed</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">srf_speed</span><span class="p">,</span> <span class="n">flight</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Orbital speed = %.1f m/s, Surface speed = %.1f m/s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">obt_speed</span><span class="p">,</span> <span class="n">srf_speed</span><span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-45 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -1436,7 +1714,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-38 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-46 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc.platform&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Vessel speed&#39;</span><span class="p">)</span>
@@ -1455,7 +1733,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-39 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-47 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">krpc</span>
 
@@ -1489,28 +1767,32 @@ reference frame (<a class="reference internal" href="../python/api/space-center/
 the body.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-40 docutils container">
+<div class="active item sphinx-data-tab-48 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-41 docutils container">
+<div class="item sphinx-data-tab-49 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-42 docutils container">
+<div class="item sphinx-data-tab-50 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-51 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-43 docutils container">
+<div class="item sphinx-data-tab-52 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-44 docutils container">
+<div class="item sphinx-data-tab-53 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-40 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-48 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -1537,7 +1819,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-41 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-49 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
@@ -1569,7 +1851,48 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-42 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-50 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Vessel velocity&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Orbit_t</span> <span class="n">orbit</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Orbit</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">orbit</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">body</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Orbit_Body</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body</span><span class="p">,</span> <span class="n">orbit</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">vessel_srf_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_SurfaceReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel_srf_frame</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">body_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body_frame</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">ref_frame</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_CreateHybrid</span><span class="p">(</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ref_frame</span><span class="p">,</span> <span class="n">body_frame</span><span class="p">,</span> <span class="n">vessel_srf_frame</span><span class="p">,</span> <span class="n">KRPC_NULL</span><span class="p">,</span> <span class="n">KRPC_NULL</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">velocity</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_Flight_t</span> <span class="n">flight</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_Vessel_Flight</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flight</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">ref_frame</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_Flight_Velocity</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">velocity</span><span class="p">,</span> <span class="n">flight</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Surface velocity = %.1f, %.1f, %.1f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">velocity</span><span class="p">.</span><span class="n">e0</span><span class="p">,</span> <span class="n">velocity</span><span class="p">.</span><span class="n">e1</span><span class="p">,</span> <span class="n">velocity</span><span class="p">.</span><span class="n">e2</span><span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-51 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -1606,7 +1929,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-43 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-52 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc.platform&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Orbital speed&#39;</span><span class="p">)</span>
@@ -1624,7 +1947,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-44 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-53 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">krpc</span>
 
@@ -1649,28 +1972,32 @@ Python</div>
 and the direction that the vessel is moving in (relative to the surface):</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-45 docutils container">
+<div class="active item sphinx-data-tab-54 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-46 docutils container">
+<div class="item sphinx-data-tab-55 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-47 docutils container">
+<div class="item sphinx-data-tab-56 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-57 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-48 docutils container">
+<div class="item sphinx-data-tab-58 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-49 docutils container">
+<div class="item sphinx-data-tab-59 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-45 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-54 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -1709,7 +2036,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-46 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-55 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
@@ -1757,7 +2084,57 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-47 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-56 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415926535897</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Angle of attack&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Orbit_t</span> <span class="n">orbit</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Orbit</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">orbit</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">body</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Orbit_Body</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body</span><span class="p">,</span> <span class="n">orbit</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">body_ref</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body_ref</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector3</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">vector3</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_Vessel_Direction</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">body_ref</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_Vessel_Velocity</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">body_ref</span><span class="p">);</span>
+
+    <span class="c1">// Compute the dot product of d and v</span>
+    <span class="kt">double</span> <span class="n">dotProd</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">e0</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e0</span> <span class="o">+</span> <span class="n">d</span><span class="p">.</span><span class="n">e1</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e1</span> <span class="o">+</span> <span class="n">d</span><span class="p">.</span><span class="n">e2</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e2</span><span class="p">;</span>
+
+    <span class="c1">// Compute the magnitude of v</span>
+    <span class="kt">double</span> <span class="n">vMag</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">e0</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e0</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">e1</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e1</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">e2</span><span class="o">*</span><span class="n">v</span><span class="p">.</span><span class="n">e2</span><span class="p">);</span>
+    <span class="c1">// Note: don&#39;t need to magnitude of d as it is a unit vector</span>
+
+    <span class="c1">// Compute the angle between the vectors</span>
+    <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">dotProd</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">angle</span> <span class="o">=</span> <span class="n">fabs</span><span class="p">(</span><span class="n">acos</span><span class="p">(</span><span class="n">dotProd</span> <span class="o">/</span> <span class="n">vMag</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">180.0</span> <span class="o">/</span> <span class="n">pi</span><span class="p">));</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Angle of attack = %.1f degrees</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">angle</span><span class="p">);</span>
+
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-57 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.SpaceCenter</span><span class="o">;</span>
@@ -1809,7 +2186,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-48 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-58 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc.platform&#39;</span>
 <span class="kd">local</span> <span class="n">math</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;math&#39;</span>
@@ -1842,7 +2219,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-49 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-59 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">krpc</span>
@@ -1887,28 +2264,32 @@ the vessel. <a class="reference internal" href="../python/api/space-center/celes
 at a given altitude, which could be used as the target for a landing auto pilot.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
-<div class="active item sphinx-data-tab-50 docutils container">
+<div class="active item sphinx-data-tab-60 docutils container">
 <div class="docutils container">
 C#</div>
 </div>
-<div class="item sphinx-data-tab-51 docutils container">
+<div class="item sphinx-data-tab-61 docutils container">
 <div class="docutils container">
 C++</div>
 </div>
-<div class="item sphinx-data-tab-52 docutils container">
+<div class="item sphinx-data-tab-62 docutils container">
+<div class="docutils container">
+C</div>
+</div>
+<div class="item sphinx-data-tab-63 docutils container">
 <div class="docutils container">
 Java</div>
 </div>
-<div class="item sphinx-data-tab-53 docutils container">
+<div class="item sphinx-data-tab-64 docutils container">
 <div class="docutils container">
 Lua</div>
 </div>
-<div class="item sphinx-data-tab-54 docutils container">
+<div class="item sphinx-data-tab-65 docutils container">
 <div class="docutils container">
 Python</div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-50 active docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-60 active docutils container">
 <div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -1973,7 +2354,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-51 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-61 docutils container">
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
@@ -2042,7 +2423,86 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-52 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-62 docutils container">
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/ui.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/drawing.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_t</span> <span class="n">vector3</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">krpc_tuple_double_double_double_double_t</span> <span class="n">quaternion</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415926535897</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Landing site&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_Orbit_t</span> <span class="n">orbit</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Orbit</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">orbit</span><span class="p">,</span> <span class="n">vessel</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_t</span> <span class="n">body</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Orbit_Body</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body</span><span class="p">,</span> <span class="n">orbit</span><span class="p">);</span>
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">body_ref</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_ReferenceFrame</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">body_ref</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+  <span class="c1">// Define the landing site as the top of the VAB</span>
+  <span class="kt">double</span> <span class="n">landing_latitude</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mf">0.0</span><span class="o">+</span><span class="p">(</span><span class="mf">5.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">48.38</span><span class="o">/</span><span class="mf">60.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">));</span>
+  <span class="kt">double</span> <span class="n">landing_longitude</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mf">74.0</span><span class="o">+</span><span class="p">(</span><span class="mf">37.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">12.2</span><span class="o">/</span><span class="mf">60.0</span><span class="o">/</span><span class="mf">60.0</span><span class="p">));</span>
+  <span class="kt">double</span> <span class="n">landing_altitude</span> <span class="o">=</span> <span class="mi">111</span><span class="p">;</span>
+
+  <span class="c1">// Determine landing site reference frame</span>
+  <span class="c1">// (orientation: x=zenith, y=north, z=east)</span>
+  <span class="n">vector3</span> <span class="n">landing_position</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_CelestialBody_SurfacePosition</span><span class="p">(</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">landing_position</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">landing_latitude</span><span class="p">,</span> <span class="n">landing_longitude</span><span class="p">,</span> <span class="n">body_ref</span><span class="p">);</span>
+  <span class="n">quaternion</span> <span class="n">q_long</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">landing_longitude</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">),</span>
+    <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="n">landing_longitude</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
+  <span class="p">};</span>
+  <span class="n">quaternion</span> <span class="n">q_lat</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">0.0</span><span class="p">,</span>
+    <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">sin</span><span class="p">(</span><span class="n">landing_latitude</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">),</span>
+    <span class="n">cos</span><span class="p">(</span><span class="n">landing_latitude</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
+  <span class="p">};</span>
+
+  <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">landing_reference_frame</span><span class="p">;</span>
+  <span class="p">{</span>
+    <span class="n">vector3</span> <span class="n">zero</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">quaternion</span> <span class="n">q_zero</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_ReferenceFrame_t</span> <span class="n">parent_ref</span><span class="p">;</span>
+    <span class="n">krpc_SpaceCenter_ReferenceFrame_CreateRelative</span><span class="p">(</span>
+      <span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">parent_ref</span><span class="p">,</span> <span class="n">body_ref</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">landing_position</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q_long</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">);</span>
+    <span class="n">krpc_SpaceCenter_ReferenceFrame_CreateRelative</span><span class="p">(</span>
+      <span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">parent_ref</span><span class="p">,</span> <span class="n">parent_ref</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q_lat</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">);</span>
+    <span class="n">vector3</span> <span class="n">position</span> <span class="o">=</span> <span class="p">{</span> <span class="n">landing_altitude</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">krpc_SpaceCenter_ReferenceFrame_CreateRelative</span><span class="p">(</span>
+      <span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">landing_reference_frame</span><span class="p">,</span> <span class="n">parent_ref</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">position</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q_zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Draw axes</span>
+  <span class="n">vector3</span> <span class="n">zero</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="n">vector3</span> <span class="n">x_axis</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="n">vector3</span> <span class="n">y_axis</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="n">vector3</span> <span class="n">z_axis</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+  <span class="n">krpc_Drawing_AddLine</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">landing_reference_frame</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+  <span class="n">krpc_Drawing_AddLine</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y_axis</span><span class="p">,</span> <span class="n">landing_reference_frame</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+  <span class="n">krpc_Drawing_AddLine</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">zero</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">z_axis</span><span class="p">,</span> <span class="n">landing_reference_frame</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-63 docutils container">
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc.client.Connection</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.RPCException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">krpc.client.services.Drawing</span><span class="o">;</span>
@@ -2119,7 +2579,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-53 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-64 docutils container">
 <div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">platform</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc.platform&#39;</span>
 <span class="kd">local</span> <span class="n">List</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;pl.List&#39;</span>
@@ -2173,7 +2633,7 @@ Python</div>
 </pre></div>
 </div>
 </div>
-<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-54 docutils container">
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-65 docutils container">
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span>
 <span class="kn">import</span> <span class="nn">krpc</span>
@@ -2274,7 +2734,7 @@ Python</div>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

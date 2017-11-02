@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Parts &mdash; kRPC 0.4.0 documentation</title>
+  <title>Parts &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Resources" href="resources.html"/>
         <link rel="prev" title="Communications" href="comms.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
@@ -6805,7 +6806,7 @@ returns an empty list. A parts parent can be obtained by calling
 returns <code class="docutils literal"><span class="pre">None</span></code>.</p>
 <p>The following Python example uses these attributes to perform a
 depth-first traversal over all of the parts in a vessel:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
@@ -6820,7 +6821,7 @@ depth-first traversal over all of the parts in a vessel:</p>
 </div>
 <p>When this code is execute using the craft file for the example vessel pictured
 above, the following is printed out:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span>
  <span class="n">TR</span><span class="o">-</span><span class="mi">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span>
   <span class="n">FL</span><span class="o">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span>
    <span class="n">LV</span><span class="o">-</span><span class="mi">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span>
@@ -6857,7 +6858,7 @@ a parent part, so does not have an attachment mode. However, the part is
 consider to be <em>axially</em> attached to nothing.</p>
 <p>The following Python example does a depth-first traversal as before,
 but also prints out the attachment mode used by the part:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">krpc</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="n">vessel</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">space_center</span><span class="o">.</span><span class="n">active_vessel</span>
 
@@ -6876,7 +6877,7 @@ but also prints out the attachment mode used by the part:</p>
 </div>
 <p>When this code is execute using the craft file for the example vessel pictured
 above, the following is printed out:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span> <span class="o">-</span> <span class="n">axial</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">Pod</span> <span class="n">Mk1</span> <span class="o">-</span> <span class="n">axial</span>
  <span class="n">TR</span><span class="o">-</span><span class="mi">18</span><span class="n">A</span> <span class="n">Stack</span> <span class="n">Decoupler</span> <span class="o">-</span> <span class="n">axial</span>
   <span class="n">FL</span><span class="o">-</span><span class="n">T400</span> <span class="n">Fuel</span> <span class="n">Tank</span> <span class="o">-</span> <span class="n">axial</span>
    <span class="n">LV</span><span class="o">-</span><span class="mi">909</span> <span class="n">Liquid</span> <span class="n">Fuel</span> <span class="n">Engine</span> <span class="o">-</span> <span class="n">axial</span>
@@ -7006,7 +7007,7 @@ stages in which each part of the vessel will be <em>decoupled</em>.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -86,6 +86,21 @@ Vessel
       An :type:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
+   .. method:: int getCrewCapacity()
+
+
+      The number of crew that can occupy the vessel.
+
+   .. method:: int getCrewCount()
+
+
+      The number of crew that are occupying the vessel.
+
+   .. method:: java.util.List<CrewMember> getCrew()
+
+
+      The crew in the vessel.
+
    .. method:: Resources getResources()
 
 
@@ -464,3 +479,82 @@ Vessel
    .. field:: public VesselSituation SUB_ORBITAL
 
       Vessel is on a sub-orbital trajectory.
+
+
+
+.. type:: public class CrewMember
+
+   Represents crew in a vessel. Can be obtained using :meth:`Vessel.getCrew()`.
+
+   .. method:: String getName()
+
+   .. method:: void setName(String value)
+
+      The crew members name.
+
+   .. method:: CrewMemberType getType()
+
+
+      The type of crew member.
+
+   .. method:: boolean getOnMission()
+
+
+      Whether the crew member is on a mission.
+
+   .. method:: float getCourage()
+
+   .. method:: void setCourage(float value)
+
+      The crew members courage.
+
+   .. method:: float getStupidity()
+
+   .. method:: void setStupidity(float value)
+
+      The crew members stupidity.
+
+   .. method:: float getExperience()
+
+   .. method:: void setExperience(float value)
+
+      The crew members experience.
+
+   .. method:: boolean getBadass()
+
+   .. method:: void setBadass(boolean value)
+
+      Whether the crew member is a badass.
+
+   .. method:: boolean getVeteran()
+
+   .. method:: void setVeteran(boolean value)
+
+      Whether the crew member is a veteran.
+
+
+
+.. type:: public enum CrewMemberType
+
+   The type of a crew member.
+   See :meth:`CrewMember.getType()`.
+
+
+   .. field:: public CrewMemberType APPLICANT
+
+      An applicant for crew.
+
+
+   .. field:: public CrewMemberType CREW
+
+      Rocket crew.
+
+
+   .. field:: public CrewMemberType TOURIST
+
+      A tourist.
+
+
+   .. field:: public CrewMemberType UNOWNED
+
+      An unowned crew member.

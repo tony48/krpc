@@ -257,6 +257,32 @@ SpaceCenter
 
       :returns: The corresponding velocity, as a vector, in reference frame *to*.
 
+   .. method:: double RaycastDistance(System.Tuple<double,double,double> position, System.Tuple<double,double,double> direction, ReferenceFrame referenceFrame)
+
+      Cast a ray from a given position in a given direction, and return the distance to the hit point.
+      If no hit occurs, returns infinity.
+
+      :parameters:
+
+       * **position** -- Position, as a vector, of the origin of the ray.
+       * **direction** -- Direction of the ray, as a unit vector.
+       * **referenceFrame** -- The reference frame that the position and direction are in.
+
+      :returns: The distance to the hit, in meters, or infinity if there was no hit.
+
+   .. method:: Part RaycastPart(System.Tuple<double,double,double> position, System.Tuple<double,double,double> direction, ReferenceFrame referenceFrame)
+
+      Cast a ray from a given position in a given direction, and return the part that it hits.
+      If no hit occurs, returns ``null``.
+
+      :parameters:
+
+       * **position** -- Position, as a vector, of the origin of the ray.
+       * **direction** -- Direction of the ray, as a unit vector.
+       * **referenceFrame** -- The reference frame that the position and direction are in.
+
+      :returns: The part that was hit or ``null`` if there was no hit.
+
    .. property:: bool FARAvailable { get; }
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.

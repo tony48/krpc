@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ReferenceFrame &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="AutoPilot" href="auto-pilot.html"/>
+        <link rel="prev" title="Node" href="node.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cnano.html">C-nano</a> &raquo;</li>
+        
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+        
+      <li>ReferenceFrame</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cnano/api/space-center/reference-frame.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="referenceframe">
+<h1>ReferenceFrame<a class="headerlink" href="#referenceframe" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_ReferenceFrame_t">
+<code class="descname">krpc_SpaceCenter_ReferenceFrame_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a reference frame for positions, rotations and
+velocities. Contains:</p>
+<ul class="simple">
+<li>The position of the origin.</li>
+<li>The directions of the x, y and z axes.</li>
+<li>The linear velocity of the frame.</li>
+<li>The angular velocity of the frame.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This class does not contain any properties or methods. It is only
+used as a parameter to other functions.</p>
+</div>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_ReferenceFrame_CreateRelative">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ReferenceFrame_CreateRelative</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, const krpc_tuple_double_double_double_double_t *<em>&nbsp;rotation</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;velocity</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;angularVelocity</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ReferenceFrame_CreateRelative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a relative reference frame. This is a custom reference frame
+whose components offset the components of a parent reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>referenceFrame</strong> – The parent reference frame on which to base this reference frame.</li>
+<li><strong>position</strong> – The offset of the position of the origin, as a position vector. Defaults to <span class="math">\((0, 0, 0)\)</span></li>
+<li><strong>rotation</strong> – The rotation to apply to the parent frames rotation, as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>. Defaults to <span class="math">\((0, 0, 0, 1)\)</span> (i.e. no rotation)</li>
+<li><strong>velocity</strong> – The linear velocity to offset the parent frame by, as a vector pointing in the direction of travel, whose magnitude is the speed in meters per second. Defaults to <span class="math">\((0, 0, 0)\)</span>.</li>
+<li><strong>angularVelocity</strong> – The angular velocity to offset the parent frame by, as a vector. This vector points in the direction of the axis of rotation, and its magnitude is the speed of the rotation in radians per second. Defaults to <span class="math">\((0, 0, 0)\)</span>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_ReferenceFrame_CreateHybrid">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ReferenceFrame_CreateHybrid</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;position</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;rotation</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;velocity</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;angularVelocity</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ReferenceFrame_CreateHybrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a hybrid reference frame. This is a custom reference frame
+whose components inherited from other reference frames.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – The reference frame providing the position of the origin.</li>
+<li><strong>rotation</strong> – The reference frame providing the rotation of the frame.</li>
+<li><strong>velocity</strong> – The reference frame providing the linear velocity of the frame.</li>
+<li><strong>angularVelocity</strong> – The reference frame providing the angular velocity of the frame.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <em>position</em> reference frame is required but all other
+reference frames are optional. If omitted, they are set to the
+<em>position</em> reference frame.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auto-pilot.html" class="btn btn-neutral float-right" title="AutoPilot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="node.html" class="btn btn-neutral" title="Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

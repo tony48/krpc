@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.0 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
@@ -652,6 +653,52 @@ reference frames into account.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.raycastDistance(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)">
+ double <code class="descname">raycastDistance</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> direction</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.raycastDistance(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the distance to the hit point.
+If no hit occurs, returns infinity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Direction of the ray, as a unit vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The distance to the hit, in meters, or infinity if there was no hit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.raycastPart(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)">
+ <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Part" title="krpc.client.services.SpaceCenter.Part">Part</a> <code class="descname">raycastPart</code><span class="sig-paren">(</span>org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> position</em>, org.javatuples.<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet.html" title="org.javatuples.Triplet">Triplet</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html" title="java.lang.Double">Double</a>&gt;<em> direction</em>, <a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame">ReferenceFrame</a><em> referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.raycastPart(org.javatuples.Triplet, org.javatuples.Triplet, ReferenceFrame)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast a ray from a given position in a given direction, and return the part that it hits.
+If no hit occurs, returns <code class="docutils literal"><span class="pre">null</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>position</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Position, as a vector, of the origin of the ray.</li>
+<li><strong>direction</strong> (<a class="reference external" href="http://www.javatuples.org/apidocs/org/javatuples/Triplet&lt;Double,Double,Double&gt;.html" title="org.javatuples.Triplet&lt;Double,Double,Double&gt;"><em>org.javatuples.Triplet&lt;Double,Double,Double&gt;</em></a>) – Direction of the ray, as a unit vector.</li>
+<li><strong>referenceFrame</strong> (<a class="reference internal" href="reference-frame.html#krpc.client.services.SpaceCenter.ReferenceFrame" title="krpc.client.services.SpaceCenter.ReferenceFrame"><em>ReferenceFrame</em></a>) – The reference frame that the position and direction are in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The part that was hit or <code class="docutils literal"><span class="pre">null</span></code> if there was no hit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.SpaceCenter.getFARAvailable()">
  boolean <code class="descname">getFARAvailable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getFARAvailable()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/">Ferram Aerospace Research</a> is installed.</p>
@@ -756,7 +803,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.War
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

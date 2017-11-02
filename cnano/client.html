@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C-nano Client &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../index.html"/>
+        <link rel="up" title="C-nano" href="../cnano.html"/>
+        <link rel="next" title="KRPC API" href="api/krpc.html"/>
+        <link rel="prev" title="C-nano" href="../cnano.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C-nano Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-library">Installing the Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manually-include-the-source-in-your-project">Manually include the source in your project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arduino-library-manager">Arduino Library Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-configure-script">Using the configure script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-cmake">Using CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compilation-options">Compilation Options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calling-remote-procedures">Calling Remote Procedures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streams-and-events">Streams and Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-api-reference">Client API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/krpc.html">KRPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/space-center.html">SpaceCenter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../cnano.html">C-nano</a> &raquo;</li>
+        
+      <li>C-nano Client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cnano/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-nano-client">
+<h1>C-nano Client<a class="headerlink" href="#c-nano-client" title="Permalink to this headline">¶</a></h1>
+<p>This client provides a C API for interacting with a kRPC server. It is intended for use on embedded
+systems with tight resource constraints, hence the “nano” in its name.</p>
+<div class="section" id="installing-the-library">
+<h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="manually-include-the-source-in-your-project">
+<h3>Manually include the source in your project<a class="headerlink" href="#manually-include-the-source-in-your-project" title="Permalink to this headline">¶</a></h3>
+<p>The source files can be included in your project manually, by downloading and extracting the
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.1/krpc-cnano-0.4.1.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
+directory and the source files are in <code class="docutils literal"><span class="pre">src</span></code>.</p>
+</div>
+<div class="section" id="arduino-library-manager">
+<h3>Arduino Library Manager<a class="headerlink" href="#arduino-library-manager" title="Permalink to this headline">¶</a></h3>
+<p>If you are writing an Arduino sketch, the library can be installed using the Arduino Library Manager
+by searching for and installing “kRPC”.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The source files installed by the Arduino Library Manager are renamed to end with <code class="docutils literal"><span class="pre">.cpp</span></code> so
+that they are built using the C++ compiler. This allows the library to use the C++ only
+<code class="docutils literal"><span class="pre">HardwareSerial</span></code> class for communication.</p>
+</div>
+</div>
+<div class="section" id="using-the-configure-script">
+<h3>Using the configure script<a class="headerlink" href="#using-the-configure-script" title="Permalink to this headline">¶</a></h3>
+<p>You can build and install the client library and headers using the configure script provided with
+the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.1/krpc-cnano-0.4.1.zip">Download the source archive</a>, extract it and then
+execute the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
+make
+sudo make install
+sudo ldconfig
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-cmake">
+<h3>Using CMake<a class="headerlink" href="#using-cmake" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, you can install the client library and headers using
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.1/krpc-cnano-0.4.1.zip">Download the source archive</a>, extract it and execute the
+following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
+make
+sudo make install
+sudo ldconfig
+</pre></div>
+</div>
+</div>
+<div class="section" id="compilation-options">
+<h3>Compilation Options<a class="headerlink" href="#compilation-options" title="Permalink to this headline">¶</a></h3>
+<p>The following options control how the library operates. They must be specified at compile time as an
+argument to the compiler.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Error handling<ul>
+<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_RETURN</span></code> (the default) – when a remote procedure call gets an error, it
+returns the error code.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_EXIT</span></code> – terminates the program (by calling <code class="docutils literal"><span class="pre">exit()</span></code>) when an error
+occurs in a remote procedure call.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_ASSERT</span></code> – fails a debug assertion (by calling <code class="docutils literal"><span class="pre">assert()</span></code>) when an error
+occurs in a remote procedure call.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_FN</span></code> – specifies the <code class="docutils literal"><span class="pre">krpc_error_handler</span></code> function should be called when
+an error occurs in a remote procedure call. This should be set to a pointer to a function that
+takes a single parameter of type <code class="docutils literal"><span class="pre">krpc_error_t</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_NO_PRINT_ERROR</span></code> – when errors occur, they are printed to standard error, unless this
+is defined.</li>
+<li><code class="docutils literal"><span class="pre">PB_NO_ERRMSG</span></code> – disables error messages in the nanopb library, which kRPC uses to
+communicate with the server.</li>
+</ul>
+</li>
+<li>Communication<ul>
+<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> – Specifies that the library should be built to communicate over
+a serial port using POSIX read/write functions communication mechanisms. This is the default,
+unless the a different platform is detected.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code> – Specifies that the library should be built using Arduino
+serial communication mechanisms. The Arduino platform will be auto-detected so you do not need
+to specify this manually.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_CUSTOM</span></code> – Allows you to provide your own implementation for the
+communication mechanism.</li>
+</ul>
+</li>
+<li>Memory allocation<ul>
+<li><code class="docutils literal"><span class="pre">KRPC_ALLOC_BLOCK_SIZE</span></code> – The size of collections (lists, sets, etc.) are not know ahead of
+time, so when they are received from the server they are decoded into dynamically allocated
+memory on the heap. This option controls how many items to increase the capacity of the
+collection by when its space is exhausted. Setting this to 1 will consume the least amount of
+heap memory, but will require one heap allocation call per item. Setting this to a higher value
+will consume more memory, but require fewer allocations.</li>
+<li><code class="docutils literal"><span class="pre">KRPC_CUSTOM_MEMORY_ALLOC</span></code> – Disables the default implementation of memory allocation
+functions <code class="docutils literal"><span class="pre">krpc_malloc</span></code>, <code class="docutils literal"><span class="pre">krpc_calloc</span></code>, <code class="docutils literal"><span class="pre">krpc_recalloc</span></code> and krpc_free so that you can
+provide your own implementation.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On embedded systems you probably want to define <code class="docutils literal"><span class="pre">KRPC_NO_PRINT_ERROR</span></code> and <code class="docutils literal"><span class="pre">PB_NO_ERRMSG</span></code> to
+minimize the memory footprint of kRPC.</p>
+</div>
+</div>
+</div>
+<div class="section" id="using-the-library">
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
+<p>The following example program connects to the server, queries it for its version and prints it out:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Basic example&quot;</span><span class="p">);</span>
+  <span class="n">krpc_schema_Status</span> <span class="n">status</span><span class="p">;</span>
+  <span class="n">krpc_KRPC_GetStatus</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Connected to kRPC server version %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">version</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To compile this program using GCC, save the source as <code class="docutils literal"><span class="pre">main.c</span></code> and run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>gcc main.c -lkrpc_cnano
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-the-server">
+<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#c.krpc_connect" title="krpc_connect"><code class="xref c c-func docutils literal"><span class="pre">krpc_connect()</span></code></a> function is used to open a connection to a server. It takes as its first
+argument a connection object into which the connection information is written. This is passed to
+subsequent calls to interact with the server. The second argument is a name for the connection
+(displayed in game) and the third is the name of the serial port to connect over.</p>
+</div>
+<div class="section" id="calling-remote-procedures">
+<h2>Calling Remote Procedures<a class="headerlink" href="#calling-remote-procedures" title="Permalink to this headline">¶</a></h2>
+<p>The kRPC server provides <em>procedures</em> that a client can run. These procedures are arranged in groups
+called <em>services</em> to keep things organized. The functionality for the services are defined in the
+header files in <code class="docutils literal"><span class="pre">krpc/services/...</span></code>. For example, all of the functionality provided by the
+SpaceCenter service is contained in the header file <code class="docutils literal"><span class="pre">krpc/services/space_center.h</span></code>.</p>
+<p>The following example demonstrates how to invoke remote procedures using the Cnano client. It calls
+<a class="reference internal" href="api/space-center/space-center.html#c.krpc_SpaceCenter_ActiveVessel" title="krpc_SpaceCenter_ActiveVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ActiveVessel()</span></code></a> to get a handle to the active vessel (of type
+<a class="reference internal" href="api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_t</span></code></a>). It sets the name of the vessel and then prints out its altitude:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/space_center.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Remote Procedures example&quot;</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_t</span> <span class="n">vessel</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_ActiveVessel</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vessel</span><span class="p">);</span>
+
+  <span class="n">krpc_SpaceCenter_Vessel_set_Name</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="s">&quot;My Vessel&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Get a handle to a Flight object for the vessel</span>
+  <span class="n">krpc_SpaceCenter_Flight_t</span> <span class="n">flight</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Vessel_Flight</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flight</span><span class="p">,</span> <span class="n">vessel</span><span class="p">,</span> <span class="n">KRPC_NULL</span><span class="p">);</span>
+  <span class="c1">// Get the altiude</span>
+  <span class="kt">double</span> <span class="n">altitude</span><span class="p">;</span>
+  <span class="n">krpc_SpaceCenter_Flight_MeanAltitude</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">altitude</span><span class="p">,</span> <span class="n">flight</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">altitude</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streams-and-events">
+<span id="cnano-client-events"></span><span id="cnano-client-streams"></span><h2>Streams and Events<a class="headerlink" href="#streams-and-events" title="Permalink to this headline">¶</a></h2>
+<p>These features are not yet supported by this client.</p>
+</div>
+<div class="section" id="client-api-reference">
+<h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.krpc_open">
+<a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_open</code><span class="sig-paren">(</span>krpc_connection_t *<em>&nbsp;connection</em>, void *<em>&nbsp;arg</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a communication handle over which the client can talk to a server.</p>
+<p>When the library is built using <code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> (which is defined by default)
+calling this function opens a serial port using the port name passed as <em>arg</em>, using a call to
+<code class="docutils literal"><span class="pre">open(arg,</span> <span class="pre">...)</span></code>.</p>
+<p>When the library is built using <code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code>, <em>connection</em> must be a pointer to
+a <code class="docutils literal"><span class="pre">HardwareSerial</span></code> object. Calling this function opens the serial port using
+<code class="docutils literal"><span class="pre">(*(HardwareSerial*)connection)-&gt;begin(9600)</span></code>. <em>arg</em> is not used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_connect">
+<a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_connect</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to a kRPC server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>connection</strong> (<em>krpc_connection_t</em>) – A connection handle, created using a call to
+<a class="reference internal" href="#c.krpc_open" title="krpc_open"><code class="xref c c-func docutils literal"><span class="pre">krpc_open()</span></code></a>.</li>
+<li><strong>name</strong> (<em>const char*</em>) – A descriptive name for the connection. This is passed to the
+server and appears in the in-game server window.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_close">
+<a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_close</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the communication handle.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_error_t">
+<code class="descname">krpc_error_t</code><a class="headerlink" href="#c.krpc_error_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>All kRPC functions return error codes of this type.</p>
+<dl class="macro">
+<dt id="c.KRPC_OK">
+<code class="descname">KRPC_OK</code><a class="headerlink" href="#c.KRPC_OK" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function completed successfully and no error occurred.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_IO">
+<code class="descname">KRPC_ERROR_IO</code><a class="headerlink" href="#c.KRPC_ERROR_IO" title="Permalink to this definition">¶</a></dt>
+<dd><p>An input/output error occurred when communicating with the server.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_EOF">
+<code class="descname">KRPC_ERROR_EOF</code><a class="headerlink" href="#c.KRPC_ERROR_EOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>End of file was received from the server.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_CONNECTION_FAILED">
+<code class="descname">KRPC_ERROR_CONNECTION_FAILED</code><a class="headerlink" href="#c.KRPC_ERROR_CONNECTION_FAILED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Failed to establish a connection to the server.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_NO_RESULTS">
+<code class="descname">KRPC_ERROR_NO_RESULTS</code><a class="headerlink" href="#c.KRPC_ERROR_NO_RESULTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The remote procedure call did not return a result.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_RPC_FAILED">
+<code class="descname">KRPC_ERROR_RPC_FAILED</code><a class="headerlink" href="#c.KRPC_ERROR_RPC_FAILED" title="Permalink to this definition">¶</a></dt>
+<dd><p>The remote procedure call threw an exception.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_ENCODING_FAILED">
+<code class="descname">KRPC_ERROR_ENCODING_FAILED</code><a class="headerlink" href="#c.KRPC_ERROR_ENCODING_FAILED" title="Permalink to this definition">¶</a></dt>
+<dd><p>The encoder failed to construct the remote procedure call.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_ERROR_DECODING_FAILED">
+<code class="descname">KRPC_ERROR_DECODING_FAILED</code><a class="headerlink" href="#c.KRPC_ERROR_DECODING_FAILED" title="Permalink to this definition">¶</a></dt>
+<dd><p>The decoder failed to interpret a result sent by the server.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_get_error">
+const char * <code class="descname">krpc_get_error</code><span class="sig-paren">(</span><a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a><em>&nbsp;error</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_get_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a descriptive string for the given error code.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/krpc.html" class="btn btn-neutral float-right" title="KRPC API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../cnano.html" class="btn btn-neutral" title="C-nano" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

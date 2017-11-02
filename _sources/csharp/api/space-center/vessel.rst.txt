@@ -77,6 +77,18 @@ Vessel
       An :type:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
+   .. property:: int CrewCapacity { get; }
+
+      The number of crew that can occupy the vessel.
+
+   .. property:: int CrewCount { get; }
+
+      The number of crew that are occupying the vessel.
+
+   .. property:: System.Collections.Generic.IList<CrewMember> Crew { get; }
+
+      The crew in the vessel.
+
    .. property:: Resources Resources { get; }
 
       A :type:`Resources` object, that can used to get information
@@ -453,3 +465,68 @@ Vessel
    .. value:: SubOrbital
 
       Vessel is on a sub-orbital trajectory.
+
+
+
+.. class:: CrewMember
+
+   Represents crew in a vessel. Can be obtained using :prop:`Vessel.Crew`.
+
+   .. property:: string Name { get; set; }
+
+      The crew members name.
+
+   .. property:: CrewMemberType Type { get; }
+
+      The type of crew member.
+
+   .. property:: bool OnMission { get; }
+
+      Whether the crew member is on a mission.
+
+   .. property:: float Courage { get; set; }
+
+      The crew members courage.
+
+   .. property:: float Stupidity { get; set; }
+
+      The crew members stupidity.
+
+   .. property:: float Experience { get; set; }
+
+      The crew members experience.
+
+   .. property:: bool Badass { get; set; }
+
+      Whether the crew member is a badass.
+
+   .. property:: bool Veteran { get; set; }
+
+      Whether the crew member is a veteran.
+
+
+
+.. enum:: CrewMemberType
+
+   The type of a crew member.
+   See :prop:`CrewMember.Type`.
+
+
+   .. value:: Applicant
+
+      An applicant for crew.
+
+
+   .. value:: Crew
+
+      Rocket crew.
+
+
+   .. value:: Tourist
+
+      A tourist.
+
+
+   .. value:: Unowned
+
+      An unowned crew member.

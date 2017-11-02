@@ -79,6 +79,18 @@ Vessel
       An :class:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
+   .. function:: int32_t crew_capacity()
+
+      The number of crew that can occupy the vessel.
+
+   .. function:: int32_t crew_count()
+
+      The number of crew that are occupying the vessel.
+
+   .. function:: std::vector<CrewMember> crew()
+
+      The crew in the vessel.
+
    .. function:: Resources resources()
 
       A :class:`Resources` object, that can used to get information
@@ -457,3 +469,75 @@ Vessel
    .. enumerator:: sub_orbital
 
       Vessel is on a sub-orbital trajectory.
+
+
+
+.. class:: CrewMember
+
+   Represents crew in a vessel. Can be obtained using :func:`Vessel::crew`.
+
+   .. function:: std::string name()
+   .. function:: void set_name(std::string value)
+
+      The crew members name.
+
+   .. function:: CrewMemberType type()
+
+      The type of crew member.
+
+   .. function:: bool on_mission()
+
+      Whether the crew member is on a mission.
+
+   .. function:: float courage()
+   .. function:: void set_courage(float value)
+
+      The crew members courage.
+
+   .. function:: float stupidity()
+   .. function:: void set_stupidity(float value)
+
+      The crew members stupidity.
+
+   .. function:: float experience()
+   .. function:: void set_experience(float value)
+
+      The crew members experience.
+
+   .. function:: bool badass()
+   .. function:: void set_badass(bool value)
+
+      Whether the crew member is a badass.
+
+   .. function:: bool veteran()
+   .. function:: void set_veteran(bool value)
+
+      Whether the crew member is a veteran.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: CrewMemberType
+
+   The type of a crew member.
+   See :func:`CrewMember::type`.
+
+
+   .. enumerator:: applicant
+
+      An applicant for crew.
+
+
+   .. enumerator:: crew
+
+      Rocket crew.
+
+
+   .. enumerator:: tourist
+
+      A tourist.
+
+
+   .. enumerator:: unowned
+
+      An unowned crew member.

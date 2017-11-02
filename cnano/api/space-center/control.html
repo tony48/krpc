@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Control &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Communications" href="comms.html"/>
+        <link rel="prev" title="Orbit" href="orbit.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celestial-body.html">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cnano.html">C-nano</a> &raquo;</li>
+        
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+        
+      <li>Control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cnano/api/space-center/control.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="control">
+<h1>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_Control_t">
+<code class="descname">krpc_SpaceCenter_Control_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_Control_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to manipulate the controls of a vessel. This includes adjusting the
+throttle, enabling/disabling systems such as SAS and RCS, or altering the
+direction in which the vessel is pointing.
+Obtained by calling <a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_Control" title="krpc_SpaceCenter_Vessel_Control"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_Control()</span></code></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Control inputs (such as pitch, yaw and roll) are zeroed when all clients
+that have set one or more of these inputs are no longer connected.</p>
+</div>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Source">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Source</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ControlSource_t" title="krpc_SpaceCenter_ControlSource_t">krpc_SpaceCenter_ControlSource_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source of the vessels control, for example by a kerbal or a probe core.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_State">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_State</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ControlState_t" title="krpc_SpaceCenter_ControlState_t">krpc_SpaceCenter_ControlState_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_State" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_SAS">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_SAS</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_SAS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_SAS">
+void <code class="descname">krpc_SpaceCenter_Control_set_SAS</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_SAS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of SAS.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#c.krpc_SpaceCenter_AutoPilot_SAS" title="krpc_SpaceCenter_AutoPilot_SAS"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_AutoPilot_SAS()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_SASMode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_SASMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_SASMode_t" title="krpc_SpaceCenter_SASMode_t">krpc_SpaceCenter_SASMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_SASMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_SASMode">
+void <code class="descname">krpc_SpaceCenter_Control_set_SASMode</code><span class="sig-paren">(</span><a class="reference internal" href="#c.krpc_SpaceCenter_SASMode_t" title="krpc_SpaceCenter_SASMode_t">krpc_SpaceCenter_SASMode_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_SASMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current <a class="reference internal" href="#c.krpc_SpaceCenter_SASMode_t" title="krpc_SpaceCenter_SASMode_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_SASMode_t</span></code></a>.
+These modes are equivalent to the mode buttons to
+the left of the navball that appear when SAS is enabled.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#c.krpc_SpaceCenter_AutoPilot_SASMode" title="krpc_SpaceCenter_AutoPilot_SASMode"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_AutoPilot_SASMode()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_SpeedMode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_SpeedMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_SpeedMode_t" title="krpc_SpaceCenter_SpeedMode_t">krpc_SpaceCenter_SpeedMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_SpeedMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_SpeedMode">
+void <code class="descname">krpc_SpaceCenter_Control_set_SpeedMode</code><span class="sig-paren">(</span><a class="reference internal" href="#c.krpc_SpaceCenter_SpeedMode_t" title="krpc_SpaceCenter_SpeedMode_t">krpc_SpaceCenter_SpeedMode_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_SpeedMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current <a class="reference internal" href="#c.krpc_SpaceCenter_SpeedMode_t" title="krpc_SpaceCenter_SpeedMode_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_SpeedMode_t</span></code></a> of the navball.
+This is the mode displayed next to the speed at the top of the navball.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_RCS">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_RCS</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_RCS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_RCS">
+void <code class="descname">krpc_SpaceCenter_Control_set_RCS</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_RCS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of RCS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_ReactionWheels">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_ReactionWheels</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_ReactionWheels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_ReactionWheels">
+void <code class="descname">krpc_SpaceCenter_Control_set_ReactionWheels</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_ReactionWheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all reactive wheels on the vessel are active,
+and sets the active state of all reaction wheels.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_ReactionWheel_Active" title="krpc_SpaceCenter_ReactionWheel_Active"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ReactionWheel_Active()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Gear">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Gear</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Gear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Gear">
+void <code class="descname">krpc_SpaceCenter_Control_set_Gear</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Gear" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the landing gear/legs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Legs">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Legs</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Legs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Legs">
+void <code class="descname">krpc_SpaceCenter_Control_set_Legs</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Legs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all landing legs on the vessel are deployed,
+and sets the deployment state of all landing legs.
+Does not include wheels (for example landing gear).
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Leg_Deployed" title="krpc_SpaceCenter_Leg_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Leg_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Wheels">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Wheels</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Wheels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Wheels">
+void <code class="descname">krpc_SpaceCenter_Control_set_Wheels</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Wheels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all wheels on the vessel are deployed,
+and sets the deployment state of all wheels.
+Does not include landing legs.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Wheel_Deployed" title="krpc_SpaceCenter_Wheel_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Wheel_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Lights">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Lights</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Lights" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Lights">
+void <code class="descname">krpc_SpaceCenter_Control_set_Lights</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Lights" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the lights.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Brakes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Brakes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Brakes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Brakes">
+void <code class="descname">krpc_SpaceCenter_Control_set_Brakes</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Brakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel brakes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Antennas">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Antennas</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Antennas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Antennas">
+void <code class="descname">krpc_SpaceCenter_Control_set_Antennas</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Antennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all antennas on the vessel are deployed,
+and sets the deployment state of all antennas.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Antenna_Deployed" title="krpc_SpaceCenter_Antenna_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Antenna_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_CargoBays">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_CargoBays</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_CargoBays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_CargoBays">
+void <code class="descname">krpc_SpaceCenter_Control_set_CargoBays</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_CargoBays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the cargo bays on the vessel are open,
+and sets the open state of all cargo bays.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_CargoBay_Open" title="krpc_SpaceCenter_CargoBay_Open"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_CargoBay_Open()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Intakes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Intakes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Intakes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Intakes">
+void <code class="descname">krpc_SpaceCenter_Control_set_Intakes</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Intakes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the air intakes on the vessel are open,
+and sets the open state of all air intakes.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Intake_Open" title="krpc_SpaceCenter_Intake_Open"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Intake_Open()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Parachutes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Parachutes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Parachutes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Parachutes">
+void <code class="descname">krpc_SpaceCenter_Control_set_Parachutes</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Parachutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all parachutes on the vessel are deployed,
+and sets the deployment state of all parachutes.
+Cannot be set to <code class="docutils literal"><span class="pre">false</span></code>.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Parachute_Deployed" title="krpc_SpaceCenter_Parachute_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Parachute_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Radiators">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Radiators</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Radiators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Radiators">
+void <code class="descname">krpc_SpaceCenter_Control_set_Radiators</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Radiators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all radiators on the vessel are deployed,
+and sets the deployment state of all radiators.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_Radiator_Deployed" title="krpc_SpaceCenter_Radiator_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Radiator_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_ResourceHarvesters">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_ResourceHarvesters</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_ResourceHarvesters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_ResourceHarvesters">
+void <code class="descname">krpc_SpaceCenter_Control_set_ResourceHarvesters</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_ResourceHarvesters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all of the resource harvesters on the vessel are deployed,
+and sets the deployment state of all resource harvesters.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_ResourceHarvester_Deployed" title="krpc_SpaceCenter_ResourceHarvester_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ResourceHarvester_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_ResourceHarvestersActive">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_ResourceHarvestersActive</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_ResourceHarvestersActive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_ResourceHarvestersActive">
+void <code class="descname">krpc_SpaceCenter_Control_set_ResourceHarvestersActive</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_ResourceHarvestersActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether any of the resource harvesters on the vessel are active,
+and sets the active state of all resource harvesters.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_ResourceHarvester_Active" title="krpc_SpaceCenter_ResourceHarvester_Active"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ResourceHarvester_Active()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_SolarPanels">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_SolarPanels</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_SolarPanels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_SolarPanels">
+void <code class="descname">krpc_SpaceCenter_Control_set_SolarPanels</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_SolarPanels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether all solar panels on the vessel are deployed,
+and sets the deployment state of all solar panels.
+See <a class="reference internal" href="parts.html#c.krpc_SpaceCenter_SolarPanel_Deployed" title="krpc_SpaceCenter_SolarPanel_Deployed"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_SolarPanel_Deployed()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Abort">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Abort</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Abort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Abort">
+void <code class="descname">krpc_SpaceCenter_Control_set_Abort</code><span class="sig-paren">(</span>bool<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Abort" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the abort action group.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Throttle">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Throttle</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Throttle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Throttle">
+void <code class="descname">krpc_SpaceCenter_Control_set_Throttle</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Throttle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the throttle. A value between 0 and 1.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_InputMode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_InputMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_ControlInputMode_t" title="krpc_SpaceCenter_ControlInputMode_t">krpc_SpaceCenter_ControlInputMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_InputMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_InputMode">
+void <code class="descname">krpc_SpaceCenter_Control_set_InputMode</code><span class="sig-paren">(</span><a class="reference internal" href="#c.krpc_SpaceCenter_ControlInputMode_t" title="krpc_SpaceCenter_ControlInputMode_t">krpc_SpaceCenter_ControlInputMode_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_InputMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the behavior of the pitch, yaw, roll and translation control inputs.
+When set to additive, these inputs are added to the vessels current inputs.
+This mode is the default.
+When set to override, these inputs (if non-zero) override the vessels inputs.
+This mode prevents keyboard control, or SAS, from interfering with the controls when
+they are set.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Pitch">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Pitch</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Pitch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Pitch">
+void <code class="descname">krpc_SpaceCenter_Control_set_Pitch</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the pitch control.
+A value between -1 and 1.
+Equivalent to the w and s keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Yaw">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Yaw</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Yaw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Yaw">
+void <code class="descname">krpc_SpaceCenter_Control_set_Yaw</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Yaw" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the yaw control.
+A value between -1 and 1.
+Equivalent to the a and d keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Roll">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Roll</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Roll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Roll">
+void <code class="descname">krpc_SpaceCenter_Control_set_Roll</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Roll" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the roll control.
+A value between -1 and 1.
+Equivalent to the q and e keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Forward">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Forward</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Forward">
+void <code class="descname">krpc_SpaceCenter_Control_set_Forward</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the forward translational control.
+A value between -1 and 1.
+Equivalent to the h and n keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Up">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Up</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Up">
+void <code class="descname">krpc_SpaceCenter_Control_set_Up</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Up" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the up translational control.
+A value between -1 and 1.
+Equivalent to the i and k keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Right">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Right</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_Right">
+void <code class="descname">krpc_SpaceCenter_Control_set_Right</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_Right" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the right translational control.
+A value between -1 and 1.
+Equivalent to the j and l keys.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_WheelThrottle">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_WheelThrottle</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_WheelThrottle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_WheelThrottle">
+void <code class="descname">krpc_SpaceCenter_Control_set_WheelThrottle</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_WheelThrottle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel throttle.
+A value between -1 and 1.
+A value of 1 rotates the wheels forwards, a value of -1 rotates
+the wheels backwards.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_WheelSteering">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_WheelSteering</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_WheelSteering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_set_WheelSteering">
+void <code class="descname">krpc_SpaceCenter_Control_set_WheelSteering</code><span class="sig-paren">(</span>float<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_set_WheelSteering" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the wheel steering.
+A value between -1 and 1.
+A value of 1 steers to the left, and a value of -1 steers to the right.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_CurrentStage">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_CurrentStage</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_CurrentStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current stage of the vessel. Corresponds to the stage number in
+the in-game UI.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_ActivateNextStage">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_ActivateNextStage</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_ActivateNextStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activates the next stage. Equivalent to pressing the space bar in-game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of vessel objects that are jettisoned from the active vessel.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When called, the active vessel may change. It is therefore possible that,
+after calling this function, the object(s) returned by previous call(s) to
+<a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_ActiveVessel" title="krpc_SpaceCenter_ActiveVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ActiveVessel()</span></code></a> no longer refer to the active vessel.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_GetActionGroup">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_GetActionGroup</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em>, uint32_t<em>&nbsp;group</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_GetActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the given action group is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> – A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_SetActionGroup">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_SetActionGroup</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, uint32_t<em>&nbsp;group</em>, bool<em>&nbsp;state</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_SetActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the state of the given action group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> – A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_ToggleActionGroup">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_ToggleActionGroup</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, uint32_t<em>&nbsp;group</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_ToggleActionGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggles the state of the given action group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> – A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_AddNode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_AddNode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="node.html#c.krpc_SpaceCenter_Node_t" title="krpc_SpaceCenter_Node_t">krpc_SpaceCenter_Node_t</a> *<em>&nbsp;result</em>, double<em>&nbsp;ut</em>, float<em>&nbsp;prograde</em>, float<em>&nbsp;normal</em>, float<em>&nbsp;radial</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_AddNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a maneuver node at the given universal time, and returns a
+<a class="reference internal" href="node.html#c.krpc_SpaceCenter_Node_t" title="krpc_SpaceCenter_Node_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Node_t</span></code></a> object that can be used to modify it.
+Optionally sets the magnitude of the delta-v for the maneuver node
+in the prograde, normal and radial directions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ut</strong> – Universal time of the maneuver node.</li>
+<li><strong>prograde</strong> – Delta-v in the prograde direction.</li>
+<li><strong>normal</strong> – Delta-v in the normal direction.</li>
+<li><strong>radial</strong> – Delta-v in the radial direction.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_Nodes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_Nodes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_Nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all existing maneuver nodes, ordered by time from first to last.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Control_RemoveNodes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Control_RemoveNodes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Control_RemoveNodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all maneuver nodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_ControlState_t">
+<code class="descname">krpc_SpaceCenter_ControlState_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_ControlState_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control state of a vessel.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_Control_State" title="krpc_SpaceCenter_Control_State"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Control_State()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSTATE_FULL">
+<code class="descname">KRPC_SPACECENTER_CONTROLSTATE_FULL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSTATE_FULL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full controllable.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSTATE_PARTIAL">
+<code class="descname">KRPC_SPACECENTER_CONTROLSTATE_PARTIAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSTATE_PARTIAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partially controllable.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSTATE_NONE">
+<code class="descname">KRPC_SPACECENTER_CONTROLSTATE_NONE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSTATE_NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not controllable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_ControlSource_t">
+<code class="descname">krpc_SpaceCenter_ControlSource_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_ControlSource_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The control source of a vessel.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_Control_Source" title="krpc_SpaceCenter_Control_Source"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Control_Source()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSOURCE_KERBAL">
+<code class="descname">KRPC_SPACECENTER_CONTROLSOURCE_KERBAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSOURCE_KERBAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a Kerbal.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSOURCE_PROBE">
+<code class="descname">KRPC_SPACECENTER_CONTROLSOURCE_PROBE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSOURCE_PROBE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is controlled by a probe core.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLSOURCE_NONE">
+<code class="descname">KRPC_SPACECENTER_CONTROLSOURCE_NONE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLSOURCE_NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vessel is not controlled.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_SASMode_t">
+<code class="descname">krpc_SpaceCenter_SASMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_SASMode_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The behavior of the SAS auto-pilot. See <a class="reference internal" href="auto-pilot.html#c.krpc_SpaceCenter_AutoPilot_SASMode" title="krpc_SpaceCenter_AutoPilot_SASMode"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_AutoPilot_SASMode()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_STABILITYASSIST">
+<code class="descname">KRPC_SPACECENTER_SASMODE_STABILITYASSIST</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_STABILITYASSIST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stability assist mode. Dampen out any rotation.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_MANEUVER">
+<code class="descname">KRPC_SPACECENTER_SASMODE_MANEUVER</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_MANEUVER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the burn direction of the next maneuver node.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_PROGRADE">
+<code class="descname">KRPC_SPACECENTER_SASMODE_PROGRADE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_PROGRADE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the prograde direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_RETROGRADE">
+<code class="descname">KRPC_SPACECENTER_SASMODE_RETROGRADE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_RETROGRADE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the retrograde direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_NORMAL">
+<code class="descname">KRPC_SPACECENTER_SASMODE_NORMAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_NORMAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit normal direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_ANTINORMAL">
+<code class="descname">KRPC_SPACECENTER_SASMODE_ANTINORMAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_ANTINORMAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit anti-normal direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_RADIAL">
+<code class="descname">KRPC_SPACECENTER_SASMODE_RADIAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_RADIAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit radial direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_ANTIRADIAL">
+<code class="descname">KRPC_SPACECENTER_SASMODE_ANTIRADIAL</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_ANTIRADIAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the orbit anti-radial direction.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_TARGET">
+<code class="descname">KRPC_SPACECENTER_SASMODE_TARGET</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_TARGET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point in the direction of the current target.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SASMODE_ANTITARGET">
+<code class="descname">KRPC_SPACECENTER_SASMODE_ANTITARGET</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SASMODE_ANTITARGET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point away from the current target.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_SpeedMode_t">
+<code class="descname">krpc_SpaceCenter_SpeedMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_SpeedMode_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mode of the speed reported in the navball.
+See <a class="reference internal" href="#c.krpc_SpaceCenter_Control_SpeedMode" title="krpc_SpaceCenter_Control_SpeedMode"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Control_SpeedMode()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SPEEDMODE_ORBIT">
+<code class="descname">KRPC_SPACECENTER_SPEEDMODE_ORBIT</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SPEEDMODE_ORBIT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the vessel’s orbit.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SPEEDMODE_SURFACE">
+<code class="descname">KRPC_SPACECENTER_SPEEDMODE_SURFACE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SPEEDMODE_SURFACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the surface of the body being orbited.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_SPEEDMODE_TARGET">
+<code class="descname">KRPC_SPACECENTER_SPEEDMODE_TARGET</code><a class="headerlink" href="#c.KRPC_SPACECENTER_SPEEDMODE_TARGET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Speed is relative to the current target.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_ControlInputMode_t">
+<code class="descname">krpc_SpaceCenter_ControlInputMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_ControlInputMode_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#c.krpc_SpaceCenter_Control_InputMode" title="krpc_SpaceCenter_Control_InputMode"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Control_InputMode()</span></code></a>.</p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLINPUTMODE_ADDITIVE">
+<code class="descname">KRPC_SPACECENTER_CONTROLINPUTMODE_ADDITIVE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLINPUTMODE_ADDITIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs are added to the vessels current control inputs.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_CONTROLINPUTMODE_OVERRIDE">
+<code class="descname">KRPC_SPACECENTER_CONTROLINPUTMODE_OVERRIDE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_CONTROLINPUTMODE_OVERRIDE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control inputs (when they are non-zero) override the vessels current control inputs.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="comms.html" class="btn btn-neutral float-right" title="Communications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="orbit.html" class="btn btn-neutral" title="Orbit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

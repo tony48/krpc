@@ -1,5 +1,5 @@
 .. default-domain:: py
-.. highlight:: python
+.. highlight:: py
 .. currentmodule:: SpaceCenter
 
 Vessel
@@ -104,6 +104,27 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`AutoPilot`
+
+   .. attribute:: crew_capacity
+
+      The number of crew that can occupy the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: int
+
+   .. attribute:: crew_count
+
+      The number of crew that are occupying the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: int
+
+   .. attribute:: crew
+
+      The crew in the vessel.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: list(:class:`CrewMember`)
 
    .. attribute:: resources
 
@@ -532,3 +553,92 @@ Vessel
    .. data:: sub_orbital
 
       Vessel is on a sub-orbital trajectory.
+
+
+
+.. class:: CrewMember
+
+   Represents crew in a vessel. Can be obtained using :attr:`Vessel.crew`.
+
+   .. attribute:: name
+
+      The crew members name.
+
+      :Attribute: Can be read or written
+      :rtype: str
+
+   .. attribute:: type
+
+      The type of crew member.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: :class:`CrewMemberType`
+
+   .. attribute:: on_mission
+
+      Whether the crew member is on a mission.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: bool
+
+   .. attribute:: courage
+
+      The crew members courage.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: stupidity
+
+      The crew members stupidity.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: experience
+
+      The crew members experience.
+
+      :Attribute: Can be read or written
+      :rtype: float
+
+   .. attribute:: badass
+
+      Whether the crew member is a badass.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+   .. attribute:: veteran
+
+      Whether the crew member is a veteran.
+
+      :Attribute: Can be read or written
+      :rtype: bool
+
+
+
+.. class:: CrewMemberType
+
+   The type of a crew member.
+   See :attr:`CrewMember.type`.
+
+
+   .. data:: applicant
+
+      An applicant for crew.
+
+
+   .. data:: crew
+
+      Rocket crew.
+
+
+   .. data:: tourist
+
+      A tourist.
+
+
+   .. data:: unowned
+
+      An unowned crew member.

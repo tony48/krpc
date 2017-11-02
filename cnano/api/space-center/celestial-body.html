@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CelestialBody &mdash; kRPC 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
+        <link rel="next" title="Flight" href="flight.html"/>
+        <link rel="prev" title="Vessel" href="vessel.html"/>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> kRPC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../cnano.html">C-nano</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client.html">C-nano Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../krpc.html">KRPC API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../space-center.html">SpaceCenter API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="space-center.html">SpaceCenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vessel.html">Vessel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CelestialBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flight.html">Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbit.html">Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms.html">Communications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parts.html">Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference-frame.html">ReferenceFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="auto-pilot.html">AutoPilot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="waypoints.html">Waypoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry-types.html">Geometry Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drawing.html">Drawing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../infernal-robotics.html">InfernalRobotics API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kerbal-alarm-clock.html">Kerbal Alarm Clock API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote-tech.html">RemoteTech API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html">User Interface API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lua.html">Lua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../third-party.html">Other Clients, Services and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Compiling kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending kRPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals.html">Internals of kRPC</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kRPC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../cnano.html">C-nano</a> &raquo;</li>
+        
+          <li><a href="../space-center.html">SpaceCenter API</a> &raquo;</li>
+        
+      <li>CelestialBody</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cnano/api/space-center/celestial-body.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="celestialbody">
+<h1>CelestialBody<a class="headerlink" href="#celestialbody" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_CelestialBody_t">
+<code class="descname">krpc_SpaceCenter_CelestialBody_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a celestial body (such as a planet or moon).
+See <a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_Bodies" title="krpc_SpaceCenter_Bodies"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Bodies()</span></code></a>.</p>
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Name">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Name</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, char * *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Satellites">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Satellites</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Satellites" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of celestial bodies that are in orbit around this celestial body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Orbit">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Orbit</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="orbit.html#c.krpc_SpaceCenter_Orbit_t" title="krpc_SpaceCenter_Orbit_t">krpc_SpaceCenter_Orbit_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Orbit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The orbit of the body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Mass">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Mass</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mass of the body, in kilograms.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_GravitationalParameter">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_GravitationalParameter</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_GravitationalParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_gravitational_parameter">standard gravitational parameter</a> of the body in <span class="math">\(m^3s^{-2}\)</span>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_SurfaceGravity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_SurfaceGravity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_SurfaceGravity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The acceleration due to gravity at sea level (mean altitude) on the body,
+in <span class="math">\(m/s^2\)</span>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_RotationalPeriod">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_RotationalPeriod</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_RotationalPeriod" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sidereal rotational period of the body, in seconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_RotationalSpeed">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_RotationalSpeed</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_RotationalSpeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotational speed of the body, in radians per second.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_RotationAngle">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_RotationAngle</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_RotationAngle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current rotation angle of the body, in radians.
+A value between 0 and <span class="math">\(2\pi\)</span></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_InitialRotation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_InitialRotation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_InitialRotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The initial rotation angle of the body (at UT 0), in radians.
+A value between 0 and <span class="math">\(2\pi\)</span></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_EquatorialRadius">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_EquatorialRadius</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_EquatorialRadius" title="Permalink to this definition">¶</a></dt>
+<dd><p>The equatorial radius of the body, in meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_SurfaceHeight">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_SurfaceHeight</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_SurfaceHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the surface relative to mean sea level, in meters,
+at the given position. When over water this is equal to 0.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_BedrockHeight">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_BedrockHeight</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_BedrockHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the surface relative to mean sea level, in meters,
+at the given position. When over water, this is the height
+of the sea-bed and is therefore  negative value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_MSLPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_MSLPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_MSLPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at mean sea level at the given latitude and longitude,
+in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the returned position vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_SurfacePosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_SurfacePosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_SurfacePosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the surface at the given latitude and longitude, in the given
+reference frame. When over water, this is the position of the surface of the water.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the returned position vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_BedrockPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_BedrockPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_BedrockPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the surface at the given latitude and longitude, in the given
+reference frame. When over water, this is the position at the bottom of the sea-bed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the returned position vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_PositionAtAltitude">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_PositionAtAltitude</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, double<em>&nbsp;altitude</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_PositionAtAltitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position at the given latitude, longitude and altitude, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> – Latitude in degrees.</li>
+<li><strong>longitude</strong> – Longitude in degrees.</li>
+<li><strong>altitude</strong> – Altitude in meters above sea level.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the returned position vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_AltitudeAtPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_AltitudeAtPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_AltitudeAtPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, of the given position in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – Position as a vector.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the position vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_LatitudeAtPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_LatitudeAtPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_LatitudeAtPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The latitude of the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – Position as a vector.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the position vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_LongitudeAtPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_LongitudeAtPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_LongitudeAtPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The longitude of the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – Position as a vector.</li>
+<li><strong>referenceFrame</strong> – Reference frame for the position vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_SphereOfInfluence">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_SphereOfInfluence</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_SphereOfInfluence" title="Permalink to this definition">¶</a></dt>
+<dd><p>The radius of the sphere of influence of the body, in meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_HasAtmosphere">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_HasAtmosphere</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_HasAtmosphere" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the body has an atmosphere.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_AtmosphereDepth">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_AtmosphereDepth</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_AtmosphereDepth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The depth of the atmosphere, in meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_AtmosphericDensityAtPosition">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_AtmosphericDensityAtPosition</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_AtmosphericDensityAtPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The atmospheric density at the given position, in <span class="math">\(kg/m^3\)</span>,
+in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – The position vector at which to measure the density.</li>
+<li><strong>referenceFrame</strong> – Reference frame that the position vector is in.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_HasAtmosphericOxygen">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_HasAtmosphericOxygen</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_HasAtmosphericOxygen" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">true</span></code> if there is oxygen in the atmosphere, required for air-breathing engines.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_TemperatureAt">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_TemperatureAt</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, const krpc_tuple_double_double_double_t *<em>&nbsp;position</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_TemperatureAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The temperature on the body at the given position, in the given reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> – Position as a vector.</li>
+<li><strong>referenceFrame</strong> – The reference frame that the position is in.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This calculation is performed using the bodies current position, which means that
+the value could be wrong if you want to know the temperature in the far future.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_DensityAt">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_DensityAt</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, double<em>&nbsp;altitude</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_DensityAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the air density, in <span class="math">\(kg/m^3\)</span>, for the specified
+altitude above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an approximation, because actual calculations, taking sun exposure into account
+to compute air temperature, require us to know the exact point on the body where the
+density is to be computed (knowing the altitude is not enough).
+However, the difference is small for high altitudes, so it makes very little difference
+for trajectory prediction.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_PressureAt">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_PressureAt</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em>, double<em>&nbsp;altitude</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_PressureAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the air pressure, in Pascals, for the specified
+altitude above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Biomes">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Biomes</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_set_string_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Biomes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The biomes present on this body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_BiomeAt">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_BiomeAt</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, char * *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_BiomeAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The biome at the given latitude and longitude, in degrees.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_FlyingHighAltitudeThreshold">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_FlyingHighAltitudeThreshold</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_FlyingHighAltitudeThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, above which a vessel is considered to be
+flying “high” when doing science.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_SpaceHighAltitudeThreshold">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_SpaceHighAltitudeThreshold</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_SpaceHighAltitudeThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The altitude, in meters, above which a vessel is considered to be
+in “high” space when doing science.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_ReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_ReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_ReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to the celestial body.</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes rotate with the body.</li>
+<li>The x-axis points from the center of the body
+towards the intersection of the prime meridian and equator (the
+position at 0° longitude, 0° latitude).</li>
+<li>The y-axis points from the center of the body
+towards the north pole.</li>
+<li>The z-axis points from the center of the body
+towards the equator at 90°E longitude.</li>
+</ul>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/celestial-body.png" src="../../../_images/celestial-body.png" />
+<p class="caption"><span class="caption-text">Celestial body reference frame origin and axes. The equator is shown in
+blue, and the prime meridian in red.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_NonRotatingReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to this celestial body, and
+orientated in a fixed direction (it does not rotate with the body).</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes do not rotate.</li>
+<li>The x-axis points in an arbitrary direction through the
+equator.</li>
+<li>The y-axis points from the center of the body towards
+the north pole.</li>
+<li>The z-axis points in an arbitrary direction through the
+equator.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_OrbitalReferenceFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference frame that is fixed relative to this celestial body, but
+orientated with the body’s orbital prograde/normal/radial directions.</p>
+<ul class="simple">
+<li>The origin is at the center of the body.</li>
+<li>The axes rotate with the orbital prograde/normal/radial
+directions.</li>
+<li>The x-axis points in the orbital anti-radial direction.</li>
+<li>The y-axis points in the orbital prograde direction.</li>
+<li>The z-axis points in the orbital normal direction.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Position">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Position</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the center of the body, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned position vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The position as a vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Velocity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Velocity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The linear velocity of the body, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned velocity vector is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Rotation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Rotation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rotation of the body, in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned rotation is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The rotation as a quaternion of the form <span class="math">\((x, y, z, w)\)</span>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_Direction">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_Direction</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The direction in which the north pole of the celestial body is pointing,
+in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame that the returned direction is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The direction as a unit vector.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_CelestialBody_AngularVelocity">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_CelestialBody_AngularVelocity</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_tuple_double_double_double_t *<em>&nbsp;result</em>, <a class="reference internal" href="reference-frame.html#c.krpc_SpaceCenter_ReferenceFrame_t" title="krpc_SpaceCenter_ReferenceFrame_t">krpc_SpaceCenter_ReferenceFrame_t</a><em>&nbsp;referenceFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_CelestialBody_AngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The angular velocity of the body in the specified reference frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>referenceFrame</strong> – The reference frame the returned angular velocity is in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The angular velocity as a vector. The magnitude of the vector is the rotational speed of the body, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flight.html" class="btn btn-neutral float-right" title="Flight" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vessel.html" class="btn btn-neutral" title="Vessel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, djungelorm.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  // Open external links in a new window
+  jQuery(document).ready(function($) {
+    $('a').not('[href*="mailto:"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+      if (!isInternalLink.test(this.href)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

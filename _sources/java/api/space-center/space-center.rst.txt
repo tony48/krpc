@@ -251,6 +251,26 @@ SpaceCenter
       :param ReferenceFrame to: The reference frame to covert the velocity to.
       :returns: The corresponding velocity, as a vector, in reference frame *to*.
 
+   .. method:: double raycastDistance(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame)
+
+      Cast a ray from a given position in a given direction, and return the distance to the hit point.
+      If no hit occurs, returns infinity.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position, as a vector, of the origin of the ray.
+      :param org.javatuples.Triplet<Double,Double,Double> direction: Direction of the ray, as a unit vector.
+      :param ReferenceFrame referenceFrame: The reference frame that the position and direction are in.
+      :returns: The distance to the hit, in meters, or infinity if there was no hit.
+
+   .. method:: Part raycastPart(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame)
+
+      Cast a ray from a given position in a given direction, and return the part that it hits.
+      If no hit occurs, returns ``null``.
+
+      :param org.javatuples.Triplet<Double,Double,Double> position: Position, as a vector, of the origin of the ray.
+      :param org.javatuples.Triplet<Double,Double,Double> direction: Direction of the ray, as a unit vector.
+      :param ReferenceFrame referenceFrame: The reference frame that the position and direction are in.
+      :returns: The part that was hit or ``null`` if there was no hit.
+
    .. method:: boolean getFARAvailable()
 
 

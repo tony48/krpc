@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.4.0 documentation</title>
+  <title>Vessel &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cpp.html">C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../java.html">Java</a><ul class="current">
@@ -325,6 +326,24 @@ with CommNet for this vessel.</p>
  <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot" title="krpc.client.services.SpaceCenter.AutoPilot">AutoPilot</a> <code class="descname">getAutoPilot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Vessel.getAutoPilot()" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot" title="krpc.client.services.SpaceCenter.AutoPilot"><code class="xref java java-type docutils literal"><span class="pre">AutoPilot</span></code></a> object, that can be used to perform
 simple auto-piloting of the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Vessel.getCrewCapacity()">
+ int <code class="descname">getCrewCapacity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Vessel.getCrewCapacity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that can occupy the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Vessel.getCrewCount()">
+ int <code class="descname">getCrewCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Vessel.getCrewCount()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of crew that are occupying the vessel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.Vessel.getCrew()">
+ java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMember" title="krpc.client.services.SpaceCenter.CrewMember">CrewMember</a>&gt; <code class="descname">getCrew</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Vessel.getCrew()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew in the vessel.</p>
 </dd></dl>
 
 <dl class="method">
@@ -834,6 +853,121 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Ves
 
 </dd></dl>
 
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.CrewMember">
+public class <code class="descname">CrewMember</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents crew in a vessel. Can be obtained using <a class="reference internal" href="#krpc.client.services.SpaceCenter.Vessel.getCrew()" title="krpc.client.services.SpaceCenter.Vessel.getCrew()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getCrew()</span></code></a>.</p>
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getName()">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getName()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setName(String)">
+ void <code class="descname">setName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setName(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getType()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="krpc.client.services.SpaceCenter.CrewMemberType">CrewMemberType</a> <code class="descname">getType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getType()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of crew member.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getOnMission()">
+ boolean <code class="descname">getOnMission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getOnMission()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is on a mission.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getCourage()">
+ float <code class="descname">getCourage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getCourage()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setCourage(float)">
+ void <code class="descname">setCourage</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setCourage(float)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members courage.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getStupidity()">
+ float <code class="descname">getStupidity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getStupidity()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setStupidity(float)">
+ void <code class="descname">setStupidity</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setStupidity(float)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members stupidity.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getExperience()">
+ float <code class="descname">getExperience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getExperience()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setExperience(float)">
+ void <code class="descname">setExperience</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setExperience(float)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The crew members experience.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getBadass()">
+ boolean <code class="descname">getBadass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getBadass()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setBadass(boolean)">
+ void <code class="descname">setBadass</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setBadass(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a badass.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.getVeteran()">
+ boolean <code class="descname">getVeteran</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.getVeteran()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.CrewMember.setVeteran(boolean)">
+ void <code class="descname">setVeteran</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMember.setVeteran(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the crew member is a veteran.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.CrewMemberType">
+public enum <code class="descname">CrewMemberType</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a crew member.
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMember.getType()" title="krpc.client.services.SpaceCenter.CrewMember.getType()"><code class="xref java java-meth docutils literal"><span class="pre">CrewMember.getType()</span></code></a>.</p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CrewMemberType.APPLICANT">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="krpc.client.services.SpaceCenter.CrewMemberType">CrewMemberType</a> <code class="descname">APPLICANT</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMemberType.APPLICANT" title="Permalink to this definition">¶</a></dt>
+<dd><p>An applicant for crew.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CrewMemberType.CREW">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="krpc.client.services.SpaceCenter.CrewMemberType">CrewMemberType</a> <code class="descname">CREW</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMemberType.CREW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rocket crew.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CrewMemberType.TOURIST">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="krpc.client.services.SpaceCenter.CrewMemberType">CrewMemberType</a> <code class="descname">TOURIST</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMemberType.TOURIST" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tourist.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.CrewMemberType.UNOWNED">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.CrewMemberType" title="krpc.client.services.SpaceCenter.CrewMemberType">CrewMemberType</a> <code class="descname">UNOWNED</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.CrewMemberType.UNOWNED" title="Permalink to this definition">¶</a></dt>
+<dd><p>An unowned crew member.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -880,7 +1014,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Ves
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

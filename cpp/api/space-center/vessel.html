@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vessel &mdash; kRPC 0.4.0 documentation</title>
+  <title>Vessel &mdash; kRPC 0.4.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.1 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="CelestialBody" href="celestial-body.html"/>
         <link rel="prev" title="SpaceCenter" href="space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
             
           
@@ -107,6 +107,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnano.html">C-nano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../csharp.html">C#</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../cpp.html">C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../client.html">C++ Client</a></li>
@@ -325,6 +326,24 @@ with CommNet for this vessel.</p>
 <span id="krpc::services::SpaceCenter::Vessel::auto_pilot"></span><a class="reference internal" href="auto-pilot.html#_CPPv2N4krpc8services11SpaceCenter9AutoPilotE" title="krpc::services::SpaceCenter::AutoPilot">AutoPilot</a> <code class="descclassname"></code><code class="descname">auto_pilot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel10auto_pilotEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>An <a class="reference internal" href="auto-pilot.html#_CPPv2N4krpc8services11SpaceCenter9AutoPilotE" title="krpc::services::SpaceCenter::AutoPilot"><code class="xref cpp cpp-class docutils literal"><span class="pre">AutoPilot</span></code></a> object, that can be used to perform
 simple auto-piloting of the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel13crew_capacityEv">
+<span id="krpc::services::SpaceCenter::Vessel::crew_capacity"></span>int32_t <code class="descclassname"></code><code class="descname">crew_capacity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel13crew_capacityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of crew that can occupy the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel10crew_countEv">
+<span id="krpc::services::SpaceCenter::Vessel::crew_count"></span>int32_t <code class="descclassname"></code><code class="descname">crew_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel10crew_countEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of crew that are occupying the vessel.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter6Vessel4crewEv">
+<span id="krpc::services::SpaceCenter::Vessel::crew"></span>std::vector&lt;<a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMemberE" title="krpc::services::SpaceCenter::CrewMember">CrewMember</a>&gt; <code class="descclassname"></code><code class="descname">crew</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel4crewEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The crew in the vessel.</p>
 </dd></dl>
 
 <dl class="function">
@@ -834,6 +853,121 @@ See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vess
 
 </dd></dl>
 
+<dl class="class">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMemberE">
+<span id="krpc::services::SpaceCenter::CrewMember"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">CrewMember</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMemberE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Represents crew in a vessel. Can be obtained using <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vessel4crewEv" title="krpc::services::SpaceCenter::Vessel::crew"><code class="xref cpp cpp-func docutils literal"><span class="pre">Vessel::crew()</span></code></a>.</p>
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember4nameEv">
+<span id="krpc::services::SpaceCenter::CrewMember::name"></span>std::string <code class="descclassname"></code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember4nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember8set_nameENSt6stringE">
+<span id="krpc::services::SpaceCenter::CrewMember::set_name__ss"></span>void <code class="descclassname"></code><code class="descname">set_name</code><span class="sig-paren">(</span>std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember8set_nameENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The crew members name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember4typeEv">
+<span id="krpc::services::SpaceCenter::CrewMember::type"></span><a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberTypeE" title="krpc::services::SpaceCenter::CrewMemberType">CrewMemberType</a> <code class="descclassname"></code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember4typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The type of crew member.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember10on_missionEv">
+<span id="krpc::services::SpaceCenter::CrewMember::on_mission"></span>bool <code class="descclassname"></code><code class="descname">on_mission</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember10on_missionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Whether the crew member is on a mission.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember7courageEv">
+<span id="krpc::services::SpaceCenter::CrewMember::courage"></span>float <code class="descclassname"></code><code class="descname">courage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember7courageEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember11set_courageEf">
+<span id="krpc::services::SpaceCenter::CrewMember::set_courage__float"></span>void <code class="descclassname"></code><code class="descname">set_courage</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember11set_courageEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The crew members courage.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember9stupidityEv">
+<span id="krpc::services::SpaceCenter::CrewMember::stupidity"></span>float <code class="descclassname"></code><code class="descname">stupidity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember9stupidityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember13set_stupidityEf">
+<span id="krpc::services::SpaceCenter::CrewMember::set_stupidity__float"></span>void <code class="descclassname"></code><code class="descname">set_stupidity</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember13set_stupidityEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The crew members stupidity.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember10experienceEv">
+<span id="krpc::services::SpaceCenter::CrewMember::experience"></span>float <code class="descclassname"></code><code class="descname">experience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember10experienceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember14set_experienceEf">
+<span id="krpc::services::SpaceCenter::CrewMember::set_experience__float"></span>void <code class="descclassname"></code><code class="descname">set_experience</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember14set_experienceEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The crew members experience.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember6badassEv">
+<span id="krpc::services::SpaceCenter::CrewMember::badass"></span>bool <code class="descclassname"></code><code class="descname">badass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember6badassEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember10set_badassEb">
+<span id="krpc::services::SpaceCenter::CrewMember::set_badass__b"></span>void <code class="descclassname"></code><code class="descname">set_badass</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember10set_badassEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Whether the crew member is a badass.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember7veteranEv">
+<span id="krpc::services::SpaceCenter::CrewMember::veteran"></span>bool <code class="descclassname"></code><code class="descname">veteran</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember7veteranEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc8services11SpaceCenter10CrewMember11set_veteranEb">
+<span id="krpc::services::SpaceCenter::CrewMember::set_veteran__b"></span>void <code class="descclassname"></code><code class="descname">set_veteran</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember11set_veteranEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Whether the crew member is a veteran.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum-struct">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14CrewMemberTypeE">
+<em class="property">enum struct </em><code class="descclassname"></code><code class="descname">CrewMemberType</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The type of a crew member.
+See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter10CrewMember4typeEv" title="krpc::services::SpaceCenter::CrewMember::type"><code class="xref cpp cpp-func docutils literal"><span class="pre">CrewMember::type()</span></code></a>.</p>
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14CrewMemberType9applicantE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">applicant</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberType9applicantE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An applicant for crew.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14CrewMemberType4crewE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">crew</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberType4crewE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rocket crew.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14CrewMemberType7touristE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">tourist</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberType7touristE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A tourist.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N4krpc8services11SpaceCenter14CrewMemberType7unownedE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">unowned</code><a class="headerlink" href="#_CPPv2N4krpc8services11SpaceCenter14CrewMemberType7unownedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An unowned crew member.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -880,7 +1014,7 @@ See <a class="reference internal" href="#_CPPv2N4krpc8services11SpaceCenter6Vess
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.0',
+            VERSION:'0.4.1',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

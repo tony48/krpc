@@ -1,0 +1,177 @@
+.. default-domain:: c
+.. highlight:: c
+
+
+Expressions
+===========
+
+
+.. type:: krpc_KRPC_Expression_t
+
+   A server side expression.
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ConstantDouble(krpc_connection_t connection, krpc_KRPC_Expression_t * result, double value)
+
+      A constant value of type double.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ConstantFloat(krpc_connection_t connection, krpc_KRPC_Expression_t * result, float value)
+
+      A constant value of type float.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ConstantInt(krpc_connection_t connection, krpc_KRPC_Expression_t * result, int32_t value)
+
+      A constant value of type int.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ConstantString(krpc_connection_t connection, krpc_KRPC_Expression_t * result, const char * value)
+
+      A constant value of type string.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Call(krpc_connection_t connection, krpc_KRPC_Expression_t * result, const krpc_schema_ProcedureCall * call)
+
+      An RPC call.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Equal(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Equality comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_NotEqual(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Inequality comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_GreaterThan(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Greater than numerical comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_GreaterThanOrEqual(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Greater than or equal numerical comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_LessThan(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Less than numerical comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_LessThanOrEqual(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Less than or equal numerical comparison.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_And(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Boolean and operator.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Or(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Boolean or operator.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ExclusiveOr(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Boolean exclusive-or operator.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Not(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg)
+
+      Boolean negation operator.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Add(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical addition.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Subtract(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical subtraction.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Multiply(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical multiplication.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Divide(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical division.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Modulo(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical modulo operator.
+
+      :Parameters:
+
+
+
+
+      :returns: The remainder of arg0 divided by arg1
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_Power(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Numerical power operator.
+
+      :Parameters:
+
+
+
+
+      :returns: arg0 raised to the power of arg1
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_LeftShift(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Bitwise left shift.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_RightShift(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg0, krpc_KRPC_Expression_t arg1)
+
+      Bitwise right shift.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ToDouble(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg)
+
+      Convert to a double type.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ToFloat(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg)
+
+      Convert to a float type.
+
+      :Parameters:
+
+   .. function:: krpc_error_t krpc_KRPC_Expression_ToInt(krpc_connection_t connection, krpc_KRPC_Expression_t * result, krpc_KRPC_Expression_t arg)
+
+      Convert to an int type.
+
+      :Parameters:
