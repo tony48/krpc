@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Messaging Protocol &mdash; kRPC 0.4.2 documentation</title>
+  <title>Messaging Protocol &mdash; kRPC 0.4.3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.2 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.3 documentation" href="../index.html"/>
         <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
         <link rel="next" title="Internals of kRPC" href="../internals.html"/>
         <link rel="prev" title="Protocol Buffers over WebSockets" href="websockets.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
             
           
@@ -252,6 +252,8 @@ format:</p>
 <span class="kd">message</span> <span class="nc">ProcedureCall</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="kd">service</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">procedure</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">uint32</span> <span class="na">serviceId</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">uint32</span> <span class="na">procedureId</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">Argument</span> <span class="na">arguments</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -267,6 +269,8 @@ calls in a single message, if desired.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">service</span></code> - The name of the service in which the remote procedure is defined.</li>
 <li><code class="docutils literal"><span class="pre">procedure</span></code> - The name of the remote procedure to invoke.</li>
+<li><code class="docutils literal"><span class="pre">service_id</span></code> - The integer identifier of the service in which the remote procedure is defined.</li>
+<li><code class="docutils literal"><span class="pre">procedure_id</span></code> - The integer identifier of the remote procedure to invoke.</li>
 <li><code class="docutils literal"><span class="pre">arguments</span></code> - A sequence of <code class="docutils literal"><span class="pre">Argument</span></code> messages containing the values of the procedure’s
 arguments. The fields of an argument message are:<ul>
 <li><code class="docutils literal"><span class="pre">position</span></code> - The zero-indexed position of the of the argument in the procedure’s
@@ -275,6 +279,12 @@ signature.</li>
 </ul>
 </li>
 </ul>
+<p>The service containing the procedure to call is specified by setting either <code class="docutils literal"><span class="pre">service</span></code> or
+<code class="docutils literal"><span class="pre">service_id</span></code>. The procedure to call is specified by setting either <code class="docutils literal"><span class="pre">procedure</span></code> or
+<code class="docutils literal"><span class="pre">procedure_id</span></code>. Use of <code class="docutils literal"><span class="pre">service</span></code> and <code class="docutils literal"><span class="pre">procedure</span></code> (i.e. descriptive strings) should be
+preferred as these will not change between server versions. For clients where code size or
+communication overhead must be kept to an absolute minimum, <code class="docutils literal"><span class="pre">service_id</span></code> and <code class="docutils literal"><span class="pre">procedure_id</span></code>
+can be used. However, note that the identifiers may change between server versions.</p>
 <p>The <code class="docutils literal"><span class="pre">Argument</span></code> messages have a position field to allow values for default arguments to be
 omitted. See <a class="reference internal" href="#communication-protocol-protobuf-encoding"><span class="std std-ref">Protocol Buffer Encoding</span></a> for details on how to encode the
 argument values.</p>
@@ -381,11 +391,13 @@ start the stream. Once the client is finished with the stream, it can remove it 
 calling <a class="reference internal" href="#communication-protocol-remove-stream"><span class="std std-ref">RemoveStream</span></a>. Streams are automatically removed when the
 client that created it disconnects from the server. Streams are local to each client and there is no
 way to share a stream between clients.</p>
-<p>The RPC for each stream is invoked every <a class="reference external" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">fixed update</a> and the return values for
-all of these RPCs are collected together into a stream update message. This is then sent to the
+<p>The RPC for each stream is invoked every <a class="reference external" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">fixed update</a> and the return values
+for all of these RPCs are collected together into a stream update message. This is then sent to the
 client over its stream server connection. If the value returned by a streams RPC does not change
 since the last update that was sent, its value is omitted from the update message in order to
-minimize network traffic.</p>
+minimize network traffic. A client can also control the rate of the stream, by specifying a target
+number of Hertz. The server computes a time delay from the target rate, and only updates the stream
+if at least that time has passed since the last time the stream was updated.</p>
 <div class="section" id="anatomy-of-a-stream-update">
 <h3>Anatomy of a Stream Update<a class="headerlink" href="#anatomy-of-a-stream-update" title="Permalink to this headline">¶</a></h3>
 <p>Stream updates are sent to the client using a <code class="docutils literal"><span class="pre">StreamUpdate</span></code> Protocol Buffer message with the
@@ -762,7 +774,7 @@ properties make remote procedure calls to the server. Object identifiers have ty
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.2',
+            VERSION:'0.4.3',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

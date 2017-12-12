@@ -46,6 +46,8 @@ format:
    message ProcedureCall {
      string service = 1;
      string procedure = 2;
+     uint32 serviceId = 4;
+     uint32 procedureId = 5;
      repeated Argument arguments = 3;
    }
 
@@ -63,6 +65,10 @@ The fields of a procedure call are:
 
 * ``procedure`` - The name of the remote procedure to invoke.
 
+* ``service_id`` - The integer identifier of the service in which the remote procedure is defined.
+
+* ``procedure_id`` - The integer identifier of the remote procedure to invoke.
+
 * ``arguments`` - A sequence of ``Argument`` messages containing the values of the procedure's
   arguments. The fields of an argument message are:
 
@@ -70,6 +76,13 @@ The fields of a procedure call are:
     signature.
 
   * ``value`` - The value of the argument, encoded in Protocol Buffer format.
+
+The service containing the procedure to call is specified by setting either ``service`` or
+``service_id``. The procedure to call is specified by setting either ``procedure`` or
+``procedure_id``. Use of ``service`` and ``procedure`` (i.e. descriptive strings) should be
+preferred as these will not change between server versions. For clients where code size or
+communication overhead must be kept to an absolute minimum, ``service_id`` and ``procedure_id``
+can be used. However, note that the identifiers may change between server versions.
 
 The ``Argument`` messages have a position field to allow values for default arguments to be
 omitted. See :ref:`communication-protocol-protobuf-encoding` for details on how to encode the
@@ -172,11 +185,13 @@ client that created it disconnects from the server. Streams are local to each cl
 way to share a stream between clients.
 
 The RPC for each stream is invoked every `fixed update
-<https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html>`_ and the return values for
-all of these RPCs are collected together into a stream update message. This is then sent to the
+<https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html>`_ and the return values
+for all of these RPCs are collected together into a stream update message. This is then sent to the
 client over its stream server connection. If the value returned by a streams RPC does not change
 since the last update that was sent, its value is omitted from the update message in order to
-minimize network traffic.
+minimize network traffic. A client can also control the rate of the stream, by specifying a target
+number of Hertz. The server computes a time delay from the target rate, and only updates the stream
+if at least that time has passed since the last time the stream was updated.
 
 Anatomy of a Stream Update
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
