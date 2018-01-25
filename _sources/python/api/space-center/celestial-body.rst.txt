@@ -74,7 +74,7 @@ CelestialBody
       A value between 0 and :math:`2\pi`
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: initial_rotation
 
@@ -82,7 +82,7 @@ CelestialBody
       A value between 0 and :math:`2\pi`
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: equatorial_radius
 
@@ -96,9 +96,9 @@ CelestialBody
       The height of the surface relative to mean sea level, in meters,
       at the given position. When over water this is equal to 0.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
-      :rtype: float
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :rtype: double
 
    .. method:: bedrock_height(latitude, longitude)
 
@@ -106,53 +106,53 @@ CelestialBody
       at the given position. When over water, this is the height
       of the sea-bed and is therefore  negative value.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
-      :rtype: float
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :rtype: double
 
    .. method:: msl_position(latitude, longitude, reference_frame)
 
       The position at mean sea level at the given latitude and longitude,
       in the given reference frame.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
       :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
       :returns: Position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: surface_position(latitude, longitude, reference_frame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position of the surface of the water.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
       :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
       :returns: Position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: bedrock_position(latitude, longitude, reference_frame)
 
       The position of the surface at the given latitude and longitude, in the given
       reference frame. When over water, this is the position at the bottom of the sea-bed.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
       :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
       :returns: Position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: position_at_altitude(latitude, longitude, altitude, reference_frame)
 
       The position at the given latitude, longitude and altitude, in the given reference frame.
 
-      :param float latitude: Latitude in degrees.
-      :param float longitude: Longitude in degrees.
-      :param float altitude: Altitude in meters above sea level.
+      :param double latitude: Latitude in degrees.
+      :param double longitude: Longitude in degrees.
+      :param double altitude: Altitude in meters above sea level.
       :param ReferenceFrame reference_frame: Reference frame for the returned position vector.
       :returns: Position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: altitude_at_position(position, reference_frame)
 
@@ -160,7 +160,7 @@ CelestialBody
 
       :param tuple position: Position as a vector.
       :param ReferenceFrame reference_frame: Reference frame for the position vector.
-      :rtype: float
+      :rtype: double
 
    .. method:: latitude_at_position(position, reference_frame)
 
@@ -168,7 +168,7 @@ CelestialBody
 
       :param tuple position: Position as a vector.
       :param ReferenceFrame reference_frame: Reference frame for the position vector.
-      :rtype: float
+      :rtype: double
 
    .. method:: longitude_at_position(position, reference_frame)
 
@@ -176,7 +176,7 @@ CelestialBody
 
       :param tuple position: Position as a vector.
       :param ReferenceFrame reference_frame: Reference frame for the position vector.
-      :rtype: float
+      :rtype: double
 
    .. attribute:: sphere_of_influence
 
@@ -206,7 +206,7 @@ CelestialBody
 
       :param tuple position: The position vector at which to measure the density.
       :param ReferenceFrame reference_frame: Reference frame that the position vector is in.
-      :rtype: float
+      :rtype: double
 
    .. attribute:: has_atmospheric_oxygen
 
@@ -221,7 +221,7 @@ CelestialBody
 
       :param tuple position: Position as a vector.
       :param ReferenceFrame reference_frame: The reference frame that the position is in.
-      :rtype: float
+      :rtype: double
 
       .. note::
 
@@ -233,8 +233,8 @@ CelestialBody
       Gets the air density, in :math:`kg/m^3`, for the specified
       altitude above sea level, in meters.
 
-      :param float altitude:
-      :rtype: float
+      :param double altitude:
+      :rtype: double
 
       .. note::
 
@@ -249,8 +249,8 @@ CelestialBody
       Gets the air pressure, in Pascals, for the specified
       altitude above sea level, in meters.
 
-      :param float altitude:
-      :rtype: float
+      :param double altitude:
+      :rtype: double
 
    .. attribute:: biomes
 
@@ -263,8 +263,8 @@ CelestialBody
 
       The biome at the given latitude and longitude, in degrees.
 
-      :param float latitude:
-      :param float longitude:
+      :param double latitude:
+      :param double longitude:
       :rtype: str
 
    .. attribute:: flying_high_altitude_threshold
@@ -344,7 +344,7 @@ CelestialBody
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: velocity(reference_frame)
 
@@ -352,7 +352,7 @@ CelestialBody
 
       :param ReferenceFrame reference_frame: The reference frame that the returned velocity vector is in.
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: rotation(reference_frame)
 
@@ -360,7 +360,7 @@ CelestialBody
 
       :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
-      :rtype: tuple(float, float, float, float)
+      :rtype: tuple(double, double, double, double)
 
    .. method:: direction(reference_frame)
 
@@ -369,7 +369,7 @@ CelestialBody
 
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: angular_velocity(reference_frame)
 
@@ -377,4 +377,4 @@ CelestialBody
 
       :param ReferenceFrame reference_frame: The reference frame the returned angular velocity is in.
       :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the body, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)

@@ -9,6 +9,8 @@ KRPC
 
 
 
+
+None
 None
 None
 None
@@ -24,7 +26,7 @@ Main kRPC service, used by clients to interact with basic server functionality.
 
    Returns the identifier for the current client.
 
-   :rtype: str
+   :rtype: bytes
 
 
 
@@ -45,7 +47,7 @@ Main kRPC service, used by clients to interact with basic server functionality.
    Each entry in the list is a clients identifier, name and address.
 
    :Attribute: Read-only, cannot be set
-   :rtype: list(tuple(str, str, str))
+   :rtype: list(tuple(bytes, str, str))
 
 
 
@@ -65,16 +67,6 @@ Main kRPC service, used by clients to interact with basic server functionality.
    Can be used by client libraries to automatically create functionality such as stubs.
 
    :rtype: :class:`krpc.schema.KRPC.Services`
-
-
-
-
-.. staticmethod:: set_stream_rate(id, rate)
-
-   Set the update rate for a stream in Hz.
-
-   :param long id:
-   :param float rate:
 
 
 

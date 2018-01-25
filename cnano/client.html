@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C-nano Client &mdash; kRPC 0.4.3 documentation</title>
+  <title>C-nano Client &mdash; kRPC 0.4.4 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.3 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.4 documentation" href="../index.html"/>
         <link rel="up" title="C-nano" href="../cnano.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="C-nano" href="../cnano.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
             
           
@@ -117,8 +117,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#compilation-options">Compilation Options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#using-the-library">Using the Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-server">Connecting to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-library-on-a-posix-system">Using the Library on a POSIX System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-library-on-from-an-arduino">Using the Library on from an Arduino</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#calling-remote-procedures">Calling Remote Procedures</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streams-and-events">Streams and Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#client-api-reference">Client API Reference</a></li>
@@ -217,7 +217,7 @@ systems with tight resource constraints, hence the “nano” in its name.</p>
 <div class="section" id="manually-include-the-source-in-your-project">
 <h3>Manually include the source in your project<a class="headerlink" href="#manually-include-the-source-in-your-project" title="Permalink to this headline">¶</a></h3>
 <p>The source files can be included in your project manually, by downloading and extracting the
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.3/krpc-cnano-0.4.3.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.4/krpc-cnano-0.4.4.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
 directory and the source files are in <code class="docutils literal"><span class="pre">src</span></code>.</p>
 </div>
 <div class="section" id="arduino-library-manager">
@@ -234,7 +234,7 @@ that they are built using the C++ compiler. This allows the library to use the C
 <div class="section" id="using-the-configure-script">
 <h3>Using the configure script<a class="headerlink" href="#using-the-configure-script" title="Permalink to this headline">¶</a></h3>
 <p>You can build and install the client library and headers using the configure script provided with
-the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.3/krpc-cnano-0.4.3.zip">Download the source archive</a>, extract it and then
+the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.4/krpc-cnano-0.4.4.zip">Download the source archive</a>, extract it and then
 execute the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
 make
@@ -246,7 +246,7 @@ sudo ldconfig
 <div class="section" id="using-cmake">
 <h3>Using CMake<a class="headerlink" href="#using-cmake" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can install the client library and headers using
-CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.3/krpc-cnano-0.4.3.zip">Download the source archive</a>, extract it and execute the
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.4/krpc-cnano-0.4.4.zip">Download the source archive</a>, extract it and execute the
 following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
 make
@@ -309,9 +309,10 @@ minimize the memory footprint of kRPC.</p>
 </div>
 </div>
 </div>
-<div class="section" id="using-the-library">
-<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
-<p>The following example program connects to the server, queries it for its version and prints it out:</p>
+<div class="section" id="using-the-library-on-a-posix-system">
+<h2>Using the Library on a POSIX System<a class="headerlink" href="#using-the-library-on-a-posix-system" title="Permalink to this headline">¶</a></h2>
+<p>On POSIX systems (such as Linux) the following example program connects to the server, queries it
+for its version and prints it out:</p>
 <div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.h&gt;</span><span class="cp"></span>
 
@@ -329,13 +330,38 @@ minimize the memory footprint of kRPC.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>gcc main.c -lkrpc_cnano
 </pre></div>
 </div>
-</div>
-<div class="section" id="connecting-to-the-server">
-<h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#c.krpc_connect" title="krpc_connect"><code class="xref c c-func docutils literal"><span class="pre">krpc_connect()</span></code></a> function is used to open a connection to a server. It takes as its first
 argument a connection object into which the connection information is written. This is passed to
 subsequent calls to interact with the server. The second argument is a name for the connection
 (displayed in game) and the third is the name of the serial port to connect over.</p>
+</div>
+<div class="section" id="using-the-library-on-from-an-arduino">
+<h2>Using the Library on from an Arduino<a class="headerlink" href="#using-the-library-on-from-an-arduino" title="Permalink to this headline">¶</a></h2>
+<p>The following example demonstrates how to connect to the server from an Arduino, through its serial
+port interface:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.h&gt;</span><span class="cp"></span>
+
+<span class="n">HardwareSerial</span> <span class="o">*</span> <span class="n">conn</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+
+  <span class="n">conn</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Serial</span><span class="p">;</span>
+  <span class="c1">// Open the serial port connection</span>
+  <span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="c1">// Set up communication with the server</span>
+  <span class="n">krpc_connect</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;Arduino Example&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Indicate succesful connection by lighting the on-board LED</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="calling-remote-procedures">
 <h2>Calling Remote Procedures<a class="headerlink" href="#calling-remote-procedures" title="Permalink to this headline">¶</a></h2>
@@ -521,7 +547,7 @@ const char * <code class="descname">krpc_get_error</code><span class="sig-paren"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.3',
+            VERSION:'0.4.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -306,14 +306,14 @@ Part
       The color used to highlight the part, as an RGB triple.
 
       :Attribute: Can be read or written
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: cost
 
       The cost of the part, in units of funds.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: vessel
 
@@ -398,7 +398,7 @@ Part
       Returns zero if the part is massless.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: dry_mass
 
@@ -406,7 +406,7 @@ Part
       Returns zero if the part is massless.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: shielded
 
@@ -427,35 +427,35 @@ Part
       The impact tolerance of the part, in meters per second.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: temperature
 
       Temperature of the part, in Kelvin.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: skin_temperature
 
       Temperature of the skin of the part, in Kelvin.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: max_temperature
 
       Maximum temperature that the part can survive, in Kelvin.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: max_skin_temperature
 
       Maximum temperature that the skin of the part can survive, in Kelvin.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: thermal_mass
 
@@ -742,7 +742,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
       .. note::
 
@@ -757,7 +757,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: bounding_box(reference_frame)
 
@@ -765,7 +765,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vectors are in.
       :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
       .. note::
 
@@ -779,7 +779,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: velocity(reference_frame)
 
@@ -787,7 +787,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned velocity vector is in.
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: rotation(reference_frame)
 
@@ -795,7 +795,7 @@ Part
 
       :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
-      :rtype: tuple(float, float, float, float)
+      :rtype: tuple(double, double, double, double)
 
    .. attribute:: moment_of_inertia
 
@@ -803,7 +803,7 @@ Part
       in the parts reference frame (:class:`ReferenceFrame`).
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: inertia_tensor
 
@@ -812,7 +812,7 @@ Part
       Returns the 3x3 matrix as a list of elements, in row-major order.
 
       :Attribute: Read-only, cannot be set
-      :rtype: list(float)
+      :rtype: list(double)
 
    .. attribute:: reference_frame
 
@@ -898,7 +898,7 @@ Part
 
       :Attribute: Can be read or written
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: position
 
@@ -906,7 +906,7 @@ Part
 
       :Attribute: Can be read or written
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: reference_frame
 
@@ -1121,7 +1121,7 @@ Antenna
       The power of the antenna.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: combinable
 
@@ -1136,7 +1136,7 @@ Antenna
       Exponent used to calculate the combined power of multiple antennae on a vessel.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: packet_interval
 
@@ -1157,7 +1157,7 @@ Antenna
       Units of electric charge consumed per packet sent.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
 
 
@@ -1321,7 +1321,7 @@ Control Surface
       correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
 
 
@@ -1453,7 +1453,7 @@ Docking Port
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: direction(reference_frame)
 
@@ -1461,7 +1461,7 @@ Docking Port
 
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: rotation(reference_frame)
 
@@ -1469,7 +1469,7 @@ Docking Port
 
       :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
-      :rtype: tuple(float, float, float, float)
+      :rtype: tuple(double, double, double, double)
 
    .. attribute:: reference_frame
 
@@ -1798,7 +1798,7 @@ Engine
       Returns zero if the engine is inactive, or not gimballed.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
 
 
@@ -1818,14 +1818,14 @@ Engine
       The current amount of propellant.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: current_requirement
 
       The required amount of propellant.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: total_resource_available
 
@@ -1833,7 +1833,7 @@ Engine
       resource flow rules.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: total_resource_capacity
 
@@ -1841,7 +1841,7 @@ Engine
       restricted by resource flow rules.
 
       :Attribute: Read-only, cannot be set
-      :rtype: float
+      :rtype: double
 
    .. attribute:: ignore_for_isp
 
@@ -2522,6 +2522,27 @@ Resource Converter
       :param int index: Index of the converter.
       :rtype: list(str)
 
+   .. attribute:: optimum_core_temperature
+
+      The core temperature at which the converter will operate with peak efficiency, in Kelvin.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: core_temperature
+
+      The core temperature of the converter, in Kelvin.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
+   .. attribute:: thermal_efficiency
+
+      The thermal efficiency of the converter, as a percentage of its maximum.
+
+      :Attribute: Read-only, cannot be set
+      :rtype: float
+
 
 
 .. class:: ResourceConverterState
@@ -2695,7 +2716,7 @@ Reaction Wheel
       Returns zero if the reaction wheel is inactive or broken.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
    .. attribute:: max_torque
 
@@ -2704,7 +2725,7 @@ Reaction Wheel
       These axes correspond to the coordinate axes of the :attr:`Vessel.reference_frame`.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
 
 
@@ -2790,7 +2811,7 @@ RCS
       Returns zero if RCS is disable.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(tuple(float, float, float), tuple(float, float, float))
+      :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
 
    .. attribute:: max_thrust
 
@@ -3010,7 +3031,7 @@ Thruster
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: thrust_direction(reference_frame)
 
@@ -3020,7 +3041,7 @@ Thruster
 
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: thrust_reference_frame
 
@@ -3051,14 +3072,14 @@ Thruster
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. attribute:: gimbal_angle
 
       The current gimbal angle in the pitch, roll and yaw axes, in degrees.
 
       :Attribute: Read-only, cannot be set
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
    .. method:: initial_thrust_position(reference_frame)
 
@@ -3067,7 +3088,7 @@ Thruster
 
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
       .. note::
 
@@ -3082,7 +3103,7 @@ Thruster
 
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
-      :rtype: tuple(float, float, float)
+      :rtype: tuple(double, double, double)
 
 
 
