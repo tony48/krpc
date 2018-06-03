@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.5 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -220,6 +220,24 @@
 <div><p>Provides functionality to interact with Kerbal Space Program. This includes controlling
 the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
 <dl class="function">
+<dt id="c.krpc_SpaceCenter_Science">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Science</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Science" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of science.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Funds">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Funds</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, double *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of funds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.krpc_SpaceCenter_Reputation">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Reputation</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, float *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Reputation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of reputation.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="c.krpc_SpaceCenter_ActiveVessel">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_ActiveVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t">krpc_SpaceCenter_Vessel_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_ActiveVessel" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -302,7 +320,7 @@ that can be launched.</p>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_LaunchVessel">
-<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;craftDirectory</em>, const char *<em>&nbsp;name</em>, const char *<em>&nbsp;launchSite</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVessel" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVessel</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;craftDirectory</em>, const char *<em>&nbsp;name</em>, const char *<em>&nbsp;launchSite</em>, bool<em>&nbsp;recover</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a vessel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,16 +330,21 @@ that can be launched.</p>
 <li><strong>craftDirectory</strong> – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
 <li><strong>name</strong> – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
 <li><strong>launchSite</strong> – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the launch site, recover it before launching.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Throws an exception if any of the games pre-flight checks fail.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_LaunchVesselFromVAB">
-<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromVAB</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromVAB" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromVAB</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em>, bool<em>&nbsp;recover</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromVAB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -329,6 +352,7 @@ that can be launched.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> – Name of the vessel to launch.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the launch pad, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -337,13 +361,14 @@ that can be launched.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#c.krpc_SpaceCenter_LaunchVessel" title="krpc_SpaceCenter_LaunchVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_LaunchVessel()</span></code></a> with the craft directory
-set to “VAB” and the launch site set to “LaunchPad”.</p>
+set to “VAB” and the launch site set to “LaunchPad”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_LaunchVesselFromSPH">
-<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromSPH</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromSPH" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_LaunchVesselFromSPH</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, const char *<em>&nbsp;name</em>, bool<em>&nbsp;recover</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_LaunchVesselFromSPH" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the SPH onto the runway.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -351,6 +376,7 @@ set to “VAB” and the launch site set to “LaunchPad”.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> – Name of the vessel to launch.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the runway, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -359,7 +385,8 @@ set to “VAB” and the launch site set to “LaunchPad”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#c.krpc_SpaceCenter_LaunchVessel" title="krpc_SpaceCenter_LaunchVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_LaunchVessel()</span></code></a> with the craft directory
-set to “SPH” and the launch site set to “Runway”.</p>
+set to “SPH” and the launch site set to “Runway”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
@@ -698,6 +725,12 @@ If no hit occurs, returns <code class="docutils literal"><span class="pre">nullp
 </dd></dl>
 
 <dl class="function">
+<dt id="c.krpc_SpaceCenter_GameMode">
+<a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_GameMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_GameMode_t" title="krpc_SpaceCenter_GameMode_t">krpc_SpaceCenter_GameMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_GameMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode the game is in.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="c.krpc_SpaceCenter_WarpMode">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WarpMode</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_WarpMode_t" title="krpc_SpaceCenter_WarpMode_t">krpc_SpaceCenter_WarpMode_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WarpMode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current time warp mode. Returns <a class="reference internal" href="#c.KRPC_SPACECENTER_WARPMODE_NONE" title="KRPC_SPACECENTER_WARPMODE_NONE"><code class="xref c c-macro docutils literal"><span class="pre">KRPC_SPACECENTER_WARPMODE_NONE</span></code></a> if time
@@ -724,6 +757,61 @@ is active, or <a class="reference internal" href="#c.KRPC_SPACECENTER_WARPMODE_P
 </dd></dl>
 
 </div></blockquote>
+<dl class="type">
+<dt id="c.krpc_SpaceCenter_GameMode_t">
+<code class="descname">krpc_SpaceCenter_GameMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_GameMode_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>The game mode.
+Returned by <a class="reference internal" href="#c.krpc_SpaceCenter_GameMode_t" title="krpc_SpaceCenter_GameMode_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_GameMode_t</span></code></a></p>
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_SANDBOX">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_SANDBOX</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_SANDBOX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sandbox mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_CAREER">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_CAREER</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_CAREER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Career mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_SCIENCE">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_SCIENCE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_SCIENCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science career mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_SCIENCESANDBOX">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_SCIENCESANDBOX</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_SCIENCESANDBOX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science sandbox mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_MISSION">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_MISSION</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_MISSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_MISSIONBUILDER">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_MISSIONBUILDER</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_MISSIONBUILDER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission builder mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_SCENARIO">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_SCENARIO</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_SCENARIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.KRPC_SPACECENTER_GAMEMODE_SCENARIONONRESUMABLE">
+<code class="descname">KRPC_SPACECENTER_GAMEMODE_SCENARIONONRESUMABLE</code><a class="headerlink" href="#c.KRPC_SPACECENTER_GAMEMODE_SCENARIONONRESUMABLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode that cannot be resumed.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="type">
 <dt id="c.krpc_SpaceCenter_WarpMode_t">
 <code class="descname">krpc_SpaceCenter_WarpMode_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_WarpMode_t" title="Permalink to this definition">¶</a></dt>
@@ -795,7 +883,7 @@ Returned by <a class="reference internal" href="#c.krpc_SpaceCenter_WarpMode_t" 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

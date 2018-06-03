@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.5 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -221,6 +221,24 @@
 <dd><p>Provides functionality to interact with Kerbal Space Program. This includes controlling
 the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Science">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Science</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Science" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of science.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Funds">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.double.aspx" title="System.Double">Double</a> <code class="descname">Funds</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of funds.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Reputation">
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.single.aspx" title="System.Single">Single</a> <code class="descname">Reputation</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.Reputation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of reputation.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel">
 <a class="reference internal" href="vessel.html#class-KRPC.Client.Services.SpaceCenter.Vessel" title="KRPC.Client.Services.SpaceCenter.Vessel class">Vessel</a> <code class="descname">ActiveVessel</code> { <em class="property">get; set;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>The currently active vessel.</p>
@@ -283,7 +301,7 @@ that can be launched.</p>
 
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel">
-void <code class="descname">LaunchVessel</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>craftDirectory</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>launchSite</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel" title="Permalink to this definition">¶</a></dt>
+void <code class="descname">LaunchVessel</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>craftDirectory</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>launchSite</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <em>recover</em><em> = true</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a vessel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -293,16 +311,21 @@ void <code class="descname">LaunchVessel</code> <span class="sig-paren">(</span>
 <li><strong>craftDirectory</strong> – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
 <li><strong>name</strong> – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
 <li><strong>launchSite</strong> – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the launch site, recover it before launching.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Throws an exception if any of the games pre-flight checks fail.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromVAB">
-void <code class="descname">LaunchVesselFromVAB</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromVAB" title="Permalink to this definition">¶</a></dt>
+void <code class="descname">LaunchVesselFromVAB</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <em>recover</em><em> = true</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromVAB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -310,6 +333,7 @@ void <code class="descname">LaunchVesselFromVAB</code> <span class="sig-paren">(
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> – Name of the vessel to launch.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the launch pad, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -318,13 +342,14 @@ void <code class="descname">LaunchVesselFromVAB</code> <span class="sig-paren">(
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">SpaceCenter.LaunchVessel</span></code></a> with the craft directory
-set to “VAB” and the launch site set to “LaunchPad”.</p>
+set to “VAB” and the launch site set to “LaunchPad”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromSPH">
-void <code class="descname">LaunchVesselFromSPH</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromSPH" title="Permalink to this definition">¶</a></dt>
+void <code class="descname">LaunchVesselFromSPH</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.string.aspx" title="System.String">String</a> <em>name</em>, <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <em>recover</em><em> = true</em><span class="sig-paren">)</span><a class="headerlink" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVesselFromSPH" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the SPH onto the runway.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -332,6 +357,7 @@ void <code class="descname">LaunchVesselFromSPH</code> <span class="sig-paren">(
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> – Name of the vessel to launch.</li>
+<li><strong>recover</strong> – If true and there is a vessel on the runway, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -340,7 +366,8 @@ void <code class="descname">LaunchVesselFromSPH</code> <span class="sig-paren">(
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#method-KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.LaunchVessel method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">SpaceCenter.LaunchVessel</span></code></a> with the craft directory
-set to “SPH” and the launch site set to “Runway”.</p>
+set to “SPH” and the launch site set to “Runway”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
@@ -659,6 +686,12 @@ If no hit occurs, returns <code class="docutils literal"><span class="pre">null<
 </dd></dl>
 
 <dl class="property">
+<dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.GameMode">
+<a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.GameMode" title="KRPC.Client.Services.SpaceCenter.GameMode enum">GameMode</a> <code class="descname">GameMode</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.GameMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode the game is in.</p>
+</dd></dl>
+
+<dl class="property">
 <dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode">
 <a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.WarpMode" title="KRPC.Client.Services.SpaceCenter.WarpMode enum">WarpMode</a> <code class="descname">WarpMode</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.WarpMode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current time warp mode. Returns <a class="reference internal" href="#value-KRPC.Client.Services.SpaceCenter.WarpMode.None" title="KRPC.Client.Services.SpaceCenter.WarpMode.None value"><code class="xref csharp csharp-enum docutils literal"><span class="pre">WarpMode.None</span></code></a> if time
@@ -682,6 +715,61 @@ is active, or <a class="reference internal" href="#value-KRPC.Client.Services.Sp
 <dt id="property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ContractManager">
 <a class="reference internal" href="contracts.html#class-KRPC.Client.Services.SpaceCenter.ContractManager" title="KRPC.Client.Services.SpaceCenter.ContractManager class">ContractManager</a> <code class="descname">ContractManager</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ContractManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>The contract manager.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-KRPC.Client.Services.SpaceCenter.GameMode">
+<code class="descname">enum GameMode</code><a class="headerlink" href="#enum-KRPC.Client.Services.SpaceCenter.GameMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The game mode.
+Returned by <a class="reference internal" href="#enum-KRPC.Client.Services.SpaceCenter.GameMode" title="KRPC.Client.Services.SpaceCenter.GameMode enum"><code class="xref csharp csharp-type docutils literal"><span class="pre">GameMode</span></code></a></p>
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.Sandbox">
+<code class="descname">Sandbox</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.Sandbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sandbox mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.Career">
+<code class="descname">Career</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.Career" title="Permalink to this definition">¶</a></dt>
+<dd><p>Career mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.Science">
+<code class="descname">Science</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.Science" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science career mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.ScienceSandbox">
+<code class="descname">ScienceSandbox</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.ScienceSandbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science sandbox mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.Mission">
+<code class="descname">Mission</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.Mission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.MissionBuilder">
+<code class="descname">MissionBuilder</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.MissionBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission builder mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.Scenario">
+<code class="descname">Scenario</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.Scenario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-KRPC.Client.Services.SpaceCenter.GameMode.ScenarioNonResumable">
+<code class="descname">ScenarioNonResumable</code><a class="headerlink" href="#value-KRPC.Client.Services.SpaceCenter.GameMode.ScenarioNonResumable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode that cannot be resumed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -757,7 +845,7 @@ Returned by <a class="reference internal" href="#enum-KRPC.Client.Services.Space
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

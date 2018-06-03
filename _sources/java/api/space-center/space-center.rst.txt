@@ -11,6 +11,21 @@ SpaceCenter
    Provides functionality to interact with Kerbal Space Program. This includes controlling
    the active vessel, managing its resources, planning maneuver nodes and auto-piloting.
 
+   .. method:: float getScience()
+
+
+      The current amount of science.
+
+   .. method:: double getFunds()
+
+
+      The current amount of funds.
+
+   .. method:: float getReputation()
+
+
+      The current amount of reputation.
+
    .. method:: Vessel getActiveVessel()
 
    .. method:: void setActiveVessel(Vessel value)
@@ -57,35 +72,44 @@ SpaceCenter
 
       :param String craftDirectory: Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
 
-   .. method:: void launchVessel(String craftDirectory, String name, String launchSite)
+   .. method:: void launchVessel(String craftDirectory, String name, String launchSite, boolean recover)
 
       Launch a vessel.
 
       :param String craftDirectory: Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
       :param String name: Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
       :param String launchSite: Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+      :param boolean recover: If true and there is a vessel on the launch site, recover it before launching.
 
-   .. method:: void launchVesselFromVAB(String name)
+      .. note::
+
+         Throws an exception if any of the games pre-flight checks fail.
+
+   .. method:: void launchVesselFromVAB(String name, boolean recover)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :param String name: Name of the vessel to launch.
+      :param boolean recover: If true and there is a vessel on the launch pad, recover it before launching.
 
       .. note::
 
-         This is equivalent to calling :meth:`launchVessel(String, String, String)` with the craft directory
+         This is equivalent to calling :meth:`launchVessel(String, String, String, boolean)` with the craft directory
          set to "VAB" and the launch site set to "LaunchPad".
+         Throws an exception if any of the games pre-flight checks fail.
 
-   .. method:: void launchVesselFromSPH(String name)
+   .. method:: void launchVesselFromSPH(String name, boolean recover)
 
       Launch a new vessel from the SPH onto the runway.
 
       :param String name: Name of the vessel to launch.
+      :param boolean recover: If true and there is a vessel on the runway, recover it before launching.
 
       .. note::
 
-         This is equivalent to calling :meth:`launchVessel(String, String, String)` with the craft directory
+         This is equivalent to calling :meth:`launchVessel(String, String, String, boolean)` with the craft directory
          set to "SPH" and the launch site set to "Runway".
+         Throws an exception if any of the games pre-flight checks fail.
 
    .. method:: void save(String name)
 
@@ -276,6 +300,11 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+   .. method:: GameMode getGameMode()
+
+
+      The current mode the game is in.
+
    .. method:: WarpMode getWarpMode()
 
 
@@ -297,6 +326,53 @@ SpaceCenter
 
 
       The contract manager.
+
+
+
+.. type:: public enum GameMode
+
+   The game mode.
+   Returned by :type:`GameMode`
+
+
+   .. field:: public GameMode SANDBOX
+
+      Sandbox mode.
+
+
+   .. field:: public GameMode CAREER
+
+      Career mode.
+
+
+   .. field:: public GameMode SCIENCE
+
+      Science career mode.
+
+
+   .. field:: public GameMode SCIENCE_SANDBOX
+
+      Science sandbox mode.
+
+
+   .. field:: public GameMode MISSION
+
+      Mission mode.
+
+
+   .. field:: public GameMode MISSION_BUILDER
+
+      Mission builder mode.
+
+
+   .. field:: public GameMode SCENARIO
+
+      Scenario mode.
+
+
+   .. field:: public GameMode SCENARIO_NON_RESUMABLE
+
+      Scenario mode that cannot be resumed.
 
 
 

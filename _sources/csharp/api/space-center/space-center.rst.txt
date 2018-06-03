@@ -11,6 +11,18 @@ SpaceCenter
    Provides functionality to interact with Kerbal Space Program. This includes controlling
    the active vessel, managing its resources, planning maneuver nodes and auto-piloting.
 
+   .. property:: float Science { get; }
+
+      The current amount of science.
+
+   .. property:: double Funds { get; }
+
+      The current amount of funds.
+
+   .. property:: float Reputation { get; }
+
+      The current amount of reputation.
+
    .. property:: Vessel ActiveVessel { get; set; }
 
       The currently active vessel.
@@ -49,7 +61,7 @@ SpaceCenter
 
        * **craftDirectory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
 
-   .. method:: void LaunchVessel(string craftDirectory, string name, string launchSite)
+   .. method:: void LaunchVessel(string craftDirectory, string name, string launchSite, bool recover = true)
 
       Launch a vessel.
 
@@ -58,34 +70,44 @@ SpaceCenter
        * **craftDirectory** -- Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
        * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
        * **launchSite** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+       * **recover** -- If true and there is a vessel on the launch site, recover it before launching.
 
-   .. method:: void LaunchVesselFromVAB(string name)
+
+      .. note::
+
+         Throws an exception if any of the games pre-flight checks fail.
+
+   .. method:: void LaunchVesselFromVAB(string name, bool recover = true)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the launch pad, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :meth:`SpaceCenter.LaunchVessel` with the craft directory
          set to "VAB" and the launch site set to "LaunchPad".
+         Throws an exception if any of the games pre-flight checks fail.
 
-   .. method:: void LaunchVesselFromSPH(string name)
+   .. method:: void LaunchVesselFromSPH(string name, bool recover = true)
 
       Launch a new vessel from the SPH onto the runway.
 
       :parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the runway, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :meth:`SpaceCenter.LaunchVessel` with the craft directory
          set to "SPH" and the launch site set to "Runway".
+         Throws an exception if any of the games pre-flight checks fail.
 
    .. method:: void Save(string name)
 
@@ -287,6 +309,10 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+   .. property:: GameMode GameMode { get; }
+
+      The current mode the game is in.
+
    .. property:: WarpMode WarpMode { get; }
 
       The current time warp mode. Returns :enum:`WarpMode.None` if time
@@ -304,6 +330,53 @@ SpaceCenter
    .. property:: ContractManager ContractManager { get; }
 
       The contract manager.
+
+
+
+.. enum:: GameMode
+
+   The game mode.
+   Returned by :type:`GameMode`
+
+
+   .. value:: Sandbox
+
+      Sandbox mode.
+
+
+   .. value:: Career
+
+      Career mode.
+
+
+   .. value:: Science
+
+      Science career mode.
+
+
+   .. value:: ScienceSandbox
+
+      Science sandbox mode.
+
+
+   .. value:: Mission
+
+      Mission mode.
+
+
+   .. value:: MissionBuilder
+
+      Mission builder mode.
+
+
+   .. value:: Scenario
+
+      Scenario mode.
+
+
+   .. value:: ScenarioNonResumable
+
+      Scenario mode that cannot be resumed.
 
 
 

@@ -11,6 +11,18 @@ Service SpaceCenter
    Provides functionality to interact with Kerbal Space Program. This includes controlling
    the active vessel, managing its resources, planning maneuver nodes and auto-piloting.
 
+   .. function:: krpc_error_t krpc_SpaceCenter_Science(krpc_connection_t connection, float * result)
+
+      The current amount of science.
+
+   .. function:: krpc_error_t krpc_SpaceCenter_Funds(krpc_connection_t connection, double * result)
+
+      The current amount of funds.
+
+   .. function:: krpc_error_t krpc_SpaceCenter_Reputation(krpc_connection_t connection, float * result)
+
+      The current amount of reputation.
+
    .. function:: krpc_error_t krpc_SpaceCenter_ActiveVessel(krpc_connection_t connection, krpc_SpaceCenter_Vessel_t * result)
    .. function:: void krpc_SpaceCenter_set_ActiveVessel(krpc_SpaceCenter_Vessel_t value)
 
@@ -53,7 +65,7 @@ Service SpaceCenter
 
        * **craftDirectory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
 
-   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVessel(krpc_connection_t connection, const char * craftDirectory, const char * name, const char * launchSite)
+   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVessel(krpc_connection_t connection, const char * craftDirectory, const char * name, const char * launchSite, bool recover)
 
       Launch a vessel.
 
@@ -62,34 +74,44 @@ Service SpaceCenter
        * **craftDirectory** -- Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
        * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
        * **launchSite** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+       * **recover** -- If true and there is a vessel on the launch site, recover it before launching.
 
-   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVesselFromVAB(krpc_connection_t connection, const char * name)
+
+      .. note::
+
+         Throws an exception if any of the games pre-flight checks fail.
+
+   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVesselFromVAB(krpc_connection_t connection, const char * name, bool recover)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :Parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the launch pad, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :func:`krpc_SpaceCenter_LaunchVessel` with the craft directory
          set to "VAB" and the launch site set to "LaunchPad".
+         Throws an exception if any of the games pre-flight checks fail.
 
-   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVesselFromSPH(krpc_connection_t connection, const char * name)
+   .. function:: krpc_error_t krpc_SpaceCenter_LaunchVesselFromSPH(krpc_connection_t connection, const char * name, bool recover)
 
       Launch a new vessel from the SPH onto the runway.
 
       :Parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the runway, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :func:`krpc_SpaceCenter_LaunchVessel` with the craft directory
          set to "SPH" and the launch site set to "Runway".
+         Throws an exception if any of the games pre-flight checks fail.
 
    .. function:: krpc_error_t krpc_SpaceCenter_Save(krpc_connection_t connection, const char * name)
 
@@ -295,6 +317,10 @@ Service SpaceCenter
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+   .. function:: krpc_error_t krpc_SpaceCenter_GameMode(krpc_connection_t connection, krpc_SpaceCenter_GameMode_t * result)
+
+      The current mode the game is in.
+
    .. function:: krpc_error_t krpc_SpaceCenter_WarpMode(krpc_connection_t connection, krpc_SpaceCenter_WarpMode_t * result)
 
       The current time warp mode. Returns :macro:`KRPC_SPACECENTER_WARPMODE_NONE` if time
@@ -312,6 +338,53 @@ Service SpaceCenter
    .. function:: krpc_error_t krpc_SpaceCenter_ContractManager(krpc_connection_t connection, krpc_SpaceCenter_ContractManager_t * result)
 
       The contract manager.
+
+
+
+.. type:: krpc_SpaceCenter_GameMode_t
+
+   The game mode.
+   Returned by :type:`krpc_SpaceCenter_GameMode_t`
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_SANDBOX
+
+      Sandbox mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_CAREER
+
+      Career mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_SCIENCE
+
+      Science career mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_SCIENCESANDBOX
+
+      Science sandbox mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_MISSION
+
+      Mission mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_MISSIONBUILDER
+
+      Mission builder mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_SCENARIO
+
+      Scenario mode.
+
+
+   .. macro:: KRPC_SPACECENTER_GAMEMODE_SCENARIONONRESUMABLE
+
+      Scenario mode that cannot be resumed.
 
 
 

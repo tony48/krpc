@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.5 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -221,6 +221,24 @@ public class <code class="descname">SpaceCenter</code><a class="headerlink" href
 <dd><p>Provides functionality to interact with Kerbal Space Program. This includes controlling
 the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.getScience()">
+ float <code class="descname">getScience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getScience()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of science.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.getFunds()">
+ double <code class="descname">getFunds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getFunds()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of funds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.getReputation()">
+ float <code class="descname">getReputation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getReputation()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of reputation.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()">
  <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel" title="krpc.client.services.SpaceCenter.Vessel">Vessel</a> <code class="descname">getActiveVessel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -302,8 +320,8 @@ that can be launched.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)">
- void <code class="descname">launchVessel</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> craftDirectory</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> launchSite</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)" title="Permalink to this definition">¶</a></dt>
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)">
+ void <code class="descname">launchVessel</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> craftDirectory</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> launchSite</em>, boolean<em> recover</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a vessel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -313,16 +331,21 @@ that can be launched.</p>
 <li><strong>craftDirectory</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
 <li><strong>launchSite</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the launch site, recover it before launching.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Throws an exception if any of the games pre-flight checks fail.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
-<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromVAB(String)">
- void <code class="descname">launchVesselFromVAB</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromVAB(String)" title="Permalink to this definition">¶</a></dt>
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromVAB(String, boolean)">
+ void <code class="descname">launchVesselFromVAB</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, boolean<em> recover</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromVAB(String, boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -330,6 +353,7 @@ that can be launched.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the vessel to launch.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the launch pad, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -337,14 +361,15 @@ that can be launched.</p>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is equivalent to calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)" title="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)"><code class="xref java java-meth docutils literal"><span class="pre">launchVessel(String,</span> <span class="pre">String,</span> <span class="pre">String)</span></code></a> with the craft directory
-set to “VAB” and the launch site set to “LaunchPad”.</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)" title="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)"><code class="xref java java-meth docutils literal"><span class="pre">launchVessel(String,</span> <span class="pre">String,</span> <span class="pre">String,</span> <span class="pre">boolean)</span></code></a> with the craft directory
+set to “VAB” and the launch site set to “LaunchPad”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
-<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromSPH(String)">
- void <code class="descname">launchVesselFromSPH</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromSPH(String)" title="Permalink to this definition">¶</a></dt>
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromSPH(String, boolean)">
+ void <code class="descname">launchVesselFromSPH</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em>, boolean<em> recover</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVesselFromSPH(String, boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the SPH onto the runway.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -352,6 +377,7 @@ set to “VAB” and the launch site set to “LaunchPad”.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the vessel to launch.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the runway, recover it before launching.</li>
 </ul>
 </td>
 </tr>
@@ -359,8 +385,9 @@ set to “VAB” and the launch site set to “LaunchPad”.</p>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is equivalent to calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)" title="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String)"><code class="xref java java-meth docutils literal"><span class="pre">launchVessel(String,</span> <span class="pre">String,</span> <span class="pre">String)</span></code></a> with the craft directory
-set to “SPH” and the launch site set to “Runway”.</p>
+<p class="last">This is equivalent to calling <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)" title="krpc.client.services.SpaceCenter.SpaceCenter.launchVessel(String, String, String, boolean)"><code class="xref java java-meth docutils literal"><span class="pre">launchVessel(String,</span> <span class="pre">String,</span> <span class="pre">String,</span> <span class="pre">boolean)</span></code></a> with the craft directory
+set to “SPH” and the launch site set to “Runway”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
@@ -705,6 +732,12 @@ If no hit occurs, returns <code class="docutils literal"><span class="pre">null<
 </dd></dl>
 
 <dl class="method">
+<dt id="krpc.client.services.SpaceCenter.SpaceCenter.getGameMode()">
+ <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">getGameMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getGameMode()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode the game is in.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="krpc.client.services.SpaceCenter.SpaceCenter.getWarpMode()">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.WarpMode" title="krpc.client.services.SpaceCenter.WarpMode">WarpMode</a> <code class="descname">getWarpMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getWarpMode()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current time warp mode. Returns <a class="reference internal" href="#krpc.client.services.SpaceCenter.WarpMode.NONE" title="krpc.client.services.SpaceCenter.WarpMode.NONE"><code class="xref java java-meth docutils literal"><span class="pre">WarpMode.NONE</span></code></a> if time
@@ -728,6 +761,61 @@ is active, or <a class="reference internal" href="#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.SpaceCenter.getContractManager()">
  <a class="reference internal" href="contracts.html#krpc.client.services.SpaceCenter.ContractManager" title="krpc.client.services.SpaceCenter.ContractManager">ContractManager</a> <code class="descname">getContractManager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpaceCenter.getContractManager()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The contract manager.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="krpc.client.services.SpaceCenter.GameMode">
+public enum <code class="descname">GameMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The game mode.
+Returned by <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode"><code class="xref java java-type docutils literal"><span class="pre">GameMode</span></code></a></p>
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.SANDBOX">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">SANDBOX</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.SANDBOX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sandbox mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.CAREER">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">CAREER</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.CAREER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Career mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.SCIENCE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">SCIENCE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.SCIENCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science career mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.SCIENCE_SANDBOX">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">SCIENCE_SANDBOX</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.SCIENCE_SANDBOX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science sandbox mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.MISSION">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">MISSION</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.MISSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.MISSION_BUILDER">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">MISSION_BUILDER</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.MISSION_BUILDER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission builder mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.SCENARIO">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">SCENARIO</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.SCENARIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode.</p>
+</dd></dl>
+
+<dl class="field">
+<dt id="krpc.client.services.SpaceCenter.GameMode.SCENARIO_NON_RESUMABLE">
+public <a class="reference internal" href="#krpc.client.services.SpaceCenter.GameMode" title="krpc.client.services.SpaceCenter.GameMode">GameMode</a> <code class="descname">SCENARIO_NON_RESUMABLE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.GameMode.SCENARIO_NON_RESUMABLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode that cannot be resumed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -803,7 +891,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.War
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

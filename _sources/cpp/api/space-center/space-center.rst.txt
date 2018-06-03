@@ -16,6 +16,18 @@ SpaceCenter
 
       Construct an instance of this service.
 
+   .. function:: float science()
+
+      The current amount of science.
+
+   .. function:: double funds()
+
+      The current amount of funds.
+
+   .. function:: float reputation()
+
+      The current amount of reputation.
+
    .. function:: Vessel active_vessel()
    .. function:: void set_active_vessel(Vessel value)
 
@@ -58,7 +70,7 @@ SpaceCenter
 
        * **craft_directory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
 
-   .. function:: void launch_vessel(std::string craft_directory, std::string name, std::string launch_site)
+   .. function:: void launch_vessel(std::string craft_directory, std::string name, std::string launch_site, bool recover = true)
 
       Launch a vessel.
 
@@ -67,34 +79,44 @@ SpaceCenter
        * **craft_directory** -- Name of the directory in the current saves "Ships" directory, that contains the craft file. For example ``"VAB"`` or ``"SPH"``.
        * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
        * **launch_site** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
+       * **recover** -- If true and there is a vessel on the launch site, recover it before launching.
 
-   .. function:: void launch_vessel_from_vab(std::string name)
+
+      .. note::
+
+         Throws an exception if any of the games pre-flight checks fail.
+
+   .. function:: void launch_vessel_from_vab(std::string name, bool recover = true)
 
       Launch a new vessel from the VAB onto the launchpad.
 
       :Parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the launch pad, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :func:`launch_vessel` with the craft directory
          set to "VAB" and the launch site set to "LaunchPad".
+         Throws an exception if any of the games pre-flight checks fail.
 
-   .. function:: void launch_vessel_from_sph(std::string name)
+   .. function:: void launch_vessel_from_sph(std::string name, bool recover = true)
 
       Launch a new vessel from the SPH onto the runway.
 
       :Parameters:
 
        * **name** -- Name of the vessel to launch.
+       * **recover** -- If true and there is a vessel on the runway, recover it before launching.
 
 
       .. note::
 
          This is equivalent to calling :func:`launch_vessel` with the craft directory
          set to "SPH" and the launch site set to "Runway".
+         Throws an exception if any of the games pre-flight checks fail.
 
    .. function:: void save(std::string name)
 
@@ -300,6 +322,10 @@ SpaceCenter
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+   .. function:: GameMode game_mode()
+
+      The current mode the game is in.
+
    .. function:: WarpMode warp_mode()
 
       The current time warp mode. Returns :enumerator:`WarpMode::none` if time
@@ -317,6 +343,54 @@ SpaceCenter
    .. function:: ContractManager contract_manager()
 
       The contract manager.
+
+
+
+.. namespace:: krpc::services::SpaceCenter
+.. enum-struct:: GameMode
+
+   The game mode.
+   Returned by :enum:`GameMode`
+
+
+   .. enumerator:: sandbox
+
+      Sandbox mode.
+
+
+   .. enumerator:: career
+
+      Career mode.
+
+
+   .. enumerator:: science
+
+      Science career mode.
+
+
+   .. enumerator:: science_sandbox
+
+      Science sandbox mode.
+
+
+   .. enumerator:: mission
+
+      Mission mode.
+
+
+   .. enumerator:: mission_builder
+
+      Mission builder mode.
+
+
+   .. enumerator:: scenario
+
+      Scenario mode.
+
+
+   .. enumerator:: scenario_non_resumable
+
+      Scenario mode that cannot be resumed.
 
 
 

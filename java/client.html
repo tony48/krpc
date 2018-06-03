@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Java Client &mdash; kRPC 0.4.5 documentation</title>
+  <title>Java Client &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../index.html"/>
         <link rel="up" title="Java" href="../java.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="Java" href="../java.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -209,7 +209,7 @@
   <div class="section" id="java-client">
 <h1>Java Client<a class="headerlink" href="#java-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides a Java API for interacting with a kRPC server. A jar containing the
-<code class="docutils literal"><span class="pre">krpc.client</span></code> package can be <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.5/krpc-java-0.4.5.jar">downloaded from GitHub</a>. It
+<code class="docutils literal"><span class="pre">krpc.client</span></code> package can be <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-java-0.4.6.jar">downloaded from GitHub</a>. It
 requires Java version 1.8.</p>
 <div class="section" id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
@@ -681,15 +681,23 @@ waiting for at least one update to be received).</p>
 
 <dl class="method">
 <dt id="krpc.client.Stream.addCallback(java.util.function.Consumer)">
- void <code class="descname">addCallback</code><span class="sig-paren">(</span>java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html" title="java.util.function.package-summary">function</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html" title="java.util.function.Consumer">Consumer</a>&lt;T&gt;<em> callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Stream.addCallback(java.util.function.Consumer)" title="Permalink to this definition">¶</a></dt>
+ int <code class="descname">addCallback</code><span class="sig-paren">(</span>java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html" title="java.util.function.package-summary">function</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html" title="java.util.function.Consumer">Consumer</a>&lt;T&gt;<em> callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Stream.addCallback(java.util.function.Consumer)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a callback function that is invoked whenever the value of the stream changes. The
-callback function should take one argument, which is passed the new value of the stream.</p>
+callback function should take one argument, which is passed the new value of the
+stream. Returns a unique identifier for the callback which can be used to remove it.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The callback function may be called from a different thread to that which created the
 stream. Any changes to shared state must therefore be protected with appropriate
 synchronization.</p>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Stream.removeCallback(int)">
+ void <code class="descname">removeCallback</code><span class="sig-paren">(</span>int<em> tag</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Stream.removeCallback(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a callback function from the stream. The tag is the identifier returned when the
+callback was added.</p>
 </dd></dl>
 
 <dl class="method">
@@ -737,9 +745,16 @@ stream.</p>
 
 <dl class="method">
 <dt id="krpc.client.Event.addCallback(java.lang.Callable)">
- void <code class="descname">addCallback</code><span class="sig-paren">(</span>java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/package-summary.html" title="java.lang.package-summary">lang</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Callable.html" title="java.lang.Callable">Callable</a><em> callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Event.addCallback(java.lang.Callable)" title="Permalink to this definition">¶</a></dt>
+ int <code class="descname">addCallback</code><span class="sig-paren">(</span>java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/package-summary.html" title="java.lang.package-summary">lang</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Callable.html" title="java.lang.Callable">Callable</a><em> callback</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Event.addCallback(java.lang.Callable)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a callback function that is invoked whenever the event occurs. The callback function
-should be a function that takes zero arguments.</p>
+should be a function that takes zero arguments. Returns an integer tag identifying the
+callback which can be used to remove it later.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="krpc.client.Event.removeCallback(int)">
+ void <code class="descname">removeCallback</code><span class="sig-paren">(</span>int<em> tag</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.Event.removeCallback(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a callback function from the event.</p>
 </dd></dl>
 
 <dl class="method">
@@ -809,7 +824,7 @@ abstract class <code class="descname">RemoteObject</code><a class="headerlink" h
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

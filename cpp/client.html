@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C++ Client &mdash; kRPC 0.4.5 documentation</title>
+  <title>C++ Client &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../index.html"/>
         <link rel="up" title="C++" href="../cpp.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="C++" href="../cpp.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -234,7 +234,7 @@ is sufficient. On Ubuntu, this can be done using apt:</p>
 <div class="section" id="using-the-configure-script">
 <h3>Using the configure script<a class="headerlink" href="#using-the-configure-script" title="Permalink to this headline">¶</a></h3>
 <p>Once the dependencies have been installed, you can install the kRPC client library and headers using
-the configure script provided with the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.5/krpc-cpp-0.4.5.zip">Download the source archive</a>, extract it and then execute the following:</p>
+the configure script provided with the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-cpp-0.4.6.zip">Download the source archive</a>, extract it and then execute the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
 make
 sudo make install
@@ -245,7 +245,7 @@ sudo ldconfig
 <div class="section" id="using-cmake">
 <h3>Using CMake<a class="headerlink" href="#using-cmake" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can install the client library and headers using
-CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.5/krpc-cpp-0.4.5.zip">Download the source archive</a>, extract it and execute the
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-cpp-0.4.6.zip">Download the source archive</a>, extract it and execute the
 following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
 make
@@ -665,15 +665,23 @@ the operation.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc6Stream12add_callbackERKNSt8functionIFv1TEEE">
-void <code class="descclassname"></code><code class="descname">add_callback</code><span class="sig-paren">(</span><em class="property">const</em> std::function&lt;void<span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream::T">T</a><span class="sig-paren">)</span>&gt; &amp;<em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Stream12add_callbackERKNSt8functionIFv1TEEE" title="Permalink to this definition">¶</a><br /></dt>
+int <code class="descclassname"></code><code class="descname">add_callback</code><span class="sig-paren">(</span><em class="property">const</em> std::function&lt;void<span class="sig-paren">(</span><a class="reference internal" href="#_CPPv2I0EN4krpc6StreamE" title="krpc::Stream::T">T</a><span class="sig-paren">)</span>&gt; &amp;<em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Stream12add_callbackERKNSt8functionIFv1TEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a callback function that is invoked whenever the value of the stream changes. The
-callback function should take one argument, which is passed the new value of the stream.</p>
+callback function should take one argument, which is passed the new value of the
+stream. Returns a unique identifier for the callback which can be used to remove it.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The callback function may be called from a different thread to that which created the
 stream. Any changes to shared state must therefore be protected with appropriate
 synchronization.</p>
 </div>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc6Stream15remove_callbackEi">
+<span id="krpc::Stream::remove_callback__i"></span>void <code class="descclassname"></code><code class="descname">remove_callback</code><span class="sig-paren">(</span>int <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc6Stream15remove_callbackEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Removes a callback from the stream. The tag is the identifier returned when the callback was
+added.</p>
 </dd></dl>
 
 <dl class="function">
@@ -753,9 +761,17 @@ stream.</p>
 
 <dl class="function">
 <dt id="_CPPv2N4krpc5Event12add_callbackERKNSt8functionIFvvEEE">
-void <code class="descclassname"></code><code class="descname">add_callback</code><span class="sig-paren">(</span><em class="property">const</em> std::function&lt;void<span class="sig-paren">(</span><span class="sig-paren">)</span>&gt; &amp;<em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc5Event12add_callbackERKNSt8functionIFvvEEE" title="Permalink to this definition">¶</a><br /></dt>
+int <code class="descclassname"></code><code class="descname">add_callback</code><span class="sig-paren">(</span><em class="property">const</em> std::function&lt;void<span class="sig-paren">(</span><span class="sig-paren">)</span>&gt; &amp;<em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc5Event12add_callbackERKNSt8functionIFvvEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a callback function that is invoked whenever the event occurs. The callback function
-should be a function that takes zero arguments.</p>
+should be a function that takes zero arguments. Returns a unique identifier for the callback
+which can be used to remove the callback.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4krpc5Event15remove_callbackEi">
+<span id="krpc::Event::remove_callback__i"></span>void <code class="descclassname"></code><code class="descname">remove_callback</code><span class="sig-paren">(</span>int <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4krpc5Event15remove_callbackEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Removes a callback from the event. The tag is the identifier returned when the callback was
+added.</p>
 </dd></dl>
 
 <dl class="function">
@@ -837,7 +853,7 @@ should be a function that takes zero arguments.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

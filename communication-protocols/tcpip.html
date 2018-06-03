@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Protocol Buffers over TCP/IP &mdash; kRPC 0.4.5 documentation</title>
+  <title>Protocol Buffers over TCP/IP &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../index.html"/>
         <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
         <link rel="next" title="Protocol Buffers over WebSockets" href="websockets.html"/>
         <link rel="prev" title="Communication Protocols" href="../communication-protocols.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -322,13 +322,13 @@ decodes it.</li>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.internal.encoder</span> <span class="kn">import</span> <span class="n">_VarintEncoder</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.internal.decoder</span> <span class="kn">import</span> <span class="n">_DecodeVarint</span>
-<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC</span>
+<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC_pb2</span> <span class="k">as</span> <span class="n">KRPC</span>
 
 
 <span class="k">def</span> <span class="nf">encode_varint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Encode an int as a protobuf varint &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
@@ -399,7 +399,7 @@ decodes it.</li>
 <span class="c1"># Check for an error in the results</span>
 <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
 
 <span class="c1"># Decode the return value as a Status message</span>
 <span class="n">status</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Status</span><span class="p">()</span>
@@ -414,13 +414,13 @@ decodes it.</li>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.internal.encoder</span> <span class="kn">import</span> <span class="n">_VarintEncoder</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.internal.decoder</span> <span class="kn">import</span> <span class="n">_DecodeVarint</span>
-<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC</span>
+<span class="kn">from</span> <span class="nn">krpc.schema</span> <span class="kn">import</span> <span class="n">KRPC_pb2</span> <span class="k">as</span> <span class="n">KRPC</span>
 
 
 <span class="k">def</span> <span class="nf">encode_varint</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Encode an int as a protobuf varint &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">_VarintEncoder</span><span class="p">()(</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
@@ -522,7 +522,7 @@ decodes it.</li>
 <span class="c1"># Check for an error in the results</span>
 <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
 
 <span class="c1"># Decode the return value as a Stream message</span>
 <span class="n">stream</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Stream</span><span class="p">()</span>
@@ -586,7 +586,7 @@ decodes it.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

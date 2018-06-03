@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SpaceCenter &mdash; kRPC 0.4.5 documentation</title>
+  <title>SpaceCenter &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../../../index.html"/>
         <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
         <link rel="next" title="Vessel" href="vessel.html"/>
         <link rel="prev" title="SpaceCenter API" href="../space-center.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -218,6 +218,54 @@
 <p>Provides functionality to interact with Kerbal Space Program. This includes controlling
 the active vessel, managing its resources, planning maneuver nodes and auto-piloting.</p>
 <dl class="attribute">
+<dt id="SpaceCenter.science">
+<code class="descname">science</code><a class="headerlink" href="#SpaceCenter.science" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of science.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.funds">
+<code class="descname">funds</code><a class="headerlink" href="#SpaceCenter.funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of funds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="SpaceCenter.reputation">
+<code class="descname">reputation</code><a class="headerlink" href="#SpaceCenter.reputation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current amount of reputation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.active_vessel">
 <code class="descname">active_vessel</code><a class="headerlink" href="#SpaceCenter.active_vessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>The currently active vessel.</p>
@@ -339,7 +387,7 @@ that can be launched.</p>
 
 <dl class="staticmethod">
 <dt id="SpaceCenter.launch_vessel">
-<em class="property">static </em><code class="descname">launch_vessel</code><span class="sig-paren">(</span><em>craft_directory</em>, <em>name</em>, <em>launch_site</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">launch_vessel</code><span class="sig-paren">(</span><em>craft_directory</em>, <em>name</em>, <em>launch_site</em><span class="optional">[</span>, <em>recover = True</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a vessel.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -349,48 +397,63 @@ that can be launched.</p>
 <li><strong>craft_directory</strong> (<em>string</em>) – Name of the directory in the current saves “Ships” directory, that contains the craft file. For example <code class="docutils literal"><span class="pre">&quot;VAB&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;SPH&quot;</span></code>.</li>
 <li><strong>name</strong> (<em>string</em>) – Name of the vessel to launch. This is the name of the “.craft” file in the save directory, without the “.craft” file extension.</li>
 <li><strong>launch_site</strong> (<em>string</em>) – Name of the launch site. For example <code class="docutils literal"><span class="pre">&quot;LaunchPad&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;Runway&quot;</span></code>.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the launch site, recover it before launching.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Throws an exception if any of the games pre-flight checks fail.</p>
+</div>
 </dd></dl>
 
 <dl class="staticmethod">
 <dt id="SpaceCenter.launch_vessel_from_vab">
-<em class="property">static </em><code class="descname">launch_vessel_from_vab</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel_from_vab" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">launch_vessel_from_vab</code><span class="sig-paren">(</span><em>name</em><span class="optional">[</span>, <em>recover = True</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel_from_vab" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the VAB onto the launchpad.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the launch pad, recover it before launching.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory
-set to “VAB” and the launch site set to “LaunchPad”.</p>
+set to “VAB” and the launch site set to “LaunchPad”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
 <dl class="staticmethod">
 <dt id="SpaceCenter.launch_vessel_from_sph">
-<em class="property">static </em><code class="descname">launch_vessel_from_sph</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel_from_sph" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">launch_vessel_from_sph</code><span class="sig-paren">(</span><em>name</em><span class="optional">[</span>, <em>recover = True</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceCenter.launch_vessel_from_sph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a new vessel from the SPH onto the runway.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) – Name of the vessel to launch.</li>
+<li><strong>recover</strong> (<em>boolean</em>) – If true and there is a vessel on the runway, recover it before launching.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is equivalent to calling <a class="reference internal" href="#SpaceCenter.launch_vessel" title="SpaceCenter.launch_vessel"><code class="xref lua lua-meth docutils literal"><span class="pre">SpaceCenter.launch_vessel()</span></code></a> with the craft directory
-set to “SPH” and the launch site set to “Runway”.</p>
+set to “SPH” and the launch site set to “Runway”.
+Throws an exception if any of the games pre-flight checks fail.</p>
 </div>
 </dd></dl>
 
@@ -826,6 +889,22 @@ If no hit occurs, returns <code class="docutils literal"><span class="pre">nil</
 </dd></dl>
 
 <dl class="attribute">
+<dt id="SpaceCenter.game_mode">
+<code class="descname">game_mode</code><a class="headerlink" href="#SpaceCenter.game_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode the game is in.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attribute:</th><td class="field-body">Read-only, cannot be set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#SpaceCenter.GameMode" title="SpaceCenter.GameMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.GameMode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="SpaceCenter.warp_mode">
 <code class="descname">warp_mode</code><a class="headerlink" href="#SpaceCenter.warp_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current time warp mode. Returns <a class="reference internal" href="#SpaceCenter.WarpMode.none" title="SpaceCenter.WarpMode.none"><code class="xref lua lua-attr docutils literal"><span class="pre">SpaceCenter.WarpMode.none</span></code></a> if time
@@ -889,6 +968,61 @@ is active, or <a class="reference internal" href="#SpaceCenter.WarpMode.physics"
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="class">
+<dt id="SpaceCenter.GameMode">
+<em class="property">class </em><code class="descname">GameMode</code><a class="headerlink" href="#SpaceCenter.GameMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The game mode.
+Returned by <a class="reference internal" href="#SpaceCenter.GameMode" title="SpaceCenter.GameMode"><code class="xref lua lua-class docutils literal"><span class="pre">SpaceCenter.GameMode</span></code></a></p>
+<dl class="data">
+<dt id="SpaceCenter.GameMode.sandbox">
+<code class="descname">sandbox</code><a class="headerlink" href="#SpaceCenter.GameMode.sandbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sandbox mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.career">
+<code class="descname">career</code><a class="headerlink" href="#SpaceCenter.GameMode.career" title="Permalink to this definition">¶</a></dt>
+<dd><p>Career mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.science">
+<code class="descname">science</code><a class="headerlink" href="#SpaceCenter.GameMode.science" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science career mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.science_sandbox">
+<code class="descname">science_sandbox</code><a class="headerlink" href="#SpaceCenter.GameMode.science_sandbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Science sandbox mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.mission">
+<code class="descname">mission</code><a class="headerlink" href="#SpaceCenter.GameMode.mission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.mission_builder">
+<code class="descname">mission_builder</code><a class="headerlink" href="#SpaceCenter.GameMode.mission_builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission builder mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.scenario">
+<code class="descname">scenario</code><a class="headerlink" href="#SpaceCenter.GameMode.scenario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="SpaceCenter.GameMode.scenario_non_resumable">
+<code class="descname">scenario_non_resumable</code><a class="headerlink" href="#SpaceCenter.GameMode.scenario_non_resumable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scenario mode that cannot be resumed.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -962,7 +1096,7 @@ Returned by <a class="reference internal" href="#SpaceCenter.WarpMode" title="Sp
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

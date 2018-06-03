@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C# Client &mdash; kRPC 0.4.5 documentation</title>
+  <title>C# Client &mdash; kRPC 0.4.6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.5 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.6 documentation" href="../index.html"/>
         <link rel="up" title="C#" href="../csharp.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="C#" href="../csharp.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.5
+                0.4.6
               </div>
             
           
@@ -213,7 +213,7 @@ named <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></c
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The C# client can be <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">installed using NuGet</a> or
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.5/krpc-csharp-0.4.5.zip">downloaded from GitHub</a>. Two versions of the client are
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-csharp-0.4.6.zip">downloaded from GitHub</a>. Two versions of the client are
 provided: one compatible with .NET 4.5 and one for .NET 3.5.</p>
 <p>You also need to <a class="reference external" href="https://www.nuget.org/packages/Google.Protobuf">install Google.Protobuf using NuGet</a>.</p>
 <div class="admonition note">
@@ -586,15 +586,23 @@ the operation.</p>
 
 <dl class="method">
 <dt id="method-Stream.AddCallback">
-void <code class="descname">AddCallback</code> <span class="sig-paren">(</span>Action&lt;ReturnType&gt; <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.AddCallback" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <code class="descname">AddCallback</code> <span class="sig-paren">(</span>Action&lt;ReturnType&gt; <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.AddCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a callback function that is invoked whenever the value of the stream changes. The
-callback function should take one argument, which is passed the new value of the stream.</p>
+callback function should take one argument, which is passed the new value of the
+stream. Returns a unique identifier for the callback which can be used to remove it.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The callback function may be called from a different thread to that which created the
 stream. Any changes to shared state must therefore be protected with appropriate
 synchronization.</p>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Stream.RemoveCallback">
+void <code class="descname">RemoveCallback</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.RemoveCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a callback from the stream. The tag is the identifier returned when the callback was
+added.</p>
 </dd></dl>
 
 <dl class="method">
@@ -639,9 +647,17 @@ stream.</p>
 
 <dl class="method">
 <dt id="method-Event.AddCallback">
-void <code class="descname">AddCallback</code> <span class="sig-paren">(</span>Action <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Event.AddCallback" title="Permalink to this definition">¶</a></dt>
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <code class="descname">AddCallback</code> <span class="sig-paren">(</span>Action <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Event.AddCallback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a callback function that is invoked whenever the event occurs. The callback function
-should be a function that takes zero arguments.</p>
+should be a function that takes zero arguments. Returns a unique identifier for the callback
+which can be used to remove it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-Event.RemoveCallback">
+void <code class="descname">RemoveCallback</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.int32.aspx" title="System.Int32">Int32</a> <em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Event.RemoveCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a callback from the event. The tag is the identifier returned when the callback was
+added.</p>
 </dd></dl>
 
 <dl class="method">
@@ -705,7 +721,7 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.5',
+            VERSION:'0.4.6',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
