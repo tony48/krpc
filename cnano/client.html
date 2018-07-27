@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C-nano Client &mdash; kRPC 0.4.6 documentation</title>
+  <title>C-nano Client &mdash; kRPC 0.4.7 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.6 documentation" href="../index.html"/>
+    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
         <link rel="up" title="C-nano" href="../cnano.html"/>
         <link rel="next" title="KRPC API" href="api/krpc.html"/>
         <link rel="prev" title="C-nano" href="../cnano.html"/>
@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.4.6
+                0.4.7
               </div>
             
           
@@ -217,7 +217,7 @@ systems with tight resource constraints, hence the “nano” in its name.</p>
 <div class="section" id="manually-include-the-source-in-your-project">
 <h3>Manually include the source in your project<a class="headerlink" href="#manually-include-the-source-in-your-project" title="Permalink to this headline">¶</a></h3>
 <p>The source files can be included in your project manually, by downloading and extracting the
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-cnano-0.4.6.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
 directory and the source files are in <code class="docutils literal"><span class="pre">src</span></code>.</p>
 </div>
 <div class="section" id="arduino-library-manager">
@@ -234,7 +234,7 @@ that they are built using the C++ compiler. This allows the library to use the C
 <div class="section" id="using-the-configure-script">
 <h3>Using the configure script<a class="headerlink" href="#using-the-configure-script" title="Permalink to this headline">¶</a></h3>
 <p>You can build and install the client library and headers using the configure script provided with
-the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-cnano-0.4.6.zip">Download the source archive</a>, extract it and then
+the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">Download the source archive</a>, extract it and then
 execute the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
 make
@@ -246,7 +246,7 @@ sudo ldconfig
 <div class="section" id="using-cmake">
 <h3>Using CMake<a class="headerlink" href="#using-cmake" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can install the client library and headers using
-CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.6/krpc-cnano-0.4.6.zip">Download the source archive</a>, extract it and execute the
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">Download the source archive</a>, extract it and execute the
 following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
 make
@@ -339,8 +339,8 @@ subsequent calls to interact with the server. The second argument is a name for 
 <h2>Using the Library on from an Arduino<a class="headerlink" href="#using-the-library-on-from-an-arduino" title="Permalink to this headline">¶</a></h2>
 <p>The following example demonstrates how to connect to the server from an Arduino, through its serial
 port interface:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano/services/krpc.h&gt;</span><span class="cp"></span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.h&gt;</span><span class="cp"></span>
 
 <span class="n">HardwareSerial</span> <span class="o">*</span> <span class="n">conn</span><span class="p">;</span>
 
@@ -361,6 +361,11 @@ port interface:</p>
 <span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The main include file and include directory are named <code class="docutils literal"><span class="pre">krpc</span></code> instead of <code class="docutils literal"><span class="pre">krpc_cnano</span></code> in the
+Arduino version of the library.</p>
 </div>
 </div>
 <div class="section" id="calling-remote-procedures">
@@ -547,7 +552,7 @@ const char * <code class="descname">krpc_get_error</code><span class="sig-paren"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.6',
+            VERSION:'0.4.7',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
