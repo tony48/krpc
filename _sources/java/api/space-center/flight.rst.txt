@@ -20,7 +20,9 @@ Flight
    .. method:: float getGForce()
 
 
-      The current G force acting on the vessel in :math:`m/s^2`.
+      The current G force acting on the vessel in :math:`g`.
+
+      :Game Scenes: Flight
 
    .. method:: double getMeanAltitude()
 
@@ -28,11 +30,15 @@ Flight
       The altitude above sea level, in meters.
       Measured from the center of mass of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: double getSurfaceAltitude()
 
 
       The altitude above the surface of the body or sea level, whichever is closer, in meters.
       Measured from the center of mass of the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: double getBedrockAltitude()
 
@@ -40,21 +46,29 @@ Flight
       The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
       Measured from the center of mass of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: double getElevation()
 
 
       The elevation of the terrain under the vessel, in meters. This is the height of the terrain above sea level,
       and is negative when the vessel is over the sea.
 
+      :Game Scenes: Flight
+
    .. method:: double getLatitude()
 
 
       The `latitude <https://en.wikipedia.org/wiki/Latitude>`_ of the vessel for the body being orbited, in degrees.
 
+      :Game Scenes: Flight
+
    .. method:: double getLongitude()
 
 
       The `longitude <https://en.wikipedia.org/wiki/Longitude>`_ of the vessel for the body being orbited, in degrees.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getVelocity()
 
@@ -62,6 +76,7 @@ Flight
       The velocity of the vessel, in the reference frame :type:`ReferenceFrame`.
 
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the vessel in meters per second.
+      :Game Scenes: Flight
 
    .. method:: double getSpeed()
 
@@ -69,17 +84,23 @@ Flight
       The speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
 
+      :Game Scenes: Flight
+
    .. method:: double getHorizontalSpeed()
 
 
       The horizontal speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
 
+      :Game Scenes: Flight
+
    .. method:: double getVerticalSpeed()
 
 
       The vertical speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getCenterOfMass()
 
@@ -88,6 +109,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`
 
       :returns: The position as a vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> getRotation()
 
@@ -95,6 +117,7 @@ Flight
       The rotation of the vessel, in the reference frame :type:`ReferenceFrame`
 
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getDirection()
 
@@ -103,6 +126,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: float getPitch()
 
@@ -110,17 +134,23 @@ Flight
       The pitch of the vessel relative to the horizon, in degrees.
       A value between -90° and +90°.
 
+      :Game Scenes: Flight
+
    .. method:: float getHeading()
 
 
       The heading of the vessel (its angle relative to north), in degrees.
       A value between 0° and 360°.
 
+      :Game Scenes: Flight
+
    .. method:: float getRoll()
 
 
       The roll of the vessel relative to the horizon, in degrees.
       A value between -180° and +180°.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getPrograde()
 
@@ -129,6 +159,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getRetrograde()
 
@@ -137,6 +168,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getNormal()
 
@@ -145,6 +177,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getAntiNormal()
 
@@ -153,6 +186,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getRadial()
 
@@ -161,6 +195,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getAntiRadial()
 
@@ -169,11 +204,14 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: float getAtmosphereDensity()
 
 
       The current density of the atmosphere around the vessel, in :math:`kg/m^3`.
+
+      :Game Scenes: Flight
 
    .. method:: float getDynamicPressure()
 
@@ -183,15 +221,21 @@ Flight
       :math:`\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2`.
       It is commonly denoted :math:`Q`.
 
+      :Game Scenes: Flight
+
    .. method:: float getStaticPressure()
 
 
       The static atmospheric pressure acting on the vessel, in Pascals.
 
+      :Game Scenes: Flight
+
    .. method:: float getStaticPressureAtMSL()
 
 
       The static atmospheric pressure at mean sea level, in Pascals.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getAerodynamicForce()
 
@@ -200,6 +244,7 @@ Flight
       in reference frame :type:`ReferenceFrame`.
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> simulateAerodynamicForceAt(CelestialBody body, org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> velocity)
 
@@ -211,6 +256,7 @@ Flight
       :param org.javatuples.Triplet<Double,Double,Double> position:
       :param org.javatuples.Triplet<Double,Double,Double> velocity:
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getLift()
 
@@ -219,6 +265,7 @@ Flight
       currently acting on the vessel.
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getDrag()
 
@@ -226,21 +273,28 @@ Flight
       The `aerodynamic drag <https://en.wikipedia.org/wiki/Aerodynamic_force>`_ currently acting on the vessel.
 
       :returns: A vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. method:: float getSpeedOfSound()
 
 
       The speed of sound, in the atmosphere around the vessel, in :math:`m/s`.
 
+      :Game Scenes: Flight
+
    .. method:: float getMach()
 
 
       The speed of the vessel, in multiples of the speed of sound.
 
+      :Game Scenes: Flight
+
    .. method:: float getReynoldsNumber()
 
 
       The vessels Reynolds number.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -253,11 +307,15 @@ Flight
       The `true air speed <https://en.wikipedia.org/wiki/True_airspeed>`_
       of the vessel, in meters per second.
 
+      :Game Scenes: Flight
+
    .. method:: float getEquivalentAirSpeed()
 
 
       The `equivalent air speed <https://en.wikipedia.org/wiki/Equivalent_airspeed>`_
       of the vessel, in meters per second.
+
+      :Game Scenes: Flight
 
    .. method:: float getTerminalVelocity()
 
@@ -265,16 +323,22 @@ Flight
       An estimate of the current terminal velocity of the vessel, in meters per second.
       This is the speed at which the drag forces cancel out the force of gravity.
 
+      :Game Scenes: Flight
+
    .. method:: float getAngleOfAttack()
 
 
       The pitch angle between the orientation of the vessel and its velocity vector,
       in degrees.
 
+      :Game Scenes: Flight
+
    .. method:: float getSideslipAngle()
 
 
       The yaw angle between the orientation of the vessel and its velocity vector, in degrees.
+
+      :Game Scenes: Flight
 
    .. method:: float getTotalAirTemperature()
 
@@ -283,16 +347,22 @@ Flight
       of the atmosphere around the vessel, in Kelvin.
       This includes the :meth:`Flight.getStaticAirTemperature()` and the vessel's kinetic energy.
 
+      :Game Scenes: Flight
+
    .. method:: float getStaticAirTemperature()
 
 
       The `static (ambient) temperature <https://en.wikipedia.org/wiki/Total_air_temperature>`_ of the atmosphere around the vessel, in Kelvin.
+
+      :Game Scenes: Flight
 
    .. method:: float getStallFraction()
 
 
       The current amount of stall, between 0 and 1. A value greater than 0.005 indicates
       a minor stall and a value greater than 0.5 indicates a large-scale stall.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -305,6 +375,8 @@ Flight
       The coefficient of drag. This is the amount of drag produced by the vessel.
       It depends on air speed, air density and wing area.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -316,6 +388,8 @@ Flight
       The coefficient of lift. This is the amount of lift produced by the vessel, and
       depends on air speed, air density and wing area.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -325,6 +399,8 @@ Flight
 
 
       The `ballistic coefficient <https://en.wikipedia.org/wiki/Ballistic_coefficient>`_.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -338,6 +414,8 @@ Flight
       measure of the efficiency of the engines, with a lower value indicating a more
       efficient vessel. This value is the number of Newtons of fuel that are burned,
       per hour, to produce one newton of thrust.
+
+      :Game Scenes: Flight
 
 
       .. note::

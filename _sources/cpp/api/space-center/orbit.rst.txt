@@ -16,10 +16,14 @@ Orbit
 
       The celestial body (e.g. planet or moon) around which the object is orbiting.
 
+      :Game Scenes: All
+
    .. function:: double apoapsis()
 
       Gets the apoapsis of the orbit, in meters, from the center of mass
       of the body being orbited.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -32,6 +36,8 @@ Orbit
       The periapsis of the orbit, in meters, from the center of mass
       of the body being orbited.
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -42,6 +48,8 @@ Orbit
 
       The apoapsis of the orbit, in meters, above the sea level of the body being orbited.
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -50,6 +58,8 @@ Orbit
    .. function:: double periapsis_altitude()
 
       The periapsis of the orbit, in meters, above the sea level of the body being orbited.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -60,15 +70,21 @@ Orbit
 
       The semi-major axis of the orbit, in meters.
 
+      :Game Scenes: All
+
    .. function:: double semi_minor_axis()
 
       The semi-minor axis of the orbit, in meters.
+
+      :Game Scenes: All
 
    .. function:: double radius()
 
       The current radius of the orbit, in meters. This is the distance between the center
       of mass of the object in orbit, and the center of mass of the body around which it
       is orbiting.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -83,6 +99,8 @@ Orbit
 
        * **ut** -- The universal time to measure the radius at.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<double, double, double> position_at(double ut, ReferenceFrame reference_frame)
 
       The position at a given time, in the specified reference frame.
@@ -93,10 +111,13 @@ Orbit
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: double speed()
 
       The current orbital speed of the object in meters per second.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -107,18 +128,26 @@ Orbit
 
       The orbital period, in seconds.
 
+      :Game Scenes: All
+
    .. function:: double time_to_apoapsis()
 
       The time until the object reaches apoapsis, in seconds.
+
+      :Game Scenes: All
 
    .. function:: double time_to_periapsis()
 
       The time until the object reaches periapsis, in seconds.
 
+      :Game Scenes: All
+
    .. function:: double eccentricity()
 
       The `eccentricity <https://en.wikipedia.org/wiki/Orbital_eccentricity>`_
       of the orbit.
+
+      :Game Scenes: All
 
    .. function:: double inclination()
 
@@ -126,17 +155,25 @@ Orbit
       of the orbit,
       in radians.
 
+      :Game Scenes: All
+
    .. function:: double longitude_of_ascending_node()
 
       The `longitude of the ascending node <https://en.wikipedia.org/wiki/Longitude_of_the_ascending_node>`_, in radians.
+
+      :Game Scenes: All
 
    .. function:: double argument_of_periapsis()
 
       The `argument of periapsis <https://en.wikipedia.org/wiki/Argument_of_periapsis>`_, in radians.
 
+      :Game Scenes: All
+
    .. function:: double mean_anomaly_at_epoch()
 
       The `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+      :Game Scenes: All
 
    .. function:: double epoch()
 
@@ -144,9 +181,13 @@ Orbit
       `mean anomaly at epoch <https://en.wikipedia.org/wiki/Mean_anomaly>`_
       was measured, in seconds.
 
+      :Game Scenes: All
+
    .. function:: double mean_anomaly()
 
       The `mean anomaly <https://en.wikipedia.org/wiki/Mean_anomaly>`_.
+
+      :Game Scenes: All
 
    .. function:: double mean_anomaly_at_ut(double ut)
 
@@ -156,9 +197,13 @@ Orbit
 
        * **ut** -- The universal time in seconds.
 
+      :Game Scenes: All
+
    .. function:: double eccentric_anomaly()
 
       The `eccentric anomaly <https://en.wikipedia.org/wiki/Eccentric_anomaly>`_.
+
+      :Game Scenes: All
 
    .. function:: double eccentric_anomaly_at_ut(double ut)
 
@@ -168,9 +213,13 @@ Orbit
 
        * **ut** -- The universal time, in seconds.
 
+      :Game Scenes: All
+
    .. function:: double true_anomaly()
 
       The `true anomaly <https://en.wikipedia.org/wiki/True_anomaly>`_.
+
+      :Game Scenes: All
 
    .. function:: double true_anomaly_at_ut(double ut)
 
@@ -180,6 +229,8 @@ Orbit
 
        * **ut** -- The universal time in seconds.
 
+      :Game Scenes: All
+
    .. function:: double true_anomaly_at_radius(double radius)
 
       The true anomaly at the given orbital radius.
@@ -187,6 +238,8 @@ Orbit
       :Parameters:
 
        * **radius** -- The orbital radius in meters.
+
+      :Game Scenes: All
 
    .. function:: double ut_at_true_anomaly(double true_anomaly)
 
@@ -196,6 +249,8 @@ Orbit
 
        * **true_anomaly** -- True anomaly.
 
+      :Game Scenes: All
+
    .. function:: double radius_at_true_anomaly(double true_anomaly)
 
       The orbital radius at the point in the orbit given by the true anomaly.
@@ -204,25 +259,33 @@ Orbit
 
        * **true_anomaly** -- The true anomaly.
 
-   .. function:: double true_anomaly_at_an(Vessel target)
+      :Game Scenes: All
 
-      The true anomaly of the ascending node with the given target vessel.
+   .. function:: double true_anomaly_at_an(Orbit target)
 
-      :Parameters:
-
-       * **target** -- Target vessel.
-
-   .. function:: double true_anomaly_at_dn(Vessel target)
-
-      The true anomaly of the descending node with the given target vessel.
+      The true anomaly of the ascending node with the given target orbit.
 
       :Parameters:
 
-       * **target** -- Target vessel.
+       * **target** -- Target orbit.
+
+      :Game Scenes: All
+
+   .. function:: double true_anomaly_at_dn(Orbit target)
+
+      The true anomaly of the descending node with the given target orbit.
+
+      :Parameters:
+
+       * **target** -- Target orbit.
+
+      :Game Scenes: All
 
    .. function:: double orbital_speed()
 
       The current orbital speed in meters per second.
+
+      :Game Scenes: All
 
    .. function:: double orbital_speed_at(double time)
 
@@ -231,6 +294,8 @@ Orbit
       :Parameters:
 
        * **time** -- Time from now, in seconds.
+
+      :Game Scenes: All
 
    .. function:: static std::tuple<double, double, double> reference_plane_normal(Client& connection, ReferenceFrame reference_frame)
 
@@ -243,6 +308,7 @@ Orbit
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
    .. function:: static std::tuple<double, double, double> reference_plane_direction(Client& connection, ReferenceFrame reference_frame)
 
@@ -254,50 +320,61 @@ Orbit
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
-   .. function:: double relative_inclination(Vessel target)
+   .. function:: double relative_inclination(Orbit target)
 
-      Relative inclination of this orbit and the orbit of the given target vessel, in radians.
+      Relative inclination of this orbit and the target orbit, in radians.
 
       :Parameters:
 
-       * **target** -- Target vessel.
+       * **target** -- Target orbit.
+
+      :Game Scenes: All
 
    .. function:: double time_to_soi_change()
 
       The time until the object changes sphere of influence, in seconds. Returns ``NaN``
       if the object is not going to change sphere of influence.
 
+      :Game Scenes: All
+
    .. function:: Orbit next_orbit()
 
       If the object is going to change sphere of influence in the future, returns the new
       orbit after the change. Otherwise returns ``NULL``.
 
-   .. function:: double time_of_closest_approach(Vessel target)
+      :Game Scenes: All
 
-      Estimates and returns the time at closest approach to a target vessel.
+   .. function:: double time_of_closest_approach(Orbit target)
+
+      Estimates and returns the time at closest approach to a target orbit.
 
       :Parameters:
 
-       * **target** -- Target vessel.
+       * **target** -- Target orbit.
 
       :returns: The universal time at closest approach, in seconds.
+      :Game Scenes: All
 
-   .. function:: double distance_at_closest_approach(Vessel target)
+   .. function:: double distance_at_closest_approach(Orbit target)
 
-      Estimates and returns the distance at closest approach to a target vessel, in meters.
-
-      :Parameters:
-
-       * **target** -- Target vessel.
-
-   .. function:: std::vector<std::vector<double>> list_closest_approaches(Vessel target, int32_t orbits)
-
-      Returns the times at closest approach and corresponding distances, to a target vessel.
+      Estimates and returns the distance at closest approach to a target orbit, in meters.
 
       :Parameters:
 
-       * **target** -- Target vessel.
+       * **target** -- Target orbit.
+
+      :Game Scenes: All
+
+   .. function:: std::vector<std::vector<double>> list_closest_approaches(Orbit target, int32_t orbits)
+
+      Returns the times at closest approach and corresponding distances, to a target orbit.
+
+      :Parameters:
+
+       * **target** -- Target orbit.
        * **orbits** -- The number of future orbits to search.
 
       :returns: A list of two lists. The first is a list of times at closest approach, as universal times in seconds. The second is a list of corresponding distances at closest approach, in meters.
+      :Game Scenes: All

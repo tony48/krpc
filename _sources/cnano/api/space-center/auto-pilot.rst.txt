@@ -21,14 +21,23 @@ AutoPilot
 
       Engage the auto-pilot.
 
+
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_Disengage(krpc_connection_t connection)
 
       Disengage the auto-pilot.
+
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_Wait(krpc_connection_t connection)
 
       Blocks until the vessel is pointing in the target direction and has
       the target roll (if set). Throws an exception if the auto-pilot has not been engaged.
+
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_Error(krpc_connection_t connection, float * result)
 
@@ -36,25 +45,35 @@ AutoPilot
       to point in and the direction it is pointing in. Throws an exception if the auto-pilot
       has not been engaged and SAS is not enabled or is in stability assist mode.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_PitchError(krpc_connection_t connection, float * result)
 
       The error, in degrees, between the vessels current and target pitch.
       Throws an exception if the auto-pilot has not been engaged.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_HeadingError(krpc_connection_t connection, float * result)
 
       The error, in degrees, between the vessels current and target heading.
       Throws an exception if the auto-pilot has not been engaged.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_RollError(krpc_connection_t connection, float * result)
 
       The error, in degrees, between the vessels current and target roll.
       Throws an exception if the auto-pilot has not been engaged or no target roll is set.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_ReferenceFrame(krpc_connection_t connection, krpc_SpaceCenter_ReferenceFrame_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_ReferenceFrame(krpc_SpaceCenter_ReferenceFrame_t value)
 
       The reference frame for the target direction (:func:`krpc_SpaceCenter_AutoPilot_TargetDirection`).
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -68,21 +87,29 @@ AutoPilot
 
       The target pitch, in degrees, between -90° and +90°.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_TargetHeading(krpc_connection_t connection, float * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_TargetHeading(float value)
 
       The target heading, in degrees, between 0° and 360°.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_TargetRoll(krpc_connection_t connection, float * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_TargetRoll(float value)
 
       The target roll, in degrees. ``NaN`` if no target roll is set.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_TargetDirection(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_TargetDirection(const krpc_tuple_double_double_double_t * value)
 
       Direction vector corresponding to the target pitch and heading.
       This is in the reference frame specified by :type:`krpc_SpaceCenter_ReferenceFrame_t`.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_TargetPitchAndHeading(krpc_connection_t connection, float pitch, float heading)
 
@@ -93,10 +120,14 @@ AutoPilot
        * **pitch** -- Target pitch angle, in degrees between -90° and +90°.
        * **heading** -- Target heading angle, in degrees between 0° and 360°.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_SAS(krpc_connection_t connection, bool * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_SAS(bool value)
 
       The state of SAS.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -110,6 +141,8 @@ AutoPilot
       These modes are equivalent to the mode buttons to the left of the navball that appear
       when SAS is enabled.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -121,6 +154,8 @@ AutoPilot
       The threshold at which the autopilot will try to match the target roll angle, if any.
       Defaults to 5 degrees.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_StoppingTime(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_StoppingTime(const krpc_tuple_double_double_double_t * value)
 
@@ -129,6 +164,8 @@ AutoPilot
       A vector of three stopping times, in seconds, one for each of the pitch, roll
       and yaw axes. Defaults to 0.5 seconds for each axis.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_DecelerationTime(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_DecelerationTime(const krpc_tuple_double_double_double_t * value)
 
@@ -136,6 +173,8 @@ AutoPilot
       This determines the angular acceleration used to decelerate the vessel.
       A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
       Defaults to 5 seconds for each axis.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_AttenuationAngle(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_AttenuationAngle(const krpc_tuple_double_double_double_t * value)
@@ -146,12 +185,16 @@ AutoPilot
       A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
       Defaults to 1° for each axis.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_AutoTune(krpc_connection_t connection, bool * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_AutoTune(bool value)
 
       Whether the rotation rate controllers PID parameters should be automatically tuned
       using the vessels moment of inertia and available torque. Defaults to ``true``.
       See :func:`krpc_SpaceCenter_AutoPilot_TimeToPeak` and :func:`krpc_SpaceCenter_AutoPilot_Overshoot`.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_TimeToPeak(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_TimeToPeak(const krpc_tuple_double_double_double_t * value)
@@ -160,6 +203,8 @@ AutoPilot
       A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
       Defaults to 3 seconds for each axis.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_Overshoot(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_Overshoot(const krpc_tuple_double_double_double_t * value)
 
@@ -167,10 +212,14 @@ AutoPilot
       A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
       Defaults to 0.01 for each axis.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_AutoPilot_PitchPIDGains(krpc_connection_t connection, krpc_tuple_double_double_double_t * result)
    .. function:: void krpc_SpaceCenter_AutoPilot_set_PitchPIDGains(const krpc_tuple_double_double_double_t * value)
 
       Gains for the pitch PID controller.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -183,6 +232,8 @@ AutoPilot
 
       Gains for the roll PID controller.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -193,6 +244,8 @@ AutoPilot
    .. function:: void krpc_SpaceCenter_AutoPilot_set_YawPIDGains(const krpc_tuple_double_double_double_t * value)
 
       Gains for the yaw PID controller.
+
+      :Game Scenes: Flight
 
 
       .. note::

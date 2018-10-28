@@ -18,6 +18,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: str
+      :Game Scenes: All
 
    .. attribute:: type
 
@@ -25,6 +26,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: :class:`VesselType`
+      :Game Scenes: All
 
    .. attribute:: situation
 
@@ -32,6 +34,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`VesselSituation`
+      :Game Scenes: All
 
    .. attribute:: recoverable
 
@@ -39,10 +42,13 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
+      :Game Scenes: All
 
    .. method:: recover()
 
       Recover the vessel.
+
+      :Game Scenes: All
 
    .. attribute:: met
 
@@ -50,6 +56,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: double
+      :Game Scenes: All
 
    .. attribute:: biome
 
@@ -57,6 +64,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: str
+      :Game Scenes: All
 
    .. method:: flight([reference_frame = None])
 
@@ -65,6 +73,8 @@ Vessel
 
       :param ReferenceFrame reference_frame: Reference frame. Defaults to the vessel's surface reference frame (:attr:`Vessel.surface_reference_frame`).
       :rtype: :class:`Flight`
+      :Game Scenes: Flight
+
 
       .. note:: When this is called with no arguments, the vessel's surface reference
                 frame is used. This reference frame moves with the vessel, therefore
@@ -79,6 +89,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Orbit`
+      :Game Scenes: All
 
    .. attribute:: control
 
@@ -88,6 +99,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Control`
+      :Game Scenes: Flight
 
    .. attribute:: comms
 
@@ -96,6 +108,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Comms`
+      :Game Scenes: Flight
 
    .. attribute:: auto_pilot
 
@@ -104,6 +117,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`AutoPilot`
+      :Game Scenes: Flight
 
    .. attribute:: crew_capacity
 
@@ -111,6 +125,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: int
+      :Game Scenes: All
 
    .. attribute:: crew_count
 
@@ -118,6 +133,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: int
+      :Game Scenes: All
 
    .. attribute:: crew
 
@@ -125,6 +141,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: list(:class:`CrewMember`)
+      :Game Scenes: All
 
    .. attribute:: resources
 
@@ -133,6 +150,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Resources`
+      :Game Scenes: Flight
 
    .. method:: resources_in_decouple_stage(stage, [cumulative = True])
 
@@ -142,6 +160,8 @@ Vessel
       :param int stage: Get resources for parts that are decoupled in this stage.
       :param bool cumulative: When ``False``, returns the resources for parts decoupled in just the given stage. When ``True`` returns the resources decoupled in the given stage and all subsequent stages combined.
       :rtype: :class:`Resources`
+      :Game Scenes: Flight
+
 
       .. note:: For details on stage numbering, see the
                 discussion on :rst:ref:`python-api-parts-staging`.
@@ -152,6 +172,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`Parts`
+      :Game Scenes: Flight
 
    .. attribute:: mass
 
@@ -159,6 +180,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: dry_mass
 
@@ -166,6 +188,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: thrust
 
@@ -175,6 +198,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: available_thrust
 
@@ -184,6 +208,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: max_thrust
 
@@ -193,6 +218,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: max_vacuum_thrust
 
@@ -202,6 +228,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: specific_impulse
 
@@ -210,6 +237,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: vacuum_specific_impulse
 
@@ -218,6 +246,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: kerbin_sea_level_specific_impulse
 
@@ -227,6 +256,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: float
+      :Game Scenes: Flight
 
    .. attribute:: moment_of_inertia
 
@@ -237,6 +267,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(double, double, double)
+      :Game Scenes: Flight
 
    .. attribute:: inertia_tensor
 
@@ -246,6 +277,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: list(double)
+      :Game Scenes: All
 
    .. attribute:: available_torque
 
@@ -257,6 +289,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: available_reaction_wheel_torque
 
@@ -267,6 +300,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: available_rcs_torque
 
@@ -277,6 +311,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: available_engine_torque
 
@@ -287,6 +322,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: available_control_surface_torque
 
@@ -297,6 +333,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: available_other_torque
 
@@ -308,6 +345,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. attribute:: reference_frame
 
@@ -322,6 +360,8 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ReferenceFrame`
+      :Game Scenes: Flight
+
 
       .. figure:: /images/reference-frames/vessel-aircraft.png
          :align: center
@@ -346,6 +386,8 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ReferenceFrame`
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -375,6 +417,8 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ReferenceFrame`
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -401,6 +445,8 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`ReferenceFrame`
+      :Game Scenes: Flight
+
 
       .. figure:: /images/reference-frames/vessel-surface-velocity.png
          :align: center
@@ -414,6 +460,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
       :rtype: tuple(double, double, double)
+      :Game Scenes: Flight
 
    .. method:: bounding_box(reference_frame)
 
@@ -422,6 +469,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame that the returned position vectors are in.
       :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
       :rtype: tuple(tuple(double, double, double), tuple(double, double, double))
+      :Game Scenes: Flight
 
    .. method:: velocity(reference_frame)
 
@@ -430,6 +478,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame that the returned velocity vector is in.
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
       :rtype: tuple(double, double, double)
+      :Game Scenes: Flight
 
    .. method:: rotation(reference_frame)
 
@@ -438,6 +487,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame that the returned rotation is in.
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
       :rtype: tuple(double, double, double, double)
+      :Game Scenes: Flight
 
    .. method:: direction(reference_frame)
 
@@ -446,6 +496,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
       :rtype: tuple(double, double, double)
+      :Game Scenes: Flight
 
    .. method:: angular_velocity(reference_frame)
 
@@ -454,6 +505,7 @@ Vessel
       :param ReferenceFrame reference_frame: The reference frame the returned angular velocity is in.
       :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the vessel, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.
       :rtype: tuple(double, double, double)
+      :Game Scenes: Flight
 
 
 
@@ -566,6 +618,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: str
+      :Game Scenes: All
 
    .. attribute:: type
 
@@ -573,6 +626,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: :class:`CrewMemberType`
+      :Game Scenes: All
 
    .. attribute:: on_mission
 
@@ -580,6 +634,7 @@ Vessel
 
       :Attribute: Read-only, cannot be set
       :rtype: bool
+      :Game Scenes: All
 
    .. attribute:: courage
 
@@ -587,6 +642,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: float
+      :Game Scenes: All
 
    .. attribute:: stupidity
 
@@ -594,6 +650,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: float
+      :Game Scenes: All
 
    .. attribute:: experience
 
@@ -601,6 +658,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: float
+      :Game Scenes: All
 
    .. attribute:: badass
 
@@ -608,6 +666,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: bool
+      :Game Scenes: All
 
    .. attribute:: veteran
 
@@ -615,6 +674,7 @@ Vessel
 
       :Attribute: Can be read or written
       :rtype: bool
+      :Game Scenes: All
 
 
 

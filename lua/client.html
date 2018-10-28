@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Lua Client &mdash; kRPC 0.4.7 documentation</title>
+  <title>Lua Client &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
-        <link rel="up" title="Lua" href="../lua.html"/>
-        <link rel="next" title="KRPC API" href="api/krpc.html"/>
-        <link rel="prev" title="Lua" href="../lua.html"/>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="KRPC API" href="api/krpc.html" />
+    <link rel="prev" title="Lua" href="../lua.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -147,7 +137,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kRPC</a>
@@ -155,9 +145,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -205,32 +196,32 @@
 <h1>Lua Client<a class="headerlink" href="#lua-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides functionality to interact with a kRPC server from programs
 written in Lua. It can be <a class="reference external" href="https://luarocks.org/modules/djungelorm/krpc">installed using LuaRocks</a> or
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-lua-0.4.7.zip">downloaded from GitHub</a>.</p>
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.8/krpc-lua-0.4.8.zip">downloaded from GitHub</a>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The Lua client and all of its dependencies can be installed using luarocks with
 a single command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>luarocks install krpc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>luarocks install krpc
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
-<p>Once it’s installed, simply <code class="docutils literal"><span class="pre">require</span> <span class="pre">'krpc'</span></code> and you are good to go!</p>
+<p>Once it’s installed, simply <code class="docutils literal notranslate"><span class="pre">require</span> <span class="pre">'krpc'</span></code> and you are good to go!</p>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
-<p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a> function. This returns a
+<p>To connect to a server, use the <a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal notranslate"><span class="pre">krpc.connect()</span></code></a> function. This returns a
 connection object through which you can interact with the server. For example to
 connect to a server running on the local machine:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Example&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This function also accepts arguments that specify what address and port numbers
 to connect to. For example:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;Remote example&#39;</span><span class="p">,</span> <span class="s1">&#39;my.domain.name&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
@@ -239,14 +230,14 @@ to connect to. For example:</p>
 <div class="section" id="interacting-with-the-server">
 <h2>Interacting with the Server<a class="headerlink" href="#interacting-with-the-server" title="Permalink to this headline">¶</a></h2>
 <p>Interaction with the server is performed via the client object (of type
-<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a>) returned when connecting to the server using
-<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
+<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal notranslate"><span class="pre">krpc.Client</span></code></a>) returned when connecting to the server using
+<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal notranslate"><span class="pre">krpc.connect()</span></code></a>.</p>
 <p>Upon connecting, the client interrogates the server to find out what
 functionality it provides and dynamically adds all of the classes, methods,
 properties to the client object.</p>
 <p>For example, all of the functionality provided by the SpaceCenter service is
-accessible via <code class="docutils literal"><span class="pre">conn.space_center</span></code> and the functionality provided by the
-InfernalRobotics service is accessible via <code class="docutils literal"><span class="pre">conn.infernal_robotics</span></code>.</p>
+accessible via <code class="docutils literal notranslate"><span class="pre">conn.space_center</span></code> and the functionality provided by the
+InfernalRobotics service is accessible via <code class="docutils literal notranslate"><span class="pre">conn.infernal_robotics</span></code>.</p>
 <p>Calling methods, getting or setting properties, etc. are mapped to remote
 procedure calls and passed to the server by the lua client.</p>
 </div>
@@ -260,7 +251,7 @@ procedure calls and passed to the server by the lua client.</p>
 <dt id="krpc.connect">
 <code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>name=nil</em><span class="optional">]</span><span class="optional">[</span>, <em>address='127.0.0.1'</em><span class="optional">]</span><span class="optional">[</span>, <em>rpc_port=50000</em><span class="optional">]</span><span class="optional">[</span>, <em>stream_port=50001</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function creates a connection to a kRPC server. It returns a
-<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
+<a class="reference internal" href="#krpc.Client" title="krpc.Client"><code class="xref lua lua-class docutils literal notranslate"><span class="pre">krpc.Client</span></code></a> object, through which the server can be communicated
 with.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -289,7 +280,7 @@ to 50001.</li>
 <dd><p>This class provides the interface for communicating with the server. It is
 dynamically populated with all the functionality provided by the
 server. Instances of this class should be obtained by calling
-<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal"><span class="pre">krpc.connect()</span></code></a>.</p>
+<a class="reference internal" href="#krpc.connect" title="krpc.connect"><code class="xref lua lua-func docutils literal notranslate"><span class="pre">krpc.connect()</span></code></a>.</p>
 <dl class="method">
 <dt id="krpc.Client.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.Client.close" title="Permalink to this definition">¶</a></dt>
@@ -304,7 +295,7 @@ server. Instances of this class should be obtained by calling
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#krpc.KRPC" title="krpc.KRPC"><code class="xref lua lua-class docutils literal"><span class="pre">krpc.KRPC</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#krpc.KRPC" title="krpc.KRPC"><code class="xref lua lua-class docutils literal notranslate"><span class="pre">krpc.KRPC</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -316,8 +307,8 @@ server. Instances of this class should be obtained by calling
 <dt id="krpc.KRPC">
 <em class="property">class </em><code class="descname">KRPC</code><a class="headerlink" href="#krpc.KRPC" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class provides access to the basic server functionality provided by
-the <code class="docutils literal"><span class="pre">KRPC</span></code> service. An instance can be obtained by calling
-<a class="reference internal" href="#krpc.Client.krpc" title="krpc.Client.krpc"><code class="xref lua lua-attr docutils literal"><span class="pre">krpc.Client.krpc</span></code></a>. Most of this functionality is used internally by
+the <code class="docutils literal notranslate"><span class="pre">KRPC</span></code> service. An instance can be obtained by calling
+<a class="reference internal" href="#krpc.Client.krpc" title="krpc.Client.krpc"><code class="xref lua lua-attr docutils literal notranslate"><span class="pre">krpc.Client.krpc</span></code></a>. Most of this functionality is used internally by
 the lua client and therefore does not need to be used directly from
 application code. The only exception that may be useful is:</p>
 <dl class="method">
@@ -327,14 +318,14 @@ application code. The only exception that may be useful is:</p>
 the server’s version string and performance statistics.</p>
 <p>For example, the following prints out the version string for the
 server:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Server version = &#39;</span> <span class="o">..</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">().</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or to get the rate at which the server is sending and receiving data
 over the network:</p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">krpc</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">&#39;krpc&#39;</span>
 <span class="kd">local</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">krpc</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
 <span class="kd">local</span> <span class="n">status</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">krpc</span><span class="p">:</span><span class="n">get_status</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;Data in = %.2f KB/s&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">bytes_read_rate</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
@@ -350,9 +341,7 @@ over the network:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -370,11 +359,11 @@ over the network:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -389,37 +378,24 @@ over the network:</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

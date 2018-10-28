@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Protocol Buffers over WebSockets &mdash; kRPC 0.4.7 documentation</title>
+  <title>Protocol Buffers over WebSockets &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
-        <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
-        <link rel="next" title="Messaging Protocol" href="messages.html"/>
-        <link rel="prev" title="Protocol Buffers over TCP/IP" href="tcpip.html"/>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Messaging Protocol" href="messages.html" />
+    <link rel="prev" title="Protocol Buffers over TCP/IP" href="tcpip.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -141,7 +131,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kRPC</a>
@@ -149,9 +139,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -208,18 +199,18 @@ protocol.</p>
 <h2>Connecting to the RPC Server<a class="headerlink" href="#connecting-to-the-rpc-server" title="Permalink to this headline">¶</a></h2>
 <p>A client invokes remote procedures by communicating with the <em>RPC server</em>. To establish a
 connection, open a websockets connection to the server on its RPC port (which defaults to
-50000). The connection URI can also contain a <code class="docutils literal"><span class="pre">name</span></code> parameter with the name of the client to
-display in the on the in-game UI. For example: <code class="docutils literal"><span class="pre">ws://localhost:50000/?name=Jeb</span></code></p>
+50000). The connection URI can also contain a <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter with the name of the client to
+display in the on the in-game UI. For example: <code class="docutils literal notranslate"><span class="pre">ws://localhost:50000/?name=Jeb</span></code></p>
 </div>
 <div class="section" id="connecting-to-the-stream-server">
 <h2>Connecting to the Stream Server<a class="headerlink" href="#connecting-to-the-stream-server" title="Permalink to this headline">¶</a></h2>
 <p>Clients can receive <a class="reference internal" href="messages.html#communication-protocol-streams"><span class="std std-ref">Streams</span></a> from the <em>stream server</em>. To establish a
 connection, a client must first connect to the RPC server (as above) then do the following:</p>
 <ol class="arabic simple">
-<li>Get the identifier of the client by calling the <code class="docutils literal"><span class="pre">KRPC.GetClientID</span></code> remote procedure.</li>
+<li>Get the identifier of the client by calling the <code class="docutils literal notranslate"><span class="pre">KRPC.GetClientID</span></code> remote procedure.</li>
 <li>Open a websockets connection to the server on its stream port (which defaults to 50001), with an
-<code class="docutils literal"><span class="pre">id</span></code> query parameter set to the client identifier encoded in base64. For example:
-<code class="docutils literal"><span class="pre">ws://localhost:50001/?id=Eeh8Vbj2DkWTcJZTkYlEhQ==</span></code></li>
+<code class="docutils literal notranslate"><span class="pre">id</span></code> query parameter set to the client identifier encoded in base64. For example:
+<code class="docutils literal notranslate"><span class="pre">ws://localhost:50001/?id=Eeh8Vbj2DkWTcJZTkYlEhQ==</span></code></li>
 </ol>
 <p>Connecting to the stream server is optional. If the client doesn’t require stream functionality,
 there is no need to connect.</p>
@@ -252,9 +243,9 @@ data.</li>
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The following code connects to the RPC server at address 127.0.0.1 and port 50000 using
 the name “Jeb”. Next, it connects to the stream server on port 50001. It then invokes the
-<code class="docutils literal"><span class="pre">KRPC.GetStatus</span></code> RPC, receives and decodes the result and prints out the server version number
+<code class="docutils literal notranslate"><span class="pre">KRPC.GetStatus</span></code> RPC, receives and decodes the result and prints out the server version number
 from the response.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ws&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ws&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">protobufjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;protobufjs&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">ByteBuffer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bytebuffer&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nx">protobufjs</span><span class="p">.</span><span class="nx">loadProtoFile</span><span class="p">(</span><span class="s1">&#39;krpc.proto&#39;</span><span class="p">).</span><span class="nx">build</span><span class="p">();</span>
@@ -278,7 +269,7 @@ from the response.</p>
 </pre></div>
 </div>
 <p>The following example demonstrates how to set up and receive data from the server over a stream:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span>
 
 <span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ws&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">protobufjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;protobufjs&#39;</span><span class="p">)</span>
@@ -334,9 +325,7 @@ from the response.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -354,11 +343,11 @@ from the response.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -373,37 +362,24 @@ from the response.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

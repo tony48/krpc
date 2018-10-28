@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Waypoints &mdash; kRPC 0.4.7 documentation</title>
+  <title>Waypoints &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../../../index.html"/>
-        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Contracts" href="contracts.html"/>
-        <link rel="prev" title="Camera" href="camera.html"/>
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Contracts" href="contracts.html" />
+    <link rel="prev" title="Camera" href="camera.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -157,7 +147,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">kRPC</a>
@@ -165,9 +155,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -220,28 +211,39 @@
 <code class="descname">krpc_SpaceCenter_WaypointManager_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waypoints are the location markers you can see on the map view showing you where contracts are targeted for.
 With this structure, you can obtain coordinate data for the locations of these waypoints.
-Obtained by calling <a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_WaypointManager" title="krpc_SpaceCenter_WaypointManager"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_WaypointManager()</span></code></a>.</p>
+Obtained by calling <a class="reference internal" href="space-center.html#c.krpc_SpaceCenter_WaypointManager" title="krpc_SpaceCenter_WaypointManager"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_WaypointManager()</span></code></a>.</p>
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_WaypointManager_Waypoints">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager_Waypoints</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_object_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_Waypoints" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all existing waypoints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_WaypointManager_AddWaypoint">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager_AddWaypoint</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t">krpc_SpaceCenter_Waypoint_t</a> *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, <a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a><em>&nbsp;body</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_AddWaypoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a waypoint at the given position at ground level, and returns a
-<a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Waypoint_t</span></code></a> object that can be used to modify it.</p>
+<a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">krpc_SpaceCenter_Waypoint_t</span></code></a> object that can be used to modify it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>latitude</strong> – Latitude of the waypoint.</li>
 <li><strong>longitude</strong> – Longitude of the waypoint.</li>
 <li><strong>body</strong> – Celestial body the waypoint is attached to.</li>
 <li><strong>name</strong> – Name of the waypoint.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">All</p>
 </td>
 </tr>
 </tbody>
@@ -252,18 +254,21 @@ Obtained by calling <a class="reference internal" href="space-center.html#c.krpc
 <dt id="c.krpc_SpaceCenter_WaypointManager_AddWaypointAtAltitude">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager_AddWaypointAtAltitude</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t">krpc_SpaceCenter_Waypoint_t</a> *<em>&nbsp;result</em>, double<em>&nbsp;latitude</em>, double<em>&nbsp;longitude</em>, double<em>&nbsp;altitude</em>, <a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a><em>&nbsp;body</em>, const char *<em>&nbsp;name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_AddWaypointAtAltitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a waypoint at the given position and altitude, and returns a
-<a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Waypoint_t</span></code></a> object that can be used to modify it.</p>
+<a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_t" title="krpc_SpaceCenter_Waypoint_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">krpc_SpaceCenter_Waypoint_t</span></code></a> object that can be used to modify it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>latitude</strong> – Latitude of the waypoint.</li>
 <li><strong>longitude</strong> – Longitude of the waypoint.</li>
 <li><strong>altitude</strong> – Altitude (above sea level) of the waypoint.</li>
 <li><strong>body</strong> – Celestial body the waypoint is attached to.</li>
 <li><strong>name</strong> – Name of the waypoint.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">All</p>
 </td>
 </tr>
 </tbody>
@@ -275,12 +280,28 @@ Obtained by calling <a class="reference internal" href="space-center.html#c.krpc
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager_Colors</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_dictionary_string_int32_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_Colors" title="Permalink to this definition">¶</a></dt>
 <dd><p>An example map of known color - seed pairs.
 Any other integers may be used as seed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_WaypointManager_Icons">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_WaypointManager_Icons</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, krpc_list_string_t *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_WaypointManager_Icons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all available icons (from “GameData/Squad/Contracts/Icons/”).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -288,7 +309,7 @@ Any other integers may be used as seed.</p>
 <dl class="type">
 <dt id="c.krpc_SpaceCenter_Waypoint_t">
 <code class="descname">krpc_SpaceCenter_Waypoint_t</code><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_t" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a waypoint. Can be created using <a class="reference internal" href="#c.krpc_SpaceCenter_WaypointManager_AddWaypoint" title="krpc_SpaceCenter_WaypointManager_AddWaypoint"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_WaypointManager_AddWaypoint()</span></code></a>.</p>
+<dd><p>Represents a waypoint. Can be created using <a class="reference internal" href="#c.krpc_SpaceCenter_WaypointManager_AddWaypoint" title="krpc_SpaceCenter_WaypointManager_AddWaypoint"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_WaypointManager_AddWaypoint()</span></code></a>.</p>
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_Body">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_Body</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_Body" title="Permalink to this definition">¶</a></dt>
@@ -298,6 +319,14 @@ Any other integers may be used as seed.</p>
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Body">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Body</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#c.krpc_SpaceCenter_CelestialBody_t" title="krpc_SpaceCenter_CelestialBody_t">krpc_SpaceCenter_CelestialBody_t</a><em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Body" title="Permalink to this definition">¶</a></dt>
 <dd><p>The celestial body the waypoint is attached to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -309,6 +338,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Body</code><span class
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Name">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Name</code><span class="sig-paren">(</span>const char *<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the waypoint as it appears on the map and the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -319,7 +356,15 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Name</code><span class
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Color">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Color</code><span class="sig-paren">(</span>int32_t<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Color" title="Permalink to this definition">¶</a></dt>
-<dd><p>The seed of the icon color. See <a class="reference internal" href="#c.krpc_SpaceCenter_WaypointManager_Colors" title="krpc_SpaceCenter_WaypointManager_Colors"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_WaypointManager_Colors()</span></code></a> for example colors.</p>
+<dd><p>The seed of the icon color. See <a class="reference internal" href="#c.krpc_SpaceCenter_WaypointManager_Colors" title="krpc_SpaceCenter_WaypointManager_Colors"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_WaypointManager_Colors()</span></code></a> for example colors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -331,6 +376,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Color</code><span clas
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Icon">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Icon</code><span class="sig-paren">(</span>const char *<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Icon" title="Permalink to this definition">¶</a></dt>
 <dd><p>The icon of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -342,6 +395,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Icon</code><span class
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Latitude">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Latitude</code><span class="sig-paren">(</span>double<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Latitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>The latitude of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -353,6 +414,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Latitude</code><span c
 <dt id="c.krpc_SpaceCenter_Waypoint_set_Longitude">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_Longitude</code><span class="sig-paren">(</span>double<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_Longitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>The longitude of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -364,6 +433,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_Longitude</code><span 
 <dt id="c.krpc_SpaceCenter_Waypoint_set_MeanAltitude">
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_MeanAltitude</code><span class="sig-paren">(</span>double<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_MeanAltitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -376,6 +453,14 @@ void <code class="descname">krpc_SpaceCenter_Waypoint_set_MeanAltitude</code><sp
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_SurfaceAltitude</code><span class="sig-paren">(</span>double<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_SurfaceAltitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above the surface of the body or sea level,
 whichever is closer, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -388,18 +473,42 @@ whichever is closer, in meters.</p>
 void <code class="descname">krpc_SpaceCenter_Waypoint_set_BedrockAltitude</code><span class="sig-paren">(</span>double<em>&nbsp;value</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_set_BedrockAltitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above the surface of the body, in meters.
 When over water, this is the altitude above the sea floor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_NearSurface">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_NearSurface</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_NearSurface" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is near to the surface of a body.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the waypoint is near to the surface of a body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_Grounded">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_Grounded</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_Grounded" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is attached to the ground.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the waypoint is attached to the ground.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -409,34 +518,74 @@ When over water, this is the altitude above the sea floor.</p>
 In other words, when you have a cluster of waypoints called “Somewhere Alpha”,
 “Somewhere Beta” and “Somewhere Gamma”, the alpha site has index 0, the beta
 site has index 1 and the gamma site has index 2.
-When <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Clustered" title="krpc_SpaceCenter_Waypoint_Clustered"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Waypoint_Clustered()</span></code></a> is <code class="docutils literal"><span class="pre">false</span></code>, this is zero.</p>
+When <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Clustered" title="krpc_SpaceCenter_Waypoint_Clustered"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_Waypoint_Clustered()</span></code></a> is <code class="docutils literal notranslate"><span class="pre">false</span></code>, this is zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_Clustered">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_Clustered</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_Clustered" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
 names appended (Alpha, Beta, Gamma, etc).
-If <code class="docutils literal"><span class="pre">true</span></code>, there is a one-to-one correspondence with the greek letter name and
-the <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Index" title="krpc_SpaceCenter_Waypoint_Index"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_Waypoint_Index()</span></code></a>.</p>
+If <code class="docutils literal notranslate"><span class="pre">true</span></code>, there is a one-to-one correspondence with the greek letter name and
+the <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Index" title="krpc_SpaceCenter_Waypoint_Index"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_Waypoint_Index()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_HasContract">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_HasContract</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, bool *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_HasContract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the waypoint belongs to a contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_Contract">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_Contract</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em>, <a class="reference internal" href="contracts.html#c.krpc_SpaceCenter_Contract_t" title="krpc_SpaceCenter_Contract_t">krpc_SpaceCenter_Contract_t</a> *<em>&nbsp;result</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_Contract" title="Permalink to this definition">¶</a></dt>
 <dd><p>The associated contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="c.krpc_SpaceCenter_Waypoint_Remove">
 <a class="reference internal" href="../../client.html#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_SpaceCenter_Waypoint_Remove</code><span class="sig-paren">(</span>krpc_connection_t<em>&nbsp;connection</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_SpaceCenter_Waypoint_Remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -445,9 +594,7 @@ the <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Index" titl
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -465,11 +612,11 @@ the <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Index" titl
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -484,37 +631,24 @@ the <a class="reference internal" href="#c.krpc_SpaceCenter_Waypoint_Index" titl
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

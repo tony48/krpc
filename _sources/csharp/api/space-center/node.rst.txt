@@ -15,19 +15,27 @@ Node
       The magnitude of the maneuver nodes delta-v in the prograde direction,
       in meters per second.
 
+      :Game Scenes: Flight
+
    .. property:: double Normal { get; set; }
 
       The magnitude of the maneuver nodes delta-v in the normal direction,
       in meters per second.
+
+      :Game Scenes: Flight
 
    .. property:: double Radial { get; set; }
 
       The magnitude of the maneuver nodes delta-v in the radial direction,
       in meters per second.
 
+      :Game Scenes: Flight
+
    .. property:: double DeltaV { get; set; }
 
       The delta-v of the maneuver node, in meters per second.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -39,6 +47,8 @@ Node
       Gets the remaining delta-v of the maneuver node, in meters per second. Changes as the
       node is executed. This is equivalent to the delta-v reported in-game.
 
+      :Game Scenes: Flight
+
    .. method:: System.Tuple<double,double,double> BurnVector(ReferenceFrame referenceFrame = null)
 
       Returns the burn vector for the maneuver node.
@@ -48,6 +58,8 @@ Node
        * **referenceFrame** -- The reference frame that the returned vector is in. Defaults to :prop:`Vessel.OrbitalReferenceFrame`.
 
       :returns: A vector whose direction is the direction of the maneuver node burn, and magnitude is the delta-v of the burn in meters per second.
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -62,6 +74,8 @@ Node
        * **referenceFrame** -- The reference frame that the returned vector is in. Defaults to :prop:`Vessel.OrbitalReferenceFrame`.
 
       :returns: A vector whose direction is the direction of the maneuver node burn, and magnitude is the delta-v of the burn in meters per second.
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -71,17 +85,26 @@ Node
 
       The universal time at which the maneuver will occur, in seconds.
 
+      :Game Scenes: Flight
+
    .. property:: double TimeTo { get; }
 
       The time until the maneuver node will be encountered, in seconds.
+
+      :Game Scenes: Flight
 
    .. property:: Orbit Orbit { get; }
 
       The orbit that results from executing the maneuver node.
 
+      :Game Scenes: Flight
+
    .. method:: void Remove()
 
       Removes the maneuver node.
+
+
+      :Game Scenes: Flight
 
    .. property:: ReferenceFrame ReferenceFrame { get; }
 
@@ -90,6 +113,8 @@ Node
       * The origin is at the position of the maneuver node.
       * The y-axis points in the direction of the burn.
       * The x-axis and z-axis point in arbitrary but fixed directions.
+
+      :Game Scenes: Flight
 
    .. property:: ReferenceFrame OrbitalReferenceFrame { get; }
 
@@ -105,6 +130,8 @@ Node
       * The z-axis points in the orbital normal direction of the original orbit,
         at the position of the maneuver node.
 
+      :Game Scenes: Flight
+
    .. method:: System.Tuple<double,double,double> Position(ReferenceFrame referenceFrame)
 
       The position vector of the maneuver node in the given reference frame.
@@ -114,6 +141,7 @@ Node
        * **referenceFrame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: Flight
 
    .. method:: System.Tuple<double,double,double> Direction(ReferenceFrame referenceFrame)
 
@@ -124,3 +152,4 @@ Node
        * **referenceFrame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight

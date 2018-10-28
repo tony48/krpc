@@ -16,6 +16,8 @@ Waypoints
 
       A list of all existing waypoints.
 
+      :Game Scenes: All
+
    .. method:: Waypoint AddWaypoint(double latitude, double longitude, CelestialBody body, string name)
 
       Creates a waypoint at the given position at ground level, and returns a
@@ -27,6 +29,8 @@ Waypoints
        * **longitude** -- Longitude of the waypoint.
        * **body** -- Celestial body the waypoint is attached to.
        * **name** -- Name of the waypoint.
+
+      :Game Scenes: All
 
    .. method:: Waypoint AddWaypointAtAltitude(double latitude, double longitude, double altitude, CelestialBody body, string name)
 
@@ -41,14 +45,20 @@ Waypoints
        * **body** -- Celestial body the waypoint is attached to.
        * **name** -- Name of the waypoint.
 
+      :Game Scenes: All
+
    .. property:: System.Collections.Generic.IDictionary<string,int> Colors { get; }
 
       An example map of known color - seed pairs.
       Any other integers may be used as seed.
 
+      :Game Scenes: All
+
    .. property:: System.Collections.Generic.IList<string> Icons { get; }
 
       Returns all available icons (from "GameData/Squad/Contracts/Icons/").
+
+      :Game Scenes: All
 
 
 
@@ -60,47 +70,69 @@ Waypoints
 
       The celestial body the waypoint is attached to.
 
+      :Game Scenes: Flight
+
    .. property:: string Name { get; set; }
 
       The name of the waypoint as it appears on the map and the contract.
+
+      :Game Scenes: Flight
 
    .. property:: int Color { get; set; }
 
       The seed of the icon color. See :prop:`WaypointManager.Colors` for example colors.
 
+      :Game Scenes: Flight
+
    .. property:: string Icon { get; set; }
 
       The icon of the waypoint.
+
+      :Game Scenes: Flight
 
    .. property:: double Latitude { get; set; }
 
       The latitude of the waypoint.
 
+      :Game Scenes: Flight
+
    .. property:: double Longitude { get; set; }
 
       The longitude of the waypoint.
 
+      :Game Scenes: Flight
+
    .. property:: double MeanAltitude { get; set; }
 
       The altitude of the waypoint above sea level, in meters.
+
+      :Game Scenes: Flight
 
    .. property:: double SurfaceAltitude { get; set; }
 
       The altitude of the waypoint above the surface of the body or sea level,
       whichever is closer, in meters.
 
+      :Game Scenes: Flight
+
    .. property:: double BedrockAltitude { get; set; }
 
       The altitude of the waypoint above the surface of the body, in meters.
       When over water, this is the altitude above the sea floor.
 
+      :Game Scenes: Flight
+
    .. property:: bool NearSurface { get; }
 
       ``true`` if the waypoint is near to the surface of a body.
 
+      :Game Scenes: Flight
+
    .. property:: bool Grounded { get; }
 
       ``true`` if the waypoint is attached to the ground.
+
+      :Game Scenes: Flight
 
    .. property:: int Index { get; }
 
@@ -110,6 +142,8 @@ Waypoints
       site has index 1 and the gamma site has index 2.
       When :prop:`Waypoint.Clustered` is ``false``, this is zero.
 
+      :Game Scenes: Flight
+
    .. property:: bool Clustered { get; }
 
       ``true`` if this waypoint is part of a set of clustered waypoints with greek letter
@@ -117,14 +151,23 @@ Waypoints
       If ``true``, there is a one-to-one correspondence with the greek letter name and
       the :prop:`Waypoint.Index`.
 
+      :Game Scenes: Flight
+
    .. property:: bool HasContract { get; }
 
       Whether the waypoint belongs to a contract.
+
+      :Game Scenes: Flight
 
    .. property:: Contract Contract { get; }
 
       The associated contract.
 
+      :Game Scenes: Flight
+
    .. method:: void Remove()
 
       Removes the waypoint.
+
+
+      :Game Scenes: Flight

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Waypoints &mdash; kRPC 0.4.7 documentation</title>
+  <title>Waypoints &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../../../index.html"/>
-        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Contracts" href="contracts.html"/>
-        <link rel="prev" title="Camera" href="camera.html"/>
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Contracts" href="contracts.html" />
+    <link rel="prev" title="Camera" href="camera.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -157,7 +147,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">kRPC</a>
@@ -165,9 +155,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -220,28 +211,39 @@
 public class <code class="descname">WaypointManager</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waypoints are the location markers you can see on the map view showing you where contracts are targeted for.
 With this structure, you can obtain coordinate data for the locations of these waypoints.
-Obtained by calling <a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()" title="krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()"><code class="xref java java-meth docutils literal"><span class="pre">getWaypointManager()</span></code></a>.</p>
+Obtained by calling <a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()" title="krpc.client.services.SpaceCenter.SpaceCenter.getWaypointManager()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">getWaypointManager()</span></code></a>.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.WaypointManager.getWaypoints()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint">Waypoint</a>&gt; <code class="descname">getWaypoints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getWaypoints()" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of all existing waypoints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint">Waypoint</a> <code class="descname">addWaypoint</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em>, <a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> body</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a waypoint at the given position at ground level, and returns a
-<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint"><code class="xref java java-type docutils literal"><span class="pre">Waypoint</span></code></a> object that can be used to modify it.</p>
+<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint"><code class="xref java java-type docutils literal notranslate"><span class="pre">Waypoint</span></code></a> object that can be used to modify it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>latitude</strong> (<em>double</em>) – Latitude of the waypoint.</li>
 <li><strong>longitude</strong> (<em>double</em>) – Longitude of the waypoint.</li>
 <li><strong>body</strong> (<a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody"><em>CelestialBody</em></a>) – Celestial body the waypoint is attached to.</li>
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the waypoint.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">All</p>
 </td>
 </tr>
 </tbody>
@@ -252,18 +254,21 @@ Obtained by calling <a class="reference internal" href="space-center.html#krpc.c
 <dt id="krpc.client.services.SpaceCenter.WaypointManager.addWaypointAtAltitude(double, double, double, CelestialBody, String)">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint">Waypoint</a> <code class="descname">addWaypointAtAltitude</code><span class="sig-paren">(</span>double<em> latitude</em>, double<em> longitude</em>, double<em> altitude</em>, <a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> body</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> name</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypointAtAltitude(double, double, double, CelestialBody, String)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a waypoint at the given position and altitude, and returns a
-<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint"><code class="xref java java-type docutils literal"><span class="pre">Waypoint</span></code></a> object that can be used to modify it.</p>
+<a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint" title="krpc.client.services.SpaceCenter.Waypoint"><code class="xref java java-type docutils literal notranslate"><span class="pre">Waypoint</span></code></a> object that can be used to modify it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>latitude</strong> (<em>double</em>) – Latitude of the waypoint.</li>
 <li><strong>longitude</strong> (<em>double</em>) – Longitude of the waypoint.</li>
 <li><strong>altitude</strong> (<em>double</em>) – Altitude (above sea level) of the waypoint.</li>
 <li><strong>body</strong> (<a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody"><em>CelestialBody</em></a>) – Celestial body the waypoint is attached to.</li>
 <li><strong>name</strong> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String"><em>String</em></a>) – Name of the waypoint.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">All</p>
 </td>
 </tr>
 </tbody>
@@ -275,12 +280,28 @@ Obtained by calling <a class="reference internal" href="space-center.html#krpc.c
  java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>&gt; <code class="descname">getColors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getColors()" title="Permalink to this definition">¶</a></dt>
 <dd><p>An example map of known color - seed pairs.
 Any other integers may be used as seed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.WaypointManager.getIcons()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">getIcons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.WaypointManager.getIcons()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all available icons (from “GameData/Squad/Contracts/Icons/”).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">All</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -288,7 +309,7 @@ Any other integers may be used as seed.</p>
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.Waypoint">
 public class <code class="descname">Waypoint</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a waypoint. Can be created using <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)" title="krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)"><code class="xref java java-meth docutils literal"><span class="pre">WaypointManager.addWaypoint(double,</span> <span class="pre">double,</span> <span class="pre">CelestialBody,</span> <span class="pre">String)</span></code></a>.</p>
+<dd><p>Represents a waypoint. Can be created using <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)" title="krpc.client.services.SpaceCenter.WaypointManager.addWaypoint(double, double, CelestialBody, String)"><code class="xref java java-meth docutils literal notranslate"><span class="pre">WaypointManager.addWaypoint(double,</span> <span class="pre">double,</span> <span class="pre">CelestialBody,</span> <span class="pre">String)</span></code></a>.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getBody()">
  <a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a> <code class="descname">getBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getBody()" title="Permalink to this definition">¶</a></dt>
@@ -298,6 +319,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)">
  void <code class="descname">setBody</code><span class="sig-paren">(</span><a class="reference internal" href="celestial-body.html#krpc.client.services.SpaceCenter.CelestialBody" title="krpc.client.services.SpaceCenter.CelestialBody">CelestialBody</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBody(CelestialBody)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The celestial body the waypoint is attached to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -309,6 +338,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setName(String)">
  void <code class="descname">setName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setName(String)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the waypoint as it appears on the map and the contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -319,7 +356,15 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setColor(int)">
  void <code class="descname">setColor</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setColor(int)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The seed of the icon color. See <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.getColors()" title="krpc.client.services.SpaceCenter.WaypointManager.getColors()"><code class="xref java java-meth docutils literal"><span class="pre">WaypointManager.getColors()</span></code></a> for example colors.</p>
+<dd><p>The seed of the icon color. See <a class="reference internal" href="#krpc.client.services.SpaceCenter.WaypointManager.getColors()" title="krpc.client.services.SpaceCenter.WaypointManager.getColors()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">WaypointManager.getColors()</span></code></a> for example colors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -331,6 +376,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setIcon(String)">
  void <code class="descname">setIcon</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setIcon(String)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The icon of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -342,6 +395,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setLatitude(double)">
  void <code class="descname">setLatitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setLatitude(double)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The latitude of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -353,6 +414,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setLongitude(double)">
  void <code class="descname">setLongitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setLongitude(double)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The longitude of the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -364,6 +433,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
 <dt id="krpc.client.services.SpaceCenter.Waypoint.setMeanAltitude(double)">
  void <code class="descname">setMeanAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setMeanAltitude(double)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above sea level, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -376,6 +453,14 @@ public class <code class="descname">Waypoint</code><a class="headerlink" href="#
  void <code class="descname">setSurfaceAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setSurfaceAltitude(double)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above the surface of the body or sea level,
 whichever is closer, in meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -388,18 +473,42 @@ whichever is closer, in meters.</p>
  void <code class="descname">setBedrockAltitude</code><span class="sig-paren">(</span>double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.setBedrockAltitude(double)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The altitude of the waypoint above the surface of the body, in meters.
 When over water, this is the altitude above the sea floor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getNearSurface()">
  boolean <code class="descname">getNearSurface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getNearSurface()" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is near to the surface of a body.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the waypoint is near to the surface of a body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getGrounded()">
  boolean <code class="descname">getGrounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getGrounded()" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if the waypoint is attached to the ground.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the waypoint is attached to the ground.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -409,34 +518,74 @@ When over water, this is the altitude above the sea floor.</p>
 In other words, when you have a cluster of waypoints called “Somewhere Alpha”,
 “Somewhere Beta” and “Somewhere Gamma”, the alpha site has index 0, the beta
 site has index 1 and the gamma site has index 2.
-When <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="krpc.client.services.SpaceCenter.Waypoint.getClustered()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getClustered()</span></code></a> is <code class="docutils literal"><span class="pre">false</span></code>, this is zero.</p>
+When <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="krpc.client.services.SpaceCenter.Waypoint.getClustered()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Waypoint.getClustered()</span></code></a> is <code class="docutils literal notranslate"><span class="pre">false</span></code>, this is zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getClustered()">
  boolean <code class="descname">getClustered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getClustered()" title="Permalink to this definition">¶</a></dt>
-<dd><p><code class="docutils literal"><span class="pre">true</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if this waypoint is part of a set of clustered waypoints with greek letter
 names appended (Alpha, Beta, Gamma, etc).
-If <code class="docutils literal"><span class="pre">true</span></code>, there is a one-to-one correspondence with the greek letter name and
-the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="krpc.client.services.SpaceCenter.Waypoint.getIndex()"><code class="xref java java-meth docutils literal"><span class="pre">Waypoint.getIndex()</span></code></a>.</p>
+If <code class="docutils literal notranslate"><span class="pre">true</span></code>, there is a one-to-one correspondence with the greek letter name and
+the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoint.getIndex()" title="krpc.client.services.SpaceCenter.Waypoint.getIndex()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Waypoint.getIndex()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getHasContract()">
  boolean <code class="descname">getHasContract</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getHasContract()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the waypoint belongs to a contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.getContract()">
  <a class="reference internal" href="contracts.html#krpc.client.services.SpaceCenter.Contract" title="krpc.client.services.SpaceCenter.Contract">Contract</a> <code class="descname">getContract</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.getContract()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The associated contract.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Waypoint.remove()">
  void <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Waypoint.remove()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the waypoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -445,9 +594,7 @@ the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoi
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -465,11 +612,11 @@ the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoi
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -484,37 +631,24 @@ the <a class="reference internal" href="#krpc.client.services.SpaceCenter.Waypoi
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

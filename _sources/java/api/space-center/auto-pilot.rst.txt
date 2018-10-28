@@ -21,14 +21,20 @@ AutoPilot
 
       Engage the auto-pilot.
 
+      :Game Scenes: Flight
+
    .. method:: void disengage()
 
       Disengage the auto-pilot.
+
+      :Game Scenes: Flight
 
    .. method:: void wait_()
 
       Blocks until the vessel is pointing in the target direction and has
       the target roll (if set). Throws an exception if the auto-pilot has not been engaged.
+
+      :Game Scenes: Flight
 
    .. method:: float getError()
 
@@ -37,11 +43,15 @@ AutoPilot
       to point in and the direction it is pointing in. Throws an exception if the auto-pilot
       has not been engaged and SAS is not enabled or is in stability assist mode.
 
+      :Game Scenes: Flight
+
    .. method:: float getPitchError()
 
 
       The error, in degrees, between the vessels current and target pitch.
       Throws an exception if the auto-pilot has not been engaged.
+
+      :Game Scenes: Flight
 
    .. method:: float getHeadingError()
 
@@ -49,17 +59,23 @@ AutoPilot
       The error, in degrees, between the vessels current and target heading.
       Throws an exception if the auto-pilot has not been engaged.
 
+      :Game Scenes: Flight
+
    .. method:: float getRollError()
 
 
       The error, in degrees, between the vessels current and target roll.
       Throws an exception if the auto-pilot has not been engaged or no target roll is set.
 
+      :Game Scenes: Flight
+
    .. method:: ReferenceFrame getReferenceFrame()
 
    .. method:: void setReferenceFrame(ReferenceFrame value)
 
       The reference frame for the target direction (:meth:`AutoPilot.getTargetDirection()`).
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -74,17 +90,23 @@ AutoPilot
 
       The target pitch, in degrees, between -90° and +90°.
 
+      :Game Scenes: Flight
+
    .. method:: float getTargetHeading()
 
    .. method:: void setTargetHeading(float value)
 
       The target heading, in degrees, between 0° and 360°.
 
+      :Game Scenes: Flight
+
    .. method:: float getTargetRoll()
 
    .. method:: void setTargetRoll(float value)
 
       The target roll, in degrees. ``NaN`` if no target roll is set.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getTargetDirection()
 
@@ -93,18 +115,23 @@ AutoPilot
       Direction vector corresponding to the target pitch and heading.
       This is in the reference frame specified by :type:`ReferenceFrame`.
 
+      :Game Scenes: Flight
+
    .. method:: void targetPitchAndHeading(float pitch, float heading)
 
       Set target pitch and heading angles.
 
       :param float pitch: Target pitch angle, in degrees between -90° and +90°.
       :param float heading: Target heading angle, in degrees between 0° and 360°.
+      :Game Scenes: Flight
 
    .. method:: boolean getSAS()
 
    .. method:: void setSAS(boolean value)
 
       The state of SAS.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -119,6 +146,8 @@ AutoPilot
       These modes are equivalent to the mode buttons to the left of the navball that appear
       when SAS is enabled.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -131,6 +160,8 @@ AutoPilot
       The threshold at which the autopilot will try to match the target roll angle, if any.
       Defaults to 5 degrees.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Triplet<Double,Double,Double> getStoppingTime()
 
    .. method:: void setStoppingTime(org.javatuples.Triplet<Double,Double,Double> value)
@@ -140,6 +171,8 @@ AutoPilot
       A vector of three stopping times, in seconds, one for each of the pitch, roll
       and yaw axes. Defaults to 0.5 seconds for each axis.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Triplet<Double,Double,Double> getDecelerationTime()
 
    .. method:: void setDecelerationTime(org.javatuples.Triplet<Double,Double,Double> value)
@@ -148,6 +181,8 @@ AutoPilot
       This determines the angular acceleration used to decelerate the vessel.
       A vector of three times, in seconds, one for each of the pitch, roll and yaw axes.
       Defaults to 5 seconds for each axis.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getAttenuationAngle()
 
@@ -159,6 +194,8 @@ AutoPilot
       A vector of three angles, in degrees, one for each of the pitch, roll and yaw axes.
       Defaults to 1° for each axis.
 
+      :Game Scenes: Flight
+
    .. method:: boolean getAutoTune()
 
    .. method:: void setAutoTune(boolean value)
@@ -166,6 +203,8 @@ AutoPilot
       Whether the rotation rate controllers PID parameters should be automatically tuned
       using the vessels moment of inertia and available torque. Defaults to ``true``.
       See :meth:`AutoPilot.getTimeToPeak()` and :meth:`AutoPilot.getOvershoot()`.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getTimeToPeak()
 
@@ -175,6 +214,8 @@ AutoPilot
       A vector of three times, in seconds, for each of the pitch, roll and yaw axes.
       Defaults to 3 seconds for each axis.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Triplet<Double,Double,Double> getOvershoot()
 
    .. method:: void setOvershoot(org.javatuples.Triplet<Double,Double,Double> value)
@@ -183,11 +224,15 @@ AutoPilot
       A vector of three values, between 0 and 1, for each of the pitch, roll and yaw axes.
       Defaults to 0.01 for each axis.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Triplet<Double,Double,Double> getPitchPIDGains()
 
    .. method:: void setPitchPIDGains(org.javatuples.Triplet<Double,Double,Double> value)
 
       Gains for the pitch PID controller.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -201,6 +246,8 @@ AutoPilot
 
       Gains for the roll PID controller.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -212,6 +259,8 @@ AutoPilot
    .. method:: void setYawPIDGains(org.javatuples.Triplet<Double,Double,Double> value)
 
       Gains for the yaw PID controller.
+
+      :Game Scenes: Flight
 
 
       .. note::

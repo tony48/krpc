@@ -18,35 +18,49 @@ Vessel
 
       The name of the vessel.
 
+      :Game Scenes: All
+
    .. method:: VesselType getType()
 
    .. method:: void setType(VesselType value)
 
       The type of the vessel.
 
+      :Game Scenes: All
+
    .. method:: VesselSituation getSituation()
 
 
       The situation the vessel is in.
+
+      :Game Scenes: All
 
    .. method:: boolean getRecoverable()
 
 
       Whether the vessel is recoverable.
 
+      :Game Scenes: All
+
    .. method:: void recover()
 
       Recover the vessel.
+
+      :Game Scenes: All
 
    .. method:: double getMET()
 
 
       The mission elapsed time in seconds.
 
+      :Game Scenes: All
+
    .. method:: String getBiome()
 
 
       The name of the biome the vessel is currently in.
+
+      :Game Scenes: All
 
    .. method:: Flight flight(ReferenceFrame referenceFrame)
 
@@ -54,6 +68,8 @@ Vessel
       telemetry for the vessel, in the specified reference frame.
 
       :param ReferenceFrame referenceFrame: Reference frame. Defaults to the vessel's surface reference frame (:meth:`Vessel.getSurfaceReferenceFrame()`).
+      :Game Scenes: Flight
+
 
       .. note:: When this is called with no arguments, the vessel's surface reference
                 frame is used. This reference frame moves with the vessel, therefore
@@ -67,6 +83,8 @@ Vessel
 
       The current orbit of the vessel.
 
+      :Game Scenes: All
+
    .. method:: Control getControl()
 
 
@@ -74,11 +92,15 @@ Vessel
       the vessel's control inputs. For example, its pitch/yaw/roll controls,
       RCS and thrust.
 
+      :Game Scenes: Flight
+
    .. method:: Comms getComms()
 
 
       Returns a :type:`Comms` object that can be used to interact
       with CommNet for this vessel.
+
+      :Game Scenes: Flight
 
    .. method:: AutoPilot getAutoPilot()
 
@@ -86,26 +108,36 @@ Vessel
       An :type:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: int getCrewCapacity()
 
 
       The number of crew that can occupy the vessel.
+
+      :Game Scenes: All
 
    .. method:: int getCrewCount()
 
 
       The number of crew that are occupying the vessel.
 
+      :Game Scenes: All
+
    .. method:: java.util.List<CrewMember> getCrew()
 
 
       The crew in the vessel.
+
+      :Game Scenes: All
 
    .. method:: Resources getResources()
 
 
       A :type:`Resources` object, that can used to get information
       about resources stored in the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: Resources resourcesInDecoupleStage(int stage, boolean cumulative)
 
@@ -114,6 +146,8 @@ Vessel
 
       :param int stage: Get resources for parts that are decoupled in this stage.
       :param boolean cumulative: When ``false``, returns the resources for parts decoupled in just the given stage. When ``true`` returns the resources decoupled in the given stage and all subsequent stages combined.
+      :Game Scenes: Flight
+
 
       .. note:: For details on stage numbering, see the
                 discussion on :rst:ref:`java-api-parts-staging`.
@@ -123,15 +157,21 @@ Vessel
 
       A :type:`Parts` object, that can used to interact with the parts that make up this vessel.
 
+      :Game Scenes: Flight
+
    .. method:: float getMass()
 
 
       The total mass of the vessel, including resources, in kg.
 
+      :Game Scenes: Flight
+
    .. method:: float getDryMass()
 
 
       The total mass of the vessel, excluding resources, in kg.
+
+      :Game Scenes: Flight
 
    .. method:: float getThrust()
 
@@ -140,12 +180,16 @@ Vessel
       Newtons. This is computed by summing :meth:`Engine.getThrust()` for
       every engine in the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: float getAvailableThrust()
 
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
       :meth:`Engine.getAvailableThrust()` for every active engine in the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: float getMaxThrust()
 
@@ -154,6 +198,8 @@ Vessel
       engines, in Newtons. This is computed by summing
       :meth:`Engine.getMaxThrust()` for every active engine.
 
+      :Game Scenes: Flight
+
    .. method:: float getMaxVacuumThrust()
 
 
@@ -161,11 +207,15 @@ Vessel
       engines when the vessel is in a vacuum, in Newtons. This is computed by
       summing :meth:`Engine.getMaxVacuumThrust()` for every active engine.
 
+      :Game Scenes: Flight
+
    .. method:: float getSpecificImpulse()
 
 
       The combined specific impulse of all active engines, in seconds. This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+      :Game Scenes: Flight
 
    .. method:: float getVacuumSpecificImpulse()
 
@@ -173,12 +223,16 @@ Vessel
       The combined vacuum specific impulse of all active engines, in seconds. This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
 
+      :Game Scenes: Flight
+
    .. method:: float getKerbinSeaLevelSpecificImpulse()
 
 
       The combined specific impulse of all active engines at sea level on Kerbin, in seconds.
       This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> getMomentOfInertia()
 
@@ -188,12 +242,16 @@ Vessel
       pitch, roll and yaw directions respectively.
       This corresponds to the vessels reference frame (:type:`ReferenceFrame`).
 
+      :Game Scenes: Flight
+
    .. method:: java.util.List<Double> getInertiaTensor()
 
 
       The inertia tensor of the vessel around its center of mass,
       in the vessels reference frame (:type:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
+
+      :Game Scenes: All
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableTorque()
 
@@ -204,6 +262,8 @@ Vessel
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableReactionWheelTorque()
 
 
@@ -211,6 +271,8 @@ Vessel
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableRCSTorque()
 
@@ -220,6 +282,8 @@ Vessel
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableEngineTorque()
 
 
@@ -227,6 +291,8 @@ Vessel
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableControlSurfaceTorque()
 
@@ -236,6 +302,8 @@ Vessel
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> getAvailableOtherTorque()
 
 
@@ -244,6 +312,8 @@ Vessel
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:type:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. method:: ReferenceFrame getReferenceFrame()
 
@@ -256,6 +326,8 @@ Vessel
       * The x-axis points out to the right of the vessel.
       * The y-axis points in the forward direction of the vessel.
       * The z-axis points out of the bottom off the vessel.
+
+      :Game Scenes: Flight
 
 
       .. figure:: /images/reference-frames/vessel-aircraft.png
@@ -279,6 +351,8 @@ Vessel
       * The x-axis points in the orbital anti-radial direction.
       * The y-axis points in the orbital prograde direction.
       * The z-axis points in the orbital normal direction.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -308,6 +382,8 @@ Vessel
         `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_ (east, and tangential to the
         surface of the body -- east on a compass when on the surface).
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -333,6 +409,8 @@ Vessel
         `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_.
       * The x-axis is orthogonal to the other two axes.
 
+      :Game Scenes: Flight
+
 
       .. figure:: /images/reference-frames/vessel-surface-velocity.png
          :align: center
@@ -345,6 +423,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame that the returned position vector is in.
       :returns: The position as a vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Pair<org.javatuples.Triplet<Double,Double,Double>,org.javatuples.Triplet<Double,Double,Double>> boundingBox(ReferenceFrame referenceFrame)
 
@@ -352,6 +431,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame that the returned position vectors are in.
       :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> velocity(ReferenceFrame referenceFrame)
 
@@ -359,6 +439,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame that the returned velocity vector is in.
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> rotation(ReferenceFrame referenceFrame)
 
@@ -366,6 +447,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame that the returned rotation is in.
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> direction(ReferenceFrame referenceFrame)
 
@@ -373,6 +455,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame that the returned direction is in.
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> angularVelocity(ReferenceFrame referenceFrame)
 
@@ -380,6 +463,7 @@ Vessel
 
       :param ReferenceFrame referenceFrame: The reference frame the returned angular velocity is in.
       :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the vessel, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.
+      :Game Scenes: Flight
 
 
 
@@ -492,15 +576,21 @@ Vessel
 
       The crew members name.
 
+      :Game Scenes: All
+
    .. method:: CrewMemberType getType()
 
 
       The type of crew member.
 
+      :Game Scenes: All
+
    .. method:: boolean getOnMission()
 
 
       Whether the crew member is on a mission.
+
+      :Game Scenes: All
 
    .. method:: float getCourage()
 
@@ -508,11 +598,15 @@ Vessel
 
       The crew members courage.
 
+      :Game Scenes: All
+
    .. method:: float getStupidity()
 
    .. method:: void setStupidity(float value)
 
       The crew members stupidity.
+
+      :Game Scenes: All
 
    .. method:: float getExperience()
 
@@ -520,17 +614,23 @@ Vessel
 
       The crew members experience.
 
+      :Game Scenes: All
+
    .. method:: boolean getBadass()
 
    .. method:: void setBadass(boolean value)
 
       Whether the crew member is a badass.
 
+      :Game Scenes: All
+
    .. method:: boolean getVeteran()
 
    .. method:: void setVeteran(boolean value)
 
       Whether the crew member is a veteran.
+
+      :Game Scenes: All
 
 
 

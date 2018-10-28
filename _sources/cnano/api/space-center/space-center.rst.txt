@@ -15,46 +15,67 @@ Service SpaceCenter
 
       The current amount of science.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_Funds(krpc_connection_t connection, double * result)
 
       The current amount of funds.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_Reputation(krpc_connection_t connection, float * result)
 
       The current amount of reputation.
+
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_ActiveVessel(krpc_connection_t connection, krpc_SpaceCenter_Vessel_t * result)
    .. function:: void krpc_SpaceCenter_set_ActiveVessel(krpc_SpaceCenter_Vessel_t value)
 
       The currently active vessel.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_Vessels(krpc_connection_t connection, krpc_list_object_t * result)
 
       A list of all the vessels in the game.
+
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_Bodies(krpc_connection_t connection, krpc_dictionary_string_object_t * result)
 
       A dictionary of all celestial bodies (planets, moons, etc.) in the game,
       keyed by the name of the body.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_TargetBody(krpc_connection_t connection, krpc_SpaceCenter_CelestialBody_t * result)
    .. function:: void krpc_SpaceCenter_set_TargetBody(krpc_SpaceCenter_CelestialBody_t value)
 
       The currently targeted celestial body.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_TargetVessel(krpc_connection_t connection, krpc_SpaceCenter_Vessel_t * result)
    .. function:: void krpc_SpaceCenter_set_TargetVessel(krpc_SpaceCenter_Vessel_t value)
 
       The currently targeted vessel.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_TargetDockingPort(krpc_connection_t connection, krpc_SpaceCenter_DockingPort_t * result)
    .. function:: void krpc_SpaceCenter_set_TargetDockingPort(krpc_SpaceCenter_DockingPort_t value)
 
       The currently targeted docking port.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_ClearTarget(krpc_connection_t connection)
 
       Clears the current target.
+
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_LaunchableVessels(krpc_connection_t connection, krpc_list_string_t * result, const char * craftDirectory)
 
@@ -64,6 +85,8 @@ Service SpaceCenter
       :Parameters:
 
        * **craftDirectory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_LaunchVessel(krpc_connection_t connection, const char * craftDirectory, const char * name, const char * launchSite, bool recover)
 
@@ -75,6 +98,8 @@ Service SpaceCenter
        * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
        * **launchSite** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
        * **recover** -- If true and there is a vessel on the launch site, recover it before launching.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -89,6 +114,8 @@ Service SpaceCenter
 
        * **name** -- Name of the vessel to launch.
        * **recover** -- If true and there is a vessel on the launch pad, recover it before launching.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -106,6 +133,8 @@ Service SpaceCenter
        * **name** -- Name of the vessel to launch.
        * **recover** -- If true and there is a vessel on the runway, recover it before launching.
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -121,6 +150,10 @@ Service SpaceCenter
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_Load(krpc_connection_t connection, const char * name)
 
       Load the game with the given name.
@@ -129,10 +162,16 @@ Service SpaceCenter
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_Quicksave(krpc_connection_t connection)
 
       Save a quicksave.
 
+
+      :Game Scenes: All
 
 
       .. note::
@@ -144,6 +183,8 @@ Service SpaceCenter
       Load a quicksave.
 
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -154,18 +195,26 @@ Service SpaceCenter
 
       Whether the UI is visible.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_Navball(krpc_connection_t connection, bool * result)
    .. function:: void krpc_SpaceCenter_set_Navball(bool value)
 
       Whether the navball is visible.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_UT(krpc_connection_t connection, double * result)
 
       The current universal time in seconds.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_G(krpc_connection_t connection, double * result)
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_ G in :math:`N(m/kg)^2`.
+
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_WarpRate(krpc_connection_t connection, float * result)
 
@@ -174,6 +223,8 @@ Service SpaceCenter
       time is passing 10x faster than normal. Returns 1 if time warp is not
       active.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_WarpFactor(krpc_connection_t connection, float * result)
 
       The current warp factor. This is the index of the rate at which time
@@ -181,6 +232,8 @@ Service SpaceCenter
       if time warp is not active. When in on-rails time warp, this is equal to
       :func:`krpc_SpaceCenter_RailsWarpFactor`, and in physics time warp, this is equal to
       :func:`krpc_SpaceCenter_PhysicsWarpFactor`.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_RailsWarpFactor(krpc_connection_t connection, int32_t * result)
    .. function:: void krpc_SpaceCenter_set_RailsWarpFactor(int32_t value)
@@ -193,11 +246,15 @@ Service SpaceCenter
       lowest possible value. For example, if the vessel is too close to a
       planet. See `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_PhysicsWarpFactor(krpc_connection_t connection, int32_t * result)
    .. function:: void krpc_SpaceCenter_set_PhysicsWarpFactor(int32_t value)
 
       The physical time warp rate. A value between 0 and 3 inclusive. 0 means
       no time warp. Returns 0 if regular "on-rails" time warp is active.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_CanRailsWarpAt(krpc_connection_t connection, bool * result, int32_t factor)
 
@@ -211,12 +268,16 @@ Service SpaceCenter
 
        * **factor** -- The warp factor to check.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_MaximumRailsWarpFactor(krpc_connection_t connection, int32_t * result)
 
       The current maximum regular "on-rails" warp factor that can be set.
       A value between 0 and 7 inclusive. See
       `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_
       for details.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_WarpTo(krpc_connection_t connection, double ut, float maxRailsRate, float maxPhysicsRate)
 
@@ -235,6 +296,7 @@ Service SpaceCenter
        * **maxPhysicsRate** -- The maximum warp rate in physical time warp.
 
       :returns: When the time warp is complete.
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_TransformPosition(krpc_connection_t connection, krpc_tuple_double_double_double_t * result, const krpc_tuple_double_double_double_t * position, krpc_SpaceCenter_ReferenceFrame_t from, krpc_SpaceCenter_ReferenceFrame_t to)
 
@@ -247,6 +309,7 @@ Service SpaceCenter
        * **to** -- The reference frame to covert the position to.
 
       :returns: The corresponding position, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_TransformDirection(krpc_connection_t connection, krpc_tuple_double_double_double_t * result, const krpc_tuple_double_double_double_t * direction, krpc_SpaceCenter_ReferenceFrame_t from, krpc_SpaceCenter_ReferenceFrame_t to)
 
@@ -259,6 +322,7 @@ Service SpaceCenter
        * **to** -- The reference frame to covert the direction to.
 
       :returns: The corresponding direction, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_TransformRotation(krpc_connection_t connection, krpc_tuple_double_double_double_double_t * result, const krpc_tuple_double_double_double_double_t * rotation, krpc_SpaceCenter_ReferenceFrame_t from, krpc_SpaceCenter_ReferenceFrame_t to)
 
@@ -271,6 +335,7 @@ Service SpaceCenter
        * **to** -- The reference frame to covert the rotation to.
 
       :returns: The corresponding rotation, as a quaternion of the form :math:`(x, y, z, w)`, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_TransformVelocity(krpc_connection_t connection, krpc_tuple_double_double_double_t * result, const krpc_tuple_double_double_double_t * position, const krpc_tuple_double_double_double_t * velocity, krpc_SpaceCenter_ReferenceFrame_t from, krpc_SpaceCenter_ReferenceFrame_t to)
 
@@ -286,6 +351,7 @@ Service SpaceCenter
        * **to** -- The reference frame to covert the velocity to.
 
       :returns: The corresponding velocity, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_RaycastDistance(krpc_connection_t connection, double * result, const krpc_tuple_double_double_double_t * position, const krpc_tuple_double_double_double_t * direction, krpc_SpaceCenter_ReferenceFrame_t referenceFrame)
 
@@ -299,6 +365,7 @@ Service SpaceCenter
        * **referenceFrame** -- The reference frame that the position and direction are in.
 
       :returns: The distance to the hit, in meters, or infinity if there was no hit.
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_RaycastPart(krpc_connection_t connection, krpc_SpaceCenter_Part_t * result, const krpc_tuple_double_double_double_t * position, const krpc_tuple_double_double_double_t * direction, krpc_SpaceCenter_ReferenceFrame_t referenceFrame)
 
@@ -312,14 +379,19 @@ Service SpaceCenter
        * **referenceFrame** -- The reference frame that the position and direction are in.
 
       :returns: The part that was hit or ``nullptr`` if there was no hit.
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_FARAvailable(krpc_connection_t connection, bool * result)
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_SpaceCenter_GameMode(krpc_connection_t connection, krpc_SpaceCenter_GameMode_t * result)
 
       The current mode the game is in.
+
+      :Game Scenes: All
 
    .. function:: krpc_error_t krpc_SpaceCenter_WarpMode(krpc_connection_t connection, krpc_SpaceCenter_WarpMode_t * result)
 
@@ -327,17 +399,25 @@ Service SpaceCenter
       warp is not active, :macro:`KRPC_SPACECENTER_WARPMODE_RAILS` if regular "on-rails" time warp
       is active, or :macro:`KRPC_SPACECENTER_WARPMODE_PHYSICS` if physical time warp is active.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_Camera(krpc_connection_t connection, krpc_SpaceCenter_Camera_t * result)
 
       An object that can be used to control the camera.
+
+      :Game Scenes: Flight
 
    .. function:: krpc_error_t krpc_SpaceCenter_WaypointManager(krpc_connection_t connection, krpc_SpaceCenter_WaypointManager_t * result)
 
       The waypoint manager.
 
+      :Game Scenes: Flight
+
    .. function:: krpc_error_t krpc_SpaceCenter_ContractManager(krpc_connection_t connection, krpc_SpaceCenter_ContractManager_t * result)
 
       The contract manager.
+
+      :Game Scenes: All
 
 
 

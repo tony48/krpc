@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Control &mdash; kRPC 0.4.7 documentation</title>
+  <title>Control &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../../../index.html"/>
-        <link rel="up" title="SpaceCenter API" href="../space-center.html"/>
-        <link rel="next" title="Communications" href="comms.html"/>
-        <link rel="prev" title="Orbit" href="orbit.html"/>
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Communications" href="comms.html" />
+    <link rel="prev" title="Orbit" href="orbit.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -157,7 +147,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">kRPC</a>
@@ -165,9 +155,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -221,7 +212,7 @@ public class <code class="descname">Control</code><a class="headerlink" href="#k
 <dd><p>Used to manipulate the controls of a vessel. This includes adjusting the
 throttle, enabling/disabling systems such as SAS and RCS, or altering the
 direction in which the vessel is pointing.
-Obtained by calling <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.getControl()" title="krpc.client.services.SpaceCenter.Vessel.getControl()"><code class="xref java java-meth docutils literal"><span class="pre">Vessel.getControl()</span></code></a>.</p>
+Obtained by calling <a class="reference internal" href="vessel.html#krpc.client.services.SpaceCenter.Vessel.getControl()" title="krpc.client.services.SpaceCenter.Vessel.getControl()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Vessel.getControl()</span></code></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Control inputs (such as pitch, yaw and roll) are zeroed when all clients
@@ -231,12 +222,28 @@ that have set one or more of these inputs are no longer connected.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.getSource()">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">getSource</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getSource()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The source of the vessels control, for example by a kerbal or a probe core.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.getState()">
  <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getState()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The control state of the vessel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -248,9 +255,17 @@ that have set one or more of these inputs are no longer connected.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.setSAS(boolean)">
  void <code class="descname">setSAS</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setSAS(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of SAS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSAS()" title="krpc.client.services.SpaceCenter.AutoPilot.getSAS()"><code class="xref java java-meth docutils literal"><span class="pre">AutoPilot.getSAS()</span></code></a></p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSAS()" title="krpc.client.services.SpaceCenter.AutoPilot.getSAS()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">AutoPilot.getSAS()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -262,12 +277,20 @@ that have set one or more of these inputs are no longer connected.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.setSASMode(SASMode)">
  void <code class="descname">setSASMode</code><span class="sig-paren">(</span><a class="reference internal" href="#krpc.client.services.SpaceCenter.SASMode" title="krpc.client.services.SpaceCenter.SASMode">SASMode</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setSASMode(SASMode)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current <a class="reference internal" href="#krpc.client.services.SpaceCenter.SASMode" title="krpc.client.services.SpaceCenter.SASMode"><code class="xref java java-type docutils literal"><span class="pre">SASMode</span></code></a>.
+<dd><p>The current <a class="reference internal" href="#krpc.client.services.SpaceCenter.SASMode" title="krpc.client.services.SpaceCenter.SASMode"><code class="xref java java-type docutils literal notranslate"><span class="pre">SASMode</span></code></a>.
 These modes are equivalent to the mode buttons to
 the left of the navball that appear when SAS is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSASMode()" title="krpc.client.services.SpaceCenter.AutoPilot.getSASMode()"><code class="xref java java-meth docutils literal"><span class="pre">AutoPilot.getSASMode()</span></code></a></p>
+<p class="last">Equivalent to <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSASMode()" title="krpc.client.services.SpaceCenter.AutoPilot.getSASMode()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">AutoPilot.getSASMode()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -279,8 +302,16 @@ the left of the navball that appear when SAS is enabled.</p>
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.setSpeedMode(SpeedMode)">
  void <code class="descname">setSpeedMode</code><span class="sig-paren">(</span><a class="reference internal" href="#krpc.client.services.SpaceCenter.SpeedMode" title="krpc.client.services.SpaceCenter.SpeedMode">SpeedMode</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setSpeedMode(SpeedMode)" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpeedMode" title="krpc.client.services.SpaceCenter.SpeedMode"><code class="xref java java-type docutils literal"><span class="pre">SpeedMode</span></code></a> of the navball.
+<dd><p>The current <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpeedMode" title="krpc.client.services.SpaceCenter.SpeedMode"><code class="xref java java-type docutils literal notranslate"><span class="pre">SpeedMode</span></code></a> of the navball.
 This is the mode displayed next to the speed at the top of the navball.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -292,6 +323,14 @@ This is the mode displayed next to the speed at the top of the navball.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.setRCS(boolean)">
  void <code class="descname">setRCS</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setRCS(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of RCS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -304,7 +343,15 @@ This is the mode displayed next to the speed at the top of the navball.</p>
  void <code class="descname">setReactionWheels</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setReactionWheels(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all reactive wheels on the vessel are active,
 and sets the active state of all reaction wheels.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ReactionWheel.getActive()" title="krpc.client.services.SpaceCenter.ReactionWheel.getActive()"><code class="xref java java-meth docutils literal"><span class="pre">ReactionWheel.getActive()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ReactionWheel.getActive()" title="krpc.client.services.SpaceCenter.ReactionWheel.getActive()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">ReactionWheel.getActive()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -316,6 +363,14 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.Control.setGear(boolean)">
  void <code class="descname">setGear</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setGear(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the landing gear/legs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -329,7 +384,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dd><p>Returns whether all landing legs on the vessel are deployed,
 and sets the deployment state of all landing legs.
 Does not include wheels (for example landing gear).
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Leg.getDeployed()" title="krpc.client.services.SpaceCenter.Leg.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Leg.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Leg.getDeployed()" title="krpc.client.services.SpaceCenter.Leg.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Leg.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -343,7 +406,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dd><p>Returns whether all wheels on the vessel are deployed,
 and sets the deployment state of all wheels.
 Does not include landing legs.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Wheel.getDeployed()" title="krpc.client.services.SpaceCenter.Wheel.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Wheel.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Wheel.getDeployed()" title="krpc.client.services.SpaceCenter.Wheel.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Wheel.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -355,6 +426,14 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.Control.setLights(boolean)">
  void <code class="descname">setLights</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setLights(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the lights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -366,6 +445,14 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.Control.setBrakes(boolean)">
  void <code class="descname">setBrakes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setBrakes(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the wheel brakes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -378,7 +465,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setAntennas</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setAntennas(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all antennas on the vessel are deployed,
 and sets the deployment state of all antennas.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Antenna.getDeployed()" title="krpc.client.services.SpaceCenter.Antenna.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Antenna.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Antenna.getDeployed()" title="krpc.client.services.SpaceCenter.Antenna.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Antenna.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -391,7 +486,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setCargoBays</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setCargoBays(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether any of the cargo bays on the vessel are open,
 and sets the open state of all cargo bays.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.CargoBay.getOpen()" title="krpc.client.services.SpaceCenter.CargoBay.getOpen()"><code class="xref java java-meth docutils literal"><span class="pre">CargoBay.getOpen()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.CargoBay.getOpen()" title="krpc.client.services.SpaceCenter.CargoBay.getOpen()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">CargoBay.getOpen()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -404,7 +507,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setIntakes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setIntakes(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all of the air intakes on the vessel are open,
 and sets the open state of all air intakes.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Intake.getOpen()" title="krpc.client.services.SpaceCenter.Intake.getOpen()"><code class="xref java java-meth docutils literal"><span class="pre">Intake.getOpen()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Intake.getOpen()" title="krpc.client.services.SpaceCenter.Intake.getOpen()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Intake.getOpen()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -417,8 +528,16 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setParachutes</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setParachutes(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all parachutes on the vessel are deployed,
 and sets the deployment state of all parachutes.
-Cannot be set to <code class="docutils literal"><span class="pre">false</span></code>.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Parachute.getDeployed()" title="krpc.client.services.SpaceCenter.Parachute.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Parachute.getDeployed()</span></code></a>.</p>
+Cannot be set to <code class="docutils literal notranslate"><span class="pre">false</span></code>.
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Parachute.getDeployed()" title="krpc.client.services.SpaceCenter.Parachute.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Parachute.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -431,7 +550,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setRadiators</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setRadiators(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all radiators on the vessel are deployed,
 and sets the deployment state of all radiators.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Radiator.getDeployed()" title="krpc.client.services.SpaceCenter.Radiator.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">Radiator.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.Radiator.getDeployed()" title="krpc.client.services.SpaceCenter.Radiator.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Radiator.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -444,7 +571,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setResourceHarvesters</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setResourceHarvesters(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all of the resource harvesters on the vessel are deployed,
 and sets the deployment state of all resource harvesters.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">ResourceHarvester.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">ResourceHarvester.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -457,7 +592,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setResourceHarvestersActive</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setResourceHarvestersActive(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether any of the resource harvesters on the vessel are active,
 and sets the active state of all resource harvesters.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getActive()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getActive()"><code class="xref java java-meth docutils literal"><span class="pre">ResourceHarvester.getActive()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.ResourceHarvester.getActive()" title="krpc.client.services.SpaceCenter.ResourceHarvester.getActive()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">ResourceHarvester.getActive()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -470,7 +613,15 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
  void <code class="descname">setSolarPanels</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setSolarPanels(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether all solar panels on the vessel are deployed,
 and sets the deployment state of all solar panels.
-See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.SolarPanel.getDeployed()" title="krpc.client.services.SpaceCenter.SolarPanel.getDeployed()"><code class="xref java java-meth docutils literal"><span class="pre">SolarPanel.getDeployed()</span></code></a>.</p>
+See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCenter.SolarPanel.getDeployed()" title="krpc.client.services.SpaceCenter.SolarPanel.getDeployed()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">SolarPanel.getDeployed()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -482,6 +633,14 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.Control.setAbort(boolean)">
  void <code class="descname">setAbort</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setAbort(boolean)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the abort action group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -493,6 +652,14 @@ See <a class="reference internal" href="parts.html#krpc.client.services.SpaceCen
 <dt id="krpc.client.services.SpaceCenter.Control.setThrottle(float)">
  void <code class="descname">setThrottle</code><span class="sig-paren">(</span>float<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.setThrottle(float)" title="Permalink to this definition">¶</a></dt>
 <dd><p>The state of the throttle. A value between 0 and 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -509,6 +676,14 @@ This mode is the default.
 When set to override, these inputs (if non-zero) override the vessels inputs.
 This mode prevents keyboard control, or SAS, from interfering with the controls when
 they are set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -522,6 +697,14 @@ they are set.</p>
 <dd><p>The state of the pitch control.
 A value between -1 and 1.
 Equivalent to the w and s keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -535,6 +718,14 @@ Equivalent to the w and s keys.</p>
 <dd><p>The state of the yaw control.
 A value between -1 and 1.
 Equivalent to the a and d keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -548,6 +739,14 @@ Equivalent to the a and d keys.</p>
 <dd><p>The state of the roll control.
 A value between -1 and 1.
 Equivalent to the q and e keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -561,6 +760,14 @@ Equivalent to the q and e keys.</p>
 <dd><p>The state of the forward translational control.
 A value between -1 and 1.
 Equivalent to the h and n keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -574,6 +781,14 @@ Equivalent to the h and n keys.</p>
 <dd><p>The state of the up translational control.
 A value between -1 and 1.
 Equivalent to the i and k keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -587,6 +802,14 @@ Equivalent to the i and k keys.</p>
 <dd><p>The state of the right translational control.
 A value between -1 and 1.
 Equivalent to the j and l keys.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -601,6 +824,14 @@ Equivalent to the j and l keys.</p>
 A value between -1 and 1.
 A value of 1 rotates the wheels forwards, a value of -1 rotates
 the wheels backwards.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -614,6 +845,14 @@ the wheels backwards.</p>
 <dd><p>The state of the wheel steering.
 A value between -1 and 1.
 A value of 1 steers to the left, and a value of -1 steers to the right.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -621,6 +860,14 @@ A value of 1 steers to the left, and a value of -1 steers to the right.</p>
  int <code class="descname">getCurrentStage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getCurrentStage()" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current stage of the vessel. Corresponds to the stage number in
 the in-game UI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -633,27 +880,32 @@ the in-game UI.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of vessel objects that are jettisoned from the active vessel.</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">When called, the active vessel may change. It is therefore possible that,
 after calling this function, the object(s) returned by previous call(s) to
-<a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()" title="krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()"><code class="xref java java-meth docutils literal"><span class="pre">getActiveVessel()</span></code></a> no longer refer to the active vessel.</p>
+<a class="reference internal" href="space-center.html#krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()" title="krpc.client.services.SpaceCenter.SpaceCenter.getActiveVessel()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">getActiveVessel()</span></code></a> no longer refer to the active vessel.</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.getActionGroup(int)">
  boolean <code class="descname">getActionGroup</code><span class="sig-paren">(</span>int<em> group</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getActionGroup(int)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the given action group is enabled.</p>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the given action group is enabled.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>group</strong> (<em>int</em>) – A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">Flight</p>
 </td>
 </tr>
 </tbody>
@@ -668,11 +920,14 @@ after calling this function, the object(s) returned by previous call(s) to
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>group</strong> (<em>int</em>) – <p>A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</p>
 </li>
 <li><strong>state</strong> (<em>boolean</em>) – </li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">Flight</p>
 </td>
 </tr>
 </tbody>
@@ -687,10 +942,13 @@ after calling this function, the object(s) returned by previous call(s) to
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>group</strong> (<em>int</em>) – <p>A number between 0 and 9 inclusive, or between 0 and 250 inclusive when the <a class="reference external" href="https://forum.kerbalspaceprogram.com/index.php?/topic/67235-122dec1016-action-groups-extended-250-action-groups-in-flight-editing-now-kosremotetech/">Extended Action Groups mod</a> is installed.</p>
 </li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">Flight</p>
 </td>
 </tr>
 </tbody>
@@ -701,19 +959,22 @@ after calling this function, the object(s) returned by previous call(s) to
 <dt id="krpc.client.services.SpaceCenter.Control.addNode(double, float, float, float)">
  <a class="reference internal" href="node.html#krpc.client.services.SpaceCenter.Node" title="krpc.client.services.SpaceCenter.Node">Node</a> <code class="descname">addNode</code><span class="sig-paren">(</span>double<em> ut</em>, float<em> prograde</em>, float<em> normal</em>, float<em> radial</em><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.addNode(double, float, float, float)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a maneuver node at the given universal time, and returns a
-<a class="reference internal" href="node.html#krpc.client.services.SpaceCenter.Node" title="krpc.client.services.SpaceCenter.Node"><code class="xref java java-type docutils literal"><span class="pre">Node</span></code></a> object that can be used to modify it.
+<a class="reference internal" href="node.html#krpc.client.services.SpaceCenter.Node" title="krpc.client.services.SpaceCenter.Node"><code class="xref java java-type docutils literal notranslate"><span class="pre">Node</span></code></a> object that can be used to modify it.
 Optionally sets the magnitude of the delta-v for the maneuver node
 in the prograde, normal and radial directions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>ut</strong> (<em>double</em>) – Universal time of the maneuver node.</li>
 <li><strong>prograde</strong> (<em>float</em>) – Delta-v in the prograde direction.</li>
 <li><strong>normal</strong> (<em>float</em>) – Delta-v in the normal direction.</li>
 <li><strong>radial</strong> (<em>float</em>) – Delta-v in the radial direction.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Game Scenes:</th><td class="field-body"><p class="first last">Flight</p>
 </td>
 </tr>
 </tbody>
@@ -724,12 +985,28 @@ in the prograde, normal and radial directions.</p>
 <dt id="krpc.client.services.SpaceCenter.Control.getNodes()">
  java.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html" title="java.util.package-summary">util</a>.<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="node.html#krpc.client.services.SpaceCenter.Node" title="krpc.client.services.SpaceCenter.Node">Node</a>&gt; <code class="descname">getNodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.getNodes()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all existing maneuver nodes, ordered by time from first to last.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="krpc.client.services.SpaceCenter.Control.removeNodes()">
  void <code class="descname">removeNodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#krpc.client.services.SpaceCenter.Control.removeNodes()" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove all maneuver nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Game Scenes:</th><td class="field-body">Flight</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -738,7 +1015,7 @@ in the prograde, normal and radial directions.</p>
 <dt id="krpc.client.services.SpaceCenter.ControlState">
 public enum <code class="descname">ControlState</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState" title="Permalink to this definition">¶</a></dt>
 <dd><p>The control state of a vessel.
-See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getState()" title="krpc.client.services.SpaceCenter.Control.getState()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getState()</span></code></a>.</p>
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getState()" title="krpc.client.services.SpaceCenter.Control.getState()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Control.getState()</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.ControlState.FULL">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlState" title="krpc.client.services.SpaceCenter.ControlState">ControlState</a> <code class="descname">FULL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlState.FULL" title="Permalink to this definition">¶</a></dt>
@@ -763,7 +1040,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Con
 <dt id="krpc.client.services.SpaceCenter.ControlSource">
 public enum <code class="descname">ControlSource</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource" title="Permalink to this definition">¶</a></dt>
 <dd><p>The control source of a vessel.
-See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getSource()" title="krpc.client.services.SpaceCenter.Control.getSource()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getSource()</span></code></a>.</p>
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getSource()" title="krpc.client.services.SpaceCenter.Control.getSource()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Control.getSource()</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.ControlSource.KERBAL">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlSource" title="krpc.client.services.SpaceCenter.ControlSource">ControlSource</a> <code class="descname">KERBAL</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlSource.KERBAL" title="Permalink to this definition">¶</a></dt>
@@ -787,7 +1064,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Con
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.SASMode">
 public enum <code class="descname">SASMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.SASMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>The behavior of the SAS auto-pilot. See <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSASMode()" title="krpc.client.services.SpaceCenter.AutoPilot.getSASMode()"><code class="xref java java-meth docutils literal"><span class="pre">AutoPilot.getSASMode()</span></code></a>.</p>
+<dd><p>The behavior of the SAS auto-pilot. See <a class="reference internal" href="auto-pilot.html#krpc.client.services.SpaceCenter.AutoPilot.getSASMode()" title="krpc.client.services.SpaceCenter.AutoPilot.getSASMode()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">AutoPilot.getSASMode()</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.SASMode.STABILITY_ASSIST">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.SASMode" title="krpc.client.services.SpaceCenter.SASMode">SASMode</a> <code class="descname">STABILITY_ASSIST</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.SASMode.STABILITY_ASSIST" title="Permalink to this definition">¶</a></dt>
@@ -854,7 +1131,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.SAS
 <dt id="krpc.client.services.SpaceCenter.SpeedMode">
 public enum <code class="descname">SpeedMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpeedMode" title="Permalink to this definition">¶</a></dt>
 <dd><p>The mode of the speed reported in the navball.
-See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getSpeedMode()" title="krpc.client.services.SpaceCenter.Control.getSpeedMode()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getSpeedMode()</span></code></a>.</p>
+See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getSpeedMode()" title="krpc.client.services.SpaceCenter.Control.getSpeedMode()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Control.getSpeedMode()</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.SpeedMode.ORBIT">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.SpeedMode" title="krpc.client.services.SpaceCenter.SpeedMode">SpeedMode</a> <code class="descname">ORBIT</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.SpeedMode.ORBIT" title="Permalink to this definition">¶</a></dt>
@@ -878,7 +1155,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Spe
 <dl class="type">
 <dt id="krpc.client.services.SpaceCenter.ControlInputMode">
 public enum <code class="descname">ControlInputMode</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getInputMode()" title="krpc.client.services.SpaceCenter.Control.getInputMode()"><code class="xref java java-meth docutils literal"><span class="pre">Control.getInputMode()</span></code></a>.</p>
+<dd><p>See <a class="reference internal" href="#krpc.client.services.SpaceCenter.Control.getInputMode()" title="krpc.client.services.SpaceCenter.Control.getInputMode()"><code class="xref java java-meth docutils literal notranslate"><span class="pre">Control.getInputMode()</span></code></a>.</p>
 <dl class="field">
 <dt id="krpc.client.services.SpaceCenter.ControlInputMode.ADDITIVE">
 public <a class="reference internal" href="#krpc.client.services.SpaceCenter.ControlInputMode" title="krpc.client.services.SpaceCenter.ControlInputMode">ControlInputMode</a> <code class="descname">ADDITIVE</code><a class="headerlink" href="#krpc.client.services.SpaceCenter.ControlInputMode.ADDITIVE" title="Permalink to this definition">¶</a></dt>
@@ -897,9 +1174,7 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Con
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -917,11 +1192,11 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Con
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -936,37 +1211,24 @@ public <a class="reference internal" href="#krpc.client.services.SpaceCenter.Con
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

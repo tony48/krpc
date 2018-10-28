@@ -16,15 +16,21 @@ SpaceCenter
 
       The current amount of science.
 
+      :Game Scenes: All
+
    .. method:: double getFunds()
 
 
       The current amount of funds.
 
+      :Game Scenes: All
+
    .. method:: float getReputation()
 
 
       The current amount of reputation.
+
+      :Game Scenes: All
 
    .. method:: Vessel getActiveVessel()
 
@@ -32,10 +38,14 @@ SpaceCenter
 
       The currently active vessel.
 
+      :Game Scenes: Flight
+
    .. method:: java.util.List<Vessel> getVessels()
 
 
       A list of all the vessels in the game.
+
+      :Game Scenes: All
 
    .. method:: java.util.Map<String,CelestialBody> getBodies()
 
@@ -43,11 +53,15 @@ SpaceCenter
       A dictionary of all celestial bodies (planets, moons, etc.) in the game,
       keyed by the name of the body.
 
+      :Game Scenes: All
+
    .. method:: CelestialBody getTargetBody()
 
    .. method:: void setTargetBody(CelestialBody value)
 
       The currently targeted celestial body.
+
+      :Game Scenes: Flight
 
    .. method:: Vessel getTargetVessel()
 
@@ -55,15 +69,21 @@ SpaceCenter
 
       The currently targeted vessel.
 
+      :Game Scenes: Flight
+
    .. method:: DockingPort getTargetDockingPort()
 
    .. method:: void setTargetDockingPort(DockingPort value)
 
       The currently targeted docking port.
 
+      :Game Scenes: Flight
+
    .. method:: void clearTarget()
 
       Clears the current target.
+
+      :Game Scenes: Flight
 
    .. method:: java.util.List<String> launchableVessels(String craftDirectory)
 
@@ -71,6 +91,7 @@ SpaceCenter
       that can be launched.
 
       :param String craftDirectory: Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+      :Game Scenes: All
 
    .. method:: void launchVessel(String craftDirectory, String name, String launchSite, boolean recover)
 
@@ -80,6 +101,8 @@ SpaceCenter
       :param String name: Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
       :param String launchSite: Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
       :param boolean recover: If true and there is a vessel on the launch site, recover it before launching.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -91,6 +114,8 @@ SpaceCenter
 
       :param String name: Name of the vessel to launch.
       :param boolean recover: If true and there is a vessel on the launch pad, recover it before launching.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -104,6 +129,8 @@ SpaceCenter
 
       :param String name: Name of the vessel to launch.
       :param boolean recover: If true and there is a vessel on the runway, recover it before launching.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -118,6 +145,7 @@ SpaceCenter
       current save game.
 
       :param String name:
+      :Game Scenes: All
 
    .. method:: void load(String name)
 
@@ -126,10 +154,13 @@ SpaceCenter
       current save game.
 
       :param String name:
+      :Game Scenes: All
 
    .. method:: void quicksave()
 
       Save a quicksave.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -139,6 +170,8 @@ SpaceCenter
    .. method:: void quickload()
 
       Load a quicksave.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -151,21 +184,29 @@ SpaceCenter
 
       Whether the UI is visible.
 
+      :Game Scenes: Flight
+
    .. method:: boolean getNavball()
 
    .. method:: void setNavball(boolean value)
 
       Whether the navball is visible.
 
+      :Game Scenes: Flight
+
    .. method:: double getUT()
 
 
       The current universal time in seconds.
 
+      :Game Scenes: All
+
    .. method:: double getG()
 
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_ G in :math:`N(m/kg)^2`.
+
+      :Game Scenes: All
 
    .. method:: float getWarpRate()
 
@@ -175,6 +216,8 @@ SpaceCenter
       time is passing 10x faster than normal. Returns 1 if time warp is not
       active.
 
+      :Game Scenes: Flight
+
    .. method:: float getWarpFactor()
 
 
@@ -183,6 +226,8 @@ SpaceCenter
       if time warp is not active. When in on-rails time warp, this is equal to
       :meth:`getRailsWarpFactor()`, and in physics time warp, this is equal to
       :meth:`getPhysicsWarpFactor()`.
+
+      :Game Scenes: Flight
 
    .. method:: int getRailsWarpFactor()
 
@@ -196,12 +241,16 @@ SpaceCenter
       lowest possible value. For example, if the vessel is too close to a
       planet. See `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
+      :Game Scenes: Flight
+
    .. method:: int getPhysicsWarpFactor()
 
    .. method:: void setPhysicsWarpFactor(int value)
 
       The physical time warp rate. A value between 0 and 3 inclusive. 0 means
       no time warp. Returns 0 if regular "on-rails" time warp is active.
+
+      :Game Scenes: Flight
 
    .. method:: boolean canRailsWarpAt(int factor)
 
@@ -212,6 +261,7 @@ SpaceCenter
       for details.
 
       :param int factor: The warp factor to check.
+      :Game Scenes: Flight
 
    .. method:: int getMaximumRailsWarpFactor()
 
@@ -220,6 +270,8 @@ SpaceCenter
       A value between 0 and 7 inclusive. See
       `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_
       for details.
+
+      :Game Scenes: Flight
 
    .. method:: void warpTo(double ut, float maxRailsRate, float maxPhysicsRate)
 
@@ -235,6 +287,7 @@ SpaceCenter
       :param float maxRailsRate: The maximum warp rate in regular "on-rails" time warp.
       :param float maxPhysicsRate: The maximum warp rate in physical time warp.
       :returns: When the time warp is complete.
+      :Game Scenes: Flight
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> transformPosition(org.javatuples.Triplet<Double,Double,Double> position, ReferenceFrame from, ReferenceFrame to)
 
@@ -244,6 +297,7 @@ SpaceCenter
       :param ReferenceFrame from: The reference frame that the position is in.
       :param ReferenceFrame to: The reference frame to covert the position to.
       :returns: The corresponding position, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> transformDirection(org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame from, ReferenceFrame to)
 
@@ -253,6 +307,7 @@ SpaceCenter
       :param ReferenceFrame from: The reference frame that the direction is in.
       :param ReferenceFrame to: The reference frame to covert the direction to.
       :returns: The corresponding direction, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. method:: org.javatuples.Quartet<Double,Double,Double,Double> transformRotation(org.javatuples.Quartet<Double,Double,Double,Double> rotation, ReferenceFrame from, ReferenceFrame to)
 
@@ -262,6 +317,7 @@ SpaceCenter
       :param ReferenceFrame from: The reference frame that the rotation is in.
       :param ReferenceFrame to: The reference frame to covert the rotation to.
       :returns: The corresponding rotation, as a quaternion of the form :math:`(x, y, z, w)`, in reference frame *to*.
+      :Game Scenes: All
 
    .. method:: org.javatuples.Triplet<Double,Double,Double> transformVelocity(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> velocity, ReferenceFrame from, ReferenceFrame to)
 
@@ -274,6 +330,7 @@ SpaceCenter
       :param ReferenceFrame from: The reference frame that the position and velocity are in.
       :param ReferenceFrame to: The reference frame to covert the velocity to.
       :returns: The corresponding velocity, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. method:: double raycastDistance(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame)
 
@@ -284,6 +341,7 @@ SpaceCenter
       :param org.javatuples.Triplet<Double,Double,Double> direction: Direction of the ray, as a unit vector.
       :param ReferenceFrame referenceFrame: The reference frame that the position and direction are in.
       :returns: The distance to the hit, in meters, or infinity if there was no hit.
+      :Game Scenes: All
 
    .. method:: Part raycastPart(org.javatuples.Triplet<Double,Double,Double> position, org.javatuples.Triplet<Double,Double,Double> direction, ReferenceFrame referenceFrame)
 
@@ -294,16 +352,21 @@ SpaceCenter
       :param org.javatuples.Triplet<Double,Double,Double> direction: Direction of the ray, as a unit vector.
       :param ReferenceFrame referenceFrame: The reference frame that the position and direction are in.
       :returns: The part that was hit or ``null`` if there was no hit.
+      :Game Scenes: Flight
 
    .. method:: boolean getFARAvailable()
 
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+      :Game Scenes: All
+
    .. method:: GameMode getGameMode()
 
 
       The current mode the game is in.
+
+      :Game Scenes: All
 
    .. method:: WarpMode getWarpMode()
 
@@ -312,20 +375,28 @@ SpaceCenter
       warp is not active, :meth:`WarpMode.RAILS` if regular "on-rails" time warp
       is active, or :meth:`WarpMode.PHYSICS` if physical time warp is active.
 
+      :Game Scenes: Flight
+
    .. method:: Camera getCamera()
 
 
       An object that can be used to control the camera.
+
+      :Game Scenes: Flight
 
    .. method:: WaypointManager getWaypointManager()
 
 
       The waypoint manager.
 
+      :Game Scenes: Flight
+
    .. method:: ContractManager getContractManager()
 
 
       The contract manager.
+
+      :Game Scenes: All
 
 
 

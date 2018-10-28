@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C# Client &mdash; kRPC 0.4.7 documentation</title>
+  <title>C# Client &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
-        <link rel="up" title="C#" href="../csharp.html"/>
-        <link rel="next" title="KRPC API" href="api/krpc.html"/>
-        <link rel="prev" title="C#" href="../csharp.html"/>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="KRPC API" href="api/krpc.html" />
+    <link rel="prev" title="C#" href="../csharp.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -152,7 +142,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kRPC</a>
@@ -160,9 +150,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -209,27 +200,27 @@
   <div class="section" id="c-client">
 <h1>C# Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h1>
 <p>This client provides a C# API for interacting with a kRPC server. It is distributed as an assembly
-named <code class="docutils literal"><span class="pre">KRPC.Client.dll</span></code>.</p>
+named <code class="docutils literal notranslate"><span class="pre">KRPC.Client.dll</span></code>.</p>
 <div class="section" id="installing-the-library">
 <h2>Installing the Library<a class="headerlink" href="#installing-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The C# client can be <a class="reference external" href="https://www.nuget.com/packages/KRPC.Client">installed using NuGet</a> or
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-csharp-0.4.7.zip">downloaded from GitHub</a>. Two versions of the client are
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.8/krpc-csharp-0.4.8.zip">downloaded from GitHub</a>. Two versions of the client are
 provided: one compatible with .NET 4.5 and one for .NET 3.5.</p>
 <p>You also need to <a class="reference external" href="https://www.nuget.org/packages/Google.Protobuf">install Google.Protobuf using NuGet</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The copy of <code class="docutils literal"><span class="pre">Google.Protobuf.dll</span></code> in the GameData folder included with the kRPC server plugin
+<p class="last">The copy of <code class="docutils literal notranslate"><span class="pre">Google.Protobuf.dll</span></code> in the GameData folder included with the kRPC server plugin
 is <em>not</em> the official release of this assembly. It is a modified version built for .NET 3.5 so
 that it works within KSP.</p>
 </div>
 </div>
 <div class="section" id="connecting-to-the-server">
 <h2>Connecting to the Server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
-<p>To connect to a server, create a <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Connection</span></code></a> object. All interaction with the server is done
+<p>To connect to a server, create a <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">Connection</span></code></a> object. All interaction with the server is done
 via this object. When constructed without any arguments, it will connect to the local machine on the
 default port numbers. You can specify different connection settings, and also a descriptive name for
 the connection, as follows:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
@@ -248,23 +239,23 @@ the connection, as follows:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Connection</span></code></a> object needs to be disposed of correctly when finished with, so that the
-network connection it manages can be released. This can be done with a <code class="docutils literal"><span class="pre">using</span></code> block (as in the
-example above) or by calling <a class="reference internal" href="#method-Connection.Dispose" title="Connection.Dispose method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.Dispose</span></code></a> directly.</p>
+<p>The <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">Connection</span></code></a> object needs to be disposed of correctly when finished with, so that the
+network connection it manages can be released. This can be done with a <code class="docutils literal notranslate"><span class="pre">using</span></code> block (as in the
+example above) or by calling <a class="reference internal" href="#method-Connection.Dispose" title="Connection.Dispose method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Connection.Dispose</span></code></a> directly.</p>
 </div>
 <div class="section" id="calling-remote-procedures">
 <h2>Calling Remote Procedures<a class="headerlink" href="#calling-remote-procedures" title="Permalink to this headline">¶</a></h2>
 <p>The kRPC server provides <em>procedures</em> that a client can run. These procedures are arranged in groups
 called <em>services</em> to keep things organized. The functionality for the services are defined in the
-namespace <code class="docutils literal"><span class="pre">KRPC.Client.Services.*</span></code>. For example, all of the functionality provided by the
-<code class="docutils literal"><span class="pre">SpaceCenter</span></code> service is contained in the namespace <code class="docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter</span></code>.</p>
+namespace <code class="docutils literal notranslate"><span class="pre">KRPC.Client.Services.*</span></code>. For example, all of the functionality provided by the
+<code class="docutils literal notranslate"><span class="pre">SpaceCenter</span></code> service is contained in the namespace <code class="docutils literal notranslate"><span class="pre">KRPC.Client.Services.SpaceCenter</span></code>.</p>
 <p>To interact with a service, you must first instantiate it. You can then call its methods and
 properties to invoke remote procedures. The following example demonstrates how to do this. It
-instantiates the <code class="docutils literal"><span class="pre">SpaceCenter</span></code> service and calls
-<a class="reference internal" href="api/space-center/space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel</span></code></a> to get an object representing the
-active vessel (of type <a class="reference internal" href="api/space-center/vessel.html#class-KRPC.Client.Services.SpaceCenter.Vessel" title="KRPC.Client.Services.SpaceCenter.Vessel class"><code class="xref csharp csharp-type docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter.Vessel</span></code></a>). It sets the name of the
+instantiates the <code class="docutils literal notranslate"><span class="pre">SpaceCenter</span></code> service and calls
+<a class="reference internal" href="api/space-center/space-center.html#property-KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel" title="KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel property"><code class="xref csharp csharp-prop docutils literal notranslate"><span class="pre">KRPC.Client.Services.SpaceCenter.SpaceCenter.ActiveVessel</span></code></a> to get an object representing the
+active vessel (of type <a class="reference internal" href="api/space-center/vessel.html#class-KRPC.Client.Services.SpaceCenter.Vessel" title="KRPC.Client.Services.SpaceCenter.Vessel class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">KRPC.Client.Services.SpaceCenter.Vessel</span></code></a>). It sets the name of the
 vessel and then prints out its altitude:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
@@ -287,7 +278,7 @@ vessel and then prints out its altitude:</p>
 <p>A common use case for kRPC is to continuously extract data from the game. The naive approach to do
 this would be to repeatedly call a remote procedure, such as in the following which repeatedly
 prints the position of the active vessel:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
@@ -311,7 +302,7 @@ sends the result to the client. It only requires a single message to be sent to 
 establish the stream, which will then continuously send data to the client until the stream is
 closed.</p>
 <p>The following example does the same thing as above using streams:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
@@ -328,15 +319,15 @@ closed.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>It calls <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code></a> once at the start of the program to create the stream, and
+<p>It calls <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Connection.AddStream</span></code></a> once at the start of the program to create the stream, and
 then repeatedly prints the position returned by the stream. The stream is automatically closed when
 the client disconnects.</p>
-<p>A stream can be created for any method call by calling <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code></a> and passing it
+<p>A stream can be created for any method call by calling <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Connection.AddStream</span></code></a> and passing it
 a lambda expression that invokes the desired method. This lambda expression must take zero arguments
 and be either a method call expression or a parameter call expression. It returns a stream object of
-type <a class="reference internal" href="#class-Stream" title="Stream class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Stream</span></code></a>. The most recent value of the stream can be obtained by calling
-<a class="reference internal" href="#method-Stream.Get" title="Stream.Get method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Stream.Get</span></code></a>. A stream can be stopped and removed from the server by calling
-<a class="reference internal" href="#method-Stream.Remove" title="Stream.Remove method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Stream.Remove</span></code></a> on the stream object. All of a clients streams are automatically stopped when
+type <a class="reference internal" href="#class-Stream" title="Stream class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">Stream</span></code></a>. The most recent value of the stream can be obtained by calling
+<a class="reference internal" href="#method-Stream.Get" title="Stream.Get method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Stream.Get</span></code></a>. A stream can be stopped and removed from the server by calling
+<a class="reference internal" href="#method-Stream.Remove" title="Stream.Remove method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Stream.Remove</span></code></a> on the stream object. All of a clients streams are automatically stopped when
 it disconnects.</p>
 </div>
 <div class="section" id="synchronizing-with-stream-updates">
@@ -350,8 +341,8 @@ and <em>callbacks</em>.</p>
 stream changes. These can be used to block the current thread of execution until the value of the
 stream changes.</p>
 <p>The following example waits until the abort button is pressed in game, by waiting for the value of
-<a class="reference internal" href="api/space-center/control.html#property-KRPC.Client.Services.SpaceCenter.Control.Abort" title="KRPC.Client.Services.SpaceCenter.Control.Abort property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter.Control.Abort</span></code></a> to change to true:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<a class="reference internal" href="api/space-center/control.html#property-KRPC.Client.Services.SpaceCenter.Control.Abort" title="KRPC.Client.Services.SpaceCenter.Control.Abort property"><code class="xref csharp csharp-prop docutils literal notranslate"><span class="pre">KRPC.Client.Services.SpaceCenter.Control.Abort</span></code></a> to change to true:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
@@ -369,15 +360,15 @@ stream changes.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This code creates a stream, acquires a lock on the streams condition variable (by using a <code class="docutils literal"><span class="pre">lock</span></code>
-statement) and then repeatedly checks the value of <code class="docutils literal"><span class="pre">Abort</span></code>. It leaves the loop when it changes to
+<p>This code creates a stream, acquires a lock on the streams condition variable (by using a <code class="docutils literal notranslate"><span class="pre">lock</span></code>
+statement) and then repeatedly checks the value of <code class="docutils literal notranslate"><span class="pre">Abort</span></code>. It leaves the loop when it changes to
 true.</p>
-<p>The body of the loop calls <code class="docutils literal"><span class="pre">Wait</span></code> on the stream, which causes the program to block until the value
+<p>The body of the loop calls <code class="docutils literal notranslate"><span class="pre">Wait</span></code> on the stream, which causes the program to block until the value
 changes. This prevents the loop from ‘spinning’ and so it does not consume processing resources
 whilst waiting.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The stream does not start receiving updates until the first call to <code class="docutils literal"><span class="pre">Wait</span></code>. This means that the
+<p class="last">The stream does not start receiving updates until the first call to <code class="docutils literal notranslate"><span class="pre">Wait</span></code>. This means that the
 example code will not miss any updates to the streams value, as it will have already locked the
 condition variable before the first stream update is received.</p>
 </div>
@@ -388,8 +379,8 @@ condition variable before the first stream update is received.</p>
 changes. Callback functions should take a single argument, which is the new value of the stream, and
 should return nothing.</p>
 <p>For example the following program registers two callbacks that are invoked when the value of
-<a class="reference internal" href="api/space-center/control.html#property-KRPC.Client.Services.SpaceCenter.Control.Abort" title="KRPC.Client.Services.SpaceCenter.Control.Abort property"><code class="xref csharp csharp-prop docutils literal"><span class="pre">KRPC.Client.Services.SpaceCenter.Control.Abort</span></code></a> changes:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<a class="reference internal" href="api/space-center/control.html#property-KRPC.Client.Services.SpaceCenter.Control.Abort" title="KRPC.Client.Services.SpaceCenter.Control.Abort property"><code class="xref csharp csharp-prop docutils literal notranslate"><span class="pre">KRPC.Client.Services.SpaceCenter.Control.Abort</span></code></a> changes:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
 
@@ -419,13 +410,13 @@ should return nothing.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">When a stream is created it does not start receiving updates until <code class="docutils literal"><span class="pre">Start</span></code> is called. This is
+<p class="last">When a stream is created it does not start receiving updates until <code class="docutils literal notranslate"><span class="pre">Start</span></code> is called. This is
 implicitly called when accessing the value of a stream, but as this example does not do this an
-explicit call to <code class="docutils literal"><span class="pre">Start</span></code> is required.</p>
+explicit call to <code class="docutils literal notranslate"><span class="pre">Start</span></code> is required.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The callbacks are registered before the call to <code class="docutils literal"><span class="pre">Start</span></code> so that stream updates are not missed.</p>
+<p class="last">The callbacks are registered before the call to <code class="docutils literal notranslate"><span class="pre">Start</span></code> so that stream updates are not missed.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -436,14 +427,14 @@ changes to shared state must therefore be protected with appropriate synchroniza
 </div>
 <div class="section" id="custom-events">
 <span id="csharp-client-events"></span><h2>Custom Events<a class="headerlink" href="#custom-events" title="Permalink to this headline">¶</a></h2>
-<p>Some procedures return event objects of type <a class="reference internal" href="#class-Event" title="Event class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Event</span></code></a>. These allow you to wait until an event
-occurs, by calling <a class="reference internal" href="#method-Event.Wait" title="Event.Wait method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Event.Wait</span></code></a>. Under the hood, these are implemented using streams and
+<p>Some procedures return event objects of type <a class="reference internal" href="#class-Event" title="Event class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">Event</span></code></a>. These allow you to wait until an event
+occurs, by calling <a class="reference internal" href="#method-Event.Wait" title="Event.Wait method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Event.Wait</span></code></a>. Under the hood, these are implemented using streams and
 condition variables.</p>
 <p>Custom events can also be created. An expression API allows you to create code that runs on the
 server and these can be used to build a custom event. For example, the following creates the
-expression <code class="docutils literal"><span class="pre">MeanAltitude</span> <span class="pre">&gt;</span> <span class="pre">1000</span></code> and then creates an event that will be triggered when the
+expression <code class="docutils literal notranslate"><span class="pre">MeanAltitude</span> <span class="pre">&gt;</span> <span class="pre">1000</span></code> and then creates an event that will be triggered when the
 expression returns true:</p>
-<div class="highlight-csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.KRPC</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">KRPC.Client.Services.SpaceCenter</span><span class="p">;</span>
@@ -479,7 +470,7 @@ expression returns true:</p>
 <dl class="class">
 <dt id="class-IConnection">
 <code class="descname">class IConnection</code><a class="headerlink" href="#class-IConnection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interface implemented by the <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal"><span class="pre">Connection</span></code></a> class.</p>
+<dd><p>Interface implemented by the <a class="reference internal" href="#class-Connection" title="Connection class"><code class="xref csharp csharp-type docutils literal notranslate"><span class="pre">Connection</span></code></a> class.</p>
 </dd></dl>
 
 <dl class="class">
@@ -536,17 +527,17 @@ void <code class="descname">Dispose</code> <span class="sig-paren">(</span><span
 <dt id="class-Stream">
 <code class="descname">class Stream&lt;ReturnType&gt;</code><a class="headerlink" href="#class-Stream" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class represents a stream. See <a class="reference internal" href="#csharp-client-streams"><span class="std std-ref">Streaming Data from the Server</span></a>.</p>
-<p>Stream objects implement <code class="docutils literal"><span class="pre">GetHashCode</span></code>, <code class="docutils literal"><span class="pre">Equals</span></code>, <code class="docutils literal"><span class="pre">operator</span> <span class="pre">==</span></code> and <code class="docutils literal"><span class="pre">operator</span> <span class="pre">!=</span></code> such
+<p>Stream objects implement <code class="docutils literal notranslate"><span class="pre">GetHashCode</span></code>, <code class="docutils literal notranslate"><span class="pre">Equals</span></code>, <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">!=</span></code> such
 that two stream objects are equal if they are bound to the same stream on the server.</p>
 <dl class="method">
 <dt id="method-Stream.Start">
 void <code class="descname">Start</code> <span class="sig-paren">(</span><a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> <em>wait</em><em> = true</em><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.Start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts the stream. When a stream is created by calling <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Connection.AddStream</span></code></a> it does
+<dd><p>Starts the stream. When a stream is created by calling <a class="reference internal" href="#method-Connection.AddStream" title="Connection.AddStream method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Connection.AddStream</span></code></a> it does
 not start sending updates to the client until this method is called.</p>
 <p>If wait is true, this method will block until at least one update has been received from the
 server.</p>
 <p>If wait is false, the method starts the stream and returns immediately. Subsequent calls to
-<a class="reference internal" href="#method-Stream.Get" title="Stream.Get method"><code class="xref csharp csharp-meth docutils literal"><span class="pre">Get</span></code></a> may raise an <code class="docutils literal"><span class="pre">InvalidOperationException</span></code> if the stream does not yet contain a
+<a class="reference internal" href="#method-Stream.Get" title="Stream.Get method"><code class="xref csharp csharp-meth docutils literal notranslate"><span class="pre">Get</span></code></a> may raise an <code class="docutils literal notranslate"><span class="pre">InvalidOperationException</span></code> if the stream does not yet contain a
 value.</p>
 </dd></dl>
 
@@ -561,15 +552,15 @@ value.</p>
 ReturnType <code class="descname">Get</code> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#method-Stream.Get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the most recent value for the stream. If executing the remote procedure for the stream
 throws an exception, calling this method will rethrow the exception. Raises an
-<code class="docutils literal"><span class="pre">InvalidOperationException</span></code> if no update has been received from the server.</p>
-<p>If the stream has not been started this method calls <code class="docutils literal"><span class="pre">Start(true)</span></code> to start the stream and
+<code class="docutils literal notranslate"><span class="pre">InvalidOperationException</span></code> if no update has been received from the server.</p>
+<p>If the stream has not been started this method calls <code class="docutils literal notranslate"><span class="pre">Start(true)</span></code> to start the stream and
 wait until at least one update has been received.</p>
 </dd></dl>
 
 <dl class="property">
 <dt id="property-Stream.Condition">
 object <code class="descname">Condition</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Stream.Condition" title="Permalink to this definition">¶</a></dt>
-<dd><p>A condition variable that is notified (using <code class="docutils literal"><span class="pre">Monitor.PulseAll</span></code>) whenever the value of the
+<dd><p>A condition variable that is notified (using <code class="docutils literal notranslate"><span class="pre">Monitor.PulseAll</span></code>) whenever the value of the
 stream changes.</p>
 </dd></dl>
 
@@ -580,7 +571,7 @@ void <code class="descname">Wait</code> <span class="sig-paren">(</span><a class
 <p>The streams condition variable must be locked before calling this method.</p>
 <p>If <em>timeout</em> is specified and is greater than or equal to 0, it is the timeout in seconds for
 the operation.</p>
-<p>If the stream has not been started this method calls <code class="docutils literal"><span class="pre">Start(false)</span></code> to start the stream
+<p>If the stream has not been started this method calls <code class="docutils literal notranslate"><span class="pre">Start(false)</span></code> to start the stream
 (without waiting for at least one update to be received).</p>
 </dd></dl>
 
@@ -618,7 +609,7 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
 <code class="descname">class Event</code><a class="headerlink" href="#class-Event" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class represents an event. See <a class="reference internal" href="#csharp-client-events"><span class="std std-ref">Custom Events</span></a>. It is wrapper around a
 <a class="reference external" href="https://msdn.microsoft.com/en-us/library/system.boolean.aspx" title="System.Boolean">Boolean</a> that indicates when the event occurs.</p>
-<p>Event objects implement <code class="docutils literal"><span class="pre">GetHashCode</span></code>, <code class="docutils literal"><span class="pre">Equals</span></code>, <code class="docutils literal"><span class="pre">operator</span> <span class="pre">==</span></code> and <code class="docutils literal"><span class="pre">operator</span> <span class="pre">!=</span></code> such
+<p>Event objects implement <code class="docutils literal notranslate"><span class="pre">GetHashCode</span></code>, <code class="docutils literal notranslate"><span class="pre">Equals</span></code>, <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">!=</span></code> such
 that two event objects are equal if they are bound to the same underlying stream on the server.</p>
 <dl class="method">
 <dt id="method-Event.Start">
@@ -630,7 +621,7 @@ this method is called.</p>
 <dl class="property">
 <dt id="property-Event.Condition">
 object <code class="descname">Condition</code> { <em class="property">get;</em> }<a class="headerlink" href="#property-Event.Condition" title="Permalink to this definition">¶</a></dt>
-<dd><p>The condition variable that is notified (using <code class="docutils literal"><span class="pre">Monitor.PulseAll</span></code>) whenever the event
+<dd><p>The condition variable that is notified (using <code class="docutils literal notranslate"><span class="pre">Monitor.PulseAll</span></code>) whenever the event
 occurs.</p>
 </dd></dl>
 
@@ -641,7 +632,7 @@ void <code class="descname">Wait</code> <span class="sig-paren">(</span><a class
 <p>The events condition variable must be locked before calling this method.</p>
 <p>If <em>timeout</em> is specified and is greater than or equal to 0, it is the timeout in seconds for
 the operation.</p>
-<p>If the event has not been started this method calls <code class="docutils literal"><span class="pre">Start()</span></code> to start the underlying
+<p>If the event has not been started this method calls <code class="docutils literal notranslate"><span class="pre">Start()</span></code> to start the underlying
 stream.</p>
 </dd></dl>
 
@@ -679,9 +670,7 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -699,11 +688,11 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -718,37 +707,24 @@ void <code class="descname">Remove</code> <span class="sig-paren">(</span><span 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

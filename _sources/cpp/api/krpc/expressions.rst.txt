@@ -16,11 +16,19 @@ Expressions
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: static Expression constant_float(Client& connection, float value)
 
       A constant value of single precision floating point type.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression constant_int(Client& connection, int32_t value)
 
@@ -28,11 +36,19 @@ Expressions
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: static Expression constant_bool(Client& connection, bool value)
 
       A constant value of boolean type.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression constant_string(Client& connection, std::string value)
 
@@ -40,11 +56,19 @@ Expressions
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: static Expression call(Client& connection, krpc::schema::ProcedureCall call)
 
       An RPC call.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression equal(Client& connection, Expression arg0, Expression arg1)
 
@@ -52,11 +76,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression not_equal(Client& connection, Expression arg0, Expression arg1)
 
       Inequality comparison.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression greater_than(Client& connection, Expression arg0, Expression arg1)
 
@@ -64,11 +98,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression greater_than_or_equal(Client& connection, Expression arg0, Expression arg1)
 
       Greater than or equal numerical comparison.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression less_than(Client& connection, Expression arg0, Expression arg1)
 
@@ -76,11 +120,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression less_than_or_equal(Client& connection, Expression arg0, Expression arg1)
 
       Less than or equal numerical comparison.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression and__(Client& connection, Expression arg0, Expression arg1)
 
@@ -88,11 +142,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression or__(Client& connection, Expression arg0, Expression arg1)
 
       Boolean or operator.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression exclusive_or(Client& connection, Expression arg0, Expression arg1)
 
@@ -100,11 +164,20 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression not__(Client& connection, Expression arg)
 
       Boolean negation operator.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression add(Client& connection, Expression arg0, Expression arg1)
 
@@ -112,11 +185,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression subtract(Client& connection, Expression arg0, Expression arg1)
 
       Numerical subtraction.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression multiply(Client& connection, Expression arg0, Expression arg1)
 
@@ -124,11 +207,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression divide(Client& connection, Expression arg0, Expression arg1)
 
       Numerical division.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression modulo(Client& connection, Expression arg0, Expression arg1)
 
@@ -140,6 +233,7 @@ Expressions
 
 
       :returns: The remainder of arg0 divided by arg1
+      :Game Scenes: All
 
    .. function:: static Expression power(Client& connection, Expression arg0, Expression arg1)
 
@@ -151,6 +245,7 @@ Expressions
 
 
       :returns: arg0 raised to the power of arg1, with type of arg0
+      :Game Scenes: All
 
    .. function:: static Expression left_shift(Client& connection, Expression arg0, Expression arg1)
 
@@ -158,11 +253,21 @@ Expressions
 
       :Parameters:
 
+
+
+
+      :Game Scenes: All
+
    .. function:: static Expression right_shift(Client& connection, Expression arg0, Expression arg1)
 
       Bitwise right shift.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
    .. function:: static Expression cast(Client& connection, Expression arg, Type type)
 
@@ -172,6 +277,8 @@ Expressions
 
 
        * **type** -- Type to cast the argument to.
+
+      :Game Scenes: All
 
    .. function:: static Expression parameter(Client& connection, std::string name, Type type)
 
@@ -183,6 +290,7 @@ Expressions
        * **type** -- The type of the parameter.
 
       :returns: A named parameter.
+      :Game Scenes: All
 
    .. function:: static Expression function(Client& connection, std::vector<Expression> parameters, Expression body)
 
@@ -194,6 +302,7 @@ Expressions
        * **body** -- The body of the function.
 
       :returns: A function.
+      :Game Scenes: All
 
    .. function:: static Expression invoke(Client& connection, Expression function, std::map<std::string, Expression> args)
 
@@ -205,6 +314,7 @@ Expressions
        * **args** -- The arguments to call the function with.
 
       :returns: A function call.
+      :Game Scenes: All
 
    .. function:: static Expression create_tuple(Client& connection, std::vector<Expression> elements)
 
@@ -215,6 +325,7 @@ Expressions
        * **elements** -- The elements.
 
       :returns: The tuple.
+      :Game Scenes: All
 
    .. function:: static Expression create_list(Client& connection, std::vector<Expression> values)
 
@@ -225,6 +336,7 @@ Expressions
        * **values** -- The value. Should all be of the same type.
 
       :returns: The list.
+      :Game Scenes: All
 
    .. function:: static Expression create_set(Client& connection, std::set<Expression> values)
 
@@ -235,6 +347,7 @@ Expressions
        * **values** -- The values. Should all be of the same type.
 
       :returns: The set.
+      :Game Scenes: All
 
    .. function:: static Expression create_dictionary(Client& connection, std::vector<Expression> keys, std::vector<Expression> values)
 
@@ -246,6 +359,7 @@ Expressions
        * **values** -- The values. Should all be of the same type.
 
       :returns: The dictionary.
+      :Game Scenes: All
 
    .. function:: static Expression to_list(Client& connection, Expression arg)
 
@@ -256,6 +370,7 @@ Expressions
        * **arg** -- The collection.
 
       :returns: The collection as a list.
+      :Game Scenes: All
 
    .. function:: static Expression to_set(Client& connection, Expression arg)
 
@@ -266,6 +381,7 @@ Expressions
        * **arg** -- The collection.
 
       :returns: The collection as a set.
+      :Game Scenes: All
 
    .. function:: static Expression get(Client& connection, Expression arg, Expression index)
 
@@ -277,6 +393,7 @@ Expressions
        * **index** -- The index of the element to access. A zero indexed integer for a tuple or list, or a key for a dictionary.
 
       :returns: The element.
+      :Game Scenes: All
 
    .. function:: static Expression count(Client& connection, Expression arg)
 
@@ -287,6 +404,7 @@ Expressions
        * **arg** -- The list, set or dictionary.
 
       :returns: The number of elements in the collection.
+      :Game Scenes: All
 
    .. function:: static Expression sum(Client& connection, Expression arg)
 
@@ -297,6 +415,7 @@ Expressions
        * **arg** -- The list or set.
 
       :returns: The sum of the elements in the collection.
+      :Game Scenes: All
 
    .. function:: static Expression max(Client& connection, Expression arg)
 
@@ -307,6 +426,7 @@ Expressions
        * **arg** -- The list or set.
 
       :returns: The maximum elements in the collection.
+      :Game Scenes: All
 
    .. function:: static Expression min(Client& connection, Expression arg)
 
@@ -317,6 +437,7 @@ Expressions
        * **arg** -- The list or set.
 
       :returns: The minimum elements in the collection.
+      :Game Scenes: All
 
    .. function:: static Expression average(Client& connection, Expression arg)
 
@@ -327,6 +448,7 @@ Expressions
        * **arg** -- The list or set.
 
       :returns: The minimum elements in the collection.
+      :Game Scenes: All
 
    .. function:: static Expression select(Client& connection, Expression arg, Expression func)
 
@@ -338,6 +460,7 @@ Expressions
        * **func** -- The function.
 
       :returns: The modified collection.
+      :Game Scenes: All
 
    .. function:: static Expression where(Client& connection, Expression arg, Expression func)
 
@@ -349,6 +472,7 @@ Expressions
        * **func** -- The function.
 
       :returns: The modified collection.
+      :Game Scenes: All
 
    .. function:: static Expression contains(Client& connection, Expression arg, Expression value)
 
@@ -360,6 +484,7 @@ Expressions
        * **value** -- The value to look for.
 
       :returns: Whether the collection contains a value.
+      :Game Scenes: All
 
    .. function:: static Expression aggregate(Client& connection, Expression arg, Expression func)
 
@@ -371,6 +496,7 @@ Expressions
        * **func** -- The accumulator function.
 
       :returns: The accumulated value.
+      :Game Scenes: All
 
    .. function:: static Expression aggregate_with_seed(Client& connection, Expression arg, Expression seed, Expression func)
 
@@ -383,6 +509,7 @@ Expressions
        * **func** -- The accumulator function.
 
       :returns: The accumulated value.
+      :Game Scenes: All
 
    .. function:: static Expression concat(Client& connection, Expression arg1, Expression arg2)
 
@@ -394,6 +521,7 @@ Expressions
        * **arg2** -- The second sequence.
 
       :returns: The first sequence followed by the second sequence.
+      :Game Scenes: All
 
    .. function:: static Expression order_by(Client& connection, Expression arg, Expression key)
 
@@ -405,6 +533,7 @@ Expressions
        * **key** -- A function that takes a value from the collection and generates a key to sort on.
 
       :returns: The ordered collection.
+      :Game Scenes: All
 
    .. function:: static Expression all(Client& connection, Expression arg, Expression predicate)
 
@@ -416,6 +545,7 @@ Expressions
        * **predicate** -- The predicate function.
 
       :returns: Whether all items satisfy the predicate.
+      :Game Scenes: All
 
    .. function:: static Expression any(Client& connection, Expression arg, Expression predicate)
 
@@ -427,6 +557,7 @@ Expressions
        * **predicate** -- The predicate function.
 
       :returns: Whether any item satisfies the predicate.
+      :Game Scenes: All
 
 
 
@@ -438,18 +569,33 @@ Expressions
 
       Double type.
 
+
+      :Game Scenes: All
+
    .. function:: static Type float__(Client& connection)
 
       Float type.
+
+
+      :Game Scenes: All
 
    .. function:: static Type int__(Client& connection)
 
       Int type.
 
+
+      :Game Scenes: All
+
    .. function:: static Type bool__(Client& connection)
 
       Bool type.
 
+
+      :Game Scenes: All
+
    .. function:: static Type string(Client& connection)
 
       String type.
+
+
+      :Game Scenes: All

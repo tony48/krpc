@@ -14,17 +14,21 @@ Service UI
 
       The stock UI canvas.
 
+      :Game Scenes: All
+
    .. function:: krpc_error_t krpc_UI_AddCanvas(krpc_connection_t connection, krpc_UI_Canvas_t * result)
 
       Add a new canvas.
 
+
+      :Game Scenes: All
 
 
       .. note::
 
          If you want to add UI elements to KSPs stock UI canvas, use :func:`krpc_UI_StockCanvas`.
 
-   .. function:: krpc_error_t krpc_UI_Message(krpc_connection_t connection, const char * content, float duration, krpc_UI_MessagePosition_t position)
+   .. function:: krpc_error_t krpc_UI_Message(krpc_connection_t connection, const char * content, float duration, krpc_UI_MessagePosition_t position, const krpc_tuple_double_double_double_t * color, float size)
 
       Display a message on the screen.
 
@@ -33,6 +37,10 @@ Service UI
        * **content** -- Message content.
        * **duration** -- Duration before the message disappears, in seconds.
        * **position** -- Position to display the message.
+       * **color** -- The color of the message.
+       * **size** -- Size of the message, differs per position.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -46,6 +54,8 @@ Service UI
       :Parameters:
 
        * **clientOnly** -- If true, only remove objects created by the calling client.
+
+      :Game Scenes: All
 
 
 

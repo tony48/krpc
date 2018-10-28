@@ -17,30 +17,45 @@ Vessel
 
       The name of the vessel.
 
+      :Game Scenes: All
+
    .. function:: VesselType type()
    .. function:: void set_type(VesselType value)
 
       The type of the vessel.
 
+      :Game Scenes: All
+
    .. function:: VesselSituation situation()
 
       The situation the vessel is in.
+
+      :Game Scenes: All
 
    .. function:: bool recoverable()
 
       Whether the vessel is recoverable.
 
+      :Game Scenes: All
+
    .. function:: void recover()
 
       Recover the vessel.
+
+
+      :Game Scenes: All
 
    .. function:: double met()
 
       The mission elapsed time in seconds.
 
+      :Game Scenes: All
+
    .. function:: std::string biome()
 
       The name of the biome the vessel is currently in.
+
+      :Game Scenes: All
 
    .. function:: Flight flight(ReferenceFrame reference_frame = ReferenceFrame())
 
@@ -50,6 +65,8 @@ Vessel
       :Parameters:
 
        * **reference_frame** -- Reference frame. Defaults to the vessel's surface reference frame (:func:`Vessel::surface_reference_frame`).
+
+      :Game Scenes: Flight
 
 
       .. note:: When this is called with no arguments, the vessel's surface reference
@@ -63,38 +80,54 @@ Vessel
 
       The current orbit of the vessel.
 
+      :Game Scenes: All
+
    .. function:: Control control()
 
       Returns a :class:`Control` object that can be used to manipulate
       the vessel's control inputs. For example, its pitch/yaw/roll controls,
       RCS and thrust.
 
+      :Game Scenes: Flight
+
    .. function:: Comms comms()
 
       Returns a :class:`Comms` object that can be used to interact
       with CommNet for this vessel.
+
+      :Game Scenes: Flight
 
    .. function:: AutoPilot auto_pilot()
 
       An :class:`AutoPilot` object, that can be used to perform
       simple auto-piloting of the vessel.
 
+      :Game Scenes: Flight
+
    .. function:: int32_t crew_capacity()
 
       The number of crew that can occupy the vessel.
+
+      :Game Scenes: All
 
    .. function:: int32_t crew_count()
 
       The number of crew that are occupying the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<CrewMember> crew()
 
       The crew in the vessel.
+
+      :Game Scenes: All
 
    .. function:: Resources resources()
 
       A :class:`Resources` object, that can used to get information
       about resources stored in the vessel.
+
+      :Game Scenes: Flight
 
    .. function:: Resources resources_in_decouple_stage(int32_t stage, bool cumulative = true)
 
@@ -106,6 +139,8 @@ Vessel
        * **stage** -- Get resources for parts that are decoupled in this stage.
        * **cumulative** -- When ``false``, returns the resources for parts decoupled in just the given stage. When ``true`` returns the resources decoupled in the given stage and all subsequent stages combined.
 
+      :Game Scenes: Flight
+
 
       .. note:: For details on stage numbering, see the
                 discussion on :rst:ref:`cpp-api-parts-staging`.
@@ -114,13 +149,19 @@ Vessel
 
       A :class:`Parts` object, that can used to interact with the parts that make up this vessel.
 
+      :Game Scenes: Flight
+
    .. function:: float mass()
 
       The total mass of the vessel, including resources, in kg.
 
+      :Game Scenes: Flight
+
    .. function:: float dry_mass()
 
       The total mass of the vessel, excluding resources, in kg.
+
+      :Game Scenes: Flight
 
    .. function:: float thrust()
 
@@ -128,11 +169,15 @@ Vessel
       Newtons. This is computed by summing :func:`Engine::thrust` for
       every engine in the vessel.
 
+      :Game Scenes: Flight
+
    .. function:: float available_thrust()
 
       Gets the total available thrust that can be produced by the vessel's
       active engines, in Newtons. This is computed by summing
       :func:`Engine::available_thrust` for every active engine in the vessel.
+
+      :Game Scenes: Flight
 
    .. function:: float max_thrust()
 
@@ -140,27 +185,37 @@ Vessel
       engines, in Newtons. This is computed by summing
       :func:`Engine::max_thrust` for every active engine.
 
+      :Game Scenes: Flight
+
    .. function:: float max_vacuum_thrust()
 
       The total maximum thrust that can be produced by the vessel's active
       engines when the vessel is in a vacuum, in Newtons. This is computed by
       summing :func:`Engine::max_vacuum_thrust` for every active engine.
 
+      :Game Scenes: Flight
+
    .. function:: float specific_impulse()
 
       The combined specific impulse of all active engines, in seconds. This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+      :Game Scenes: Flight
 
    .. function:: float vacuum_specific_impulse()
 
       The combined vacuum specific impulse of all active engines, in seconds. This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
 
+      :Game Scenes: Flight
+
    .. function:: float kerbin_sea_level_specific_impulse()
 
       The combined specific impulse of all active engines at sea level on Kerbin, in seconds.
       This is computed using the formula
       `described here <https://wiki.kerbalspaceprogram.com/wiki/Specific_impulse#Multiple_engines>`_.
+
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double> moment_of_inertia()
 
@@ -169,11 +224,15 @@ Vessel
       pitch, roll and yaw directions respectively.
       This corresponds to the vessels reference frame (:class:`ReferenceFrame`).
 
+      :Game Scenes: Flight
+
    .. function:: std::vector<double> inertia_tensor()
 
       The inertia tensor of the vessel around its center of mass,
       in the vessels reference frame (:class:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
@@ -183,12 +242,16 @@ Vessel
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_reaction_wheel_torque()
 
       The maximum torque that the currently active and powered reaction wheels can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_rcs_torque()
 
@@ -197,12 +260,16 @@ Vessel
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_engine_torque()
 
       The maximum torque that the currently active and gimballed engines can generate.
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_control_surface_torque()
 
@@ -211,6 +278,8 @@ Vessel
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
 
+      :Game Scenes: Flight
+
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_other_torque()
 
       The maximum torque that parts (excluding reaction wheels, gimballed engines,
@@ -218,6 +287,8 @@ Vessel
       Returns the torques in :math:`N.m` around each of the coordinate axes of the
       vessels reference frame (:class:`ReferenceFrame`).
       These axes are equivalent to the pitch, roll and yaw axes of the vessel.
+
+      :Game Scenes: Flight
 
    .. function:: ReferenceFrame reference_frame()
 
@@ -229,6 +300,8 @@ Vessel
       * The x-axis points out to the right of the vessel.
       * The y-axis points in the forward direction of the vessel.
       * The z-axis points out of the bottom off the vessel.
+
+      :Game Scenes: Flight
 
 
       .. figure:: /images/reference-frames/vessel-aircraft.png
@@ -251,6 +324,8 @@ Vessel
       * The x-axis points in the orbital anti-radial direction.
       * The y-axis points in the orbital prograde direction.
       * The z-axis points in the orbital normal direction.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -279,6 +354,8 @@ Vessel
         `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_ (east, and tangential to the
         surface of the body -- east on a compass when on the surface).
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -303,6 +380,8 @@ Vessel
         `astronomical horizon <https://en.wikipedia.org/wiki/Horizon>`_.
       * The x-axis is orthogonal to the other two axes.
 
+      :Game Scenes: Flight
+
 
       .. figure:: /images/reference-frames/vessel-surface-velocity.png
          :align: center
@@ -318,6 +397,7 @@ Vessel
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> bounding_box(ReferenceFrame reference_frame)
 
@@ -328,6 +408,7 @@ Vessel
        * **reference_frame** -- The reference frame that the returned position vectors are in.
 
       :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
 
@@ -338,6 +419,7 @@ Vessel
        * **reference_frame** -- The reference frame that the returned velocity vector is in.
 
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
@@ -348,6 +430,7 @@ Vessel
        * **reference_frame** -- The reference frame that the returned rotation is in.
 
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
@@ -358,6 +441,7 @@ Vessel
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double> angular_velocity(ReferenceFrame reference_frame)
 
@@ -368,6 +452,7 @@ Vessel
        * **reference_frame** -- The reference frame the returned angular velocity is in.
 
       :returns: The angular velocity as a vector. The magnitude of the vector is the rotational speed of the vessel, in radians per second. The direction of the vector indicates the axis of rotation, using the right-hand rule.
+      :Game Scenes: Flight
 
 
 
@@ -481,38 +566,54 @@ Vessel
 
       The crew members name.
 
+      :Game Scenes: All
+
    .. function:: CrewMemberType type()
 
       The type of crew member.
 
+      :Game Scenes: All
+
    .. function:: bool on_mission()
 
       Whether the crew member is on a mission.
+
+      :Game Scenes: All
 
    .. function:: float courage()
    .. function:: void set_courage(float value)
 
       The crew members courage.
 
+      :Game Scenes: All
+
    .. function:: float stupidity()
    .. function:: void set_stupidity(float value)
 
       The crew members stupidity.
+
+      :Game Scenes: All
 
    .. function:: float experience()
    .. function:: void set_experience(float value)
 
       The crew members experience.
 
+      :Game Scenes: All
+
    .. function:: bool badass()
    .. function:: void set_badass(bool value)
 
       Whether the crew member is a badass.
 
+      :Game Scenes: All
+
    .. function:: bool veteran()
    .. function:: void set_veteran(bool value)
 
       Whether the crew member is a veteran.
+
+      :Game Scenes: All
 
 
 

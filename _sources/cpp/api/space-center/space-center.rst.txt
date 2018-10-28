@@ -20,46 +20,67 @@ SpaceCenter
 
       The current amount of science.
 
+      :Game Scenes: All
+
    .. function:: double funds()
 
       The current amount of funds.
 
+      :Game Scenes: All
+
    .. function:: float reputation()
 
       The current amount of reputation.
+
+      :Game Scenes: All
 
    .. function:: Vessel active_vessel()
    .. function:: void set_active_vessel(Vessel value)
 
       The currently active vessel.
 
+      :Game Scenes: Flight
+
    .. function:: std::vector<Vessel> vessels()
 
       A list of all the vessels in the game.
+
+      :Game Scenes: All
 
    .. function:: std::map<std::string, CelestialBody> bodies()
 
       A dictionary of all celestial bodies (planets, moons, etc.) in the game,
       keyed by the name of the body.
 
+      :Game Scenes: All
+
    .. function:: CelestialBody target_body()
    .. function:: void set_target_body(CelestialBody value)
 
       The currently targeted celestial body.
+
+      :Game Scenes: Flight
 
    .. function:: Vessel target_vessel()
    .. function:: void set_target_vessel(Vessel value)
 
       The currently targeted vessel.
 
+      :Game Scenes: Flight
+
    .. function:: DockingPort target_docking_port()
    .. function:: void set_target_docking_port(DockingPort value)
 
       The currently targeted docking port.
 
+      :Game Scenes: Flight
+
    .. function:: void clear_target()
 
       Clears the current target.
+
+
+      :Game Scenes: Flight
 
    .. function:: std::vector<std::string> launchable_vessels(std::string craft_directory)
 
@@ -69,6 +90,8 @@ SpaceCenter
       :Parameters:
 
        * **craft_directory** -- Name of the directory in the current saves "Ships" directory. For example ``"VAB"`` or ``"SPH"``.
+
+      :Game Scenes: All
 
    .. function:: void launch_vessel(std::string craft_directory, std::string name, std::string launch_site, bool recover = true)
 
@@ -80,6 +103,8 @@ SpaceCenter
        * **name** -- Name of the vessel to launch. This is the name of the ".craft" file in the save directory, without the ".craft" file extension.
        * **launch_site** -- Name of the launch site. For example ``"LaunchPad"`` or ``"Runway"``.
        * **recover** -- If true and there is a vessel on the launch site, recover it before launching.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -94,6 +119,8 @@ SpaceCenter
 
        * **name** -- Name of the vessel to launch.
        * **recover** -- If true and there is a vessel on the launch pad, recover it before launching.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -111,6 +138,8 @@ SpaceCenter
        * **name** -- Name of the vessel to launch.
        * **recover** -- If true and there is a vessel on the runway, recover it before launching.
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -126,6 +155,10 @@ SpaceCenter
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: void load(std::string name)
 
       Load the game with the given name.
@@ -134,10 +167,16 @@ SpaceCenter
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: void quicksave()
 
       Save a quicksave.
 
+
+      :Game Scenes: All
 
 
       .. note::
@@ -149,6 +188,8 @@ SpaceCenter
       Load a quicksave.
 
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -159,18 +200,26 @@ SpaceCenter
 
       Whether the UI is visible.
 
+      :Game Scenes: Flight
+
    .. function:: bool navball()
    .. function:: void set_navball(bool value)
 
       Whether the navball is visible.
 
+      :Game Scenes: Flight
+
    .. function:: double ut()
 
       The current universal time in seconds.
 
+      :Game Scenes: All
+
    .. function:: double g()
 
       The value of the `gravitational constant <https://en.wikipedia.org/wiki/Gravitational_constant>`_ G in :math:`N(m/kg)^2`.
+
+      :Game Scenes: All
 
    .. function:: float warp_rate()
 
@@ -179,6 +228,8 @@ SpaceCenter
       time is passing 10x faster than normal. Returns 1 if time warp is not
       active.
 
+      :Game Scenes: Flight
+
    .. function:: float warp_factor()
 
       The current warp factor. This is the index of the rate at which time
@@ -186,6 +237,8 @@ SpaceCenter
       if time warp is not active. When in on-rails time warp, this is equal to
       :func:`rails_warp_factor`, and in physics time warp, this is equal to
       :func:`physics_warp_factor`.
+
+      :Game Scenes: Flight
 
    .. function:: int32_t rails_warp_factor()
    .. function:: void set_rails_warp_factor(int32_t value)
@@ -198,11 +251,15 @@ SpaceCenter
       lowest possible value. For example, if the vessel is too close to a
       planet. See `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_ for details.
 
+      :Game Scenes: Flight
+
    .. function:: int32_t physics_warp_factor()
    .. function:: void set_physics_warp_factor(int32_t value)
 
       The physical time warp rate. A value between 0 and 3 inclusive. 0 means
       no time warp. Returns 0 if regular "on-rails" time warp is active.
+
+      :Game Scenes: Flight
 
    .. function:: bool can_rails_warp_at(int32_t factor = 1)
 
@@ -216,12 +273,16 @@ SpaceCenter
 
        * **factor** -- The warp factor to check.
 
+      :Game Scenes: Flight
+
    .. function:: int32_t maximum_rails_warp_factor()
 
       The current maximum regular "on-rails" warp factor that can be set.
       A value between 0 and 7 inclusive. See
       `the KSP wiki <https://wiki.kerbalspaceprogram.com/wiki/Time_warp>`_
       for details.
+
+      :Game Scenes: Flight
 
    .. function:: void warp_to(double ut, float max_rails_rate = 100000.0, float max_physics_rate = 2.0)
 
@@ -240,6 +301,7 @@ SpaceCenter
        * **max_physics_rate** -- The maximum warp rate in physical time warp.
 
       :returns: When the time warp is complete.
+      :Game Scenes: Flight
 
    .. function:: std::tuple<double, double, double> transform_position(std::tuple<double, double, double> position, ReferenceFrame from, ReferenceFrame to)
 
@@ -252,6 +314,7 @@ SpaceCenter
        * **to** -- The reference frame to covert the position to.
 
       :returns: The corresponding position, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> transform_direction(std::tuple<double, double, double> direction, ReferenceFrame from, ReferenceFrame to)
 
@@ -264,6 +327,7 @@ SpaceCenter
        * **to** -- The reference frame to covert the direction to.
 
       :returns: The corresponding direction, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double, double> transform_rotation(std::tuple<double, double, double, double> rotation, ReferenceFrame from, ReferenceFrame to)
 
@@ -276,6 +340,7 @@ SpaceCenter
        * **to** -- The reference frame to covert the rotation to.
 
       :returns: The corresponding rotation, as a quaternion of the form :math:`(x, y, z, w)`, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> transform_velocity(std::tuple<double, double, double> position, std::tuple<double, double, double> velocity, ReferenceFrame from, ReferenceFrame to)
 
@@ -291,6 +356,7 @@ SpaceCenter
        * **to** -- The reference frame to covert the velocity to.
 
       :returns: The corresponding velocity, as a vector, in reference frame *to*.
+      :Game Scenes: All
 
    .. function:: double raycast_distance(std::tuple<double, double, double> position, std::tuple<double, double, double> direction, ReferenceFrame reference_frame)
 
@@ -304,6 +370,7 @@ SpaceCenter
        * **reference_frame** -- The reference frame that the position and direction are in.
 
       :returns: The distance to the hit, in meters, or infinity if there was no hit.
+      :Game Scenes: All
 
    .. function:: Part raycast_part(std::tuple<double, double, double> position, std::tuple<double, double, double> direction, ReferenceFrame reference_frame)
 
@@ -317,14 +384,19 @@ SpaceCenter
        * **reference_frame** -- The reference frame that the position and direction are in.
 
       :returns: The part that was hit or ``NULL`` if there was no hit.
+      :Game Scenes: Flight
 
    .. function:: bool far_available()
 
       Whether `Ferram Aerospace Research <https://forum.kerbalspaceprogram.com/index.php?/topic/19321-130-ferram-aerospace-research-v0159-liebe-82117/>`_ is installed.
 
+      :Game Scenes: All
+
    .. function:: GameMode game_mode()
 
       The current mode the game is in.
+
+      :Game Scenes: All
 
    .. function:: WarpMode warp_mode()
 
@@ -332,17 +404,25 @@ SpaceCenter
       warp is not active, :enumerator:`WarpMode::rails` if regular "on-rails" time warp
       is active, or :enumerator:`WarpMode::physics` if physical time warp is active.
 
+      :Game Scenes: Flight
+
    .. function:: Camera camera()
 
       An object that can be used to control the camera.
+
+      :Game Scenes: Flight
 
    .. function:: WaypointManager waypoint_manager()
 
       The waypoint manager.
 
+      :Game Scenes: Flight
+
    .. function:: ContractManager contract_manager()
 
       The contract manager.
+
+      :Game Scenes: All
 
 
 

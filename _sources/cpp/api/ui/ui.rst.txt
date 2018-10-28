@@ -19,17 +19,21 @@ UI
 
       The stock UI canvas.
 
+      :Game Scenes: All
+
    .. function:: Canvas add_canvas()
 
       Add a new canvas.
 
+
+      :Game Scenes: All
 
 
       .. note::
 
          If you want to add UI elements to KSPs stock UI canvas, use :func:`stock_canvas`.
 
-   .. function:: void message(std::string content, float duration = 1.0, MessagePosition position = static_cast<MessagePosition>(1))
+   .. function:: void message(std::string content, float duration = 1.0, MessagePosition position = static_cast<MessagePosition>(1), std::tuple<double, double, double> color = std::tuple<double, double, double>(1.0, 0.92, 0.016), float size = 20.0)
 
       Display a message on the screen.
 
@@ -38,6 +42,10 @@ UI
        * **content** -- Message content.
        * **duration** -- Duration before the message disappears, in seconds.
        * **position** -- Position to display the message.
+       * **color** -- The color of the message.
+       * **size** -- Size of the message, differs per position.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -51,6 +59,8 @@ UI
       :Parameters:
 
        * **client_only** -- If true, only remove objects created by the calling client.
+
+      :Game Scenes: All
 
 
 

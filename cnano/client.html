@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C-nano Client &mdash; kRPC 0.4.7 documentation</title>
+  <title>C-nano Client &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
-        <link rel="up" title="C-nano" href="../cnano.html"/>
-        <link rel="next" title="KRPC API" href="api/krpc.html"/>
-        <link rel="prev" title="C-nano" href="../cnano.html"/>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="KRPC API" href="api/krpc.html" />
+    <link rel="prev" title="C-nano" href="../cnano.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -117,6 +107,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#compilation-options">Compilation Options</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-server">Configuring the Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-library-on-a-posix-system">Using the Library on a POSIX System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-library-on-from-an-arduino">Using the Library on from an Arduino</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#calling-remote-procedures">Calling Remote Procedures</a></li>
@@ -154,7 +145,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kRPC</a>
@@ -162,9 +153,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -217,8 +209,8 @@ systems with tight resource constraints, hence the “nano” in its name.</p>
 <div class="section" id="manually-include-the-source-in-your-project">
 <h3>Manually include the source in your project<a class="headerlink" href="#manually-include-the-source-in-your-project" title="Permalink to this headline">¶</a></h3>
 <p>The source files can be included in your project manually, by downloading and extracting the
-<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">source archive</a>. The header files can be found in the <code class="docutils literal"><span class="pre">include</span></code>
-directory and the source files are in <code class="docutils literal"><span class="pre">src</span></code>.</p>
+<a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.8/krpc-cnano-0.4.8.zip">source archive</a>. The header files can be found in the <code class="docutils literal notranslate"><span class="pre">include</span></code>
+directory and the source files are in <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
 </div>
 <div class="section" id="arduino-library-manager">
 <h3>Arduino Library Manager<a class="headerlink" href="#arduino-library-manager" title="Permalink to this headline">¶</a></h3>
@@ -226,17 +218,17 @@ directory and the source files are in <code class="docutils literal"><span class
 by searching for and installing “kRPC”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The source files installed by the Arduino Library Manager are renamed to end with <code class="docutils literal"><span class="pre">.cpp</span></code> so
+<p class="last">The source files installed by the Arduino Library Manager are renamed to end with <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> so
 that they are built using the C++ compiler. This allows the library to use the C++ only
-<code class="docutils literal"><span class="pre">HardwareSerial</span></code> class for communication.</p>
+<code class="docutils literal notranslate"><span class="pre">HardwareSerial</span></code> class for communication.</p>
 </div>
 </div>
 <div class="section" id="using-the-configure-script">
 <h3>Using the configure script<a class="headerlink" href="#using-the-configure-script" title="Permalink to this headline">¶</a></h3>
 <p>You can build and install the client library and headers using the configure script provided with
-the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">Download the source archive</a>, extract it and then
+the source. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.8/krpc-cnano-0.4.8.zip">Download the source archive</a>, extract it and then
 execute the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./configure
 make
 sudo make install
 sudo ldconfig
@@ -246,9 +238,9 @@ sudo ldconfig
 <div class="section" id="using-cmake">
 <h3>Using CMake<a class="headerlink" href="#using-cmake" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can install the client library and headers using
-CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.7/krpc-cnano-0.4.7.zip">Download the source archive</a>, extract it and execute the
+CMake. <a class="reference external" href="https://github.com/krpc/krpc/releases/download/v0.4.8/krpc-cnano-0.4.8.zip">Download the source archive</a>, extract it and execute the
 following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake .
 make
 sudo make install
 sudo ldconfig
@@ -262,41 +254,41 @@ argument to the compiler.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Error handling<ul>
-<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_RETURN</span></code> (the default) – when a remote procedure call gets an error, it
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_ERROR_CHECK_RETURN</span></code> (the default) – when a remote procedure call gets an error, it
 returns the error code.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_EXIT</span></code> – terminates the program (by calling <code class="docutils literal"><span class="pre">exit()</span></code>) when an error
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_ERROR_CHECK_EXIT</span></code> – terminates the program (by calling <code class="docutils literal notranslate"><span class="pre">exit()</span></code>) when an error
 occurs in a remote procedure call.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_ASSERT</span></code> – fails a debug assertion (by calling <code class="docutils literal"><span class="pre">assert()</span></code>) when an error
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_ERROR_CHECK_ASSERT</span></code> – fails a debug assertion (by calling <code class="docutils literal notranslate"><span class="pre">assert()</span></code>) when an error
 occurs in a remote procedure call.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_ERROR_CHECK_FN</span></code> – specifies the <code class="docutils literal"><span class="pre">krpc_error_handler</span></code> function should be called when
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_ERROR_CHECK_FN</span></code> – specifies the <code class="docutils literal notranslate"><span class="pre">krpc_error_handler</span></code> function should be called when
 an error occurs in a remote procedure call. This should be set to a pointer to a function that
-takes a single parameter of type <code class="docutils literal"><span class="pre">krpc_error_t</span></code>.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_PRINT_ERRORS_TO_STDERR</span></code> – enables printing of a descriptive error message to stderr
+takes a single parameter of type <code class="docutils literal notranslate"><span class="pre">krpc_error_t</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_PRINT_ERRORS_TO_STDERR</span></code> – enables printing of a descriptive error message to stderr
 when an error occurs</li>
-<li><code class="docutils literal"><span class="pre">PB_NO_ERRMSG</span></code> – disables error messages in the nanopb library, which kRPC uses to
+<li><code class="docutils literal notranslate"><span class="pre">PB_NO_ERRMSG</span></code> – disables error messages in the nanopb library, which kRPC uses to
 communicate with the server. Enabled by default on in the Arduino version of the library.</li>
 </ul>
 </li>
 <li>Communication<ul>
-<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> – Specifies that the library should be built to communicate over
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> – Specifies that the library should be built to communicate over
 a serial port using POSIX read/write functions communication mechanisms. This is the default,
 unless the a different platform is detected.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code> – Specifies that the library should be built using Arduino
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code> – Specifies that the library should be built using Arduino
 serial communication mechanisms. The Arduino platform will be auto-detected so you do not need
 to specify this manually.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_CUSTOM</span></code> – Allows you to provide your own implementation for the
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_COMMUNICATION_CUSTOM</span></code> – Allows you to provide your own implementation for the
 communication mechanism.</li>
 </ul>
 </li>
 <li>Memory allocation<ul>
-<li><code class="docutils literal"><span class="pre">KRPC_ALLOC_BLOCK_SIZE</span></code> – The size of collections (lists, sets, etc.) are not know ahead of
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_ALLOC_BLOCK_SIZE</span></code> – The size of collections (lists, sets, etc.) are not know ahead of
 time, so when they are received from the server they are decoded into dynamically allocated
 memory on the heap. This option controls how many items to increase the capacity of the
 collection by when its space is exhausted. Setting this to 1 will consume the least amount of
 heap memory, but will require one heap allocation call per item. Setting this to a higher value
 will consume more memory, but require fewer allocations.</li>
-<li><code class="docutils literal"><span class="pre">KRPC_CUSTOM_MEMORY_ALLOC</span></code> – Disables the default implementation of memory allocation
-functions <code class="docutils literal"><span class="pre">krpc_malloc</span></code>, <code class="docutils literal"><span class="pre">krpc_calloc</span></code>, <code class="docutils literal"><span class="pre">krpc_recalloc</span></code> and krpc_free so that you can
+<li><code class="docutils literal notranslate"><span class="pre">KRPC_CUSTOM_MEMORY_ALLOC</span></code> – Disables the default implementation of memory allocation
+functions <code class="docutils literal notranslate"><span class="pre">krpc_malloc</span></code>, <code class="docutils literal notranslate"><span class="pre">krpc_calloc</span></code>, <code class="docutils literal notranslate"><span class="pre">krpc_recalloc</span></code> and krpc_free so that you can
 provide your own implementation.</li>
 </ul>
 </li>
@@ -304,16 +296,23 @@ provide your own implementation.</li>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">On embedded systems you probably want to define <code class="docutils literal"><span class="pre">KRPC_NO_PRINT_ERROR</span></code> and <code class="docutils literal"><span class="pre">PB_NO_ERRMSG</span></code> to
+<p class="last">On embedded systems you probably want to define <code class="docutils literal notranslate"><span class="pre">KRPC_NO_PRINT_ERROR</span></code> and <code class="docutils literal notranslate"><span class="pre">PB_NO_ERRMSG</span></code> to
 minimize the memory footprint of kRPC.</p>
 </div>
 </div>
+</div>
+<div class="section" id="configuring-the-server">
+<h2>Configuring the Server<a class="headerlink" href="#configuring-the-server" title="Permalink to this headline">¶</a></h2>
+<p>The C-nano client library communicates with the server over a serial port using <a class="reference external" href="https://github.com/nanopb/nanopb">protobuf messages</a>. The kRPC server, which runs in the game, needs to be
+configured to use the serial port protocol (instead of the default TCP/IP protocol). This can be
+done from the in-game server configuration window, which also allows settings such as the port name
+and baud rate to be configured.</p>
 </div>
 <div class="section" id="using-the-library-on-a-posix-system">
 <h2>Using the Library on a POSIX System<a class="headerlink" href="#using-the-library-on-a-posix-system" title="Permalink to this headline">¶</a></h2>
 <p>On POSIX systems (such as Linux) the following example program connects to the server, queries it
 for its version and prints it out:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano/services/krpc.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -326,11 +325,11 @@ for its version and prints it out:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To compile this program using GCC, save the source as <code class="docutils literal"><span class="pre">main.c</span></code> and run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>gcc main.c -lkrpc_cnano
+<p>To compile this program using GCC, save the source as <code class="docutils literal notranslate"><span class="pre">main.c</span></code> and run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc main.c -lkrpc_cnano
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="#c.krpc_connect" title="krpc_connect"><code class="xref c c-func docutils literal"><span class="pre">krpc_connect()</span></code></a> function is used to open a connection to a server. It takes as its first
+<p>The <a class="reference internal" href="#c.krpc_connect" title="krpc_connect"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_connect()</span></code></a> function is used to open a connection to a server. It takes as its first
 argument a connection object into which the connection information is written. This is passed to
 subsequent calls to interact with the server. The second argument is a name for the connection
 (displayed in game) and the third is the name of the serial port to connect over.</p>
@@ -339,7 +338,7 @@ subsequent calls to interact with the server. The second argument is a name for 
 <h2>Using the Library on from an Arduino<a class="headerlink" href="#using-the-library-on-from-an-arduino" title="Permalink to this headline">¶</a></h2>
 <p>The following example demonstrates how to connect to the server from an Arduino, through its serial
 port interface:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc/services/krpc.h&gt;</span><span class="cp"></span>
 
 <span class="n">HardwareSerial</span> <span class="o">*</span> <span class="n">conn</span><span class="p">;</span>
@@ -364,7 +363,7 @@ port interface:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The main include file and include directory are named <code class="docutils literal"><span class="pre">krpc</span></code> instead of <code class="docutils literal"><span class="pre">krpc_cnano</span></code> in the
+<p class="last">The main include file and include directory are named <code class="docutils literal notranslate"><span class="pre">krpc</span></code> instead of <code class="docutils literal notranslate"><span class="pre">krpc_cnano</span></code> in the
 Arduino version of the library.</p>
 </div>
 </div>
@@ -372,12 +371,12 @@ Arduino version of the library.</p>
 <h2>Calling Remote Procedures<a class="headerlink" href="#calling-remote-procedures" title="Permalink to this headline">¶</a></h2>
 <p>The kRPC server provides <em>procedures</em> that a client can run. These procedures are arranged in groups
 called <em>services</em> to keep things organized. The functionality for the services are defined in the
-header files in <code class="docutils literal"><span class="pre">krpc/services/...</span></code>. For example, all of the functionality provided by the
-SpaceCenter service is contained in the header file <code class="docutils literal"><span class="pre">krpc/services/space_center.h</span></code>.</p>
+header files in <code class="docutils literal notranslate"><span class="pre">krpc/services/...</span></code>. For example, all of the functionality provided by the
+SpaceCenter service is contained in the header file <code class="docutils literal notranslate"><span class="pre">krpc/services/space_center.h</span></code>.</p>
 <p>The following example demonstrates how to invoke remote procedures using the Cnano client. It calls
-<a class="reference internal" href="api/space-center/space-center.html#c.krpc_SpaceCenter_ActiveVessel" title="krpc_SpaceCenter_ActiveVessel"><code class="xref c c-func docutils literal"><span class="pre">krpc_SpaceCenter_ActiveVessel()</span></code></a> to get a handle to the active vessel (of type
-<a class="reference internal" href="api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t"><code class="xref c c-type docutils literal"><span class="pre">krpc_SpaceCenter_Vessel_t</span></code></a>). It sets the name of the vessel and then prints out its altitude:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano.h&gt;</span><span class="cp"></span>
+<a class="reference internal" href="api/space-center/space-center.html#c.krpc_SpaceCenter_ActiveVessel" title="krpc_SpaceCenter_ActiveVessel"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_SpaceCenter_ActiveVessel()</span></code></a> to get a handle to the active vessel (of type
+<a class="reference internal" href="api/space-center/vessel.html#c.krpc_SpaceCenter_Vessel_t" title="krpc_SpaceCenter_Vessel_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">krpc_SpaceCenter_Vessel_t</span></code></a>). It sets the name of the vessel and then prints out its altitude:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;krpc_cnano/services/space_center.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -409,14 +408,33 @@ SpaceCenter service is contained in the header file <code class="docutils litera
 <h2>Client API Reference<a class="headerlink" href="#client-api-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="c.krpc_open">
-<a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_open</code><span class="sig-paren">(</span>krpc_connection_t *<em>&nbsp;connection</em>, void *<em>&nbsp;arg</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_open" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="#c.krpc_error_t" title="krpc_error_t">krpc_error_t</a> <code class="descname">krpc_open</code><span class="sig-paren">(</span>krpc_connection_t *<em>&nbsp;connection</em>, const krpc_connection_config_t *<em>&nbsp;arg</em><span class="sig-paren">)</span><a class="headerlink" href="#c.krpc_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a communication handle over which the client can talk to a server.</p>
-<p>When the library is built using <code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> (which is defined by default)
+<p>When the library is built using <code class="docutils literal notranslate"><span class="pre">KRPC_COMMUNICATION_POSIX</span></code> (which is defined by default)
 calling this function opens a serial port using the port name passed as <em>arg</em>, using a call to
-<code class="docutils literal"><span class="pre">open(arg,</span> <span class="pre">...)</span></code>.</p>
-<p>When the library is built using <code class="docutils literal"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code>, <em>connection</em> must be a pointer to
-a <code class="docutils literal"><span class="pre">HardwareSerial</span></code> object. Calling this function opens the serial port using
-<code class="docutils literal"><span class="pre">(*(HardwareSerial*)connection)-&gt;begin(9600)</span></code>. <em>arg</em> is not used.</p>
+<code class="docutils literal notranslate"><span class="pre">open(arg,</span> <span class="pre">...)</span></code>. In this case the type of the <em>arg</em> parameter is <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*</span></code>. For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+<span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="s">&quot;COM0&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When the library is built using <code class="docutils literal notranslate"><span class="pre">KRPC_COMMUNICATION_ARDUINO</span></code>, <em>connection</em> must be a pointer to
+a <code class="docutils literal notranslate"><span class="pre">HardwareSerial</span></code> object. <em>arg</em> is optionally used to pass additional configuration options
+used to initialize the connection, including baud rate for the serial port.</p>
+<p>If <em>arg</em> is set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> the connection is initialized with a baud rate of 9600 and
+defaults <code class="docutils literal notranslate"><span class="pre">SERIAL_8N1</span></code> for data, parity and stop bits. For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+<span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When <em>arg</em> set to a pointer to a structure of type <code class="docutils literal notranslate"><span class="pre">krpc_connection_config_t</span></code>, the baud rate, and data, parity and stop
+bits in the structure are used to initialize the connection. For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">krpc_connection_t</span> <span class="n">conn</span><span class="p">;</span>
+<span class="n">krpc_connection_config_t</span> <span class="n">config</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">SERIAL_5N1</span><span class="p">;</span>
+<span class="n">krpc_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -429,7 +447,7 @@ a <code class="docutils literal"><span class="pre">HardwareSerial</span></code> 
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>connection</strong> (<em>krpc_connection_t</em>) – A connection handle, created using a call to
-<a class="reference internal" href="#c.krpc_open" title="krpc_open"><code class="xref c c-func docutils literal"><span class="pre">krpc_open()</span></code></a>.</li>
+<a class="reference internal" href="#c.krpc_open" title="krpc_open"><code class="xref c c-func docutils literal notranslate"><span class="pre">krpc_open()</span></code></a>.</li>
 <li><strong>name</strong> (<em>const char*</em>) – A descriptive name for the connection. This is passed to the
 server and appears in the in-game server window.</li>
 </ul>
@@ -510,9 +528,7 @@ const char * <code class="descname">krpc_get_error</code><span class="sig-paren"
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -530,11 +546,11 @@ const char * <code class="descname">krpc_get_error</code><span class="sig-paren"
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -549,37 +565,24 @@ const char * <code class="descname">krpc_get_error</code><span class="sig-paren"
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

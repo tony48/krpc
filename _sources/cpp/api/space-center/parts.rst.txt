@@ -25,9 +25,13 @@ Parts
 
       A list of all of the vessels parts.
 
+      :Game Scenes: All
+
    .. function:: Part root()
 
       The vessels root part.
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
@@ -37,11 +41,17 @@ Parts
 
       The part from which the vessel is controlled.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Part> with_name(std::string name)
 
       A list of parts whose :func:`Part::name` is *name*.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: std::vector<Part> with_title(std::string title)
 
@@ -49,11 +59,19 @@ Parts
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: std::vector<Part> with_tag(std::string tag)
 
       A list of all parts whose :func:`Part::tag` is *tag*.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: std::vector<Part> with_module(std::string module_name)
 
@@ -62,6 +80,10 @@ Parts
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: std::vector<Part> in_stage(int32_t stage)
 
       A list of all parts that are activated in the given *stage*.
@@ -69,6 +91,8 @@ Parts
       :Parameters:
 
 
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
@@ -81,6 +105,8 @@ Parts
 
 
 
+      :Game Scenes: All
+
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
@@ -91,29 +117,45 @@ Parts
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: std::vector<Antenna> antennas()
 
       A list of all antennas in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<CargoBay> cargo_bays()
 
       A list of all cargo bays in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<ControlSurface> control_surfaces()
 
       A list of all control surfaces in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<Decoupler> decouplers()
 
       A list of all decouplers in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<DockingPort> docking_ports()
 
       A list of all docking ports in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Engine> engines()
 
       A list of all engines in the vessel.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -126,61 +168,91 @@ Parts
 
       A list of all science experiments in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Fairing> fairings()
 
       A list of all fairings in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<Intake> intakes()
 
       A list of all intakes in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Leg> legs()
 
       A list of all landing legs attached to the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<LaunchClamp> launch_clamps()
 
       A list of all launch clamps attached to the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Light> lights()
 
       A list of all lights in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<Parachute> parachutes()
 
       A list of all parachutes in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Radiator> radiators()
 
       A list of all radiators in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<RCS> rcs()
 
       A list of all RCS blocks/thrusters in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<ReactionWheel> reaction_wheels()
 
       A list of all reaction wheels in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<ResourceConverter> resource_converters()
 
       A list of all resource converters in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<ResourceHarvester> resource_harvesters()
 
       A list of all resource harvesters in the vessel.
+
+      :Game Scenes: All
 
    .. function:: std::vector<Sensor> sensors()
 
       A list of all sensors in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<SolarPanel> solar_panels()
 
       A list of all solar panels in the vessel.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Wheel> wheels()
 
       A list of all wheels in the vessel.
+
+      :Game Scenes: All
 
 
 
@@ -199,9 +271,13 @@ Part
       `part cfg files <https://wiki.kerbalspaceprogram.com/wiki/CFG_File_Documentation>`_.
       For example "Mark1-2Pod".
 
+      :Game Scenes: All
+
    .. function:: std::string title()
 
       Title of the part, as shown when the part is right clicked in-game. For example "Mk1-2 Command Pod".
+
+      :Game Scenes: All
 
    .. function:: std::string tag()
    .. function:: void set_tag(std::string value)
@@ -209,37 +285,48 @@ Part
       The name tag for the part. Can be set to a custom string using the
       in-game user interface.
 
+      :Game Scenes: All
+
 
       .. note::
 
-         This requires either the
-         `NameTag <https://github.com/krpc/NameTag/releases/latest>`_ or
+         This string is shared with
          `kOS <https://forum.kerbalspaceprogram.com/index.php?/topic/61827-/>`_
-         mod to be installed.
+         if it is installed.
 
    .. function:: bool highlighted()
    .. function:: void set_highlighted(bool value)
 
       Whether the part is highlighted.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<double, double, double> highlight_color()
    .. function:: void set_highlight_color(std::tuple<double, double, double> value)
 
       The color used to highlight the part, as an RGB triple.
 
+      :Game Scenes: All
+
    .. function:: double cost()
 
       The cost of the part, in units of funds.
 
+      :Game Scenes: All
+
    .. function:: Vessel vessel()
 
       The vessel that contains this part.
+
+      :Game Scenes: All
 
    .. function:: Part parent()
 
       The parts parent. Returns ``NULL`` if the part does not have a parent.
       This, in combination with :func:`Part::children`, can be used to traverse the vessels
       parts tree.
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
@@ -250,6 +337,8 @@ Part
       This, in combination with :func:`Part::parent`, can be used to traverse the vessels
       parts tree.
 
+      :Game Scenes: All
+
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-trees-of-parts`.
 
@@ -257,6 +346,8 @@ Part
 
       Whether the part is axially attached to its parent, i.e. on the top
       or bottom of its parent. If the part has no parent, returns ``false``.
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-attachment-modes`.
@@ -266,6 +357,8 @@ Part
       Whether the part is radially attached to its parent, i.e. on the side of its parent.
       If the part has no parent, returns ``false``.
 
+      :Game Scenes: All
+
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-attachment-modes`.
 
@@ -273,6 +366,8 @@ Part
 
       The stage in which this part will be activated. Returns -1 if the part is not
       activated by staging.
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
@@ -282,6 +377,8 @@ Part
       The stage in which this part will be decoupled. Returns -1 if the part is never
       decoupled from the vessel.
 
+      :Game Scenes: All
+
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-staging`.
 
@@ -290,58 +387,84 @@ Part
       Whether the part is
       `massless <https://wiki.kerbalspaceprogram.com/wiki/Massless_part>`_.
 
+      :Game Scenes: All
+
    .. function:: double mass()
 
       The current mass of the part, including resources it contains, in kilograms.
       Returns zero if the part is massless.
+
+      :Game Scenes: All
 
    .. function:: double dry_mass()
 
       The mass of the part, not including any resources it contains, in kilograms.
       Returns zero if the part is massless.
 
+      :Game Scenes: All
+
    .. function:: bool shielded()
 
       Whether the part is shielded from the exterior of the vessel, for example by a fairing.
+
+      :Game Scenes: All
 
    .. function:: float dynamic_pressure()
 
       The dynamic pressure acting on the part, in Pascals.
 
+      :Game Scenes: All
+
    .. function:: double impact_tolerance()
 
       The impact tolerance of the part, in meters per second.
+
+      :Game Scenes: All
 
    .. function:: double temperature()
 
       Temperature of the part, in Kelvin.
 
+      :Game Scenes: All
+
    .. function:: double skin_temperature()
 
       Temperature of the skin of the part, in Kelvin.
+
+      :Game Scenes: All
 
    .. function:: double max_temperature()
 
       Maximum temperature that the part can survive, in Kelvin.
 
+      :Game Scenes: All
+
    .. function:: double max_skin_temperature()
 
       Maximum temperature that the skin of the part can survive, in Kelvin.
+
+      :Game Scenes: All
 
    .. function:: float thermal_mass()
 
       A measure of how much energy it takes to increase the internal temperature of the part,
       in Joules per Kelvin.
 
+      :Game Scenes: All
+
    .. function:: float thermal_skin_mass()
 
       A measure of how much energy it takes to increase the skin temperature of the part,
       in Joules per Kelvin.
 
+      :Game Scenes: All
+
    .. function:: float thermal_resource_mass()
 
       A measure of how much energy it takes to increase the temperature of the resources
       contained in the part, in Joules per Kelvin.
+
+      :Game Scenes: All
 
    .. function:: float thermal_conduction_flux()
 
@@ -350,6 +473,8 @@ Part
       A positive value means the part is gaining heat energy, and negative means it is
       losing heat energy.
 
+      :Game Scenes: All
+
    .. function:: float thermal_convection_flux()
 
       The rate at which heat energy is convecting into or out of the part from the
@@ -357,12 +482,16 @@ Part
       A positive value means the part is gaining heat energy, and negative means it is
       losing heat energy.
 
+      :Game Scenes: All
+
    .. function:: float thermal_radiation_flux()
 
       The rate at which heat energy is radiating into or out of the part from the surrounding
       environment. Measured in energy per unit time, or power, in Watts.
       A positive value means the part is gaining heat energy, and negative means it is
       losing heat energy.
+
+      :Game Scenes: All
 
    .. function:: float thermal_internal_flux()
 
@@ -372,6 +501,8 @@ Part
       A positive value means the part is gaining heat energy, and negative means it is losing
       heat energy.
 
+      :Game Scenes: All
+
    .. function:: float thermal_skin_to_internal_flux()
 
       The rate at which heat energy is transferring between the part's skin and its internals.
@@ -379,22 +510,32 @@ Part
       A positive value means the part's internals are gaining heat energy,
       and negative means its skin is gaining heat energy.
 
+      :Game Scenes: All
+
    .. function:: Resources resources()
 
       A :class:`Resources` object for the part.
+
+      :Game Scenes: All
 
    .. function:: bool crossfeed()
 
       Whether this part is crossfeed capable.
 
+      :Game Scenes: All
+
    .. function:: bool is_fuel_line()
 
       Whether this part is a fuel line.
+
+      :Game Scenes: All
 
    .. function:: std::vector<Part> fuel_lines_from()
 
       The parts that are connected to this part via fuel lines, where the direction of the
       fuel line is into this part.
+
+      :Game Scenes: All
 
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
@@ -404,6 +545,8 @@ Part
       The parts that are connected to this part via fuel lines, where the direction of the
       fuel line is out of this part.
 
+      :Game Scenes: All
+
 
       .. note:: See the discussion on :rst:ref:`cpp-api-parts-fuel-lines`.
 
@@ -411,42 +554,62 @@ Part
 
       The modules for this part.
 
+      :Game Scenes: All
+
    .. function:: Antenna antenna()
 
       A :class:`Antenna` if the part is an antenna, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: CargoBay cargo_bay()
 
       A :class:`CargoBay` if the part is a cargo bay, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: ControlSurface control_surface()
 
       A :class:`ControlSurface` if the part is an aerodynamic control surface,
       otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Decoupler decoupler()
 
       A :class:`Decoupler` if the part is a decoupler, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: DockingPort docking_port()
 
       A :class:`DockingPort` if the part is a docking port, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Engine engine()
 
       An :class:`Engine` if the part is an engine, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: Experiment experiment()
 
       An :class:`Experiment` if the part is a science experiment, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Fairing fairing()
 
       A :class:`Fairing` if the part is a fairing, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Intake intake()
 
       An :class:`Intake` if the part is an intake, otherwise ``NULL``.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -459,51 +622,75 @@ Part
 
       A :class:`Leg` if the part is a landing leg, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: LaunchClamp launch_clamp()
 
       A :class:`LaunchClamp` if the part is a launch clamp, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: Light light()
 
       A :class:`Light` if the part is a light, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Parachute parachute()
 
       A :class:`Parachute` if the part is a parachute, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: Radiator radiator()
 
       A :class:`Radiator` if the part is a radiator, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: RCS rcs()
 
       A :class:`RCS` if the part is an RCS block/thruster, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: ReactionWheel reaction_wheel()
 
       A :class:`ReactionWheel` if the part is a reaction wheel, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: ResourceConverter resource_converter()
 
       A :class:`ResourceConverter` if the part is a resource converter,
       otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: ResourceHarvester resource_harvester()
 
       A :class:`ResourceHarvester` if the part is a resource harvester,
       otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Sensor sensor()
 
       A :class:`Sensor` if the part is a sensor, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: SolarPanel solar_panel()
 
       A :class:`SolarPanel` if the part is a solar panel, otherwise ``NULL``.
 
+      :Game Scenes: All
+
    .. function:: Wheel wheel()
 
       A :class:`Wheel` if the part is a wheel, otherwise ``NULL``.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
@@ -514,6 +701,8 @@ Part
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -531,6 +720,7 @@ Part
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> bounding_box(ReferenceFrame reference_frame)
 
@@ -541,6 +731,8 @@ Part
        * **reference_frame** -- The reference frame that the returned position vectors are in.
 
       :returns: The positions of the minimum and maximum vertices of the box, as position vectors.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -557,6 +749,7 @@ Part
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> velocity(ReferenceFrame reference_frame)
 
@@ -567,6 +760,7 @@ Part
        * **reference_frame** -- The reference frame that the returned velocity vector is in.
 
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the body in meters per second.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
@@ -577,17 +771,22 @@ Part
        * **reference_frame** -- The reference frame that the returned rotation is in.
 
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> moment_of_inertia()
 
       The moment of inertia of the part in :math:`kg.m^2` around its center of mass
       in the parts reference frame (:class:`ReferenceFrame`).
 
+      :Game Scenes: All
+
    .. function:: std::vector<double> inertia_tensor()
 
       The inertia tensor of the part in the parts reference frame
       (:class:`ReferenceFrame`).
       Returns the 3x3 matrix as a list of elements, in row-major order.
+
+      :Game Scenes: All
 
    .. function:: ReferenceFrame reference_frame()
 
@@ -598,6 +797,8 @@ Part
         :func:`Part::position`.
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -621,6 +822,8 @@ Part
       * The axes rotate with the part.
       * The x, y and z axis directions depend on the design of the part.
 
+      :Game Scenes: All
+
 
       .. note::
 
@@ -639,6 +842,7 @@ Part
        * **reference_frame** -- The reference frame that the force and position are in.
 
       :returns: An object that can be used to remove or modify the force.
+      :Game Scenes: All
 
    .. function:: void instantaneous_force(std::tuple<double, double, double> force, std::tuple<double, double, double> position, ReferenceFrame reference_frame)
 
@@ -649,6 +853,8 @@ Part
        * **force** -- A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
        * **position** -- The position at which the force acts, as a vector.
        * **reference_frame** -- The reference frame that the force and position are in.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -665,12 +871,15 @@ Part
 
       The part that this force is applied to.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<double, double, double> force_vector()
    .. function:: void set_force_vector(std::tuple<double, double, double> value)
 
       The force vector, in Newtons.
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> position()
    .. function:: void set_position(std::tuple<double, double, double> value)
@@ -678,15 +887,21 @@ Part
       The position at which the force acts, in reference frame :class:`ReferenceFrame`.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: ReferenceFrame reference_frame()
    .. function:: void set_reference_frame(ReferenceFrame value)
 
       The reference frame of the force vector and position.
 
+      :Game Scenes: All
+
    .. function:: void remove()
 
       Remove the force.
+
+
+      :Game Scenes: All
 
 
 
@@ -709,14 +924,20 @@ Module
 
       Name of the PartModule. For example, "ModuleEngines".
 
+      :Game Scenes: All
+
    .. function:: Part part()
 
       The part that contains this module.
+
+      :Game Scenes: All
 
    .. function:: std::map<std::string, std::string> fields()
 
       The modules field names and their associated values, as a dictionary.
       These are the values visible in the right-click menu of the part.
+
+      :Game Scenes: All
 
    .. function:: bool has_field(std::string name)
 
@@ -726,6 +947,8 @@ Module
 
        * **name** -- Name of the field.
 
+      :Game Scenes: All
+
    .. function:: std::string get_field(std::string name)
 
       Returns the value of a field.
@@ -733,6 +956,8 @@ Module
       :Parameters:
 
        * **name** -- Name of the field.
+
+      :Game Scenes: All
 
    .. function:: void set_field_int(std::string name, int32_t value)
 
@@ -743,6 +968,8 @@ Module
        * **name** -- Name of the field.
        * **value** -- Value to set.
 
+      :Game Scenes: All
+
    .. function:: void set_field_float(std::string name, float value)
 
       Set the value of a field to the given floating point number.
@@ -751,6 +978,8 @@ Module
 
        * **name** -- Name of the field.
        * **value** -- Value to set.
+
+      :Game Scenes: All
 
    .. function:: void set_field_string(std::string name, std::string value)
 
@@ -761,6 +990,8 @@ Module
        * **name** -- Name of the field.
        * **value** -- Value to set.
 
+      :Game Scenes: All
+
    .. function:: void reset_field(std::string name)
 
       Set the value of a field to its original value.
@@ -769,16 +1000,24 @@ Module
 
        * **name** -- Name of the field.
 
+      :Game Scenes: All
+
    .. function:: std::vector<std::string> events()
 
       A list of the names of all of the modules events. Events are the clickable buttons
       visible in the right-click menu of the part.
+
+      :Game Scenes: All
 
    .. function:: bool has_event(std::string name)
 
       ``true`` if the module has an event with the given name.
 
       :Parameters:
+
+
+
+      :Game Scenes: All
 
    .. function:: void trigger_event(std::string name)
 
@@ -787,10 +1026,16 @@ Module
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: std::vector<std::string> actions()
 
       A list of all the names of the modules actions. These are the parts actions that can
       be assigned to action groups in the in-game editor.
+
+      :Game Scenes: All
 
    .. function:: bool has_action(std::string name)
 
@@ -798,11 +1043,20 @@ Module
 
       :Parameters:
 
+
+
+      :Game Scenes: All
+
    .. function:: void set_action(std::string name, bool value = true)
 
       Set the value of an action with the given name.
 
       :Parameters:
+
+
+
+
+      :Game Scenes: All
 
 
 
@@ -826,18 +1080,26 @@ Antenna
 
       The part object for this antenna.
 
+      :Game Scenes: All
+
    .. function:: AntennaState state()
 
       The current state of the antenna.
+
+      :Game Scenes: All
 
    .. function:: bool deployable()
 
       Whether the antenna is deployable.
 
+      :Game Scenes: All
+
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the antenna is deployed.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -849,43 +1111,65 @@ Antenna
 
       Whether data can be transmitted by this antenna.
 
+      :Game Scenes: All
+
    .. function:: void transmit()
 
       Transmit data.
 
+
+      :Game Scenes: All
+
    .. function:: void cancel()
 
       Cancel current transmission of data.
+
+
+      :Game Scenes: All
 
    .. function:: bool allow_partial()
    .. function:: void set_allow_partial(bool value)
 
       Whether partial data transmission is permitted.
 
+      :Game Scenes: All
+
    .. function:: double power()
 
       The power of the antenna.
+
+      :Game Scenes: All
 
    .. function:: bool combinable()
 
       Whether the antenna can be combined with other antennae on the vessel
       to boost the power.
 
+      :Game Scenes: All
+
    .. function:: double combinable_exponent()
 
       Exponent used to calculate the combined power of multiple antennae on a vessel.
+
+      :Game Scenes: All
 
    .. function:: float packet_interval()
 
       Interval between sending packets in seconds.
 
+      :Game Scenes: All
+
    .. function:: float packet_size()
 
       Amount of data sent per packet in Mits.
 
+      :Game Scenes: All
+
    .. function:: double packet_resource_cost()
 
       Units of electric charge consumed per packet sent.
+
+      :Game Scenes: All
 
 
 
@@ -933,14 +1217,20 @@ Cargo Bay
 
       The part object for this cargo bay.
 
+      :Game Scenes: All
+
    .. function:: CargoBayState state()
 
       The state of the cargo bay.
+
+      :Game Scenes: All
 
    .. function:: bool open()
    .. function:: void set_open(bool value)
 
       Whether the cargo bay is open.
+
+      :Game Scenes: All
 
 
 
@@ -983,20 +1273,28 @@ Control Surface
 
       The part object for this control surface.
 
+      :Game Scenes: All
+
    .. function:: bool pitch_enabled()
    .. function:: void set_pitch_enabled(bool value)
 
       Whether the control surface has pitch control enabled.
+
+      :Game Scenes: All
 
    .. function:: bool yaw_enabled()
    .. function:: void set_yaw_enabled(bool value)
 
       Whether the control surface has yaw control enabled.
 
+      :Game Scenes: All
+
    .. function:: bool roll_enabled()
    .. function:: void set_roll_enabled(bool value)
 
       Whether the control surface has roll control enabled.
+
+      :Game Scenes: All
 
    .. function:: float authority_limiter()
    .. function:: void set_authority_limiter(float value)
@@ -1004,25 +1302,35 @@ Control Surface
       The authority limiter for the control surface, which controls how far the
       control surface will move.
 
+      :Game Scenes: All
+
    .. function:: bool inverted()
    .. function:: void set_inverted(bool value)
 
       Whether the control surface movement is inverted.
+
+      :Game Scenes: All
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the control surface has been fully deployed.
 
+      :Game Scenes: All
+
    .. function:: float surface_area()
 
       Surface area of the control surface in :math:`m^2`.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
       The available torque, in Newton meters, that can be produced by this control surface,
       in the positive and negative pitch, roll and yaw axes of the vessel. These axes
       correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+
+      :Game Scenes: All
 
 
 
@@ -1038,11 +1346,15 @@ Decoupler
 
       The part object for this decoupler.
 
+      :Game Scenes: All
+
    .. function:: Vessel decouple()
 
       Fires the decoupler. Returns the new vessel created when the decoupler fires.
       Throws an exception if the decoupler has already fired.
 
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1055,13 +1367,19 @@ Decoupler
 
       Whether the decoupler has fired.
 
+      :Game Scenes: All
+
    .. function:: bool staged()
 
       Whether the decoupler is enabled in the staging sequence.
 
+      :Game Scenes: All
+
    .. function:: float impulse()
 
       The impulse that the decoupler imparts when it is fired, in Newton seconds.
+
+      :Game Scenes: All
 
 
 
@@ -1077,14 +1395,20 @@ Docking Port
 
       The part object for this docking port.
 
+      :Game Scenes: All
+
    .. function:: DockingPortState state()
 
       The current state of the docking port.
+
+      :Game Scenes: All
 
    .. function:: Part docked_part()
 
       The part that this docking port is docked to. Returns ``NULL`` if this
       docking port is not docked to anything.
+
+      :Game Scenes: All
 
    .. function:: Vessel undock()
 
@@ -1092,6 +1416,8 @@ Docking Port
       This method can be called for either docking port in a docked pair.
       Throws an exception if the docking port is not docked to anything.
 
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1105,9 +1431,13 @@ Docking Port
       The distance a docking port must move away when it undocks before it
       becomes ready to dock with another port, in meters.
 
+      :Game Scenes: All
+
    .. function:: bool has_shield()
 
       Whether the docking port has a shield.
+
+      :Game Scenes: All
 
    .. function:: bool shielded()
    .. function:: void set_shielded(bool value)
@@ -1119,6 +1449,8 @@ Docking Port
       closed, and when set to ``false`` the shield is opened. If the docking
       port does not have a shield, setting this attribute has no effect.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<double, double, double> position(ReferenceFrame reference_frame)
 
       The position of the docking port, in the given reference frame.
@@ -1128,6 +1460,7 @@ Docking Port
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> direction(ReferenceFrame reference_frame)
 
@@ -1138,6 +1471,7 @@ Docking Port
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double, double> rotation(ReferenceFrame reference_frame)
 
@@ -1148,6 +1482,7 @@ Docking Port
        * **reference_frame** -- The reference frame that the returned rotation is in.
 
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: All
 
    .. function:: ReferenceFrame reference_frame()
 
@@ -1159,6 +1494,8 @@ Docking Port
       * The x-axis points out to the right side of the docking port.
       * The y-axis points in the direction the docking port is facing.
       * The z-axis points out of the bottom off the docking port.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1237,15 +1574,21 @@ Engine
 
       The part object for this engine.
 
+      :Game Scenes: All
+
    .. function:: bool active()
    .. function:: void set_active(bool value)
 
       Whether the engine is active. Setting this attribute may have no effect,
       depending on :func:`Engine::can_shutdown` and :func:`Engine::can_restart`.
 
+      :Game Scenes: All
+
    .. function:: float thrust()
 
       The current amount of thrust being produced by the engine, in Newtons.
+
+      :Game Scenes: All
 
    .. function:: float available_thrust()
 
@@ -1255,10 +1598,14 @@ Engine
       Takes the engine's current :func:`Engine::thrust_limit` and atmospheric conditions
       into account.
 
+      :Game Scenes: All
+
    .. function:: float max_thrust()
 
       The amount of thrust, in Newtons, that would be produced by the engine
       when activated and fueled, with its throttle and throttle limiter set to 100%.
+
+      :Game Scenes: All
 
    .. function:: float max_vacuum_thrust()
 
@@ -1267,6 +1614,8 @@ Engine
       when activated, :func:`Engine::thrust_limit` is set to 100%, the main
       vessel's throttle is set to 100% and the engine is in a vacuum.
 
+      :Game Scenes: All
+
    .. function:: float thrust_limit()
    .. function:: void set_thrust_limit(float value)
 
@@ -1274,9 +1623,13 @@ Engine
       attribute may have no effect, for example the thrust limit for a solid
       rocket booster cannot be changed in flight.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Thruster> thrusters()
 
       The components of the engine that generate thrust.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1291,22 +1644,32 @@ Engine
       The current specific impulse of the engine, in seconds. Returns zero
       if the engine is not active.
 
+      :Game Scenes: All
+
    .. function:: float vacuum_specific_impulse()
 
       The vacuum specific impulse of the engine, in seconds.
+
+      :Game Scenes: All
 
    .. function:: float kerbin_sea_level_specific_impulse()
 
       The specific impulse of the engine at sea level on Kerbin, in seconds.
 
+      :Game Scenes: All
+
    .. function:: std::vector<std::string> propellant_names()
 
       The names of the propellants that the engine consumes.
+
+      :Game Scenes: All
 
    .. function:: std::map<std::string, float> propellant_ratios()
 
       The ratio of resources that the engine consumes. A dictionary mapping resource names
       to the ratio at which they are consumed by the engine.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1318,9 +1681,13 @@ Engine
 
       The propellants that the engine consumes.
 
+      :Game Scenes: All
+
    .. function:: bool has_fuel()
 
       Whether the engine has any fuel available.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1334,11 +1701,15 @@ Engine
       setting, as some engines take time to adjust their throttle
       (such as jet engines).
 
+      :Game Scenes: All
+
    .. function:: bool throttle_locked()
 
       Whether the :func:`Control::throttle` affects the engine. For example,
       this is ``true`` for liquid fueled rockets, and ``false`` for solid rocket
       boosters.
+
+      :Game Scenes: All
 
    .. function:: bool can_restart()
 
@@ -1346,42 +1717,61 @@ Engine
       returns ``false``. For example, this is ``true`` for liquid fueled rockets
       and ``false`` for solid rocket boosters.
 
+      :Game Scenes: All
+
    .. function:: bool can_shutdown()
 
       Whether the engine can be shutdown once activated. For example, this is
       ``true`` for liquid fueled rockets and ``false`` for solid rocket boosters.
 
+      :Game Scenes: All
+
    .. function:: bool has_modes()
 
       Whether the engine has multiple modes of operation.
+
+      :Game Scenes: All
 
    .. function:: std::string mode()
    .. function:: void set_mode(std::string value)
 
       The name of the current engine mode.
 
+      :Game Scenes: All
+
    .. function:: std::map<std::string, Engine> modes()
 
       The available modes for the engine.
       A dictionary mapping mode names to :class:`Engine` objects.
 
+      :Game Scenes: All
+
    .. function:: void toggle_mode()
 
       Toggle the current engine mode.
+
+
+      :Game Scenes: All
 
    .. function:: bool auto_mode_switch()
    .. function:: void set_auto_mode_switch(bool value)
 
       Whether the engine will automatically switch modes.
 
+      :Game Scenes: All
+
    .. function:: bool gimballed()
 
       Whether the engine is gimballed.
+
+      :Game Scenes: All
 
    .. function:: float gimbal_range()
 
       The range over which the gimbal can move, in degrees.
       Returns 0 if the engine is not gimballed.
+
+      :Game Scenes: All
 
    .. function:: bool gimbal_locked()
    .. function:: void set_gimbal_locked(bool value)
@@ -1389,11 +1779,15 @@ Engine
       Whether the engines gimbal is locked in place. Setting this attribute has
       no effect if the engine is not gimballed.
 
+      :Game Scenes: All
+
    .. function:: float gimbal_limit()
    .. function:: void set_gimbal_limit(float value)
 
       The gimbal limiter of the engine. A value between 0 and 1.
       Returns 0 if the gimbal is locked.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
@@ -1401,6 +1795,8 @@ Engine
       in the positive and negative pitch, roll and yaw axes of the vessel. These axes
       correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the engine is inactive, or not gimballed.
+
+      :Game Scenes: All
 
 
 
@@ -1412,44 +1808,64 @@ Engine
 
       The name of the propellant.
 
+      :Game Scenes: All
+
    .. function:: double current_amount()
 
       The current amount of propellant.
 
+      :Game Scenes: All
+
    .. function:: double current_requirement()
 
       The required amount of propellant.
+
+      :Game Scenes: All
 
    .. function:: double total_resource_available()
 
       The total amount of the underlying resource currently reachable given
       resource flow rules.
 
+      :Game Scenes: All
+
    .. function:: double total_resource_capacity()
 
       The total vehicle capacity for the underlying propellant resource,
       restricted by resource flow rules.
+
+      :Game Scenes: All
 
    .. function:: bool ignore_for_isp()
 
       If this propellant should be ignored when calculating required mass flow
       given specific impulse.
 
+      :Game Scenes: All
+
    .. function:: bool ignore_for_thrust_curve()
 
       If this propellant should be ignored for thrust curve calculations.
+
+      :Game Scenes: All
 
    .. function:: bool draw_stack_gauge()
 
       If this propellant has a stack gauge or not.
 
+      :Game Scenes: All
+
    .. function:: bool is_deprived()
 
       If this propellant is deprived.
 
+      :Game Scenes: All
+
    .. function:: float ratio()
 
       The propellant ratio.
+
+      :Game Scenes: All
 
 
 
@@ -1465,54 +1881,84 @@ Experiment
 
       The part object for this experiment.
 
+      :Game Scenes: All
+
    .. function:: void run()
 
       Run the experiment.
+
+
+      :Game Scenes: All
 
    .. function:: void transmit()
 
       Transmit all experimental data contained by this part.
 
+
+      :Game Scenes: All
+
    .. function:: void dump()
 
       Dump the experimental data contained by the experiment.
+
+
+      :Game Scenes: All
 
    .. function:: void reset()
 
       Reset the experiment.
 
+
+      :Game Scenes: All
+
    .. function:: bool deployed()
 
       Whether the experiment has been deployed.
+
+      :Game Scenes: All
 
    .. function:: bool rerunnable()
 
       Whether the experiment can be re-run.
 
+      :Game Scenes: All
+
    .. function:: bool inoperable()
 
       Whether the experiment is inoperable.
+
+      :Game Scenes: All
 
    .. function:: bool has_data()
 
       Whether the experiment contains data.
 
+      :Game Scenes: All
+
    .. function:: std::vector<ScienceData> data()
 
       The data contained in this experiment.
+
+      :Game Scenes: All
 
    .. function:: std::string biome()
 
       The name of the biome the experiment is currently in.
 
+      :Game Scenes: All
+
    .. function:: bool available()
 
       Determines if the experiment is available given the current conditions.
+
+      :Game Scenes: All
 
    .. function:: ScienceSubject science_subject()
 
       Containing information on the corresponding specific science result for the current
       conditions. Returns ``NULL`` if the experiment is unavailable.
+
+      :Game Scenes: All
 
 
 
@@ -1524,13 +1970,19 @@ Experiment
 
       Data amount.
 
+      :Game Scenes: All
+
    .. function:: float science_value()
 
       Science value.
 
+      :Game Scenes: All
+
    .. function:: float transmit_value()
 
       Transmit value.
+
+      :Game Scenes: All
 
 
 
@@ -1542,31 +1994,45 @@ Experiment
 
       Title of science subject, displayed in science archives
 
+      :Game Scenes: All
+
    .. function:: bool is_complete()
 
       Whether the experiment has been completed.
+
+      :Game Scenes: All
 
    .. function:: float science()
 
       Amount of science already earned from this subject, not updated until after
       transmission/recovery.
 
+      :Game Scenes: All
+
    .. function:: float science_cap()
 
       Total science allowable for this subject.
+
+      :Game Scenes: All
 
    .. function:: float data_scale()
 
       Multiply science value by this to determine data amount in mits.
 
+      :Game Scenes: All
+
    .. function:: float subject_value()
 
       Multiplier for specific Celestial Body/Experiment Situation combination.
+
+      :Game Scenes: All
 
    .. function:: float scientific_value()
 
       Diminishing value multiplier for decreasing the science value returned from repeated
       experiments.
+
+      :Game Scenes: All
 
 
 
@@ -1582,13 +2048,20 @@ Fairing
 
       The part object for this fairing.
 
+      :Game Scenes: All
+
    .. function:: void jettison()
 
       Jettison the fairing. Has no effect if it has already been jettisoned.
 
+
+      :Game Scenes: All
+
    .. function:: bool jettisoned()
 
       Whether the fairing has been jettisoned.
+
+      :Game Scenes: All
 
 
 
@@ -1604,22 +2077,32 @@ Intake
 
       The part object for this intake.
 
+      :Game Scenes: All
+
    .. function:: bool open()
    .. function:: void set_open(bool value)
 
       Whether the intake is open.
 
+      :Game Scenes: All
+
    .. function:: float speed()
 
       Speed of the flow into the intake, in :math:`m/s`.
+
+      :Game Scenes: All
 
    .. function:: float flow()
 
       The rate of flow into the intake, in units of resource per second.
 
+      :Game Scenes: All
+
    .. function:: float area()
 
       The area of the intake's opening, in square meters.
+
+      :Game Scenes: All
 
 
 
@@ -1635,18 +2118,26 @@ Leg
 
       The part object for this landing leg.
 
+      :Game Scenes: All
+
    .. function:: LegState state()
 
       The current state of the landing leg.
+
+      :Game Scenes: All
 
    .. function:: bool deployable()
 
       Whether the leg is deployable.
 
+      :Game Scenes: All
+
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the landing leg is deployed.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1657,6 +2148,8 @@ Leg
    .. function:: bool is_grounded()
 
       Returns whether the leg is touching the ground.
+
+      :Game Scenes: All
 
 
 
@@ -1704,9 +2197,14 @@ Launch Clamp
 
       The part object for this launch clamp.
 
+      :Game Scenes: All
+
    .. function:: void release()
 
       Releases the docking clamp. Has no effect if the clamp has already been released.
+
+
+      :Game Scenes: All
 
 
 
@@ -1722,19 +2220,27 @@ Light
 
       The part object for this light.
 
+      :Game Scenes: All
+
    .. function:: bool active()
    .. function:: void set_active(bool value)
 
       Whether the light is switched on.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<float, float, float> color()
    .. function:: void set_color(std::tuple<float, float, float> value)
 
       The color of the light, as an RGB triple.
 
+      :Game Scenes: All
+
    .. function:: float power_usage()
 
       The current power usage, in units of charge per second.
+
+      :Game Scenes: All
 
 
 
@@ -1750,28 +2256,42 @@ Parachute
 
       The part object for this parachute.
 
+      :Game Scenes: All
+
    .. function:: void deploy()
 
       Deploys the parachute. This has no effect if the parachute has already
       been deployed.
 
+
+      :Game Scenes: All
+
    .. function:: bool deployed()
 
       Whether the parachute has been deployed.
+
+      :Game Scenes: All
 
    .. function:: void arm()
 
       Deploys the parachute. This has no effect if the parachute has already
       been armed or deployed. Only applicable to RealChutes parachutes.
 
+
+      :Game Scenes: All
+
    .. function:: bool armed()
 
       Whether the parachute has been armed or deployed. Only applicable to
       RealChutes parachutes.
 
+      :Game Scenes: All
+
    .. function:: ParachuteState state()
 
       The current state of the parachute.
+
+      :Game Scenes: All
 
    .. function:: float deploy_altitude()
    .. function:: void set_deploy_altitude(float value)
@@ -1779,11 +2299,15 @@ Parachute
       The altitude at which the parachute will full deploy, in meters.
       Only applicable to stock parachutes.
 
+      :Game Scenes: All
+
    .. function:: float deploy_min_pressure()
    .. function:: void set_deploy_min_pressure(float value)
 
       The minimum pressure at which the parachute will semi-deploy, in atmospheres.
       Only applicable to stock parachutes.
+
+      :Game Scenes: All
 
 
 
@@ -1838,9 +2362,13 @@ Radiator
 
       The part object for this radiator.
 
+      :Game Scenes: All
+
    .. function:: bool deployable()
 
       Whether the radiator is deployable.
+
+      :Game Scenes: All
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
@@ -1848,9 +2376,13 @@ Radiator
       For a deployable radiator, ``true`` if the radiator is extended.
       If the radiator is not deployable, this is always ``true``.
 
+      :Game Scenes: All
+
    .. function:: RadiatorState state()
 
       The current state of the radiator.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -1903,9 +2435,13 @@ Resource Converter
 
       The part object for this converter.
 
+      :Game Scenes: All
+
    .. function:: int32_t count()
 
       The number of converters in the part.
+
+      :Game Scenes: All
 
    .. function:: std::string name(int32_t index)
 
@@ -1915,6 +2451,8 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
+      :Game Scenes: All
+
    .. function:: bool active(int32_t index)
 
       True if the specified converter is active.
@@ -1922,6 +2460,8 @@ Resource Converter
       :Parameters:
 
        * **index** -- Index of the converter.
+
+      :Game Scenes: All
 
    .. function:: void start(int32_t index)
 
@@ -1931,6 +2471,8 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
+      :Game Scenes: All
+
    .. function:: void stop(int32_t index)
 
       Stop the specified converter.
@@ -1939,6 +2481,8 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
+      :Game Scenes: All
+
    .. function:: ResourceConverterState state(int32_t index)
 
       The state of the specified converter.
@@ -1946,6 +2490,8 @@ Resource Converter
       :Parameters:
 
        * **index** -- Index of the converter.
+
+      :Game Scenes: All
 
    .. function:: std::string status_info(int32_t index)
 
@@ -1956,6 +2502,8 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
+      :Game Scenes: All
+
    .. function:: std::vector<std::string> inputs(int32_t index)
 
       List of the names of resources consumed by the specified converter.
@@ -1963,6 +2511,8 @@ Resource Converter
       :Parameters:
 
        * **index** -- Index of the converter.
+
+      :Game Scenes: All
 
    .. function:: std::vector<std::string> outputs(int32_t index)
 
@@ -1972,17 +2522,25 @@ Resource Converter
 
        * **index** -- Index of the converter.
 
+      :Game Scenes: All
+
    .. function:: float optimum_core_temperature()
 
       The core temperature at which the converter will operate with peak efficiency, in Kelvin.
+
+      :Game Scenes: All
 
    .. function:: float core_temperature()
 
       The core temperature of the converter, in Kelvin.
 
+      :Game Scenes: All
+
    .. function:: float thermal_efficiency()
 
       The thermal efficiency of the converter, as a percentage of its maximum.
+
+      :Game Scenes: All
 
 
 
@@ -2036,35 +2594,51 @@ Resource Harvester
 
       The part object for this harvester.
 
+      :Game Scenes: All
+
    .. function:: ResourceHarvesterState state()
 
       The state of the harvester.
+
+      :Game Scenes: All
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the harvester is deployed.
 
+      :Game Scenes: All
+
    .. function:: bool active()
    .. function:: void set_active(bool value)
 
       Whether the harvester is actively drilling.
 
+      :Game Scenes: All
+
    .. function:: float extraction_rate()
 
       The rate at which the drill is extracting ore, in units per second.
+
+      :Game Scenes: All
 
    .. function:: float thermal_efficiency()
 
       The thermal efficiency of the drill, as a percentage of its maximum.
 
+      :Game Scenes: All
+
    .. function:: float core_temperature()
 
       The core temperature of the drill, in Kelvin.
 
+      :Game Scenes: All
+
    .. function:: float optimum_core_temperature()
 
       The core temperature at which the drill will operate with peak efficiency, in Kelvin.
+
+      :Game Scenes: All
 
 
 
@@ -2112,14 +2686,20 @@ Reaction Wheel
 
       The part object for this reaction wheel.
 
+      :Game Scenes: All
+
    .. function:: bool active()
    .. function:: void set_active(bool value)
 
       Whether the reaction wheel is active.
 
+      :Game Scenes: All
+
    .. function:: bool broken()
 
       Whether the reaction wheel is broken.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
@@ -2128,11 +2708,15 @@ Reaction Wheel
       correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if the reaction wheel is inactive or broken.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> max_torque()
 
       The maximum torque, in Newton meters, that can be produced by this reaction wheel,
       when it is active, in the positive and negative pitch, roll and yaw axes of the vessel.
       These axes correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
+
+      :Game Scenes: All
 
 
 
@@ -2148,6 +2732,8 @@ RCS
 
       The part object for this RCS.
 
+      :Game Scenes: All
+
    .. function:: bool active()
 
       Whether the RCS thrusters are active.
@@ -2155,40 +2741,56 @@ RCS
       (:func:`Control::rcs`), the RCS thruster itself is not enabled
       (:func:`RCS::enabled`) or it is covered by a fairing (:func:`Part::shielded`).
 
+      :Game Scenes: All
+
    .. function:: bool enabled()
    .. function:: void set_enabled(bool value)
 
       Whether the RCS thrusters are enabled.
+
+      :Game Scenes: All
 
    .. function:: bool pitch_enabled()
    .. function:: void set_pitch_enabled(bool value)
 
       Whether the RCS thruster will fire when pitch control input is given.
 
+      :Game Scenes: All
+
    .. function:: bool yaw_enabled()
    .. function:: void set_yaw_enabled(bool value)
 
       Whether the RCS thruster will fire when yaw control input is given.
+
+      :Game Scenes: All
 
    .. function:: bool roll_enabled()
    .. function:: void set_roll_enabled(bool value)
 
       Whether the RCS thruster will fire when roll control input is given.
 
+      :Game Scenes: All
+
    .. function:: bool forward_enabled()
    .. function:: void set_forward_enabled(bool value)
 
       Whether the RCS thruster will fire when pitch control input is given.
+
+      :Game Scenes: All
 
    .. function:: bool up_enabled()
    .. function:: void set_up_enabled(bool value)
 
       Whether the RCS thruster will fire when yaw control input is given.
 
+      :Game Scenes: All
+
    .. function:: bool right_enabled()
    .. function:: void set_right_enabled(bool value)
 
       Whether the RCS thruster will fire when roll control input is given.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<std::tuple<double, double, double>, std::tuple<double, double, double>> available_torque()
 
@@ -2197,45 +2799,65 @@ RCS
       correspond to the coordinate axes of the :func:`Vessel::reference_frame`.
       Returns zero if RCS is disable.
 
+      :Game Scenes: All
+
    .. function:: float max_thrust()
 
       The maximum amount of thrust that can be produced by the RCS thrusters when active,
       in Newtons.
+
+      :Game Scenes: All
 
    .. function:: float max_vacuum_thrust()
 
       The maximum amount of thrust that can be produced by the RCS thrusters when active
       in a vacuum, in Newtons.
 
+      :Game Scenes: All
+
    .. function:: std::vector<Thruster> thrusters()
 
       A list of thrusters, one of each nozzel in the RCS part.
+
+      :Game Scenes: All
 
    .. function:: float specific_impulse()
 
       The current specific impulse of the RCS, in seconds. Returns zero
       if the RCS is not active.
 
+      :Game Scenes: All
+
    .. function:: float vacuum_specific_impulse()
 
       The vacuum specific impulse of the RCS, in seconds.
+
+      :Game Scenes: All
 
    .. function:: float kerbin_sea_level_specific_impulse()
 
       The specific impulse of the RCS at sea level on Kerbin, in seconds.
 
+      :Game Scenes: All
+
    .. function:: std::vector<std::string> propellants()
 
       The names of resources that the RCS consumes.
+
+      :Game Scenes: All
 
    .. function:: std::map<std::string, float> propellant_ratios()
 
       The ratios of resources that the RCS consumes. A dictionary mapping resource names
       to the ratios at which they are consumed by the RCS.
 
+      :Game Scenes: All
+
    .. function:: bool has_fuel()
 
       Whether the RCS has fuel available.
+
+      :Game Scenes: All
 
 
       .. note::
@@ -2256,14 +2878,20 @@ Sensor
 
       The part object for this sensor.
 
+      :Game Scenes: All
+
    .. function:: bool active()
    .. function:: void set_active(bool value)
 
       Whether the sensor is active.
 
+      :Game Scenes: All
+
    .. function:: std::string value()
 
       The current value of the sensor.
+
+      :Game Scenes: All
 
 
 
@@ -2279,28 +2907,40 @@ Solar Panel
 
       The part object for this solar panel.
 
+      :Game Scenes: All
+
    .. function:: bool deployable()
 
       Whether the solar panel is deployable.
+
+      :Game Scenes: All
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the solar panel is extended.
 
+      :Game Scenes: All
+
    .. function:: SolarPanelState state()
 
       The current state of the solar panel.
+
+      :Game Scenes: All
 
    .. function:: float energy_flow()
 
       The current amount of energy being generated by the solar panel, in
       units of charge per second.
 
+      :Game Scenes: All
+
    .. function:: float sun_exposure()
 
       The current amount of sunlight that is incident on the solar panel,
       as a percentage. A value between 0 and 1.
+
+      :Game Scenes: All
 
 
 
@@ -2355,6 +2995,8 @@ Thruster
 
       The :class:`Part` that contains this thruster.
 
+      :Game Scenes: All
+
    .. function:: std::tuple<double, double, double> thrust_position(ReferenceFrame reference_frame)
 
       The position at which the thruster generates thrust, in the given reference frame.
@@ -2365,6 +3007,7 @@ Thruster
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> thrust_direction(ReferenceFrame reference_frame)
 
@@ -2377,6 +3020,7 @@ Thruster
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
    .. function:: ReferenceFrame thrust_reference_frame()
 
@@ -2391,9 +3035,13 @@ Thruster
       * The y-axis points along the thrust direction.
       * The x-axis and z-axis are perpendicular to the thrust direction.
 
+      :Game Scenes: All
+
    .. function:: bool gimballed()
 
       Whether the thruster is gimballed.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> gimbal_position(ReferenceFrame reference_frame)
 
@@ -2404,10 +3052,13 @@ Thruster
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> gimbal_angle()
 
       The current gimbal angle in the pitch, roll and yaw axes, in degrees.
+
+      :Game Scenes: All
 
    .. function:: std::tuple<double, double, double> initial_thrust_position(ReferenceFrame reference_frame)
 
@@ -2419,6 +3070,8 @@ Thruster
        * **reference_frame** -- The reference frame that the returned position vector is in.
 
       :returns: The position as a vector.
+      :Game Scenes: All
+
 
       .. note::
 
@@ -2436,6 +3089,7 @@ Thruster
        * **reference_frame** -- The reference frame that the returned direction is in.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: All
 
 
 
@@ -2453,31 +3107,45 @@ Wheel
 
       The part object for this wheel.
 
+      :Game Scenes: All
+
    .. function:: WheelState state()
 
       The current state of the wheel.
+
+      :Game Scenes: All
 
    .. function:: float radius()
 
       Radius of the wheel, in meters.
 
+      :Game Scenes: All
+
    .. function:: bool grounded()
 
       Whether the wheel is touching the ground.
 
+      :Game Scenes: All
+
    .. function:: bool has_brakes()
 
       Whether the wheel has brakes.
+
+      :Game Scenes: All
 
    .. function:: float brakes()
    .. function:: void set_brakes(float value)
 
       The braking force, as a percentage of maximum, when the brakes are applied.
 
+      :Game Scenes: All
+
    .. function:: bool auto_friction_control()
    .. function:: void set_auto_friction_control(bool value)
 
       Whether automatic friction control is enabled.
+
+      :Game Scenes: All
 
    .. function:: float manual_friction_control()
    .. function:: void set_manual_friction_control(float value)
@@ -2485,42 +3153,60 @@ Wheel
       Manual friction control value. Only has an effect if automatic friction control is disabled.
       A value between 0 and 5 inclusive.
 
+      :Game Scenes: All
+
    .. function:: bool deployable()
 
       Whether the wheel is deployable.
+
+      :Game Scenes: All
 
    .. function:: bool deployed()
    .. function:: void set_deployed(bool value)
 
       Whether the wheel is deployed.
 
+      :Game Scenes: All
+
    .. function:: bool powered()
 
       Whether the wheel is powered by a motor.
+
+      :Game Scenes: All
 
    .. function:: bool motor_enabled()
    .. function:: void set_motor_enabled(bool value)
 
       Whether the motor is enabled.
 
+      :Game Scenes: All
+
    .. function:: bool motor_inverted()
    .. function:: void set_motor_inverted(bool value)
 
       Whether the direction of the motor is inverted.
 
+      :Game Scenes: All
+
    .. function:: MotorState motor_state()
 
       Whether the direction of the motor is inverted.
 
+      :Game Scenes: All
+
    .. function:: float motor_output()
 
       The output of the motor. This is the torque currently being generated, in Newton meters.
+
+      :Game Scenes: All
 
    .. function:: bool traction_control_enabled()
    .. function:: void set_traction_control_enabled(bool value)
 
       Whether automatic traction control is enabled.
       A wheel only has traction control if it is powered.
+
+      :Game Scenes: All
 
    .. function:: float traction_control()
    .. function:: void set_traction_control(float value)
@@ -2529,6 +3215,8 @@ Wheel
       Only takes effect if the wheel has automatic traction control enabled.
       A value between 0 and 5 inclusive.
 
+      :Game Scenes: All
+
    .. function:: float drive_limiter()
    .. function:: void set_drive_limiter(float value)
 
@@ -2536,59 +3224,87 @@ Wheel
       Only takes effect if the wheel has automatic traction control disabled.
       A value between 0 and 100 inclusive.
 
+      :Game Scenes: All
+
    .. function:: bool steerable()
 
       Whether the wheel has steering.
+
+      :Game Scenes: All
 
    .. function:: bool steering_enabled()
    .. function:: void set_steering_enabled(bool value)
 
       Whether the wheel steering is enabled.
 
+      :Game Scenes: All
+
    .. function:: bool steering_inverted()
    .. function:: void set_steering_inverted(bool value)
 
       Whether the wheel steering is inverted.
 
+      :Game Scenes: All
+
    .. function:: bool has_suspension()
 
       Whether the wheel has suspension.
+
+      :Game Scenes: All
 
    .. function:: float suspension_spring_strength()
 
       Suspension spring strength, as set in the editor.
 
+      :Game Scenes: All
+
    .. function:: float suspension_damper_strength()
 
       Suspension damper strength, as set in the editor.
+
+      :Game Scenes: All
 
    .. function:: bool broken()
 
       Whether the wheel is broken.
 
+      :Game Scenes: All
+
    .. function:: bool repairable()
 
       Whether the wheel is repairable.
+
+      :Game Scenes: All
 
    .. function:: float stress()
 
       Current stress on the wheel.
 
+      :Game Scenes: All
+
    .. function:: float stress_tolerance()
 
       Stress tolerance of the wheel.
+
+      :Game Scenes: All
 
    .. function:: float stress_percentage()
 
       Current stress on the wheel as a percentage of its stress tolerance.
 
+      :Game Scenes: All
+
    .. function:: float deflection()
 
       Current deflection of the wheel.
 
+      :Game Scenes: All
+
    .. function:: float slip()
 
       Current slip of the wheel.
+
+      :Game Scenes: All
 
 
 

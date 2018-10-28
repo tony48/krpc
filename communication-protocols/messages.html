@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Messaging Protocol &mdash; kRPC 0.4.7 documentation</title>
+  <title>Messaging Protocol &mdash; kRPC 0.4.8 documentation</title>
   
 
   
@@ -24,23 +24,13 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="kRPC 0.4.7 documentation" href="../index.html"/>
-        <link rel="up" title="Communication Protocols" href="../communication-protocols.html"/>
-        <link rel="next" title="Internals of kRPC" href="../internals.html"/>
-        <link rel="prev" title="Protocol Buffers over WebSockets" href="websockets.html"/>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Internals of kRPC" href="../internals.html" />
+    <link rel="prev" title="Protocol Buffers over WebSockets" href="websockets.html" />
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,7 +48,7 @@
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -80,7 +70,7 @@
             
             
               <div class="version">
-                0.4.7
+                0.4.8
               </div>
             
           
@@ -149,6 +139,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#procedure-names">Procedure Names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#type">Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gamescene">GameScene</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#proxy-objects">Proxy Objects</a></li>
 </ul>
 </li>
@@ -166,7 +157,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">kRPC</a>
@@ -174,9 +165,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -243,9 +235,9 @@ there are multiple client connections, requests are processed in round-robin ord
 list in the response is also ordered so that the results match the calls.</p>
 <div class="section" id="anatomy-of-a-request">
 <span id="communication-protocol-anatomy-of-a-request"></span><h3>Anatomy of a Request<a class="headerlink" href="#anatomy-of-a-request" title="Permalink to this headline">¶</a></h3>
-<p>A request is sent to the server using a <code class="docutils literal"><span class="pre">Request</span></code> Protocol Buffer message with the following
+<p>A request is sent to the server using a <code class="docutils literal notranslate"><span class="pre">Request</span></code> Protocol Buffer message with the following
 format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Request</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Request</span> <span class="p">{</span>
   <span class="k">repeated</span> <span class="n">ProcedureCall</span> <span class="na">calls</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -267,33 +259,33 @@ format:</p>
 calls in a single message, if desired.</p>
 <p>The fields of a procedure call are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">service</span></code> - The name of the service in which the remote procedure is defined.</li>
-<li><code class="docutils literal"><span class="pre">procedure</span></code> - The name of the remote procedure to invoke.</li>
-<li><code class="docutils literal"><span class="pre">service_id</span></code> - The integer identifier of the service in which the remote procedure is defined.</li>
-<li><code class="docutils literal"><span class="pre">procedure_id</span></code> - The integer identifier of the remote procedure to invoke.</li>
-<li><code class="docutils literal"><span class="pre">arguments</span></code> - A sequence of <code class="docutils literal"><span class="pre">Argument</span></code> messages containing the values of the procedure’s
+<li><code class="docutils literal notranslate"><span class="pre">service</span></code> - The name of the service in which the remote procedure is defined.</li>
+<li><code class="docutils literal notranslate"><span class="pre">procedure</span></code> - The name of the remote procedure to invoke.</li>
+<li><code class="docutils literal notranslate"><span class="pre">service_id</span></code> - The integer identifier of the service in which the remote procedure is defined.</li>
+<li><code class="docutils literal notranslate"><span class="pre">procedure_id</span></code> - The integer identifier of the remote procedure to invoke.</li>
+<li><code class="docutils literal notranslate"><span class="pre">arguments</span></code> - A sequence of <code class="docutils literal notranslate"><span class="pre">Argument</span></code> messages containing the values of the procedure’s
 arguments. The fields of an argument message are:<ul>
-<li><code class="docutils literal"><span class="pre">position</span></code> - The zero-indexed position of the of the argument in the procedure’s
+<li><code class="docutils literal notranslate"><span class="pre">position</span></code> - The zero-indexed position of the of the argument in the procedure’s
 signature.</li>
-<li><code class="docutils literal"><span class="pre">value</span></code> - The value of the argument, encoded in Protocol Buffer format.</li>
+<li><code class="docutils literal notranslate"><span class="pre">value</span></code> - The value of the argument, encoded in Protocol Buffer format.</li>
 </ul>
 </li>
 </ul>
-<p>The service containing the procedure to call is specified by setting either <code class="docutils literal"><span class="pre">service</span></code> or
-<code class="docutils literal"><span class="pre">service_id</span></code>. The procedure to call is specified by setting either <code class="docutils literal"><span class="pre">procedure</span></code> or
-<code class="docutils literal"><span class="pre">procedure_id</span></code>. Use of <code class="docutils literal"><span class="pre">service</span></code> and <code class="docutils literal"><span class="pre">procedure</span></code> (i.e. descriptive strings) should be
+<p>The service containing the procedure to call is specified by setting either <code class="docutils literal notranslate"><span class="pre">service</span></code> or
+<code class="docutils literal notranslate"><span class="pre">service_id</span></code>. The procedure to call is specified by setting either <code class="docutils literal notranslate"><span class="pre">procedure</span></code> or
+<code class="docutils literal notranslate"><span class="pre">procedure_id</span></code>. Use of <code class="docutils literal notranslate"><span class="pre">service</span></code> and <code class="docutils literal notranslate"><span class="pre">procedure</span></code> (i.e. descriptive strings) should be
 preferred as these will not change between server versions. For clients where code size or
-communication overhead must be kept to an absolute minimum, <code class="docutils literal"><span class="pre">service_id</span></code> and <code class="docutils literal"><span class="pre">procedure_id</span></code>
+communication overhead must be kept to an absolute minimum, <code class="docutils literal notranslate"><span class="pre">service_id</span></code> and <code class="docutils literal notranslate"><span class="pre">procedure_id</span></code>
 can be used. However, note that the identifiers may change between server versions.</p>
-<p>The <code class="docutils literal"><span class="pre">Argument</span></code> messages have a position field to allow values for default arguments to be
+<p>The <code class="docutils literal notranslate"><span class="pre">Argument</span></code> messages have a position field to allow values for default arguments to be
 omitted. See <a class="reference internal" href="#communication-protocol-protobuf-encoding"><span class="std std-ref">Protocol Buffer Encoding</span></a> for details on how to encode the
 argument values.</p>
 </div>
 <div class="section" id="anatomy-of-a-response">
 <span id="communication-protocol-anatomy-of-a-response"></span><h3>Anatomy of a Response<a class="headerlink" href="#anatomy-of-a-response" title="Permalink to this headline">¶</a></h3>
-<p>A response is sent to the client using a <code class="docutils literal"><span class="pre">Response</span></code> Protocol Buffer message with the following
+<p>A response is sent to the client using a <code class="docutils literal notranslate"><span class="pre">Response</span></code> Protocol Buffer message with the following
 format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span>
   <span class="n">Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">ProcedureResult</span> <span class="na">results</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -313,33 +305,33 @@ format:</p>
 </div>
 <p>A response message contains one or more results, corresponding to the procedure calls made in the
 associated request message.</p>
-<p>The <code class="docutils literal"><span class="pre">value</span></code> field of a procedure result message contains the value of the return value of the
+<p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field of a procedure result message contains the value of the return value of the
 remote procedure, if any, encoded in protocol buffer format. See
 <a class="reference internal" href="#communication-protocol-protobuf-encoding"><span class="std std-ref">Protocol Buffer Encoding</span></a> for details on how to decode the return value.</p>
-<p>If an error occurs processing a request message, the <code class="docutils literal"><span class="pre">error</span></code> field in the response message will
+<p>If an error occurs processing a request message, the <code class="docutils literal notranslate"><span class="pre">error</span></code> field in the response message will
 contain a description of the error. If an individual procedure call encounters an error, the
-<code class="docutils literal"><span class="pre">error</span></code> field in the corresponding procedure result message will contain a description of the
+<code class="docutils literal notranslate"><span class="pre">error</span></code> field in the corresponding procedure result message will contain a description of the
 error.</p>
 <p>The fields of an error message are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">service</span></code> - If the error was caused by an exception, this is the name of the service in which the
+<li><code class="docutils literal notranslate"><span class="pre">service</span></code> - If the error was caused by an exception, this is the name of the service in which the
 exception type is defined.</li>
-<li><code class="docutils literal"><span class="pre">name</span></code> - If the error was caused by an exception, this is the name of the exception type.</li>
-<li><code class="docutils literal"><span class="pre">description</span></code> - A human readable description of the error</li>
-<li><code class="docutils literal"><span class="pre">stack_trace</span></code> - If the error was caused by an exception, this is a server-side stack trace for
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - If the error was caused by an exception, this is the name of the exception type.</li>
+<li><code class="docutils literal notranslate"><span class="pre">description</span></code> - A human readable description of the error</li>
+<li><code class="docutils literal notranslate"><span class="pre">stack_trace</span></code> - If the error was caused by an exception, this is a server-side stack trace for
 the exception.</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="example-rpc-invocation">
 <h3>Example RPC invocation<a class="headerlink" href="#example-rpc-invocation" title="Permalink to this headline">¶</a></h3>
-<p>The following Python code invokes the <code class="docutils literal"><span class="pre">GetStatus</span></code> procedure from the <a class="reference internal" href="#communication-protocol-krpc-service"><span class="std std-ref">KRPC service</span></a> using an already established connection to the server (the
-<code class="docutils literal"><span class="pre">rpc_conn</span></code> variable).</p>
-<p>The <code class="docutils literal"><span class="pre">krpc.schema.KRPC</span></code> package contains the various Protocol Buffer message formats compiled to
-python code using the Protocol Buffer compiler. The <code class="docutils literal"><span class="pre">send_message</span></code> and <code class="docutils literal"><span class="pre">recv_message</span></code> are helper
+<p>The following Python code invokes the <code class="docutils literal notranslate"><span class="pre">GetStatus</span></code> procedure from the <a class="reference internal" href="#communication-protocol-krpc-service"><span class="std std-ref">KRPC service</span></a> using an already established connection to the server (the
+<code class="docutils literal notranslate"><span class="pre">rpc_conn</span></code> variable).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">krpc.schema.KRPC</span></code> package contains the various Protocol Buffer message formats compiled to
+python code using the Protocol Buffer compiler. The <code class="docutils literal notranslate"><span class="pre">send_message</span></code> and <code class="docutils literal notranslate"><span class="pre">recv_message</span></code> are helper
 functions used to send/receive messages from the server.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">call</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ProcedureCall</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">call</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">ProcedureCall</span><span class="p">()</span>
 <span class="n">call</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;KRPC&#39;</span>
 <span class="n">call</span><span class="o">.</span><span class="n">procedure</span> <span class="o">=</span> <span class="s1">&#39;GetStatus&#39;</span>
 <span class="n">request</span> <span class="o">=</span> <span class="n">KRPC</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
@@ -400,17 +392,17 @@ number of Hertz. The server computes a time delay from the target rate, and only
 if at least that time has passed since the last time the stream was updated.</p>
 <div class="section" id="anatomy-of-a-stream-update">
 <h3>Anatomy of a Stream Update<a class="headerlink" href="#anatomy-of-a-stream-update" title="Permalink to this headline">¶</a></h3>
-<p>Stream updates are sent to the client using a <code class="docutils literal"><span class="pre">StreamUpdate</span></code> Protocol Buffer message with the
+<p>Stream updates are sent to the client using a <code class="docutils literal notranslate"><span class="pre">StreamUpdate</span></code> Protocol Buffer message with the
 following format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">StreamUpdate</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">StreamUpdate</span> <span class="p">{</span>
   <span class="k">repeated</span> <span class="n">StreamResult</span> <span class="na">results</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This contains a list of <code class="docutils literal"><span class="pre">StreamResult</span></code> messages, one for each stream that exists on the server for
+<p>This contains a list of <code class="docutils literal notranslate"><span class="pre">StreamResult</span></code> messages, one for each stream that exists on the server for
 that client, and whose return value changed since the last update was sent. It has the following
 format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">StreamResult</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">StreamResult</span> <span class="p">{</span>
   <span class="kt">uint64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="n">ProcedureResult</span> <span class="na">result</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -418,10 +410,10 @@ format:</p>
 </div>
 <p>The fields are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">id</span></code> - The identifier of the stream. This is the value returned by
+<li><code class="docutils literal notranslate"><span class="pre">id</span></code> - The identifier of the stream. This is the value returned by
 <a class="reference internal" href="#communication-protocol-add-stream"><span class="std std-ref">AddStream</span></a> when the stream is created.</li>
-<li><code class="docutils literal"><span class="pre">result</span></code> - A <code class="docutils literal"><span class="pre">ProcedureResult</span></code> message containing the result of the streams RPC. This is
-identical to the <code class="docutils literal"><span class="pre">ProcedureResult</span></code> message returned when calling the RPC directly. See
+<li><code class="docutils literal notranslate"><span class="pre">result</span></code> - A <code class="docutils literal notranslate"><span class="pre">ProcedureResult</span></code> message containing the result of the streams RPC. This is
+identical to the <code class="docutils literal notranslate"><span class="pre">ProcedureResult</span></code> message returned when calling the RPC directly. See
 <a class="reference internal" href="#communication-protocol-anatomy-of-a-response"><span class="std std-ref">Anatomy of a Response</span></a> for details on the format and contents of this
 message.</li>
 </ul>
@@ -430,10 +422,10 @@ message.</li>
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <p>Events are a wrapper over a stream that returns a boolean value. The event is triggered when the
-stream returns to true. Remote procedures that return an event return an <code class="docutils literal"><span class="pre">Event</span></code> message that
-contains a <code class="docutils literal"><span class="pre">Stream</span></code> message describing the underlying stream for the event.</p>
-<p>The format for an <code class="docutils literal"><span class="pre">Event</span></code> message is simply the following:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Event</span> <span class="p">{</span>
+stream returns to true. Remote procedures that return an event return an <code class="docutils literal notranslate"><span class="pre">Event</span></code> message that
+contains a <code class="docutils literal notranslate"><span class="pre">Stream</span></code> message describing the underlying stream for the event.</p>
+<p>The format for an <code class="docutils literal notranslate"><span class="pre">Event</span></code> message is simply the following:</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Event</span> <span class="p">{</span>
   <span class="k">repeated</span> <span class="n">Stream</span> <span class="na">stream</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -441,13 +433,13 @@ contains a <code class="docutils literal"><span class="pre">Stream</span></code>
 </div>
 <div class="section" id="krpc-service">
 <span id="communication-protocol-krpc-service"></span><h2>KRPC Service<a class="headerlink" href="#krpc-service" title="Permalink to this headline">¶</a></h2>
-<p>The server provides a service called <code class="docutils literal"><span class="pre">KRPC</span></code> containing procedures that are
+<p>The server provides a service called <code class="docutils literal notranslate"><span class="pre">KRPC</span></code> containing procedures that are
 used to retrieve information about the server and to manage streams.</p>
 <div class="section" id="getstatus">
 <h3>GetStatus<a class="headerlink" href="#getstatus" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">GetStatus</span></code> procedure returns status information about the server. It
+<p>The <code class="docutils literal notranslate"><span class="pre">GetStatus</span></code> procedure returns status information about the server. It
 returns a Protocol Buffer message with the format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Status</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Status</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">version</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">uint64</span> <span class="na">bytes_read</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
   <span class="kt">uint64</span> <span class="na">bytes_written</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -470,40 +462,40 @@ returns a Protocol Buffer message with the format:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">version</span></code> field contains the version string of the server. The remaining
+<p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field contains the version string of the server. The remaining
 fields contain performance information about the server.</p>
 </div>
 <div class="section" id="getservices">
 <span id="communication-protocol-get-services"></span><h3>GetServices<a class="headerlink" href="#getservices" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">GetServices</span></code> procedure returns a Protocol Buffer message containing information about all of
+<p>The <code class="docutils literal notranslate"><span class="pre">GetServices</span></code> procedure returns a Protocol Buffer message containing information about all of
 the services and procedures provided by the server. The format of the message is:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Services</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Services</span> <span class="p">{</span>
   <span class="k">repeated</span> <span class="n">Service</span> <span class="na">services</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This contains a single field, which is a list of <code class="docutils literal"><span class="pre">Service</span></code> messages with information about each
-service provided by the server. The content of these <code class="docutils literal"><span class="pre">Service</span></code> messages are <a class="reference internal" href="#communication-protocol-service-description-message"><span class="std std-ref">documented below</span></a>.</p>
+<p>This contains a single field, which is a list of <code class="docutils literal notranslate"><span class="pre">Service</span></code> messages with information about each
+service provided by the server. The content of these <code class="docutils literal notranslate"><span class="pre">Service</span></code> messages are <a class="reference internal" href="#communication-protocol-service-description-message"><span class="std std-ref">documented below</span></a>.</p>
 </div>
 <div class="section" id="addstream">
 <span id="communication-protocol-add-stream"></span><h3>AddStream<a class="headerlink" href="#addstream" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">AddStream</span></code> procedure adds a new stream to the server. Its first argument is the RPC to
-invoke, encoded as a <code class="docutils literal"><span class="pre">ProcedureCall</span></code> message. The second argument is a boolean value indicating
+<p>The <code class="docutils literal notranslate"><span class="pre">AddStream</span></code> procedure adds a new stream to the server. Its first argument is the RPC to
+invoke, encoded as a <code class="docutils literal notranslate"><span class="pre">ProcedureCall</span></code> message. The second argument is a boolean value indicating
 whether the stream should start sending data to the client immediately. The procedure returns a
-<code class="docutils literal"><span class="pre">Stream</span></code> message describing the stream that was added. See
+<code class="docutils literal notranslate"><span class="pre">Stream</span></code> message describing the stream that was added. See
 <a class="reference internal" href="#communication-protocol-anatomy-of-a-request"><span class="std std-ref">Anatomy of a Request</span></a> for the format and contents of this message. See
 <a class="reference internal" href="#communication-protocol-streams"><span class="std std-ref">Streams</span></a> for more information on working with streams.</p>
 </div>
 <div class="section" id="startstream">
 <span id="communication-protocol-start-stream"></span><h3>StartStream<a class="headerlink" href="#startstream" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">StartStream</span></code> procedure starts a stream sending data to a client, if it has not yet been
+<p>The <code class="docutils literal notranslate"><span class="pre">StartStream</span></code> procedure starts a stream sending data to a client, if it has not yet been
 started. It takes a single argument – the identifier of the stream to start. This is the identifier
 returned when the stream was added by calling <a class="reference internal" href="#communication-protocol-add-stream"><span class="std std-ref">AddStream</span></a>. See
 <a class="reference internal" href="#communication-protocol-streams"><span class="std std-ref">Streams</span></a> for more information on working with streams.</p>
 </div>
 <div class="section" id="removestream">
 <span id="communication-protocol-remove-stream"></span><h3>RemoveStream<a class="headerlink" href="#removestream" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">RemoveStream</span></code> procedure removes a stream from the server. It takes a single argument – the
+<p>The <code class="docutils literal notranslate"><span class="pre">RemoveStream</span></code> procedure removes a stream from the server. It takes a single argument – the
 identifier of the stream to be removed. This is the identifier returned when the stream was added by
 calling <a class="reference internal" href="#communication-protocol-add-stream"><span class="std std-ref">AddStream</span></a>. See <a class="reference internal" href="#communication-protocol-streams"><span class="std std-ref">Streams</span></a> for more
 information on working with streams.</p>
@@ -512,9 +504,9 @@ information on working with streams.</p>
 <div class="section" id="service-description-message">
 <span id="communication-protocol-service-description-message"></span><h2>Service Description Message<a class="headerlink" href="#service-description-message" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#communication-protocol-get-services"><span class="std std-ref">GetServices procedure</span></a> returns information about all
-of the services provided by the server. Details about a service are given by a <code class="docutils literal"><span class="pre">Service</span></code> message,
+of the services provided by the server. Details about a service are given by a <code class="docutils literal notranslate"><span class="pre">Service</span></code> message,
 with the format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Service</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Service</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">Procedure</span> <span class="na">procedures</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">Class</span> <span class="na">classes</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -526,28 +518,29 @@ with the format:</p>
 </div>
 <p>The fields are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name of the service.</li>
-<li><code class="docutils literal"><span class="pre">procedures</span></code> - A list of <code class="docutils literal"><span class="pre">Procedure</span></code> messages, one for each procedure defined by the service.</li>
-<li><code class="docutils literal"><span class="pre">classes</span></code> - A list of <code class="docutils literal"><span class="pre">Class</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> defined by the
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the service.</li>
+<li><code class="docutils literal notranslate"><span class="pre">procedures</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">Procedure</span></code> messages, one for each procedure defined by the service.</li>
+<li><code class="docutils literal notranslate"><span class="pre">classes</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">Class</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCClass</span></code></a> defined by the
 service.</li>
-<li><code class="docutils literal"><span class="pre">enumerations</span></code> - A list of <code class="docutils literal"><span class="pre">Enumeration</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a>
+<li><code class="docutils literal notranslate"><span class="pre">enumerations</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">Enumeration</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCEnum</span></code></a>
 defined by the service.</li>
-<li><code class="docutils literal"><span class="pre">exceptions</span></code> - A list of <code class="docutils literal"><span class="pre">Exception</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCException</span></code></a>
+<li><code class="docutils literal notranslate"><span class="pre">exceptions</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">Exception</span></code> messages, one for each <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCException</span></code></a>
 defined by the service.</li>
-<li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the service, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the service, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">See the <a class="reference internal" href="../extending.html#extending"><span class="std std-ref">Extending kRPC</span></a> documentation for more details about <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a>,
-<a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> and <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCException</span></code></a>.</p>
+<p class="last">See the <a class="reference internal" href="../extending.html#extending"><span class="std std-ref">Extending kRPC</span></a> documentation for more details about <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCClass</span></code></a>,
+<a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCEnum</span></code></a> and <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCException</span></code></a>.</p>
 </div>
 <div class="section" id="procedures">
 <h3>Procedures<a class="headerlink" href="#procedures" title="Permalink to this headline">¶</a></h3>
-<p>Details about a procedure are given by a <code class="docutils literal"><span class="pre">Procedure</span></code> message, with the format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Procedure</span> <span class="p">{</span>
+<p>Details about a procedure are given by a <code class="docutils literal notranslate"><span class="pre">Procedure</span></code> message, with the format:</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Procedure</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">Parameter</span> <span class="na">parameters</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
   <span class="n">Type</span> <span class="na">return_type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">GameScene</span> <span class="na">game_scenes</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">documentation</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -560,31 +553,34 @@ defined by the service.</li>
 </div>
 <p>The fields are:</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">name</span></code> - The name of the procedure. See <a class="reference internal" href="#communication-protocol-procedure-names"><span class="std std-ref">Procedure Names</span></a> for more
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the procedure. See <a class="reference internal" href="#communication-protocol-procedure-names"><span class="std std-ref">Procedure Names</span></a> for more
 information.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">parameters</span></code> - A list of <code class="docutils literal"><span class="pre">Parameter</span></code> messages containing details of the
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">parameters</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">Parameter</span></code> messages containing details of the
 procedure’s parameters, with the following fields:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name of the parameter, to allow parameter passing by name.</li>
-<li><code class="docutils literal"><span class="pre">type</span></code> - The <a class="reference internal" href="#communication-protocol-type"><span class="std std-ref">type</span></a> of the parameter.</li>
-<li><code class="docutils literal"><span class="pre">default_value</span></code> - The value of the default value of the parameter, if any, <a class="reference internal" href="#communication-protocol-protobuf-encoding"><span class="std std-ref">encoded
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the parameter, to allow parameter passing by name.</li>
+<li><code class="docutils literal notranslate"><span class="pre">type</span></code> - The <a class="reference internal" href="#communication-protocol-type"><span class="std std-ref">type</span></a> of the parameter.</li>
+<li><code class="docutils literal notranslate"><span class="pre">default_value</span></code> - The value of the default value of the parameter, if any, <a class="reference internal" href="#communication-protocol-protobuf-encoding"><span class="std std-ref">encoded
 using Protocol Buffer format</span></a>.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">return_type</span></code> - The <a class="reference internal" href="#communication-protocol-type"><span class="std std-ref">return type</span></a> of the procedure. If the
-procedure does not return anything its type is set to <code class="docutils literal"><span class="pre">NONE</span></code>.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">return_type</span></code> - The <a class="reference internal" href="#communication-protocol-type"><span class="std std-ref">return type</span></a> of the procedure. If the
+procedure does not return anything its type is set to <code class="docutils literal notranslate"><span class="pre">NONE</span></code>.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the procedure, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">game_scenes</span></code> - The <a class="reference internal" href="#communication-protocol-game-scene"><span class="std std-ref">game scenes</span></a> that the procedure is
+available in. If this repeated field is empty, the procedure is available in all game scenes.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the procedure, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</p>
 </li>
 </ul>
 </div>
 <div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
-<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCClass</span></code></a> are specified in a <code class="docutils literal"><span class="pre">Class</span></code> message, with the format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Class</span> <span class="p">{</span>
+<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCClass" title="KRPCClass attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCClass</span></code></a> are specified in a <code class="docutils literal notranslate"><span class="pre">Class</span></code> message, with the format:</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Class</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">documentation</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -592,15 +588,15 @@ procedure does not return anything its type is set to <code class="docutils lite
 </div>
 <p>The fields are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name of the class.</li>
-<li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the class, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the class.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the class, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 </div>
 <div class="section" id="enumerations">
 <h3>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h3>
-<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCEnum</span></code></a> are specified in an <code class="docutils literal"><span class="pre">Enumeration</span></code> message, with the
+<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCEnum" title="KRPCEnum attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCEnum</span></code></a> are specified in an <code class="docutils literal notranslate"><span class="pre">Enumeration</span></code> message, with the
 format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Enumeration</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Enumeration</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">EnumerationValue</span> <span class="na">values</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">documentation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -615,22 +611,22 @@ format:</p>
 </div>
 <p>The fields are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name of the enumeration.</li>
-<li><code class="docutils literal"><span class="pre">values</span></code> - A list of <code class="docutils literal"><span class="pre">EnumerationValue</span></code> messages, indicating the values that the enumeration
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the enumeration.</li>
+<li><code class="docutils literal notranslate"><span class="pre">values</span></code> - A list of <code class="docutils literal notranslate"><span class="pre">EnumerationValue</span></code> messages, indicating the values that the enumeration
 can be assigned. The fields are:<ul>
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name associated with the value for the enumeration.</li>
-<li><code class="docutils literal"><span class="pre">value</span></code> - The possible value for the enumeration as a 32-bit integer.</li>
-<li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the enumeration value, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name associated with the value for the enumeration.</li>
+<li><code class="docutils literal notranslate"><span class="pre">value</span></code> - The possible value for the enumeration as a 32-bit integer.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the enumeration value, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 </li>
-<li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the enumeration, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the enumeration, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 </div>
 <div class="section" id="exceptions">
 <h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h3>
-<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal"><span class="pre">KRPCException</span></code></a> are specified in an <code class="docutils literal"><span class="pre">Exception</span></code> message, with the
+<p>Details about each <a class="reference internal" href="../extending.html#attribute-KRPCException" title="KRPCException attribute"><code class="xref csharp csharp-attr docutils literal notranslate"><span class="pre">KRPCException</span></code></a> are specified in an <code class="docutils literal notranslate"><span class="pre">Exception</span></code> message, with the
 format:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Exception</span> <span class="p">{</span>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Exception</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">documentation</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -638,8 +634,8 @@ format:</p>
 </div>
 <p>The fields are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">name</span></code> - The name of the exception type.</li>
-<li><code class="docutils literal"><span class="pre">documentation</span></code> - Documentation for the exception, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> - The name of the exception type.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code> - Documentation for the exception, as <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa288481%28v=vs.71%29.aspx">C# XML documentation</a>.</li>
 </ul>
 </div>
 </div>
@@ -649,13 +645,13 @@ format:</p>
 property, and what class (if any) it belongs to is determined by its name:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">ProcedureName</span></code> - a standard procedure that is just part of a service.</li>
-<li><code class="docutils literal"><span class="pre">get_PropertyName</span></code> - a procedure that returns the value of a property in a service.</li>
-<li><code class="docutils literal"><span class="pre">set_PropertyName</span></code> - a procedure that sets the value of a property in a service.</li>
-<li><code class="docutils literal"><span class="pre">ClassName_MethodName</span></code> - a class method.</li>
-<li><code class="docutils literal"><span class="pre">ClassName_static_StaticMethodName</span></code> - a static class method.</li>
-<li><code class="docutils literal"><span class="pre">ClassName_get_PropertyName</span></code> - a class property getter.</li>
-<li><code class="docutils literal"><span class="pre">ClassName_set_PropertyName</span></code> - a class property setter.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ProcedureName</span></code> - a standard procedure that is just part of a service.</li>
+<li><code class="docutils literal notranslate"><span class="pre">get_PropertyName</span></code> - a procedure that returns the value of a property in a service.</li>
+<li><code class="docutils literal notranslate"><span class="pre">set_PropertyName</span></code> - a procedure that sets the value of a property in a service.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ClassName_MethodName</span></code> - a class method.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ClassName_static_StaticMethodName</span></code> - a static class method.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ClassName_get_PropertyName</span></code> - a class property getter.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ClassName_set_PropertyName</span></code> - a class property setter.</li>
 </ul>
 </div></blockquote>
 <p>Only letters and numbers are permitted in class, method and property names. Underscores can
@@ -663,9 +659,9 @@ therefore be used to split the name into its constituent parts.</p>
 </div>
 <div class="section" id="type">
 <span id="communication-protocol-type"></span><h2>Type<a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">GetServices</span></code> procedure returns type information about parameters, return values and others as
-<code class="docutils literal"><span class="pre">Type</span></code> messages. The format of these messages is as follows:</p>
-<div class="highlight-protobuf"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Type</span> <span class="p">{</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">GetServices</span></code> procedure returns type information about parameters, return values and others as
+<code class="docutils literal notranslate"><span class="pre">Type</span></code> messages. The format of these messages is as follows:</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">message</span> <span class="nc">Type</span> <span class="p">{</span>
   <span class="n">TypeCode</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="kt">string</span> <span class="kd">service</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
   <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -704,37 +700,52 @@ therefore be used to split the name into its constituent parts.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">code</span></code> field specifies the type. <code class="docutils literal"><span class="pre">NONE</span></code> is used as the return type for procedures that do
+<p>The <code class="docutils literal notranslate"><span class="pre">code</span></code> field specifies the type. <code class="docutils literal notranslate"><span class="pre">NONE</span></code> is used as the return type for procedures that do
 not return a value.</p>
-<p>For <code class="docutils literal"><span class="pre">CLASS</span></code> and <code class="docutils literal"><span class="pre">ENUMERATION</span></code> types the <code class="docutils literal"><span class="pre">service</span></code> and <code class="docutils literal"><span class="pre">name</span></code> fields specify the service that
+<p>For <code class="docutils literal notranslate"><span class="pre">CLASS</span></code> and <code class="docutils literal notranslate"><span class="pre">ENUMERATION</span></code> types the <code class="docutils literal notranslate"><span class="pre">service</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> fields specify the service that
 defines the class/enumeration and the name of the class/enumeration. For all other types these
 fields are empty.</p>
-<p>For collection types the <code class="docutils literal"><span class="pre">types</span></code> repeated field will contain the sub-types:</p>
+<p>For collection types the <code class="docutils literal notranslate"><span class="pre">types</span></code> repeated field will contain the sub-types:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">TUPLE</span></code> types contain 1 or more types in the <code class="docutils literal"><span class="pre">types</span></code> field.</li>
-<li><code class="docutils literal"><span class="pre">LIST</span></code> and <code class="docutils literal"><span class="pre">SET</span></code> types contain a single type in the <code class="docutils literal"><span class="pre">types</span></code> field.</li>
-<li><code class="docutils literal"><span class="pre">DICTIONARY</span></code> types contain a 2 types in the <code class="docutils literal"><span class="pre">types</span></code> field - the key and value types, in that
+<li><code class="docutils literal notranslate"><span class="pre">TUPLE</span></code> types contain 1 or more types in the <code class="docutils literal notranslate"><span class="pre">types</span></code> field.</li>
+<li><code class="docutils literal notranslate"><span class="pre">LIST</span></code> and <code class="docutils literal notranslate"><span class="pre">SET</span></code> types contain a single type in the <code class="docutils literal notranslate"><span class="pre">types</span></code> field.</li>
+<li><code class="docutils literal notranslate"><span class="pre">DICTIONARY</span></code> types contain a 2 types in the <code class="docutils literal notranslate"><span class="pre">types</span></code> field - the key and value types, in that
 order.</li>
 </ul>
 </div></blockquote>
-<p>For all other types the <code class="docutils literal"><span class="pre">types</span></code> field is empty.</p>
+<p>For all other types the <code class="docutils literal notranslate"><span class="pre">types</span></code> field is empty.</p>
+</div>
+<div class="section" id="gamescene">
+<span id="communication-protocol-game-scene"></span><h2>GameScene<a class="headerlink" href="#gamescene" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">GetServices</span></code> procedure returns information about which game scenes a procedure can be called
+from. These are returned as a repeated field containing <code class="docutils literal notranslate"><span class="pre">GameScene</span></code> enumeration values. If the
+procedure is available in all game scenes, this field is empty. The enumeration is defined as
+follows:</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">enum</span> <span class="n">GameScene</span> <span class="p">{</span>
+  <span class="na">SPACE_CENTER</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="na">FLIGHT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="na">TRACKING_STATION</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="na">EDITOR_VAB</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="na">EDITOR_SPH</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="na">MISSION_BUILDER</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="proxy-objects">
 <span id="communication-protocol-proxy-objects"></span><h2>Proxy Objects<a class="headerlink" href="#proxy-objects" title="Permalink to this headline">¶</a></h2>
 <p>kRPC allows procedures to create objects on the server, and pass a unique identifier for them to the
 client. This allows the client to create a <em>proxy</em> object for the actual object, whose methods and
-properties make remote procedure calls to the server. Object identifiers have type <code class="docutils literal"><span class="pre">uint64</span></code>.</p>
+properties make remote procedure calls to the server. Object identifiers have type <code class="docutils literal notranslate"><span class="pre">uint64</span></code>.</p>
 <p>When a procedure returns a proxy object or takes one as a parameter, the type code will be set to
-<code class="docutils literal"><span class="pre">CLASS</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">CLASS</span></code>.</p>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -752,11 +763,11 @@ properties make remote procedure calls to the server. Object identifiers have ty
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2017, djungelorm.
+        &copy; Copyright 2015-2017, djungelorm
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -771,37 +782,24 @@ properties make remote procedure calls to the server. Object identifiers have ty
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.4.7',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
  
 <script>
   // Open external links in a new window

@@ -19,56 +19,77 @@ Flight
 
    .. property:: float GForce { get; }
 
-      The current G force acting on the vessel in :math:`m/s^2`.
+      The current G force acting on the vessel in :math:`g`.
+
+      :Game Scenes: Flight
 
    .. property:: double MeanAltitude { get; }
 
       The altitude above sea level, in meters.
       Measured from the center of mass of the vessel.
 
+      :Game Scenes: Flight
+
    .. property:: double SurfaceAltitude { get; }
 
       The altitude above the surface of the body or sea level, whichever is closer, in meters.
       Measured from the center of mass of the vessel.
+
+      :Game Scenes: Flight
 
    .. property:: double BedrockAltitude { get; }
 
       The altitude above the surface of the body, in meters. When over water, this is the altitude above the sea floor.
       Measured from the center of mass of the vessel.
 
+      :Game Scenes: Flight
+
    .. property:: double Elevation { get; }
 
       The elevation of the terrain under the vessel, in meters. This is the height of the terrain above sea level,
       and is negative when the vessel is over the sea.
 
+      :Game Scenes: Flight
+
    .. property:: double Latitude { get; }
 
       The `latitude <https://en.wikipedia.org/wiki/Latitude>`_ of the vessel for the body being orbited, in degrees.
 
+      :Game Scenes: Flight
+
    .. property:: double Longitude { get; }
 
       The `longitude <https://en.wikipedia.org/wiki/Longitude>`_ of the vessel for the body being orbited, in degrees.
+
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Velocity { get; }
 
       The velocity of the vessel, in the reference frame :type:`ReferenceFrame`.
 
       :returns: The velocity as a vector. The vector points in the direction of travel, and its magnitude is the speed of the vessel in meters per second.
+      :Game Scenes: Flight
 
    .. property:: double Speed { get; }
 
       The speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
 
+      :Game Scenes: Flight
+
    .. property:: double HorizontalSpeed { get; }
 
       The horizontal speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
 
+      :Game Scenes: Flight
+
    .. property:: double VerticalSpeed { get; }
 
       The vertical speed of the vessel in meters per second,
       in the reference frame :type:`ReferenceFrame`.
+
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> CenterOfMass { get; }
 
@@ -76,12 +97,14 @@ Flight
       in the reference frame :type:`ReferenceFrame`
 
       :returns: The position as a vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double,double> Rotation { get; }
 
       The rotation of the vessel, in the reference frame :type:`ReferenceFrame`
 
       :returns: The rotation as a quaternion of the form :math:`(x, y, z, w)`.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Direction { get; }
 
@@ -89,21 +112,28 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: float Pitch { get; }
 
       The pitch of the vessel relative to the horizon, in degrees.
       A value between -90° and +90°.
 
+      :Game Scenes: Flight
+
    .. property:: float Heading { get; }
 
       The heading of the vessel (its angle relative to north), in degrees.
       A value between 0° and 360°.
 
+      :Game Scenes: Flight
+
    .. property:: float Roll { get; }
 
       The roll of the vessel relative to the horizon, in degrees.
       A value between -180° and +180°.
+
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Prograde { get; }
 
@@ -111,6 +141,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Retrograde { get; }
 
@@ -118,6 +149,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Normal { get; }
 
@@ -125,6 +157,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> AntiNormal { get; }
 
@@ -132,6 +165,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Radial { get; }
 
@@ -139,6 +173,7 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> AntiRadial { get; }
 
@@ -146,10 +181,13 @@ Flight
       in the reference frame :type:`ReferenceFrame`.
 
       :returns: The direction as a unit vector.
+      :Game Scenes: Flight
 
    .. property:: float AtmosphereDensity { get; }
 
       The current density of the atmosphere around the vessel, in :math:`kg/m^3`.
+
+      :Game Scenes: Flight
 
    .. property:: float DynamicPressure { get; }
 
@@ -158,13 +196,19 @@ Flight
       :math:`\frac{1}{2} . \mbox{air density} . \mbox{velocity}^2`.
       It is commonly denoted :math:`Q`.
 
+      :Game Scenes: Flight
+
    .. property:: float StaticPressure { get; }
 
       The static atmospheric pressure acting on the vessel, in Pascals.
 
+      :Game Scenes: Flight
+
    .. property:: float StaticPressureAtMSL { get; }
 
       The static atmospheric pressure at mean sea level, in Pascals.
+
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> AerodynamicForce { get; }
 
@@ -172,6 +216,7 @@ Flight
       in reference frame :type:`ReferenceFrame`.
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. method:: System.Tuple<double,double,double> SimulateAerodynamicForceAt(CelestialBody body, System.Tuple<double,double,double> position, System.Tuple<double,double,double> velocity)
 
@@ -186,6 +231,7 @@ Flight
 
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Lift { get; }
 
@@ -193,24 +239,32 @@ Flight
       currently acting on the vessel.
 
       :returns: A vector pointing in the direction that the force acts, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. property:: System.Tuple<double,double,double> Drag { get; }
 
       The `aerodynamic drag <https://en.wikipedia.org/wiki/Aerodynamic_force>`_ currently acting on the vessel.
 
       :returns: A vector pointing in the direction of the force, with its magnitude equal to the strength of the force in Newtons.
+      :Game Scenes: Flight
 
    .. property:: float SpeedOfSound { get; }
 
       The speed of sound, in the atmosphere around the vessel, in :math:`m/s`.
 
+      :Game Scenes: Flight
+
    .. property:: float Mach { get; }
 
       The speed of the vessel, in multiples of the speed of sound.
 
+      :Game Scenes: Flight
+
    .. property:: float ReynoldsNumber { get; }
 
       The vessels Reynolds number.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -222,24 +276,34 @@ Flight
       The `true air speed <https://en.wikipedia.org/wiki/True_airspeed>`_
       of the vessel, in meters per second.
 
+      :Game Scenes: Flight
+
    .. property:: float EquivalentAirSpeed { get; }
 
       The `equivalent air speed <https://en.wikipedia.org/wiki/Equivalent_airspeed>`_
       of the vessel, in meters per second.
+
+      :Game Scenes: Flight
 
    .. property:: float TerminalVelocity { get; }
 
       An estimate of the current terminal velocity of the vessel, in meters per second.
       This is the speed at which the drag forces cancel out the force of gravity.
 
+      :Game Scenes: Flight
+
    .. property:: float AngleOfAttack { get; }
 
       The pitch angle between the orientation of the vessel and its velocity vector,
       in degrees.
 
+      :Game Scenes: Flight
+
    .. property:: float SideslipAngle { get; }
 
       The yaw angle between the orientation of the vessel and its velocity vector, in degrees.
+
+      :Game Scenes: Flight
 
    .. property:: float TotalAirTemperature { get; }
 
@@ -247,14 +311,20 @@ Flight
       of the atmosphere around the vessel, in Kelvin.
       This includes the :prop:`Flight.StaticAirTemperature` and the vessel's kinetic energy.
 
+      :Game Scenes: Flight
+
    .. property:: float StaticAirTemperature { get; }
 
       The `static (ambient) temperature <https://en.wikipedia.org/wiki/Total_air_temperature>`_ of the atmosphere around the vessel, in Kelvin.
+
+      :Game Scenes: Flight
 
    .. property:: float StallFraction { get; }
 
       The current amount of stall, between 0 and 1. A value greater than 0.005 indicates
       a minor stall and a value greater than 0.5 indicates a large-scale stall.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -266,6 +336,8 @@ Flight
       The coefficient of drag. This is the amount of drag produced by the vessel.
       It depends on air speed, air density and wing area.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -276,6 +348,8 @@ Flight
       The coefficient of lift. This is the amount of lift produced by the vessel, and
       depends on air speed, air density and wing area.
 
+      :Game Scenes: Flight
+
 
       .. note::
 
@@ -284,6 +358,8 @@ Flight
    .. property:: float BallisticCoefficient { get; }
 
       The `ballistic coefficient <https://en.wikipedia.org/wiki/Ballistic_coefficient>`_.
+
+      :Game Scenes: Flight
 
 
       .. note::
@@ -296,6 +372,8 @@ Flight
       measure of the efficiency of the engines, with a lower value indicating a more
       efficient vessel. This value is the number of Newtons of fuel that are burned,
       per hour, to produce one newton of thrust.
+
+      :Game Scenes: Flight
 
 
       .. note::
