@@ -70,7 +70,8 @@ namespace KRPC.SpaceCenter.Services
         {
             requestingClient = CallContext.Client;
             engaged [vesselId] = this;
-            attitudeController.Start ();
+            //attitudeController.Start ();
+            attitudeController.EnableControl();
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace KRPC.SpaceCenter.Services
         {
             requestingClient = null;
             engaged [vesselId] = null;
+            attitudeController.DisableControl();
         }
 
         /// <summary>
@@ -281,8 +283,8 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public double RollThreshold {
-            get { return attitudeController.RollThreshold; }
-            set { attitudeController.RollThreshold = value; }
+            get { return attitudeController.RollControlAngleRange; }
+            set { attitudeController.RollControlAngleRange = value; }
         }
 
         /// <summary>
@@ -293,8 +295,8 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public Tuple3 StoppingTime {
-            get { return attitudeController.StoppingTime.ToTuple (); }
-            set { attitudeController.StoppingTime = value.ToVector (); }
+            get { return new Tuple3(attitudeController.MaxStoppingTime, 0, 0); }
+            set { attitudeController.MaxStoppingTime = value.Item1; }
         }
 
         /// <summary>
@@ -305,8 +307,8 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public Tuple3 DecelerationTime {
-            get { return attitudeController.DecelerationTime.ToTuple (); }
-            set { attitudeController.DecelerationTime = value.ToVector (); }
+            get { return new Tuple3(attitudeController.MaxStoppingTime, 0, 0); }
+            set { attitudeController.MaxStoppingTime = value.Item1; }
         }
 
         /// <summary>
@@ -318,8 +320,7 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public Tuple3 AttenuationAngle {
-            get { return attitudeController.AttenuationAngle.ToTuple (); }
-            set { attitudeController.AttenuationAngle = value.ToVector (); }
+            get { return new Tuple3(0, 0, 0); }
         }
 
         /// <summary>
@@ -329,8 +330,8 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public bool AutoTune {
-            get { return attitudeController.AutoTune; }
-            set { attitudeController.AutoTune = value; }
+            get { return true; }
+            set { attitudeController.Autotune = value; }
         }
 
         /// <summary>
@@ -340,8 +341,7 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public Tuple3 TimeToPeak {
-            get { return attitudeController.TimeToPeak.ToTuple (); }
-            set { attitudeController.TimeToPeak = value.ToVector (); }
+            get { return new Tuple3(0, 0, 0); }
         }
 
         /// <summary>
@@ -351,8 +351,7 @@ namespace KRPC.SpaceCenter.Services
         /// </summary>
         [KRPCProperty]
         public Tuple3 Overshoot {
-            get { return attitudeController.Overshoot.ToTuple (); }
-            set { attitudeController.Overshoot = value.ToVector (); }
+            get { return new Tuple3(0, 0, 0); }
         }
 
         /// <summary>
@@ -365,10 +364,14 @@ namespace KRPC.SpaceCenter.Services
         [KRPCProperty]
         public Tuple3 PitchPIDGains {
             get {
-                var pid = attitudeController.PitchPID;
+                var pid = attitudeController.pitchRatePI;
                 return new Tuple3 (pid.Kp, pid.Ki, pid.Kd);
             }
-            set { attitudeController.PitchPID.SetParameters (value.Item1, value.Item2, value.Item3); }
+            set
+            {
+                attitudeController.pitchRatePI.Kp = value.Item1;
+                attitudeController.pitchRatePI.Ki = value.Item2;
+                    attitudeController.pitchRatePI.Kd = value.Item3; }
         }
 
         /// <summary>
@@ -381,10 +384,14 @@ namespace KRPC.SpaceCenter.Services
         [KRPCProperty]
         public Tuple3 RollPIDGains {
             get {
-                var pid = attitudeController.RollPID;
+                var pid = attitudeController.rollRatePI;
                 return new Tuple3 (pid.Kp, pid.Ki, pid.Kd);
             }
-            set { attitudeController.RollPID.SetParameters (value.Item1, value.Item2, value.Item3); }
+            set
+            {
+                attitudeController.rollRatePI.Kp = value.Item1;
+                attitudeController.rollRatePI.Ki = value.Item2;
+                attitudeController.rollRatePI.Kd = value.Item3; }
         }
 
         /// <summary>
@@ -397,10 +404,14 @@ namespace KRPC.SpaceCenter.Services
         [KRPCProperty]
         public Tuple3 YawPIDGains {
             get {
-                var pid = attitudeController.YawPID;
+                var pid = attitudeController.yawRatePI;
                 return new Tuple3 (pid.Kp, pid.Ki, pid.Kd);
             }
-            set { attitudeController.YawPID.SetParameters (value.Item1, value.Item2, value.Item3); }
+            set
+            {
+                attitudeController.yawRatePI.Kp = value.Item1;
+                attitudeController.yawRatePI.Ki = value.Item2;
+                attitudeController.yawRatePI.Kd = value.Item3; }
         }
 
         /// <summary>
@@ -516,7 +527,7 @@ namespace KRPC.SpaceCenter.Services
             }
             // Run the auto-pilot
             autoPilot.SAS = false;
-            autoPilot.attitudeController.Update (state);
+            autoPilot.attitudeController.Update (vessel.ctrlState);
             return true;
         }
     }
