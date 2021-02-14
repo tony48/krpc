@@ -25,6 +25,10 @@ namespace KRPC.SpaceCenter.AutoPilot
             {
                 return internalVessel;
             }
+            set
+            {
+                internalVessel = value;
+            }
         }
 
         private uint partId = 0;
@@ -310,6 +314,7 @@ namespace KRPC.SpaceCenter.AutoPilot
 
         public void ResetToDefault()
         {
+            this.DisableControl();
             pitchPI.Ts = 2;
             yawPI.Ts = 2;
             rollPI.Ts = 2;
@@ -358,6 +363,7 @@ namespace KRPC.SpaceCenter.AutoPilot
             yawTorqueCalc.Reset();
 
             adjustTorque = Vector3d.zero;
+            vesselParts = 0;
         }
 
         public void DisableControl()
@@ -377,10 +383,10 @@ namespace KRPC.SpaceCenter.AutoPilot
             rollRatePI.ResetI();
         }
 
-        public void OnFlyByWire(FlightCtrlState c)
-        {
-            Update(c);
-        }
+        //public void OnFlyByWire(FlightCtrlState c)
+        //{
+        //    Update(c);
+        //}
 
         private readonly System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
@@ -418,6 +424,10 @@ namespace KRPC.SpaceCenter.AutoPilot
 
         public void Update(FlightCtrlState c)
         {
+            //if (internalVessel == null)
+            //{
+            //    this.DisableControl();
+            //}
             if (!Enabled)
             {
                 return; // skip update if not enabled
@@ -490,6 +500,11 @@ namespace KRPC.SpaceCenter.AutoPilot
                 // time where the trigger and steering manager are no longer synced.
                 //shared.Logger.LogWarning("SteeringManager target direction is null, skipping this update.");
                 return;
+            }
+
+            if (internalVessel == null)
+            {
+                Debug.Log("VESSEL IS NULL JE VAIS TE TUER KRPC");
             }
 
             //var phr = new Vector3d (targetPitch, targetHeading, double.IsNaN (targetRoll) ? 0 : targetRoll);

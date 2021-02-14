@@ -71,6 +71,14 @@ namespace KRPC.SpaceCenter.Services
             requestingClient = CallContext.Client;
             engaged [vesselId] = this;
             //attitudeController.Start ();
+            if (InternalVessel == null)
+            {
+                Debug.Log("Bon KRPC tu saoules la");
+            }
+            if (attitudeController.Vessel == null)
+            {
+                attitudeController.Vessel = InternalVessel;
+            }
             attitudeController.EnableControl();
         }
 
@@ -514,6 +522,14 @@ namespace KRPC.SpaceCenter.Services
             if (!engaged.ContainsKey (vessel.id))
                 return false;
             var autoPilot = engaged [vessel.id];
+            if (vessel == null)
+            {
+                Debug.Log("PUTAIN DE KRPC Y'A RIEN QUI MARCHE");
+            }
+            //if (autoPilot.attitudeController.Vessel == null)
+            //{
+            //    autoPilot.attitudeController.Vessel = vessel;
+            //}
             if (autoPilot == null)
                 return false;
             // If the client that engaged the auto-pilot has disconnected, disengage and reset the auto-pilot
